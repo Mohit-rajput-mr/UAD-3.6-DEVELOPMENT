@@ -29,3 +29,6 @@ Thumbs.db
 total-bridge/tools/.cache/
 _work/woodycrest/total_index.js
 engine/assets/fonts/kerned/
+
+# the local server's runtime case store (engine/app/main.py WORK) -- data, not source
+_work/cases/

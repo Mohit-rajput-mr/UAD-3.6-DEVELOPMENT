@@ -34,7 +34,7 @@ PT_W, PT_H = 45 * 12 - 12, 48 * 12 - 12
 SCALE = 2.5
 W, H = int(PT_W * SCALE), int(PT_H * SCALE)
 TILE = 256
-USER_AGENT = "Kech-UAD36/1.0 (appraisal report maps)"
+USER_AGENT = "UAD36-FormFiller/1.0 (appraisal report maps)"
 
 DEFAULTS = {
     "street": {"tiles": ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],

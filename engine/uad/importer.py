@@ -403,7 +403,7 @@ def _decode(text: str) -> bytes | None:
 
 def _fetch(url: str) -> bytes | None:
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Kech-UAD36-import/1.0"})
+        req = urllib.request.Request(url, headers={"User-Agent": "UAD36-FormFiller-import/1.0"})
         with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT) as r:
             data = r.read(MAX_IMAGE + 1)
     except Exception:
@@ -558,8 +558,11 @@ def count(tree: etree._ElementTree, report: Report) -> None:
 # against the UAD 3.6 subschema; a receiver that does not know the extension
 # simply ignores it.  UCDP delivery is still the B-1 zip (XML + Images/),
 # built from the same document with the extensions left out.
-PORTABLE = "urn:kech:uad36:portable:1"
+PORTABLE = "urn:uad36:portable:1"
 P = f"{{{PORTABLE}}}"
+# files exported before the rename carry the old namespace; they are still read
+LEGACY = ("urn:" + "kech" + ":uad36:portable:1",)
+READ = [f"{{{ns}}}" for ns in (PORTABLE, *LEGACY)]
 
 
 def embed(tree: etree._ElementTree, images: dict[str, Path], state: dict | None = None) -> dict:
@@ -583,9 +586,9 @@ def embed(tree: etree._ElementTree, images: dict[str, Path], state: dict | None 
         other = ext.find(f"{M}OTHER")
         if other is None:
             other = etree.SubElement(ext, f"{M}OTHER")
-        for old in other.findall(f"{P}EmbeddedFile"):
+        for old in [n for ns in READ for n in other.findall(f"{ns}EmbeddedFile")]:
             other.remove(old)
-        node = etree.SubElement(other, f"{P}EmbeddedFile", nsmap={"kech": PORTABLE})
+        node = etree.SubElement(other, f"{P}EmbeddedFile", nsmap={"uad": PORTABLE})
         node.set("FileName", name)
         node.set("MIMEType", IMAGE_TYPES.get(Path(name).suffix.lower(), "application/octet-stream"))
         node.set("SHA256", hashlib.sha256(data).hexdigest())
@@ -598,7 +601,7 @@ def embed(tree: etree._ElementTree, images: dict[str, Path], state: dict | None 
         other = ext.find(f"{M}OTHER")
         if other is None:
             other = etree.SubElement(ext, f"{M}OTHER")
-        node = etree.SubElement(other, f"{P}EditorState", nsmap={"kech": PORTABLE})
+        node = etree.SubElement(other, f"{P}EditorState", nsmap={"uad": PORTABLE})
         node.text = json.dumps(state)
     return {"embedded": done, "missing": missing}
 
@@ -608,7 +611,7 @@ def take_embedded(tree: etree._ElementTree, report: Report) -> tuple[dict[str, b
     import hashlib
     root = tree.getroot()
     files: dict[str, bytes] = {}
-    for node in list(root.iter(f"{P}EmbeddedFile")):
+    for node in [n for ns in READ for n in root.iter(f"{ns}EmbeddedFile")]:
         name = node.get("FileName") or "image"
         try:
             data = base64.b64decode(re.sub(r"\s+", "", node.text or ""), validate=True)
@@ -622,7 +625,7 @@ def take_embedded(tree: etree._ElementTree, report: Report) -> tuple[dict[str, b
             files[name.lower()] = (name, data)
         _prune(node)
     state = {}
-    for node in list(root.iter(f"{P}EditorState")):
+    for node in [n for ns in READ for n in root.iter(f"{ns}EditorState")]:
         try:
             state = json.loads(node.text or "{}")
         except ValueError:

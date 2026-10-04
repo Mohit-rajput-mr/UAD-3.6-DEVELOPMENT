@@ -39,7 +39,7 @@ def _text(node, name: str) -> str:
 
     Namespace-blind on purpose.  A picture embedded in a portable file sits in
     the writing vendor's own extension namespace -- ours is
-    ``urn:kech:uad36:portable:1`` -- and every vendor picks a different one.
+    ``urn:uad36:portable:1`` -- and every vendor picks a different one.
     Matching the namespace as well as the name finds pictures in our own files
     and silently finds none in anybody else's.
     """

@@ -205,7 +205,7 @@ button:hover{background:var(--surface);color:var(--ink)}
     <button type="submit">Unlock</button>
     __ERROR__
   </div>
-  <div class="foot">Fannie Mae | Freddie Mac &nbsp;·&nbsp; UAD 3.6 deliverable &nbsp;·&nbsp; powered by <b>Kech</b></div>
+  <div class="foot">Fannie Mae | Freddie Mac &nbsp;·&nbsp; UAD 3.6 deliverable</div>
 </form>
 </main></body></html>"""
 

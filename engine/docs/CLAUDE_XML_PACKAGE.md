@@ -47,7 +47,7 @@ python engine/tools/pack_xml.py appraisal.xml --images "<the property folder>" -
 ```
 
 The packer reads the XML exactly as the import will, embeds every named picture
-inside its IMAGE (`EXTENSION/OTHER/kech:EmbeddedFile`, base64 + SHA-256 — valid
+inside its IMAGE (`EXTENSION/OTHER/uad:EmbeddedFile`, base64 + SHA-256 — valid
 against the GSE subschema), validates, and lists anything missing, unreadable or
 not UAD 3.6. Fix what it lists and run it again until it reports nothing.
 Exit code 0 = ready.

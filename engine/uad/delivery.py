@@ -395,7 +395,7 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
                                     "that produced the report.",
                                     "Set it in engine/config/vendor.json."))
     # An identifier for the product may reasonably be the product's own name;
-    # a version may not -- writing "Kech" where the file says which build
+    # a version may not -- writing the product name where the file says which build
     # produced it is worse than leaving it out, so it is reported instead.
     identifier = who.get("product_identifier") or who.get("product_name", "")
     if identifier:

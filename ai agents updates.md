@@ -23,7 +23,7 @@ Keep this file current: at the end of every batch, update "Status" and
 ## What the owner has asked for (in order)
 
 - A production UAD 3.6 appraisal report editor to compete with ACI / WinTotal,
-  "powered by Kech"; the editor is the printed report itself, editable in place.
+  no vendor branding (removed 2026-10-04 at the owner's instruction); the editor is the printed report itself, editable in place.
 - Summary is never editable (it redisplays other sections).
 - Photos insertable everywhere; "+ Add Exhibit" boxes in every exhibits area;
   comps 4, 5… like WinTotal; UAD pagination with no overflow; fast, never glitching.
@@ -99,7 +99,7 @@ Built (Import Engine + portable file):
   loose pictures / a folder) -> parse (no network, XXE-safe) -> normalise
   (namespace, Y/N, dates, amounts, schema-driven enumeration repair, unknown
   elements dropped *and reported*, XSD order) -> pictures (bundle by name, http(s)
-  URL, data: URI, embedded base64, `IMAGE/EXTENSION/OTHER/kech:EmbeddedFile`) ->
+  URL, data: URI, embedded base64, `IMAGE/EXTENSION/OTHER/uad:EmbeddedFile`) ->
   report. Over-long text is kept whole and flagged, never cut.
 - `POST /api/import` (app/api.py): transactional — everything in memory first,
   new case only after success, deleted on failure. Pictures become media rows that
@@ -107,8 +107,8 @@ Built (Import Engine + portable file):
   SalesComparableMap -> map box, autoMaps off so an imported map is kept).
 - `GET /api/cases/{id}/portable.xml`: one UAD 3.6 XML with every placed picture
   base64 inside its IMAGE (schema-valid: GSE XSD opens IMAGE/EXTENSION/OTHER to
-  `##other`, lax) + editor state (`MESSAGE/EXTENSION/OTHER/kech:EditorState`).
-  Namespace `urn:kech:uad36:portable:1`. UCDP delivery stays the B-1 zip.
+  `##other`, lax) + editor state (`MESSAGE/EXTENSION/OTHER/uad:EditorState`).
+  Namespace `urn:uad36:portable:1` (files from before 2026-10-04 used an older namespace and are still read). UCDP delivery stays the B-1 zip.
 - UI: "Import a UAD 3.6 appraisal" panel on the Cases screen (drop / files /
   folder, progress, result list, open report); "Download portable XML" in sign-off.
 - Evidence: all 12 D-1 scenarios import in 0.2–1.1 s, every picture placed,

@@ -8,7 +8,7 @@ Used after Claude writes a report's MISMO XML from a property folder (see
    UAD 3.6 does not have;
 2. finds every picture an IMAGE names -- in the folder(s) given, by file
    name, case-insensitive, anywhere below them -- and embeds it inside that
-   IMAGE (``EXTENSION/OTHER/kech:EmbeddedFile``, base64, SHA-256), which the
+   IMAGE (``EXTENSION/OTHER/uad:EmbeddedFile``, base64, SHA-256), which the
    GSE subschema accepts;
 3. validates the result against the GSE UAD 3.6 subschema and prints what the
    import will say: values, comparables, pictures embedded / missing,

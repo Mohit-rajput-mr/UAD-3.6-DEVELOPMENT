@@ -142,6 +142,7 @@ async def shared_store(request: Request, call_next):
         elif path == "/api/cases" and method == "GET":
             await run_in_threadpool(DURABLE.pull_all, api.store())
     except Exception as exc:                 # the store is down: say so, never guess
+        print(f"durable store read failed for {path}: {exc!r}", file=sys.stderr, flush=True)
         return JSONResponse({"detail": f"the shared case store could not be read: {exc}"},
                             status_code=503)
     response = await call_next(request)
@@ -164,6 +165,7 @@ async def shared_store(request: Request, call_next):
                 pass
             return Response(body, status_code=response.status_code, headers=headers)
     except Exception as exc:
+        print(f"durable store write failed for {path}: {exc!r}", file=sys.stderr, flush=True)
         return JSONResponse({"detail": "the change was made on this server copy but could not "
                              f"be saved to the shared case store: {exc}"}, status_code=503)
     return response

@@ -1,5 +1,8 @@
 # START HERE — UAD 3.6 appraisal work in WinTOTAL, driven by an AI agent
 
+> **Every AI agent: read [`AI_HANDOVER.md`](AI_HANDOVER.md) first** — the owner's aim, the main goal, what the last session finished, what to take over next, and how to behave. Keep it current in the same commit as your work.
+
+
 You are an AI agent opening this folder, possibly on a device you have never
 seen. The owner's instruction to you will usually be short — **"refresh your
 memory"** — and then a case folder. This page tells you what that means and

@@ -1,5 +1,8 @@
 # UAD 3.6 appraisal report platform — working agreement
 
+> **Every AI agent: read [`AI_HANDOVER.md`](AI_HANDOVER.md) first** — the owner's aim, the main goal, what the last session finished, what to take over next, and how to behave. Keep it current in the same commit as your work.
+
+
 Several AI agents work in this folder, in sessions that cannot see each other.
 Everything below exists so the next one picks up where the last stopped instead
 of re-deriving it.

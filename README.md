@@ -1,5 +1,8 @@
 # UAD 3.6 report platform
 
+> **Every AI agent: read [`AI_HANDOVER.md`](AI_HANDOVER.md) first** — the owner's aim, the main goal, what the last session finished, what to take over next, and how to behave. Keep it current in the same commit as your work.
+
+
 > **New device, or an AI agent told "refresh your memory"? Open
 > [`START_HERE.md`](START_HERE.md) first.** It installs the WinTOTAL MOD
 > (`setup/install.ps1`) and runs a case (`knowledge/PLAYBOOK.md`).

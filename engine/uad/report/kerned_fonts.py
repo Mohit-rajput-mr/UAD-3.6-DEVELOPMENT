@@ -71,8 +71,11 @@ WIDTHS = Path(__file__).resolve().parents[2] / "spec" / "d1_font_widths.json"
 # samples' /Widths arrays) so the text occupies exactly the same space; the
 # letterforms are Bold's, and that is a real difference, recorded here.
 BLACK_SUBSTITUTE = "MyriadPro-Black"
-WINANSI = [c for c in range(0x20, 0x7F)] + [0xA0, 0x2013, 0x2014, 0x2018, 0x2019, 0x201C,
-                                             0x201D, 0x2022, 0x2026, 0xA7, 0xB0, 0xE9]
+# Every character of WinAnsiEncoding (cp1252), the encoding the samples' fonts
+# use -- derived, not typed: the hand list this replaced left out (R) and the
+# rest of the Latin-1 range, and the MH2 sample's "(R)" fell to a system font.
+WINANSI = sorted({ord(bytes([b]).decode("cp1252")) for b in range(0x20, 0x100)
+                  if b not in (0x7F, 0x81, 0x8D, 0x8F, 0x90, 0x9D)})
 
 
 @lru_cache(maxsize=1)
@@ -139,8 +142,11 @@ def build(face: str, size: float) -> Path:
     # the cache key names the source file and the kerning data, not a
     # modification time -- mtimes mean nothing after a git checkout
     import hashlib
+    # ...and this module itself, so a change to how fonts are built (the
+    # character set, the features) never reuses a font built the old way
     key = hashlib.sha1(src_path.read_bytes()
-                       + (SPEC.read_bytes() if SPEC.exists() else b"")).hexdigest()[:10]
+                       + (SPEC.read_bytes() if SPEC.exists() else b"")
+                       + Path(__file__).read_bytes()).hexdigest()[:10]
     dst = _out_dir() / f"{face}-{size:g}-{key}.ttf"
     if dst.exists():
         return dst

@@ -1,5 +1,8 @@
 # Handoff — where the work stands
 
+> **Every AI agent: read [`AI_HANDOVER.md`](AI_HANDOVER.md) first** — the owner's aim, the main goal, what the last session finished, what to take over next, and how to behave. Keep it current in the same commit as your work.
+
+
 Updated 2026-09-28. Read with `TASKS.md`; that file is the authority on status,
 this one is the narrative an agent needs to be useful in the first ten minutes.
 

@@ -219,6 +219,9 @@ class Store:
         tpl = templates.get(template)
         case_id = uuid.uuid4().hex[:12]
         tree = templates.load(template, blank=blank)
+        # the producing software is this platform, whatever the template said
+        from uad import delivery
+        delivery.stamp_software(tree.getroot())
         self.folder(case_id)
         tree.write(str(self.xml_path(case_id)), encoding="utf-8",
                    xml_declaration=True, pretty_print=True)

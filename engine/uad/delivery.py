@@ -133,6 +133,28 @@ def vendor() -> dict[str, str]:
     return {k: str(v).strip() for k, v in data.items() if not k.startswith("_")}
 
 
+def stamp_software(root) -> list[str]:
+    """Write this software's identity into VALUATION_SOFTWARE_SYSTEM.
+
+    The element is the producer's, not the appraiser's: A-1 requires all four
+    children and the schema rejects the container without them.  A new case is
+    stamped at creation so a blank report is not invalid for something no
+    appraiser could ever answer.  Returns the names it could not set."""
+    who = vendor()
+    missing = []
+    pairs = (("ValuationSoftwareProductIdentifier",
+              who.get("product_identifier") or who.get("product_name", "")),
+             ("ValuationSoftwareProductName", who.get("product_name", "")),
+             ("ValuationSoftwareProductVersionIdentifier", who.get("product_version", "")),
+             ("ValuationSoftwareVendorName", who.get("vendor_name", "")))
+    for name, value in pairs:
+        if value:
+            _set_leaf(root, name, "VALUATION_SOFTWARE_SYSTEM", value)
+        else:
+            missing.append(name)
+    return missing
+
+
 def _existing(root, segments: list[str]) -> tuple[etree._Element, list[str]]:
     """The deepest container on this path that already exists, on whichever
     branch holds it, and the segments still to create below it.

@@ -395,7 +395,48 @@ def clear(root: etree._Element, *, prune_empty: bool = False) -> int:
     removed += _drop_bare_repeats(root)
     if prune_empty:
         removed += prune(root)
+    _restore_required_containers(root)
     return removed
+
+
+_EXPECTED = re.compile(r"Element '\{[^}]*\}(\w+)': This element is not expected\. "
+                       r"Expected is \( \{[^}]*\}(\w+) \)")
+
+
+def _restore_required_containers(root: etree._Element, rounds: int = 8) -> int:
+    """Put back a required container that blanking emptied away.
+
+    Removing a template's parties can take their PARTIES wrapper with them,
+    and the schema then rejects the next sibling ("RELATIONSHIPS is not
+    expected; expected PARTIES").  An empty wrapper is valid and carries no
+    value, so it is restored -- only when the schema names exactly one
+    expected element, and only when restoring it makes the document better.
+    No value is ever invented here."""
+    from . import edit, schema          # circular at module level
+    restored = 0
+    for _ in range(rounds):
+        errors = schema.validate(root.getroottree())
+        fixed = False
+        for err in errors:
+            m = _EXPECTED.search(getattr(err, "message", "") or "")
+            path = getattr(err, "path", "") or ""
+            if not m or not path:
+                continue
+            found = root.getroottree().xpath(path)
+            if not found:
+                continue
+            parent = found[0].getparent()
+            if parent is None or parent.find(f"{{{NS['m']}}}{m.group(2)}") is not None:
+                continue
+            new = edit.insert_ordered(parent, m.group(2))
+            if len(schema.validate(root.getroottree())) < len(errors):
+                restored += 1
+                fixed = True
+                break
+            parent.remove(new)
+        if not fixed:
+            break
+    return restored
 
 
 #: Containers whose only surviving content after blanking is the value that

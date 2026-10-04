@@ -96,13 +96,20 @@ def source(name: str) -> Path | None:
     if licensed.is_file():
         return licensed
     stand_in = SUBSTITUTE / f"{name}.ttf"
-    return stand_in if stand_in.is_file() else None
+    if stand_in.is_file():
+        return stand_in
+    # a tree without the committed substitutes builds them once at run time
+    from . import substitute_fonts
+    built = substitute_fonts.ensure_runtime()
+    if built is not None and (built / f"{name}.ttf").is_file():
+        return built / f"{name}.ttf"
+    return None
 
 
 def substituted() -> list[str]:
     """The report faces currently drawn from the open-licence substitute."""
     return [n for n in list(FACES) + ["Wingdings2"]
-            if not (ASSETS / f"{n}.ttf").is_file() and (SUBSTITUTE / f"{n}.ttf").is_file()]
+            if not (ASSETS / f"{n}.ttf").is_file() and source(n) is not None]
 
 
 def face_file(name: str) -> Path | None:

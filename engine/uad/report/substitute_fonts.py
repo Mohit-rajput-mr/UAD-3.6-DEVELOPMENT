@@ -45,6 +45,13 @@ from fontTools.ttLib import TTFont
 ENGINE = Path(__file__).resolve().parents[2]
 SOURCE = ENGINE / "assets" / "substitute" / "source"
 BUILT = ENGINE / "assets" / "substitute" / "built"
+# Where a host with neither the licensed faces nor the committed substitutes
+# (a deployment built from a tree that predates them) builds its own, once.
+RUNTIME = Path(__import__("tempfile").gettempdir()) / "uad36-substitute"
+# Source Sans 3 from the npm registry, pinned and checked: a font fetched at
+# run time must be exactly the one these widths were fitted to.
+NPM_TARBALL = "https://registry.npmjs.org/source-sans/-/source-sans-3.52.0.tgz"
+NPM_SHA256 = "49cf78ddd79b436591ee696785222b54ff28102922e3d3df297fe382d7fdfa88"
 WIDTHS = ENGINE / "spec" / "d1_font_widths.json"
 
 # Myriad face -> (Source Sans 3 file, the Myriad face whose widths it takes)
@@ -83,10 +90,13 @@ def _rename(font: TTFont, style: str) -> None:
         "widths set to the values published in the GSE Appendix D-1 samples.", 10, 3, 1, 0x409)
 
 
-def build_face(face: str, published: dict | None = None) -> Path:
+def build_face(face: str, published: dict | None = None, *, source: Path | None = None,
+               out_dir: Path | None = None) -> Path:
     published = published or _published()
+    SOURCE_DIR = source or SOURCE
+    BUILT_DIR = out_dir or BUILT
     src_name, width_face = FACES[face]
-    font = TTFont(str(SOURCE / f"{src_name}.ttf"))
+    font = TTFont(str(SOURCE_DIR / f"{src_name}.ttf"))
     upm = font["head"].unitsPerEm
     scale_units = upm / 1000.0                   # PDF /Widths are in 1/1000 em
     cmap = font.getBestCmap()
@@ -145,13 +155,13 @@ def build_face(face: str, published: dict | None = None) -> Path:
     sub = Subsetter(opts)
     sub.populate(unicodes=list(range(0x20, 0x7F)) + list(range(0xA0, 0x180)) + SYMBOLS)
     sub.subset(font)
-    BUILT.mkdir(parents=True, exist_ok=True)
-    out = BUILT / f"{face}.ttf"
+    BUILT_DIR.mkdir(parents=True, exist_ok=True)
+    out = BUILT_DIR / f"{face}.ttf"
     font.save(str(out))
     return out
 
 
-def build_boxes() -> Path:
+def build_boxes(out_dir: Path | None = None) -> Path:
     """A two-glyph stand-in for the Wingdings 2 checkbox glyphs."""
     from fontTools.fontBuilder import FontBuilder
     upm = 1000
@@ -191,15 +201,60 @@ def build_boxes() -> Path:
                        "psName": "UADBoxes-Regular", "uniqueFontIdentifier": "UADBoxes-Regular"})
     fb.setupOS2(sTypoAscender=800, sTypoDescender=-200, usWinAscent=800, usWinDescent=200)
     fb.setupPost()
-    BUILT.mkdir(parents=True, exist_ok=True)
-    out = BUILT / "Wingdings2.ttf"
+    BUILT_DIR = out_dir or BUILT
+    BUILT_DIR.mkdir(parents=True, exist_ok=True)
+    out = BUILT_DIR / "Wingdings2.ttf"
     fb.save(str(out))
     return out
 
 
-def build_all() -> list[Path]:
+def build_all(source: Path | None = None, out_dir: Path | None = None) -> list[Path]:
     published = _published()
-    return [build_face(f, published) for f in FACES] + [build_boxes()]
+    return ([build_face(f, published, source=source, out_dir=out_dir) for f in FACES]
+            + [build_boxes(out_dir)])
+
+
+def ensure_runtime() -> Path | None:
+    """Build the substitutes into a temporary directory when this tree has none.
+
+    Used only when neither the licensed faces nor ``assets/substitute/built``
+    exist.  Downloads the pinned Source Sans 3 package, refuses it unless its
+    SHA-256 matches, and builds the faces once per host.  Returns the directory,
+    or None if it could not be done (no network) -- the report then falls back
+    to the browser's own fonts and says so, rather than failing."""
+    import hashlib
+    import io
+    import tarfile
+    import threading
+    import urllib.request
+    built = RUNTIME / "built"
+    if (built / "Wingdings2.ttf").is_file():
+        return built
+    lock = globals().setdefault("_RUNTIME_LOCK", threading.Lock())
+    with lock:
+        if (built / "Wingdings2.ttf").is_file():
+            return built
+        src = SOURCE
+        if not (src / "SourceSans3-Regular.ttf").is_file():
+            try:
+                with urllib.request.urlopen(NPM_TARBALL, timeout=30) as r:
+                    data = r.read()
+            except OSError:
+                return None
+            if hashlib.sha256(data).hexdigest() != NPM_SHA256:
+                return None
+            src = RUNTIME / "source"
+            src.mkdir(parents=True, exist_ok=True)
+            wanted = {f"{FACES[f][0]}.ttf" for f in FACES}
+            with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as t:
+                for m in t.getmembers():
+                    name = m.name.rsplit("/", 1)[-1]
+                    if m.isfile() and "/TTF/" in m.name and name in wanted:
+                        (src / name).write_bytes(t.extractfile(m).read())
+        tmp = RUNTIME / "built.partial"
+        build_all(source=src, out_dir=tmp)
+        tmp.replace(built) if not built.exists() else None
+    return built if (built / "Wingdings2.ttf").is_file() else None
 
 
 if __name__ == "__main__":

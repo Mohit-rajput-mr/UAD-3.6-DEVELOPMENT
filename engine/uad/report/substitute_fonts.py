@@ -96,7 +96,7 @@ def build_face(face: str, published: dict | None = None, *, source: Path | None 
     SOURCE_DIR = source or SOURCE
     BUILT_DIR = out_dir or BUILT
     src_name, width_face = FACES[face]
-    font = TTFont(str(SOURCE_DIR / f"{src_name}.ttf"))
+    font = TTFont(str(SOURCE_DIR / f"{src_name}.ttf"), recalcTimestamp=False)
     upm = font["head"].unitsPerEm
     scale_units = upm / 1000.0                   # PDF /Widths are in 1/1000 em
     cmap = font.getBestCmap()

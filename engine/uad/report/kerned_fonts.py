@@ -18,6 +18,7 @@ from __future__ import annotations
 import base64
 import io
 import json
+import logging
 import statistics
 from functools import lru_cache
 from pathlib import Path
@@ -28,20 +29,30 @@ from fontTools.ttLib import TTFont
 
 from . import fonts
 
+# the subsetter reports every glyph it keeps; on a server that is pages of log
+# per font and hides the lines that matter
+logging.getLogger("fontTools").setLevel(logging.WARNING)
+
 SPEC = Path(__file__).resolve().parents[2] / "spec" / "d1_kerning.json"
+@lru_cache(maxsize=1)
 def _out_dir() -> Path:
     """Where kerned copies are cached: beside the fonts when that is writable,
-    otherwise a temporary directory (a serverless host's code is read-only)."""
+    otherwise a temporary directory (a serverless host's code is read-only).
+
+    Decided once per process.  The probe file is this thread's own: a shared
+    name let two requests arriving together delete each other's probe, and the
+    loser concluded that /tmp was not writable (the live layout 500)."""
     import os
     import tempfile
+    import threading
     env = os.environ.get("URAR_FONT_CACHE")
     for cand in ([Path(env)] if env else []) + [fonts.ASSETS / "kerned",
                                                   Path(tempfile.gettempdir()) / "uad36-kerned"]:
         try:
             cand.mkdir(parents=True, exist_ok=True)
-            probe = cand / ".w"
+            probe = cand / f".w-{os.getpid()}-{threading.get_ident()}"
             probe.write_bytes(b"")
-            probe.unlink()
+            probe.unlink(missing_ok=True)
             return cand
         except OSError:
             continue
@@ -133,7 +144,9 @@ def build(face: str, size: float) -> Path:
     dst = _out_dir() / f"{face}-{size:g}-{key}.ttf"
     if dst.exists():
         return dst
-    font = TTFont(str(src_path))
+    # keep the source's timestamp: a font saved "now" differs on every server
+    # copy, so its digest -- the name pages ask for -- would never match
+    font = TTFont(str(src_path), recalcTimestamp=False)
     if source != face:
         published = json.loads(WIDTHS.read_text(encoding="utf-8")).get(face, {})
         cmap0, hmtx0 = font.getBestCmap(), font["hmtx"]
@@ -178,7 +191,13 @@ def build(face: str, size: float) -> Path:
                  glyphs=[g for g in ("ff", "fi", "fl", "ffi", "ffl")
                          if g in font.getGlyphOrder()])
     sub.subset(font)
-    font.save(str(dst))
+    # written beside the target and renamed into place, so a request that
+    # finds the file never reads one another thread is still writing
+    import os
+    import threading
+    tmp = dst.with_name(f"{dst.name}.{os.getpid()}-{threading.get_ident()}.part")
+    font.save(str(tmp))
+    os.replace(tmp, dst)
     return dst
 
 

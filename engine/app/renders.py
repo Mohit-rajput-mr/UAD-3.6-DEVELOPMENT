@@ -23,6 +23,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import os
 import re
 import threading
 import time
@@ -44,6 +45,16 @@ CODE = [Path(flow.__file__), Path(flow.__file__).with_name("form.py"),
 
 FONT_ASSETS = Path(__import__("tempfile").gettempdir()) / "uad36-fontassets"
 FONT_MIMES = {"font/ttf", "font/otf", "font/woff2", "font/woff"}
+_FONT_LOCK = threading.Lock()
+
+
+def _write_once(path: Path, data: bytes) -> None:
+    """Write a file other requests may be reading: beside it, then renamed in."""
+    if path.exists():
+        return
+    tmp = path.with_name(f"{path.name}.{os.getpid()}-{threading.get_ident()}.part")
+    tmp.write_bytes(data)
+    os.replace(tmp, path)
 
 
 def externalise(folder: Path, case_id: str, html: str) -> str:
@@ -61,14 +72,10 @@ def externalise(folder: Path, case_id: str, html: str) -> str:
         digest = hashlib.sha1(payload.encode("ascii")).hexdigest()[:20]
         ext = EXT.get(mime, "bin")
         if mime in FONT_MIMES:
-            path = FONT_ASSETS / f"{digest}.{ext}"
-            if not path.exists():
-                path.write_bytes(base64.b64decode(payload))
+            _write_once(FONT_ASSETS / f"{digest}.{ext}", base64.b64decode(payload))
             return f"/api/fontasset/{digest}.{ext}"
         folder.mkdir(parents=True, exist_ok=True)
-        path = folder / f"{digest}.{ext}"
-        if not path.exists():
-            path.write_bytes(base64.b64decode(payload))
+        _write_once(folder / f"{digest}.{ext}", base64.b64decode(payload))
         return f"/api/cases/{case_id}/asset/{digest}.{ext}"
 
     return DATA_URI.sub(swap, html)
@@ -81,7 +88,11 @@ def font_asset(name: str) -> Path | None:
     if path.is_file():
         return path
     from uad.report import form
-    externalise(FONT_ASSETS, "_", form.stylesheet(embed_fonts=True, edit=True))
+    # a page asks for all its fonts at once; one thread makes them, the rest
+    # wait and then find the file
+    with _FONT_LOCK:
+        if not path.is_file():
+            externalise(FONT_ASSETS, "_", form.stylesheet(embed_fonts=True, edit=True))
     return path if path.is_file() else None
 
 

@@ -1,0 +1,44 @@
+UAD 3.6 development folder, exported 2026-10-04 10:32 for another device.
+Open START_HERE.md first.
+
+files: 3616   uncompressed: 1341 MB
+
+Left out (see setup/export_for_device.py for why):
+  .git/
+  MATERIALS/
+  _work/Images/
+  _work/bathbeach/
+  _work/bedford/
+  _work/cases-test/
+  _work/cases/
+  _work/cloudflared.exe
+  _work/compare/
+  _work/contact_sheet.png
+  _work/deliverable.zip
+  _work/dossier/
+  _work/euclid/
+  _work/filled_report.pdf
+  _work/manhattan/
+  _work/ozone/
+  _work/packtest/
+  _work/r0.html
+  _work/r2.html
+  _work/reference/
+  _work/rockland/
+  _work/sf_guide/
+  _work/shore/
+  _work/test-temp-20260916a/
+  _work/test-temp-20260916b/
+  _work/test-temp-20260916c/
+  _work/tilecache/
+  _work/total_backup/
+  _work/verify/
+  _work/w57/
+  _work/woodycrest/
+  condocase.txt
+  demo_case.txt
+  engine/assets/fonts/
+  newcase.txt
+  profiles/documents/
+  setup/redact_terms.txt
+  total-bridge/tools/.cache/

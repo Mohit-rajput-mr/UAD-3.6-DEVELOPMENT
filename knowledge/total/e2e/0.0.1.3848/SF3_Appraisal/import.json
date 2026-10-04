@@ -1,0 +1,326 @@
+{
+ "case": {
+  "case_id": "0e9c2ceab20f",
+  "name": "E2E SF3_Appraisal",
+  "template": "sf1_appraisal_v1_4",
+  "property_type": "single_family",
+  "state": "draft",
+  "created": "2026-09-28T13:18:05+00:00",
+  "updated": "2026-09-28T13:18:05+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "SF3_Appraisal_v1.4.xml",
+  "property_type": "single_family",
+  "values": 1160,
+  "on_report": 876,
+  "not_displayed": 284,
+  "comparables": {
+   "SalesComparable": 3,
+   "LandComparable": 3
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "SF3_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "SF3_Carport.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Garage.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Garage-1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_WetBar.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_FullBath1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_DiningRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_HalfBath.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Kitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_LivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_FullBath2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_FullBath3.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_ADUBath.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_ADUKitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_ADULivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_DwellingFront.png",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_DwellingFront-1.png",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_StreetAccess.png",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_CompMap.png",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Sketch.png",
+    "category": "SubjectPropertyImprovementSketch",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_AppraiserLicense.png",
+    "category": "AssignmentExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Influence.png",
+    "category": "SiteInfluence",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_View.png",
+    "category": "View",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_RESNETScore.png",
+    "category": "EnergyEfficientAndGreenFeaturesExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_DOEScore.png",
+    "category": "EnergyEfficientAndGreenFeaturesExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_ADUFront.png",
+    "category": "OutbuildingExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_ADUBack.png",
+    "category": "OutbuildingExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_AbsorptionRate.PNG",
+    "category": "AbsorptionRateGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_MedianDaysOnMarket.PNG",
+    "category": "MedianDaysOnMarketGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_PriceTrend.PNG",
+    "category": "PriceTrendGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Decks.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Decks-1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Patio.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Porch.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_IngroundPool.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_IndoorFireplace.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_WoodStove.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Comp1.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Comp2.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "SF3_Comp3.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.71,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

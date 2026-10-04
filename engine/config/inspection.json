@@ -1,0 +1,91 @@
+{
+  "_note": "Appraiser's own measurements and observations. These OVERRIDE MLS and public record for every field they cover: the client's instructions and Fannie Mae Selling Guide B4-1.3-05 require ANSI Z765-2021 measured GLA.",
+  "subject_address": "15 Church Street, Roslyn, NY 11576",
+  "measurement_standard": "ANSI Z765-2021",
+  "measurement_source": "MATERIALS/SUBJECT PICTURES  AND INSPECTION SHEET AND SKETCH/image (3).png",
+  "areas": {
+    "first_floor_sqft": 1316.93,
+    "second_floor_sqft": 1349.83,
+    "gla_sqft": 2667,
+    "basement_sqft": 930.49,
+    "basement_is_below_grade": true
+  },
+  "above_grade": {
+    "bedrooms": 4,
+    "baths_full": 2,
+    "baths_half": 1,
+    "rooms_total": 8
+  },
+  "basement": {
+    "finished": true,
+    "rooms": [
+      "Family",
+      "Bedroom",
+      "Bath",
+      "Storage",
+      "Utility"
+    ],
+    "baths_full": 1,
+    "bedrooms": 1
+  },
+  "levels": [
+    {
+      "name": "First Floor",
+      "rooms": [
+        "Living",
+        "Dining",
+        "Kitchen",
+        "Nook",
+        "Family",
+        "Half Bath",
+        "Laundry"
+      ]
+    },
+    {
+      "name": "Second Floor",
+      "rooms": [
+        "Bedroom",
+        "Bedroom",
+        "Bedroom",
+        "Bedroom",
+        "Bath",
+        "Bath"
+      ]
+    },
+    {
+      "name": "Basement",
+      "rooms": [
+        "Family",
+        "Bedroom",
+        "Bath",
+        "Storage",
+        "Utility"
+      ]
+    }
+  ],
+  "garage": {
+    "type": "Detached",
+    "spaces": 2
+  },
+  "inspection": {
+    "exterior_method": "Physical",
+    "interior_method": "Physical"
+  },
+  "ratings": {
+    "overall_condition": "C3",
+    "overall_quality": "Q3",
+    "_basis": "Built 2001, well maintained, updated kitchen with premium appliances; no deferred maintenance observed. Assessor record rates condition GOOD."
+  },
+  "characteristics": {
+    "dwelling_count": 1,
+    "living_units_excluding_adu": 1,
+    "accessory_dwelling_units": 0,
+    "pud": false,
+    "in_project": false,
+    "native_american_lands": false,
+    "new_construction": false,
+    "homeowner_responsible_for_exterior_maintenance": true,
+    "has_amenities": true,
+    "zoning_compliance": "Legal"
+  }
+}

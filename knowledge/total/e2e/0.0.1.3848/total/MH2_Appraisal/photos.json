@@ -1,0 +1,20 @@
+{
+ "in_file": 27,
+ "placed_by_file": 25,
+ "placed_by_category": 1,
+ "placed": 26,
+ "seconds": 181.0,
+ "slots_naming_a_file": 32,
+ "slots_still_empty": [],
+ "differs_from_import": [],
+ "total_owned": [
+  [
+   "PropertyPhoto",
+   "MH2_Dwelling_Front.jpg"
+  ]
+ ],
+ "failed": [],
+ "no_slot": [],
+ "no_section": [],
+ "unavailable": []
+}

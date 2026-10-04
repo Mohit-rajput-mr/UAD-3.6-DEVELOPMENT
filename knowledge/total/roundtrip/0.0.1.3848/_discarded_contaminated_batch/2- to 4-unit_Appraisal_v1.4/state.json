@@ -1,0 +1,54 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "Building 1",
+    "description": ""
+   },
+   {
+    "instance": 2,
+    "identifier": "Building 2",
+    "caption": "Building 2",
+    "description": "Building 2"
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   },
+   {
+    "instance": 2,
+    "identifier": "Building 2 - Unit 2",
+    "caption": "Unit 2",
+    "description": "Unit 2"
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 3,
+  "rentalprop": 5,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "2",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "C:\\3.6 uad zips\\_UNZIPPED_ALL\\Appendix D-1 2- to 4-unit_Appraisal\\2- to 4-unit_Appraisal_v1.4.xml",
+ "import_seconds": 31.6,
+ "import_error": ""
+}

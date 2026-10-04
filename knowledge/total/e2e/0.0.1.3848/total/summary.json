@@ -1,0 +1,57 @@
+[
+ {
+  "file": "2- to 4-unit_Appraisal",
+  "import_error": "",
+  "import_seconds": 36.4,
+  "structure": {
+   "dwelling-exterior": 2,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 3,
+   "rentalprop": 5,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "2",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "photos": {
+   "in_file": 43,
+   "placed_by_file": 50,
+   "placed_by_category": 3,
+   "placed": 53,
+   "seconds": 223.4,
+   "slots_naming_a_file": 53,
+   "slots_still_empty": 0,
+   "failed": 0,
+   "no_slot": 0,
+   "no_section": 0,
+   "unavailable": 0
+  },
+  "grid_rows_reshown": 20,
+  "recalculated": "recalculated",
+  "values": {
+   "source_values": 1535,
+   "kept": 1490,
+   "changed": 20,
+   "dropped": 25,
+   "added": 54
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 63,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ }
+]

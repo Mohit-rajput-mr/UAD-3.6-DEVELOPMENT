@@ -1,0 +1,981 @@
+[
+ {
+  "key": "HIDDEN_CONSTRUCTION_SECTION_ROW-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_APPRAISER-COMPANY-ADDRESS-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SUPERVISOR-COMPANY-ADDRESS-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SUBPROPADDRESS-FULL-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_ALT-SUBPROPADDRESS-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_PERMANENT-WATERFRONT-FEATURE-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DISASTER-MITIGATION-FEATURE-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_CONVERT-AREA-REST-OF-LIVING_COUNT",
+  "min": 0,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_EXTERIOR-FEATURES_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_CONSTRUCTION-METHOD-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_EXTERIOR-FOUNDATION_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_EXTERIOR-FEATURE-OTHER_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_NONCONT-FINISHED-AREA_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DE-SYSTEM-MECHANICALS-HEAT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DE-SYSTEM-MECHANICALS-COOLING-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DE-OTHER-MECH-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DE-OTHER-MECH_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DWELLING-DEFECTS_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_EXTERIOR-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_MANHOME-EXHIBIT_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_HUD-CERTIFICATION-NUMBER_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_CERTIFICATION-PROGRAM_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_MANUFACTURED-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_MANUFACTURED-DOCUMENT-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_LEVEL-DETAILS_COUNT",
+  "min": 1,
+  "max": 15
+ },
+ {
+  "key": "HIDDEN_LEVEL-DETAILS-PRINT-PREVIEW_COUNT",
+  "min": 1,
+  "max": 30
+ },
+ {
+  "key": "HIDDEN_ROOM-DETAILS_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_KITCHEN-AND-BATHROOM-DETAILS-PRINT-PREVIEW_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_KITCHEN-DETAILS_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_INTERIOR-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_INT-FEATURES_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_ACCESSIBILITY-FEATURES_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_INT-FEATURES-FLOORING_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_DEFECTS_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_AREA-DATA-SOURCE-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_NESTED-FINISHED-ROOM-SUMMARY_NESTEDCOUNT",
+  "min": 1,
+  "max": 50
+ },
+ {
+  "key": "HIDDEN_OUTBUILDING-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_OUTBUILDING-MECHANICAL-SYSTEM-HEAT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_OUTBUILDING-MECHANICAL-SYSTEM-COOLING_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_DEFECTS-OUTBUILDING_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_UTILITY-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_GRAPH-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_GEN-INFO-PI-DATA-SOURCE-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_PROJ-INFO-AMENITIES-SERVICES-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_PROJ-INFO-UTILITIES-INCLUDED-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_LIEN_COUNT",
+  "min": 1,
+  "max": 4
+ },
+ {
+  "key": "HIDDEN_SALESCOMP_COUNT",
+  "min": 3,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-GENERAL-INFO-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-SITE-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-DWELLING-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-UNITS-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-EXT-QUAL-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-EXT-COND-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-INT-QUAL-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-INT-COND-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-ADU-QUAL-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-ADU-COND-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-VEHICLE-STORAGE-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-OUTBUILDING-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALES-COMP-EXHIBITS-COMPS_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SALES-COMP-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-UNITS-SECTION_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-TRANSFER-HISTORY-SECTION_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-QUALITY-CONDITION-EXTERIOR-SECTION_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-QUALITY-CONDITION-INTERIOR-SECTION_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-QUALITY-CONDITION-ADU-SECTION_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_SALESCOMP-OUTBUILDING-SECTION_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_RENTALUNITCOMP-BLANK-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_RENTALPROPCOMP_COUNT",
+  "min": 3,
+  "max": 15
+ },
+ {
+  "key": "HIDDEN_RENTALUNIT-COMP-TEMPLATE_COUNT",
+  "min": 3,
+  "max": 7
+ },
+ {
+  "key": "HIDDEN_RENTAL-INFO-EXHIBITS-COMPS_COUNT",
+  "min": 3,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_RENTAL-INFO-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_RENTAL-INFO-MAP-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_GROSSRENTALINCOME-ROW_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_GROSSRENTALINCOME_COUNT",
+  "min": 3,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_CA-DWELLING-DEPRECIATION-COST-SECTION_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST-SECTION_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_CA-DEPRECIATED-COST-DWELLING_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "SSDE1_HIDDEN_CA-DWELLING-DEPRECIATION-COST-SECTION_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "SSOB1_HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST-SECTION_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_REC-MKT-VAL-COND-PRINT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_RECONSIDERATION-OF-VALUE_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_PROJECT-INFO-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_PROJECT-INFO-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_PROJECT-INFO-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SALES-CONTRACT-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SALES-CONTRACT-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SALES-CONTRACT-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_BORROWER_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_ASSIGNMENT-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_ASSIGNMENT-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_ASSIGNMENT-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SELLER_COUNT",
+  "min": 0,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SUBCUROWNER_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_CONTACT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_APPRAISER_COUNT",
+  "min": 1,
+  "max": 1
+ },
+ {
+  "key": "HIDDEN_SUPERVISOR_COUNT",
+  "min": 1,
+  "max": 1
+ },
+ {
+  "key": "HIDDEN_SRPA_COUNT",
+  "min": 0,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SUBJ-AMENITY-TABLE_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUBJ-AMENITY-DEFECT-ROW_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUBJ-AMENITY-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_ALT-SUBPROPADDRESS_COUNT",
+  "min": 0,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SUBJECT-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SUBJECT-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SUBJECT-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_RIGHTS-NOT-INCLUDED_COUNT",
+  "min": 0,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SITE-UTIL-ADD-ROW_COUNT",
+  "min": 0,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-ACCESS-STREET-TYPE-SURFACE_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_COMP_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_FUNCTIONAL-OBS-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_DISASTER-MITIGATION-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_EE-COMPONENTS-TABLE_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_EE-GREEN-CERTIFICATION-EXISTS-TABLE_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_EE-KNOWN-EFFICIENCY-TABLE_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_EE-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_ADDITIONAL-APPRAISER-CERTIFICATION-ROW_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_ADDITIONAL-SUP-APPRAISER-CERTIFICATION-ROW_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SKETCH-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALES-REVISION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALES-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALES-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALES-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALES-DATA-SOURCE_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALES_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_PRIOR-SALE-COMPS_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_VEHICLE-STORAGE-TABLE_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_VEHICLE-STORAGE-DEFECTS_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_VEHICLE-STORAGE-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SUPPLEMENTAL-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUPPLEMENTAL-GRAPHS_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUPPLEMENTAL-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SUM-MARKET-VALUE-CONDITION_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUMMARY-BORROWER_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_PROPERTY_RESTRICT_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_PROPERTY_ENCROACHMENT_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUMMARY-OWNER-PUBLIC-RECORDS_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_HIGHEST-BEST-USE-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-INFLUENCE_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-INFL-WTR-FRNTG-DETAILS_COUNT",
+  "min": 1,
+  "max": 99
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-VIEW-IMPACT_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_FLOW-SITE-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_FLOW-SITE-MAP-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SITE-NON-RES-USE-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-DEFECT-ADD-ROW_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-VALUATION-METHODOLOGY_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-FEATURE-RESTRICT_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-FEATURE-EASEMENT_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-FEATURE-ENCROACH_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-FEATURE-SITCHAR_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-UTIL-IMP-OTHER_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SITE-APN_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_MKT-MAP-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_MKT-GRAPH-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_MKT-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_MARKET-PRICE-TREND-SOURCE_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_RECONCILIATION-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_RECONCILIATION-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_RECONCILIATION-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_CA-AS-IS-SITE-IMPROVEMENT-SECTION_COUNT",
+  "min": 1,
+  "max": 10
+ },
+ {
+  "key": "HIDDEN_CA-EXHIBIT_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_CA-TABLE-SITE-LAND-COMPARABLE_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-CLIENT-REQUESTED-CONDITIONS-TABLE_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-ADDD-SITE-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-ADDD-DWELLING-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-ADDD-UNIT-INTERIOR-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-ADDD-OUTBUILDING_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-ADDD-VEHICLE-STORAGE-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_REC-ADDD-SUBJECT-PROPERTY-AMENITIES-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_FINISHED-ROOM-SUMMARY_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SUB-PROP-RENTAL-INFO_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SUB-PROP-ACTUAL-INCOME_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SUB-PROP-ACTUAL-INCOME-OTHER_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SUB-PROP-OPINION-INCOME_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_TABLE-SUB-PROP-OPINION-INCOME-OTHER_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_IA-MAP-EXHIBITS_COUNT",
+  "min": 0,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_FLOW-IA-EXHIBITS-COMPS_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_IA-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_FLOW-IA-EXHIBITS-OTHER_COUNT",
+  "min": 0,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_PROPERTIES-NOT-USED_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_IACOMP-2_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUBJ-LISTING-HISTORY-ROW_COUNT",
+  "min": 0
+ },
+ {
+  "key": "HIDDEN_SUBJECT-LISTING-INFO-DOCUMENTS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SUBJECT-LISTING-INFO-GRAPHS_COUNT",
+  "min": 0,
+  "max": 24
+ },
+ {
+  "key": "HIDDEN_SUBJECT-LISTING-INFO-EXHIBITS_COUNT",
+  "min": 1,
+  "max": 100
+ },
+ {
+  "key": "HIDDEN_SIGNATURE-BLOCK_COUNT",
+  "min": 1,
+  "max": 16
+ },
+ {
+  "key": "HIDDEN_SUM-ADDD-SITE-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUM-ADDD-VEHICLE-STORAGE-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_SUM-ADDD-SUBJECT-PROPERTY-AMENITIES-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_OVERALL-QUAL-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_OVERALL-COND-SECTION_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_APN_COUNT",
+  "min": 1,
+  "max": 25
+ },
+ {
+  "key": "HIDDEN_BORROWER-CONTACT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_SELLER-CONTACT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_OWNER-CONTACT_COUNT",
+  "min": 1,
+  "max": 8
+ },
+ {
+  "key": "HIDDEN_OTHER-CONTACT_COUNT",
+  "min": 0,
+  "max": 8
+ }
+]

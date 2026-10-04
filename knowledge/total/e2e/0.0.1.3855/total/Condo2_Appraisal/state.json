@@ -1,0 +1,42 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 4,
+  "rentalprop": 4,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "No Inspection",
+  "APPRAISER_SPI_INTERIOR": "No Inspection",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "..\\knowledge\\total\\e2e\\0.0.1.3848\\Condo2_Appraisal\\portable.xml",
+ "import_seconds": 107.5,
+ "import_error": ""
+}

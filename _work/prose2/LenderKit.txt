@@ -1,0 +1,410 @@
+<<<PAGE 1 of 22>>>
+Lender Readiness Kit
+Uniform Appraisal Dataset (UAD) and Forms Redesign | April 2025
+
+<<<PAGE 2 of 22>>>
+Introduction
+This kit is a supplement to the UAD and Forms Redesign Partner 
+Playbook. It’s designed to help lenders prepare for and adopt 
+the multi-year, joint government sponsored enterprise (GSE) 
+initiative to update the UAD and retire the existing appraisal 
+forms. It provides timelines and roadmaps to keep lenders on 
+track, and additional resources to learn more along the way.
+We will begin accepting UAD 3.6 submissions in September 2025 
+in limited production, so it’s important for you to begin planning 
+and implementing now.
+April 2025 | 2
+
+<<<PAGE 3 of 22>>>
+What is the UAD and Forms Redesign Initiative?
+This is an effort to update the UAD – the dataset behind appraisal forms submitted to Fannie Mae
+and Freddie Mac (the GSEs) – and align it with the current industry-standard MISMO Reference
+Model. It will also mean replacing all the existing GSE appraisal forms with a single flexible and
+dynamic report. This initiative is guided by input and feedback from over 100 industry stakeholders 
+through interviews, consultations, surveys, and virtual bulletin boards.
+April 2025 | 3
+
+<<<PAGE 4 of 22>>>
+Appraisal Forms Being Replaced
+Exterior-Only Inspection Residential Appraisal Report (2055 / 2055) 
+Manufactured Home Appraisal Report (1004C / 70B)
+Individual Cooperative Interest Appraisal Report (2090)
+Exterior-Only Individual Cooperative Interest Appraisal Report (2095)
+Small Residential Income Property Appraisal Report (1025 / 72)
+Single-Family Comparable Rent Schedule (1007 / 1000)
+Appraisal Update and/or Completion Report (1004D / 442)
+Uniform Residential Appraisal Report (1004 / 70)
+Uniform Residential Appraisal Report (Desktop) (1004 Desktop / 70D) 
+Uniform Residential Appraisal Report (Hybrid) (1004 Hybrid / 70H)
+Individual Condominium Unit Appraisal Report (1073 / 465)
+Individual Condominium Unit Appraisal Report (Desktop) (1073 Desktop / 465D)
+Individual Condominium Unit Appraisal Report (Hybrid) (1073 Hybrid / 465H)
+Exterior-Only Inspection Individual Condominium Unit Appraisal Report (1075 / 466)
+April 2025 | 4
+
+<<<PAGE 5 of 22>>>
+Key Lender Benefits
+Expand scope of 
+UAD to cover 
+all property types
+Improve review 
+process through data 
+standardization
+Minimize review times and 
+improve productivity
+April 2025 | 5
+
+<<<PAGE 6 of 22>>>
+More Key Lender Benefits
+Ability to associate 
+an Appraisal Update Report 
+or a Completion Report 
+with original Uniform 
+Residential Appraisal Report 
+(URAR)
+Reduce revisions – the appraiser 
+can, through their appraisal 
+software vendor, check UAD 
+Compliance Rules prior to 
+submitting to client
+Redesigned Submission 
+Summary Report (SSR) 
+provides more pertinent 
+information; available 
+in PDF and JSON
+April 2025 | 6
+
+<<<PAGE 7 of 22>>>
+What’s Coming/Changing?
+Expanded scope of UAD covers all property types
+•
+Legacy forms will be retired – no more form numbers 
+•
+Simplifies documentation of atypical properties (e.g., 2- to 4-unit condos, site condos) 
+and identification of unique features
+•
+Helps address and adapt to industry issues and appraisal modernization
+•
+Includes required data for FHA, VA, and USDA and a new field to clearly identify 
+government agency appraisals
+April 2025 | 7
+
+<<<PAGE 8 of 22>>>
+What’s Coming/Changing?
+Improve review process through data standardization
+•
+More discrete data – less freeform text – no more addenda 
+•
+Reduces subjectivity to enhance impartiality 
+•
+Easier searchability and more automation opportunities 
+•
+Clarification of adverse items and their severity
+•
+More objective valid values for property condition to allow more efficiency when routing 
+internal reviews
+April 2025 | 8
+
+<<<PAGE 9 of 22>>>
+How It All Works Together
+Minimize review times and improve productivity:
+•
+Streamlined GSE messaging on all property types 
+•
+Increased machine-readable data that better identifies key risk indicators 
+GSE selling and servicing guides and systems will be updated to align with the new UAD 
+Fannie Mae
+Early Check®
+Collateral Underwriter®
+Desktop Underwriter® (DU®)
+Loan Delivery®
+Freddie Mac
+Loan Quality Advisor®
+Loan Collateral Advisor®
+Loan Product Advisor® (LPA®)
+Loan Selling Advisor®
+April 2025 | 9
+
+<<<PAGE 10 of 22>>>
+How It All Works Together
+Reduce revisions – the appraiser can check UAD compliance early (prior to submitting 
+to client)
+•
+Appraisal software vendors will have access to each GSE’s API to verify that the 
+data complies with the UAD specification for conditionality and completeness
+New UAD Compliance API
+April 2025 | 10
+
+<<<PAGE 11 of 22>>>
+How It All Works Together
+Modernized Uniform Collateral Data Portal® (UCDP) functionality supports UAD v3.6 whether 
+through a vendor-provided solution or GSE’s web-based interface
+•
+UCDP remains a common portal for submitting appraisal data files
+•
+The SSR redesign provides more pertinent information; available in PDF and JSON
+•
+Message severity updates and removal of manual overrides
+•
+Retrieval of the submitted appraisal XML file and PDF report directly from UCDP
+•
+Search option enhancements and new “Recently Viewed Files” section
+•
+Association of an Appraisal Update Report or a Completion Report with the original URAR
+April 2025 | 11
+
+<<<PAGE 12 of 22>>>
+How to Identify Property and Report Type 
+without a Form Number
+•
+Property Valuation Method (Traditional, Hybrid, Desktop, Exterior Only)
+•
+Construction Method(s) for each dwelling (Manufactured, Site Built, etc.) 
+•
+Property in Project / Project Legal Structure (Condo, Co-op, Condop)
+•
+Subject Site Owned in Common
+•
+Number of Units Excluding ADUs
+•
+Number of ADUs
+Property and assignment information drive the request, not a 
+form number
+Note: You will continue to use information provided in Loan Product Advisor® (LPA®) 
+and Desktop Underwriter® (DU®) to determine the minimum appraisal requirements.
+April 2025 | 12
+
+<<<PAGE 13 of 22>>>
+How to Identify Property and Report Type without a Form Number
+The Summary section 
+of the URAR provides 
+information that defines 
+property and report type
+April 2025 | 13
+
+<<<PAGE 14 of 22>>>
+Mapping Legacy Forms to Redesigned URAR Property Type Characteristics
+Functioning without Form Numbers: Mapping 
+Legacy Forms to Redesigned URAR Property 
+Type Characteristics highlights six UAD data 
+points that drive the property type for the 
+redesigned URAR. 
+•
+The data that describes the subject property 
+drives the appraisal report, not a form.
+•
+The URAR fills the gap on the properties that, 
+due to certain property characteristics, did not 
+fit on a legacy form.
+Use this document to:
+•
+Help understand how the URAR’s dynamic 
+structure along with discrete and repeatable 
+data replaces the legacy form numbers.
+•
+Assist with transitioning to the redesigned report.
+Functioning without Form Numbers
+April 2025 | 14
+
+<<<PAGE 15 of 22>>>
+Potential Impacts to Your Business Processes
+Loan Origination
+Order & Receive Appraisal 
+Loan Delivery & Servicing 
+Other
+•
+Understand property characteristics using updated data requirements
+•
+Review Appraisal Fee on the Loan Estimate and Closing Disclosure 
+•
+Determine appraisal scope of work and pricing structure (billing fee tables)
+•
+Assess Mortgage Insurance processes
+April 2025 | 15
+
+<<<PAGE 16 of 22>>>
+Potential Impacts to Your Business
+Loan Origination
+Order & Receive Appraisal 
+Loan Delivery & Servicing 
+Other
+•
+Update Engagement Letter after review of the new UAD, which now includes common lender overlays
+o
+Make sure the order specifies whether appraiser should use legacy UAD 2.6 or new UAD 3.6 
+during the transition period
+•
+Assign AMC and/or appraiser (including consideration of product competency)
+•
+Measure service-level agreement (SLA) for turn time
+•
+Confirm that type of appraisal received is what was ordered (learn how to read the new 
+report, billing)
+•
+Submit to UCDP and review feedback/SSR for exceptions as needed
+•
+Perform risk-based reviews including workflow routing and appraisal quality (e.g., underwriting, pre / 
+post closing)
+April 2025 | 16
+
+<<<PAGE 17 of 22>>>
+Potential Impacts to Your Business
+Loan Origination
+Order & Receive Appraisal 
+Loan Delivery & Servicing 
+Other
+•
+Correspondent Lending: SSR requirements including message severity
+•
+Loan Delivery: ULDD Phase 5 data points
+•
+Review Servicing processes
+April 2025 | 17
+
+<<<PAGE 18 of 22>>>
+Potential Impacts to Your Business
+Loan Origination
+Order & Receive Appraisal 
+Loan Delivery & Servicing 
+Other
+•
+Operational changes
+•
+Policies and procedures
+•
+Employee training
+•
+Obtain updated appraisal software for staff appraisers
+•
+Vendor management: Coordinate with all partners (e.g., LOS, appraisal firms, AMCs, UCDP 
+Direct Integrators, MI companies and other valuation technology companies)
+•
+New data to consume for upstream and downstream systems and integrations
+•
+Tracking of Customary and Reasonable Fee data
+•
+Review billing and payment systems
+April 2025 | 18
+
+<<<PAGE 19 of 22>>>
+Lender/Loan Origination System (LOS) Roadmap:
+Actions Lenders Should be Taking Now
+Verify
+Make sure software partners are aware of the
+new UAD specification and are building to it
+Plan and budget resources for 
+development/updates to business processes
+Check in periodically to verify software partners are 
+on track for integrating and accepting the new UAD
+Test, Train, and Prepare
+Use training materials and make sure staff are 
+familiar with the new URAR
+Begin testing software
+Develop and ensure processes are in place 
+(i.e., ordering without form numbers)
+Verify that any operational changes are made 
+and working as intended
+2025 and beyond
+April 2025 | 19
+
+<<<PAGE 20 of 22>>>
+2024 and beyond
+UAD 3.6 TESTING
+Uniform Appraisal Dataset (UAD) 3.6 PRODUCTION
+2027
+2026
+2025
+2024
+INDUSTRY PREP
+LIMITED PRODUCTION
+September 8, 2025 – January 25, 2026 
+BROAD PRODUCTION
+January 26, 2026 – November 1, 2026
+MANDATE
+November 2, 2026
+RETIREMENT
+May 3, 2027
+Submit 2.6 Only
+November 18, 2024 – 
+Redesigned Uniform 
+Residential Appraisal 
+Report (URAR) industry 
+training available on 
+GSE websites
+Submit 2.6 Only
+June 4, 2025 – GSEs 
+publish policy updates
+July 28, 2025 – ULDD 
+Mandate: Lenders must 
+deliver ULDD Phase 5 
+data points prior to 
+using UAD 3.6 
+Submit 2.6 and Limited Production 
+Participants* to Submit 3.6
+September 8, 2025 – Fannie Mae and Freddie 
+Mac can accept both UAD 2.6 and 3.6
+*Limited Production Participants - Lenders who 
+have submitted the UAD Questionnaire and 
+received GSE approval will have controlled access 
+to submit 3.6 to Uniform Collateral Data Portal 
+(UCDP)
+Submit 2.6 or Submit 3.6
+January 26, 2026 – All Lenders may begin 
+submitting to the GSEs’ production environment 
+without prior GSE approval
+Submit 3.6 Only 
+November 2, 2026 – 
+Lenders must use UAD 
+3.6 for all new 
+submissions on or after 
+this date
+Revisions allowed for  
+previously submitted 
+UAD 2.6 appraisals
+2.6 Pipeline 
+Cleared
+May 3, 2027 – UAD 
+2.6 Pipeline 
+revisions period 
+ends
+UAD 2.6 Pipeline 
+Revisions
+UAD 2.6 -> UAD 3.6 Transition Period
+April 2025 | 20
+
+<<<PAGE 21 of 22>>>
+GSE-Provided Training 
+User’s Guide to the New Uniform Residential Appraisal Report (URAR)
+Available on the GSE websites. This training is focused on how to read the new reports and when data displays.
+Learning Objectives:
+•
+Explore the dynamic appraisal reports (URAR, Appraisal Update Report, and Completion Report) and the 
+transition to eliminate property type-specific forms 
+•
+Become familiar with the new reporting features of the appraisal reports
+•
+Learn the basics of the new UAD
+•
+Examine expanded data requirements
+•
+Understand your responsibilities in the new appraisal reporting process
+April 2025 | 21
+
+<<<PAGE 22 of 22>>>
+Additional Resources
+Fannie Mae
+Fannie Mae UAD Web Page
+Freddie Mac
+Freddie Mac UAD Web Page
+•
+Timeline for UAD and Forms 
+Redesign
+•
+Appendix D: Sample Appraisals
+•
+Appendix F: Reference Guides
+•
+UAD Video
+•
+And much more
+April 2025 | 22

@@ -1,0 +1,12 @@
+../knowledge/total/e2e/0.0.1.3848/2- to 4-unit_Appraisal/portable.xml: 0 error(s), 1 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/2- to 4-unit_Scenario_2_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/Condo1_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/Condo2_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/Coop1_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/MH1_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/MH2_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/SF1_Appraisal/portable.xml: 0 error(s), 1 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/SF2_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/SF3_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/SF4_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info
+../knowledge/total/e2e/0.0.1.3848/SF5_Appraisal/portable.xml: 0 error(s), 0 warning(s), 0 info

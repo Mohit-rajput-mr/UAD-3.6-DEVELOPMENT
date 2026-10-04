@@ -1,0 +1,2034 @@
+
+<<<PAGE 1 of 24>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: Condominium Scenario (Condo1) 
+Document Version 1.4 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 24>>>
+ 
+ 
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.4 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/10/2025 
+1.3 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+9/17/2024 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+12/12/2023 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+3/29/2023 
+1.0 
+Initial Publication 
+ 
+Introduction 
+This report is for the refinance of a condominium apartment in a midrise building. The subject unit 
+contains two bedrooms, two full bathrooms, a fireplace, and a private balcony. The unit contains 1,092 
+sq. ft. and is located on the second floor of the building. Its kitchen and bathrooms were renovated with 
+high-end finishes. The floorplan meets local expectations for flow and utility. Due to its many updates, 
+the subject unit shows nicely. It also contains two separately deeded garage parking spaces. 
+Key Characteristics 
+• 
+Hybrid assignment 
+o Interior and exterior inspection via Property Data Report 
+• 
+Parties associated with this transaction: 
+o AMC 
+o Appraiser with a designation, appraiser did not perform physical inspection 
+• 
+Project Information 
+o Subject building contains a convenience store on the first floor 
+o Observed Deficiencies have been noted (balconies on the building) 
+o Special Assessment identified for balcony repair 
+o Known legal actions were noted 
+• 
+Defects are noted but no action is required for the homeowner to repair as the homeowner is 
+not responsible for exterior maintenance 
+• 
+Floorplan has been included 
+ 
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+ 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 3 of 24>>>
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+201 UNDERHILL DR, UNIT 202, NOWHERE, CA 90021
+SUMMARY
+Opinion of Market Value	
+$778,000
+Market Value Condition	
+As Is
+Effective Date of Appraisal	
+09/08/2019
+Assignment Reason	
+Refinance
+Borrower Name	
+James Borrower
+	
+Lauren Lightfoot
+Current Owner of Public Record	
+James Borrower
+	
+Lauren Lightfoot
+Listing Status	
+None
+Property Valuation Method	
+Hybrid Appraisal
+Appraiser Name	
+Bill Smith
+Property Description
+Attachment Type	
+Attached
+Structure Design	
+Mid-rise
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Observed Project Deficiencies
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Zoning Compliance	
+Legal
+Overall Quality	
+Q4
+Overall Condition	
+C3
+Apparent Defects, Damages, Deficiencies Requiring Action
+There are no apparent defects, damages, or deficiencies requiring action. For details, reference the ‘Reconciliation’ section.
+
+<<<PAGE 4 of 24>>>
+	
+Page 2 of 22
+Uniform Residential Appraisal Report	
+Page 2 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Assignment Information
+Assignment Reason	
+Refinance
+Borrower Name	
+James Borrower
+	
+Lauren Lightfoot
+Current Owner of Public Record	
+James Borrower
+	
+Lauren Lightfoot
+Property Valuation Method	
+Hybrid Appraisal
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Appraiser Fee	
+$0
+AMC Fee	
+$0
+Contact Information
+Client/Lender
+Company Name	
+ABC Mortgage
+Company Address	
+88888 Idle Dr
+	
+Somewhere, MI 91300
+Appraisal Management Company 
+Company Name	
+Imperial AMC
+Company Address	
+456 Dorothy St
+	
+Anywhere, IA 23410
+Credentials
+ID	
+2381
+State	
+CA
+Expires	
+06/01/2021
+Appraiser 
+Name	
+Bill Smith
+Designation	
+SRA
+Company Name	
+Spartacus Appraisals
+Company Address	
+123 Main St
+	
+Nowhere, CA 90021
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+No Inspection
+Interior	
+No Inspection
+Credentials
+Level	
+Certified Residential
+ID	
+319721784
+State	
+CA
+Expires	
+09/01/2021
+Property Data Report
+Name	
+Richard Real
+Occupation	
+Real Estate Agent
+Company Name	
+Richard’s Agency
+Company Address	
+789 East St
+	
+Nowhere, CA 90021
+Reference ID	
+PR32393510
+Subject Property Inspection
+Exterior	
+Physical
+Interior	
+Physical
+Inspection Date	
+09/06/2019
+Assignment Information and Scope of Work Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Subject Property
+Physical Address	
+201 Underhill Dr, Unit 202 
+	
+Nowhere, CA 90021
+Alternate Physical Address	
+201 Underhill Dr, Unit 2C 
+	
+Nowhere, CA 90021
+County	
+Star Hills
+Neighborhood Name	
+Eastwood
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands 
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Attached
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Special Tax Assessments	
+No
+
+<<<PAGE 5 of 24>>>
+	
+Page 3 of 22
+Subject Property (continued)
+Uniform Residential Appraisal Report	
+Page 3 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+Legal Description
+Tract Number 31313 - Unit Number 202, Parking Spaces G22, G23.
+Subject Property Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Site
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+4324-007-028-001
+Condominium Unit
+4324-007-028-G22
+Parking
+4324-007-028-G23
+Parking
+Zoning
+Compliance	
+Legal
+Classification Code	
+Lar4
+Classification Code Description	
+Mid-rise Condominium;  
+	
+12 units per acre average
+Property Access
+Primary Access	
+Public Street
+Street Type and Surface	
+Local Road | Asphalt
+Typical for Market	
+Yes
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Residential
+Bordering
+Neutral
+Subject is surrounded 
+by other similar, mid-rise 
+apartment buildings.
+Site Influence Commentary  Additional commentary can be added here, if needed by Appraiser.
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Residential
+Full
+Neutral
+View Commentary  The area is residential with similar housing stock which appears to have been accepted by the market.
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+No Hazard Zone Noted
+Site Characteristic
+Landscaping
+Neutral
+Exotic trees and premium shrubs are sited along the 
+foundation of the building.
+Site Features Commentary  Additional commentary can be added here, if needed by Appraiser.
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Gas
+
+Sanitary Sewer
+
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Commentary
+Additional commentary can be added here, if needed by Appraiser.
+
+<<<PAGE 6 of 24>>>
+	
+Page 4 of 22
+Site (continued)
+Uniform Residential Appraisal Report	
+Page 4 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Site Exhibits
+Property Boundaries
+Property Access (Street Scene)
+This is where the Property Access photo would display.
+
+<<<PAGE 7 of 24>>>
+	
+Page 5 of 22
+Uniform Residential Appraisal Report	
+Page 5 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sketch
+Measurement Standard	
+Not Applicable due to  
+	
+property type
+Floor Plan
+This is where the Floor Plan image would display.
+Sketch Commentary
+The subject’s condominium unit is part of an apartment/multifamily building. The ANSI measurement standard does not apply to apartment/
+multifamily buildings. Dimensions provided in the floor plan are interior perimeter unit measurements.
+
+<<<PAGE 8 of 24>>>
+	
+Page 6 of 22
+Uniform Residential Appraisal Report	
+Page 6 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Dwelling Exterior
+Subject Property Units in  
+Structure 	
+1
+Structure Design	
+Mid-rise
+Floors in Building	
+8
+Front Door Elevation	
+8-9 Ft.
+Year Built	
+~1973
+Converted Area	
+None
+Mechanical System Details
+System
+Detail
+Heating
+Forced Warm Air
+Natural Gas
+Cooling
+Centralized
+Yes No
+Core Heating System Below Grade
+
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior)
+None
+Dwelling Exterior Commentary
+The structure’s overall condition is adequately maintained, with several areas that have been updated. There were no noticeable areas of 
+defects within the structure that required repairs at the time of inspection.
+Dwelling Exterior Exhibits
+Dwelling Rear
+Unit Interior
+Area Breakdown
+Finished Above Grade	
+1,092 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Condominium Questionnaire
+	
+Property Data Report
+Levels in Unit	
+1
+Floor Number	
+2
+Corner Unit	
+No
+Occupancy	
+Owner
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Non-Residential Use in Unit	
+No
+Live/Work Space	
+No
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+Above Grade
+Finished
+1,092 Sq. Ft.
+2 - Bath - Full
+2 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Living Room
+
+<<<PAGE 9 of 24>>>
+	
+Page 7 of 22
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 7 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C3
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Fully Updated
+1-5 years
+GE Monogram 
+appliances and 
+hardwood painted 
+cabinets.
+New or Like New
+Add comment if 
+needed.
+Bath - Full
+Level 1
+Fully Updated
+1-5 years
+Tile shower and custom 
+vanity, owners utilized 
+custom designer for tile 
+work.
+Typical Wear and Tear
+Add comment if 
+needed.
+Bath - Full
+Level 1
+Fully Updated
+1-5 years
+Tile shower and custom 
+vanity.
+New or Like New
+Bathroom rarely used, 
+shows nicely.
+Overall Update Status for  
+Bathrooms	
+Fully Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Wool carpeting.
+Typical Wear and Tear
+All floors were updated at the 
+same time as other interior 
+work was performed.
+Ceramic Tile
+Typical ceramic tile.
+Typical Wear and Tear
+No adverse conditions noted.
+Walls and Ceiling
+8 Ft. | Flat
+Add comment if needed.
+Damaged and Functional
+Some areas of peeling paint.
+Overall Update Status for  
+Flooring	
+Significantly Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Walls and Ceiling
+Bedroom 
+Peeling paint was observed in one of the 
+bedrooms of unit. Appears to be typical 
+deferred maintenance.
+No
+None
+Unit Interior Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Unit Interior Exhibits
+Level 1 - Bath - Full - Bath 1
+Level 1 - Bath - Full - Bath 2
+
+<<<PAGE 10 of 24>>>
+	
+Page 8 of 22
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 8 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Level 1 - Dining Room - Dining Area
+Level 1 - Kitchen
+Level 1 - Living Room
+Apparent Defects, Damages, Deficiencies -  
+Walls and Ceiling - Peeling Paint
+Functional Obsolescence
+Functional Issues	
+None
+Functional Obsolescence Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Parking Garage
+2 | Owned
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+Vehicle Storage Commentary
+G22 and G23 - Space Numbers.
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Outdoor Living
+Balcony
+Concrete
+56 Sq. Ft.
+Whole Home
+Indoor Fireplace
+Total Number - 1
+
+<<<PAGE 11 of 24>>>
+	
+Page 9 of 22
+Subject Property Amenities (continued)
+Uniform Residential Appraisal Report	
+Page 9 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Balcony
+Adjacent to Living Room
+Balcony is functional, but shows overall age 
+and some deferred maintenance, mainly 
+from the cracking of concrete. The condo 
+association has systematically been moving 
+throughout the building and making repairs 
+as needed throughout all unit balconies.
+No
+None
+Subject Property Amenities Commentary
+Maintenance of exterior amenities is provided by the homeowners association.
+Subject Property Amenities Exhibits
+Apparent Defects, Damages, Deficiencies - Balcony
+This is where the Balcony Defect Photo would display.
+Overall Quality and Condition
+Overall Quality	
+Q4
+Interior Quality	
+Q4
+Overall Condition	
+C3
+Interior Condition	
+C3
+Reconciliation of Overall Quality and Condition
+The overall quality and condition of the subject building does not adversely affect the overall ratings provided.
+Highest and Best Use
+Is the present use of the subject property ...
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Market
+Market Area Boundary  Kinross Avenue to the North; Malcolm Avenue to the East; Ohio Avenue to the South; The 405 to the West
+Search Criteria Description  The market search was limited by the following factors: Properties that included between 1–2 full bathrooms, 
+2–3 bedrooms, that were built between 1960 and 1985 with a closing date between 09/18/2018 and 09/17/2019.
+
+<<<PAGE 12 of 24>>>
+	
+Page 10 of 22
+Market (continued)
+Uniform Residential Appraisal Report	
+Page 10 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Search Result Metrics
+Active Listings	
+7
+Median Days on Market	
+29
+Lowest List Price	
+$699,999
+Median List Price	
+$747,000
+Highest List Price	
+$769,000
+Pending Sales	
+2
+Sales in Past 12 Months	
+31
+Lowest Sale Price	
+$719,000
+Median Sale Price	
+$764,000
+Highest Sale Price	
+$809,000
+Distressed Market Competition	
+No
+Graph	
+Median Days on Market
+	
+Price Trend
+Price Trend Source	
+XYZ MLS
+Housing Trends
+Demand/Supply	
+Shortage
+Marketing Time	
+Under 3 months
+Market Commentary
+Subject location is close to public transportation and employment centers, resulting in high demand for housing under $1 million. The 
+identified market segment covers the bedroom community outside southeast LA.
+Market Exhibits
+Median Days on Market
+This is where the Median Days on Market Graph would display.
+Price Trend
+This is where the Price Trends Graph would display.
+
+<<<PAGE 13 of 24>>>
+	
+Page 11 of 22
+Uniform Residential Appraisal Report	
+Page 11 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Project Information	
+Planned Unit Development (PUD)   
+   Condominium   
+   Cooperative   
+   Condop  
+Project Name	
+The MI5
+Project Information Data Source	
+Condominium Questionnaire
+Total Units	
+36
+Units Sold	
+34
+Units for Sale	
+2
+Units Rented	
+~3
+Reason Units Rented is Estimated  The appraiser was unable to 
+obtain an exact count of renters due to incomplete data on the 
+Condo Questionnaire.
+Mandatory Fees (HOA, PUD, or Co-op)
+Monthly Amount	
+$604
+Common Amenities/ 
+Services Included	
+Built-in Pool
+	
+Inground Spa
+	
+Unit Storage (Assigned)
+Utilities Included	
+Sanitary Sewer
+	
+Water
+Yes No
+Observed Deficiencies
+
+Description of Deficiencies  There is on-going renovation of 
+balconies on the building due to settlement cracking.
+Project Completeness
+Yes No
+Are units, common areas, and amenities in project 
+complete?
+
+Converted in Past 3 Years
+
+Ground Rent
+
+Project Factors and Impact to Value/Marketability
+Project Factor
+Detail
+Impact
+Comment
+Developer/Sponsor in Control
+No
+Single Entity Ownership of Multiple 
+Units
+Greatest Number of Units Owned - 2
+Neutral
+Commercial Space
+5%
+Neutral
+Commercial space is a convenience store
+Known Legal Actions
+Yes
+Neutral
+There is existing litigation due to a contract dispute 
+with a roofing company that has worked on the 
+property. The litigation concerns an issue of non-
+payment for repairs made to the subject building. 
+Unit Transfer Fees
+None
+Unit Special Assessments
+Existing $1,580
+Neutral
+Negligible Impact: Project Building Repairs for 
+rehabilitation of all balconies in the project. 
+Term of special assessment is 2 years.
+Unit Tax Abatements or Exemptions
+None
+Project Factors Commentary  The total special assessment for the unit is $3,160. This outstanding special assessment is considered typical for 
+this type of building in this market area, so no further analysis is necessary.
+Project Information Commentary
+The common elements appear to be adequately maintained. Within this project you have access to parking spaces adequate for the size of the 
+community and have access to a common pool and spa area.
+Project Information Exhibits
+Common Amenity or Service - Indoor Pool
+Common Amenity or Service - Spa
+This is where the Inground Spa photo would display.
+
+<<<PAGE 14 of 24>>>
+	
+Page 12 of 22
+Project Information (continued)
+Uniform Residential Appraisal Report	
+Page 12 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Observed Deficiency - Project Balcony Renovations
+This is where the Observed Deficiency photo would display.
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Current or Relevant Listings	
+None
+Data Source	
+Property Owner
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Transfer Terms
+Date
+Amount
+Data Source
+Typically Motivated
+07/10/2017
+$700,000
+Assessor Record
+MLS
+Analysis of Prior Sale and Transfer History of Subject Property  There has been little fluctuation in the market during the past 4 years.
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+1
+None
+Assessor Record
+MLS
+2
+Typically Motivated
+10/01/2018 
+$779,000 
+Assessor Record
+MLS
+3
+Typically Motivated
+12/31/2018
+$750,000
+Assessor Record
+MLS
+Typically Motivated
+09/15/2018
+$725,000
+Assessor Record
+MLS
+4
+None
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  There was no information regarding material changes to Comparable 
+#2 made known to the appraiser. Concerning Comparable #3, a kitchen remodel occurred prior to the most recent transfer, supporting an 
+increase in price.
+
+<<<PAGE 15 of 24>>>
+	
+Page 13 of 22
+Uniform Residential Appraisal Report	
+Page 13 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+201 Underhill Dr, Unit 202 
+Nowhere, CA 90021
+201 Underhill Dr, Unit 204 
+Nowhere, CA 90021
+1633 Hundred Ave, Unit 801 
+Nowhere, CA 90021
+1639 Town St, Unit 333 
+Nowhere, CA 90021
+Data Source
+Assessor Record | 
+MLS M32583
+Assessor Record | 
+MLS M32380
+Assessor Record | 
+MLS M28713
+Proximity to Subject
+0.01 Miles S
+0.47 Miles SE
+0.44 Miles S
+List Price
+—
+$778,000
+$790,000
+$768,000
+Listing Status
+—
+Settled Sale
+Settled Sale
+Settled Sale
+Sale Price
+$778,000
+$794,000
+$765,000
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Financing Type
+Cash
+$0
+VA
+$0
+FHA
+$0
+Sales Concessions
+—
+No
+$10,000
+$0
+$5,000
+$0
+Contract Date
+—
+05/19/2019
+$0
+06/19/2019
+$0
+06/15/2019
+$0
+Sale Date
+06/19/2019
+$0
+08/19/2019
+$0
+07/15/2019
+$0
+Days on Market
+—
+40
+11
+21
+Attached/Detached
+Attached
+Attached
+Attached
+Attached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+Project Information
+$0
+$0
+Project Name | Same 
+Project as Subject
+The MI5
+The MI5 | Yes
+ABC Estates | No
+The Arena | No
+Monthly Fee
+$604
+$604
+$525
+$475
+Common Amenities/Services
+Built-in Pool | Inground 
+Spa | Unit Storage
+Built-in Pool | Inground 
+Spa | Unit Storage
+Inground Pool | Inground Spa
+Inground Pool
+Special Assessments
+Existing
+Existing
+None
+Proposed
+Site
+Neighborhood Name
+Eastwood
+Eastwood
+Midtown
+$0
+Century Village
+$0
+Site Influence (Location)
+Residential
+Residential
+Residential
+Residential
+View | Range
+Residential | Full
+Residential | Full
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+~1973
+~1973
+1986
+$0
+1987
+$0
+Structure Design
+Mid-rise
+Mid-rise
+Mid-rise
+Mid-rise
+Heating
+Forced Warm Air | Natural Gas
+Forced Warm Air
+Forced Warm Air
+Forced Warm Air
+Cooling
+Centralized
+Centralized
+Centralized
+Centralized
+Unit(s)
+Floor Number
+2
+2
+8
+$(5,000)
+3
+$0
+Corner Unit
+No
+No
+No
+Yes
+$(10,000)
+Bedrooms
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,092 Sq. Ft.
+1,092 Sq. Ft.
+1,171 Sq. Ft.
+$0
+1,075 Sq. Ft.
+$0
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Interior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Q4
+Kitchen
+Quality components
+Quality components
+Quality components
+Quality components
+Overall Bathrooms
+Decorative tiling and finishes
+Decorative tiling and finishes
+Decorative tiling and finishes
+Decorative tiling and finishes
+Overall Flooring
+Wool carpeting
+Quality carpeting
+Quality carpeting
+Quality carpeting
+Condition
+C3
+C3
+C3
+C3
+Kitchen
+Fully Updated
+Fully Updated
+Fully Updated
+Fully Updated
+Overall Bathrooms
+Fully Updated
+Fully Updated
+Fully Updated
+Fully Updated
+Overall Flooring
+Significantly Updated
+Significantly Updated
+Significantly Updated
+Significantly Updated
+
+<<<PAGE 16 of 24>>>
+	
+Page 14 of 22
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 14 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+201 Underhill Dr, Unit 202 
+Nowhere, CA 90021
+201 Underhill Dr, Unit 204 
+Nowhere, CA 90021
+1633 Hundred Ave, Unit 801 
+Nowhere, CA 90021
+1639 Town St, Unit 333 
+Nowhere, CA 90021
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+C3
+Property Amenities
+Outdoor Living
+Balcony
+Balcony
+Balcony
+Balcony
+Whole Home
+Indoor Fireplace - 1
+Indoor 
+Fireplace - 1
+Indoor 
+Fireplace - 1
+Indoor 
+Fireplace - 1
+Vehicle Storage
+$30,000
+Type | Spaces | Detail
+Parking Garage | 2 | Owned
+Parking Garage | 2 | Owned
+Common Carport | 
+2 | Unassigned
+Parking Garage | 2 | Owned
+Summary
+List Price
+—
+$778,000
+$790,000
+$768,000
+Sale Price
+$778,000
+$794,000
+$765,000
+Net Adjustment Total
+$0
+$25,000
+$(10,000)
+Price Per Finished Area  
+Above Grade
+$712
+$678
+$712
+Adjusted Price
+$778,000
+$819,000
+$755,000
+Comparable Weight
+Most
+Less
+Less
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$778,000
+
+<<<PAGE 17 of 24>>>
+	
+Page 15 of 22
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 15 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #4
+General Information
+Property Address
+201 Underhill Dr, Unit 202 
+Nowhere, CA 90021
+33 Franks Way, Unit 382 
+Nowhere, CA 90021
+Data Source
+MLS M51774
+Proximity to Subject
+0.51 Miles NW
+List Price
+—
+$769,000
+Listing Status
+—
+Active
+Sale Price
+—
+Transfer Terms
+—
+Financing Type
+—
+Sales Concessions
+—
+—
+Contract Date
+—
+—
+Sale Date
+—
+Days on Market
+—
+2
+Attached/Detached
+Attached
+Attached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Project Information
+$(40,000)
+Project Name | Same 
+Project as Subject
+The MI5
+The XYZ | No
+Monthly Fee
+$604
+$828
+Common Amenities/Services
+Built-in Pool | Inground 
+Spa | Unit Storage
+Fitness Area | Inground Pool | 
+Inground Spa | Unit Storage
+Special Assessments
+Existing
+None 
+Site
+Neighborhood Name
+Eastwood
+Eagle Hills
+$0
+Site Influence (Location)
+Residential
+Residential
+View | Range
+Residential | Full
+Skyline | Partial
+$(10,000)
+Dwelling(s)
+Year Built
+~1973
+1973
+Structure Design
+Mid-rise
+Mid-rise
+Heating
+Forced Warm Air | Natural Gas
+Forced Warm Air
+Cooling
+Centralized
+Centralized
+Units
+Floor Number
+2
+3
+$0
+Corner Unit
+No
+No
+Bedrooms
+2
+2
+Baths - Full | Half
+2 | 0
+1 | 0
+$10,000
+Finished Area Above Grade
+1,092 Sq. Ft.
+958 Sq. Ft.
+$40,000
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Interior Quality and Condition
+Quality
+Q4
+Q4
+Kitchen
+Quality components
+Quality components
+Overall Bathrooms
+Decorative tiling and finishes
+Decorative tiling and finishes
+Overall Flooring
+Wool carpeting
+Quality carpeting
+Condition
+C3
+C3
+Kitchen
+Fully Updated
+Fully Updated
+Overall Bathrooms
+Fully Updated
+Fully Updated
+Overall Flooring
+Significantly Updated
+Significantly Updated
+
+<<<PAGE 18 of 24>>>
+	
+Page 16 of 22
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 16 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #4
+Property Address
+201 Underhill Dr, Unit 202 
+Nowhere, CA 90021
+33 Franks Way, Unit 382 
+Nowhere, CA 90021
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q4
+Q4
+Condition
+C3
+C3
+Property Amenities
+Outdoor Living
+Balcony
+Balcony
+Whole Home
+Indoor Fireplace - 1
+—
+$5,000
+Vehicle Storage
+$15,000
+Type | Spaces | Detail
+Parking Garage | 2 | Owned
+Parking Garage | 1 | Owned
+Summary
+List Price
+—
+$769,000
+Sale Price
+—
+Net Adjustment Total
+$20,000
+Price Per Finished Area  
+Above Grade
+$803
+Adjusted Price
+$789,000
+Comparable Weight
+Less
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$778,000
+Reconciliation of Sales Comparison Approach
+Comp #1 was a model match within the subject building, and was relied upon the most to develop the final opinion of value. Since the subject 
+project is subject to an ongoing special assessment, known details were provided within the grid, resulting in no measurable impact to value. 
+Comp #3 is a competing unit within the subject’s market segment, of similar utility. Comp #4 is a current listing of a very similar unit, but is 
+from a project with a higher predominant value, warranting an approximately 5% adjustment.
+Additional Properties Analyzed Not Used
+#
+Property Address
+Sale Date
+Status
+Reason Not Used
+Comment
+1
+300 Wilshire Blvd, 
+Unit 400
+Nowhere, CA 90021
+08/01/2019
+Settled Sale
+Bathroom Count
+Bedroom Count
+Superior utility resulted in a higher sale price.
+2
+11004 Westwood Blvd,  
+Unit 211
+Nowhere, CA 90021
+08/15/2019
+Settled Sale
+Bathroom Count
+Finished Area
+Larger unit offering greater utility.
+3
+208 Midvale Ave, Unit 404
+Nowhere, CA 90021
+08/20/2019
+Settled Sale
+Bathroom Count
+Finished Area
+Smaller unit offering less utility.
+4
+880 Kelton Ave, Unit 612
+Nowhere, CA 90021
+08/26/2019
+Settled Sale
+Condition
+Was listed as a “fixer upper” by the agent.
+5
+11005 Westwood Blvd,  
+Unit 822
+Nowhere, CA 90021
+08/30/2019
+Settled Sale
+Condition
+Finished Area
+Much larger unit that was recently renovated.
+
+<<<PAGE 19 of 24>>>
+	
+Page 17 of 22
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 17 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Map
+
+<<<PAGE 20 of 24>>>
+	
+Page 18 of 22
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 18 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+Comparable #3
+Comparable #4
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$778,000
+Reason for Exclusion
+Not Necessary for Credible Results
+Not Necessary for Credible Results
+Appraisal Summary
+Opinion of Market Value	
+$778,000
+Market Value Condition	
+As Is
+Reasonable Exposure Time	
+90 days
+Effective Date of Appraisal	
+09/08/2019
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+
+<<<PAGE 21 of 24>>>
+	
+Page 19 of 22
+Reconciliation (continued)
+Uniform Residential Appraisal Report	
+Page 19 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Unit Interior
+Walls and Ceiling
+Bedroom
+Peeling paint was observed in one of the 
+bedrooms of unit. Appears to be typical 
+deferred maintenance.
+No
+None
+Subject Property Amenities
+Balcony
+Adjacent to Living Room
+Balcony is functional, but shows overall age 
+and some deferred maintenance, mainly 
+from the cracking of concrete. The condo 
+association has systematically been moving 
+throughout the building and making repairs 
+as needed throughout all unit balconies.
+No
+None
+
+<<<PAGE 22 of 24>>>
+	
+Page 20 of 22
+Uniform Residential Appraisal Report	
+Page 20 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+
+<<<PAGE 23 of 24>>>
+	
+Page 21 of 22
+Uniform Residential Appraisal Report	
+Page 21 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I did not personally perform an onsite inspection of the subject property as part of this appraisal assignment. I reported the condition of 
+the improvements in factual, specific terms, relying on subject property information data sources I considered reliable. I reported any known 
+physical deficiencies that could affect the soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+
+<<<PAGE 24 of 24>>>
+	
+Page 22 of 22
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 22 of 22
+	
+Appraiser Reference ID	
+4777564313
+	
+Client Reference ID	
+JD5624946
+	
+AMC Reference ID	
+A43219302
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have performed services regarding the subject property within the three years preceding the agreement to perform this assignment.
+Description of Prior Services:  Performed an appraisal for refinance purposes in 2017.
+Signature
+Appraiser
+Bill Smith	
+09/08/2019
+Bill Smith	
+Date of Signature and Report
+Level	
+Certified Residential
+ID	
+319721784
+State	
+CA
+Expires	
+09/01/2021

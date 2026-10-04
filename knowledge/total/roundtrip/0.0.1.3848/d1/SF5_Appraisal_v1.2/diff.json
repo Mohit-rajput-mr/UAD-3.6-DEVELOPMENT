@@ -1,0 +1,301 @@
+{
+ "source_values": 833,
+ "kept": 827,
+ "changed": 6,
+ "dropped": 0,
+ "added": 22,
+ "rows": [
+  {
+   "scope": "SalesComparable@231 BEECH TREE ST",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@231 BEECH TREE ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@231 BEECH TREE ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@231 BEECH TREE ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@318 PINE CREST RD",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@318 PINE CREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@318 PINE CREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@318 PINE CREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@342 TRAIL DR",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@342 TRAIL DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@342 TRAIL DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@342 TRAIL DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@431 HOLLY AVE",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@431 HOLLY AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@431 HOLLY AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@431 HOLLY AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@849 JOLLY AVE",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@849 JOLLY AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@849 JOLLY AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@849 JOLLY AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifier",
+   "data_point": "AdditionalValuationIdentifier",
+   "file": [],
+   "total": [
+    "231495234K"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifierType",
+   "data_point": "AdditionalValuationIdentifierType",
+   "file": [],
+   "total": [
+    "ValuationSoftwareVendor"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "MYAPP1"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Some Appraisal Creator1"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.2"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Nowhere Technologies"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "SF5_Appraisal_v1.2.pdf"
+   ],
+   "total": [
+    "\\\\sampleblank.pdf"
+   ],
+   "kind": "changed"
+  }
+ ]
+}

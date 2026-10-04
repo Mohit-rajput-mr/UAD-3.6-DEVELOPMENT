@@ -1,0 +1,3483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KECH · Comparable Sales Location Map</title>
+<meta name="description" content="Plot a subject property and unlimited comparable sales on a street map and produce an ACI-style appraisal Location Map exhibit with distance and bearing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.1/maplibre-gl.min.css" integrity="sha512-ThCFU5nYVz8ubpOnjGHNGrTjZimTQ63X6t4een1DAWfKP8t39iSw2x3WlUr8EkePjBj48HeNkrAg9t9GRu+s2w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.1/maplibre-gl.min.js" integrity="sha512-nMq6j6b2mOUn3LNC6WxEt0tVmYyWTaVGQ+mBYxAYxXmUJTeYn5r5FyU8jcHb7f2VevkNqlB6sUu6ik4fJHqFnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="leaflet-maplibre-gl.js"></script>
+<style>
+:root{
+  /* Monochrome chrome. Hue is reserved for the exhibit itself, where the
+     callout fills encode sale / listing / rental and have to stay legible. */
+  --bg:#ececeb;
+  --panel:#ffffff;
+  --ink:#0a0a0a;
+  --ink-2:#5e5e5c;
+  --ink-3:#8d8d8a;
+  --line:#d6d6d3;
+  --line-2:#eaeae7;
+  --accent:#0a0a0a;
+  --accent-ink:#ffffff;
+  --danger:#0a0a0a;
+  --ok:#0a0a0a;
+  --hdr:#0a0a0a;
+  --hdr-ink:#ffffff;
+  --hdr-dim:rgba(255,255,255,.62);
+  --hdr-line:rgba(255,255,255,.26);
+
+  /* type scale */
+  --fs-micro:10px;
+  --fs-xs:11px;
+  --fs-sm:12.5px;
+  --fs-base:13.5px;
+  --fs-md:15px;
+  --fs-lg:17px;
+  --fs-xl:20px;
+  --ls-caps:.14em;      /* micro labels */
+  --ls-tight:-.011em;   /* headings */
+  /* one family per role, so weight and shape carry meaning rather than
+     decoration: serif = identity, grotesque = interface, mono = measured data */
+  --ff-brand:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --ff:'Inter','Inter var',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --ff-data:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+
+  /* exhibit label size, driven by the Label size control */
+  --callout-fs:12px;
+  --closed-bg:#FDF07E;
+  --closed-br:#8A7400;
+  --active-bg:#CFC0F2;
+  --active-br:#5B41A0;
+  --rent-bg:#C3EDB0;
+  --rent-br:#3E7D2C;
+  --pad-l:max(14px, env(safe-area-inset-left));
+  --pad-r:max(14px, env(safe-area-inset-right));
+  --pad-b:env(safe-area-inset-bottom);
+  --pad-t:env(safe-area-inset-top);
+}
+*{box-sizing:border-box}
+/* class rules like .pinbar{display:flex} outrank the UA sheet's [hidden] rule */
+[hidden]{display:none !important}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font:var(--fs-base)/1.5 var(--ff);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  font-feature-settings:'tnum' 1,'cv05' 1;
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer}
+
+/* ---------- app shell ---------- */
+.app{display:flex;flex-direction:column;height:100dvh;min-height:100dvh}
+
+header.bar{
+  flex:0 0 auto;
+  background:var(--hdr);
+  color:var(--hdr-ink);
+  padding:calc(10px + var(--pad-t)) var(--pad-r) 10px var(--pad-l);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  box-shadow:0 1px 3px rgba(0,0,0,.28);
+  z-index:1200;
+}
+.brand{display:flex;align-items:center;gap:14px;flex:0 0 auto;min-width:0}
+.wordmark{
+  font-family:var(--ff-brand);
+  font-size:25px;font-weight:700;letter-spacing:.2em;line-height:1;
+  text-indent:.2em;color:#fff;white-space:nowrap;
+  font-optical-sizing:auto;
+}
+.brand-rule{width:1px;height:30px;background:var(--hdr-line);flex:0 0 auto}
+.brand-txt{display:flex;flex-direction:column;min-width:0}
+.bar h1{
+  font-size:var(--fs-sm);line-height:1.25;margin:0;font-weight:600;
+  letter-spacing:.055em;text-transform:uppercase;white-space:nowrap;color:#fff;
+}
+.bar .sub{
+  font-size:var(--fs-xs);color:var(--hdr-dim);margin-top:2px;white-space:nowrap;
+  letter-spacing:.012em;
+}
+.bar .spacer{flex:1 1 auto}
+.bar .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+.btn{
+  border:1px solid var(--hdr-line);
+  background:transparent;
+  color:#fff;border-radius:3px;
+  padding:0 13px;min-height:34px;
+  font-size:var(--fs-sm);font-weight:500;letter-spacing:.035em;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:background .12s,border-color .12s;
+}
+.btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+.btn[aria-pressed="true"]{background:#fff;color:#0a0a0a;border-color:#fff;font-weight:600}
+.btn.ghost{background:transparent}
+.btn:focus-visible,.segbtn:focus-visible,.lp-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+select.sel{
+  min-height:34px;border-radius:3px;border:1px solid var(--hdr-line);
+  background:transparent;color:#fff;font-size:var(--fs-sm);padding:0 8px;
+}
+select.sel option{color:#12181f}
+
+/* ---------- exhibit label size ---------- */
+.fsz{
+  display:flex;align-items:center;gap:2px;flex:0 0 auto;
+  border:1px solid var(--hdr-line);border-radius:3px;height:34px;padding:0 4px 0 9px;
+}
+.fsz-lbl{
+  font-size:var(--fs-micro);font-weight:600;letter-spacing:var(--ls-caps);
+  text-transform:uppercase;color:var(--hdr-dim);margin-right:5px;
+}
+.fsz button{
+  width:24px;height:26px;border:0;border-radius:2px;background:transparent;
+  color:#fff;font-size:15px;line-height:1;font-weight:600;
+}
+.fsz button:hover{background:rgba(255,255,255,.16)}
+.fsz #fszVal{
+  min-width:20px;text-align:center;font-size:var(--fs-xs);color:#fff;
+  font-family:var(--ff-data);font-variant-numeric:tabular-nums;
+}
+
+/* ---------- layer picker with preview swatches ---------- */
+.lp{position:relative;flex:0 0 auto}
+.lp-btn{
+  display:flex;align-items:center;gap:9px;min-height:34px;padding:0 10px;
+  border:1px solid var(--hdr-line);border-radius:3px;
+  background:transparent;color:#fff;font-size:var(--fs-sm);font-weight:500;
+  max-width:236px;letter-spacing:.02em;
+}
+.lp-btn:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+.lp-name{flex:1 1 auto;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lp-caret{flex:0 0 auto;font-size:10px;opacity:.8}
+.lp-sw,.lp-sw svg{display:block;flex:0 0 auto}
+.lp-sw{width:32px;height:22px;border-radius:2px;overflow:hidden;border:1px solid rgba(0,0,0,.4);background:#ccc}
+.lp-menu{
+  position:fixed;z-index:3200;background:#fff;border:1px solid var(--line);
+  border-radius:3px;box-shadow:0 16px 44px rgba(0,0,0,.26);
+  padding:6px;max-height:min(78vh,560px);overflow-y:auto;width:292px;
+}
+.lp-group{
+  font-size:var(--fs-micro);font-weight:700;letter-spacing:var(--ls-caps);
+  text-transform:uppercase;color:var(--ink-3);padding:11px 8px 5px;
+}
+.lp-item{
+  display:flex;align-items:center;gap:10px;width:100%;
+  padding:6px 8px;min-height:46px;border:0;border-radius:6px;
+  background:transparent;text-align:left;font-size:13.5px;color:var(--ink);
+}
+.lp-item .lp-sw{width:48px;height:34px;border-color:rgba(0,0,0,.25)}
+.lp-item:hover,.lp-item.on{background:#eef4fa}
+.lp-item[aria-selected="true"]{background:#e3edf8;font-weight:650}
+.lp-item[aria-selected="true"]::after{content:'\2713';margin-left:auto;color:var(--accent);font-weight:700}
+
+/* ---------- exhibit-type switcher ---------- */
+.seg{display:flex;border:1px solid var(--hdr-line);border-radius:3px;overflow:hidden;flex:0 0 auto}
+.segbtn{
+  border:0;background:transparent;color:var(--hdr-dim);min-height:34px;padding:0 15px;
+  font-size:var(--fs-xs);font-weight:600;white-space:nowrap;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;
+}
+.segbtn+.segbtn{border-left:1px solid var(--hdr-line)}
+.segbtn[aria-pressed="true"]{background:#fff;color:#0a0a0a}
+.segbtn:hover:not([aria-pressed="true"]){background:rgba(255,255,255,.12);color:#fff}
+
+/* ---------- aerial exhibit header band ---------- */
+.mapstage{position:relative;width:100%;height:100%;flex:1 1 auto;min-height:0}
+.mapwrap.framed .mapstage{width:650px;height:1008px;flex:0 0 auto;
+  box-shadow:0 2px 14px rgba(0,0,0,.35);border:1px solid #5c6773;background:#fff}
+.pinbar{
+  position:absolute;left:0;right:0;top:0;z-index:800;
+  display:flex;align-items:stretch;gap:10px;
+  background:#fff;border-bottom:2px solid #333;
+  padding:6px 10px;font-family:Arial,Helvetica,sans-serif;
+  box-shadow:0 1px 4px rgba(0,0,0,.3);
+}
+.pb-main{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.pb-title,.pb-addr,.pb-file{border:0;background:transparent;width:100%;padding:1px 2px;color:#111}
+.pb-title{font-size:15px;font-weight:bold;letter-spacing:.09em;text-transform:uppercase}
+.pb-addr{font-size:13px}
+.pb-title:focus,.pb-addr:focus,.pb-file:focus{outline:2px solid var(--accent);border-radius:3px}
+.pb-side{flex:0 0 auto;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
+  border-left:1px solid #bbb;padding-left:10px;max-width:40%}
+.pb-lbl{font-size:10px;font-weight:bold;color:#555;text-transform:uppercase;letter-spacing:.11em}
+.pb-file{font-size:13px;text-align:right}
+/* keep the zoom control clear of the header band */
+body[data-view="aerial"] .leaflet-top{padding-top:58px}
+
+
+.customwrap{display:flex;align-items:center;gap:6px;flex:0 1 460px;min-width:0}
+.customwrap span{flex:0 0 auto;font-weight:600}
+.customwrap input{
+  flex:1 1 auto;min-width:0;min-height:30px;border:1px solid var(--line);border-radius:3px;
+  padding:0 9px;font-size:var(--fs-sm);background:#fff;color:var(--ink);font-family:var(--ff);
+}
+
+/* ---------- tabs (mobile) ---------- */
+.tabs{display:none;flex:0 0 auto;background:var(--panel);border-bottom:1px solid var(--line);padding:0 var(--pad-r) 0 var(--pad-l)}
+.tabs button{
+  flex:1 1 0;min-height:46px;border:0;background:transparent;color:var(--ink-3);
+  font-size:var(--fs-xs);font-weight:600;border-bottom:2px solid transparent;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;
+}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* ---------- layout ---------- */
+main{flex:1 1 auto;display:flex;min-height:0;gap:0}
+.panel{
+  flex:0 0 392px;max-width:392px;background:var(--panel);
+  border-right:1px solid var(--line);
+  overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+  padding:14px var(--pad-r) calc(24px + var(--pad-b)) var(--pad-l);
+}
+.mapside{flex:1 1 auto;min-width:0;position:relative;display:flex;flex-direction:column;background:#dfe4ea}
+.mapwrap{flex:1 1 auto;min-height:0;position:relative;display:flex;align-items:stretch;justify-content:center;overflow:auto;padding:0}
+#map{width:100%;height:100%;background:#dfe4ea}
+#gmap{position:absolute;inset:0;width:100%;height:100%;background:#dfe4ea;z-index:500}
+.gfr{
+  position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;
+  transform-origin:50% 50%;transition:transform .12s ease-out;
+}
+/* No opacity transition: the two frames are swapped in one paint, so the new
+   view replaces the old outright instead of the pair cross-fading through a
+   half-transparent blend. */
+.gfr.is-front{z-index:502;opacity:1}
+.gfr.is-back{z-index:501;opacity:0;pointer-events:none}
+/* Stops short of the bottom strip so Google's logo, Terms and "Report a map
+   error" links stay clickable. */
+#gfwheel{position:absolute;left:0;right:0;top:0;bottom:44px;z-index:520;background:transparent;
+  cursor:grab;touch-action:none}
+#gfwheel.dragging{cursor:grabbing}
+/* our own marker, because the pin-free embed is the one we can steer */
+#gfpin{position:absolute;left:0;top:0;z-index:540;pointer-events:none;will-change:transform}
+#gfpin svg{display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55))}
+/* touch devices pinch-zoom the embed natively, so stay out of the way */
+@media (pointer:coarse){ #gfwheel{display:none !important} }
+.gfzoom{
+  position:absolute;left:10px;top:62px;z-index:560;
+  display:flex;flex-direction:column;align-items:stretch;
+  background:#fff;border-radius:6px;box-shadow:0 1px 5px rgba(0,0,0,.45);overflow:hidden;
+}
+.gfzoom button{
+  width:34px;height:32px;border:0;background:#fff;color:#222;font-size:19px;line-height:1;
+  font-weight:600;
+}
+.gfzoom button:hover{background:#eef4fa}
+.gfzoom #gfLevel{
+  font:11px/1 var(--ff-data);text-align:center;padding:4px 0;color:#5e5e5c;
+  border-top:1px solid #e0e5ea;border-bottom:1px solid #e0e5ea;background:#f7f9fb;
+}
+.mapwrap.framed{padding:14px;background:#9aa5b1;align-items:flex-start}
+.mapnote{
+  flex:0 0 auto;background:#f4f6f9;border-top:1px solid var(--line);
+  font-size:var(--fs-xs);color:var(--ink-3);padding:7px var(--pad-r) calc(7px + var(--pad-b)) var(--pad-l);
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+
+.mapempty{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:28px;z-index:900;background:#e4e4e2;color:var(--ink-2);
+  pointer-events:none;
+}
+.mapempty div{max-width:330px}
+.mapempty strong{
+  display:block;font-size:var(--fs-xs);color:var(--ink);margin-bottom:8px;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;font-weight:600;
+}
+.mapempty.hide{display:none}
+
+/* ---------- cards ---------- */
+.card{
+  border:1px solid var(--line);border-radius:3px;background:#fff;
+  margin-bottom:10px;overflow:visible;
+}
+.card.subject{border-color:#0a0a0a;box-shadow:inset 3px 0 0 #0a0a0a}
+.card > .head{
+  display:flex;align-items:center;gap:9px;
+  padding:9px 11px;border-bottom:1px solid var(--line-2);background:#fafafa;
+  border-radius:2px 2px 0 0;
+}
+.card.subject > .head{background:#f2f2f1}
+.swatch{width:14px;height:14px;border-radius:2px;border:1px solid #333;flex:0 0 auto}
+.sw-sub{background:#fff;border-color:#333}
+.sw-cls{background:var(--closed-bg);border-color:var(--closed-br)}
+.sw-act{background:var(--active-bg);border-color:var(--active-br)}
+.sw-rent{background:var(--rent-bg);border-color:var(--rent-br)}
+.card .title{
+  font-weight:600;font-size:var(--fs-xs);flex:1 1 auto;min-width:0;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;color:var(--ink);
+}
+.card .body{padding:10px}
+.row{display:flex;gap:8px}
+.row > *{min-width:0}
+.f{flex:1 1 0}
+label.lbl{
+  display:block;font-size:var(--fs-micro);font-weight:600;color:var(--ink-3);
+  text-transform:uppercase;letter-spacing:var(--ls-caps);margin:0 0 5px;
+}
+input.txt,select.dd{
+  width:100%;min-height:44px;border:1px solid var(--line);border-radius:3px;
+  padding:0 11px;font-size:16px;color:var(--ink);background:#fff;
+  font-family:var(--ff);letter-spacing:.005em;
+}
+input[data-act="mls"],input[data-act="lat"],input[data-act="lng"]{
+  /* stays at 16px: anything smaller makes iOS zoom the page on focus */
+  font-family:var(--ff-data);font-size:16px;letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;
+}
+input.txt:focus,select.dd:focus{outline:2px solid var(--ink);outline-offset:-2px;border-color:var(--ink)}
+input.txt::placeholder{color:#a8a8a5}
+.mt{margin-top:9px}
+.iconbtn{
+  flex:0 0 auto;width:34px;height:34px;border-radius:3px;border:1px solid var(--line);
+  background:#fff;color:var(--ink-2);font-size:17px;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.iconbtn:hover{background:#0a0a0a;border-color:#0a0a0a;color:#fff}
+.linkbtn{
+  border:0;background:transparent;color:var(--ink-2);font-size:var(--fs-xs);font-weight:500;
+  padding:6px 2px;min-height:32px;text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px;letter-spacing:.01em;
+}
+.linkbtn:hover{color:var(--ink)}
+.status{
+  font-size:var(--fs-xs);margin-top:9px;display:flex;align-items:center;gap:6px;
+  min-height:18px;color:var(--ink-3);
+  font-family:var(--ff-data);font-variant-numeric:tabular-nums;letter-spacing:-.01em;
+}
+.status.ok{color:var(--ink);font-weight:500}
+.status.err{color:var(--ink);font-weight:600}
+.manual{display:none;margin-top:9px}
+.manual.show{display:block}
+
+.addbtn{
+  width:100%;min-height:44px;border:1px dashed #b4b4b0;border-radius:3px;background:#fafafa;
+  color:var(--ink);font-weight:600;font-size:var(--fs-xs);margin-bottom:14px;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;
+}
+.addbtn:hover{background:#0a0a0a;border-color:#0a0a0a;color:#fff}
+
+/* ---------- proximity output ---------- */
+.out{border:1px solid var(--line);border-radius:3px;background:#fff;margin-bottom:14px}
+.out .head{display:flex;align-items:center;gap:8px;padding:9px 11px;border-bottom:1px solid var(--line-2);background:#fafafa;border-radius:2px 2px 0 0}
+.out .head .title{
+  font-weight:600;font-size:var(--fs-xs);flex:1 1 auto;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;
+}
+.out pre{
+  margin:0;padding:12px;font:var(--fs-sm)/1.8 var(--ff-data);
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;
+  white-space:pre;overflow-x:auto;color:var(--ink);min-height:44px;
+}
+.out pre.empty{color:#9aa6b2;font-style:italic}
+.smallbtn{
+  border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:3px;
+  min-height:32px;padding:0 11px;font-size:var(--fs-micro);font-weight:600;
+  letter-spacing:var(--ls-caps);text-transform:uppercase;
+}
+.smallbtn:hover{background:#0a0a0a;border-color:#0a0a0a;color:#fff}
+.legend{font-size:var(--fs-xs);color:var(--ink-3);line-height:1.85;padding:4px 2px 14px}
+.legend i{display:inline-block;width:11px;height:11px;border:1px solid #333;border-radius:0;vertical-align:-1px;margin-right:5px}
+.legend b{color:var(--ink-2);font-weight:600}
+
+/* ---------- autocomplete ---------- */
+.ac{
+  position:fixed;z-index:3000;background:#fff;border:1px solid var(--line);
+  border-radius:3px;box-shadow:0 12px 32px rgba(0,0,0,.24);
+  max-height:290px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none;
+}
+.ac.open{display:block}
+.ac .item{padding:9px 11px;border-bottom:1px solid var(--line-2);min-height:52px;cursor:pointer}
+.ac .item:last-child{border-bottom:0}
+.ac .item.on,.ac .item:hover{background:#f2f2f1}
+.ac .l1{font-size:var(--fs-md);font-weight:600;color:var(--ink);letter-spacing:var(--ls-tight);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ac .l2{font-size:var(--fs-sm);color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ac .msg{padding:12px;font-size:var(--fs-sm);color:var(--ink-2);line-height:1.55}
+.ac .msg.err{color:var(--ink);font-weight:500}
+
+/* ---------- map callouts ---------- */
+.leaflet-div-icon,
+.aci-box,
+.aci-pin,
+.aci-dot{
+  background:transparent !important;
+  border:0 !important;
+  width:auto !important;
+  height:auto !important;
+  white-space:nowrap;
+}
+.aci-box{cursor:move}
+.callout{
+  display:inline-block;
+  font:var(--callout-fs)/1.3 Arial,Helvetica,sans-serif;
+  color:#111;
+  background:#fff;
+  border:1px solid #333;
+  border-radius:0;
+  padding:3px 6px;
+  box-shadow:1px 1px 2px rgba(0,0,0,.45);
+  white-space:nowrap;
+  -webkit-user-select:none;user-select:none;
+}
+.callout.cls{background:var(--closed-bg);border-color:var(--closed-br)}
+.callout.act{background:var(--active-bg);border-color:var(--active-br)}
+.callout.rent{background:var(--rent-bg);border-color:var(--rent-br)}
+.callout .c-t{font-weight:bold}
+.callout .c-m{font-size:calc(var(--callout-fs) - 1px)}
+.aci-dot{cursor:move}
+/* 60% of the original 11px: a parcel marker, not a map pin */
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#d40000;border:1px solid #fff;
+  box-shadow:0 0 0 1px #7a0000,0 1px 1.5px rgba(0,0,0,.45);
+}
+/* Google-style teardrop pin for the aerial sheet, anchored at its tip */
+.aci-pin{cursor:move}
+.aci-pin svg{display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55))}
+
+/* ---------- toast ---------- */
+.toast{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(20px + var(--pad-b));
+  background:#0a0a0a;color:#fff;padding:11px 17px;border-radius:3px;font-size:var(--fs-sm);
+  box-shadow:0 6px 20px rgba(0,0,0,.32);z-index:5000;opacity:0;pointer-events:none;
+  transition:opacity .18s;max-width:calc(100vw - 32px);text-align:center;
+}
+.toast.show{opacity:1}
+
+/* ---------- responsive ---------- */
+@media (max-width:820px){
+  .tabs{display:flex}
+  .bar h1{font-size:15px}
+  .bar .sub{display:none}
+  main{flex-direction:column}
+  .panel{flex:1 1 auto;max-width:none;width:100%;border-right:0;display:none}
+  .mapside{flex:1 1 auto;display:none}
+  body[data-tab="addresses"] .panel{display:block}
+  body[data-tab="map"] .mapside{display:flex}
+  .mapwrap.framed{padding:8px}
+  /* 44px minimum tap target on touch-sized screens */
+  .btn,select.sel,.linkbtn,.smallbtn,.addbtn,.segbtn,.lp-btn{min-height:44px}
+  .fsz{height:44px;padding:0 3px 0 9px}
+  .fsz button{width:38px;height:44px}
+  .iconbtn{width:44px;height:44px;font-size:20px}
+  .wordmark{font-size:var(--fs-lg);letter-spacing:.24em}
+  .brand-rule{height:24px}
+  .tabs button{min-height:48px}
+  .linkbtn{display:inline-flex;align-items:center}
+  .seg{order:-1;width:100%}
+  .segbtn{flex:1 1 0}
+  .customwrap{flex:1 1 100%}
+  .pb-title{font-size:14px}
+}
+@media (pointer:coarse){
+  .btn,select.sel,.linkbtn,.smallbtn,.addbtn,.segbtn,.lp-btn{min-height:44px}
+  .fsz{height:44px}
+  .iconbtn{width:44px;height:44px}
+}
+@media (max-width:420px){
+  .bar{gap:8px}
+  .bar h1{font-size:14px}
+  .btn{padding:0 9px;font-size:12.5px}
+}
+
+/* ---------- print ---------- */
+@media print{
+  @page{margin:.35in}
+  html,body{height:auto;background:#fff}
+  .app{display:block;height:auto}
+  header.bar,.tabs,.panel,.mapnote,.toast,.leaflet-control-container,.mapempty{display:none !important}
+  main{display:block}
+  .mapside{display:block !important}
+  .mapwrap,.mapwrap.framed{display:block;overflow:visible;padding:0;background:#fff}
+  .mapstage,.mapwrap.framed .mapstage{
+    width:100% !important;height:9in !important;box-shadow:none;border:1px solid #333;
+  }
+  #map,.gfr,#gmap{width:100% !important;height:100% !important;border:0}
+  .callout{box-shadow:none}
+  /* keep the yellow / lavender fills when printing */
+  html,body,.callout,.dot{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.callout,.dot{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+</style>
+</head>
+<body data-tab="addresses">
+
+<div class="app">
+  <header class="bar no-print">
+    <div class="brand">
+      <span class="wordmark">KECH</span>
+      <span class="brand-rule" aria-hidden="true"></span>
+      <span class="brand-txt">
+        <h1>Comparable Sales Location Map</h1>
+        <span class="sub">Subject &amp; comparable plotting · distance and bearing exhibit</span>
+      </span>
+    </div>
+    <div class="seg no-print" role="group" aria-label="Exhibit type">
+      <button id="viewLoc" class="segbtn" aria-pressed="true">Location Map</button>
+      <button id="viewAer" class="segbtn" aria-pressed="false">Aerial Map</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="tools">
+      <!-- Custom picker draws a preview swatch per layer; the native select
+           below stays as the single source of truth so every existing
+           mapTypeEl.value / change-event path keeps working. -->
+      <div class="lp" id="layerPicker">
+        <button type="button" class="lp-btn" id="lpBtn" aria-haspopup="listbox"
+                aria-expanded="false" aria-label="Map layer">
+          <span class="lp-sw" id="lpBtnSw"></span>
+          <span class="lp-name" id="lpBtnName">Default</span>
+          <span class="lp-caret" aria-hidden="true">&#9662;</span>
+        </button>
+      </div>
+      <div class="lp-menu" id="lpMenu" role="listbox" aria-label="Map layer" hidden></div>
+
+      <select id="mapType" class="sel" aria-label="Map type" hidden>
+        <optgroup label="Vector (sharp at any zoom)">
+          <option value="default">Default — street</option>
+          <option value="bright">Bright</option>
+          <option value="light">Light / greyscale</option>
+        </optgroup>
+        <optgroup label="Google Maps">
+          <option value="gfree-satellite">Google aerial</option>
+          <option value="gfree-roadmap">Google road map</option>
+        </optgroup>
+        <optgroup label="Aerial">
+          <option value="hybrid">Aerial + roads &amp; labels</option>
+          <option value="satellite">Aerial — imagery only</option>
+        </optgroup>
+        <optgroup label="Raster">
+          <option value="streets">Streets (OSM)</option>
+          <option value="esri">Esri Street</option>
+          <option value="topo">Esri Topographic</option>
+          <option value="gray">Esri Light Grey</option>
+          <option value="opentopo">OpenTopoMap</option>
+        </optgroup>
+        <optgroup label="CARTO — watermarked without an API key">
+          <option value="voyager">CARTO Voyager</option>
+          <option value="cartolight">CARTO Light</option>
+        </optgroup>
+        <optgroup label="Your own">
+          <option value="custom">Custom layer…</option>
+        </optgroup>
+      </select>
+      <div class="fsz" role="group" aria-label="Exhibit label size">
+        <span class="fsz-lbl">Label</span>
+        <button type="button" id="fszDown" aria-label="Smaller labels">&minus;</button>
+        <span id="fszVal">12</span>
+        <button type="button" id="fszUp" aria-label="Larger labels">+</button>
+      </div>
+      <button id="btnFrame" class="btn" aria-pressed="false" title="Constrain the map to 650 × 1008 px, the portrait proportion of an ACI form page">ACI page frame</button>
+      <button id="btnFit" class="btn ghost" title="Zoom to fit every located property">Fit all</button>
+      <button id="btnSave" class="btn" title="Save this exhibit as a PNG image">Save PNG</button>
+      <button id="btnPrint" class="btn ghost">Print</button>
+      <button id="btnClear" class="btn ghost">Clear</button>
+    </div>
+  </header>
+
+  <nav class="tabs no-print" role="tablist">
+    <button id="tabAddresses" role="tab" aria-selected="true" aria-controls="panel">Addresses</button>
+    <button id="tabMap" role="tab" aria-selected="false" aria-controls="mapside">Map</button>
+  </nav>
+
+  <main>
+    <section class="panel" id="panel" role="tabpanel" aria-label="Addresses">
+      <div id="cards"></div>
+      <button id="btnAdd" class="addbtn" type="button">+ Add comparable</button>
+
+      <div class="out">
+        <div class="head">
+          <span class="title">Proximity to subject</span>
+          <button id="btnCopy" class="smallbtn" type="button">Copy all</button>
+        </div>
+        <pre id="prox" class="empty">No comparables located yet.</pre>
+      </div>
+
+      <div class="legend">
+        <i style="background:#fff;border-color:#333"></i>Subject &nbsp;
+        <i style="background:#FDF07E;border-color:#8A7400"></i>Closed sale &nbsp;
+        <i style="background:#CFC0F2;border-color:#5B41A0"></i>Active listing &nbsp;
+        <i style="background:#C3EDB0;border-color:#3E7D2C"></i>Rental<br>
+        Drag either the red parcel dot or its callout box — the leader line follows.
+        Distances use the haversine formula, R&nbsp;=&nbsp;3958.7613&nbsp;mi.<br>
+        Address search © OpenStreetMap contributors via Nominatim.
+      </div>
+    </section>
+
+    <section class="mapside" id="mapside" role="tabpanel" aria-label="Map">
+      <div class="mapwrap" id="mapwrap">
+        <div class="mapstage" id="mapstage">
+          <div id="map"></div>
+          <div id="gmap" hidden></div>
+          <!-- two frames, so a zoom change can load out of sight and only be
+               revealed once Google has painted it -->
+          <iframe id="gframeA" class="gfr" hidden title="Google Maps aerial view"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe id="gframeB" class="gfr" hidden aria-hidden="true" tabindex="-1"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <!-- catches the wheel before Google's cooperative-gesture overlay can -->
+          <div id="gfwheel" hidden aria-hidden="true"></div>
+          <div id="gfpin" hidden aria-hidden="true"></div>
+          <div id="gfzoom" class="gfzoom" hidden>
+            <button type="button" id="gfIn"  aria-label="Zoom in">+</button>
+            <span id="gfLevel">19</span>
+            <button type="button" id="gfOut" aria-label="Zoom out">&minus;</button>
+          </div>
+
+          <!-- ACI-style header band for the aerial exhibit -->
+          <div class="pinbar" id="pinbar" hidden>
+            <div class="pb-main">
+              <input class="pb-title" id="pbTitle" value="AERIAL MAP" aria-label="Exhibit title" spellcheck="false">
+              <input class="pb-addr" id="pbAddr" placeholder="Subject address" aria-label="Subject address">
+            </div>
+            <div class="pb-side">
+              <span class="pb-lbl">File No.</span>
+              <input class="pb-file" id="pbFile" placeholder="—" aria-label="File number" spellcheck="false">
+            </div>
+          </div>
+
+
+          <div class="mapempty" id="mapEmpty">
+            <div>
+              <strong>The map appears once the subject is located.</strong>
+              Start typing the subject address on the Addresses side and pick a suggestion —
+              its coordinates are captured the moment you select it.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mapnote no-print">
+        <span id="mapStat">No properties located.</span>
+        <span class="spacer" style="flex:1 1 auto"></span>
+        <label id="customWrap" class="customwrap" hidden>
+          <span>Tile URL or style JSON</span>
+          <input id="customUrl" type="text" spellcheck="false"
+                 placeholder="https://…/{z}/{x}/{y}.png  or  https://…/style.json">
+        </label>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="ac" id="ac" role="listbox" aria-label="Address suggestions"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* =========================================================================
+   Constants
+   ========================================================================= */
+var EARTH_R_MI  = 3958.7613;          // miles, per appraisal convention
+var BOX_DX      = 64;                 // default callout offset: 64px right
+var BOX_DY      = -64;                //                         64px up
+var STORE_KEY   = 'csm.v2';
+var MIN_GAP_MS  = 1100;               // Nominatim: <= 1 request / second
+var DEBOUNCE_MS = 450;
+
+var ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services/';
+var OFM  = 'https://tiles.openfreemap.org/styles/';
+var OFM_ATTR = '&copy; <a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> ' +
+               '&copy; <a href="https://openmaptiles.org" target="_blank" rel="noopener">OpenMapTiles</a> ' +
+               '&copy; OpenStreetMap contributors';
+
+/* Two kinds of basemap:
+     gl     - a MapLibre vector style, rendered to a WebGL canvas in the tilePane
+     raster - a stack of L.tileLayers drawn bottom-up, so a reference layer
+              (street names) can sit over an imagery or canvas base.
+   The vector styles are what give the Google-Maps-like look: crisp white roads,
+   coloured highway casings, route shields and real label placement. No raster
+   basemap that is free and key-less comes close. */
+var ESRI_IMG_ATTR = 'Tiles &copy; Esri &mdash; Esri, Maxar, Earthstar Geographics';
+
+/* A raster MapLibre style, so aerial views render into the same WebGL canvas
+   as the vector ones and can therefore be exported to PNG. Esri serves these
+   with Access-Control-Allow-Origin:*, so the canvas is never tainted. */
+function rasterStyle(defs, attribution){
+  var sources = {}, layers = [];
+  defs.forEach(function(d, i){
+    var id = 'r' + i;
+    sources[id] = {
+      type:'raster', tiles:[d], tileSize:256, maxzoom:19,
+      attribution: i === 0 ? attribution : ''
+    };
+    layers.push({id:id, type:'raster', source:id});
+  });
+  return {version:8, sources:sources, layers:layers};
+}
+
+var AERIAL_IMG    = ESRI + 'World_Imagery/MapServer/tile/{z}/{y}/{x}';
+var AERIAL_ROADS  = ESRI + 'Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}';
+var AERIAL_PLACES = ESRI + 'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}';
+
+var TILES = {
+  'default':  {gl: OFM + 'liberty'},
+  bright:     {gl: OFM + 'bright'},
+  light:      {gl: OFM + 'positron'},
+  hybrid:{
+    aerial:true,
+    gl: rasterStyle([AERIAL_IMG, AERIAL_ROADS, AERIAL_PLACES], ESRI_IMG_ATTR),
+    raster:[
+      { url: AERIAL_IMG,   opts:{maxZoom:19, attribution:ESRI_IMG_ATTR} },
+      { url: AERIAL_ROADS, opts:{maxZoom:19, attribution:''} },
+      { url: AERIAL_PLACES,opts:{maxZoom:19, attribution:''} }
+    ]
+  },
+  satellite:{
+    aerial:true,
+    gl: rasterStyle([AERIAL_IMG], ESRI_IMG_ATTR),
+    raster:[{ url: AERIAL_IMG, opts:{maxZoom:19, attribution:ESRI_IMG_ATTR} }]
+  },
+  topo:{
+    raster:[{ url: ESRI + 'World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      opts:{maxZoom:19, attribution:'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, USGS'} }]
+  },
+  gray:{
+    raster:[
+      { url: ESRI + 'Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+        opts:{maxZoom:16, maxNativeZoom:16, attribution:'Tiles &copy; Esri'} },
+      { url: ESRI + 'Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+        opts:{maxZoom:16, maxNativeZoom:16, attribution:''} }
+    ]
+  },
+  opentopo:{
+    raster:[{ url:'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+      opts:{subdomains:'abc', maxZoom:17, attribution:'&copy; OpenStreetMap contributors, SRTM | &copy; OpenTopoMap (CC-BY-SA)'} }]
+  },
+  streets:{
+    raster:[{
+      url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      opts:{maxZoom:19, attribution:'&copy; OpenStreetMap contributors'}
+    }]
+  },
+  esri:{
+    raster:[{
+      url: ESRI + 'World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+      opts:{maxZoom:19, attribution:'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, USGS, NGA'}
+    }]
+  },
+  /* CARTO now stamps "API KEY REQUIRED" across its raster basemaps. Kept only
+     so a key-holder can point these at their own endpoint. */
+  voyager:{
+    raster:[{
+      url:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+      opts:{subdomains:'abcd', maxZoom:20, attribution:'&copy; OpenStreetMap contributors &copy; CARTO'}
+    }]
+  },
+  cartolight:{
+    raster:[{
+      url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+      opts:{subdomains:'abcd', maxZoom:20, attribution:'&copy; OpenStreetMap contributors &copy; CARTO'}
+    }]
+  }
+};
+
+/* WebGL can be missing (old device, blocklisted driver, headless capture). */
+function glSupported(){
+  if (!window.maplibregl || !L.maplibreGL) return false;
+  try{
+    var c = document.createElement('canvas');
+    return !!(c.getContext('webgl2') || c.getContext('webgl'));
+  }catch(e){ return false; }
+}
+
+/* Stagger the default box offsets so several comps don't stack on top of
+   each other. Every entry is a PIXEL offset, never degrees. */
+var OFFSETS = [
+  [BOX_DX, BOX_DY], [BOX_DX, 46], [-196, BOX_DY], [-196, 46],
+  [BOX_DX, -128], [-196, -128], [BOX_DX, 104], [-196, 104]
+];
+
+/* =========================================================================
+   Tiny helpers
+   ========================================================================= */
+var $  = function(s,r){ return (r||document).querySelector(s); };
+function esc(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+  });
+}
+function uid(){ return 'p'+Math.random().toString(36).slice(2,9); }
+function num(v){ var n = parseFloat(v); return isFinite(n) ? n : null; }
+function validLat(n){ return n!=null && n>=-90  && n<=90;  }
+function validLng(n){ return n!=null && n>=-180 && n<=180; }
+
+var toastEl = $('#toast'), toastT = null;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2300);
+}
+
+/* =========================================================================
+   Geometry — haversine distance + initial bearing
+   ========================================================================= */
+function rad(d){ return d*Math.PI/180; }
+
+function distanceMiles(a, b){
+  var dLat = rad(b.lat-a.lat), dLng = rad(b.lng-a.lng);
+  var la1 = rad(a.lat), la2 = rad(b.lat);
+  var h = Math.sin(dLat/2)*Math.sin(dLat/2) +
+          Math.cos(la1)*Math.cos(la2)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return 2*EARTH_R_MI*Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+function initialBearing(a, b){
+  var la1 = rad(a.lat), la2 = rad(b.lat), dl = rad(b.lng-a.lng);
+  var y = Math.sin(dl)*Math.cos(la2);
+  var x = Math.cos(la1)*Math.sin(la2) - Math.sin(la1)*Math.cos(la2)*Math.cos(dl);
+  return (Math.atan2(y,x)*180/Math.PI + 360) % 360;
+}
+
+var POINTS8 = ['N','NE','E','SE','S','SW','W','NW'];
+function compass8(deg){ return POINTS8[Math.round(deg/45) % 8]; }
+
+/* =========================================================================
+   Nominatim: debounce per field + a global >=1s request queue
+   ========================================================================= */
+var cache = new Map();
+var queueTail = Promise.resolve();
+var lastFire = 0;
+
+function schedule(task){
+  var p = queueTail.then(function(){
+    var wait = MIN_GAP_MS - (Date.now() - lastFire);
+    if (wait > 0) return new Promise(function(r){ setTimeout(r, wait); }).then(task);
+    return task();
+  });
+  queueTail = p.catch(function(){});   // one failure must not poison the queue
+  return p;
+}
+
+function shapeResult(r){
+  var a = r.address || {};
+  var road  = a.road || a.pedestrian || a.footway || a.residential || a.neighbourhood || '';
+  var line1 = [a.house_number || '', road].filter(Boolean).join(' ').trim();
+  if (!line1) line1 = r.name || String(r.display_name||'').split(',')[0].trim();
+  var city  = a.city || a.town || a.village || a.hamlet || a.municipality ||
+              a.suburb || a.city_district || a.county || '';
+  var line2 = [city, a.state || a.region || '', a.postcode || ''].filter(Boolean).join(', ');
+  return { line1:line1, line2:line2, lat:parseFloat(r.lat), lng:parseFloat(r.lon),
+           postcode:a.postcode || '', house:a.house_number || '', road:road };
+}
+
+function lookup(q){
+  var key = q.toLowerCase().replace(/\s+/g,' ').trim();
+  if (cache.has(key)) return Promise.resolve(cache.get(key));
+  return schedule(function(){
+    if (cache.has(key)) return cache.get(key);
+    var url = 'https://nominatim.openstreetmap.org/search'
+            + '?format=jsonv2&addressdetails=1&countrycodes=us&limit=6&q='
+            + encodeURIComponent(q);
+    var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function(){ ctrl.abort(); }, 12000) : null;
+    return fetch(url, ctrl ? {signal:ctrl.signal} : {})
+      .then(function(res){
+        if (timer) clearTimeout(timer);
+        if (res.status === 429) throw new Error('rate-limited');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function(json){
+        var out = (json||[]).map(shapeResult).filter(function(r){
+          return validLat(r.lat) && validLng(r.lng);
+        });
+        cache.set(key, out);
+        return out;
+      })
+      .catch(function(err){
+        if (timer) clearTimeout(timer);
+        throw err;
+      });
+  });
+}
+
+/* =========================================================================
+   Shared autocomplete dropdown (one element, re-targeted per field)
+   ========================================================================= */
+var acEl = $('#ac');
+var ac = { input:null, items:[], idx:-1, open:false, onPick:null, onFail:null };
+
+function acPlace(){
+  if (!ac.open || !ac.input) return;
+  var r = ac.input.getBoundingClientRect();
+  var vw = document.documentElement.clientWidth;
+  var vh = document.documentElement.clientHeight;
+  var w = Math.min(Math.max(r.width, 240), vw - 16);
+  var left = Math.min(Math.max(8, r.left), vw - w - 8);
+  acEl.style.width = w + 'px';
+  acEl.style.left  = left + 'px';
+
+  var below = vh - r.bottom - 8;
+  var above = r.top - 8;
+  if (below < 150 && above > below){
+    acEl.style.maxHeight = Math.min(290, above) + 'px';
+    acEl.style.top = 'auto';
+    acEl.style.bottom = (vh - r.top + 4) + 'px';
+  } else {
+    acEl.style.maxHeight = Math.min(290, Math.max(120, below)) + 'px';
+    acEl.style.bottom = 'auto';
+    acEl.style.top = (r.bottom + 4) + 'px';
+  }
+}
+
+function acClose(){
+  ac.open = false; ac.idx = -1; ac.items = [];
+  acEl.classList.remove('open');
+  acEl.innerHTML = '';
+  if (ac.input) ac.input.setAttribute('aria-expanded','false');
+}
+
+function acShow(input, html){
+  ac.input = input; ac.open = true;
+  acEl.innerHTML = html;
+  acEl.classList.add('open');
+  input.setAttribute('aria-expanded','true');
+  acPlace();
+}
+
+function acRenderItems(input, items, onPick, onFail){
+  ac.items = items; ac.idx = -1; ac.onPick = onPick; ac.onFail = onFail;
+  if (!items.length){
+    acShow(input, '<div class="msg">No matching address found. Refine the text, or enter latitude / longitude manually.</div>');
+    return;
+  }
+  var html = items.map(function(it,i){
+    return '<div class="item" role="option" data-i="'+i+'" aria-selected="false">'
+         +   '<div class="l1">'+esc(it.line1)+'</div>'
+         +   '<div class="l2">'+esc(it.line2)+'</div>'
+         + '</div>';
+  }).join('');
+  acShow(input, html);
+}
+
+function acHighlight(i){
+  var nodes = acEl.querySelectorAll('.item');
+  if (!nodes.length) return;
+  if (ac.idx >= 0 && nodes[ac.idx]){
+    nodes[ac.idx].classList.remove('on');
+    nodes[ac.idx].setAttribute('aria-selected','false');
+  }
+  ac.idx = (i + nodes.length) % nodes.length;
+  nodes[ac.idx].classList.add('on');
+  nodes[ac.idx].setAttribute('aria-selected','true');
+  nodes[ac.idx].scrollIntoView({block:'nearest'});
+}
+
+function acPick(i){
+  var it = ac.items[i];
+  if (!it || !ac.onPick) return;
+  var fn = ac.onPick;
+  acClose();
+  fn(it);
+}
+
+/* pointerdown fires before blur, so the pick survives the field losing focus */
+acEl.addEventListener('pointerdown', function(e){
+  var node = e.target.closest('.item');
+  if (!node) return;
+  e.preventDefault();
+  acPick(parseInt(node.getAttribute('data-i'), 10));
+});
+window.addEventListener('scroll', acPlace, true);
+window.addEventListener('resize', acPlace);
+document.addEventListener('pointerdown', function(e){
+  if (!ac.open) return;
+  if (acEl.contains(e.target) || e.target === ac.input) return;
+  acClose();
+});
+
+/* Wire one text field up to the shared dropdown. */
+function attachAutocomplete(input, handlers){
+  var timer = null, seq = 0;
+
+  input.setAttribute('role','combobox');
+  input.setAttribute('aria-autocomplete','list');
+  input.setAttribute('aria-expanded','false');
+  input.setAttribute('autocomplete','off');
+  input.setAttribute('autocorrect','off');
+  input.setAttribute('autocapitalize','words');
+  input.setAttribute('spellcheck','false');
+
+  function fire(){
+    var q = input.value.trim();
+    if (q.length < 3){ if (ac.input === input) acClose(); return; }
+    var mine = ++seq;
+    acShow(input, '<div class="msg">Searching…</div>');
+    lookup(q).then(function(items){
+      if (mine !== seq || document.activeElement !== input) return;
+      acRenderItems(input, items, handlers.onPick, handlers.onFail);
+    }).catch(function(err){
+      if (mine !== seq) return;
+      var rateLimited = /rate-limited/.test(err && err.message);
+      var msg = rateLimited
+        ? 'Address search is rate-limited right now. Wait a moment, or enter latitude / longitude below.'
+        : 'Address search is unavailable (network blocked or offline). Enter latitude / longitude below instead.';
+      if (document.activeElement === input || ac.input === input){
+        acShow(input, '<div class="msg err">'+esc(msg)+'</div>');
+      }
+      handlers.onFail(msg);
+    });
+  }
+
+  input.addEventListener('input', function(){
+    handlers.onType(input.value);
+    clearTimeout(timer);
+    if (input.value.trim().length < 3){ if (ac.input === input) acClose(); return; }
+    timer = setTimeout(fire, DEBOUNCE_MS);
+  });
+
+  input.addEventListener('focus', function(){
+    /* Don't re-open the list for text the user already picked — re-rendering
+       the cards restores focus here, and that would reopen it every time. */
+    if (handlers.isSettled()) return;
+    if (input.value.trim().length >= 3 && !ac.open){
+      clearTimeout(timer);
+      timer = setTimeout(fire, DEBOUNCE_MS);
+    }
+  });
+
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowDown'){
+      if (!ac.open || ac.input !== input){ clearTimeout(timer); fire(); }
+      else acHighlight(ac.idx + 1);
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp'){
+      if (ac.open && ac.input === input){ acHighlight(ac.idx - 1); e.preventDefault(); }
+    } else if (e.key === 'Enter'){
+      if (ac.open && ac.input === input && ac.idx >= 0){ acPick(ac.idx); e.preventDefault(); }
+      else if (ac.open && ac.input === input && ac.items.length === 1){ acPick(0); e.preventDefault(); }
+    } else if (e.key === 'Escape'){
+      if (ac.open){ acClose(); e.preventDefault(); e.stopPropagation(); }
+    } else if (e.key === 'Tab'){
+      acClose();
+    }
+  });
+
+  input.addEventListener('blur', function(){
+    setTimeout(function(){ if (ac.input === input && !acEl.matches(':hover')) acClose(); }, 120);
+  });
+}
+
+/* =========================================================================
+   State
+   ========================================================================= */
+function newProp(kind){
+  return {
+    id:uid(), kind:kind,
+    text:'', line1:'', line2:'', pickedText:null,
+    lat:null, lng:null,
+    mls:'', status:'closed',
+    off:null, manual:false
+  };
+}
+
+var state = {
+  subject: newProp('subject'),
+  comps: [newProp('comp'), newProp('comp'), newProp('comp')],
+  mapType: 'default',
+  framed: false,
+  tab: 'addresses',
+  view: 'location',            /* 'location' | 'aerial' */
+  aerialType: 'gfree-satellite', /* layer used while in aerial view */
+  gfreeZoom: 19,
+  gfreeCenter: null,
+  calloutFs: 12,
+  customUrl: '',
+  googleKey: '',
+  aerial: {title:'AERIAL MAP', addr:'', file:''}
+};
+
+function allProps(){ return [state.subject].concat(state.comps); }
+function located(p){ return validLat(p.lat) && validLng(p.lng); }
+
+/* Inside the platform the map belongs to the case, not to this browser: its
+   state (pins, callout positions, label size, layer) is kept with the case so
+   the report's Sales Comparison Map is drawn from exactly this map. */
+var CASE_ID = new URLSearchParams(location.search).get('case');
+
+function snapshot(){
+  return {
+    subject:state.subject, comps:state.comps,
+    mapType:state.mapType, framed:state.framed,
+    view:state.view, aerialType:state.aerialType,
+    customUrl:state.customUrl, googleKey:state.googleKey, aerial:state.aerial,
+    gfreeZoom:state.gfreeZoom, gfreeCenter:state.gfreeCenter, calloutFs:state.calloutFs,
+    userView:state.userView || null
+  };
+}
+
+function save(){
+  if (CASE_ID){ if (window.__uadPersist) window.__uadPersist(snapshot()); return; }
+  try{
+    localStorage.setItem(STORE_KEY, JSON.stringify(snapshot()));
+  }catch(e){ /* private mode / quota — the app still works, just not persisted */ }
+}
+
+function load(){
+  if (CASE_ID) return;                 /* the platform restores the case's own map */
+  var raw;
+  try{ raw = localStorage.getItem(STORE_KEY); }catch(e){ return; }
+  if (!raw) return;
+  try{ restore(JSON.parse(raw)); }catch(e){ /* corrupt payload — fall back to defaults */ }
+}
+
+function restore(d){
+  try{
+    if (!d || !d.subject) return;
+    state.subject = Object.assign(newProp('subject'), d.subject, {kind:'subject'});
+    state.comps = (Array.isArray(d.comps) ? d.comps : []).map(function(c){
+      return Object.assign(newProp('comp'), c, {kind:'comp'});
+    });
+    if (!state.comps.length) state.comps = [newProp('comp')];
+    var okType = function(k){ return !!(TILES[k] || k === 'custom' || isGoogle(k) || isGFree(k)); };
+    if (d.gfreeZoom >= 1 && d.gfreeZoom <= 21) state.gfreeZoom = d.gfreeZoom;
+    if (d.calloutFs >= 9 && d.calloutFs <= 20) state.calloutFs = d.calloutFs;
+    state.userView = (d.userView && isFinite(d.userView.lat) && isFinite(d.userView.lng)
+                      && d.userView.zoom >= 2 && d.userView.zoom <= 20) ? d.userView : null;
+    if (d.gfreeCenter && isFinite(d.gfreeCenter.lat) && isFinite(d.gfreeCenter.lng)) state.gfreeCenter = d.gfreeCenter;
+
+    /* Sessions saved before the free embed existed may hold a keyed Google
+       layer with no key, which used to pop a prompt on every load. Rewrite
+       those to the free equivalent. */
+    var noKey = !((d.googleKey || '').trim());
+    var demote = function(k){
+      if (!noKey || !isGoogle(k)) return k;
+      return k === 'google-roadmap' ? 'gfree-roadmap' : 'gfree-satellite';
+    };
+    d.mapType    = demote(d.mapType);
+    d.aerialType = demote(d.aerialType);
+    if (okType(d.mapType))    state.mapType = d.mapType;
+    if (okType(d.aerialType)) state.aerialType = d.aerialType;
+    if (typeof d.googleKey === 'string') state.googleKey = d.googleKey;
+    if (d.view === 'aerial' || d.view === 'location') state.view = d.view;
+    if (typeof d.customUrl === 'string') state.customUrl = d.customUrl;
+    if (d.aerial) state.aerial = Object.assign({title:'AERIAL MAP', addr:'', file:''}, d.aerial);
+    state.framed = !!d.framed;
+  }catch(e){ /* corrupt payload — fall back to defaults */ }
+}
+
+/* =========================================================================
+   Map
+   ========================================================================= */
+var map = L.map('map', {
+  zoomControl:true,
+  attributionControl:true,
+  center:[39.5, -98.35],
+  zoom:4,
+  minZoom:2,
+  maxZoom:20,          /* a vector base layer declares no maxZoom of its own */
+  preferCanvas:false
+});
+var tileLayer = null;   // the current base layer (vector or raster)
+var glLayer   = null;   // set only when the base layer is a MapLibre vector style
+
+/* "Custom layer…" accepts either an XYZ raster template containing {z}/{x}/{y}
+   or the URL of a MapLibre style JSON. */
+function customSpec(url){
+  url = (url || '').trim();
+  if (!url) return null;
+  if (/\{z\}/i.test(url) && /\{x\}/i.test(url) && /\{y\}/i.test(url)){
+    return {
+      gl: rasterStyle([url], 'Custom layer'),
+      raster:[{url:url, opts:{maxZoom:22, attribution:'Custom layer'}}]
+    };
+  }
+  if (/^https?:\/\//i.test(url)) return {gl:url};   // treat as a style document
+  return null;
+}
+
+function specFor(kind){
+  if (kind === 'custom') return customSpec(state.customUrl);
+  return TILES[kind] || null;
+}
+
+function setTiles(kind){
+  /* Google runs in its own map element layered over the Leaflet one. */
+  if (isGFree(kind)){
+    if (showGFree(kind)) return;
+    kind = (state.view === 'aerial') ? 'hybrid' : 'default';
+    mapTypeEl.value = kind;
+    if (state.view === 'aerial') state.aerialType = kind; else state.mapType = kind;
+  } else if (isGoogle(kind)){
+    if (showGoogle(kind)) return;
+    /* no key yet — render the free aerial behind the prompt, leave it up */
+    kind = 'hybrid';
+    mapTypeEl.value = kind;
+  } else {
+  }
+  hideGFree();
+  hideGoogle();
+
+  var t = specFor(kind) || TILES['default'];
+  if (tileLayer){ map.removeLayer(tileLayer); tileLayer = null; glLayer = null; }
+
+  if (t.gl && glSupported()){
+    try{
+      glLayer = L.maplibreGL({
+        style: t.gl,
+        /* Without preserveDrawingBuffer the WebGL buffer is cleared after each
+           frame and Print / screenshot produce a blank map. MapLibre v5 moved
+           these into canvasContextAttributes and ignores the old top-level
+           options, so send both spellings and stay version-proof. */
+        canvasContextAttributes: {preserveDrawingBuffer: true, antialias: true},
+        preserveDrawingBuffer: true,
+        antialias: true,
+        attribution: OFM_ATTR
+      });
+      tileLayer = glLayer.addTo(map);
+      return;
+    }catch(e){ glLayer = null; }
+  }
+
+  /* No WebGL, or a raster style was chosen: fall back to tile layers. */
+  /* crossOrigin is what lets these tiles be drawn into the export canvas
+     without tainting it; every provider here sends Access-Control-Allow-Origin. */
+  var list = t.raster || TILES.esri.raster;
+  tileLayer = L.layerGroup(list.map(function(l){
+    return L.tileLayer(l.url, L.extend({crossOrigin:'anonymous'}, l.opts));
+  })).addTo(map);
+  lpSyncButton();
+}
+/* the base layer is installed by the boot block, once saved state is loaded */
+
+var layers = {};   // id -> {dot, box, halo, lead}
+
+/* Two independent run numbers: sales and listings share one sequence, because
+   an appraiser grids them together, while rentals are a separate exhibit and
+   carry their own. So Sale 1, Listing 2, Sale 3, Rental 1, Listing 4, Rental 2.
+   Recomputed on demand, so changing a status or removing a row renumbers both
+   sequences everywhere at once. */
+function labelFor(p){
+  if (!p || p.kind === 'subject'){
+    return {title:'Subject', card:'Subject property', prox:null, n:0};
+  }
+  var sale = 0, rent = 0;
+  for (var i = 0; i < state.comps.length; i++){
+    var c = state.comps[i];
+    if (c.status === 'rent') rent++; else sale++;
+    if (c !== p) continue;
+    if (c.status === 'rent'){
+      return {title:'Rental ' + rent, card:'Rental ' + rent, prox:'Rental ' + rent, n:rent};
+    }
+    var t = (c.status === 'active') ? 'Comparable Listing ' + sale : 'Comparable Sale ' + sale;
+    /* the proximity strings keep the plain "Comparable N" wording the
+       appraisal form expects; only rentals get their own prefix */
+    return {title:t, card:t, prox:'Comparable ' + sale, n:sale};
+  }
+  return {title:'Comparable', card:'Comparable', prox:'Comparable', n:0};
+}
+
+/* status -> the class that carries its colour, in one place */
+var STATUS_CLASS = {closed:'cls', active:'act', rent:'rent'};
+var STATUS_LABEL = {closed:'Closed sale', active:'Active listing', rent:'Rental'};
+function statusClass(p){
+  if (p.kind === 'subject') return '';
+  return STATUS_CLASS[p.status] || 'cls';
+}
+
+function calloutHTML(p, index, prox){
+  var cls = p.kind === 'subject' ? '' : ' ' + statusClass(p);
+  var title = labelFor(p).title;
+  var l1 = p.line1 || p.text || '';
+  var l2 = p.line2 || '';
+  var bits = [];
+  if (prox) bits.push(prox.miles.toFixed(2) + ' miles ' + prox.dir);
+  if (p.mls && p.mls.trim()) bits.push('MLS# ' + p.mls.trim());
+  var html = '<div class="callout'+cls+'">'
+           +   '<div class="c-t">'+esc(title)+'</div>';
+  if (l1) html += '<div class="c-a">'+esc(l1)+'</div>';
+  if (l2) html += '<div class="c-a">'+esc(l2)+'</div>';
+  if (bits.length) html += '<div class="c-m">'+esc(bits.join(' · '))+'</div>';
+  return html + '</div>';
+}
+
+function offsetFor(p, index){
+  if (p.off && isFinite(p.off[0]) && isFinite(p.off[1])) return p.off;
+  var o = OFFSETS[(p.kind === 'subject' ? 0 : index) % OFFSETS.length];
+  p.off = [o[0], o[1]];
+  return p.off;
+}
+
+/* Box position = dot position translated by a PIXEL offset, converted back to
+   a LatLng through the map's layer-point methods. Recomputed on every zoom so
+   the box keeps the same screen offset at any scale. */
+function boxLatLngFor(p, index){
+  var dot = map.latLngToLayerPoint(L.latLng(p.lat, p.lng));
+  var off = offsetFor(p, index);
+  return map.layerPointToLatLng(dot.add(L.point(off[0], off[1])));
+}
+
+function boxCenterLatLng(marker){
+  var el = marker.getElement();
+  var pt = map.latLngToLayerPoint(marker.getLatLng());
+  if (el && el.offsetWidth){
+    pt = pt.add(L.point(el.offsetWidth/2, el.offsetHeight/2));
+  }
+  return map.layerPointToLatLng(pt);
+}
+
+/* Where the ray from a box's centre towards the dot crosses the box border,
+   so the leader starts at the edge of the label rather than under it. */
+function rectExit(c, target, hw, hh){
+  var dx = target.x - c.x, dy = target.y - c.y;
+  if (!dx && !dy) return c;
+  var t = Math.min(dx ? hw / Math.abs(dx) : Infinity,
+                   dy ? hh / Math.abs(dy) : Infinity);
+  return L.point(c.x + dx * t, c.y + dy * t);
+}
+
+/* A tapered leader: two hairlines meeting at the parcel dot and opening out
+   to the edge of the label, so the pair reads as one wedge pointing at the
+   parcel. Half the spread, in pixels, where it meets the box. */
+var LEADER_SPREAD = 3;
+
+function updateLeader(rec){
+  var el = rec.box.getElement();
+  var bp = map.latLngToLayerPoint(rec.box.getLatLng());
+  var hw = (el && el.offsetWidth  ? el.offsetWidth  : 120) / 2;
+  var hh = (el && el.offsetHeight ? el.offsetHeight : 40) / 2;
+  var c  = bp.add(L.point(hw, hh));
+  var d  = map.latLngToLayerPoint(rec.dot.getLatLng());
+  var exit = rectExit(c, d, hw, hh);
+
+  /* spread the two ends apart across the box edge, square to the leader */
+  var vx = exit.x - d.x, vy = exit.y - d.y;
+  var len = Math.sqrt(vx*vx + vy*vy) || 1;
+  var px = -vy / len * LEADER_SPREAD, py = vx / len * LEADER_SPREAD;
+
+  var tip = map.layerPointToLatLng(d);
+  var e1  = map.layerPointToLatLng(L.point(exit.x + px, exit.y + py));
+  var e2  = map.layerPointToLatLng(L.point(exit.x - px, exit.y - py));
+
+  rec.halo.setLatLngs([e1, tip]);
+  rec.lead.setLatLngs([e1, tip]);
+  rec.arrowHalo.setLatLngs([e2, tip]);
+  rec.arrow.setLatLngs([e2, tip]);
+}
+
+function makeRec(p, index, prox){
+  var aerial = state.view === 'aerial';
+  var dot = L.marker([p.lat, p.lng], {
+    icon: aerial ? makePinIcon() : makeDotIcon(),
+    draggable:true, autoPan:false, zIndexOffset:1000, keyboard:false
+  }).addTo(map);
+
+  var box = L.marker(boxLatLngFor(p, index), {
+    icon:L.divIcon({className:'aci-box', html:calloutHTML(p,index,prox), iconSize:null, iconAnchor:null}),
+    draggable:true, autoPan:false, zIndexOffset:500, keyboard:false
+  }).addTo(map);
+
+  var halo = L.polyline([[p.lat,p.lng],[p.lat,p.lng]], {color:'#fff', weight:3, opacity:.9, interactive:false}).addTo(map);
+  var lead = L.polyline([[p.lat,p.lng],[p.lat,p.lng]], {color:'#333', weight:1, opacity:1,  interactive:false}).addTo(map);
+  var arrowHalo = L.polyline([[p.lat,p.lng],[p.lat,p.lng]], {color:'#fff', weight:3, opacity:.9, interactive:false, lineJoin:'miter', lineCap:'butt'}).addTo(map);
+  var arrow     = L.polyline([[p.lat,p.lng],[p.lat,p.lng]], {color:'#333', weight:1, opacity:1,  interactive:false, lineJoin:'miter', lineCap:'butt'}).addTo(map);
+
+  var rec = {dot:dot, box:box, halo:halo, lead:lead, arrowHalo:arrowHalo, arrow:arrow, isPin:aerial};
+
+  dot.on('drag', function(){
+    var ll = dot.getLatLng();
+    p.lat = ll.lat; p.lng = ll.lng;
+    box.setLatLng(boxLatLngFor(p, indexOf(p)));
+    updateLeader(rec);
+  });
+  dot.on('dragend', function(){ refresh({fit:false}); save(); });
+
+  box.on('drag', function(){ updateLeader(rec); });
+  box.on('dragend', function(){
+    var d = map.latLngToLayerPoint(dot.getLatLng());
+    var b = map.latLngToLayerPoint(box.getLatLng());
+    p.off = [Math.round(b.x - d.x), Math.round(b.y - d.y)];
+    p.placed = true;               /* arranged by hand: auto-arrange leaves it alone */
+    updateLeader(rec);
+    save();
+  });
+
+  return rec;
+}
+
+function indexOf(p){
+  if (p.kind === 'subject') return 0;
+  return state.comps.indexOf(p) + 1;
+}
+
+/* Google-Maps-style teardrop: round head, tapering to a point that sits on
+   the parcel. Kept as one SVG string so the on-screen marker and the exported
+   PNG are drawn from exactly the same artwork. */
+var PIN_W = 30, PIN_H = 42;
+var PIN_SVG =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="'+PIN_W+'" height="'+PIN_H+'" viewBox="0 0 30 42">' +
+    '<path d="M15 1C7.8 1 2 6.8 2 14c0 9.4 11.2 24.2 12.3 25.6a.9.9 0 0 0 1.4 0C16.8 38.2 28 23.4 28 14 28 6.8 22.2 1 15 1z" ' +
+      'fill="#EA4335" stroke="#A52714" stroke-width="1.6" stroke-linejoin="round"/>' +
+    '<circle cx="15" cy="14" r="5.2" fill="#7B1210"/>' +
+  '</svg>';
+
+/* Preloaded so the exporter can stamp the identical pin synchronously. */
+var pinImg = new Image();
+pinImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(PIN_SVG);
+
+function makeDotIcon(){
+  return L.divIcon({className:'aci-dot', html:'<div class="dot"></div>',
+                    iconSize:[7,7], iconAnchor:[3.5,3.5]});
+}
+function makePinIcon(){
+  return L.divIcon({className:'aci-pin', html:PIN_SVG,
+                    iconSize:[PIN_W,PIN_H], iconAnchor:[PIN_W/2, PIN_H]});
+}
+
+/* The aerial exhibit is a subject-only sheet: one pin, no callouts, the
+   address carried by the header band instead. */
+function viewProps(){
+  return state.view === 'aerial' ? [state.subject] : allProps();
+}
+
+function applyViewToLayers(){
+  var aerial = state.view === 'aerial';
+  Object.keys(layers).forEach(function(id){
+    var rec = layers[id];
+    var boxEl = rec.box.getElement();
+    if (boxEl) boxEl.style.display = aerial ? 'none' : '';
+    rec.halo.setStyle({opacity: aerial ? 0 : 0.9});
+    rec.lead.setStyle({opacity: aerial ? 0 : 1});
+    rec.arrowHalo.setStyle({opacity: aerial ? 0 : 0.9});
+    rec.arrow.setStyle({opacity: aerial ? 0 : 1});
+    if (rec.isPin !== aerial){
+      rec.dot.setIcon(aerial ? makePinIcon() : makeDotIcon());
+      rec.isPin = aerial;
+    }
+  });
+}
+
+function syncMap(prox){
+  var seen = {};
+  viewProps().forEach(function(p){
+    if (!located(p)) return;
+    seen[p.id] = true;
+    var idx = indexOf(p);
+    var rec = layers[p.id];
+    if (!rec){
+      rec = layers[p.id] = makeRec(p, idx, prox[p.id]);
+    } else {
+      rec.dot.setLatLng([p.lat, p.lng]);
+      rec.box.setIcon(L.divIcon({
+        className:'aci-box', html:calloutHTML(p, idx, prox[p.id]),
+        iconSize:null, iconAnchor:null
+      }));
+      rec.box.setLatLng(boxLatLngFor(p, idx));
+      if (rec.box.dragging) rec.box.dragging.enable();
+    }
+    updateLeader(rec);
+  });
+  Object.keys(layers).forEach(function(id){
+    if (seen[id]) return;
+    var rec = layers[id];
+    map.removeLayer(rec.dot); map.removeLayer(rec.box);
+    map.removeLayer(rec.halo); map.removeLayer(rec.lead);
+    map.removeLayer(rec.arrowHalo); map.removeLayer(rec.arrow);
+    delete layers[id];
+  });
+  applyViewToLayers();
+}
+
+/* Place every callout the appraiser has not placed by hand: no label over
+   another label or a parcel dot, inside the map, leader lines not running
+   behind other labels, as close to its parcel as that allows. */
+function autoArrange(force){
+  var size = map.getSize();
+  var props = viewProps().filter(located);
+  var pad = 6;
+  var dots = props.map(function(p){ return {p:p, pt: map.latLngToContainerPoint(L.latLng(p.lat, p.lng))}; });
+  var taken = dots.map(function(d){ return [d.pt.x - 12, d.pt.y - 12, d.pt.x + 12, d.pt.y + 12]; });
+  var boxes = [], leaders = [];
+  var dims = function(p){
+    var rec = layers[p.id], el = rec && rec.box.getElement();
+    return [el && el.offsetWidth ? el.offsetWidth : 170, el && el.offsetHeight ? el.offsetHeight : 62];
+  };
+  var overlap = function(a, b){ return !(a[2] <= b[0] || b[2] <= a[0] || a[3] <= b[1] || b[3] <= a[1]); };
+  var crosses = function(x1, y1, x2, y2, r){
+    for (var i = 1; i < 24; i++){
+      var t = i / 24, x = x1 + (x2 - x1) * t, y = y1 + (y2 - y1) * t;
+      if (x > r[0] && x < r[2] && y > r[1] && y < r[3]) return true;
+    }
+    return false;
+  };
+  var anchor = function(x, y, r){ return [Math.min(Math.max(x, r[0]), r[2]), Math.min(Math.max(y, r[1]), r[3])]; };
+
+  /* labels already placed by hand stay where they are */
+  dots.forEach(function(d){
+    if (force || !d.p.placed || !d.p.off) return;
+    var wh = dims(d.p), r = [d.pt.x + d.p.off[0], d.pt.y + d.p.off[1], 0, 0];
+    r[2] = r[0] + wh[0]; r[3] = r[1] + wh[1];
+    taken.push([r[0] - pad, r[1] - pad, r[2] + pad, r[3] + pad]); boxes.push(r);
+    leaders.push([d.pt.x, d.pt.y].concat(anchor(d.pt.x, d.pt.y, r)));
+  });
+
+  dots.sort(function(a, b){ return (a.p.kind === 'subject' ? -1 : 0) - (b.p.kind === 'subject' ? -1 : 0); });
+  dots.forEach(function(d){
+    if (!force && d.p.placed && d.p.off) return;
+    var wh = dims(d.p), best = null, score = Infinity;
+    for (var dist = 50; dist <= 560; dist += 30){
+      for (var ang = -90; ang < 270; ang += 15){
+        var cx = d.pt.x + dist * Math.cos(ang * Math.PI / 180);
+        var cy = d.pt.y + dist * Math.sin(ang * Math.PI / 180);
+        var r = [cx - wh[0] / 2, cy - wh[1] / 2, cx + wh[0] / 2, cy + wh[1] / 2];
+        if (r[0] < pad || r[1] < pad || r[2] > size.x - pad || r[3] > size.y - 22) continue;
+        if (taken.some(function(t){ return overlap(r, t); })) continue;
+        var a = anchor(d.pt.x, d.pt.y, r), cost = dist;
+        boxes.forEach(function(b){ if (crosses(d.pt.x, d.pt.y, a[0], a[1], b)) cost += 900; });
+        leaders.forEach(function(l){ if (crosses(l[0], l[1], l[2], l[3], r)) cost += 900; });
+        if (cost < score){ score = cost; best = r; }
+      }
+      if (best && score < dist + 1) break;
+    }
+    if (!best) return;                       /* nowhere clear: keep its current offset */
+    d.p.off = [Math.round(best[0] - d.pt.x), Math.round(best[1] - d.pt.y)];
+    taken.push([best[0] - pad, best[1] - pad, best[2] + pad, best[3] + pad]);
+    boxes.push(best);
+    leaders.push([d.pt.x, d.pt.y].concat(anchor(d.pt.x, d.pt.y, best)));
+  });
+  repositionBoxes();
+  save();
+}
+
+function repositionBoxes(){
+  viewProps().forEach(function(p){
+    var rec = layers[p.id];
+    if (!rec || !located(p)) return;
+    rec.box.setLatLng(boxLatLngFor(p, indexOf(p)));
+    updateLeader(rec);
+  });
+}
+map.on('zoomend', repositionBoxes);
+map.on('resize',  repositionBoxes);
+
+function fitAll(){
+  var pts = viewProps().filter(located).map(function(p){ return [p.lat, p.lng]; });
+  if (!pts.length) return;
+  /* animate:false — Leaflet's animated zoom defers through requestAnimationFrame,
+     which never runs in a backgrounded tab, and the fit would silently not apply.
+     An exhibit needs deterministic framing more than it needs a transition. */
+  if (pts.length === 1){
+    map.setView(pts[0], 16, {animate:false});
+  } else {
+    var room = state.framed ? 170 : 80;          /* labels need space inside the frame */
+    map.fitBounds(L.latLngBounds(pts), {padding:[room,room], maxZoom:17, animate:false});
+  }
+  map.once('moveend', repositionBoxes);
+  setTimeout(repositionBoxes, 260);
+}
+
+/* Any layout change (tab switch, frame toggle, resize, print) has to be
+   followed by invalidateSize or Leaflet keeps its stale container size and
+   renders grey. Done synchronously first — requestAnimationFrame alone never
+   fires while the page is in a background tab — then again once styles and
+   fonts have settled. */
+function resizeGL(){
+  if (!glLayer || !glLayer.getMaplibreMap) return;
+  try{ glLayer.getMaplibreMap().resize(); }catch(e){}
+}
+
+function kick(){
+  map.invalidateSize();
+  resizeGL();
+  repositionBoxes();
+  requestAnimationFrame(function(){ map.invalidateSize(); resizeGL(); repositionBoxes(); });
+  setTimeout(function(){ map.invalidateSize(); resizeGL(); repositionBoxes(); }, 160);
+}
+
+/* =========================================================================
+   Proximity table
+   ========================================================================= */
+function computeProx(){
+  var out = {};
+  var s = state.subject;
+  if (!located(s)) return out;
+  state.comps.forEach(function(c){
+    if (!located(c)) return;
+    out[c.id] = {
+      miles: distanceMiles(s, c),
+      dir:   compass8(initialBearing(s, c))
+    };
+  });
+  return out;
+}
+
+function proximityLines(prox){
+  var lines = [];
+  state.comps.forEach(function(c, i){
+    var pr = prox[c.id];
+    if (!pr) return;
+    lines.push(labelFor(c).prox + '  ' + pr.miles.toFixed(2) + ' MILES ' + pr.dir);
+  });
+  return lines;
+}
+
+/* =========================================================================
+   Cards / rendering
+   ========================================================================= */
+var cardsEl = $('#cards');
+
+function statusHTML(p, prox){
+  if (located(p)){
+    var extra = '';
+    if (p.kind === 'comp' && prox) extra = ' · ' + prox.miles.toFixed(2) + ' MILES ' + prox.dir;
+    return '<span class="status ok">✓ Located '
+         + p.lat.toFixed(5) + ', ' + p.lng.toFixed(5) + esc(extra) + '</span>';
+  }
+  return '<span class="status">Not located — type 3+ characters and pick a suggestion.</span>';
+}
+
+function cardHTML(p, index, prox){
+  var isSub = p.kind === 'subject';
+  var sw = isSub ? 'sw-sub' : 'sw-' + statusClass(p);
+  var title = labelFor(p).card;
+  var h = '<div class="card '+(isSub?'subject':'')+'" data-id="'+p.id+'">'
+        +  '<div class="head">'
+        +    '<span class="swatch '+sw+'"></span>'
+        +    '<span class="title">'+esc(title)+'</span>'
+        +    (isSub ? '' : '<button class="iconbtn" data-act="remove" title="Remove this comparable" aria-label="Remove '+esc(title)+'">×</button>')
+        +  '</div>'
+        +  '<div class="body">'
+        +    '<label class="lbl" for="a-'+p.id+'">Address</label>'
+        +    '<input class="txt" id="a-'+p.id+'" data-act="addr" type="text" inputmode="text" '
+        +      'placeholder="Start typing, e.g. 911 harlane" value="'+esc(p.text)+'">';
+
+  if (!isSub){
+    h += '<div class="row mt">'
+      +    '<div class="f">'
+      +      '<label class="lbl" for="m-'+p.id+'">MLS # / APN</label>'
+      +      '<input class="txt" id="m-'+p.id+'" data-act="mls" type="text" placeholder="882477" value="'+esc(p.mls)+'">'
+      +    '</div>'
+      +    '<div class="f">'
+      +      '<label class="lbl" for="s-'+p.id+'">Status</label>'
+      +      '<select class="dd" id="s-'+p.id+'" data-act="status">'
+      +        '<option value="closed"'+(p.status==='closed'?' selected':'')+'>Closed sale</option>'
+      +        '<option value="active"'+(p.status==='active'?' selected':'')+'>Active listing</option>'
+      +        '<option value="rent"'+(p.status==='rent'?' selected':'')+'>Rental</option>'
+      +      '</select>'
+      +    '</div>'
+      +  '</div>';
+  }
+
+  h +=      '<div class="manual'+(p.manual?' show':'')+'" data-manual>'
+    +         '<div class="row">'
+    +           '<div class="f"><label class="lbl" for="lat-'+p.id+'">Latitude</label>'
+    +             '<input class="txt" id="lat-'+p.id+'" data-act="lat" type="text" inputmode="decimal" placeholder="40.68901" value="'+(p.lat!=null?esc(p.lat):'')+'"></div>'
+    +           '<div class="f"><label class="lbl" for="lng-'+p.id+'">Longitude</label>'
+    +             '<input class="txt" id="lng-'+p.id+'" data-act="lng" type="text" inputmode="decimal" placeholder="-73.53142" value="'+(p.lng!=null?esc(p.lng):'')+'"></div>'
+    +         '</div>'
+    +       '</div>'
+    +       statusHTML(p, prox)
+    +       '<button class="linkbtn" data-act="toggle-manual" type="button">'
+    +         (p.manual ? 'Hide latitude / longitude' : 'Enter latitude / longitude manually')
+    +       '</button>'
+    +     '</div>'
+    +   '</div>';
+  return h;
+}
+
+function renderCards(prox){
+  var active = document.activeElement;
+  var keepId = active && active.id ? active.id : null;
+  var selStart = null, selEnd = null;
+  if (keepId && active.setSelectionRange && active.type === 'text'){
+    try{ selStart = active.selectionStart; selEnd = active.selectionEnd; }catch(e){}
+  }
+
+  var html = cardHTML(state.subject, 0, null);
+  state.comps.forEach(function(c, i){ html += cardHTML(c, i+1, prox[c.id]); });
+  cardsEl.innerHTML = html;
+
+  allProps().forEach(function(p){
+    var input = document.getElementById('a-' + p.id);
+    if (input) wireAddressField(p, input);
+  });
+
+  if (keepId){
+    var el = document.getElementById(keepId);
+    if (el){
+      el.focus({preventScroll:true});
+      if (selStart != null && el.setSelectionRange){
+        try{ el.setSelectionRange(selStart, selEnd); }catch(e){}
+      }
+    }
+  }
+}
+
+function wireAddressField(p, input){
+  attachAutocomplete(input, {
+    isSettled: function(){
+      return (p.pickedText && input.value === p.pickedText) || (p.manual && located(p));
+    },
+    onType: function(v){
+      p.text = v;
+      /* If the text no longer matches what was picked, the stored coordinate
+         is stale — drop it rather than shipping a wrong exhibit. */
+      if (p.pickedText && v !== p.pickedText && !p.manual){
+        p.pickedText = null; p.lat = null; p.lng = null; p.line1 = ''; p.line2 = '';
+        refresh({fit:false});
+      }
+      save();
+    },
+    onPick: function(it){
+      p.line1 = it.line1; p.line2 = it.line2;
+      p.lat = it.lat; p.lng = it.lng;
+      p.text = [it.line1, it.line2].filter(Boolean).join(', ');
+      p.pickedText = p.text;
+      var el = document.getElementById('a-' + p.id);
+      if (el) el.value = p.text;
+      /* seed the aerial header band from the subject, unless it's been edited */
+      if (p.kind === 'subject' && !state.aerial.addr){
+        state.aerial.addr = p.text;
+        $('#pbAddr').value = p.text;
+      }
+      refresh({fit:true});
+      save();
+    },
+    onFail: function(){
+      if (!p.manual){
+        p.manual = true;
+        refresh({fit:false});
+        save();
+      }
+    }
+  });
+}
+
+function renderProx(prox){
+  var lines = proximityLines(prox);
+  var pre = $('#prox');
+  if (!lines.length){
+    pre.className = 'empty';
+    pre.textContent = located(state.subject)
+      ? 'Locate at least one comparable to see distances.'
+      : 'Locate the subject property first.';
+  } else {
+    pre.className = '';
+    pre.textContent = lines.join('\n');
+  }
+
+  var n = allProps().filter(located).length;
+  var nc = state.comps.filter(located).length;
+  $('#mapStat').textContent = n
+    ? (located(state.subject) ? 'Subject + ' + nc + ' comparable' + (nc===1?'':'s') + ' plotted.'
+                              : nc + ' comparable' + (nc===1?'':'s') + ' plotted — subject not located.')
+    : 'No properties located.';
+}
+
+var lastFitCount = 0;
+function refresh(opts){
+  opts = opts || {};
+  var prox = computeProx();
+  renderCards(prox);
+  renderProx(prox);
+  syncMap(prox);
+  syncGoogleMarker();
+  syncGFree();
+
+  var count = allProps().filter(located).length;
+  $('#mapEmpty').classList.toggle('hide', located(state.subject) || count > 0);
+
+  if (opts.fit && count > lastFitCount) fitAll();
+  lastFitCount = count;
+}
+
+/* =========================================================================
+   Card interactions (delegated)
+   ========================================================================= */
+function propById(id){
+  if (state.subject.id === id) return state.subject;
+  for (var i=0;i<state.comps.length;i++) if (state.comps[i].id === id) return state.comps[i];
+  return null;
+}
+
+cardsEl.addEventListener('click', function(e){
+  var btn = e.target.closest('[data-act]');
+  if (!btn || btn.tagName !== 'BUTTON') return;
+  var card = btn.closest('.card');
+  var p = propById(card.getAttribute('data-id'));
+  if (!p) return;
+  var act = btn.getAttribute('data-act');
+
+  if (act === 'remove'){
+    var i = state.comps.indexOf(p);
+    if (i >= 0){
+      state.comps.splice(i, 1);
+      if (!state.comps.length) state.comps.push(newProp('comp'));
+      lastFitCount = Math.max(0, lastFitCount - 1);
+      refresh({fit:false}); save();
+    }
+  } else if (act === 'toggle-manual'){
+    p.manual = !p.manual;
+    refresh({fit:false}); save();
+    var f = document.getElementById((p.manual ? 'lat-' : 'a-') + p.id);
+    if (f) f.focus({preventScroll:true});
+  }
+});
+
+cardsEl.addEventListener('input', function(e){
+  var el = e.target.closest('[data-act]');
+  if (!el || el.tagName === 'BUTTON') return;
+  var card = el.closest('.card');
+  var p = propById(card.getAttribute('data-id'));
+  if (!p) return;
+  var act = el.getAttribute('data-act');
+
+  if (act === 'mls'){
+    p.mls = el.value;
+    syncMap(computeProx()); save();
+  } else if (act === 'lat' || act === 'lng'){
+    var v = num(el.value);
+    var okVal = act === 'lat' ? validLat(v) : validLng(v);
+    p[act] = (el.value.trim() === '' || !okVal) ? null : v;
+    p.pickedText = null;
+    if (located(p) && !p.line1) p.line1 = p.text;
+    /* Don't re-fit on every keystroke — half-typed coordinates would throw the
+       viewport across the country. The fit happens on change/blur instead. */
+    refresh({fit:false}); save();
+  }
+});
+
+cardsEl.addEventListener('change', function(e){
+  var el = e.target.closest('[data-act="lat"],[data-act="lng"]');
+  if (!el) return;
+  var p = propById(el.closest('.card').getAttribute('data-id'));
+  if (p && located(p)) fitAll();
+});
+
+cardsEl.addEventListener('change', function(e){
+  var el = e.target.closest('[data-act="status"]');
+  if (!el) return;
+  var p = propById(el.closest('.card').getAttribute('data-id'));
+  if (!p) return;
+  p.status = el.value;
+  refresh({fit:false}); save();
+});
+
+/* =========================================================================
+   Toolbar
+   ========================================================================= */
+$('#btnAdd').addEventListener('click', function(){
+  state.comps.push(newProp('comp'));
+  refresh({fit:false}); save();
+  var last = state.comps[state.comps.length-1];
+  var el = document.getElementById('a-' + last.id);
+  if (el){ el.scrollIntoView({block:'center', behavior:'smooth'}); el.focus({preventScroll:true}); }
+});
+
+$('#btnCopy').addEventListener('click', function(){
+  var lines = proximityLines(computeProx());
+  if (!lines.length){ toast('Nothing to copy yet.'); return; }
+  var text = lines.join('\n');
+  function fallback(){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); toast('Copied ' + lines.length + ' line' + (lines.length===1?'':'s') + '.'); }
+    catch(e){ toast('Copy failed — select the text manually.'); }
+    document.body.removeChild(ta);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      toast('Copied ' + lines.length + ' line' + (lines.length===1?'':'s') + '.');
+    }, fallback);
+  } else fallback();
+});
+
+/* =========================================================================
+   Layer picker — every option carries a preview drawn in that layer's own
+   palette, so a layer can be chosen by how it looks rather than by its name.
+   Hand-drawn SVG rather than live tiles: instant, works offline, costs no
+   requests, and avoids redistributing any provider's imagery.
+   ========================================================================= */
+
+/* road map: paper ground, park, water, a highway and two side streets */
+function swRoad(p){
+  return '<svg viewBox="0 0 48 34" width="48" height="34" preserveAspectRatio="none">' +
+    '<rect width="48" height="34" fill="'+p.bg+'"/>' +
+    (p.park  ? '<rect x="1" y="19" width="15" height="14" fill="'+p.park+'"/>' : '') +
+    (p.water ? '<path d="M48 0 L48 11 Q38 13 30 8 Q24 4 20 0 Z" fill="'+p.water+'"/>' : '') +
+    '<path d="M-2 24 L50 17" stroke="'+(p.casing||p.road)+'" stroke-width="6"/>' +
+    '<path d="M-2 24 L50 17" stroke="'+p.hwy+'" stroke-width="4"/>' +
+    '<path d="M17 -2 L23 36" stroke="'+(p.casing||p.road)+'" stroke-width="4.5"/>' +
+    '<path d="M17 -2 L23 36" stroke="'+p.road+'" stroke-width="2.8"/>' +
+    '<path d="M34 -2 L38 36" stroke="'+p.road+'" stroke-width="1.8"/>' +
+    '</svg>';
+}
+/* aerial: vegetation ground, roof blocks, a pale road */
+function swAerial(p){
+  var r = p.roofs || ['#9c9288','#7d7266','#b3a89a'];
+  return '<svg viewBox="0 0 48 34" width="48" height="34" preserveAspectRatio="none">' +
+    '<rect width="48" height="34" fill="'+p.bg+'"/>' +
+    '<rect x="2"  y="3"  width="11" height="8" fill="'+r[0]+'"/>' +
+    '<rect x="17" y="2"  width="9"  height="7" fill="'+r[1]+'"/>' +
+    '<rect x="33" y="4"  width="12" height="9" fill="'+r[2]+'"/>' +
+    '<rect x="3"  y="23" width="10" height="8" fill="'+r[1]+'"/>' +
+    '<rect x="20" y="24" width="11" height="8" fill="'+r[2]+'"/>' +
+    '<rect x="36" y="22" width="10" height="9" fill="'+r[0]+'"/>' +
+    '<path d="M-2 18 L50 15" stroke="'+p.road+'" stroke-width="4"/>' +
+    (p.label ? '<path d="M14 16.5 L20 16.2 M28 15.9 L34 15.6" stroke="#fff" stroke-width="1"/>' : '') +
+    '</svg>';
+}
+/* topographic: contour lines */
+function swTopo(p){
+  return '<svg viewBox="0 0 48 34" width="48" height="34" preserveAspectRatio="none">' +
+    '<rect width="48" height="34" fill="'+p.bg+'"/>' +
+    (p.park ? '<rect x="0" y="0" width="20" height="34" fill="'+p.park+'"/>' : '') +
+    '<g fill="none" stroke="'+p.line+'" stroke-width="1">' +
+      '<path d="M-2 28 Q12 20 24 26 T50 22"/>' +
+      '<path d="M-2 21 Q12 13 24 19 T50 15"/>' +
+      '<path d="M-2 14 Q12 6 24 12 T50 8"/>' +
+    '</g>' +
+    '<path d="M-2 32 L50 29" stroke="'+p.road+'" stroke-width="2"/>' +
+    '</svg>';
+}
+
+var SWATCH = {
+  'default':        swRoad({bg:'#f7f3ee', road:'#ffffff', casing:'#ded6cb', hwy:'#f4c37d', park:'#c9e4ae', water:'#a6cde8'}),
+  bright:           swRoad({bg:'#fdfbf6', road:'#ffffff', casing:'#e3dccf', hwy:'#f9bf3b', park:'#d2ecb6', water:'#9fd2f2'}),
+  light:            swRoad({bg:'#f2f2f2', road:'#ffffff', casing:'#dcdcdc', hwy:'#d6d6d6', park:'#e6e6e6', water:'#d3dce2'}),
+  'gfree-satellite':swAerial({bg:'#3f4a33', roofs:['#a89e92','#7c7164','#b8ad9e'], road:'#ded8cb', label:true}),
+  'gfree-roadmap':  swRoad({bg:'#f5f3f0', road:'#ffffff', casing:'#dcd9d4', hwy:'#fcd34d', park:'#c8e6c0', water:'#a3ccf0'}),
+  hybrid:           swAerial({bg:'#39422f', roofs:['#9c9288','#6f6659','#aca291'], road:'#d9d3c6', label:true}),
+  satellite:        swAerial({bg:'#39422f', roofs:['#9c9288','#6f6659','#aca291'], road:'#8d8a7e'}),
+  streets:          swRoad({bg:'#f2efe9', road:'#ffffff', casing:'#d9d2c5', hwy:'#f9b29c', park:'#cdebb0', water:'#aad3df'}),
+  esri:             swRoad({bg:'#efeadf', road:'#ffffff', casing:'#ded5c3', hwy:'#f2c46d', park:'#d5e3c0', water:'#b4d4e8'}),
+  topo:             swTopo({bg:'#efe9dc', line:'#b9a888', park:'#d9e6c6', road:'#e0a35c'}),
+  gray:             swRoad({bg:'#ededed', road:'#fafafa', casing:'#dadada', hwy:'#cfcfcf', park:'#e3e3e3', water:'#dfe4e7'}),
+  opentopo:         swTopo({bg:'#f3efe3', line:'#a98f63', park:'#cfe6b8', road:'#e8863c'}),
+  voyager:          swRoad({bg:'#f8f4f0', road:'#ffffff', casing:'#e2dbd2', hwy:'#f3c98a', park:'#cfe6bd', water:'#b3d9ef'}),
+  cartolight:       swRoad({bg:'#f5f5f3', road:'#ffffff', casing:'#e0e0dd', hwy:'#e3e3e0', park:'#e8eae4', water:'#d6e3ea'}),
+  custom:
+    '<svg viewBox="0 0 48 34" width="48" height="34" preserveAspectRatio="none">' +
+      '<rect width="48" height="34" fill="#eef2f6"/>' +
+      '<g fill="none" stroke="#8fa3b8" stroke-width="1.4" stroke-dasharray="3 2">' +
+        '<rect x="3.5" y="3.5" width="41" height="27"/></g>' +
+      '<path d="M19 17 h10 M24 12 v10" stroke="#5b7a9b" stroke-width="2.2"/>' +
+    '</svg>'
+};
+function swatchFor(v){ return SWATCH[v] || SWATCH['default']; }
+
+var mapTypeEl = $('#mapType');
+
+function activeType(){
+  return state.view === 'aerial' ? state.aerialType : state.mapType;
+}
+
+function syncCustomField(){
+  var v = mapTypeEl.value;
+  lpSyncButton();
+  var isCustom = v === 'custom';
+  $('#customWrap').hidden = !isCustom;
+  if (isCustom && $('#customUrl').value !== state.customUrl) $('#customUrl').value = state.customUrl;
+}
+
+/* ---- custom picker UI, driven entirely off the native select ---- */
+var lpBtn = $('#lpBtn'), lpMenu = $('#lpMenu'), lpOpen = false, lpIdx = -1;
+
+function lpSyncButton(){
+  var v = mapTypeEl.value;
+  var opt = mapTypeEl.querySelector('option[value="' + v + '"]');
+  $('#lpBtnSw').innerHTML = swatchFor(v);
+  $('#lpBtnName').textContent = opt ? opt.textContent : v;
+}
+
+function lpBuild(){
+  var html = '';
+  [].forEach.call(mapTypeEl.children, function(node){
+    if (node.tagName === 'OPTGROUP'){
+      html += '<div class="lp-group">' + esc(node.label) + '</div>';
+      [].forEach.call(node.children, function(o){ html += lpRow(o); });
+    } else if (node.tagName === 'OPTION'){
+      html += lpRow(node);
+    }
+  });
+  lpMenu.innerHTML = html;
+}
+function lpRow(o){
+  var sel = o.value === mapTypeEl.value;
+  return '<button type="button" class="lp-item" role="option" data-v="' + esc(o.value) + '"' +
+         ' aria-selected="' + (sel ? 'true' : 'false') + '">' +
+         '<span class="lp-sw">' + swatchFor(o.value) + '</span>' +
+         '<span>' + esc(o.textContent) + '</span></button>';
+}
+
+function lpPlace(){
+  var r = lpBtn.getBoundingClientRect();
+  var vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+  var w = Math.min(290, vw - 16);
+  lpMenu.style.width = w + 'px';
+  lpMenu.style.left = Math.min(Math.max(8, r.left), vw - w - 8) + 'px';
+  var below = vh - r.bottom - 10;
+  lpMenu.style.maxHeight = Math.min(560, Math.max(180, below)) + 'px';
+  lpMenu.style.top = (r.bottom + 6) + 'px';
+}
+
+function lpShow(){
+  lpBuild();
+  lpMenu.hidden = false;
+  lpOpen = true;
+  lpBtn.setAttribute('aria-expanded', 'true');
+  lpPlace();
+  var cur = lpMenu.querySelector('.lp-item[aria-selected="true"]');
+  if (cur) cur.scrollIntoView({block:'nearest'});
+  lpIdx = cur ? [].indexOf.call(lpMenu.querySelectorAll('.lp-item'), cur) : -1;
+}
+function lpHide(){
+  lpMenu.hidden = true;
+  lpOpen = false;
+  lpIdx = -1;
+  lpBtn.setAttribute('aria-expanded', 'false');
+}
+function lpPick(v){
+  lpHide();
+  if (v === mapTypeEl.value){ lpSyncButton(); return; }
+  mapTypeEl.value = v;
+  mapTypeEl.dispatchEvent(new Event('change', {bubbles:true}));
+}
+function lpMove(d){
+  var items = lpMenu.querySelectorAll('.lp-item');
+  if (!items.length) return;
+  if (lpIdx >= 0 && items[lpIdx]) items[lpIdx].classList.remove('on');
+  lpIdx = (lpIdx + d + items.length) % items.length;
+  items[lpIdx].classList.add('on');
+  items[lpIdx].scrollIntoView({block:'nearest'});
+}
+
+lpBtn.addEventListener('click', function(){ lpOpen ? lpHide() : lpShow(); });
+lpMenu.addEventListener('click', function(e){
+  var b = e.target.closest('.lp-item');
+  if (b) lpPick(b.getAttribute('data-v'));
+});
+lpBtn.addEventListener('keydown', function(e){
+  if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' '){
+    if (!lpOpen){ lpShow(); e.preventDefault(); }
+  }
+});
+document.addEventListener('keydown', function(e){
+  if (!lpOpen) return;
+  if (e.key === 'Escape'){ lpHide(); lpBtn.focus(); e.preventDefault(); }
+  else if (e.key === 'ArrowDown'){ lpMove(1); e.preventDefault(); }
+  else if (e.key === 'ArrowUp'){ lpMove(-1); e.preventDefault(); }
+  else if (e.key === 'Enter'){
+    var items = lpMenu.querySelectorAll('.lp-item');
+    if (lpIdx >= 0 && items[lpIdx]){ lpPick(items[lpIdx].getAttribute('data-v')); e.preventDefault(); }
+  }
+});
+document.addEventListener('pointerdown', function(e){
+  if (!lpOpen) return;
+  if (lpMenu.contains(e.target) || lpBtn.contains(e.target)) return;
+  lpHide();
+});
+window.addEventListener('resize', function(){ if (lpOpen) lpPlace(); });
+window.addEventListener('scroll', function(){ if (lpOpen) lpPlace(); }, true);
+
+/* keep the button in step no matter who changed the layer */
+mapTypeEl.addEventListener('change', lpSyncButton);
+
+mapTypeEl.addEventListener('change', function(){
+  var v = mapTypeEl.value;
+  if (state.view === 'aerial') state.aerialType = v; else state.mapType = v;
+  syncCustomField();
+  setTiles(v);
+  if (v === 'custom' && !state.customUrl){
+    toast('Paste an XYZ tile URL or a style JSON URL below the map.');
+    $('#customUrl').focus();
+  }
+  save();
+});
+
+var customTimer = null;
+$('#customUrl').addEventListener('input', function(){
+  state.customUrl = this.value;
+  clearTimeout(customTimer);
+  customTimer = setTimeout(function(){
+    if (mapTypeEl.value !== 'custom') return;
+    if (state.customUrl.trim() && !customSpec(state.customUrl)){
+      toast('Need an {z}/{x}/{y} tile URL or an http(s) style JSON URL.');
+      return;
+    }
+    setTiles('custom');
+    save();
+  }, 600);
+});
+
+/* =========================================================================
+   Google Maps (aerial exhibit)
+
+   Google has no anonymous tier and scraping their tile servers breaks their
+   terms, so this runs on the appraiser's own Maps Platform key. The key lives
+   in this browser's localStorage and is only ever sent to Google; it is the
+   ordinary client-side key every Google-Maps site ships, and should be locked
+   to your domain with an HTTP-referrer restriction in the Cloud console.
+   ========================================================================= */
+/* ---- Google's own no-key embed -------------------------------------------
+   Google Maps' Share > Embed dialog hands out an iframe that needs no API key
+   and no billing. maps.google.com/maps?q=LAT,LNG&t=k&z=Z&output=embed 301s to
+   /maps/embed?pb=!1m4!2m1!1sLAT,LNG!5eN!6iZ, which is served frameable with no
+   X-Frame-Options and no frame-ancestors. 5e1 = aerial, 5e0 = road map.
+   It carries Google's real imagery, its red pin and its own controls.
+
+   The catch is that it is a cross-origin iframe: its pixels cannot be read
+   into a canvas, so Save PNG cannot include it. Print can, because the browser
+   composites the iframe itself. The API-key path stays for canvas export.     */
+var GFREE_TYPES = {'gfree-satellite': 1, 'gfree-roadmap': 0};
+function isGFree(kind){
+  return !!GFREE_TYPES && Object.prototype.hasOwnProperty.call(GFREE_TYPES, kind);
+}
+/* The q= form pins where it centres, which welds the camera to the subject.
+   The ll= form Google itself emits carries an explicit centre (!2d lng, !3d
+   lat) and no marker, so the view can be panned while we draw our own pin at
+   the subject. */
+function gfreeUrl(kind, lat, lng, zoom){
+  return 'https://www.google.com/maps/embed?origin=mfe&pb=' +
+         '!1m11!1m8!1m3!1d756!2d' + lng.toFixed(7) + '!3d' + lat.toFixed(7) +
+         '!3m2!1i1024!2i768!4f13.1' +
+         '!5e' + GFREE_TYPES[kind] + '!6i' + zoom;
+}
+
+/* Web Mercator, 256px tiles — the projection the embed uses, so the pin can
+   be placed from centre + zoom alone. */
+function mercXY(lat, lng, z){
+  var w = 256 * Math.pow(2, z);
+  var sy = Math.min(Math.max(Math.sin(lat * Math.PI / 180), -0.9999), 0.9999);
+  return {
+    x: (lng + 180) / 360 * w,
+    y: (0.5 - Math.log((1 + sy) / (1 - sy)) / (4 * Math.PI)) * w
+  };
+}
+function mercLatLng(x, y, z){
+  var w = 256 * Math.pow(2, z);
+  var n = Math.PI - 2 * Math.PI * y / w;
+  return {
+    lat: 180 / Math.PI * Math.atan(0.5 * (Math.exp(n) - Math.exp(-n))),
+    lng: x / w * 360 - 180
+  };
+}
+
+function gfCenter(){
+  var c = state.gfreeCenter;
+  if (c && isFinite(c.lat) && isFinite(c.lng)) return c;
+  var s = state.subject;
+  return located(s) ? {lat:s.lat, lng:s.lng} : {lat:39.5, lng:-98.35};
+}
+
+/* live pan/zoom offsets applied to the frames before they are committed */
+var gfPanX = 0, gfPanY = 0;
+
+function gfApplyPreview(){
+  var t = '';
+  if (gfPanX || gfPanY) t += 'translate(' + gfPanX + 'px,' + gfPanY + 'px) ';
+  var dz = gfCurrentZoom() - (state.gfreeZoom || 19);
+  if (dz) t += 'scale(' + Math.pow(2, dz) + ')';
+  var f = gfFrames();
+  if (f) f.style.transform = t;
+  placeGfPin();
+}
+
+function placeGfPin(){
+  var pin = $('#gfpin'), stage = $('#mapstage');
+  var s = state.subject;
+  if ($('#gframeA').hidden && $('#gframeB').hidden){ pin.hidden = true; return; }
+  if (!located(s)){ pin.hidden = true; return; }
+  var z = gfCurrentZoom();
+  var c = gfCenter();
+  var cp = mercXY(c.lat, c.lng, z), sp = mercXY(s.lat, s.lng, z);
+  var W = stage.clientWidth, H = stage.clientHeight;
+  var x = W / 2 + (sp.x - cp.x) + gfPanX;
+  var y = H / 2 + (sp.y - cp.y) + gfPanY;
+  pin.innerHTML = pin.innerHTML || PIN_SVG;
+  pin.style.transform = 'translate(' + (x - PIN_W / 2) + 'px,' + (y - PIN_H) + 'px)';
+  pin.hidden = false;
+}
+/* ---- double-buffered embed ------------------------------------------------
+   Rewriting an iframe's src reloads it, and Google paints white until its
+   tiles arrive. So the new view is loaded into the off-screen frame while the
+   current one stays on screen (still carrying the scale preview), and the two
+   are swapped only once the incoming frame has actually painted. From the
+   appraiser's side the map just sharpens; it never blanks.                   */
+var gfFront = null, gfBack = null, gfSwapTimer = null, gfOnLoad = null;
+
+function gfFrames(){
+  if (!gfFront){
+    gfFront = $('#gframeA'); gfBack = $('#gframeB');
+    gfFront.className = 'gfr is-front';
+    gfBack.className  = 'gfr is-back';
+  }
+  return gfFront;
+}
+
+function gfSetUrl(url, instant){
+  gfFrames();
+  /* hideGFree() hides both frames, so always re-reveal the front one —
+     otherwise returning to the same Google view early-returns below and
+     leaves nothing on screen. */
+  gfFront.hidden = false;
+  if (gfFront.getAttribute('src') === url) return;
+
+  /* first paint, or a hard reset: nothing worth preserving */
+  if (instant || !gfFront.getAttribute('src')){
+    gfFront.setAttribute('src', url);
+    gfFront.hidden = false;
+    return;
+  }
+  if (gfBack.getAttribute('src') === url) return;   // already on its way
+
+  clearTimeout(gfSwapTimer);
+  if (gfOnLoad) gfBack.removeEventListener('load', gfOnLoad);
+
+  gfBack.hidden = false;
+  gfBack.style.transform = '';
+  gfBack.setAttribute('src', url);
+
+  var swapped = false;
+  var swap = function(){
+    if (swapped) return;
+    swapped = true;
+    clearTimeout(gfSwapTimer);
+    if (gfOnLoad) gfBack.removeEventListener('load', gfOnLoad);
+    gfOnLoad = null;
+
+    gfFront.style.transform = '';
+    gfBack.style.transform  = '';
+    gfFront.className = 'gfr is-back';
+    gfBack.className  = 'gfr is-front';
+    var t = gfFront; gfFront = gfBack; gfBack = t;
+  };
+
+  /* 'load' fires when the document is ready, not when the tiles are drawn,
+     so give Google a beat to paint before revealing it. */
+  gfOnLoad = function(){ clearTimeout(gfSwapTimer); gfSwapTimer = setTimeout(swap, 450); };
+  gfBack.addEventListener('load', gfOnLoad);
+  gfSwapTimer = setTimeout(swap, 5000);             /* never strand the preview */
+}
+
+function showGFree(kind){
+  /* The Location Map needs many callouts and leader lines pinned to their
+     parcels through every pan and zoom. We can steer this embed's camera, but
+     we cannot read it back, so a whole gridful of overlays would drift. The
+     single aerial pin is placed from the centre and zoom we set ourselves. */
+  if (state.view !== 'aerial'){
+    toast('Google’s embed can’t carry the comparable callouts — they’d drift off their parcels. ' +
+          'Using the Google-style vector road map instead.');
+    return false;
+  }
+  var s = state.subject;
+  if (!located(s)){
+    toast('Locate the subject first — the Google view centres on it.');
+    return false;
+  }
+  hideGoogle();
+  var c0 = gfCenter();
+  gfSetUrl(gfreeUrl(kind, c0.lat, c0.lng, state.gfreeZoom || 19));
+  $('#gfwheel').hidden = false;
+  $('#gfzoom').hidden  = false;
+  placeGfPin();
+  $('#gfLevel').textContent = state.gfreeZoom || 19;
+  $('#map').style.visibility = 'hidden';
+  return true;
+}
+function hideGFree(){
+  $('#gframeA').hidden = true;
+  $('#gframeB').hidden = true;
+  $('#gfwheel').hidden = true;
+  $('#gfzoom').hidden  = true;
+  $('#gfpin').hidden   = true;
+  if ($('#gmap').hidden) $('#map').style.visibility = '';
+}
+
+/* ---- scroll-to-zoom over the embed ---------------------------------------
+   Google's embed runs cooperative gesture handling and answers a bare wheel
+   with "Use ctrl + scroll to zoom the map". It is a cross-origin iframe, so
+   that behaviour cannot be reached or reconfigured from here. What we do
+   control is the zoom baked into the embed URL, so a transparent layer takes
+   the wheel first and drives that instead: scale the iframe immediately for
+   feedback, then settle on the real tiles once the gesture stops.           */
+var gfAccum = 0, gfTimer = null, gfPending = null;
+
+function gfCurrentZoom(){ return gfPending != null ? gfPending : (state.gfreeZoom || 19); }
+
+function gfPreview(){
+  gfApplyPreview();
+  $('#gfLevel').textContent = gfCurrentZoom();
+}
+
+function gfCommit(){
+  if (gfPending == null) return;
+  state.gfreeZoom = gfPending;
+  gfPending = null;
+  /* the preview transform stays until the incoming frame is painted and
+     swapped in; the pin re-seats immediately at the committed zoom */
+  save();
+  syncGFree();
+  placeGfPin();
+  $('#gfLevel').textContent = state.gfreeZoom;
+}
+
+function gfStep(dir){
+  var next = Math.max(3, Math.min(21, gfCurrentZoom() + dir));
+  if (next === gfCurrentZoom()) return;
+  gfPending = next;
+  gfPreview();
+  clearTimeout(gfTimer);
+  gfTimer = setTimeout(gfCommit, 420);
+}
+
+$('#gfwheel').addEventListener('wheel', function(e){
+  e.preventDefault();
+  /* trackpads emit many small deltas; accumulate so one notch is one level */
+  gfAccum += e.deltaY;
+  if (Math.abs(gfAccum) < 60) return;
+  gfStep(gfAccum < 0 ? 1 : -1);
+  gfAccum = 0;
+}, {passive:false});
+
+/* Press, hold and drag to pan. The layer that catches the wheel also starves
+   the iframe of mouse events, so panning is driven here instead: the frames
+   translate live for feedback, and the centre is committed on release. */
+var gfDrag = null;
+
+$('#gfwheel').addEventListener('pointerdown', function(e){
+  if (e.button !== 0) return;
+  gfDrag = {x:e.clientX, y:e.clientY, moved:false};
+  gfPanX = 0; gfPanY = 0;
+  this.classList.add('dragging');
+  try{ this.setPointerCapture(e.pointerId); }catch(err){}
+  e.preventDefault();
+});
+
+$('#gfwheel').addEventListener('pointermove', function(e){
+  if (!gfDrag) return;
+  gfPanX = e.clientX - gfDrag.x;
+  gfPanY = e.clientY - gfDrag.y;
+  if (Math.abs(gfPanX) > 2 || Math.abs(gfPanY) > 2) gfDrag.moved = true;
+  gfApplyPreview();
+});
+
+function gfEndDrag(e){
+  if (!gfDrag) return;
+  var moved = gfDrag.moved;
+  gfDrag = null;
+  this.classList.remove('dragging');
+  try{ this.releasePointerCapture(e.pointerId); }catch(err){}
+  if (!moved){ gfPanX = 0; gfPanY = 0; gfApplyPreview(); return; }
+
+  /* dragging the map right moves the camera left, hence the subtraction */
+  var z = state.gfreeZoom || 19;
+  var c = gfCenter();
+  var cp = mercXY(c.lat, c.lng, z);
+  state.gfreeCenter = mercLatLng(cp.x - gfPanX, cp.y - gfPanY, z);
+  gfPanX = 0; gfPanY = 0;
+  save();
+  syncGFree();      /* loads into the spare frame, swaps when painted */
+  placeGfPin();
+}
+$('#gfwheel').addEventListener('pointerup', gfEndDrag);
+$('#gfwheel').addEventListener('pointercancel', gfEndDrag);
+
+$('#gfwheel').addEventListener('dblclick', function(){ gfStep(1); });
+$('#gfIn').addEventListener('click',  function(){ gfStep(1); });
+$('#gfOut').addEventListener('click', function(){ gfStep(-1); });
+
+var GOOGLE_TYPES = {
+  'google-hybrid':    'hybrid',
+  'google-satellite': 'satellite',
+  'google-roadmap':   'roadmap'
+};
+/* defensive: setTiles can run before this var is assigned */
+function isGoogle(kind){
+  return !!GOOGLE_TYPES && Object.prototype.hasOwnProperty.call(GOOGLE_TYPES, kind);
+}
+
+var gPromise = null, gLoadedKey = null, gmap = null, gmarker = null, gAuthFailed = false;
+
+/* Google reports a bad key by calling gm_authFailure AFTER the ready callback
+   has already fired and the Map has been constructed — so this has to stay
+   armed for the life of the page, not just until the promise settles.
+   Otherwise a wrong key leaves Google's own "Oops!" panel sitting there and
+   our fallback never runs. */
+function googleAuthFailed(){
+  gAuthFailed = true;
+  gmap = null; gmarker = null;
+  hideGoogle();
+  /* drop to Google's free embed, not away from Google entirely */
+  var fallback = 'gfree-satellite';
+  mapTypeEl.value = fallback;
+  if (state.view === 'aerial') state.aerialType = fallback; else state.mapType = fallback;
+  syncCustomField();
+  setTiles(fallback);
+  save();
+  toast('Google rejected that API key — showing Google’s free aerial instead.');
+}
+window.gm_authFailure = googleAuthFailed;
+
+function loadGoogle(key){
+  /* google.maps can only be initialised once per page, with one key. */
+  if (gAuthFailed || (gPromise && gLoadedKey !== key)) return Promise.reject(new Error('reload-needed'));
+  if (gPromise && gLoadedKey === key) return gPromise;
+  gLoadedKey = key;
+  gPromise = new Promise(function(resolve, reject){
+    var done = false;
+    window.gm_authFailure = function(){
+      if (!done){ done = true; reject(new Error('auth')); }
+      else googleAuthFailed();
+    };
+    window.__gmapsReady = function(){
+      if (!done){ done = true; resolve(window.google.maps); }
+    };
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(key) +
+            '&v=weekly&loading=async&callback=__gmapsReady';
+    s.onerror = function(){ if (!done){ done = true; reject(new Error('network')); } };
+    document.head.appendChild(s);
+    setTimeout(function(){ if (!done){ done = true; reject(new Error('timeout')); } }, 15000);
+  });
+  return gPromise;
+}
+
+function googleCenter(){
+  var s = state.subject;
+  return located(s) ? {lat:s.lat, lng:s.lng} : {lat:39.5, lng:-98.35};
+}
+
+function showGoogle(kind){
+  var key = (state.googleKey || '').trim();
+  if (!key){
+    /* No key, no prompt: Google's own embed shows the same imagery for free.
+       The keyed path only ever existed to enable canvas/Static PNG export, so
+       quietly drop to the free embed rather than blocking the view. */
+    var free = (kind === 'google-roadmap') ? 'gfree-roadmap' : 'gfree-satellite';
+    mapTypeEl.value = free;
+    if (state.view === 'aerial') state.aerialType = free; else state.mapType = free;
+    save();
+    return showGFree(free);
+  }
+  $('#gmap').hidden = false;
+  $('#map').style.visibility = 'hidden';
+
+  loadGoogle(key).then(function(gm){
+    var centre = googleCenter();
+    if (!gmap){
+      gmap = new gm.Map($('#gmap'), {
+        center: centre,
+        zoom: 19,
+        mapTypeId: GOOGLE_TYPES[kind],
+        tilt: 0,
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        rotateControl: true,
+        zoomControl: true,
+        gestureHandling: 'greedy',
+        keyboardShortcuts: false
+      });
+      gmarker = new gm.Marker({
+        position: centre, map: gmap, draggable: true,
+        title: 'Subject — drag to adjust'
+      });
+      gmarker.addListener('dragend', function(e){
+        state.subject.lat = e.latLng.lat();
+        state.subject.lng = e.latLng.lng();
+        refresh({fit:false});
+        save();
+      });
+    } else {
+      gmap.setMapTypeId(GOOGLE_TYPES[kind]);
+      gmap.setCenter(centre);
+      gmarker.setPosition(centre);
+    }
+    gmarker.setVisible(located(state.subject));
+  }).catch(function(err){
+    hideGoogle();
+    gPromise = null; gLoadedKey = null;
+    var msg = err && err.message === 'auth'
+      ? 'Google rejected that key. Check it is enabled for the Maps JavaScript API and that this domain is allowed.'
+      : err && err.message === 'reload-needed'
+        ? 'Google Maps was already initialised with a different key — reload the page to apply the new one.'
+        : 'Could not load Google Maps (network or key problem). Falling back to Esri aerial.';
+    toast(msg);
+    var fallback = kind === 'google-roadmap' ? 'default' : 'hybrid';
+    mapTypeEl.value = fallback;
+    if (state.view === 'aerial') state.aerialType = fallback; else state.mapType = fallback;
+    syncCustomField();
+    setTiles(fallback);
+    save();
+  });
+  return true;
+}
+
+function hideGoogle(){
+  $('#gmap').hidden = true;
+  $('#map').style.visibility = '';
+}
+
+/* Re-point the embed when the subject moves. Only rewrites src on a real
+   change, so the viewer's own pan and zoom inside the iframe survive. */
+function syncGFree(){
+  if ($('#gframeA').hidden && $('#gframeB').hidden) return;
+  var k = activeType();
+  if (!isGFree(k) || !located(state.subject)) return;
+  var c = gfCenter();
+  gfSetUrl(gfreeUrl(k, c.lat, c.lng, state.gfreeZoom || 19));
+  placeGfPin();
+}
+
+function syncGoogleMarker(){
+  if (!gmap || !gmarker) return;
+  var s = state.subject;
+  gmarker.setVisible(located(s));
+  if (located(s)) gmarker.setPosition({lat:s.lat, lng:s.lng});
+}
+
+/* =========================================================================
+   Location Map  /  Aerial Map
+   ========================================================================= */
+function subjectAddressText(){
+  var s = state.subject;
+  return [s.line1, s.line2].filter(Boolean).join(', ') || s.text || '';
+}
+
+function switchView(v){
+  state.view = v;
+  document.body.setAttribute('data-view', v);
+  $('#viewLoc').setAttribute('aria-pressed', v === 'location' ? 'true' : 'false');
+  $('#viewAer').setAttribute('aria-pressed', v === 'aerial'   ? 'true' : 'false');
+  $('#pinbar').hidden = (v !== 'aerial');
+
+  if (v === 'aerial' && !state.aerial.addr){
+    state.aerial.addr = subjectAddressText();
+    $('#pbAddr').value = state.aerial.addr;
+  }
+
+  mapTypeEl.value = activeType();
+  syncCustomField();
+  setTiles(activeType());
+
+  refresh({fit:false});
+  kick();
+
+  if (v === 'aerial'){
+    if (located(state.subject)) map.setView([state.subject.lat, state.subject.lng], 19, {animate:false});
+    else toast('Locate the subject first — the aerial sheet centres on it.');
+  } else {
+    fitAll();
+  }
+  save();
+}
+
+$('#viewLoc').addEventListener('click', function(){ if (state.view!=='location') switchView('location'); });
+$('#viewAer').addEventListener('click', function(){
+  if (window.innerWidth <= 820) switchTab('map');
+  if (state.view !== 'aerial') switchView('aerial'); else kick();
+});
+
+['pbTitle','pbAddr','pbFile'].forEach(function(id){
+  var key = {pbTitle:'title', pbAddr:'addr', pbFile:'file'}[id];
+  $('#'+id).addEventListener('input', function(){ state.aerial[key] = this.value; save(); });
+});
+
+/* =========================================================================
+   Export the exhibit as a PNG
+   ========================================================================= */
+function drawDomText(ctx, el, rect, dpr, align){
+  var txt = (el.value !== undefined ? el.value : el.textContent) || '';
+  if (!txt) return;
+  var cs = getComputedStyle(el);
+  if (cs.textTransform === 'uppercase') txt = txt.toUpperCase();
+  var r = el.getBoundingClientRect();
+  var weight = (cs.fontWeight === 'bold' || parseInt(cs.fontWeight, 10) >= 600) ? 'bold ' : '';
+  ctx.font = weight + (parseFloat(cs.fontSize) * dpr) + 'px Arial, Helvetica, sans-serif';
+  ctx.fillStyle = cs.color;
+  ctx.textBaseline = 'middle';
+  var y = (r.top + r.height/2 - rect.top) * dpr;
+  if (align === 'right'){
+    ctx.textAlign = 'right';
+    ctx.fillText(txt, (r.right - rect.left) * dpr - 2*dpr, y);
+  } else {
+    ctx.textAlign = 'left';
+    ctx.fillText(txt, (r.left - rect.left) * dpr + 2*dpr, y);
+  }
+  ctx.textAlign = 'left';
+}
+
+/* The Google JS map cannot be read back off the canvas, so the export is
+   re-rendered through the Maps Static API at the same centre, zoom and type.
+   Static Maps sends Access-Control-Allow-Origin:*, so the fetched image
+   composites into our canvas without tainting it. */
+function exportGooglePNG(){
+  if (!gmap){ toast('Google map is still loading.'); return; }
+  var c = gmap.getCenter(), z = gmap.getZoom();
+  var mapEl = $('#gmap');
+  var W = mapEl.clientWidth, H = mapEl.clientHeight;
+  /* Static Maps caps a free-tier request at 640x640 before the scale factor. */
+  var ratio = W / H;
+  var sw = Math.min(640, Math.round(ratio >= 1 ? 640 : 640 * ratio));
+  var sh = Math.min(640, Math.round(ratio >= 1 ? 640 / ratio : 640));
+  var pos = c.lat().toFixed(7) + ',' + c.lng().toFixed(7);
+  var s = state.subject;
+  var url = 'https://maps.googleapis.com/maps/api/staticmap'
+          + '?center=' + pos
+          + '&zoom=' + z
+          + '&size=' + sw + 'x' + sh
+          + '&scale=2'
+          + '&maptype=' + GOOGLE_TYPES[mapTypeEl.value]
+          + '&format=png'
+          + (located(s) ? '&markers=' + encodeURIComponent('color:red|' + s.lat.toFixed(7) + ',' + s.lng.toFixed(7)) : '')
+          + '&key=' + encodeURIComponent(state.googleKey);
+
+  toast('Rendering the Google exhibit…');
+  fetch(url).then(function(r){
+    if (!r.ok) return r.text().then(function(t){ throw new Error(t.slice(0,140)); });
+    return r.blob();
+  }).then(function(blob){
+    return createImageBitmap(blob);
+  }).then(function(bmp){
+    var out = document.createElement('canvas');
+    out.width = bmp.width; out.height = bmp.height;
+    var ctx = out.getContext('2d');
+    ctx.drawImage(bmp, 0, 0);
+
+    /* redraw the header band to scale on top of the static image */
+    var bar = $('#pinbar');
+    if (!bar.hidden){
+      var k = out.width / W;                       /* static px per CSS px */
+      var brr = bar.getBoundingClientRect();
+      var stageRect = mapEl.getBoundingClientRect();
+      var bh = brr.height * k;
+      ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, out.width, bh);
+      ctx.fillStyle = '#333'; ctx.fillRect(0, bh - 2*k, out.width, 2*k);
+      drawDomText(ctx, $('#pbTitle'), stageRect, k, 'left');
+      drawDomText(ctx, $('#pbAddr'),  stageRect, k, 'left');
+      drawDomText(ctx, bar.querySelector('.pb-lbl'), stageRect, k, 'right');
+      drawDomText(ctx, $('#pbFile'),  stageRect, k, 'right');
+    }
+    var slug = (state.aerial.addr || 'subject').toLowerCase()
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60) || 'subject';
+    out.toBlob(function(b){
+      if (!b){ toast('Could not build the image.'); return; }
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = 'google-aerial-' + slug + '.png';
+      document.body.appendChild(a); a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+      toast('Saved google-aerial-' + slug + '.png');
+    }, 'image/png');
+  }).catch(function(e){
+    toast('Google Static Maps refused the request: ' + (e.message || 'unknown') +
+          ' — enable the Static Maps API for this key.');
+  });
+}
+
+function exportPNG(){
+  /* A cross-origin iframe's pixels are unreadable from canvas — a browser
+     security boundary, not a limitation we can code around. Printing does
+     composite it, so send the user there rather than saving a blank map. */
+  if (!$('#gframeA').hidden || !$('#gframeB').hidden){
+    toast('Google’s free embed can’t be captured to PNG (cross-origin iframe). ' +
+          'Use Print — it includes the Google view — or switch layer to save a PNG.');
+    return;
+  }
+  if (isGoogle(mapTypeEl.value) && !$('#gmap').hidden){ exportGooglePNG(); return; }
+
+  var stage = $('#mapstage'), mapEl = $('#map');
+  var W = mapEl.clientWidth, H = mapEl.clientHeight;
+  if (!W || !H){ toast('Open the Map view first.'); return; }
+  if (!allProps().filter(located).length){ toast('Nothing plotted yet.'); return; }
+
+  var dpr  = Math.min(window.devicePixelRatio || 1, 2);
+  var rect = mapEl.getBoundingClientRect();
+  var out  = document.createElement('canvas');
+  out.width  = Math.round(W * dpr);
+  out.height = Math.round(H * dpr);
+  var ctx = out.getContext('2d');
+  ctx.fillStyle = '#e7ebf0';
+  ctx.fillRect(0, 0, out.width, out.height);
+
+  /* 1. basemap ------------------------------------------------------- */
+  var glCanvas = glLayer && stage.querySelector('canvas.maplibregl-canvas');
+  if (glCanvas && glCanvas.width){
+    /* The GL container is inset by the binding's padding on every side, so
+       crop the visible map rectangle out of the middle of the canvas. */
+    var pad = (glLayer.options && glLayer.options.padding) || 0.1;
+    var s = glCanvas.width / (W * (1 + 2*pad));
+    ctx.drawImage(glCanvas, W*pad*s, H*pad*s, W*s, H*s, 0, 0, out.width, out.height);
+  } else {
+    var tiles = stage.querySelectorAll('.leaflet-tile-loaded');
+    for (var i = 0; i < tiles.length; i++){
+      var tr = tiles[i].getBoundingClientRect();
+      try{
+        ctx.drawImage(tiles[i],
+          (tr.left - rect.left)*dpr, (tr.top - rect.top)*dpr,
+          tr.width*dpr, tr.height*dpr);
+      }catch(e){ /* a tile that refused CORS simply leaves its square blank */ }
+    }
+  }
+
+  /* 2. leader lines, then callout boxes ------------------------------ */
+  var props = viewProps().filter(located);
+  if (state.view !== 'aerial'){
+    props.forEach(function(p){
+      var rec = layers[p.id]; if (!rec) return;
+      var d = rec.dot.getElement(), b = rec.box.getElement();
+      if (!d || !b) return;
+      var dr = d.getBoundingClientRect(), br = b.getBoundingClientRect();
+      var cx0 = br.left + br.width/2, cy0 = br.top + br.height/2;
+      var dx0 = dr.left + dr.width/2, dy0 = dr.top + dr.height/2;
+      /* same edge-of-box start and arrowhead as the live map */
+      var vx = dx0 - cx0, vy = dy0 - cy0;
+      var tt = Math.min(vx ? (br.width/2)/Math.abs(vx) : Infinity,
+                        vy ? (br.height/2)/Math.abs(vy) : Infinity);
+      if (!isFinite(tt)) tt = 0;
+      var tipX = cx0 + vx*tt, tipY = cy0 + vy*tt;
+      var x1 = (tipX - rect.left)*dpr, y1 = (tipY - rect.top)*dpr;
+      var x2 = (dx0  - rect.left)*dpr, y2 = (dy0  - rect.top)*dpr;
+      /* same tapered pair as the live map: both lines meet at the dot and
+         open to LEADER_SPREAD either side where they reach the box edge */
+      var lx = x1 - x2, ly = y1 - y2;
+      var ll = Math.sqrt(lx*lx + ly*ly) || 1;
+      var sp = 3*dpr;
+      var ox = -ly/ll*sp, oy = lx/ll*sp;
+      function pair(color, w){
+        ctx.strokeStyle = color; ctx.lineWidth = w; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(x1+ox, y1+oy); ctx.lineTo(x2, y2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x1-ox, y1-oy); ctx.lineTo(x2, y2); ctx.stroke();
+      }
+      pair('#fff', 2.6*dpr);
+      pair('#333', 0.9*dpr);
+    });
+
+    props.forEach(function(p){
+      var rec = layers[p.id]; if (!rec) return;
+      var b = rec.box.getElement(); if (!b) return;
+      var co = b.querySelector('.callout'); if (!co) return;
+      var r  = co.getBoundingClientRect(), cs = getComputedStyle(co);
+      var x = (r.left - rect.left)*dpr, y = (r.top - rect.top)*dpr;
+      var w = r.width*dpr, h = r.height*dpr;
+      ctx.fillStyle = 'rgba(0,0,0,.38)';
+      ctx.fillRect(x + 1.5*dpr, y + 1.5*dpr, w, h);
+      ctx.fillStyle = cs.backgroundColor;
+      ctx.fillRect(x, y, w, h);
+      ctx.strokeStyle = cs.borderTopColor;
+      ctx.lineWidth = 1*dpr;
+      ctx.strokeRect(x + 0.5*dpr, y + 0.5*dpr, w - dpr, h - dpr);
+      for (var k = 0; k < co.children.length; k++){
+        drawDomText(ctx, co.children[k], rect, dpr, 'left');
+      }
+    });
+  }
+
+  /* 3. parcel markers ------------------------------------------------ */
+  props.forEach(function(p){
+    var rec = layers[p.id]; if (!rec) return;
+    var d = rec.dot.getElement(); if (!d) return;
+    var dr = d.getBoundingClientRect();
+
+    if (state.view === 'aerial'){
+      /* stamp the same teardrop artwork the map shows */
+      var px = (dr.left - rect.left)*dpr, py = (dr.top - rect.top)*dpr;
+      if (pinImg.complete && pinImg.naturalWidth){
+        ctx.shadowColor = 'rgba(0,0,0,.55)';
+        ctx.shadowBlur  = 3*dpr;
+        ctx.shadowOffsetY = 2*dpr;
+        ctx.drawImage(pinImg, px, py, PIN_W*dpr, PIN_H*dpr);
+        ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+      } else {
+        /* the SVG never decoded — draw the teardrop by hand */
+        var tipX = px + PIN_W*dpr/2, tipY = py + PIN_H*dpr;
+        var hx = tipX, hy = py + 14*dpr, hr = 13*dpr;
+        ctx.beginPath();
+        ctx.moveTo(tipX, tipY);
+        ctx.quadraticCurveTo(hx - hr, hy + hr*0.7, hx - hr, hy);
+        ctx.arc(hx, hy, hr, Math.PI, 0);
+        ctx.quadraticCurveTo(hx + hr, hy + hr*0.7, tipX, tipY);
+        ctx.closePath();
+        ctx.fillStyle = '#EA4335'; ctx.fill();
+        ctx.lineWidth = 1.6*dpr; ctx.strokeStyle = '#A52714'; ctx.stroke();
+        ctx.beginPath(); ctx.arc(hx, hy, 5.2*dpr, 0, Math.PI*2);
+        ctx.fillStyle = '#7B1210'; ctx.fill();
+      }
+      return;
+    }
+
+    var cx = (dr.left + dr.width/2 - rect.left)*dpr;
+    var cy = (dr.top  + dr.height/2 - rect.top)*dpr;
+    var rad = 3.5*dpr;                       /* 60% of the old marker */
+    ctx.beginPath(); ctx.arc(cx, cy, rad + 1*dpr, 0, Math.PI*2);
+    ctx.fillStyle = '#7a0000'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI*2);
+    ctx.fillStyle = '#fff'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, rad - 1*dpr, 0, Math.PI*2);
+    ctx.fillStyle = '#d40000'; ctx.fill();
+  });
+
+  /* 4. the aerial header band ---------------------------------------- */
+  var bar = $('#pinbar');
+  if (!bar.hidden){
+    var brr = bar.getBoundingClientRect();
+    var bx = (brr.left - rect.left)*dpr, by = (brr.top - rect.top)*dpr;
+    var bw = brr.width*dpr, bh = brr.height*dpr;
+    ctx.fillStyle = '#fff'; ctx.fillRect(bx, by, bw, bh);
+    ctx.fillStyle = '#333'; ctx.fillRect(bx, by + bh - 2*dpr, bw, 2*dpr);
+    var side = bar.querySelector('.pb-side').getBoundingClientRect();
+    ctx.fillStyle = '#bbb';
+    ctx.fillRect((side.left - rect.left)*dpr, by + 4*dpr, 1*dpr, bh - 10*dpr);
+    drawDomText(ctx, $('#pbTitle'), rect, dpr, 'left');
+    drawDomText(ctx, $('#pbAddr'),  rect, dpr, 'left');
+    drawDomText(ctx, bar.querySelector('.pb-lbl'), rect, dpr, 'right');
+    drawDomText(ctx, $('#pbFile'),  rect, dpr, 'right');
+  }
+
+  /* 5. attribution --------------------------------------------------- */
+  var attr = (state.view === 'aerial' || activeType() === 'satellite' || activeType() === 'hybrid')
+    ? 'Imagery © Esri, Maxar, Earthstar Geographics'
+    : '© OpenStreetMap contributors';
+  ctx.font = (10*dpr) + 'px Arial, Helvetica, sans-serif';
+  var tw = ctx.measureText(attr).width;
+  ctx.fillStyle = 'rgba(255,255,255,.78)';
+  ctx.fillRect(out.width - tw - 10*dpr, out.height - 15*dpr, tw + 10*dpr, 15*dpr);
+  ctx.fillStyle = '#333';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(attr, out.width - tw - 5*dpr, out.height - 7.5*dpr);
+
+  /* 6. hand it to the browser ---------------------------------------- */
+  var slug = (state.view === 'aerial' ? (state.aerial.addr || 'subject') : 'location-map')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'exhibit';
+  var name = (state.view === 'aerial' ? 'aerial-map-' + slug : slug) + '.png';
+
+  try{
+    out.toBlob(function(blob){
+      if (!blob){ toast('Could not build the image.'); return; }
+      if (window.__uadSave){ window.__uadSave(blob, name); return; }
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+      toast('Saved ' + name);
+    }, 'image/png');
+  }catch(e){
+    toast('The map image is cross-origin protected and cannot be saved. Try another layer.');
+  }
+}
+
+$('#btnSave').addEventListener('click', exportPNG);
+
+/* Exhibit label size. The callout font is the one measurement that decides
+   whether a set of comparables fits an ACI page, so it is adjustable rather
+   than fixed at 12px. Boxes are re-measured after a change so the leader
+   lines stay attached. */
+function applyCalloutFs(){
+  document.documentElement.style.setProperty('--callout-fs', state.calloutFs + 'px');
+  $('#fszVal').textContent = state.calloutFs;
+  repositionBoxes();
+  setTimeout(repositionBoxes, 60);
+}
+function stepCalloutFs(d){
+  var n = Math.max(9, Math.min(20, state.calloutFs + d));
+  if (n === state.calloutFs) return;
+  state.calloutFs = n;
+  applyCalloutFs();
+  save();
+}
+$('#fszUp').addEventListener('click',   function(){ stepCalloutFs(1); });
+$('#fszDown').addEventListener('click', function(){ stepCalloutFs(-1); });
+
+var frameBtn = $('#btnFrame'), mapWrap = $('#mapwrap');
+function applyFrame(){
+  mapWrap.classList.toggle('framed', state.framed);
+  frameBtn.setAttribute('aria-pressed', state.framed ? 'true' : 'false');
+  kick();
+}
+frameBtn.addEventListener('click', function(){
+  state.framed = !state.framed;
+  applyFrame(); save();
+  if (state.framed && document.body.getAttribute('data-tab') === 'addresses' && window.innerWidth <= 820){
+    switchTab('map');
+  }
+});
+
+$('#btnFit').addEventListener('click', function(){
+  if (!allProps().filter(located).length){ toast('Nothing plotted yet.'); return; }
+  /* on the Google aerial, "fit" means re-centre on the subject */
+  if (!$('#gframeA').hidden || !$('#gframeB').hidden){
+    state.gfreeCenter = null;
+    gfPanX = 0; gfPanY = 0;
+    syncGFree(); save();
+    return;
+  }
+  if (window.innerWidth <= 820) switchTab('map');
+  kick(); fitAll();
+});
+
+$('#btnPrint').addEventListener('click', function(){
+  if (!allProps().filter(located).length){ toast('Locate at least the subject before printing.'); return; }
+  map.invalidateSize();
+  resizeGL();
+  repositionBoxes();
+  /* force one more WebGL frame so the preserved drawing buffer is current */
+  if (glLayer && glLayer.getMaplibreMap){
+    try{ glLayer.getMaplibreMap().triggerRepaint(); }catch(e){}
+  }
+  setTimeout(function(){ window.print(); }, 600);
+});
+
+$('#btnClear').addEventListener('click', function(){
+  if (!confirm('Clear the subject, every comparable, and all saved work?\n\nThis cannot be undone.')) return;
+  state.subject = newProp('subject');
+  state.comps = [newProp('comp'), newProp('comp'), newProp('comp')];
+  lastFitCount = 0;
+  try{ localStorage.removeItem(STORE_KEY); }catch(e){}
+  refresh({fit:false});
+  map.setView([39.5, -98.35], 4);
+  toast('Cleared.');
+});
+
+window.addEventListener('beforeprint', function(){ map.invalidateSize(); repositionBoxes(); });
+window.addEventListener('afterprint',  function(){ kick(); });
+
+/* =========================================================================
+   Tabs
+   ========================================================================= */
+function switchTab(which){
+  state.tab = which;
+  document.body.setAttribute('data-tab', which);
+  $('#tabAddresses').setAttribute('aria-selected', which === 'addresses' ? 'true' : 'false');
+  $('#tabMap').setAttribute('aria-selected', which === 'map' ? 'true' : 'false');
+  acClose();
+  if (which === 'map') kick();
+}
+$('#tabAddresses').addEventListener('click', function(){ switchTab('addresses'); });
+$('#tabMap').addEventListener('click', function(){ switchTab('map'); });
+
+var lastNarrow = window.innerWidth <= 820;
+window.addEventListener('resize', function(){
+  var narrow = window.innerWidth <= 820;
+  if (narrow !== lastNarrow){ lastNarrow = narrow; }
+  kick();
+});
+if (window.visualViewport) window.visualViewport.addEventListener('resize', function(){ acPlace(); });
+
+/* =========================================================================
+   Boot
+   ========================================================================= */
+load();
+
+document.body.setAttribute('data-view', state.view);
+$('#viewLoc').setAttribute('aria-pressed', state.view === 'location' ? 'true' : 'false');
+$('#viewAer').setAttribute('aria-pressed', state.view === 'aerial'   ? 'true' : 'false');
+$('#pinbar').hidden = (state.view !== 'aerial');
+$('#pbTitle').value   = state.aerial.title || 'AERIAL MAP';
+$('#pbAddr').value    = state.aerial.addr  || '';
+$('#pbFile').value    = state.aerial.file  || '';
+$('#customUrl').value = state.customUrl    || '';
+
+mapTypeEl.value = activeType();
+syncCustomField();
+setTiles(activeType());
+applyFrame();
+applyCalloutFs();
+refresh({fit:false});
+
+if (allProps().filter(located).length){
+  lastFitCount = allProps().filter(located).length;
+  setTimeout(function(){
+    kick();
+    if (state.view === 'aerial' && located(state.subject)){
+      map.setView([state.subject.lat, state.subject.lng], 19, {animate:false});
+    } else {
+      fitAll();
+    }
+  }, 220);
+  if (window.innerWidth <= 820) switchTab('addresses');
+}
+setTimeout(kick, 350);
+
+/* The platform shell drives this tool from outside: it seeds the map from a
+   case and saves the exhibits back into the report.  Everything it needs is
+   published here deliberately, and nothing else, so the rest of the tool stays
+   private and this stays the only surface to keep working. */
+/* Re-apply a saved map: layer, frame, label size, pins and callouts. */
+function applyRestored(d){
+  restore(d);
+  state.view = 'location';
+  document.body.setAttribute('data-view', 'location');
+  mapTypeEl.value = activeType();
+  syncCustomField();
+  setTiles(activeType());
+  applyFrame();
+  applyCalloutFs();
+  refresh({fit:false});
+  kick();
+  if (state.userView) map.setView([state.userView.lat, state.userView.lng], state.userView.zoom, {animate:false});
+  else if (allProps().filter(located).length) fitAll();
+}
+
+/* Is every tile of the base map drawn?  The report's map is exported only
+   when it is, so it never carries a half-loaded basemap. */
+function settled(){
+  if (glLayer && glLayer.getMaplibreMap){
+    try{
+      var m = glLayer.getMaplibreMap();
+      return m.loaded() && m.areTilesLoaded() && !m.isMoving();
+    }catch(e){ return false; }
+  }
+  return !document.querySelector('#map .leaflet-tile:not(.leaflet-tile-loaded)');
+}
+
+window.UADMap = {
+  state: state,
+  toast: toast,
+  refresh: refresh,
+  newProp: newProp,
+  lookup: lookup,
+  switchView: switchView,
+  exportPNG: exportPNG,
+  located: located,
+  save: save,
+  applyRestored: applyRestored,
+  applyCalloutFs: applyCalloutFs,
+  applyFrame: applyFrame,
+  fitAll: fitAll,
+  kick: kick,
+  settled: settled,
+  autoArrange: autoArrange,
+  getMap: function(){ return map; },
+  setTiles: setTiles,
+};
+
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   Inside the UAD 3.6 platform: seed this map from the case, and save the
+   exhibits back into the report so they print in the preview.
+   --------------------------------------------------------------------------- */
+(function(){
+  var qs = new URLSearchParams(location.search);
+  var caseId = qs.get('case');
+  if (!caseId) return;
+
+  // The tool proper keeps its internals to itself and publishes this.  Without
+  // it there is nothing to drive, so say so rather than failing silently.
+  var M = window.UADMap;
+  if (!M){
+    console.error('UAD: the map tool exposed no interface; cannot seed or save.');
+    return;
+  }
+  var state = M.state, toast = M.toast, refresh = M.refresh;
+  var newProp = M.newProp, lookup = M.lookup, switchView = M.switchView;
+
+  var api = function(path, opts){
+    return fetch('/api' + path, opts).then(function(r){
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  };
+
+  var render = qs.get('render') === '1';
+  /* embed=1: opened inside the report's Sales Comparison Map box, at the
+     box's exact size, to pan, zoom and arrange the map where it prints. */
+  var embed = !render && qs.get('embed') === '1';
+  /* aerial=1: the Site exhibit -- the subject from above, drawn at the size of
+     the report's exhibit picture (264 x 200 pt box, 254 x 180 pt image). */
+  var aerial = render && qs.get('aerial') === '1';
+
+  /* The report's frame: Appendix E sets the Sales Comparison Map full page in
+     a 45 x 48 pica frame less 6 pt each side -- 528 x 564 pt, which is
+     704 x 752 CSS pixels.  The map is always shown in that frame here, so what
+     the appraiser arranges is what prints.  No aerial: the guidelines define
+     only the Sales Comparison Map. */
+  var style = document.createElement('style');
+  style.textContent = '#btnSeed,#btnToReport{background:#0a0a0a;color:#fff;border-color:#0a0a0a;font-weight:700}'
+    + '#btnSeed:hover,#btnToReport:hover{background:#fff;color:#0a0a0a}'
+    + '.mapwrap.framed .mapstage{width:704px !important;height:752px !important}'
+    + '#viewAer,#btnFrame,#pinbar{display:none !important}'
+    + (render ? 'body{overflow:hidden}.mapwrap.framed{padding:0 !important}' : '')
+    + (embed ? 'html,body{overflow:hidden;margin:0;background:#fff}header.bar,nav,#panel,.no-print:not(#embedbar):not(#embedbar *){display:none !important}'
+        + '.app,main,.mapside{display:block !important;padding:0 !important;margin:0 !important;height:auto !important;min-height:0 !important;grid-template-columns:none !important}'
+        + '.mapwrap,.mapwrap.framed{padding:0 !important;display:block !important;background:#fff !important}'
+        + '#embedbar{position:absolute;top:8px;right:8px;z-index:1200;display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;max-width:560px;font:12px Arial,sans-serif}'
+        + '#embedbar button,#embedbar select{font:inherit;font-size:12px;border:1px solid #231f20;background:#fff;color:#231f20;padding:4px 8px;cursor:pointer;border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,.2)}'
+        + '#embedbar button:hover{background:#231f20;color:#fff}'
+        + '#embedbar button.primary{background:#231f20;color:#fff}'
+        + '#embedbar button.primary:hover{background:#fff;color:#231f20}'
+        + '#embedhint{position:absolute;left:8px;bottom:8px;z-index:1200;background:rgba(255,255,255,.92);font:11px Arial,sans-serif;color:#333;padding:3px 6px;border:1px solid #bbb}' : '')
+    + (aerial ? '.mapwrap.framed .mapstage{width:704px !important;height:499px !important}' : '');
+  document.head.appendChild(style);
+
+  var persistTimer = null;
+  var original = null;                 /* the map as it was when editing began */
+  window.__uadPersist = function(snap){
+    if (aerial) return;                  /* the aerial view never replaces the case's map */
+    clearTimeout(persistTimer);
+    persistTimer = setTimeout(function(){
+      fetch('/api/cases/' + caseId + '/prefs', {method:'PUT',
+        headers:{'Content-Type':'application/json'}, body: JSON.stringify({mapState: snap})});
+    }, render ? 0 : 500);
+  };
+
+  var bar = document.querySelector('#btnSave');
+  var seed = document.createElement('button');
+  seed.className = 'btn primary'; seed.id = 'btnSeed';
+  seed.textContent = 'Load from current report';
+  seed.title = 'Take the subject and the comparables from this report';
+  bar.parentNode.insertBefore(seed, bar);
+
+  var save = document.createElement('button');
+  save.className = 'btn primary'; save.id = 'btnToReport';
+  save.textContent = 'Save to the report';
+  save.title = 'Put this map into the report as the Sales Comparison Map';
+  bar.parentNode.insertBefore(save, bar.nextSibling);
+
+  var arrange = document.createElement('button');
+  arrange.className = 'btn ghost'; arrange.id = 'btnArrange';
+  arrange.textContent = 'Arrange labels';
+  arrange.title = 'Lay out every label clear of the others (labels you dragged are re-arranged too)';
+  bar.parentNode.insertBefore(arrange, bar);
+  arrange.addEventListener('click', function(){ M.kick(); setTimeout(function(){ M.autoArrange(true); }, 150); });
+
+  function whenSettled(then, tries){
+    tries = tries || 0;
+    if (M.settled() || tries > 120) { setTimeout(then, 400); return; }
+    setTimeout(function(){ whenSettled(then, tries + 1); }, 250);
+  }
+
+  /* Export the map exactly as the tool draws it. */
+  function exportBlob(){
+    return new Promise(function(done){
+      window.__uadSave = function(blob){ window.__uadSave = null; done(blob); };
+      M.exportPNG();
+      setTimeout(function(){ if (window.__uadSave){ window.__uadSave = null; done(null); } }, 20000);
+    });
+  }
+
+  function saveCurrent(caption, section){
+    return exportBlob().then(function(blob){
+      if (!blob) return false;
+      var fd = new FormData();
+      fd.append('file', blob, 'SalesCompMap.png');
+      return fetch('/api/cases/' + caseId + '/maps/image', {method:'POST', body:fd})
+        .then(function(r){ return r.ok; }).catch(function(){ return false; });
+    });
+  }
+
+  save.addEventListener('click', function(){
+    if (state.view !== 'location') switchView('location');
+    toast('Saving the Sales Comparison Map…');
+    M.kick();
+    M.autoArrange(false);
+    whenSettled(function(){
+      saveCurrent().then(function(ok){
+        toast(ok ? 'Sales Comparison Map saved into the report' : 'Could not save the map');
+        if (ok && window.parent !== window) window.parent.postMessage({uad:'media-added'}, '*');
+      });
+    });
+  });
+
+  /* A geocoder answers with its nearest guess, which for an address it does
+     not know is a different property -- "123 Falling Tree Ct 12345" came back
+     as a street in another state.  A hit is used only when its ZIP code (or,
+     with no ZIP, its house number and street) is the one asked for; anything
+     else is left for the appraiser to place, never placed silently. */
+  function confirms(address, hit){
+    var zips = address.match(/\b\d{5}\b/g);
+    var zip = zips ? zips[zips.length - 1] : '';
+    var hz = (hit.postcode || '').slice(0, 5);
+    if (zip && hz) return zip === hz;
+    if (zip && !hz) return false;
+    var num = (address.match(/^\s*(\d+)/) || [])[1];
+    if (num && hit.house && num !== hit.house) return false;
+    var word = (address.replace(/^\s*\d+\s*/, '').split(/\s+/)[0] || '').toLowerCase();
+    return !word || (hit.road || '').toLowerCase().indexOf(word) >= 0;
+  }
+  var unconfirmed = [];
+  function place(prop, address, cb){
+    prop.text = address; prop.line1 = address;
+    if (!address) return cb();
+    lookup(address).then(function(hits){
+      var hit = (hits || []).filter(function(h){ return confirms(address, h); })[0];
+      if (hit){
+        prop.lat = hit.lat; prop.lng = hit.lng;
+        prop.line1 = hit.line1 || address; prop.line2 = hit.line2 || '';
+        prop.pickedText = address; prop.unconfirmed = '';
+      } else {
+        prop.lat = null; prop.lng = null; prop.line2 = '';
+        prop.unconfirmed = address;
+        unconfirmed.push(address);
+      }
+      cb();
+    }).catch(cb);
+  }
+
+  function seedFromCase(){
+    document.body.setAttribute('data-seeding', '1');
+    toast('Reading the report…');
+    Promise.all([
+      api('/cases/' + caseId + '/comparables?kind=sales'),
+      api('/cases/' + caseId + '/fields?section=3&only_filled=true'),
+      /* The coordinates the case already holds.  A-1 requires them on every
+         property, so looking the addresses up again was both slow (one
+         geocoder request a second) and wrong (the printed address carries a
+         unit designator no gazetteer knows).  Failing to fetch them is not
+         fatal: the addresses are still there to fall back on. */
+      api('/cases/' + caseId + '/maps/places?kind=sales').catch(function(){ return null; })
+    ]).then(function(res){
+      var grid = res[0], fields = res[1], known = res[2], subject = '';
+      var byNumber = {}, subjectFix = null;
+      if (known && known.places) known.places.forEach(function(pl){
+        if (pl.lat === null || pl.lon === null) return;
+        if (pl.kind === 'subject') subjectFix = pl; else byNumber[pl.number] = pl;
+      });
+      (fields.sections || []).forEach(function(s){
+        (s.fields || []).forEach(function(f){
+          if (!subject && /Physical Address/i.test(f.label)) subject = f.value;
+        });
+      });
+      var addressRow = (grid.rows || []).filter(function(r){ return /Property Address/i.test(r.label); })[0];
+      if (!subject && addressRow) subject = addressRow.subject;
+      var comps = addressRow ? (addressRow.cells || []).map(function(c){ return c.value; }) : [];
+
+      /* Reading the report again must not discard pins already placed by
+         hand, so a comparable whose address has not changed keeps its
+         position and its callout, and only genuinely new ones are located. */
+      var norm = function(t){ return (t || '').trim().toLowerCase(); };
+      var seen = {};
+      state.comps.forEach(function(p){
+        [p.text, p.pickedText].forEach(function(t){ if (norm(t)) seen[norm(t)] = p; });
+      });
+
+      var todo = [];
+      state.comps = comps.map(function(addr, idx){
+        var k = norm(addr);
+        var have = byNumber[idx + 1];
+        var taken = (k && seen[k]) ? seen[k] : null;
+        var p = taken || newProp('comp');
+        if (!taken) p.status = 'closed';
+        /* Whether a property is a closed sale, an active listing or a rental
+           is a fact in the document, not a decision made on the map, so it is
+           applied every time the report is read -- including to a pin already
+           placed, which is how a listing went on being drawn as a sale. */
+        if (have && have.status) p.status = have.status;
+        if (taken && (M.located(taken) || taken.unconfirmed === addr)) return p;
+        /* The document knows where this is: take it and skip the lookup.
+           A pin the appraiser placed by hand keeps its position. */
+        if (have && !p.manual){
+          p.lat = have.lat; p.lng = have.lon;
+          p.text = addr || p.text; p.pickedText = addr || p.pickedText;
+          p.unconfirmed = '';
+          return p;
+        }
+        todo.push([p, addr || '']);
+        return p;
+      });
+      if (!state.comps.length) state.comps = [newProp('comp')];
+      var subj = norm(subject);
+      if (subjectFix && !state.subject.manual){
+        state.subject.lat = subjectFix.lat; state.subject.lng = subjectFix.lon;
+        state.subject.unconfirmed = '';
+        if (subject) state.subject.text = subject;
+      } else if (subj !== norm(state.subject.text) && subj !== norm(state.subject.pickedText)){
+        todo.push([state.subject, subject || '']);
+      }
+
+      if (!todo.length){
+        refresh({fit:true});
+        document.body.removeAttribute('data-seeding');
+        toast('The map already matches the report');
+        return;
+      }
+      var pending = todo.length;
+      var done = function(){
+        if (--pending <= 0){
+          refresh({fit:true});
+          setTimeout(function(){ M.autoArrange(false); }, 500);
+          document.body.removeAttribute('data-seeding');
+          toast(unconfirmed.length
+            ? 'Not found on the map (place by hand): ' + unconfirmed.join('; ')
+            : 'Loaded from the report');
+          unconfirmed = [];
+        }
+      };
+      todo.forEach(function(job){ place(job[0], job[1], done); });
+      refresh({fit:true});
+    }).catch(function(){ document.body.removeAttribute('data-seeding'); toast('Could not read the report'); });
+  }
+
+  seed.addEventListener('click', seedFromCase);
+
+  /* Start from the case's own map; seed it from the report when asked. */
+  function start(){
+    state.framed = true;
+    if (state.view !== 'location') switchView('location');
+    M.applyFrame();
+    fetch('/api/cases/' + caseId + '/prefs').then(function(r){ return r.json(); })
+      .catch(function(){ return {}; })
+      .then(function(prefs){
+        var saved = prefs && prefs.mapState;
+        if (saved && saved.subject){
+          saved.framed = true; saved.view = 'location';
+          M.applyRestored(saved);
+        } else {
+          state.calloutFs = 15;                 /* labels a reader can read on the page */
+          M.applyCalloutFs();
+        }
+        if (qs.get('seed') === '1' || !saved) seedFromCase();
+        if (aerial) renderAerial();
+        else if (render) renderForReport();
+        else if (embed) startEmbed();
+      });
+  }
+
+  /* Inside the report: the map, a few controls, and Save / Cancel. */
+  function startEmbed(){
+    document.body.setAttribute('data-tab', 'map');
+    original = JSON.parse(JSON.stringify(M.state));
+    var map = M.getMap();
+    var bar = document.createElement('div'); bar.id = 'embedbar';
+    bar.innerHTML =
+        '<button type="button" data-a="fit" title="Show the subject and every comparable">Fit all</button>'
+      + '<button type="button" data-a="arrange" title="Lay every label out clear of the others">Arrange labels</button>'
+      + '<button type="button" data-a="smaller" title="Smaller labels">A&minus;</button>'
+      + '<button type="button" data-a="larger" title="Larger labels">A+</button>'
+      + '<select data-a="layer" title="Road map style">'
+      +   '<option value="default">Road map</option><option value="bright">Bright</option>'
+      +   '<option value="light">Light</option><option value="gray">Gray</option><option value="topo">Topographic</option>'
+      + '</select>'
+      + '<button type="button" data-a="cancel">Cancel</button>'
+      + '<button type="button" data-a="save" class="primary">Save to report</button>';
+    document.getElementById('mapstage').appendChild(bar);
+    var hint = document.createElement('div'); hint.id = 'embedhint';
+    hint.textContent = 'Drag to move the map \u00b7 scroll or +/\u2212 to zoom \u00b7 drag a label or a red dot to move it';
+    document.getElementById('mapstage').appendChild(hint);
+    var sel = bar.querySelector('select');
+    sel.value = ['default','bright','light','gray','topo'].indexOf(state.mapType) >= 0 ? state.mapType : 'default';
+    var tell = function(msg){ if (window.parent !== window) window.parent.postMessage(msg, '*'); };
+    /* Once the map has opened, every move is the appraiser's: it is kept as
+       the view the report prints (Fit all hands it back to automatic). */
+    var armed = false, fitting = false;
+    setTimeout(function(){ armed = true; }, 2500);
+    map.on('moveend', function(){
+      if (!armed || fitting) return;
+      var c = map.getCenter();
+      state.userView = {lat: c.lat, lng: c.lng, zoom: map.getZoom()};
+      M.save();
+    });
+    bar.addEventListener('change', function(e){
+      if (e.target.dataset.a !== 'layer') return;
+      state.mapType = e.target.value; M.setTiles(state.mapType); M.save();
+    });
+    bar.addEventListener('click', function(e){
+      var b = e.target.closest('button'); if (!b) return;
+      var a = b.dataset.a;
+      if (a === 'fit'){ state.userView = null; fitting = true; M.fitAll(); setTimeout(function(){ fitting = false; }, 800); M.save(); }
+      if (a === 'arrange'){ M.kick(); setTimeout(function(){ M.autoArrange(true); M.save(); }, 150); }
+      if (a === 'smaller' || a === 'larger'){
+        state.calloutFs = Math.max(9, Math.min(20, (state.calloutFs || 15) + (a === 'larger' ? 1 : -1)));
+        M.applyCalloutFs(); M.save();
+      }
+      if (a === 'cancel'){
+        /* put the case's map back as it was */
+        fetch('/api/cases/' + caseId + '/prefs', {method:'PUT', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({mapState: original})}).finally(function(){ tell({uad:'map-cancel'}); });
+      }
+      if (a === 'save'){
+        bar.querySelectorAll('button,select').forEach(function(x){ x.disabled = true; });
+        b.textContent = 'Saving\u2026';
+        bar.style.visibility = 'hidden'; hint.style.visibility = 'hidden';
+        M.kick();
+        whenSettled(function(){
+          saveCurrent().then(function(ok){
+            if (ok){ M.save(); tell({uad:'map-saved'}); return; }
+            bar.style.visibility = ''; hint.style.visibility = '';
+            bar.querySelectorAll('button,select').forEach(function(x){ x.disabled = false; });
+            b.textContent = 'Save to report';
+            toast('The map could not be saved -- try again');
+          });
+        });
+      }
+    });
+  }
+
+  /* Headless, for the Site exhibits: the subject alone, from above. */
+  function renderAerial(){
+    var waited = 0;
+    (function ready(){
+      var pending = document.body.getAttribute('data-seeding') === '1';
+      if (!pending && !M.located(state.subject) && state.subject.unconfirmed){
+        window.__uadRendered = {error:'the subject address "' + state.subject.unconfirmed
+          + '" was not found on the map, so nothing was placed'};
+        return;
+      }
+      if (!pending && M.located(state.subject)) {
+        state.aerialType = 'hybrid';          /* imagery the export can read */
+        switchView('aerial');
+        document.querySelector('#pinbar').hidden = true;
+        M.kick();
+        whenSettled(function(){
+          exportBlob().then(function(blob){
+            if (!blob){ window.__uadRendered = {error:'export failed'}; return; }
+            var fr = new FileReader();
+            fr.onload = function(){ window.__uadRendered = {png: fr.result,
+              state: {subject: {lat: state.subject.lat, lng: state.subject.lng}}}; };
+            fr.readAsDataURL(blob);
+          });
+        });
+        return;
+      }
+      if ((waited += 300) > 45000){ window.__uadRendered = {error:'the subject address could not be placed on the map'}; return; }
+      setTimeout(ready, 300);
+    })();
+  }
+
+  /* Headless, for the report: wait until every pin is placed and every tile
+     drawn, then hand the exported PNG back to the server. */
+  function renderForReport(){
+    var waited = 0;
+    (function ready(){
+      var pending = document.body.getAttribute('data-seeding') === '1';
+      if (!pending && !M.located(state.subject) && state.subject.unconfirmed){
+        window.__uadRendered = {error:'the subject address "' + state.subject.unconfirmed
+          + '" was not found on the map, so nothing was placed'};
+        return;
+      }
+      if (!pending && M.located(state.subject)) {
+        M.kick();
+        var uv = state.userView;
+        if (uv) M.getMap().setView([uv.lat, uv.lng], uv.zoom, {animate:false});
+        else M.fitAll();
+        setTimeout(function(){ M.autoArrange(false); }, 450);
+        whenSettled(function(){
+          exportBlob().then(function(blob){
+            if (!blob){ window.__uadRendered = {error:'export failed'}; return; }
+            var fr = new FileReader();
+            fr.onload = function(){ M.save(); window.__uadRendered = {png: fr.result, state: state}; };
+            fr.readAsDataURL(blob);
+          });
+        });
+        return;
+      }
+      if ((waited += 300) > 45000){ window.__uadRendered = {error:'the subject could not be placed'}; return; }
+      setTimeout(ready, 300);
+    })();
+  }
+  setTimeout(start, 200);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "_note": "A-1 requires ValuationSoftwareVendorName and ValuationSoftwareProductName (2100.0002, 2100.0033). They name the company and the product that produced the report. Set them before exporting; export is refused while either is empty. Never use a sample's values. Set by the user 2026-09-16: company 'Kech' (shown as 'powered by Kech'); the product name is the same until the user chooses one. A-1 also requires ValuationSoftwareProductIdentifier and ValuationSoftwareProductVersionIdentifier (both R, both 'Does Not Display'); the identifier falls back to the product name and the version is set at release.",
+  "vendor_name": "Kech",
+  "product_name": "Kech",
+  "product_identifier": "Kech",
+  "product_version": ""
+}

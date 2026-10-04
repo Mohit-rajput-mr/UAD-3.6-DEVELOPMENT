@@ -1,0 +1,14 @@
+[
+ {
+  "key": "dwelling-exterior",
+  "instance": 1,
+  "identifier": "",
+  "caption": "",
+  "children": [
+   {
+    "key": "interior",
+    "instance": 1
+   }
+  ]
+ }
+]

@@ -1,0 +1,457 @@
+{
+ "stage": "field-validation",
+ "field_validation": [
+  {
+   "field": "GC1_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC2_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC3_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC1_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC1_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC2_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC3_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_EX_CONCAMT_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_EX_CONCAMT_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_EX_CONCAMT_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC1_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC2_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC2_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC3_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC3_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC1_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC1_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC2_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC3_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC2_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC3_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC4_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC4_DT_SALTIM1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC4_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC4_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC4_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC4_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC4_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC4_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC4_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC4_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC4_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC4_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC4_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC4_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC4_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "COMP_NO",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "COMP_NOT_USED_ADDR",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required additional properties analyzed address fields"
+  },
+  {
+   "field": "COMP_NOT_USED_REASON",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "COMP_NOT_USED_COMMENT",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "COMP_NOT_USED_RECONSIDER",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "CA_LC_SOURCE",
+   "instance": 0,
+   "section": "cost-approach",
+   "message": "Validation failed"
+  },
+  {
+   "field": "CA_LC_SOURCE",
+   "instance": 1,
+   "section": "cost-approach",
+   "message": "Validation failed"
+  },
+  {
+   "field": "CA_LC_SOURCE",
+   "instance": 2,
+   "section": "cost-approach",
+   "message": "Validation failed"
+  },
+  {
+   "field": "CA_LC_SOURCE",
+   "instance": 3,
+   "section": "cost-approach",
+   "message": "Validation failed"
+  }
+ ],
+ "uad_rules": [],
+ "panel_uad_errors": null
+}

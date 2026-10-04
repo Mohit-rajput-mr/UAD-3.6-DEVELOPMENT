@@ -1,0 +1,206 @@
+Property Report on 15 CHURCH ST, ROSLYN NY 11576
+Property Report
+Comparables
+Photo from Nassau County Dept. of Assessment
+Property Info
+Legal ID
+Section
+20
+Block
+M
+Lot
+19
+Lot Group
+19-20
+Building/Unit
+-315830948
+APN
+20  M  00190
+FIPS
+36059
+ATTOM ID
+8392125
+Municipality
+ROSLYN NY 11576
+Township
+North Hempstead
+Energy Standard
+New York State
+School District
+003-Roslyn
+Census Number
+360593020003032
+Census Tract
+302000
+Ownership
+RUBACH EUGENE & RUBACH DOBORAH
+15 CHURCH ST
+ROSLYN NY 11576
+This property is non-owner occupied.
+Flood
+Zone
+X
+Panel
+0117
+Panel Date
+2009-09-11
+Community
+AREA OF MINIMAL FLOOD
+HAZARD
+FEMA Flood Map
+2025-2026 Taxes and Assessment
+Assessed Value
+1,005
+Assessor’s Value
+$1,005,000
+Soundscore
+Pedestrian
+Calm
+Vehicle
+Busy
+Airports
+Calm
+Overall Soundscore
+69 out of 100: Active
+Soundscore powered by HowLoud
+Land Information
+Acres
+0.22
+Lot Dimensions
+95X100
+Waterfront
+NO
+Location Information
+Street Type
+PAVED
+Traffic
+LIGHT
+Topography
+LEVEL
+Location Factor
+NO LOCATIONAL INFLUENCE
+Fronting Factor
+RESIDENTIAL STREET
+Zoning
+R-C
+(Residence C District)
+Residential Building and Interior
+Building Class
+210
+1 FAMILY RESIDENTIAL
+Style
+COLONIAL
+GLA
+3112
+Height (Stories)
+2.0
+Year Built
+2001
+Rooms
+8
+Full Baths
+3
+Baths Half
+1
+Rec Room Area
+9
+Basement
+FULL
+Fin Basement Area
+Attic
+NONE
+Fireplaces
+NA
+Exterior Wall
+MAS/FRAME
+Heating Type
+CENTRAL W/AC
+Fuel Type
+GAS
+Garages
+Attached
+Detached
+1
+Basement
+0
+Condition
+GOOD
+Improvements
+Description
+Year Built
+Area
+Grade
+Condition
+FRAME OR CB DETACHED GARAGE
+1965
+500
+C
+G
+Sales History
+Sale Date
+Rec Date
+Buyer
+Seller
+Sale Price
+Liber
+Page
+09/30/2013
+10/07/2013
+RUBACH
+GIANNAKOPOULOS
+$910,000
+12999
+977
+12/21/2005
+12/30/2005
+GIANNAKOPOULOS
+MASONE
+$1,060,000
+12059
+58
+08/16/2002
+02/20/2003
+MASONE
+ZARABI
+$700,000
+11587
+305
+08/17/2000
+08/29/2000
+ZARABI
+NOWAK
+$285,000
+11245
+445
+NOWAK
+$0
+10508
+385
+Sales highlighted in yellow are Potential Flips; green are Potential Distressed Sales.
+Active Mortgages and Equity Analysis
+Active mortgage data is estimated based on a 30-year term and may not reflect early payoffs or different schedules. This information is not a legal
+record.
+Date Recorded
+Position
+Original Amount
+Amortized Balance
+Loan Type
+Interest Rate
+Lender
+Lender Type
+11/12/2021
+First
+$842,000
+$602,876
+CONVENTIONAL
+CITIBANK
+BANK
+© Mapbox © OpenStreetMap
+Total Estimated Debt:
+$602,876
+Estimated Value From ATTOM AVM:
+$1,888,253
+Available Equity:
+$1,285,377
+Loan To Value Ratio:
+31.93%

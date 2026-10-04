@@ -1,0 +1,658 @@
+{
+ "_about": "WORKED EXAMPLE, ANONYMISED: a real single-family report that reached field validation 0, schema 0 and UAD errors 0 in WinTOTAL on 2026-09-29, expressed as a case file for bridge/casekit.py. Borrower/owner names and the order number are replaced; property facts, comparables, adjustments, vocabulary and photo manifest are exactly as delivered. Use it to see what a finished case file looks like; start a new case from total-bridge/case_template.json.",
+ "report": "89 Rockland Ave",
+ "form": "UAD 3.6 URAR, single family, 1 unit (legacy 1004)",
+ "photos_base": "<the case folder>",
+ "appraiser": "profiles/appraiser.json",
+ "order": {
+  "reason": "Refinance",
+  "order_number": "ORDER-NUMBER",
+  "borrower": {
+   "full": "BORROWER FULL NAME",
+   "first": "BORROWER",
+   "last": "NAME"
+  },
+  "owner": {
+   "full": "OWNER FULL NAME",
+   "first": "OWNER",
+   "last": "NAME"
+  },
+  "lender": {
+   "name": "Longbridge Financial, LLC.",
+   "address": "61 South Paramus Road, Ste 500",
+   "city": "Paramus",
+   "state": "NJ",
+   "zip": "07652"
+  },
+  "amc": {
+   "name": "Atlas VMS, Inc.",
+   "address": "1200 Brickell Ave, Ste 620",
+   "city": "Miami",
+   "state": "FL",
+   "zip": "33131",
+   "order": "ORDER-NUMBER",
+   "licence": "AMC-23-1104",
+   "licence_state": "NY",
+   "licence_expires": "03/29/2027"
+  },
+  "inspection": "Physical",
+  "inspection_date": "09/28/2026"
+ },
+ "subject": {
+  "address": "89 Rockland Ave, Yonkers, NY 10705",
+  "street_address": "89 Rockland Ave",
+  "zip": "10705",
+  "lat": 40.924069,
+  "lon": -73.887672,
+  "county": "Westchester",
+  "attachment": "Detached",
+  "special_assessments": false,
+  "new_construction": false,
+  "hoa": false,
+  "legal": "Parcel 551800 1.-234-41, Block 234, Lot 41.000, Park Hill, City of Yonkers, Westchester County, New York.",
+  "estate": "Fee Simple",
+  "site_sqft": 5227,
+  "apn": "551800 1.-234-41",
+  "apn_desc": "Land with Dwelling",
+  "street": {
+   "type": "Local Road",
+   "surface": "Asphalt",
+   "primary_access": "Public Street"
+  },
+  "zoning_code": "S-50",
+  "zoning_desc": "One-Family Residence District",
+  "zoning_compliance": "Legal",
+  "influence": "Residential",
+  "influence_proximity": "Bordering",
+  "influence_impact": "Neutral",
+  "view": "Residential",
+  "view_range": "Full",
+  "view_impact": "Neutral",
+  "restriction": {
+   "detail": "Land Use",
+   "impact": "Neutral"
+  },
+  "encroachment": false,
+  "site_features_commentary": "No easement, encroachment or adverse site characteristic was observed at inspection. The site is zoned S-50, single family residential, and the dwelling is a legal conforming use. The site is in FEMA Zone X, an area of minimal flood hazard (map 36119C0317F, 28 September 2007).",
+  "broadband": "Yes",
+  "utilities_text": "Public Water; Public Sewer; Natural Gas; Electric",
+  "utilities_public": [
+   "ELEC",
+   "GAS",
+   "SNTSWR",
+   "WTR"
+  ],
+  "site_method": "Allocation",
+  "site_value": 80000,
+  "style": "Raised Ranch",
+  "year_built": 1981,
+  "construction": "Site Built",
+  "front_door_elevation": "4-5 Ft.",
+  "heat_system": "Baseboard",
+  "heat_fuel": "Natural Gas",
+  "cooling": "Centralized",
+  "heated_below_grade": true,
+  "effective_age": 20,
+  "remaining_life": 40,
+  "measurement_standard": "ANSI",
+  "occupancy": "Owner",
+  "area_source": "Physical Measurement",
+  "quality": "Q4",
+  "condition": "C3",
+  "flooring": "Hardwood",
+  "flooring_status": "Typical Wear and Tear",
+  "flooring_update": "Not Updated",
+  "baths_update": "Fully Updated",
+  "walls_ceiling": {
+   "style": "Flat",
+   "height": "8 Ft.",
+   "status": "Typical Wear and Tear"
+  },
+  "overall_qc_commentary": "The dwelling is rated Q4 for quality and C3 for condition. The bathroom was remodelled within the last five years and the kitchen within the last eleven to fifteen; the dwelling is well maintained and no deferred maintenance was observed at inspection.",
+  "below_grade_vs_above": "Similar",
+  "below_grade_access": "Interior and Exterior Access",
+  "below_grade_exterior_access": "Walk Out",
+  "levels": [
+   {
+    "level": "Level B1",
+    "grade": "Below Grade",
+    "finished": 764,
+    "unfinished": 0
+   },
+   {
+    "level": "Level 1",
+    "grade": "Above Grade",
+    "finished": 1000,
+    "unfinished": 0
+   }
+  ],
+  "rooms": [
+   [
+    "Level B1",
+    "Bedroom"
+   ],
+   [
+    "Level B1",
+    "Family Room"
+   ],
+   [
+    "Level B1",
+    "Laundry Room"
+   ],
+   [
+    "Level B1",
+    "Utility Room"
+   ],
+   [
+    "Level 1",
+    "Living Room"
+   ],
+   [
+    "Level 1",
+    "Dining Room"
+   ],
+   [
+    "Level 1",
+    "Kitchen"
+   ],
+   [
+    "Level 1",
+    "Bedroom"
+   ],
+   [
+    "Level 1",
+    "Bedroom"
+   ],
+   [
+    "Level 1",
+    "Bath - Full"
+   ]
+  ],
+  "kitchen": {
+   "condition": "Typical Wear and Tear",
+   "update": "Partially Updated",
+   "timeframe": "10 or more years"
+  },
+  "bath": {
+   "condition": "Typical Wear and Tear",
+   "update": "Fully Updated",
+   "timeframe": "1-5 Years"
+  },
+  "garage": {
+   "type": "Garage",
+   "spaces": 1,
+   "detail": "Built-in",
+   "text": "Built-in one car garage",
+   "sqft": 156
+  },
+  "amenity": {
+   "category": "Outdoor Living",
+   "type": "Deck",
+   "material": "Wood",
+   "sqft": 72,
+   "count": 1
+  },
+  "listed_within_year": false,
+  "listing_search_source": "MLS",
+  "listing_analysis": "The subject is owner occupied and is not currently offered for sale. No listing of the subject appears in the twelve months preceding the effective date. This is a refinance assignment.",
+  "prior_transfer": null,
+  "prior_transfer_source": "Assessor Record",
+  "prior_analysis": "No transfer of the subject is reported in the three years preceding the effective date. The ATTOM record in the file carries a tax and assessment history for the subject but prints no sale history.",
+  "grid": {
+   "gla": 1000,
+   "site": 5227,
+   "year": 1981,
+   "beds": 3,
+   "baths_full": 1,
+   "baths_half": 0,
+   "basement_finished": true,
+   "garage_spaces": 1,
+   "outdoor": true
+  }
+ },
+ "comp_prior_analysis": "Comparable 1 settled 12/08/2025 at $615,000 under contract from 10/09/2025; comparable 2 settled 03/17/2026 at $675,000 under contract from 11/19/2025; comparable 3 settled 11/20/2025 at $675,000 under contract from 10/01/2025. Comparable 4 has been under contract since 11/13/2025 from a $750,000 list price and has not settled. Each was reported through OneKey MLS and none transferred more than once in the twelve months preceding its sale.",
+ "market": {
+  "sales_12_months": 297,
+  "demand_supply": "In Balance",
+  "marketing_time": "Under 3 months",
+  "source_short": "ATTOM Data Solutions",
+  "search": "Single family residences within 3 miles of the subject, sold between 09/28/2025 and 09/28/2026, Westchester County, New York, priced above $300,000. Source: ATTOM Data Solutions, 28 September 2026.",
+  "low": 320000,
+  "median": 757500,
+  "high": 1440000,
+  "trend_commentary": "297 comparable sales settled in the twelve months to 28 September 2026, an absorption rate of 24.75 a month. The median comparable sale price was $720,000 in the prior 7-12 months, $799,750 in the prior 4-6 months and $752,500 in the most recent three months, $750,688 over the year as a whole. The market is stable: the median has moved within a narrow band and the absorption rate has held. 278 of the 297 sales were non-foreclosure, so distressed sales are not a factor in this market.",
+  "boundary": "The market area is bounded by the Hudson River to the west, the Bronx county line to the south, the Saw Mill River Parkway to the east and Yonkers Avenue to the north.",
+  "active_listings": 68,
+  "pending_sales": 25,
+  "median_dom": 49
+ },
+ "held_equal": {
+  "_about": "Comparable rows the MLS sheets do not state, held equal with the subject so they cancel -- never invented per comparable.",
+  "ATT_DET": "Detached",
+  "PROP_APPRAISER_RIGHTS": "Fee Simple",
+  "PU_NATIVE_AM_LANDS_NO": "X",
+  "SITE_OWNED_IN_COMMON": "No",
+  "SITE_ZONE_COMPLIANCE": "Legal",
+  "SITE_CHARACTERISTICS": "None",
+  "SITE_ENV_COND": "None",
+  "SITE_TOPOGRAPHY": "Sloping",
+  "SITE_STREET_TYPE": "Public",
+  "PU_SITE_STREET_TYPE": "Local Road",
+  "PU_SITE_STREET_SURFACE": "Asphalt",
+  "SITE_INFLUENCE": "Residential",
+  "PU_SITE_INFLUENCE": "Residential",
+  "ST_VIEW": "Residential",
+  "PU_ST_VIEW": "Residential",
+  "PU_ST_RANGE": "Full",
+  "PU_DWELL_TH_ENDUNIT": "No",
+  "PU_DWELL_TH_BACKTOBACK": "No",
+  "PU_DWELL_TH_LOC": "No Units Above/Below",
+  "DWELL_CONST_METHOD": "Site Built",
+  "PU_DWELL_CONST_METHOD": "Site Built",
+  "DWELL_FUNC_ISSUES": "None",
+  "PU_DWELL_FUNC_ISSUES": "None",
+  "DWELL_DISASTER_MIT": "None",
+  "PU_DWELL_DISASTER_MIT": "None",
+  "GREEN_RENEW_ENERGY_COMPONENT": "None",
+  "PU_EXT_COND_ROOF_OBSERVABLE": "No",
+  "TRANSFER_HISTORY_PRESENT": "Yes",
+  "TRANSFER_HISTORY_SOURCE": "Assessor Record",
+  "PU_CONC_AMOUNT": "0",
+  "QUALITY": "Q4",
+  "UNITS_SF_GLA_NONSTD": "0",
+  "UNITS_SF_GLA_UNFIN": "0",
+  "UNITS_SF_GLA_BELOW_GRD_NONSTD": "0",
+  "UNITS_SF_GLA_BELOW_GRD_UNFIN": "0",
+  "MARKETAREA": "Residential",
+  "PROJ_MONTHLY_FEE": "0",
+  "DWELL_TOTAL_VOLUME": "0",
+  "DWELL_WINDOW_AREA": "0",
+  "GREEN_BUILD_CERT": "None",
+  "PU_GREEN_BUILD_CERT_DESC": "None",
+  "PU_GREEN_BUILD_CERT_RATE": "0",
+  "ALL_RIGHTS_INCLUDED": "Yes",
+  "SITE_PRIMARY_ACCESS": "Public Street",
+  "DISABILITY_FEATURES": "None",
+  "EXT_QUAL_STRUCTURE_ID": "1",
+  "INT_QUAL_STRUCTURE_ID": "1",
+  "EXT_QUAL_QUALITY": "Q4",
+  "EXT_COND_CONDITION": "C3",
+  "EXT_QUAL_ROOF": "Asphalt",
+  "EXT_COND_WALLS_TRIM": "Typical Wear and Tear",
+  "EXT_COND_FOUNDATION": "Typical Wear and Tear",
+  "EXT_COND_ROOF": "Typical Wear and Tear",
+  "EXT_COND_WINDOWS": "Typical Wear and Tear",
+  "INT_QUAL_QUALITY": "Q4",
+  "INT_QUAL_KITCHEN": "Q4",
+  "INT_QUAL_BATHS": "Q4",
+  "INT_QUAL_FLOORS": "Q4",
+  "INT_QUAL_WALLS_CEILINGS": "Q4",
+  "INT_COND_CONDITION": "C3",
+  "CONDITION": "C3",
+  "INT_COND_KITCHEN": "Partially Updated",
+  "INT_COND_BATHS": "Fully Updated",
+  "INT_COND_FLOORS": "Not Updated",
+  "INT_COND_WALLS_CEILINGS": "Typical Wear and Tear"
+ },
+ "comps": [
+  {
+   "n": 1,
+   "addr": "84 Courter Avenue",
+   "city": "Yonkers",
+   "zip": "10705",
+   "lat": 40.9119842,
+   "lon": -73.8889254,
+   "street_level": true,
+   "proximity": 0.84,
+   "direction": "S",
+   "source_label": "OneKey MLS 852590",
+   "mls": "852590",
+   "status": "Settled Sale",
+   "price": 615000,
+   "list_price": 599000,
+   "close_date": "12/08/2025",
+   "contract_date": "10/09/2025",
+   "dom": 162,
+   "gla": 1068,
+   "year": 1950,
+   "beds": 3,
+   "baths_full": 1,
+   "baths_half": 1,
+   "site": 9375,
+   "levels": 1,
+   "heat": "Forced Warm Air",
+   "cooling": "Centralized",
+   "walls": "Brick",
+   "foundation": "Crawl Space",
+   "kitchen_update": "Fully Updated",
+   "weight": "Less",
+   "vehicle_type": "Garage",
+   "vehicle_spaces": 1,
+   "garage_detail": "Attached",
+   "garage_spaces": 1,
+   "basement_finished": false,
+   "outdoor": true
+  },
+  {
+   "n": 2,
+   "addr": "21 Crotty Avenue",
+   "city": "Yonkers",
+   "zip": "10704",
+   "lat": 40.920681,
+   "lon": -73.868384,
+   "proximity": 1.03,
+   "direction": "E",
+   "source_label": "OneKey MLS 918778",
+   "mls": "918778",
+   "status": "Settled Sale",
+   "price": 675000,
+   "list_price": 650000,
+   "close_date": "03/17/2026",
+   "contract_date": "11/19/2025",
+   "dom": 49,
+   "gla": 1250,
+   "year": 1926,
+   "beds": 3,
+   "baths_full": 1,
+   "baths_half": 2,
+   "site": 3049,
+   "levels": 2,
+   "heat": "Baseboard",
+   "cooling": "None",
+   "walls": "Wood",
+   "foundation": "Basement",
+   "kitchen_update": "Partially Updated",
+   "weight": "Less",
+   "vehicle_type": "Garage",
+   "vehicle_spaces": 1,
+   "garage_detail": "Detached",
+   "garage_spaces": 1,
+   "basement_finished": false,
+   "outdoor": false
+  },
+  {
+   "n": 3,
+   "addr": "271 Hayward Street",
+   "city": "Yonkers",
+   "zip": "10704",
+   "lat": 40.924642,
+   "lon": -73.863338,
+   "proximity": 1.27,
+   "direction": "E",
+   "source_label": "OneKey MLS 909180",
+   "mls": "909180",
+   "status": "Settled Sale",
+   "price": 675000,
+   "list_price": 650000,
+   "close_date": "11/20/2025",
+   "contract_date": "10/01/2025",
+   "dom": 20,
+   "gla": 1188,
+   "year": 1948,
+   "beds": 2,
+   "baths_full": 1,
+   "baths_half": 1,
+   "site": 4792,
+   "levels": 2,
+   "heat": "Forced Warm Air",
+   "cooling": "Centralized",
+   "walls": "Vinyl",
+   "foundation": "Basement",
+   "kitchen_update": "Partially Updated",
+   "weight": "Most",
+   "vehicle_type": "Garage",
+   "vehicle_spaces": 1,
+   "garage_detail": "Attached",
+   "garage_spaces": 1,
+   "basement_finished": false,
+   "outdoor": true
+  },
+  {
+   "n": 4,
+   "addr": "72 Gibson Place",
+   "city": "Yonkers",
+   "zip": "10705",
+   "lat": 40.911801,
+   "lon": -73.887554,
+   "proximity": 0.85,
+   "direction": "S",
+   "source_label": "OneKey MLS 923665",
+   "mls": "923665",
+   "status": "Pending",
+   "price": null,
+   "list_price": 750000,
+   "contract_date": "11/13/2025",
+   "dom": 32,
+   "gla": 1512,
+   "year": 1952,
+   "beds": 3,
+   "baths_full": 2,
+   "baths_half": 0,
+   "site": 5663,
+   "levels": 3,
+   "heat": "Baseboard",
+   "cooling": "Individual",
+   "walls": "Stucco",
+   "foundation": "Basement",
+   "kitchen_update": "Partially Updated",
+   "weight": "Less",
+   "vehicle_type": "Driveway",
+   "vehicle_spaces": 1,
+   "driveway_surface": "Concrete",
+   "garage_spaces": 0,
+   "basement_finished": true,
+   "outdoor": false
+  }
+ ],
+ "adjustment_profile": "18 North",
+ "reconciliation": {
+  "weights": {
+   "1": 0.25,
+   "2": 0.25,
+   "3": 0.4,
+   "4": 0.1
+  },
+  "value": 665000,
+  "round_to": 5000,
+  "exposure_days": 90,
+  "condition": "As Is",
+  "cost_excluded": "Not Necessary for Credible Results",
+  "income_excluded": "Not Necessary for Credible Results",
+  "text": "Three closed sales and one pending sale of detached single family dwellings in Yonkers, all within 1.3 miles, were adjusted on the parameters of the appraiser's established grid: $75 a square foot of gross living area, $10 a square foot of site area (differences over 1,000 square feet), $250 a year of age (differences over 5 years), $10,000 a bedroom, $5,000 a half bath, $10,000 for a finished basement, $10,000 a garage space, $10,000 for outdoor living space, and 2% of list price for market exposure on the pending sale, which is carried at its $750,000 list price because its contract price is not disclosed. Adjusted prices: comparable 1 $581,170 (gross 11.3%), comparable 2 $701,780 (12.5%), comparable 3 $684,150 (7.0%), comparable 4 $713,850 (12.1%). Comparable 3 needed the least adjustment and is given most weight. Weighting comparable 3 at 40%, comparables 1 and 2 at 25% each and the pending comparable 4 at 10%: 0.40 x 684,150 + 0.25 x 581,170 + 0.25 x 701,780 + 0.10 x 713,850 = $665,783, reconciled to $665,000, within the $581,170 to $713,850 range of the adjusted prices."
+ },
+ "map_file": "",
+ "photos": [
+  {
+   "section": "interior-1",
+   "file": "first floor/IMG_7188.jpeg",
+   "category": "Level 1 - Kitchen",
+   "description": "Kitchen"
+  },
+  {
+   "section": "interior-1",
+   "file": "first floor/IMG_7186.jpeg",
+   "category": "Level 1 - Living Room",
+   "description": "Living room"
+  },
+  {
+   "section": "interior-1",
+   "file": "first floor/IMG_7187.jpeg",
+   "category": "Level 1 - Dining Room",
+   "description": "Dining room"
+  },
+  {
+   "section": "interior-1",
+   "file": "first floor/IMG_7190.jpeg",
+   "category": "Level 1 - Bath - Full",
+   "description": "Full bathroom"
+  },
+  {
+   "section": "interior-1",
+   "file": "first floor/IMG_7191.jpeg",
+   "category": "Level 1 - Bedroom (1)",
+   "description": "Bedroom"
+  },
+  {
+   "section": "interior-1",
+   "file": "first floor/IMG_7192.jpeg",
+   "category": "Level 1 - Bedroom (2)",
+   "description": "Bedroom"
+  },
+  {
+   "section": "interior-1",
+   "file": "lower mezz as basement/IMG_7198.jpeg",
+   "category": "Level B1 - Family Room",
+   "description": "Basement family room"
+  },
+  {
+   "section": "interior-1",
+   "file": "lower mezz as basement/IMG_7199.jpeg",
+   "category": "Level B1 - Family Room",
+   "description": "Basement wet bar"
+  },
+  {
+   "section": "interior-1",
+   "file": "lower mezz as basement/IMG_7200.jpeg",
+   "category": "Level B1 - Bedroom",
+   "description": "Basement bedroom"
+  },
+  {
+   "section": "interior-1",
+   "file": "lower mezz as basement/IMG_7196.jpeg",
+   "category": "Level B1 - Laundry Room",
+   "description": "Basement laundry"
+  },
+  {
+   "section": "interior-1",
+   "file": "lower mezz as basement/IMG_7195.jpeg",
+   "category": "Level B1 - Utility Room",
+   "description": "Basement utility room: boiler and water heater"
+  },
+  {
+   "section": "dwelling-exterior-1",
+   "file": "exterior/IMG_7185.jpeg",
+   "category": "Dwelling Rear",
+   "description": "Rear of dwelling"
+  },
+  {
+   "section": "dwelling-exterior-1",
+   "file": "exterior/IMG_7184.jpeg",
+   "category": "",
+   "description": "Front and side of dwelling"
+  },
+  {
+   "section": "dwelling-exterior-1",
+   "file": "exterior/IMG_7194.jpeg",
+   "category": "",
+   "description": "Side of dwelling"
+  },
+  {
+   "section": "dwelling-exterior-1",
+   "file": "exterior/IMG_7193.jpeg",
+   "category": "",
+   "description": "Central air conditioning condenser"
+  },
+  {
+   "section": "dwelling-exterior-1",
+   "file": "exterior/IMG_7182.jpeg",
+   "category": "",
+   "description": "Electric meter"
+  },
+  {
+   "section": "site",
+   "file": "exterior/IMG_7176.jpeg",
+   "category": "Property Access (Street Scene)",
+   "description": "Street scene"
+  },
+  {
+   "section": "site",
+   "file": "exterior/IMG_7177.jpeg",
+   "category": "Property Access (Street Scene)",
+   "description": "Street scene"
+  },
+  {
+   "section": "site",
+   "file": "exterior/IMG_7178.jpeg",
+   "category": "View - Residential",
+   "description": "Street scene"
+  },
+  {
+   "section": "site",
+   "file": "exterior/IMG_7179.jpeg",
+   "category": "View - Residential",
+   "description": "View across the street"
+  },
+  {
+   "section": "garage",
+   "file": "exterior/IMG_7181.jpeg",
+   "category": "Garage",
+   "description": "Built-in one car garage"
+  },
+  {
+   "section": "garage",
+   "file": "exterior/IMG_7183.jpeg",
+   "category": "Garage",
+   "description": "Garage interior"
+  },
+  {
+   "section": "amenities",
+   "file": "first floor/IMG_7189.jpeg",
+   "category": "Deck",
+   "description": "Deck"
+  },
+  {
+   "section": "sketch",
+   "file": "sketch  and inspection sheet/sketch.png",
+   "category": "Sketch",
+   "description": "Measured sketch"
+  },
+  {
+   "slot": "DE1_PHOTO1",
+   "section": "dwelling-exterior-1",
+   "file": "exterior/IMG_7180.jpeg"
+  },
+  {
+   "slot": "GSU_PHOTO_SUMMARY",
+   "section": "summary",
+   "file": "exterior/IMG_7180.jpeg"
+  },
+  {
+   "slot": "GSU_PHOTO",
+   "section": "sxs-section-key",
+   "file": "exterior/IMG_7180.jpeg"
+  },
+  {
+   "slot": "SUBJECT_EXHIBIT_PHOTO",
+   "section": "sub-prop",
+   "file": "exterior/IMG_7180.jpeg",
+   "description_field": "SUBJECT_EXHIBIT_DESCRIPTION",
+   "description": "Front of subject dwelling"
+  },
+  {
+   "slot": "GC1_PHOTO",
+   "section": "sxs-section-key",
+   "file": "<case work folder>/comp1.png"
+  },
+  {
+   "slot": "GC2_PHOTO",
+   "section": "sxs-section-key",
+   "file": "<case work folder>/comp2.png"
+  },
+  {
+   "slot": "GC3_PHOTO",
+   "section": "sxs-section-key",
+   "file": "<case work folder>/comp3.png"
+  },
+  {
+   "slot": "GC4_PHOTO",
+   "section": "sxs-section-key",
+   "file": "<case work folder>/comp4.png"
+  }
+ ],
+ "photos_excluded": [
+  {
+   "file": "sketch  and inspection sheet/inspection sheet.jpeg",
+   "reason": "source document (the appraiser's inspection sheet), not an exhibit"
+  }
+ ]
+}

@@ -1,0 +1,1084 @@
+Agent Single Line - Residential
+Distance
+#
+MLS #
+St
+ 
+Price Subtype Address
+Publish to Internet Y/N
+Post Office/Town
+GLA
+Lot Sz BR
+FB
+HB
+Yr Blt
+DOM List Office ID
+0.1 mi
+1
+951114
+SLD
+$1,350,000
+SIFARE
+15 sinclair martin Drive
+Yes
+Roslyn
+1,788
+0.1790
+3
+2
+1
+1938
+89
+OXF01
+0.3 mi
+2
+959851
+SLD
+$1,488,000
+SIFARE
+24 Hillcrest Avenue
+Yes
+Roslyn
+1,956
+0.3150
+3
+2
+1
+1980
+36
+GALE11
+0.4 mi
+3
+903320
+SLD
+$1,854,000
+SIFARE
+11 Harbor Court E
+Yes
+Roslyn Harbor
+3,400
+1.0300
+5
+3
+1
+1984
+31
+CMPA05
+0.5 mi
+4
+982185
+SLD
+$1,400,000
+SIFARE
+90 E Broadway
+Yes
+Roslyn
+2,158
+0.3200
+4
+3
+0
+1954
+26
+LW2101
+0.5 mi
+5
+838730
+SLD
+$1,660,000
+SIFARE
+30 Pine Drive N
+Yes
+Roslyn
+4,500
+0.3030
+4
+4
+1
+1995
+79
+GALE12
+0.6 mi
+6
+840515
+SLD
+$1,430,000
+SIFARE
+83 Fernwood Lane
+Yes
+Roslyn
+2,631
+0.5000
+4
+3
+0
+1956
+19
+SPH09
+0.6 mi
+7
+894182
+SLD
+$1,200,000
+SIFARE
+157 E Broadway
+Yes
+Roslyn
+2,204
+0.3562
+3
+3
+0
+1835
+15
+DERE57
+0.6 mi
+8
+873222
+SLD
+$1,255,000
+SIFARE
+12 Pine Drive S
+Yes
+Roslyn
+1,690
+3
+2
+0
+1953
+7
+NYGC01
+0.6 mi
+9
+1002999
+SLD
+$1,550,000
+SIFARE
+18 Pine Drive N
+Yes
+Roslyn
+2,577
+0.2946
+3
+2
+1
+1955
+60
+CMPA05
+0.7 mi
+10
+1008858
+SLD
+$1,800,000
+SIFARE
+155 Birch Drive
+Yes
+East Hills
+2,410
+0.3688
+4
+3
+1
+1958
+18
+GALE12
+0.7 mi
+11
+882223
+SLD
+$1,900,000
+SIFARE
+180 Peach Drive
+Yes
+East Hills
+2,798
+0.4993
+4
+3
+1
+1961
+20
+CMPA05
+0.8 mi
+12
+890328
+SLD
+$1,845,000
+SIFARE
+110 Peach Drive
+Yes
+East Hills
+2,877
+0.7307
+4
+4
+0
+1961
+59
+CMPA03
+0.8 mi
+13
+973655
+SLD
+$1,820,000
+SIFARE
+14 Regent Place
+Yes
+Roslyn
+2,596
+0.2500
+5
+3
+0
+1949
+21
+GALE12
+0.9 mi
+14
+979915
+SLD
+$1,600,000
+SIFARE
+18 Wellington Road
+Yes
+Greenvale
+2,815
+0.1561
+4
+3
+2
+2004
+48
+CHGL01
+0.9 mi
+15
+967379
+SLD
+$1,911,000
+SIFARE
+85 Hickory Drive
+Yes
+East Hills
+3,121
+0.4327
+5
+3
+0
+1960
+11
+RLLE02
+0.9 mi
+16
+940250
+SLD
+$1,900,000
+SIFARE
+11 Entrance Road
+Yes
+East Hills
+2,473
+0.1840
+4
+2
+1
+1948
+94
+CMPA05
+0.9 mi
+17
+885847
+SLD
+$1,450,000
+SIFARE
+14 Ridge Drive E
+Yes
+Roslyn
+2,679
+0.2185
+5
+2
+0
+1951
+22
+PRSP01
+0.9 mi
+18
+950735
+SLD
+$1,961,000
+SIFARE
+17 Entrance Road
+Yes
+East Hills
+2,349
+0.1900
+4
+3
+0
+1948
+11
+GALE12
+0.9 mi
+19
+956057
+SLD
+$1,915,000
+SIFARE
+199 Salem Road
+Yes
+East Hills
+3,493
+0.2497
+5
+3
+1
+1947
+42
+HOWO01
+0.9 mi
+20
+890285
+SLD
+$1,976,000
+SIFARE
+12 Overhill Lane
+Yes
+Roslyn
+3,637
+0.2220
+5
+4
+0
+1951
+53
+ACQU01
+0.9 mi
+21
+921976
+SLD
+$1,245,000
+SIFARE
+16 Ridge Drive E
+Yes
+Roslyn
+2,543
+0.2603
+5
+2
+0
+1951
+58
+LRE11
+0.9 mi
+22
+912265
+SLD
+$1,300,000
+SIFARE
+9 Circle Lane
+Yes
+East Hills
+2,552
+0.1818
+3
+2
+1
+1948
+22
+CMPA05
+1.0 mi
+23
+913865
+SLD
+$1,500,000
+SIFARE
+6 Overhill Lane
+Yes
+Roslyn
+2,092
+0.2516
+3
+2
+1
+1948
+19
+CMPA05
+1.0 mi
+24
+875410
+SLD
+$1,800,000
+SIFARE
+8 Junard Drive
+Yes
+Roslyn
+0
+0.3568
+4
+3
+1
+1954
+321
+BHHS01
+1.0 mi
+25
+886947
+SLD
+$1,999,000
+SIFARE
+47 Midwood Cross
+Yes
+East Hills
+8,500
+0.3890
+6
+5
+2
+1955
+138
+CMPA03
+1.0 mi
+26
+892637
+SLD
+$1,450,000
+SIFARE
+2 Pinewood Road
+Yes
+Roslyn
+2,672
+0.3662
+4
+3
+0
+1955
+59
+BRMN23
+1.0 mi
+27
+879005
+SLD
+$1,481,000
+SIFARE
+20 Primrose Lane
+Yes
+East Hills
+2,558
+0.2300
+3
+2
+1
+1948
+19
+CMPA03
+1.0 mi
+28
+929027
+SLD
+$1,305,000
+SIFARE
+5 Hillside Avenue
+Yes
+Roslyn
+2,230
+0.0000
+4
+2
+0
+1948
+101
+S&S01
+1.0 mi
+29
+954084
+SLD
+$1,370,000
+SIFARE
+198 Warner Avenue
+Yes
+Roslyn Heights
+3,000
+0.1837
+4
+2
+0
+1924
+40
+LRE09
+1.0 mi
+30
+917176
+SLD
+$1,725,000
+SIFARE
+99 Warner Avenue
+Yes
+Roslyn Heights
+3,089
+0.3719
+5
+3
+0
+1930
+86
+BRMN18
+1.0 mi
+31
+1005886
+SLD
+$1,950,000
+SIFARE
+49 The Birches
+Yes
+Roslyn Estates
+5,200
+0.6150
+4
+3
+0
+1949
+19
+LRE12
+1.1 mi
+32
+881362
+SLD
+$1,112,500
+SIFARE
+134 Warner Avenue
+Yes
+Roslyn Heights
+2,296
+0.3214
+5
+2
+1
+1893
+25
+KEWG03
+1.1 mi
+33
+867570
+SLD
+$1,750,000
+SIFARE
+49 The Birches
+Yes
+Roslyn Estates
+3,104
+0.6100
+4
+3
+0
+1949
+26
+DERE61
+1.1 mi
+34
+843440
+SLD
+$1,428,888
+SIFARE
+56 Milburn Lane
+Yes
+East Hills
+2,130
+0.2601
+3
+2
+1
+1948
+82
+CMPA03
+1.1 mi
+35
+845863
+SLD
+$1,900,000
+SIFARE
+150 Hummingbird Drive
+Yes
+East Hills
+3,827
+0.4506
+4
+2
+1
+1964
+6
+CMPA03
+1.1 mi
+36
+905945
+SLD
+$1,360,000
+SIFARE
+13 Locust Street
+Yes
+Greenvale
+2,514
+0.1125
+4
+2
+1
+1996
+14
+BHHS01
+1.1 mi
+37
+931752
+SLD
+$1,750,000
+SIFARE
+26 Woods Drive
+Yes
+East Hills
+3,275
+0.4627
+5
+3
+1
+1980
+8
+CMPA03
+1.1 mi
+38
+919280
+SLD
+$1,788,000
+SIFARE
+47 Pinewood Road
+Yes
+Roslyn
+2,661
+0.4410
+4
+3
+0
+1957
+7
+SPH06
+1.2 mi
+39
+991775
+SLD
+$1,975,000
+SIFARE
+4 The Birches
+Yes
+Roslyn Estates
+0
+0.4262
+6
+4
+1
+1937
+48
+CMPA05
+1.2 mi
+40
+921534
+SLD
+$1,548,000
+SIFARE
+80 Walnut Drive
+Yes
+East Hills
+1,898
+0.3510
+4
+2
+0
+1964
+16
+GALE12
+1.2 mi
+41
+889847
+SLD
+$1,650,000
+SIFARE
+720 Motts Cove Road N
+Yes
+Roslyn Harbor
+4,416
+1.2000
+5
+4
+1
+1869
+63
+UTOP01
+1.2 mi
+42
+946140
+SLD
+$1,450,000
+SIFARE
+151 Milburn Lane
+Yes
+East Hills
+2,404
+0.2197
+4
+2
+1
+1948
+26
+BHHS01
+1.2 mi
+43
+900920
+SLD
+$1,757,500
+SIFARE
+15 The Oaks
+Yes
+Roslyn Estates
+2,481
+0.4392
+4
+2
+1
+1955
+41
+GALE05
+1.2 mi
+44
+989375
+SLD
+$1,500,000
+SIFARE
+2 Vanad Drive
+Yes
+East Hills
+2,333
+0.3510
+4
+3
+0
+1955
+54
+GALE12
+1.2 mi
+45
+924287
+SLD
+$1,592,380
+SIFARE
+15 Cedar Drive
+Yes
+Roslyn
+2,118
+0.3788
+3
+2
+0
+1962
+18
+DAML01
+1.2 mi
+46
+836483
+SLD
+$1,500,000
+SIFARE
+53 Knollwood Road
+Yes
+Roslyn
+1,814
+3
+2
+0
+1951
+9
+GALE19
+1.2 mi
+47
+1016367
+SLD
+$1,775,000
+SIFARE
+82 The Serpentine
+Yes
+Roslyn
+2,206
+0.3800
+3
+3
+0
+1951
+15
+CMPA03
+1.2 mi
+48
+1003932
+SLD
+$1,350,000
+SIFARE
+34 Wildwood Lane
+Yes
+East Hills
+1,802
+0.2348
+3
+2
+1
+1948
+27
+CMPA03
+1.3 mi
+49
+962966
+SLD
+$1,770,000
+SIFARE
+75 Oakdale Lane
+Yes
+East Hills
+2,699
+0.2334
+4
+3
+1
+1948
+59
+AUTO01
+1.3 mi
+50
+901531
+SLD
+$1,900,000
+SIFARE
+10 Vanad Drive
+Yes
+East Hills
+3,200
+0.4500
+5
+3
+2
+1955
+0
+DERE57
+1.3 mi
+51
+953224
+SLD
+$1,470,000
+SIFARE
+95 Oakdale Lane
+Yes
+East Hills
+1,868
+0.2348
+3
+2
+1
+1948
+39
+CHSG01
+1.3 mi
+52
+910877
+SLD
+$1,665,000
+SIFARE
+15 Dianas Circle
+Yes
+Roslyn Estates
+2,416
+0.3719
+4
+3
+0
+1959
+30
+DERE57
+1.3 mi
+53
+894471
+SLD
+$1,250,000
+SIFARE
+31 Woodward Street
+Yes
+Roslyn Heights
+2,329
+0.1148
+4
+2
+1
+1990
+129
+LYNX01
+1.3 mi
+54
+912914
+SLD
+$1,100,000
+SIFARE
+53 Maple Street
+Yes
+Roslyn Heights
+2,048
+0.1148
+4
+2
+0
+1966
+29
+BHHS01
+1.3 mi
+55
+980881
+SLD
+$1,995,000
+SIFARE
+5 The Hemlocks
+Yes
+Roslyn Estates
+2,376
+0.3391
+4
+3
+1
+1951
+14
+KEWL01
+1.4 mi
+56
+938204
+SLD
+$1,735,000
+SIFARE
+1041 Glen Cove Avenue
+Yes
+Roslyn Harbor
+3,624
+1.0010
+4
+3
+1
+1980
+37
+GALE12
+1.4 mi
+57
+912329
+SLD
+$1,650,000
+SIFARE
+19 Flamingo Road
+Yes
+East Hills
+2,652
+0.3857
+4
+3
+0
+1961
+33
+DERE61
+1.4 mi
+58
+981017
+SLD
+$1,350,000
+SIFARE
+60 Roosevelt Avenue
+Yes
+Glen Head
+1,742
+0.2200
+4
+2
+0
+1928
+28
+BHHS01
+1.4 mi
+59
+960558
+SLD
+$1,460,000
+SIFARE
+26 Midland Road
+Yes
+East Hills
+1,648
+0.2583
+3
+2
+0
+1951
+12
+CMPA03
+1.4 mi
+60
+975410
+SLD
+$1,565,000
+SIFARE
+58 Roosevelt Avenue
+Yes
+Glen Head
+0
+0.1722
+4
+3
+0
+1952
+14
+GALE12
+1.4 mi
+61
+921424
+SLD
+$1,780,000
+SIFARE
+39 Hummingbird Drive
+Yes
+East Hills
+3,701
+0.4066
+6
+4
+0
+1960
+86
+GALE12
+1.4 mi
+62
+914521
+SLD
+$1,147,500
+SIFARE
+34 Midland Road
+Yes
+Roslyn Heights
+2,188
+0.2583
+4
+3
+0
+1951
+40
+PLPS01
+1.4 mi
+63
+931076
+SLD
+$1,430,000
+SIFARE
+11 Maple Street
+Yes
+Glenwood Landing
+2,420
+0.1716
+4
+2
+1
+1990
+27
+GALE15

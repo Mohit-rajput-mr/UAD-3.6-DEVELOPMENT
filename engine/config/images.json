@@ -1,0 +1,52 @@
+{
+  "_note": "Photo manifest. 'category' must be a UAD ImageCategoryType; 'name' becomes the file's base name inside Images/. Classified from the inspection photos supplied in MATERIALS. Edit captions or categories here, or in the browser review screen.",
+  "_root": "MATERIALS/SUBJECT PICTURES  AND INSPECTION SHEET AND SKETCH",
+
+  "photos": [
+    {"file": "IMG_5912.jpeg", "category": "DwellingFront",              "name": "DWELLING_FRONT", "caption": "Front view of subject property"},
+    {"file": "IMG_5911.jpeg", "category": "DwellingExteriorExhibit",    "name": "DWELLING",       "caption": "Front and side elevation"},
+    {"file": "IMG_5908.jpeg", "category": "DwellingRear",               "name": "DWELLING_REAR",  "caption": "Rear elevation"},
+    {"file": "IMG_5913.jpeg", "category": "DwellingExteriorExhibit",    "name": "DWELLING",       "caption": "Side elevation"},
+    {"file": "IMG_5915.jpeg", "category": "DwellingExteriorExhibit",    "name": "DWELLING",       "caption": "Foundation and exterior wall"},
+    {"file": "IMG_5909.jpeg", "category": "DwellingExteriorExhibit",    "name": "DWELLING",       "caption": "Covered front entry"},
+
+    {"file": "IMG_5910.jpeg", "category": "SiteExhibit",                "name": "SITE",           "caption": "Brick driveway and walkway"},
+    {"file": "IMG_5916.jpeg", "category": "SiteExhibit",                "name": "SITE",           "caption": "Exterior basement access"},
+    {"file": "IMG_5914.jpeg", "category": "SiteExhibit",                "name": "SITE",           "caption": "Exterior condensing units"},
+    {"file": "IMG_5940.jpeg", "category": "PropertyAccess",             "name": "PROPERTY_ACCESS","caption": "Street view"},
+
+    {"file": "IMG_5920.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Living room"},
+    {"file": "IMG_5923.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Dining room"},
+    {"file": "IMG_5918.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Breakfast nook"},
+    {"file": "IMG_5919.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Family room"},
+    {"file": "IMG_5924.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_KB_1",      "caption": "Kitchen"},
+    {"file": "IMG_5921.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Entry foyer and staircase"},
+    {"file": "IMG_5917.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Laundry area"},
+    {"file": "IMG_5922.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_KB_1",      "caption": "Half bathroom"},
+    {"file": "IMG_5925.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Second floor landing"},
+    {"file": "IMG_5926.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Primary bedroom"},
+    {"file": "IMG_5927.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Walk-in closet"},
+    {"file": "IMG_5928.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_KB_1",      "caption": "Primary bathroom"},
+    {"file": "IMG_5929.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Bedroom 2"},
+    {"file": "IMG_5931.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Bedroom 3"},
+    {"file": "IMG_5932.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Bedroom 4"},
+    {"file": "IMG_5930.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_KB_1",      "caption": "Full bathroom"},
+    {"file": "IMG_5933.jpeg", "category": "UnitInteriorExhibit",        "name": "UNIT_1",         "caption": "Smoke and carbon monoxide detector"},
+
+    {"file": "BASEMENT AND GARAGE/IMG_5934.jpeg", "category": "UnitInteriorExhibit", "name": "UNIT_1", "caption": "Lower level recreation room"},
+    {"file": "BASEMENT AND GARAGE/IMG_5935.jpeg", "category": "UnitInteriorExhibit", "name": "UNIT_1", "caption": "Lower level bar area"},
+    {"file": "BASEMENT AND GARAGE/IMG_5937.jpeg", "category": "UnitInteriorExhibit", "name": "UNIT_1", "caption": "Lower level bedroom"},
+    {"file": "BASEMENT AND GARAGE/IMG_5938.jpeg", "category": "UnitInteriorExhibit", "name": "UNIT_KB_1", "caption": "Lower level bathroom"},
+    {"file": "BASEMENT AND GARAGE/IMG_5936.jpeg", "category": "UnitInteriorExhibit", "name": "UNIT_1", "caption": "Mechanical systems, lower level"},
+    {"file": "BASEMENT AND GARAGE/IMG_5939.jpeg", "category": "VehicleStorageExhibit", "name": "VEHICLE_STORAGE", "caption": "Detached garage interior"},
+
+    {"file": "image (3).png", "category": "SubjectPropertyImprovementSketch", "name": "SKETCH", "caption": "ANSI Z765-2021 sketch and area calculations"},
+    {"file": "IMG_5941.jpeg", "category": "FloorPlan", "name": "FLOOR_PLAN", "caption": "First floor plan"},
+    {"file": "IMG_5942.jpeg", "category": "FloorPlan", "name": "FLOOR_PLAN", "caption": "Second floor plan"},
+    {"file": "IMG_5943.jpeg", "category": "FloorPlan", "name": "FLOOR_PLAN", "caption": "Lower level plan"}
+  ],
+
+  "excluded": [
+    {"file": "IMG_5922 (1).jpeg", "reason": "Duplicate of IMG_5922.jpeg"}
+  ]
+}

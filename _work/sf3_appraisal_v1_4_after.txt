@@ -1,0 +1,84 @@
+## General Information |  | 
+   Comparable # |  | 1 ; 2 ; 3
+   Property Address | 14568 Generic Rd Out There 5 | 35361 Place Rd Out ; 38243 Place Rd Out ; 35422 Place Rd Out
+   Data Source |  |  ;  ; 
+   Proximity to Subject |  | N 3.90 ; E 6.56 ; N 4.04
+   List Price | $799,900 | $855,000 ; $779,000 ; $799,999
+   Listing Status | Pending | Settled Sale ; Settled Sale ; Settled Sale
+   Sale Price |  | $825,000 | $677,25 ; $765,000 ; $775,000 | $485,00
+   Transfer Terms |  | Typically Motivate ; Typically Motivate ; Typically Motivate
+   Sales Concessions | No | No ; No ; No
+   Contract Date |  | 06/01/2019 ; 07/01/2018 ; 04/01/2019
+   Sale Date |  | 08/01/2019 ; 01/01/2019 ; 08/01/2019
+   Days on Market | 81 | 7 ; 76 ; 94
+   Attached/Detached | Detached | Detached ; Detached ; Detached
+   Property Rights Appraised | Fee Simple | Fee Simple ; Fee Simple ; Fee Simple
+## Site |  | 
+   Site Size | 14.19 Acres | 15.15 Acres ; 14.37 Acres ; 12.81 Acres
+   Street Type | Surface | Asphalt Local Road | Asphalt Local Road ; Asphalt Local Road ; Gravel Rural Road
+   Site Influence (Location) | Agricultural | Residential ; Residential ; Residential
+   View | Range | Full Pastoral | Full Pastoral ; Full Pastoral ; Full Agricultural
+## Dwelling(s) |  | 
+   Year Built | 1979 | 1980 ; 1984 ; 1938
+   Construction Method | Site Built | Site Built ; Site Built ; Site Built
+   Dwelling Style | Colonial | Colonial ; Colonial ; Farmhouse
+   Heating | Electric Forced Warm Air | Forced Warm Air ; Forced Warm Air ; Forced Warm Air
+## Energy Efficient and Green Features |  | 
+   Renewable Energy Component | Solar | None ; Solar ; None
+   Efficiency Rating | HERS 65 | 7 | None ; HERS 65 ; None
+## Unit(s) |  | 
+   Structure ID | Unit ID | Primary Dwelling | Comp1 Primary ; Comp2 Primary ; Comp3 Primary
+   Location of ADU | Dwelling | Standalone ADU | Dwelling ; Dwelling ; Dwelling | ADU/Gar
+   Bedrooms | 5 | 5 ; 5 ; 3
+   Baths – Full | Half | 3 1 | 3 1 ; 3 1 ; 2 1
+   Finished Area Above Grade | 3,304 Sq. Ft. | 3,228 Sq. Ft. ; 3,562 Sq. Ft. ; 1,856 Sq. Ft.
+   Finished Area Above Grade (Nonstandard) | 0 Sq. Ft. |  ;  ; 
+   Unfinished Area Above Grade | 0 Sq. Ft. |  ;  ; 
+   Finished Area Below Grade | 1,344 Sq. Ft. | 1,581 Sq. Ft. ; 1,000 Sq. Ft. ; 0 Sq. Ft.
+   Finished Area Below Grade (Nonstandard) | 0 Sq. Ft. |  ;  ; 
+   Unfinished Area Below Grade | 616 Sq. Ft. | 395 Sq. Ft. ; 281 Sq. Ft. ; 0 Sq. Ft.
+## Exterior Quality and Condition |  | 
+   Quality | Q4 | Q4 ; Q4 ; Q2
+   Exterior Walls and Trim | Aluminum | Vinyl ; Aluminum ; Cement Board
+   Roof | Composition | Metal ; Composition ; Metal
+   Condition | C3 | C3 ; C3 ; C2
+## Interior Quality and Condition |  | 
+   Structure ID | Unit ID | Primary Dwelling | Comp1 Primary ; Comp2 Primary ; Comp3 Primary
+   Quality | Q4 | Q3 ; Q4 ; Q2
+   Kitchen |  | Mid Grade Quality ; Mid Grade Quality ; Very High Quality 
+   Overall Bathrooms | Mid Grade Finishes | Mid-High Quality F ; Mid Grade Finish ; Very High Quality 
+   Overall Flooring | Carpets, Tile, Hardwood | Carpet,Vinyl ; Carpets, Tile, Har ; Hardwood and Tile 
+   Walls and Ceiling | Carpets, Tile, Hardwood | Carpet,Vinyl ; Carpets, Tile, Har ; Hardwood and Tile 
+   Condition | C4 | C3 ; C4 ; C2
+   Kitchen |  | Fully Updated ; Fully Updated ; Fully Updated
+   Overall Bathrooms | Moderately Updated | Not Updated ; Not Updated ; Fully Updated
+   Overall Flooring | Moderately Updated | Fully Updated ; Moderately Updated ; Fully Updated
+## ADU Interior Quality and Condition |  | 
+   Location of ADU | Dwelling | Standalone ADU | Dwelling ; Dwelling ; Dwelling | ADU/Gar
+   Quality | Q4 | Q3 ; Q4 ; Q2
+   Kitchen |  | Mid Grade Quality ; Mid Grade Quality ; Very High Quality 
+   Overall Bathrooms | Mid Grade Finishes | Mid-High Quality F ; Mid Grade Finish ; Very High Quality 
+   Overall Flooring | Carpets, Tile, Hardwood | Carpet,Vinyl ; Carpets, Tile, Har ; Hardwood and Tile 
+   Walls and Ceiling | Carpets, Tile, Hardwood | Carpet,Vinyl ; Carpets, Tile, Har ; Hardwood and Tile 
+   Condition | C4 | C3 ; C4 ; C2
+   Kitchen |  | Fully Updated ; Fully Updated ; Fully Updated
+   Overall Bathrooms | Moderately Updated | Not Updated ; Not Updated ; Fully Updated
+   Overall Flooring | Moderately Updated | Fully Updated ; Moderately Updated ; Fully Updated
+## Overall Quality and Condition (Ratings: 1-6, 1 is highest) |  | 
+   Quality | Q4 | Q4 ; Q4 ; Q2
+   Condition | C4 | C3 ; C4 ; C2
+## Property Amenities |  | 
+   Outdoor Living | Deck | Deck | Patio | Porch | Deck | Patio | Por ; Deck | Deck | Pati ; Deck | Patio
+   Water Features | Inground Pool | Heated |  ; Inground Pool | Di ; Inground Pool | Di
+## Vehicle Storage |  | 
+   Type| Spaces | Detail | 400 Sq. Ft. Detached Carport | Driveway Gravel 6 ; Driveway Asphalt 6 ; Driveway Gravel 4
+## Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts) |  | 
+   Outbuilding Type | Standalone ADU |  ;  ; ADU/Garage
+   Utilities | Electricity | Electricity ; Electricity ; Electricity
+## Summary |  | 
+   List Price | $799,900 Pending | $855,000 ; $779,000 ; $799,999
+   Sale Price |  | $825,000 | $677,25 ; $765,000 ; $775,000 | $485,00
+   Net Adjustment Total |  | -$41,900 ; $3,380 ; $14,480
+   Price Per Finished Area Above Grade |  | $221 ; $215 ; $312
+   Adjusted Price |  | $783,100 ; $768,380 ; $789,480
+   Comparable Weight |  | Most ; Most ; Less

@@ -1,0 +1,41 @@
+{
+  "name": {
+    "first": "Howard",
+    "middle": "F.",
+    "last": "Jackson",
+    "suffix": "Jr.",
+    "full": "Howard F. Jackson Jr."
+  },
+  "company_name": "Advent Appraisers",
+  "company_address": {
+    "line": "213-37 39th Ave #213",
+    "city": "Bayside",
+    "state": "NY",
+    "postal_code": "11361"
+  },
+  "mailing_address": {
+    "line": "PO Box 610306",
+    "city": "Bayside",
+    "state": "NY",
+    "postal_code": "11361"
+  },
+  "telephone": "212-488-0004",
+  "email": "JOBS@ADVENTAPPRAISERS.COM",
+  "license": {
+    "level": "CertifiedGeneral",
+    "level_display": "Certified General",
+    "identifier": "46000004840",
+    "state": "NY",
+    "effective_date": "2025-09-12",
+    "expiration_date": "2027-09-11",
+    "issuing_authority": "State of New York Department of State, Division of Licensing Services",
+    "control_number": "1559918"
+  },
+  "assets": {
+    "license_image": "MATERIALS/APPRASER INFO AND MATERIALS/image (1).png",
+    "signature_image": "MATERIALS/APPRASER INFO AND MATERIALS/image (4).png",
+    "credentials_block_image": "MATERIALS/APPRASER INFO AND MATERIALS/image (5).png",
+    "insurance_image": "MATERIALS/APPRASER INFO AND MATERIALS/image (2).png"
+  },
+  "_provenance": "Transcribed from the NY DOS license and signature block supplied in MATERIALS/APPRASER INFO AND MATERIALS. Verify before signing any report."
+}

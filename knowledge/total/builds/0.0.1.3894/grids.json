@@ -1,0 +1,66 @@
+[
+ {
+  "key": "sales",
+  "min": 3,
+  "max": 24,
+  "comps": 3,
+  "subject_prefix": "GSU",
+  "comp_prefix": "GC",
+  "row_templates": [
+   "salescomp-general-info-blank-row",
+   "salescomp-site-blank-row",
+   "salescomp-dwelling-blank-row",
+   "salescomp-units-blank-row",
+   "salescomp-ext-qual-blank-row",
+   "salescomp-ext-cond-blank-row",
+   "salescomp-int-qual-blank-row",
+   "salescomp-int-cond-blank-row",
+   "salescomp-adu-qual-blank-row",
+   "salescomp-adu-cond-blank-row",
+   "salescomp-vehicle-storage-blank-row",
+   "salescomp-outbuilding-blank-row"
+  ],
+  "section_templates": [
+   "salescomp-units-section",
+   "salescomp-quality-condition-exterior-section",
+   "salescomp-quality-condition-interior-section",
+   "salescomp-quality-condition-adu-section",
+   "salescomp-outbuilding-section",
+   "salescomp-transfer-history-section"
+  ]
+ },
+ {
+  "key": "rentalprop",
+  "min": 1,
+  "max": 24,
+  "comps": 1,
+  "subject_prefix": "RSU",
+  "comp_prefix": "RP",
+  "row_templates": [],
+  "section_templates": []
+ },
+ {
+  "key": "rentalunit",
+  "min": 1,
+  "max": 24,
+  "comps": 1,
+  "subject_prefix": "RS",
+  "comp_prefix": "RC",
+  "row_templates": [
+   "rentalunitcomp-blank-row"
+  ],
+  "section_templates": []
+ },
+ {
+  "key": "grossrental",
+  "min": 3,
+  "max": 24,
+  "comps": 3,
+  "subject_prefix": "GRU",
+  "comp_prefix": "GR",
+  "row_templates": [
+   "grossrentalincome-row"
+  ],
+  "section_templates": []
+ }
+]

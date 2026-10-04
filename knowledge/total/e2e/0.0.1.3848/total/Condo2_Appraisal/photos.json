@@ -1,0 +1,20 @@
+{
+ "in_file": 39,
+ "placed_by_file": 41,
+ "placed_by_category": 1,
+ "placed": 42,
+ "seconds": 198.6,
+ "slots_naming_a_file": 48,
+ "slots_still_empty": [],
+ "differs_from_import": [],
+ "total_owned": [
+  [
+   "PropertyPhoto",
+   "Condo2_DwellingFront.jpg"
+  ]
+ ],
+ "failed": [],
+ "no_slot": [],
+ "no_section": [],
+ "unavailable": []
+}

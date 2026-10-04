@@ -1,0 +1,423 @@
+{
+ "source_values": 985,
+ "kept": 952,
+ "changed": 8,
+ "dropped": 25,
+ "added": 14,
+ "rows": [
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_EFFICIENCY_RATINGS/GREEN_EFFICIENCY_RATING/EfficiencyRatingName",
+   "data_point": "EfficiencyRatingName",
+   "file": [
+    "HERS"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_EFFICIENCY_RATINGS/GREEN_EFFICIENCY_RATING/EfficiencyRatingScoreValue",
+   "data_point": "EfficiencyRatingScoreValue",
+   "file": [
+    "61"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@188 FALLEN OAK CT",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [
+    "Centralized"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@210 CANNON BALL RD",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@210 CANNON BALL RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@210 CANNON BALL RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@210 CANNON BALL RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@210 CANNON BALL RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [
+    "Centralized"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@241 RAPID CREEK LN",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@241 RAPID CREEK LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@241 RAPID CREEK LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@241 RAPID CREEK LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@241 RAPID CREEK LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [
+    "Centralized"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Damaged Flashing",
+    "Damaged Flooring"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "DwellingExteriorExhibit",
+    "UnitInteriorExhibit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "sf1_subjectproperty"
+   ],
+   "total": [
+    "sf1_floordefect",
+    "sf1_roofdefect",
+    "sf1_subjectproperty-1"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/*",
+    "image/*"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [
+    "Damaged Flashing",
+    "Damaged Flooring"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "sf1_floordefect",
+    "sf1_roofdefect"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [
+    "image/*",
+    "image/*"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/ABOUT_VERSIONS/ABOUT_VERSION/AboutVersionIdentifier",
+   "data_point": "AboutVersionIdentifier",
+   "file": [
+    "4"
+   ],
+   "total": [
+    "1"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [
+    "300 Maple Ave"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [
+    "Anytown"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [
+    "12345"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [
+    "VA"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/LEGAL_ENTITY/LEGAL_ENTITY_DETAIL/FullName",
+   "data_point": "FullName",
+   "file": [
+    "XYZ Appraisal Management Company"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/ROLE_DETAIL/PartyRoleType",
+   "data_point": "PartyRoleType",
+   "file": [
+    "ManagementCompany"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifier",
+   "data_point": "AdditionalValuationIdentifier",
+   "file": [
+    "543234"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifierType",
+   "data_point": "AdditionalValuationIdentifierType",
+   "file": [
+    "ManagementCompany"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "Kech"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Kech"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.1"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Kech"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "\\\\appraisal.pdf"
+   ],
+   "total": [
+    "\\\\sample.pdf"
+   ],
+   "kind": "changed"
+  }
+ ]
+}

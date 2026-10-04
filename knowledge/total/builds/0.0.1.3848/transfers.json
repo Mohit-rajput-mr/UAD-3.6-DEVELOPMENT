@@ -1,0 +1,2931 @@
+{
+ "groups": {
+  "agency-case-ref-id": [
+   {
+    "section": "order",
+    "field": "ORD_FHA_VA_CASE_NUMBER",
+    "base": "FHA_VA_CASE_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "invoice",
+    "field": "",
+    "base": "FHA_VA_CASE_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "AGENCY_CASE_REFERENCE_ID",
+    "base": "AGENCY_CASE_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "AGENCY_CASE_REFERENCE_ID",
+    "base": "AGENCY_CASE_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "AGENCY_CASE_REFERENCE_ID",
+    "base": "AGENCY_CASE_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-asc-id": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_ASC_IDENTIFIER",
+    "base": "APPRAISER_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_ASC_IDENTIFIER",
+    "base": "APPRAISER_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_ASC_IDENTIFIER",
+    "base": "APPRAISER_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_ASC_IDENTIFIER",
+    "base": "APPRAISER_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-company-address-city": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_CITY",
+    "base": "PU_APPRAISER_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_CITY",
+    "base": "APPRAISER_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_CITY",
+    "base": "APPRAISER_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_CITY",
+    "base": "APPRAISER_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-company-address-full": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_COMPANY_ADDR",
+    "base": "APPRAISER_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_COMPANY_ADDR",
+    "base": "APPRAISER_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_COMPANY_ADDR",
+    "base": "APPRAISER_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_COMPANY_ADDR",
+    "base": "APPRAISER_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-company-address-state": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_STATE",
+    "base": "PU_APPRAISER_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_STATE",
+    "base": "APPRAISER_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_STATE",
+    "base": "APPRAISER_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_STATE",
+    "base": "APPRAISER_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-company-address-street": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_ADDRESS",
+    "base": "PU_APPRAISER_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_ADDRESS",
+    "base": "APPRAISER_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_ADDRESS",
+    "base": "APPRAISER_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_ADDRESS",
+    "base": "APPRAISER_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-company-address-zip": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_ZIP",
+    "base": "PU_APPRAISER_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_ZIP",
+    "base": "APPRAISER_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_ZIP",
+    "base": "APPRAISER_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_ZIP",
+    "base": "APPRAISER_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-company-name": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_COMPANY_NAME",
+    "base": "APPRAISER_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_COMPANY_NAME",
+    "base": "APPRAISER_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_COMPANY_NAME",
+    "base": "APPRAISER_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_COMPANY_NAME",
+    "base": "APPRAISER_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-cred-expiration": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_CRED_EXPIRES",
+    "base": "APPRAISER_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_CRED_EXPIRES",
+    "base": "APPRAISER_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_CRED_EXPIRES",
+    "base": "APPRAISER_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_CRED_EXPIRES",
+    "base": "APPRAISER_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-cred-id": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_CRED_ID",
+    "base": "APPRAISER_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_CRED_ID",
+    "base": "APPRAISER_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_CRED_ID",
+    "base": "APPRAISER_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_CRED_ID",
+    "base": "APPRAISER_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-cred-level": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_LEVEL",
+    "base": "APPRAISER_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_LEVEL",
+    "base": "APPRAISER_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_LEVEL",
+    "base": "APPRAISER_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_LEVEL",
+    "base": "APPRAISER_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-cred-state": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_CRED_STATE",
+    "base": "APPRAISER_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_CRED_STATE",
+    "base": "APPRAISER_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_CRED_STATE",
+    "base": "APPRAISER_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_CRED_STATE",
+    "base": "APPRAISER_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-designation": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_DESIGNATION",
+    "base": "APPRAISER_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_DESIGNATION",
+    "base": "APPRAISER_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_DESIGNATION",
+    "base": "APPRAISER_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_DESIGNATION",
+    "base": "APPRAISER_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-name-first": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_FIRST_NAME",
+    "base": "PU_APPRAISER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_FIRST_NAME",
+    "base": "APPRAISER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_FIRST_NAME",
+    "base": "APPRAISER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_FIRST_NAME",
+    "base": "APPRAISER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-name-full": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_NAME",
+    "base": "APPRAISER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_NAME",
+    "base": "APPRAISER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_NAME",
+    "base": "APPRAISER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_NAME",
+    "base": "APPRAISER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-name-last": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_LAST_NAME",
+    "base": "PU_APPRAISER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_LAST_NAME",
+    "base": "APPRAISER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_LAST_NAME",
+    "base": "APPRAISER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_LAST_NAME",
+    "base": "APPRAISER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-name-middle": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_MIDDLE_NAME",
+    "base": "PU_APPRAISER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_MIDDLE_NAME",
+    "base": "APPRAISER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_MIDDLE_NAME",
+    "base": "APPRAISER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_MIDDLE_NAME",
+    "base": "APPRAISER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-name-suffix": [
+   {
+    "section": "order",
+    "field": "ORD_PU_APPRAISER_SUFFIX_NAME",
+    "base": "PU_APPRAISER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "APPRAISER_SUFFIX_NAME",
+    "base": "APPRAISER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "APPRAISER_SUFFIX_NAME",
+    "base": "APPRAISER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "APPRAISER_SUFFIX_NAME",
+    "base": "APPRAISER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "appraiser-ref-id": [
+   {
+    "section": "order",
+    "field": "ORD_APPRAISER_REFERENCE_ID",
+    "base": "APPRAISER_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_APPRAISER_REFERENCE_ID",
+    "base": "CONTACT_APPRAISER_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_APPRAISER_REFERENCE_ID",
+    "base": "CONTACT_APPRAISER_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_APPRAISER_REFERENCE_ID",
+    "base": "CONTACT_APPRAISER_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-entity-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_BORROWER_ENTITY_NAME",
+    "base": "PU_BORROWER_ENTITY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "BORROWER_FULL_NAME",
+    "base": "BORROWER_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "BORROWER_FULL_NAME",
+    "base": "BORROWER_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "BORROWER_FULL_NAME",
+    "base": "BORROWER_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-first-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_BORROWER_FIRST_NAME",
+    "base": "PU_BORROWER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "BORROWER_FIRST_NAME",
+    "base": "BORROWER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "BORROWER_FIRST_NAME",
+    "base": "BORROWER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "BORROWER_FIRST_NAME",
+    "base": "BORROWER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-last-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_BORROWER_LAST_NAME",
+    "base": "PU_BORROWER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "BORROWER_LAST_NAME",
+    "base": "BORROWER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "BORROWER_LAST_NAME",
+    "base": "BORROWER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "BORROWER_LAST_NAME",
+    "base": "BORROWER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-middle-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_BORROWER_MIDDLE_NAME",
+    "base": "PU_BORROWER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "BORROWER_MIDDLE_NAME",
+    "base": "BORROWER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "BORROWER_MIDDLE_NAME",
+    "base": "BORROWER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "BORROWER_MIDDLE_NAME",
+    "base": "BORROWER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-name": [
+   {
+    "section": "order",
+    "field": "ORD_BORROWER_NAME",
+    "base": "BORROWER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "ASSIGN_BORROWER",
+    "base": "ASSIGN_BORROWER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "ASSIGN_BORROWER",
+    "base": "ASSIGN_BORROWER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "ASSIGN_BORROWER",
+    "base": "ASSIGN_BORROWER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-suffix": [
+   {
+    "section": "order",
+    "field": "ORD_PU_BORROWER_SUFFIX_NAME",
+    "base": "PU_BORROWER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "BORROWER_SUFFIX_NAME",
+    "base": "BORROWER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "BORROWER_SUFFIX_NAME",
+    "base": "BORROWER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "BORROWER_SUFFIX_NAME",
+    "base": "BORROWER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "borrower-type": [
+   {
+    "section": "order",
+    "field": "ORD_PU_BORROWER_TYPE",
+    "base": "PU_BORROWER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "BORROWER_TYPE",
+    "base": "BORROWER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "BORROWER_TYPE",
+    "base": "BORROWER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "BORROWER_TYPE",
+    "base": "BORROWER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-address-city": [
+   {
+    "section": "order",
+    "field": "ORD_PU_CONTACT_CITY",
+    "base": "PU_CONTACT_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_CITY",
+    "base": "CONTACT_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_CITY",
+    "base": "CONTACT_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_CITY",
+    "base": "CONTACT_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-address-full": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_ADDR",
+    "base": "CONTACT_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_ADDR",
+    "base": "CONTACT_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_ADDR",
+    "base": "CONTACT_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_ADDR",
+    "base": "CONTACT_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-address-state": [
+   {
+    "section": "order",
+    "field": "ORD_PU_CONTACT_STATE",
+    "base": "PU_CONTACT_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_STATE",
+    "base": "CONTACT_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_STATE",
+    "base": "CONTACT_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_STATE",
+    "base": "CONTACT_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-address-street": [
+   {
+    "section": "order",
+    "field": "ORD_PU_CONTACT_ADDRESS",
+    "base": "PU_CONTACT_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_ADDRESS",
+    "base": "CONTACT_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_ADDRESS",
+    "base": "CONTACT_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_ADDRESS",
+    "base": "CONTACT_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-address-zip": [
+   {
+    "section": "order",
+    "field": "ORD_PU_CONTACT_ZIP",
+    "base": "PU_CONTACT_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_ZIP",
+    "base": "CONTACT_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_ZIP",
+    "base": "CONTACT_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_ZIP",
+    "base": "CONTACT_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-amc-ref-id": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_AMC_REFERENCE_ID",
+    "base": "CONTACT_AMC_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_AMC_REFERENCE_ID",
+    "base": "CONTACT_AMC_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_AMC_REFERENCE_ID",
+    "base": "CONTACT_AMC_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_AMC_REFERENCE_ID",
+    "base": "CONTACT_AMC_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-client-ref-id": [
+   {
+    "section": "order",
+    "field": "ORD_CLIENT_FILE_NUMBER",
+    "base": "CLIENT_FILE_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "invoice",
+    "field": "",
+    "base": "CLIENT_FILE_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_CLIENT_REFERENCE_ID",
+    "base": "CONTACT_CLIENT_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": true
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_CLIENT_REFERENCE_ID",
+    "base": "CONTACT_CLIENT_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": true
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_CLIENT_REFERENCE_ID",
+    "base": "CONTACT_CLIENT_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": true
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_CLIENT_REFERENCE_ID",
+    "base": "CONTACT_CLIENT_REFERENCE_ID",
+    "use_source_instance": true,
+    "all_destination_instances": true
+   }
+  ],
+  "contact-company-name": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_FULL_NAME",
+    "base": "CONTACT_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_FULL_NAME",
+    "base": "CONTACT_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_FULL_NAME",
+    "base": "CONTACT_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_FULL_NAME",
+    "base": "CONTACT_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-cred-expiration": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_CRED_EXP",
+    "base": "CONTACT_CRED_EXP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_CRED_EXP",
+    "base": "CONTACT_CRED_EXP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_CRED_EXP",
+    "base": "CONTACT_CRED_EXP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_CRED_EXP",
+    "base": "CONTACT_CRED_EXP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-cred-id": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_CRED_ID",
+    "base": "CONTACT_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_CRED_ID",
+    "base": "CONTACT_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_CRED_ID",
+    "base": "CONTACT_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_CRED_ID",
+    "base": "CONTACT_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-cred-state": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_CRED_STATE",
+    "base": "CONTACT_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_CRED_STATE",
+    "base": "CONTACT_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_CRED_STATE",
+    "base": "CONTACT_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_CRED_STATE",
+    "base": "CONTACT_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-desc": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_DESC",
+    "base": "CONTACT_DESC",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_DESC",
+    "base": "CONTACT_DESC",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_DESC",
+    "base": "CONTACT_DESC",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_DESC",
+    "base": "CONTACT_DESC",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-is-client": [
+   {
+    "section": "order",
+    "field": "ORD_IS_CONTACT_CLIENT",
+    "base": "IS_CONTACT_CLIENT",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "IS_CONTACT_CLIENT",
+    "base": "IS_CONTACT_CLIENT",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "IS_CONTACT_CLIENT",
+    "base": "IS_CONTACT_CLIENT",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "IS_CONTACT_CLIENT",
+    "base": "IS_CONTACT_CLIENT",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-label-header": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_LABEL_HEADER",
+    "base": "CONTACT_LABEL_HEADER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_LABEL_HEADER",
+    "base": "CONTACT_LABEL_HEADER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_LABEL_HEADER",
+    "base": "CONTACT_LABEL_HEADER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_LABEL_HEADER",
+    "base": "CONTACT_LABEL_HEADER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-party-role": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_PARTY_ROLE",
+    "base": "CONTACT_PARTY_ROLE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_PARTY_ROLE",
+    "base": "CONTACT_PARTY_ROLE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_PARTY_ROLE",
+    "base": "CONTACT_PARTY_ROLE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_PARTY_ROLE",
+    "base": "CONTACT_PARTY_ROLE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "contact-type": [
+   {
+    "section": "order",
+    "field": "ORD_CONTACT_TYPE",
+    "base": "CONTACT_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "CONTACT_TYPE",
+    "base": "CONTACT_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "CONTACT_TYPE",
+    "base": "CONTACT_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "CONTACT_TYPE",
+    "base": "CONTACT_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "internal-file-number": [
+   {
+    "section": "order",
+    "field": "ORD_INTERNAL_ORDER_NUMBER",
+    "base": "INTERNAL_ORDER_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "invoice",
+    "field": "",
+    "base": "INTERNAL_ORDER_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "lender-case-number": [
+   {
+    "section": "order",
+    "field": "ORD_LENDER_CASE_NUMBER",
+    "base": "LENDER_CASE_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "invoice",
+    "field": "",
+    "base": "LENDER_CASE_NUMBER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-entity-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_ENTITY_NAME",
+    "base": "PU_OWNER_ENTITY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_FULL_NAME",
+    "base": "SUBCUROWNER_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-first-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_FIRST_NAME",
+    "base": "PU_OWNER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_FIRST_NAME",
+    "base": "SUBCUROWNER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-last-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_LAST_NAME",
+    "base": "PU_OWNER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_LAST_NAME",
+    "base": "SUBCUROWNER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-middle-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_MIDDLE_NAME",
+    "base": "PU_OWNER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_MIDDLE_NAME",
+    "base": "SUBCUROWNER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-name": [
+   {
+    "section": "order",
+    "field": "ORD_OWNER_NAME",
+    "base": "OWNER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER",
+    "base": "SUBCUROWNER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-same-as-borrower": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_SAME_AS_BORROWER",
+    "base": "PU_OWNER_SAME_AS_BORROWER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_SAMEAS_BORROWER_YES",
+    "base": "SUBCUROWNER_SAMEAS_BORROWER_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-same-as-seller": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_SAME_AS_SELLER",
+    "base": "PU_OWNER_SAME_AS_SELLER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_SAMEAS_SELLER_YES",
+    "base": "SUBCUROWNER_SAMEAS_SELLER_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-suffix": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_SUFFIX_NAME",
+    "base": "PU_OWNER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_SUFFIX_NAME",
+    "base": "SUBCUROWNER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "owner-type": [
+   {
+    "section": "order",
+    "field": "ORD_PU_OWNER_TYPE",
+    "base": "PU_OWNER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUBCUROWNER_TYPE",
+    "base": "SUBCUROWNER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-entity-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SELLER_ENTITY_NAME",
+    "base": "PU_SELLER_ENTITY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SELLER_FULL_NAME",
+    "base": "SELLER_FULL_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-first-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SELLER_FIRST_NAME",
+    "base": "PU_SELLER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SELLER_FIRST_NAME",
+    "base": "SELLER_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-last-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SELLER_LAST_NAME",
+    "base": "PU_SELLER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SELLER_LAST_NAME",
+    "base": "SELLER_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-middle-name": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SELLER_MIDDLE_NAME",
+    "base": "PU_SELLER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SELLER_MIDDLE_NAME",
+    "base": "SELLER_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-name": [
+   {
+    "section": "order",
+    "field": "ORD_SELLER_NAME",
+    "base": "SELLER_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "ASSIGN_SELLER",
+    "base": "ASSIGN_SELLER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-suffix": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SELLER_SUFFIX_NAME",
+    "base": "PU_SELLER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SELLER_SUFFIX_NAME",
+    "base": "SELLER_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "seller-type": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SELLER_TYPE",
+    "base": "PU_SELLER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SELLER_TYPE",
+    "base": "SELLER_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-cred-expiration": [
+   {
+    "section": "order",
+    "field": "ORD_SRPA_CRED_EXPIRES",
+    "base": "SRPA_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_CRED_EXPIRES",
+    "base": "SRPA_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_CRED_EXPIRES",
+    "base": "SRPA_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_CRED_EXPIRES",
+    "base": "SRPA_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-cred-id": [
+   {
+    "section": "order",
+    "field": "ORD_SRPA_CRED_ID",
+    "base": "SRPA_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_CRED_ID",
+    "base": "SRPA_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_CRED_ID",
+    "base": "SRPA_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_CRED_ID",
+    "base": "SRPA_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-cred-level": [
+   {
+    "section": "order",
+    "field": "ORD_SRPA_LEVEL",
+    "base": "SRPA_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_LEVEL",
+    "base": "SRPA_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_LEVEL",
+    "base": "SRPA_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_LEVEL",
+    "base": "SRPA_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-cred-state": [
+   {
+    "section": "order",
+    "field": "ORD_SRPA_CRED_STATE",
+    "base": "SRPA_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_CRED_STATE",
+    "base": "SRPA_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_CRED_STATE",
+    "base": "SRPA_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_CRED_STATE",
+    "base": "SRPA_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-name-first": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SRPA_FIRST_NAME",
+    "base": "PU_SRPA_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_FIRST_NAME",
+    "base": "SRPA_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_FIRST_NAME",
+    "base": "SRPA_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_FIRST_NAME",
+    "base": "SRPA_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-name-full": [
+   {
+    "section": "order",
+    "field": "ORD_SRPA_NAME",
+    "base": "SRPA_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_NAME",
+    "base": "SRPA_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_NAME",
+    "base": "SRPA_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_NAME",
+    "base": "SRPA_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-name-last": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SRPA_LAST_NAME",
+    "base": "PU_SRPA_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_LAST_NAME",
+    "base": "SRPA_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_LAST_NAME",
+    "base": "SRPA_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_LAST_NAME",
+    "base": "SRPA_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-name-middle": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SRPA_MIDDLE_NAME",
+    "base": "PU_SRPA_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_MIDDLE_NAME",
+    "base": "SRPA_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_MIDDLE_NAME",
+    "base": "SRPA_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_MIDDLE_NAME",
+    "base": "SRPA_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "srpa-name-suffix": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SRPA_SUFFIX_NAME",
+    "base": "PU_SRPA_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SRPA_SUFFIX_NAME",
+    "base": "SRPA_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SRPA_SUFFIX_NAME",
+    "base": "SRPA_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SRPA_SUFFIX_NAME",
+    "base": "SRPA_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-address-city": [
+   {
+    "section": "order",
+    "field": "ORD_SUBCITY",
+    "base": "SUBCITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBCITY",
+    "base": "SUBCITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_DB_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "rental-information",
+    "field": "",
+    "base": "RSU_DB_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBCITY",
+    "base": "SUBCITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBCITY",
+    "base": "SUBCITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-address-full": [
+   {
+    "section": "order",
+    "field": "ORD_SUBPROPADDRESS_FULL",
+    "base": "SUBPROPADDRESS_FULL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "invoice",
+    "field": "",
+    "base": "DESC_PROPERTY_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBPROPADDRESS_FULL",
+    "base": "SUBPROPADDRESS_FULL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_AD_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "rental-information",
+    "field": "",
+    "base": "RSU_AD_ADDR_FULL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "income-approach",
+    "field": "",
+    "base": "GRU_AD_ADDR1",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "PHYADDRESS",
+    "base": "PHYADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "PHYADDRESS",
+    "base": "PHYADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-address-state": [
+   {
+    "section": "order",
+    "field": "ORD_SUBSTATE",
+    "base": "SUBSTATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBSTATE",
+    "base": "SUBSTATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_DB_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "rental-information",
+    "field": "",
+    "base": "RSU_DB_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBSTATE",
+    "base": "SUBSTATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBSTATE",
+    "base": "SUBSTATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-address-street": [
+   {
+    "section": "order",
+    "field": "ORD_SUBPROPADDRESS",
+    "base": "SUBPROPADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBPROPADDRESS",
+    "base": "SUBPROPADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_AD_ADDR1",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "rental-information",
+    "field": "",
+    "base": "RSU_AD_ADDR1",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBPROPADDRESS",
+    "base": "SUBPROPADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBPROPADDRESS",
+    "base": "SUBPROPADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-address-unit": [
+   {
+    "section": "order",
+    "field": "ORD_SUBUNITNO",
+    "base": "SUBUNITNO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBUNITNO",
+    "base": "SUBUNITNO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_DB_UNITNO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "rental-information",
+    "field": "",
+    "base": "RSU_DB_UNITNO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBUNITNO",
+    "base": "SUBUNITNO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBUNITNO",
+    "base": "SUBUNITNO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-address-zip": [
+   {
+    "section": "order",
+    "field": "ORD_SUBZIP",
+    "base": "SUBZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBZIP",
+    "base": "SUBZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_DB_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "rental-information",
+    "field": "",
+    "base": "RSU_DB_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBZIP",
+    "base": "SUBZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBZIP",
+    "base": "SUBZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-county": [
+   {
+    "section": "order",
+    "field": "ORD_COUNTY",
+    "base": "COUNTY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBCOUNTY",
+    "base": "SUBCOUNTY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBCOUNTY",
+    "base": "SUBCOUNTY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBCOUNTY",
+    "base": "SUBCOUNTY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-legal-desc": [
+   {
+    "section": "order",
+    "field": "ORD_LEGAL_DESCRIPTION",
+    "base": "LEGAL_DESCRIPTION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBLEGALDESCRIP",
+    "base": "SUBLEGALDESCRIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUBLEGALDESCRIP",
+    "base": "SUBLEGALDESCRIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUBLEGALDESCRIP",
+    "base": "SUBLEGALDESCRIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-project-name": [
+   {
+    "section": "order",
+    "field": "ORD_NEIGHBORHOOD",
+    "base": "NEIGHBORHOOD",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SUBPROJNAME",
+    "base": "SUBPROJNAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-project-type": [
+   {
+    "section": "order",
+    "field": "ORD_PROJECT_TYPE",
+    "base": "PROJECT_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "PUD_YES",
+    "base": "PUD_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "PUD_NO",
+    "base": "PUD_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "CONDO_YES",
+    "base": "CONDO_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "CONDO_NO",
+    "base": "CONDO_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "COOP_YES",
+    "base": "COOP_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "COOP_NO",
+    "base": "COOP_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "CONDOP_YES",
+    "base": "CONDOP_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "CONDOP_NO",
+    "base": "CONDOP_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "project-info",
+    "field": "PRJ_PUD_YES",
+    "base": "PRJ_PUD_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "project-info",
+    "field": "PRJ_CONDO_YES",
+    "base": "PRJ_CONDO_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "project-info",
+    "field": "PRJ_COOP_YES",
+    "base": "PRJ_COOP_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "project-info",
+    "field": "PRJ_CONDOP_YES",
+    "base": "PRJ_CONDOP_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_PUD_YES",
+    "base": "SUM_PUD_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_PUD_NO",
+    "base": "SUM_PUD_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_CONDO_YES",
+    "base": "SUM_CONDO_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_CONDO_NO",
+    "base": "SUM_CONDO_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_COOP_YES",
+    "base": "SUM_COOP_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_COOP_NO",
+    "base": "SUM_COOP_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_CONDOP_YES",
+    "base": "SUM_CONDOP_YES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "summary",
+    "field": "SUM_CONDOP_NO",
+    "base": "SUM_CONDOP_NO",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sales-comp",
+    "field": "",
+    "base": "GSU_SITE_PROJECT_TYPE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-property-apn": [
+   {
+    "section": "order",
+    "field": "ORD_APN",
+    "base": "APN",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "site",
+    "field": "APN",
+    "base": "APN",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "site",
+    "field": "PU_APN",
+    "base": "PU_APN",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-property-rights-appraised": [
+   {
+    "section": "order",
+    "field": "ORD_PROP_RIGHTS",
+    "base": "PROP_RIGHTS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "PROPRIGHTSAPPR",
+    "base": "PROPRIGHTSAPPR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "subject-special-tax-assessment": [
+   {
+    "section": "order",
+    "field": "ORD_SPECIAL_TAX_ASSESSMENTS",
+    "base": "SPECIAL_TAX_ASSESSMENTS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "sub-prop",
+    "field": "SPECIAL_TAX_ASSESSMENTS",
+    "base": "SPECIAL_TAX_ASSESSMENTS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-asc-id": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_ASC_IDENTIFIER",
+    "base": "SUPERVISOR_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_ASC_IDENTIFIER",
+    "base": "SUPERVISOR_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_ASC_IDENTIFIER",
+    "base": "SUPERVISOR_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_ASC_IDENTIFIER",
+    "base": "SUPERVISOR_ASC_IDENTIFIER",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-company-address-city": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_CITY",
+    "base": "PU_SUPERVISOR_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_CITY",
+    "base": "SUPERVISOR_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_CITY",
+    "base": "SUPERVISOR_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_CITY",
+    "base": "SUPERVISOR_CITY",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-company-address-full": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_COMPANY_ADDR",
+    "base": "SUPERVISOR_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_COMPANY_ADDR",
+    "base": "SUPERVISOR_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_COMPANY_ADDR",
+    "base": "SUPERVISOR_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_COMPANY_ADDR",
+    "base": "SUPERVISOR_COMPANY_ADDR",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-company-address-state": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_STATE",
+    "base": "PU_SUPERVISOR_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_STATE",
+    "base": "SUPERVISOR_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_STATE",
+    "base": "SUPERVISOR_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_STATE",
+    "base": "SUPERVISOR_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-company-address-street": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_ADDRESS",
+    "base": "PU_SUPERVISOR_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_ADDRESS",
+    "base": "SUPERVISOR_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_ADDRESS",
+    "base": "SUPERVISOR_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_ADDRESS",
+    "base": "SUPERVISOR_ADDRESS",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-company-address-zip": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_ZIP",
+    "base": "PU_SUPERVISOR_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_ZIP",
+    "base": "SUPERVISOR_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_ZIP",
+    "base": "SUPERVISOR_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_ZIP",
+    "base": "SUPERVISOR_ZIP",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-company-name": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_COMPANY_NAME",
+    "base": "SUPERVISOR_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_COMPANY_NAME",
+    "base": "SUPERVISOR_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_COMPANY_NAME",
+    "base": "SUPERVISOR_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_COMPANY_NAME",
+    "base": "SUPERVISOR_COMPANY_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-cred-expiration": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_CRED_EXPIRES",
+    "base": "SUPERVISOR_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_CRED_EXPIRES",
+    "base": "SUPERVISOR_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_CRED_EXPIRES",
+    "base": "SUPERVISOR_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_CRED_EXPIRES",
+    "base": "SUPERVISOR_CRED_EXPIRES",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-cred-id": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_CRED_ID",
+    "base": "SUPERVISOR_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_CRED_ID",
+    "base": "SUPERVISOR_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_CRED_ID",
+    "base": "SUPERVISOR_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_CRED_ID",
+    "base": "SUPERVISOR_CRED_ID",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-cred-level": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_LEVEL",
+    "base": "SUPERVISOR_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_LEVEL",
+    "base": "SUPERVISOR_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_LEVEL",
+    "base": "SUPERVISOR_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_LEVEL",
+    "base": "SUPERVISOR_LEVEL",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-cred-state": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_CRED_STATE",
+    "base": "SUPERVISOR_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_CRED_STATE",
+    "base": "SUPERVISOR_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_CRED_STATE",
+    "base": "SUPERVISOR_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_CRED_STATE",
+    "base": "SUPERVISOR_CRED_STATE",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-designation": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_DESIGNATION",
+    "base": "SUPERVISOR_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_DESIGNATION",
+    "base": "SUPERVISOR_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_DESIGNATION",
+    "base": "SUPERVISOR_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_DESIGNATION",
+    "base": "SUPERVISOR_DESIGNATION",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-name-first": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_FIRST_NAME",
+    "base": "PU_SUPERVISOR_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_FIRST_NAME",
+    "base": "SUPERVISOR_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_FIRST_NAME",
+    "base": "SUPERVISOR_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_FIRST_NAME",
+    "base": "SUPERVISOR_FIRST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-name-full": [
+   {
+    "section": "order",
+    "field": "ORD_SUPERVISOR_NAME",
+    "base": "SUPERVISOR_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_NAME",
+    "base": "SUPERVISOR_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_NAME",
+    "base": "SUPERVISOR_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_NAME",
+    "base": "SUPERVISOR_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-name-last": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_LAST_NAME",
+    "base": "PU_SUPERVISOR_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_LAST_NAME",
+    "base": "SUPERVISOR_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_LAST_NAME",
+    "base": "SUPERVISOR_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_LAST_NAME",
+    "base": "SUPERVISOR_LAST_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-name-middle": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_MIDDLE_NAME",
+    "base": "PU_SUPERVISOR_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_MIDDLE_NAME",
+    "base": "SUPERVISOR_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_MIDDLE_NAME",
+    "base": "SUPERVISOR_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_MIDDLE_NAME",
+    "base": "SUPERVISOR_MIDDLE_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ],
+  "supervisor-name-suffix": [
+   {
+    "section": "order",
+    "field": "ORD_PU_SUPERVISOR_SUFFIX_NAME",
+    "base": "PU_SUPERVISOR_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "assignment",
+    "field": "SUPERVISOR_SUFFIX_NAME",
+    "base": "SUPERVISOR_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "restricted-update-report",
+    "field": "SUPERVISOR_SUFFIX_NAME",
+    "base": "SUPERVISOR_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   },
+   {
+    "section": "completion-report",
+    "field": "SUPERVISOR_SUFFIX_NAME",
+    "base": "SUPERVISOR_SUFFIX_NAME",
+    "use_source_instance": true,
+    "all_destination_instances": false
+   }
+  ]
+ },
+ "code_copies": [
+  {
+   "source": "DE1_PHOTO1",
+   "targets": [
+    "GRU_PHOTO",
+    "GSU_PHOTO",
+    "GSU_PHOTO_SUMMARY",
+    "RSU_PHOTO"
+   ],
+   "in": "handlePhotoSummaryChange",
+   "module": "5841"
+  }
+ ]
+}

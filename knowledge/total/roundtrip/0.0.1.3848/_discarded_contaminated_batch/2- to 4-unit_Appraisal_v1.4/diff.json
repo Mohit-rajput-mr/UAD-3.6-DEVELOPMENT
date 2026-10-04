@@ -1,0 +1,2363 @@
+{
+ "source_values": 1535,
+ "kept": 1386,
+ "changed": 27,
+ "dropped": 122,
+ "added": 233,
+ "rows": [
+  {
+   "scope": "GrossRentMultiplierComparable@15-137 STONEBACK AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".3"
+   ],
+   "total": [
+    "0.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "GrossRentMultiplierComparable@16-204 WHITECREST DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".8"
+   ],
+   "total": [
+    "0.8"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "101 Somewhere Ln"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Treeville"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "12345"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "VA"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStatusType",
+   "data_point": "ListingStatusType",
+   "file": [],
+   "total": [
+    "Active"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/AdditionalPropertyAnalyzedNotUsedText",
+   "data_point": "AdditionalPropertyAnalyzedNotUsedText",
+   "file": [],
+   "total": [
+    "Inferior quality and non-similar location"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/ConsiderationRequestedIndicator",
+   "data_point": "ConsiderationRequestedIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_REASONS/PROPERTY_NOT_USED_REASON/ReasonPropertyNotUsedType",
+   "data_point": "ReasonPropertyNotUsedType",
+   "file": [],
+   "total": [
+    "Proximity",
+    "Quality"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@101 SOMEWHERE LN",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "PropertyAnalyzedNotUsed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "325 Summit Ct"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Treeville"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "12345"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "VA"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStatusType",
+   "data_point": "ListingStatusType",
+   "file": [],
+   "total": [
+    "SettledSale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/AdditionalPropertyAnalyzedNotUsedText",
+   "data_point": "AdditionalPropertyAnalyzedNotUsedText",
+   "file": [],
+   "total": [
+    "Located further from subject"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/ConsiderationRequestedIndicator",
+   "data_point": "ConsiderationRequestedIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_REASONS/PROPERTY_NOT_USED_REASON/ReasonPropertyNotUsedType",
+   "data_point": "ReasonPropertyNotUsedType",
+   "file": [],
+   "total": [
+    "Proximity"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferDate",
+   "data_point": "OwnershipTransferDate",
+   "file": [],
+   "total": [
+    "2019-08-21"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionType",
+   "data_point": "OwnershipTransferTransactionType",
+   "file": [],
+   "total": [
+    "Sale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@325 SUMMIT CT",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "PropertyAnalyzedNotUsed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "7464 Blank Ln"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Treeville"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "12345"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "VA"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStatusType",
+   "data_point": "ListingStatusType",
+   "file": [],
+   "total": [
+    "SettledSale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/AdditionalPropertyAnalyzedNotUsedText",
+   "data_point": "AdditionalPropertyAnalyzedNotUsedText",
+   "file": [],
+   "total": [
+    "Had 5 bedrooms, but because it was larger and farther away, it was not used."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/ConsiderationRequestedIndicator",
+   "data_point": "ConsiderationRequestedIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_REASONS/PROPERTY_NOT_USED_REASON/ReasonPropertyNotUsedType",
+   "data_point": "ReasonPropertyNotUsedType",
+   "file": [],
+   "total": [
+    "GrossLivingArea",
+    "Proximity"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferDate",
+   "data_point": "OwnershipTransferDate",
+   "file": [],
+   "total": [
+    "2019-06-02"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionType",
+   "data_point": "OwnershipTransferTransactionType",
+   "file": [],
+   "total": [
+    "Sale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@7464 BLANK LN",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "PropertyAnalyzedNotUsed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "8718 Mover Ln"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Treeville"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "12345"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "VA"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "5"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStatusType",
+   "data_point": "ListingStatusType",
+   "file": [],
+   "total": [
+    "SettledSale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/AdditionalPropertyAnalyzedNotUsedText",
+   "data_point": "AdditionalPropertyAnalyzedNotUsedText",
+   "file": [],
+   "total": [
+    "Property has a media room and wet bar, but is larger and of superior quality."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/ConsiderationRequestedIndicator",
+   "data_point": "ConsiderationRequestedIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_REASONS/PROPERTY_NOT_USED_REASON/ReasonPropertyNotUsedType",
+   "data_point": "ReasonPropertyNotUsedType",
+   "file": [],
+   "total": [
+    "GrossLivingArea",
+    "Quality"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferDate",
+   "data_point": "OwnershipTransferDate",
+   "file": [],
+   "total": [
+    "2019-07-13"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionType",
+   "data_point": "OwnershipTransferTransactionType",
+   "file": [],
+   "total": [
+    "Sale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@8718 MOVER LN",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "PropertyAnalyzedNotUsed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "955 Black Swan Rd"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Treeville"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "12345"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "VA"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStatusType",
+   "data_point": "ListingStatusType",
+   "file": [],
+   "total": [
+    "Pending"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/AdditionalPropertyAnalyzedNotUsedText",
+   "data_point": "AdditionalPropertyAnalyzedNotUsedText",
+   "file": [],
+   "total": [
+    "Superior quality and located further from subject"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_DETAIL/ConsiderationRequestedIndicator",
+   "data_point": "ConsiderationRequestedIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY/PROPERTY_NOT_USED/PROPERTY_NOT_USED_REASONS/PROPERTY_NOT_USED_REASON/ReasonPropertyNotUsedType",
+   "data_point": "ReasonPropertyNotUsedType",
+   "file": [],
+   "total": [
+    "Proximity",
+    "Quality"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed@955 BLACK SWAN RD",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "PropertyAnalyzedNotUsed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [
+    "NorthEast",
+    "NorthEast"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".5",
+    ".5"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [
+    "Miles",
+    "Miles"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "file": [
+    "1260",
+    "900"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [
+    "2",
+    "3"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [
+    "1",
+    "2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [
+    "0",
+    "0"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [
+    "C3",
+    "C4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [
+    "Inferior",
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [
+    "Less",
+    "Less"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [
+    "850",
+    "900"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [
+    "Superior",
+    "Superior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/SiteInfluencesComparisonType",
+   "data_point": "SiteInfluencesComparisonType",
+   "file": [
+    "Similar",
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [
+    "Similar",
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/ActualRentPerUnitFinishedAreaAmount",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "file": [
+    "0.95",
+    "1.44"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/FinancialRentalConcessionIndicator",
+   "data_point": "FinancialRentalConcessionIndicator",
+   "file": [
+    "false",
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/LeaseStartDate",
+   "data_point": "LeaseStartDate",
+   "file": [
+    "2019-09",
+    "2019-10"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/RentControlStatusType",
+   "data_point": "RentControlStatusType",
+   "file": [
+    "No",
+    "No"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitChargesIncludeUtilitiesIndicator",
+   "data_point": "UnitChargesIncludeUtilitiesIndicator",
+   "file": [
+    "false",
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitFurnishedIndicator",
+   "data_point": "UnitFurnishedIndicator",
+   "file": [
+    "false",
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitMonthlyActualRentAmount",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "file": [
+    "1200",
+    "1300"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/NEIGHBORHOOD/NEIGHBORHOOD_DETAIL/NeighborhoodName",
+   "data_point": "NeighborhoodName",
+   "file": [
+    "Hillview Gardens",
+    "Hillview Gardens"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [
+    "12000",
+    "12000"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@1776 WHITECREST RD",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [
+    "West"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    "1"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [
+    "Miles"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "file": [
+    "1056"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [
+    "3"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [
+    "2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [
+    "0"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [
+    "C4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [
+    "Less"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [
+    "900"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [
+    "Superior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/SiteInfluencesComparisonType",
+   "data_point": "SiteInfluencesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [
+    "Superior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/ActualRentPerUnitFinishedAreaAmount",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "file": [
+    "0.95"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/FinancialRentalConcessionIndicator",
+   "data_point": "FinancialRentalConcessionIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/LeaseStartDate",
+   "data_point": "LeaseStartDate",
+   "file": [
+    "2020-02"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/RentControlStatusType",
+   "data_point": "RentControlStatusType",
+   "file": [
+    "No"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitChargesIncludeUtilitiesIndicator",
+   "data_point": "UnitChargesIncludeUtilitiesIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitFurnishedIndicator",
+   "data_point": "UnitFurnishedIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitMonthlyActualRentAmount",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "file": [
+    "1000"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/NEIGHBORHOOD/NEIGHBORHOOD_DETAIL/NeighborhoodName",
+   "data_point": "NeighborhoodName",
+   "file": [
+    "Bayville"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [
+    "15000"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@420 LONG EAR AVE",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@8275 YOUNGISH ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@8275 YOUNGISH ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [
+    "Most"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@8275 YOUNGISH ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [
+    "925"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@8275 YOUNGISH ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@8275 YOUNGISH ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/SiteInfluencesComparisonType",
+   "data_point": "SiteInfluencesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@8275 YOUNGISH ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemDescription",
+   "data_point": "AdditionalComparisonLineItemDescription",
+   "file": [],
+   "total": [
+    "Walk Up"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemIdentifier",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "file": [],
+   "total": [
+    "Below Grade Exterior Access"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-10300",
+    "-13940",
+    "-5000",
+    "0",
+    "0",
+    "10000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "EnergyEfficientAndGreenFeatures",
+    "LivingUnitBathroomCount",
+    "LivingUnitBedroomCount",
+    "LivingUnitStandardFinishedAreaAboveGrade",
+    "LivingUnitStandardFinishedAreaBelowGrade",
+    "LivingUnitUnfinishedAreaBelowGrade"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/UnitIdentifier",
+   "data_point": "UnitIdentifier",
+   "file": [],
+   "total": [
+    "Unit 1",
+    "Unit 1",
+    "Unit 1",
+    "Unit 1",
+    "Unit 1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [
+    "194800"
+   ],
+   "total": [
+    "219560"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPricePerBedroomAmount",
+   "data_point": "AdjustedSalesPricePerBedroomAmount",
+   "file": [
+    "48700"
+   ],
+   "total": [
+    "54890"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPricePerUnitAmount",
+   "data_point": "AdjustedSalesPricePerUnitAmount",
+   "file": [
+    "97400"
+   ],
+   "total": [
+    "109780"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [
+    "-84200"
+   ],
+   "total": [
+    "-59440"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/ARCHITECTURAL_DESIGN/ArchitecturalDesignCategoryType",
+   "data_point": "ArchitecturalDesignCategoryType",
+   "file": [],
+   "total": [
+    "Colonial"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [],
+   "total": [
+    "Centralized"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingFuelType",
+   "data_point": "HeatingFuelType",
+   "file": [],
+   "total": [
+    "NaturalGas"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesConcessionAmountKnownIndicator",
+   "data_point": "SalesConcessionAmountKnownIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesConcessionIndicator",
+   "data_point": "SalesConcessionIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/TotalSalesConcessionAmount",
+   "data_point": "TotalSalesConcessionAmount",
+   "file": [],
+   "total": [
+    "8500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "Topography"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@13-222 N TRAIL LOOP",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "data_point": "TopographyType",
+   "file": [],
+   "total": [
+    "Rolling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemDescription",
+   "data_point": "AdditionalComparisonLineItemDescription",
+   "file": [],
+   "total": [
+    "Walk Out"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemIdentifier",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "file": [],
+   "total": [
+    "Below Grade Exterior Access"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-1000",
+    "-2000",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "EnergyEfficientAndGreenFeatures",
+    "LivingUnitBedroomCount",
+    "LivingUnitStandardFinishedAreaBelowGrade",
+    "LivingUnitUnfinishedAreaBelowGrade",
+    "MiscellaneousAmenity",
+    "OverallConditionRating"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/UnitIdentifier",
+   "data_point": "UnitIdentifier",
+   "file": [],
+   "total": [
+    "Unit 1",
+    "Unit 1",
+    "Unit 1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [
+    "199250"
+   ],
+   "total": [
+    "212250"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPricePerBedroomAmount",
+   "data_point": "AdjustedSalesPricePerBedroomAmount",
+   "file": [
+    "49813"
+   ],
+   "total": [
+    "53063"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPricePerUnitAmount",
+   "data_point": "AdjustedSalesPricePerUnitAmount",
+   "file": [
+    "99625"
+   ],
+   "total": [
+    "106125"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [
+    "-50500"
+   ],
+   "total": [
+    "-37500"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/ARCHITECTURAL_DESIGN/ArchitecturalDesignCategoryType",
+   "data_point": "ArchitecturalDesignCategoryType",
+   "file": [],
+   "total": [
+    "Colonial"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [],
+   "total": [
+    "Centralized"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingFuelType",
+   "data_point": "HeatingFuelType",
+   "file": [],
+   "total": [
+    "NaturalGas"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "IngroundPool"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITY_CATEGORY_DETAIL/AmenityCategoryType",
+   "data_point": "AmenityCategoryType",
+   "file": [],
+   "total": [
+    "WaterFeatures"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesConcessionAmountKnownIndicator",
+   "data_point": "SalesConcessionAmountKnownIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesConcessionIndicator",
+   "data_point": "SalesConcessionIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/TotalSalesConcessionAmount",
+   "data_point": "TotalSalesConcessionAmount",
+   "file": [],
+   "total": [
+    "10400"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "Topography"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@22-1713 BROAD AVE",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "data_point": "TopographyType",
+   "file": [],
+   "total": [
+    "Flat"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemDescription",
+   "data_point": "AdditionalComparisonLineItemDescription",
+   "file": [],
+   "total": [
+    "Walk Up"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemIdentifier",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "file": [],
+   "total": [
+    "Below Grade Exterior Access"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-1000",
+    "0",
+    "0",
+    "1640",
+    "2000",
+    "2000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "EnergyEfficientAndGreenFeatures",
+    "LivingUnitBathroomCount",
+    "LivingUnitStandardFinishedAreaBelowGrade",
+    "LivingUnitUnfinishedAreaBelowGrade",
+    "MiscellaneousAmenity",
+    "OutdoorLivingAmenity"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/UnitIdentifier",
+   "data_point": "UnitIdentifier",
+   "file": [],
+   "total": [
+    "Unit 1",
+    "Unit 1",
+    "Unit 1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [
+    "195900"
+   ],
+   "total": [
+    "213540"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPricePerBedroomAmount",
+   "data_point": "AdjustedSalesPricePerBedroomAmount",
+   "file": [
+    "39180"
+   ],
+   "total": [
+    "42708"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPricePerUnitAmount",
+   "data_point": "AdjustedSalesPricePerUnitAmount",
+   "file": [
+    "97950"
+   ],
+   "total": [
+    "106770"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [
+    "-4600"
+   ],
+   "total": [
+    "13040"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_EFFICIENCY_RATINGS/GREEN_EFFICIENCY_RATING/EfficiencyRatingName",
+   "data_point": "EfficiencyRatingName",
+   "file": [],
+   "total": [
+    "HERS"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_EFFICIENCY_RATINGS/GREEN_EFFICIENCY_RATING/EfficiencyRatingScoreValue",
+   "data_point": "EfficiencyRatingScoreValue",
+   "file": [],
+   "total": [
+    "61"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/ARCHITECTURAL_DESIGN/ArchitecturalDesignCategoryType",
+   "data_point": "ArchitecturalDesignCategoryType",
+   "file": [],
+   "total": [
+    "Colonial"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [],
+   "total": [
+    "Centralized"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingFuelType",
+   "data_point": "HeatingFuelType",
+   "file": [],
+   "total": [
+    "NaturalGas"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "Patio"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITY_CATEGORY_DETAIL/AmenityCategoryType",
+   "data_point": "AmenityCategoryType",
+   "file": [],
+   "total": [
+    "OutdoorLiving"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyAmenityExistsIndicator",
+   "data_point": "PropertyAmenityExistsIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesConcessionAmountKnownIndicator",
+   "data_point": "SalesConcessionAmountKnownIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesConcessionIndicator",
+   "data_point": "SalesConcessionIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/TotalSalesConcessionAmount",
+   "data_point": "TotalSalesConcessionAmount",
+   "file": [],
+   "total": [
+    "11000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "Topography"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@25-1837 HIGHMOUNTAIN PL",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "data_point": "TopographyType",
+   "file": [],
+   "total": [
+    "Rolling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\SF1_Garage.png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemDescription",
+   "data_point": "AdditionalComparisonLineItemDescription",
+   "file": [],
+   "total": [
+    "Walk Out"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/AdditionalComparisonLineItemIdentifier",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "file": [],
+   "total": [
+    "Below Grade Exterior Access"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "SalesComparableAdditionalAdjustableComparisonItem"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/UnitIdentifier",
+   "data_point": "UnitIdentifier",
+   "file": [
+    "Unit 1"
+   ],
+   "total": [
+    "Primary Dwelling"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureIdentifier",
+   "data_point": "StructureIdentifier",
+   "file": [
+    "Building 1"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Bathroom",
+    "Bathroom",
+    "Bathroom",
+    "Bathroom",
+    "Kitchen",
+    "Kitchen"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "DwellingExteriorExhibit",
+    "DwellingExteriorExhibit",
+    "SubjectPropertyAmenitiesExhibit",
+    "UnitInteriorExhibit",
+    "UnitInteriorExhibit",
+    "UnitInteriorExhibit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "\\\\Images\\2-4_SubjectProperty.png"
+   ],
+   "total": [
+    "\\\\Images\\2-4_AppliancesDefect.png",
+    "\\\\Images\\2-4_BathroomCabinet1.png",
+    "\\\\Images\\2-4_BathroomCabinet2.png",
+    "\\\\Images\\2-4_BathroomDoor.png",
+    "\\\\Images\\2-4_BathroomWalls.png",
+    "\\\\Images\\2-4_Dwelling1Front.png"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/InitialListPriceAmount",
+   "data_point": "InitialListPriceAmount",
+   "file": [],
+   "total": [
+    "489000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingEndDate",
+   "data_point": "ListingEndDate",
+   "file": [],
+   "total": [
+    "2019-09-17"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingIdentifier",
+   "data_point": "ListingIdentifier",
+   "file": [],
+   "total": [
+    "FQ999999"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStartDate",
+   "data_point": "ListingStartDate",
+   "file": [],
+   "total": [
+    "2019-09-05"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PARCELS/PARCEL/PARCEL_IDENTIFICATIONS/PARCEL_IDENTIFICATION/ParcelIdentificationType",
+   "data_point": "ParcelIdentificationType",
+   "file": [],
+   "total": [
+    "AlternativePropertyIdentifier"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PARCELS/PARCEL/PARCEL_IDENTIFICATIONS/PARCEL_IDENTIFICATION/ParcelIdentifier",
+   "data_point": "ParcelIdentifier",
+   "file": [],
+   "total": [
+    "US-51061-N-1234567891000-R-N"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PARCELS/PARCEL/PARCEL_IDENTIFICATIONS/PARCEL_IDENTIFICATION/ParcelIdentifierOwnerName",
+   "data_point": "ParcelIdentifierOwnerName",
+   "file": [],
+   "total": [
+    "Universal Property Identifier"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [
+    "Bathroom",
+    "Bathroom",
+    "Bathroom",
+    "Bathroom",
+    "Kitchen",
+    "Kitchen"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "\\\\Images\\2-4_AppliancesDefect.png",
+    "\\\\Images\\2-4_BathroomCabinet1.png",
+    "\\\\Images\\2-4_BathroomCabinet2.png",
+    "\\\\Images\\2-4_BathroomDoor.png",
+    "\\\\Images\\2-4_BathroomWalls.png",
+    "\\\\Images\\2-4_Dwelling1RoofDefect.png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/SITE/SITE_UTILITIES/SITE_UTILITY/SITE_UTILITY_DETAIL/SiteUtilityOwnershipType",
+   "data_point": "SiteUtilityOwnershipType",
+   "file": [],
+   "total": [
+    "Public"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/SITE/SITE_UTILITIES/SITE_UTILITY/SITE_UTILITY_DETAIL/UtilityType",
+   "data_point": "UtilityType",
+   "file": [],
+   "total": [
+    "Gas"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/APPRAISER/DESIGNATIONS/DESIGNATION/AppraiserDesignationType",
+   "data_point": "AppraiserDesignationType",
+   "file": [],
+   "total": [
+    "SeniorResidentialAppraiser"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceIdentifier",
+   "data_point": "DataSourceIdentifier",
+   "file": [
+    "142332",
+    "342332",
+    "425021",
+    "442332",
+    "542332",
+    "77777"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceType",
+   "data_point": "DataSourceType",
+   "file": [
+    "MLS",
+    "MLS",
+    "MLS",
+    "MLS",
+    "MLS",
+    "MLS"
+   ],
+   "total": [
+    "RealEstateAgent"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_COMMENTARIES/VALUATION_COMMENTARY/ValuationAnalysisCategoryType",
+   "data_point": "ValuationAnalysisCategoryType",
+   "file": [],
+   "total": [
+    "EnergyEfficientAndGreenFeatures"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_COMMENTARIES/VALUATION_COMMENTARY/ValuationCommentText",
+   "data_point": "ValuationCommentText",
+   "file": [],
+   "total": [
+    "On average, homes with a HERS Index rating of 62 are 38% more energy efficient than a standard new house."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "MYAPP"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Some Appraisal Creator"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.1"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Nowhere Technologies"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "\\\\2-to4-unit_Appraisal_v1.4.pdf"
+   ],
+   "total": [
+    "\\\\sampleblank.pdf"
+   ],
+   "kind": "changed"
+  }
+ ]
+}

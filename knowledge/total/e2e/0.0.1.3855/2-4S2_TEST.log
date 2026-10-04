@@ -1,0 +1,168 @@
+reset: {'structure': ['dwelling-exterior#1>1']}
+  importing with TOTAL's own importer ...
+  placing the pictures ...
+  reconciling what TOTAL's rendering changed ...
+  verifying: TOTAL's own XML against the package, then TOTAL's E&O ...
+  Yes/No pairs ...
+  TOTAL field validation ...
+  round trip: TOTAL's XML against the package ...
+configuration info 1, roundtrip info 6, roundtrip warning 49, total-field-validation severe 99, total-uad info 1
+
+[severe/total-field-validation]    income-approach/GR1_GBFA#0                       Gross building finished area is required when an income approach comparable is entered
+[severe/total-field-validation]    income-approach/GR2_GBFA#0                       Gross building finished area is required when an income approach comparable is entered
+[severe/total-field-validation]    income-approach/GR3_GBFA#0                       Gross building finished area is required when an income approach comparable is entered
+[severe/total-field-validation]    rental-information/RC1.1_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC1.1_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC1.1_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC1.1_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC1.1_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC1.1_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC1.2_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC1.2_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC1.2_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC1.2_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC1.2_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC1.2_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC1.3_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC1.3_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC1.3_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC1.3_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC1.3_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC1.3_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC2.1_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC2.1_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC2.1_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC2.1_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC2.1_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC2.1_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC2.2_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC2.2_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC2.2_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC2.2_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC2.2_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC2.2_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC2.3_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC2.3_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC2.3_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC2.3_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC2.3_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC2.3_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC3.3_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC3.3_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC3.3_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC3.3_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC3.3_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC3.3_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    rental-information/RC4.3_FURNISHED#0             Furnished status is required
+[severe/total-field-validation]    rental-information/RC4.3_MARKETAREA#0            Market area for rental comparable is required
+[severe/total-field-validation]    rental-information/RC4.3_RENT_CONC#0             Rent concessions information is required
+[severe/total-field-validation]    rental-information/RC4.3_RENT_CONTROL#0          Rent control indicator is required
+[severe/total-field-validation]    rental-information/RC4.3_SMRY_OVRL_COMP_TO_SUB#0 Summary overall comparison to subject is required
+[severe/total-field-validation]    rental-information/RC4.3_UTILS_INCLUDED#0        Utilities included indicator is required
+[severe/total-field-validation]    sales-comp/GC1_DWELL_FUNC_ISSUES#0               Please complete all required functional issues fields
+[severe/total-field-validation]    sales-comp/GC1_DWELL_STYLE_ADJ#0                 When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment 
+[severe/total-field-validation]    sales-comp/GC1_EXT_QUAL_ROOF#0                   Roof quality is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_FLOORS#0                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_FLOORS#1                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_FLOORS#2                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_FLOORS#3                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_KITCHEN#0                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_KITCHEN#1                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_KITCHEN#2                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC1_INT_COND_KITCHEN#3                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC1_SITE_TOPOGRAPHY#0                 Validation failed
+[severe/total-field-validation]    sales-comp/GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD#0   Validation failed
+[severe/total-field-validation]    sales-comp/GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD#1   Validation failed
+[severe/total-field-validation]    sales-comp/GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD#2   Validation failed
+[severe/total-field-validation]    sales-comp/GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD#3   Validation failed
+[severe/total-field-validation]    sales-comp/GC2_DWELL_FUNC_ISSUES#0               Please complete all required functional issues fields
+[severe/total-field-validation]    sales-comp/GC2_DWELL_STYLE_ADJ#0                 When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment 
+[severe/total-field-validation]    sales-comp/GC2_EXT_QUAL_ROOF#0                   Roof quality is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_FLOORS#0                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_FLOORS#1                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_FLOORS#2                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_FLOORS#3                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_KITCHEN#0                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_KITCHEN#1                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_KITCHEN#2                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC2_INT_COND_KITCHEN#3                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC2_SITE_TOPOGRAPHY#0                 Validation failed
+[severe/total-field-validation]    sales-comp/GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD#0   Validation failed
+[severe/total-field-validation]    sales-comp/GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD#1   Validation failed
+[severe/total-field-validation]    sales-comp/GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD#2   Validation failed
+[severe/total-field-validation]    sales-comp/GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD#3   Validation failed
+[severe/total-field-validation]    sales-comp/GC3_DWELL_FUNC_ISSUES#0               Please complete all required functional issues fields
+[severe/total-field-validation]    sales-comp/GC3_DWELL_STYLE_ADJ#0                 When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment 
+[severe/total-field-validation]    sales-comp/GC3_EXT_QUAL_ROOF#0                   Roof quality is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_FLOORS#0                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_FLOORS#1                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_FLOORS#2                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_FLOORS#3                 Interior floor condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_KITCHEN#0                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_KITCHEN#1                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_KITCHEN#2                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC3_INT_COND_KITCHEN#3                Interior kitchen condition is required
+[severe/total-field-validation]    sales-comp/GC3_SITE_TOPOGRAPHY#0                 Validation failed
+[severe/total-field-validation]    sales-comp/GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD#0   Validation failed
+[severe/total-field-validation]    sales-comp/GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD#1   Validation failed
+[severe/total-field-validation]    sales-comp/GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD#2   Validation failed
+[severe/total-field-validation]    sales-comp/GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD#3   Validation failed
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/COMPA dropped: package ['Conventional'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/ENERG added: package [] -> TOTAL ['false']
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/FUNCT dropped: package ['None'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO dropped: package ['NotUpdated', 'NotUpdated', 'NotUpdated'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO added: package [] -> TOTAL ['0', '0', '0']
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO added: package [] -> TOTAL ['SquareFeet', 'SquareFeet', 'SquareFeet']
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO dropped: package ['Kitchen'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO dropped: package ['NotUpdated'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO dropped: package ['Composition'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/IMPRO added: package [] -> TOTAL ['ExteriorWallsAndTrim']
+[warning/roundtrip]                SalesComparable@123 SOMETHING PL: PROPERTY/SITE/ dropped: package ['Flat'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/COM dropped: package ['Conventional'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/ENE added: package [] -> TOTAL ['false']
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/FUN dropped: package ['None'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP dropped: package ['NotUpdated', 'NotUpdated', 'NotUpdated'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP added: package [] -> TOTAL ['0', '0', '0']
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP added: package [] -> TOTAL ['SquareFeet', 'SquareFeet', 'SquareFeet']
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP dropped: package ['Kitchen'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP dropped: package ['NotUpdated'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP dropped: package ['Composition'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMP added: package [] -> TOTAL ['ExteriorWallsAndTrim']
+[warning/roundtrip]                SalesComparable@181 CATTLEDRIVE ST: PROPERTY/SIT dropped: package ['Flat'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/COMPARA dropped: package ['Conventional'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/ENERGY_ added: package [] -> TOTAL ['false']
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/FUNCTIO dropped: package ['None'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE dropped: package ['NotUpdated', 'NotUpdated', 'NotUpdated'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE added: package [] -> TOTAL ['0', '0', '0']
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE added: package [] -> TOTAL ['SquareFeet', 'SquareFeet', 'SquareFeet']
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE dropped: package ['Kitchen'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE dropped: package ['NotUpdated'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE dropped: package ['Composition'] -> TOTAL []
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/IMPROVE added: package [] -> TOTAL ['ExteriorWallsAndTrim']
+[warning/roundtrip]                SalesComparable@341 NOTHING DR: PROPERTY/SITE/SI dropped: package ['Flat'] -> TOTAL []
+[warning/roundtrip]                SubjectProperty: PROPERTY/IMPROVEMENTS/IMPROVEME dropped: package ['1', '1', '2'] -> TOTAL []
+[warning/roundtrip]                SubjectProperty: PROPERTY/INSPECTIONS/INSPECTION changed: package ['dwellingfront'] -> TOTAL ['dwellingfront-1']
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['1515 Ranch St'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['Anyplace'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['1234'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['TX'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['IDK Appraisal Management Company'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['2024-12-31'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['ABCD1234'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['TX'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['ManagementCompany'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['AppraisalManagementCompanyFee'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['0'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['XY-123994', 'XY-238849', 'XY-324811'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM dropped: package ['MLS', 'MLS', 'MLS'] -> TOTAL []
+[warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['ManagementCompany'] -> TOTAL ['ValuationSoftwareVendor']
+[info/configuration]                                                                URAR UAD-3.6-AR-1.000 -- 1025 (72); 1 building(s), 4 unit(s)
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['URAR Delivery Specification v1.4'] -> TOTAL ['URAR Delivery Specification v1.3'] -- expecte
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['Kech'] -> TOTAL ['UADAPI006'] -- expected: TOTAL writes its own product identifier
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['Kech'] -> TOTAL ['TOTAL'] -- expected: TOTAL writes its own product
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['11.2.1'] -> TOTAL ['TOTAL v6.331 | v0.0.1.3855'] -- expected: TOTAL writes its own version 
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['Kech'] -> TOTAL ['Cotality | a la mode, inc.'] -- expected: TOTAL writes its own vendor
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['\\\\appraisal.pdf'] -> TOTAL ['\\\\SAMPLEBLANK.pdf'] -- expected: the PDF TOTAL names after
+[info/total-uad]                                                                    TOTAL's UAD rules did not run: field validation is not clear (P21) -- clear it and diagnose again
+
+-> ..\knowledge\total\e2e\0.0.1.3855\2-4S2_TEST_NOT_A_REPORT_result.json

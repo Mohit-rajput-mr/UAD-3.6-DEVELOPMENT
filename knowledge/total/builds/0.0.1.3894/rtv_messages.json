@@ -1,0 +1,3160 @@
+{
+ "_default": {
+  "_default": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ",
+   "customconditionismet": "Please complete all required dependent fields",
+   "isexhibitdescriptiononlyrequired": "Exhibit description is required when a photo is attached",
+   "notempty": "This field is required",
+   "notemptyif": "This field is required based on related selections"
+  }
+ },
+ "amenities": {
+  "SPA_AMENITY": {
+   "amenitypopupvalidationfullcondition": "Please complete all required amenity fields including category and type"
+  },
+  "SPA_AMENITY_CATEGORY": {
+   "amenitypopupvalidationfullcondition": "Amenity category is required when an amenity is specified"
+  },
+  "SPA_AMENITY_DESC": {
+   "featureenteredcondition": "Amenity description is required when a feature is entered"
+  },
+  "SPA_AMENITY_DETAIL": {
+   "amenitypopupdetailsvalidationfullcondition": "Please complete all required amenity detail fields"
+  },
+  "SPA_AMENITY_FEATURE": {
+   "isamenitisfeaturerequiredcondition": "Amenity feature selection is required"
+  },
+  "SPA_AMENITY_INTEGRITY": {
+   "featureenteredcondition": "Amenity integrity rating is required when a feature is entered"
+  },
+  "SPA_AMENITY_LOCATION": {
+   "featureenteredcondition": "Amenity location is required when a feature is entered"
+  },
+  "SPA_AMENITY_MATERIAL": {
+   "amenitypopupmaterialvalidationfullcondition": "Please complete all required amenity material fields"
+  },
+  "SPA_AMENITY_RECOMMEND_ACTION": {
+   "featureenteredcondition": "Recommended action is required when an amenity feature is entered"
+  },
+  "PU_SPA_AMENITY_TYPE": {
+   "isamenitytypequiredcondition": "Amenity type is required",
+   "notempty": "This field is required"
+  },
+  "PU_SPA_AMENITY_TOTALNUM": {
+   "amenitypopuptotalnumvalidationfullcondition": "Total number is required when amenity type is Indoor Fireplace or Woodstove"
+  },
+  "PU_SPA_AMENITY_DETAIL_AREA": {
+   "amenitypopupdetailareavalidationfullcondition": "Detail area is required for this amenity type"
+  },
+  "PU_SPA_AMENITY_MATERIAL": {
+   "amenitypopupmaterialvalidationfullcondition": "Material is required for this amenity type"
+  },
+  "SPA_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when an exhibit description is not provided"
+  },
+  "SPA_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when an exhibit category is not provided or the category is Apparent Defects, Damages, Deficiencies"
+  },
+  "SPA_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  }
+ },
+ "assignment": {
+  "APPRAISER_ADDRESS": {
+   "notempty": "Appraiser street address is required"
+  },
+  "APPRAISER_CITY": {
+   "notempty": "Appraiser city is required"
+  },
+  "APPRAISER_COMPANY_ADDR": {
+   "companyaddressvalidationfullcondition": "Please complete all appraiser company address fields (address, city, state, ZIP)"
+  },
+  "APPRAISER_COMPANY_NAME": {
+   "notempty": "Appraiser company name is required"
+  },
+  "APPRAISER_CRED_EXPIRES": {
+   "notempty": "Appraiser credential expiration date is required"
+  },
+  "APPRAISER_CRED_ID": {
+   "notempty": "Appraiser credential/license ID is required"
+  },
+  "APPRAISER_CRED_STATE": {
+   "notempty": "Appraiser credential state is required"
+  },
+  "APPRAISER_EMPLOYEEMENT_TYPE": {
+   "notempty": "Appraiser employment type is required"
+  },
+  "APPRAISER_FIRST_NAME": {
+   "notempty": "Appraiser first name is required"
+  },
+  "APPRAISER_LAST_NAME": {
+   "notempty": "Appraiser last name is required"
+  },
+  "APPRAISER_LEVEL": {
+   "notempty": "Appraiser credential level is required"
+  },
+  "APPRAISER_NAME": {
+   "apparisernamevalidationfullcondition": "Please complete all appraiser name fields (first name, last name)"
+  },
+  "APPRAISER_SPI_DATE": {
+   "inspectiondaterequiredforphysicalorvirtual": "Inspection date is required when the inspection method is Physical or Virtual"
+  },
+  "APPRAISER_SPI_EXTERIOR": {
+   "notempty": "Appraiser subject property exterior inspection method is required"
+  },
+  "APPRAISER_SPI_INTERIOR": {
+   "notempty": "Appraiser subject property interior inspection method is required"
+  },
+  "APPRAISER_STATE": {
+   "notempty": "Appraiser state is required"
+  },
+  "APPRAISER_ZIP": {
+   "notempty": "Appraiser ZIP code is required"
+  },
+  "ASSIGN_BORROWER": {
+   "assignborrowervalidationfullcondition": "Please complete all borrower information fields"
+  },
+  "ASSIGN_PROPVALMETHOD": {
+   "notempty": "Property valuation method is required"
+  },
+  "ASSIGN_REASON": {
+   "notempty": "Assignment reason is required"
+  },
+  "BORROWER_FIRST_NAME": {
+   "notempty": "Borrower first name is required"
+  },
+  "BORROWER_FULL_NAME": {
+   "notempty": "Borrower full name is required"
+  },
+  "BORROWER_LAST_NAME": {
+   "notempty": "Borrower last name is required"
+  },
+  "BORROWER_TYPE": {
+   "notempty": "Borrower type is required"
+  },
+  "PDR_ADDR": {
+   "propertydatareportcompanyaddressvalidationfullcondition": "Please complete all Property Data Report company address fields"
+  },
+  "PDR_ADDRESS": {
+   "notempty": "Property Data Report address is required"
+  },
+  "PDR_CITY": {
+   "notempty": "Property Data Report city is required"
+  },
+  "PDR_COMPANY_NAME": {
+   "notempty": "Property Data Report company name is required"
+  },
+  "PDR_EXTERIOR": {
+   "notempty": "Property Data Report exterior inspection method is required"
+  },
+  "PDR_FIRST_NAME": {
+   "notempty": "Property Data Report collector first name is required"
+  },
+  "PDR_INSPECTION_DATE": {
+   "inspectiondaterequiredforpdr": "Inspection date is required when the Property Data Report inspection method is Physical or Virtual"
+  },
+  "PDR_INTERIOR": {
+   "notempty": "Property Data Report interior inspection method is required"
+  },
+  "PDR_LAST_NAME": {
+   "notempty": "Property Data Report collector last name is required"
+  },
+  "PDR_NAME": {
+   "propretydatareportnamevalidationfullcondition": "Please complete all Property Data Report name fields (first name, last name)"
+  },
+  "PDR_OCCUPATION": {
+   "notempty": "Property Data Report collector occupation is required"
+  },
+  "PDR_REFERENCE_ID": {
+   "notempty": "Property Data Report reference ID is required"
+  },
+  "PDR_STATE": {
+   "notempty": "Property Data Report state is required"
+  },
+  "PDR_USED_NO": {
+   "notempty": "Please indicate whether a Property Data Report was used (Yes or No)"
+  },
+  "PDR_USED_YES": {
+   "notempty": "Please indicate whether a Property Data Report was used (Yes or No)"
+  },
+  "PDR_ZIP": {
+   "notempty": "Property Data Report ZIP code is required"
+  },
+  "SRPA_CRED_EXPIRES": {
+   "notempty": "Significant Real Property Appraiser credential expiration date is required"
+  },
+  "SRPA_CRED_ID": {
+   "notempty": "Significant Real Property Appraiser credential ID is required"
+  },
+  "SRPA_CRED_STATE": {
+   "notempty": "Significant Real Property Appraiser credential state is required"
+  },
+  "SRPA_DESC": {
+   "notempty": "Significant Real Property Appraiser description is required"
+  },
+  "SRPA_FIRST_NAME": {
+   "notempty": "Significant Real Property Appraiser first name is required"
+  },
+  "SRPA_LAST_NAME": {
+   "notempty": "Significant Real Property Appraiser last name is required"
+  },
+  "SRPA_LEVEL": {
+   "notempty": "Significant Real Property Appraiser credential level is required"
+  },
+  "SRPA_NAME": {
+   "significantrealpropertyvalidationfullcondition": "Please complete all Significant Real Property Appraiser name fields"
+  },
+  "SUBCUROWNER": {
+   "currentovnervalidationfullcondition": "Please complete all current owner name fields",
+   "notempty": "Current owner name is required"
+  },
+  "SUBCUROWNER_FIRST_NAME": {
+   "notempty": "Current owner first name is required"
+  },
+  "SUBCUROWNER_FULL_NAME": {
+   "notempty": "Current owner full name is required"
+  },
+  "SUBCUROWNER_LAST_NAME": {
+   "notempty": "Current owner last name is required"
+  },
+  "SUPERVISOR_ADDRESS": {
+   "notempty": "Supervisory appraiser street address is required"
+  },
+  "SUPERVISOR_CITY": {
+   "notempty": "Supervisory appraiser city is required"
+  },
+  "SUPERVISOR_COMPANY_ADDR": {
+   "supervisorcompanyaddressvalidationfullcondition": "Please complete all supervisory appraiser company address fields"
+  },
+  "SUPERVISOR_COMPANY_NAME": {
+   "notempty": "Supervisory appraiser company name is required"
+  },
+  "SUPERVISOR_CRED_EXPIRES": {
+   "notempty": "Supervisory appraiser credential expiration date is required"
+  },
+  "SUPERVISOR_CRED_ID": {
+   "notempty": "Supervisory appraiser credential ID is required"
+  },
+  "SUPERVISOR_CRED_STATE": {
+   "notempty": "Supervisory appraiser credential state is required"
+  },
+  "SUPERVISOR_EMPLOYEEMENT_TYPE": {
+   "notempty": "Supervisory appraiser employment type is required"
+  },
+  "SUPERVISOR_FIRST_NAME": {
+   "notempty": "Supervisory appraiser first name is required"
+  },
+  "SUPERVISOR_LAST_NAME": {
+   "notempty": "Supervisory appraiser last name is required"
+  },
+  "SUPERVISOR_LEVEL": {
+   "notempty": "Supervisory appraiser credential level is required"
+  },
+  "SUPERVISOR_NAME": {
+   "supervisoryappraisernamevalidationfullcondition": "Please complete all supervisory appraiser name fields"
+  },
+  "SUPERVISOR_SPI_DATE": {
+   "inspectiondaterequiredforsupervisor": "Supervisory appraiser inspection date is required when the inspection method is Physical or Virtual"
+  },
+  "SUPERVISOR_SPI_EXTERIOR": {
+   "notempty": "Supervisory appraiser exterior inspection method is required"
+  },
+  "SUPERVISOR_SPI_INTERIOR": {
+   "notempty": "Supervisory appraiser interior inspection method is required"
+  },
+  "SUPERVISOR_STATE": {
+   "notempty": "Supervisory appraiser state is required"
+  },
+  "SUPERVISOR_ZIP": {
+   "notempty": "Supervisory appraiser ZIP code is required"
+  },
+  "ASSIGNMENT_EXHIBIT_DESC": {
+   "isexhibitdescriptiononlyrequired": "Assignment exhibit description is required when a photo is attached"
+  },
+  "ASSIGN_SELLER": {
+   "custom": "Seller contact information is required."
+  },
+  "SUBCUROWNER_TYPE": {
+   "notempty": "This field is required"
+  },
+  "ASSIGNMENT_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  },
+  "CONTACT_FULL_NAME": {
+   "contactfullnamevalidationfullcondition": "Please complete all contact full name fields"
+  },
+  "CONTACT_DESC": {
+   "contactdescrequiredforother": "A contact type description is required"
+  },
+  "CONTACT_ADDR": {
+   "contactaddrvalidationfullcondition": "Please complete all contact address fields (address, city, state, ZIP)"
+  },
+  "CONTACT_APPRAISER_REFERENCE_ID": {
+   "appraiserreferenceidrequired": "Appraiser Reference ID is required"
+  }
+ },
+ "best-use": {
+  "HBU_COMMENTARY": {
+   "ishighestandbestusecommentaryrequiredcondition": "Highest and best use commentary is required based on your selections"
+  },
+  "HBU_FIN_FEASIBL": {
+   "notempty": "Financially feasible determination is required"
+  },
+  "HBU_LEGAL": {
+   "notempty": "Legally permissible determination is required"
+  },
+  "HBU_MAX_PROD": {
+   "notempty": "Maximally productive determination is required"
+  },
+  "HBU_NO": {
+   "notempty": "Please indicate whether the present use is the highest and best use (Yes or No)"
+  },
+  "HBU_PHY_POSSIBLE": {
+   "notempty": "Physically possible determination is required"
+  },
+  "HBU_YES": {
+   "notempty": "Please indicate whether the present use is the highest and best use (Yes or No)"
+  }
+ },
+ "certifications": {
+  "ADDITIONAL_APPRAISER_CERT0": {
+   "notempty": "Additional appraiser certification statement is required"
+  },
+  "ADDITIONAL_INTENDED_USE": {
+   "notempty": "Additional intended use description is required"
+  },
+  "ADDITIONAL_INTENDED_USERS": {
+   "notempty": "Additional intended users are required"
+  },
+  "ADDITIONAL_SCOPE": {
+   "notempty": "Additional scope of work description is required"
+  },
+  "DSCR_PRIOR_SERVICE": {
+   "notempty": "Description of prior services within the past 3 years is required"
+  },
+  "SIGNED_DATE": {
+   "notempty": "Signature date is required"
+  },
+  "SIGNER_LIC_CERT_EXPIRATION": {
+   "notempty": "Signer license/certification expiration date is required"
+  },
+  "SIGNER_LIC_CERT_ID": {
+   "notempty": "Signer license/certification ID number is required"
+  },
+  "SIGNER_LIC_CERT_LEVEL": {
+   "notempty": "Signer license/certification level is required"
+  },
+  "SIGNER_LIC_CERT_STATE": {
+   "notempty": "Signer license/certification state is required"
+  }
+ },
+ "cost-approach": {
+  "CA_AS_IS_OF_SIT_IMP_AMT": {
+   "asisvalueofsiteimprovementdescriptionisnotempty": "As-is value of site improvements amount is required when a description is provided"
+  },
+  "CA_COST_DATA_SOURCE": {
+   "notempty": "Cost data source is required"
+  },
+  "CA_COST_DATA_SOURCE_TYPE": {
+   "notempty": "Cost data source type is required"
+  },
+  "CA_COST_METHOD": {
+   "notempty": "Cost method is required"
+  },
+  "CA_COST_SERVICE_SOURCE_TYPE": {
+   "notempty": "Cost service source type is required"
+  },
+  "CA_COST_TYPE": {
+   "notempty": "Cost type (reproduction or replacement) is required"
+  },
+  "CA_DEPRECIATION_METHOD": {
+   "notempty": "Depreciation method is required"
+  },
+  "CA_DWELL_AREA_SIZE": {
+   "notempty": "Dwelling area size is required"
+  },
+  "CA_DWELL_AREA_TYPE": {
+   "notempty": "Dwelling area type is required"
+  },
+  "CA_DWELL_EXTERNAL_DEPRECIATION": {
+   "dwellingphysicaldepreciationchecked": "Dwelling external depreciation is required when physical depreciation is checked"
+  },
+  "CA_DWELL_FUNCTIONAL_DEPRECIATION": {
+   "dwellingphysicaldepreciationchecked": "Dwelling functional depreciation is required when physical depreciation is checked"
+  },
+  "CA_DWELL_MANUFACTURED_SETUP_COST": {
+   "dwellingcostmethodismanufactured": "Manufactured dwelling setup cost is required when cost method is Manufactured"
+  },
+  "CA_DWELL_PER_UNIT_MEASURE": {
+   "notempty": "Dwelling per-unit cost measure is required"
+  },
+  "CA_DWELL_PHYSICAL_DEPRECIATION": {
+   "dwellingphysicaldepreciationchecked": "Dwelling physical depreciation amount is required when physical depreciation is checked"
+  },
+  "CA_DWELL_TOTAL_DEPRECIATION": {
+   "notemptyif": "Dwelling total depreciation is required when total depreciation is checked"
+  },
+  "CA_EFFECTIVE_AGE": {
+   "notempty": "Effective age is required"
+  },
+  "CA_EFFECTIVE_AGE_COMMENTARY": {
+   "govagencyisfhaorvaorusda": "Effective age commentary is required when the government agency is FHA, VA, or USDA"
+  },
+  "CA_EFFECTIVE_AGE_PRECISE": {
+   "effectiiveagerangechecked": "Precise effective age is required when the age range option is not selected"
+  },
+  "CA_EFFECTIVE_DATE": {
+   "notempty": "Cost approach effective date is required"
+  },
+  "CA_EXHIBIT_DESCRIPTION": {
+   "exhibithasphoto": "Exhibit description is required when a photo is attached"
+  },
+  "CA_LC_ADDR": {
+   "landcompaddressdfeisvalid": "Please complete all land comparable address fields (address, city, state, ZIP)"
+  },
+  "CA_LC_ADDRESS": {
+   "notempty": "Land comparable address is required"
+  },
+  "CA_LC_APN": {
+   "primarysitevalmethodissalescomparison": "Land comparable APN is required when the primary site valuation method is Sales Comparison"
+  },
+  "CA_LC_CITY": {
+   "notempty": "Land comparable city is required"
+  },
+  "CA_LC_COUNTY": {
+   "primarysitevalmethodissalescomparison": "Land comparable county is required when the primary site valuation method is Sales Comparison"
+  },
+  "CA_LC_DT_SALTIM1": {
+   "primarysitevalmethodissalescomparison": "Land comparable sale date is required when the primary site valuation method is Sales Comparison"
+  },
+  "CA_LC_PRICE": {
+   "primarysitevalmethodissalescomparison": "Land comparable sale price is required when the primary site valuation method is Sales Comparison"
+  },
+  "CA_LC_SITSIZE": {
+   "primarysitevalmethodissalescomparison": "Land comparable site size is required when the primary site valuation method is Sales Comparison"
+  },
+  "CA_LC_SOURCE": {
+   "notempty": "Land comparable data source is required",
+   "datasourceisvalid": "Land comparable data source must be a valid selection"
+  },
+  "CA_LC_SOURCE_MLS_NUM": {
+   "datasourcemls": "Land comparable MLS number is required when the data source is MLS"
+  },
+  "CA_LC_SOURCE_RECORD_NUM": {
+   "datasourceasessorrecord": "Land comparable assessor record number is required when the data source is Assessor Record"
+  },
+  "CA_LC_STATE": {
+   "notempty": "Land comparable state is required"
+  },
+  "CA_LC_ZIP": {
+   "notempty": "Land comparable ZIP code is required"
+  },
+  "CA_MAP_EXHIBIT_DESCRIPTION": {
+   "mapexhibithasphoto": "Map exhibit description is required when a photo is attached"
+  },
+  "CA_OPINION_SITE_VAL": {
+   "notempty": "Opinion of site value is required"
+  },
+  "CA_OUT_AREA_SIZE": {
+   "notempty": "Outbuilding area size is required"
+  },
+  "CA_OUT_AREA_TYPE": {
+   "notempty": "Outbuilding area type is required"
+  },
+  "CA_OUT_EXTERNAL_DEPRECIATION": {
+   "outbuildingphysicaldepreciationchecked": "Outbuilding external depreciation is required when physical depreciation is checked"
+  },
+  "CA_OUT_FUNCTIONAL_DEPRECIATION": {
+   "outbuildingphysicaldepreciationchecked": "Outbuilding functional depreciation is required when physical depreciation is checked"
+  },
+  "CA_OUT_MANUFACTURED_SETUP_COST": {
+   "outbuildingismanufactured": "Outbuilding manufactured setup cost is required when the outbuilding is manufactured"
+  },
+  "CA_OUT_PER_UNIT_MEASURE": {
+   "notempty": "Outbuilding per-unit cost measure is required"
+  },
+  "CA_OUT_PHYSICAL_DEPRECIATION": {
+   "outbuildingphysicaldepreciationchecked": "Outbuilding physical depreciation is required when physical depreciation is checked"
+  },
+  "CA_OUT_TOTAL_DEPRECIATION": {
+   "outbuildingtotaldepreciationchecked": "Outbuilding total depreciation is required when total depreciation is checked"
+  },
+  "CA_PRIMARY_SITE_VAL_METHOD": {
+   "notempty": "Primary site valuation method is required"
+  },
+  "CA_QUALITY_RATING": {
+   "datasourcetypeiscostservice": "Quality rating is required when the data source type is Cost Service"
+  },
+  "CA_REMAINING_ECONOMIC_LIFE": {
+   "notempty": "Remaining economic life is required"
+  },
+  "CA_REMAINING_ECONOMIC_LIFE_COMMENTARY": {
+   "remainingeconomiclifelowerthan30years": "Remaining economic life commentary is required when remaining economic life is less than 30 years"
+  },
+  "CA_SITE_VALUE": {
+   "notempty": "Site value is required"
+  },
+  "PU_CA_EFFECTIVE_AGE_RANGE_HIGH": {
+   "effectiiveagerangechecked": "Effective age range upper bound is required when the age range option is selected"
+  },
+  "PU_CA_EFFECTIVE_AGE_RANGE_LOW": {
+   "effectiiveagerangechecked": "Effective age range lower bound is required when the age range option is selected"
+  },
+  "COST_APPROACH_COMMENTARY": {
+   "notempty": "This field is required"
+  }
+ },
+ "disaster-mitigation": {
+  "DM_MITIGATION_COMMENTARY": {
+   "notempty": "Disaster mitigation commentary is required"
+  },
+  "DM_MITIGATION_FEATURE": {
+   "notempty": "Disaster mitigation feature is required"
+  }
+ },
+ "dwelling-exterior": {
+  "PHOTO1": {
+   "notempty": "Subject photo is required on Dwelling Exterior"
+  },
+  "ATTIC": {
+   "notempty": "Attic information is required"
+  },
+  "CONST_METHOD": {
+   "floorinbuildingrequiredcondition": "Construction method is required when the structure type does not require floor count"
+  },
+  "COOL_SYSTEM": {
+   "notempty": "Cooling system type is required"
+  },
+  "DEFECT_DESC": {
+   "dwellingexteriorfeatureenteredcondition": "Defect description is required when a defect feature is reported"
+  },
+  "DEFECT_FEATURE": {
+   "isdwellingexterioradddenabled": "Defect feature selection is required"
+  },
+  "DEFECT_INTEGRITY": {
+   "dwellingexteriorfeatureenteredcondition": "Defect integrity rating is required when a defect feature is reported"
+  },
+  "DEFECT_LOCATION": {
+   "dwellingexteriorfeatureenteredcondition": "Defect location is required when a defect feature is reported"
+  },
+  "DEFECT_RECOMMEND_ACTION": {
+   "dwellingexteriorfeatureenteredcondition": "Recommended action is required when a defect feature is reported"
+  },
+  "EXTEXTWALLS": {
+   "notempty": "Exterior wall material is required"
+  },
+  "EXTRFSURFACE": {
+   "notempty": "Roof surface material is required",
+   "roofmaterialfullcondition": "Please complete all required roof material fields"
+  },
+  "EXTRFSURFACE_AGE": {
+   "notempty": "Roof surface age is required"
+  },
+  "EXTRFSURFACE_OBSERVABLE": {
+   "notempty": "Roof surface observable condition is required"
+  },
+  "EXTRFSURFACE_TYPE": {
+   "notempty": "Roof surface type is required"
+  },
+  "EXT_COND_RATING": {
+   "notempty": "Exterior condition rating is required"
+  },
+  "EXT_FEAT_COND_STATUS": {
+   "notempty": "Exterior feature condition status is required",
+   "isexteriorwallsconditionstatusrequired": "Exterior feature condition status is required when wall material is specified"
+  },
+  "EXT_FOUNDATION_DETAIL": {
+   "foundationpopupfullcondition": "Please complete all required foundation detail fields",
+   "notempty": "Foundation detail is required"
+  },
+  "EXT_FOUNDATION_MATERIAL_DETAIL": {
+   "notempty": "Foundation material detail is required"
+  },
+  "EXT_FOUNDATION_STATUS": {
+   "notempty": "Foundation condition status is required",
+   "isfoundationconditionstatusrequired": "Foundation condition status is required when foundation detail is specified"
+  },
+  "EXT_FOUNDATION_TYPE_DETAIL": {
+   "notempty": "Foundation type detail is required"
+  },
+  "EXT_OTHER_DETAIL": {
+   "notempty": "Other exterior feature detail is required",
+   "notemptyif": "Other exterior feature detail is required when 'Other' feature type is selected"
+  },
+  "EXT_OTHER_STATUS": {
+   "notemptyif": "Other exterior feature status is required when 'Other' feature type is selected"
+  },
+  "EXT_QUAL_RATING": {
+   "notempty": "Exterior quality rating is required"
+  },
+  "EXT_ROOF_STATUS": {
+   "isroofconditionstatusrequiredcondition": "Roof condition status is required based on roof surface information",
+   "notempty": "Roof condition status is required"
+  },
+  "EXT_WINDOW_DETAIL": {
+   "notempty": "Window detail information is required"
+  },
+  "EXT_WINDOW_STATUS": {
+   "notempty": "Window condition status is required"
+  },
+  "FACTORY_BLT_CERT": {
+   "notempty": "Factory built certification status is required"
+  },
+  "FINISHED_AREA_ROOM_SUMMARY_ROOM_TYPE": {
+   "notempty": "Room type in finished area room summary is required"
+  },
+  "FINISHED_AREA_TOTAL_AREA": {
+   "notempty": "Total finished area is required"
+  },
+  "FLOORS": {
+   "floorinbuildingrequiredcondition": "Number of floors is required for the selected structure design type"
+  },
+  "FRONT_DOOR_ELEV": {
+   "notempty": "Front door elevation is required"
+  },
+  "HEAT_BELOW_GRADE_NO": {
+   "coreheatingsystembelowgradecondition": "Please indicate whether heating extends below grade (Yes or No)"
+  },
+  "HEAT_BELOW_GRADE_YES": {
+   "coreheatingsystembelowgradecondition": "Please indicate whether heating extends below grade (Yes or No)"
+  },
+  "HEAT_DETAIL": {
+   "notempty": "Heating fuel/energy source detail is required"
+  },
+  "HEAT_SYSTEM": {
+   "notempty": "Heating system type is required"
+  },
+  "PJIYRBUILT": {
+   "yearbuiltcondition": "Please complete all required year built fields"
+  },
+  "PUIYRBUILT": {
+   "notemptyif": "Year built is required for townhouse structures"
+  },
+  "PUIYRBUILT_ESTIMATED": {
+   "notemptyif": "Year built estimated indicator is required for townhouse structures"
+  },
+  "STRUCTURE_DESIGN_TYPE": {
+   "notempty": "Structure design type is required"
+  },
+  "STYLE": {
+   "notempty": "Architectural style is required"
+  },
+  "TOWNHOUSE_BACK2BACK": {
+   "istownhousecondition": "Back-to-back configuration is required for townhouse structures"
+  },
+  "TOWNHOUSE_END_UNIT": {
+   "istownhousecondition": "End unit designation is required for townhouse structures"
+  },
+  "TOWNHOUSE_LOC": {
+   "isunitsaboveorbelowcondition": "Townhouse location is required when units above or below are specified"
+  },
+  "UNITS_ABOVE_OR_BELOW": {
+   "istownhousecondition": "Units above or below indicator is required for townhouse structures"
+  },
+  "EXTERIOR_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exterior exhibit category is required when an exterior exhibit description is not provided"
+  },
+  "EXTERIOR_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exterior exhibit description is required when an exterior exhibit category is not provided or the category is Apparent Defects, Damages, Deficiencies"
+  },
+  "EXTERIOR_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  }
+ },
+ "garage": {
+  "VS_CAR_STORAGE": {
+   "storagepopupvalidationfullcondition": "Please complete all required car storage fields"
+  },
+  "VS_DEFECT_DESC": {
+   "vehiclestoragefeatureenteredcondition": "Defect description is required when a vehicle storage defect feature is reported"
+  },
+  "VS_DEFECT_FEATURE": {
+   "isfeaturerequiredcondition": "Vehicle storage defect feature selection is required"
+  },
+  "VS_DEFECT_INTEGRITY": {
+   "vehiclestoragefeatureenteredcondition": "Defect integrity rating is required when a vehicle storage defect feature is reported"
+  },
+  "VS_DEFECT_LOCATION": {
+   "vehiclestoragefeatureenteredcondition": "Defect location is required when a vehicle storage defect feature is reported"
+  },
+  "VS_DEFECT_RECOMMEND_ACTION": {
+   "vehiclestoragefeatureenteredcondition": "Recommended action is required when a vehicle storage defect feature is reported"
+  },
+  "VS_NUM_PARK_SPACES": {
+   "numberparkspacesvalidationfullcondition": "Number of vehicle storage spaces is required"
+  },
+  "VS_PU_CAR_STORAGE_TYPE": {
+   "notempty": "Car storage type is required"
+  },
+  "VS_PU_DRIVEWAY_SURFACE_MATERIAL": {
+   "notempty": "Driveway surface material is required"
+  },
+  "VS_PU_PARKING_SPACE_ASSIGNMENT": {
+   "notempty": "Parking space assignment type is required"
+  },
+  "VS_PU_STORAGE_NUMBER_SPACES": {
+   "numberparkspacesvalidationfullcondition": "Number of vehicle storage spaces is required"
+  },
+  "VS_PU_STORAGE_NUMBER_SPACES_NUM": {
+   "numberparkspacesvalidationfullcondition": "Number of vehicle storage spaces is required"
+  },
+  "VS_PU_STORAGE_SPACE_SQUARE_FEET": {
+   "notempty": "Storage space square footage is required"
+  },
+  "VS_PU_STORAGE_TYPE_DETAIL": {
+   "notempty": "Storage type detail is required"
+  },
+  "VS_STORAGE_DETAIL": {
+   "storagedetailpopupvalidationfullcondition": "Please complete all required storage detail fields"
+  },
+  "VS_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when a photo is attached"
+  },
+  "VS_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when a photo is attached and the category is empty or Apparent Defects, Damages, Deficiencies"
+  },
+  "VS_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  }
+ },
+ "green-energy": {
+  "EE_CERTS": {
+   "dependandonknowncertificationorganizationcondition": "Certification type is required when a known certification organization is selected"
+  },
+  "EE_CERTS_ORGANIZATION": {
+   "notempty": "Certification organization is required"
+  },
+  "EE_DESCRIPTION": {
+   "dependandonimpacttovaluecondition": "Energy efficiency description is required based on the selected impact to value"
+  },
+  "EE_FINANCING": {
+   "financingvalidationfullcondition": "Please complete all required energy efficiency financing fields"
+  },
+  "EE_GREEN_EFF": {
+   "notempty": "Green energy efficiency organization is required"
+  },
+  "EE_GREEN_RATING": {
+   "dependandonknowngreenenergyefficiencyorganizationcondition": "Green energy efficiency rating is required when a known organization is selected"
+  },
+  "EE_GREEN_SCORE": {
+   "dependandonknowngreenenergyefficiencyorganizationcondition": "Green energy efficiency score is required when a known organization is selected"
+  },
+  "EE_IMPACT_TO_VAL": {
+   "notempty": "Impact to value is required"
+  },
+  "EE_OWNERSHIP": {
+   "ownershipvalidationfullcondition": "Please complete all required renewable energy ownership fields"
+  },
+  "EE_RATING": {
+   "dependandonknowncertificationorganizationcondition": "Certification rating is required when a known certification organization is selected"
+  },
+  "EE_RENEWABLES": {
+   "renewableenergyvalidationfullcondition": "Please complete all required renewable energy fields"
+  },
+  "EE_VERSION": {
+   "dependandonknowncertificationorganizationcondition": "Certification version is required when a known certification organization is selected"
+  },
+  "EE_YEAR": {
+   "dependandonknowncertificationorganizationcondition": "Certification year is required when a known certification organization is selected"
+  },
+  "PU_EE_RENEWABLE_TYPE": {
+   "notempty": "Renewable energy type is required"
+  }
+ },
+ "history": {
+  "PSH_COMP_ANALYSIS": {
+   "notempty": "Comparable property transfer/sale analysis is required"
+  },
+  "PSH_COMP_TRANSFER_AMOUNT": {
+   "notempty": "Comparable transfer amount is required",
+   "iscomptransferamountrequired": "Comparable transfer amount is required based on the transfer amount value"
+  },
+  "PSH_COMP_TRANSFER_DATA_SOURCE": {
+   "notempty": "Comparable transfer data source is required"
+  },
+  "PSH_COMP_TRANSFER_DATE": {
+   "notempty": "Comparable transfer date is required"
+  },
+  "PSH_COMP_TRANSFER_NUM": {
+   "notempty": "Comparable transfer document/recording number is required"
+  },
+  "PSH_COMP_TRANSFER_TERMS": {
+   "notempty": "Comparable transfer terms are required"
+  },
+  "PSH_DATA_SOURCE": {
+   "notempty": "Prior sales/transfer history data source is required"
+  },
+  "PSH_SUB_ANALYSIS": {
+   "notempty": "Subject property transfer/sale analysis is required"
+  },
+  "PSH_SUB_TRANSFER_AMOUNT": {
+   "notempty": "Subject transfer amount is required",
+   "issubtransferamountrequired": "Subject transfer amount is required based on the transfer amount value"
+  },
+  "PSH_SUB_TRANSFER_DATA_SOURCE": {
+   "notempty": "Subject transfer data source is required"
+  },
+  "PSH_SUB_TRANSFER_DATE": {
+   "notempty": "Subject transfer date is required"
+  },
+  "PSH_SUB_TRANSFER_TERMS": {
+   "notempty": "Subject transfer terms are required"
+  },
+  "PU_COMP_TRANSFER_AMOUNT_REASON": {
+   "notempty": "Reason for comparable transfer amount is required"
+  }
+ },
+ "income-approach": {
+  "ADU": {
+   "incomeapproachenteredcondition": "ADU information is required when an income approach comparable is entered"
+  },
+  "AD_ADDR": {
+   "addressvalidationfullcondition": "Income approach comparable address is required when a comparable is entered"
+  },
+  "COPY_COMP": {
+   "incomeapproachenteredcondition": "Copy comparable source is required when an income approach comparable is entered"
+  },
+  "GBFA": {
+   "incomeapproachenteredcondition": "Gross building finished area is required when an income approach comparable is entered"
+  },
+  "GROSS_RENT_MULTIPLIER": {
+   "notempty": "Gross rent multiplier is required"
+  },
+  "IA_GRM_MAP_EXHIBIT_PHOTO": {
+   "notemptyif": "GRM map exhibit photo is required when GRM comparables are not included in the sales comparison map"
+  },
+  "INCOME_APPROACH_COMMENTARY": {
+   "notempty": "Income approach commentary is required"
+  },
+  "MONTHLY_RENT": {
+   "incomeapproachenteredcondition": "Monthly rent is required when an income approach comparable is entered"
+  },
+  "PHOTO": {
+   "incomeapproachenteredcondition": "Photo is required when an income approach comparable is entered"
+  },
+  "PROX1": {
+   "enteredproxcondition": "Please complete all required proximity to subject fields for the income approach comparable"
+  },
+  "PU_DATA_SOURCE_ASSESSOR_ID": {
+   "incomeapproachenteredcondition": "Data source assessor ID is required when an income approach comparable is entered"
+  },
+  "PU_DATA_SOURCE_MLS_NUM": {
+   "incomeapproachenteredcondition": "Data source MLS number is required when an income approach comparable is entered"
+  },
+  "PU_DIRECTION": {
+   "incomeapproachenteredcondition": "Direction from subject is required when an income approach comparable is entered"
+  },
+  "PU_DISTANCE": {
+   "incomeapproachenteredcondition": "Distance from subject is required when an income approach comparable is entered"
+  },
+  "RENT_MULTIPLIER": {
+   "incomeapproachenteredcondition": "Rent multiplier is required when an income approach comparable is entered"
+  },
+  "SALE_DATE": {
+   "incomeapproachenteredcondition": "Sale date is required when an income approach comparable is entered"
+  },
+  "SALE_PRICE": {
+   "incomeapproachenteredcondition": "Sale price is required when an income approach comparable is entered"
+  },
+  "SC_SOURCE1": {
+   "incomeapproachenteredsourcecondition": "Data source is required when an income approach comparable source is entered"
+  },
+  "UNITS_EXCL_ADU": {
+   "incomeapproachenteredcondition": "Units excluding ADU is required when an income approach comparable is entered"
+  },
+  "WEIGHT": {
+   "incomeapproachenteredcondition": "Comparable weight is required when an income approach comparable is entered"
+  },
+  "DB_CITY": {
+   "notempty": "This field is required"
+  },
+  "DB_STATE": {
+   "notempty": "This field is required"
+  },
+  "DB_ZIP": {
+   "notempty": "This field is required"
+  },
+  "IA_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  },
+  "IA_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when a photo is attached"
+  },
+  "IA_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when a photo is attached"
+  },
+  "AD_ADDR1": {
+   "incomeapproachenteredcondition": "This field is required based on related selections"
+  }
+ },
+ "interior": {
+  "ACCESSFEAT_FEATURE": {
+   "notempty": "Accessibility feature is required"
+  },
+  "ADU_DATA_SOURCE_TYPE": {
+   "notempty": "ADU data source type is required"
+  },
+  "ADU_INGRESS_EGRESS": {
+   "notempty": "ADU ingress/egress type is required"
+  },
+  "ADU_LEGALLY_RENTABLE": {
+   "notempty": "ADU legally rentable status is required"
+  },
+  "ADU_SEP_ADDR": {
+   "notempty": "ADU separate address indicator is required"
+  },
+  "ADU_TYPICAL": {
+   "notempty": "ADU typical for market indicator is required"
+  },
+  "ALLOW_WORK_SPACE": {
+   "isliveworkspacecondition": "Work space permitted indicator is required when the site is owned in common"
+  },
+  "AREA_DATA_SOURCE_TYPE": {
+   "notempty": "Area data source type is required"
+  },
+  "BELOW_GRADE_CMP_ABOVE": {
+   "belowgradefinishcomparedtoaboverequiredcondition": "Below grade finish compared to above grade is required when below grade finished area exists"
+  },
+  "CORNER_UNIT": {
+   "cornerunitrequiredcondition": "Corner unit indicator is required for the selected structure type"
+  },
+  "DEFECT_DESC": {
+   "unitinteriorfeatureenteredcondition": "Interior defect description is required when a defect feature is reported"
+  },
+  "DEFECT_FEATURE": {
+   "isunitinterioradddenabled": "Interior defect feature is required"
+  },
+  "DEFECT_INTEGRITY": {
+   "unitinteriorfeatureenteredcondition": "Interior defect integrity rating is required when a defect feature is reported"
+  },
+  "DEFECT_LOCATION": {
+   "unitinteriorfeatureenteredcondition": "Interior defect location is required when a defect feature is reported"
+  },
+  "DEFECT_RECOMMEND_ACTION": {
+   "unitinteriorfeatureenteredcondition": "Interior defect recommended action is required when a defect feature is reported"
+  },
+  "FINISHED_ABOVE_GRADE": {
+   "notempty": "Finished area above grade is required"
+  },
+  "FINISHED_ABOVE_GRADE_NONSTD": {
+   "notempty": "Non-standard finished area above grade is required"
+  },
+  "FINISHED_BELOW_GRADE": {
+   "notempty": "Finished area below grade is required"
+  },
+  "FINISHED_BELOW_GRADE_NONSTD": {
+   "notempty": "Non-standard finished area below grade is required"
+  },
+  "FLOOR_NUMBER": {
+   "floornumberrequiredcondition": "Floor number is required for the selected unit configuration"
+  },
+  "INTFEAT_DETAIL": {
+   "otherfeatureoptionalisnotempty": "Interior feature detail is required when 'Other' feature type is selected"
+  },
+  "INTFEAT_DETAIL_FLOORING": {
+   "notempty": "Flooring detail is required"
+  },
+  "INTFEAT_DETAIL_WALLS_CEILING": {
+   "intfeatureswallsandceilingcondition": "Please complete all required walls and ceiling detail fields"
+  },
+  "INTFEAT_QUAL_STATUS": {
+   "otherfeatureoptionalisnotempty": "Interior feature quality status is required when 'Other' feature type is selected"
+  },
+  "INTFEAT_QUAL_STATUS_FLOORING": {
+   "notempty": "Flooring quality/condition status is required"
+  },
+  "INTFEAT_QUAL_STATUS_WALLS_CEILING": {
+   "notempty": "Walls and ceiling quality/condition status is required"
+  },
+  "LEVEL_BELOW_GRADE_ACCESS": {
+   "belowgraderequiredcondition": "Below grade access type is required when below grade level exists"
+  },
+  "LEVEL_BELOW_GRADE_EXTERIOR_ACCESS": {
+   "belowgradeexterioraccessrequiredcondition": "Below grade exterior access is required when below grade exterior access applies"
+  },
+  "LEVEL_FINISHED_AREA": {
+   "notempty": "Level finished area is required"
+  },
+  "LEVEL_GRADE_TYPE": {
+   "notempty": "Level grade type (above/below grade) is required"
+  },
+  "LEVEL_IN_UNIT": {
+   "notempty": "Level in unit is required"
+  },
+  "LEVEL_UNFINISHED_AREA": {
+   "notempty": "Level unfinished area is required"
+  },
+  "LIVE_WORK_SPACE": {
+   "issiteisownedincommoncondition": "Live/work space indicator is required when the site is owned in common"
+  },
+  "NON_RES_USE": {
+   "notempty": "Non-residential use indicator is required"
+  },
+  "OCCUPANCY": {
+   "notempty": "Occupancy status is required"
+  },
+  "OVERALL_UPD_STATUS_BATHS": {
+   "notempty": "Bathroom overall update status is required"
+  },
+  "OVERALL_UPD_STATUS_FLOORING": {
+   "notempty": "Flooring overall update status is required"
+  },
+  "PU_INTFEAT_DETAIL_WALLS_CEILING_HEIGHT": {
+   "notempty": "Walls and ceiling height is required"
+  },
+  "PU_INTFEAT_DETAIL_WALLS_CEILING_STYLE_TYPE": {
+   "notempty": "Walls and ceiling style/type is required"
+  },
+  "QC_INT_COND_RATING": {
+   "notempty": "Interior condition rating is required"
+  },
+  "QC_INT_QUAL_RATING": {
+   "notempty": "Interior quality rating is required"
+  },
+  "ROOM_CONDITION_STATUS": {
+   "notempty": "Room condition status is required"
+  },
+  "ROOM_LEVEL": {
+   "notempty": "Room level is required"
+  },
+  "ROOM_ROOM_TYPE": {
+   "notempty": "Room type is required"
+  },
+  "ROOM_TIME_FRAME": {
+   "roomtimeframerequiredcondition": "Room update time frame is required when an update status is specified"
+  },
+  "ROOM_UPDATE_STATUS": {
+   "notempty": "Room update status is required"
+  },
+  "UI2_UTILS_SEP_METERED": {
+   "notempty": "Utilities separately metered indicator is required"
+  },
+  "UNFINISHED_ABOVE_GRADE": {
+   "notempty": "Unfinished area above grade is required"
+  },
+  "UNFINISHED_BELOW_GRADE": {
+   "notempty": "Unfinished area below grade is required"
+  },
+  "UTILS_OPERATING": {
+   "utilitiesoperatingrequiredcondition": "Utilities operating status is required based on occupancy status"
+  },
+  "UNIT_INTERIOR_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit",
+   "isaduexhibitphotorequired": "At least one photo is required for the ADU"
+  },
+  "ROOM_ROOM_TYPE_KITCHEN": {
+   "kitchennotexistsunitinterior": "Level and Room Detail requires at least one kitchen entry per living unit"
+  },
+  "UNIT_INTERIOR_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Interior exhibit category is required when an interior exhibit description is not provided"
+  },
+  "UNIT_INTERIOR_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Interior exhibit description is required when an interior exhibit category is not provided or the category is Apparent Defects, Damages, Deficiencies"
+  },
+  "PU_INTFEAT_QUAL_STATUS_WALLS_CEILING": {
+   "notempty": "This field is required"
+  }
+ },
+ "manufactured": {
+  "ATTACHED_TO_PERM_FOUND": {
+   "notempty": "Attached to permanent foundation indicator is required"
+  },
+  "CERTIFICATION": {
+   "iscertificationnotnullcondition": "Manufactured home certification type is required"
+  },
+  "HOME_WIDTH": {
+   "notempty": "Manufactured home width is required"
+  },
+  "HUD_CERT_NUMBER": {
+   "ishudlabelpresentforallsectionscondition": "HUD certification number is required when the HUD label is present"
+  },
+  "HUD_PLATE_ATT": {
+   "notempty": "HUD data plate attached indicator is required"
+  },
+  "HUD_WIND_ZONE": {
+   "ishuddataplateisattachedcondition": "HUD wind zone is required when the HUD data plate is attached"
+  },
+  "IDENTIFIER": {
+   "iscertificationnotnullcondition": "Certification identifier is required when a certification type is selected and must be left blank when no certification type is selected"
+  },
+  "INVOICE_REASONABLE": {
+   "notempty": "Invoice reasonableness determination is required"
+  },
+  "INVOICE_REASONABLE_COMMENTARY": {
+   "notempty": "Invoice reasonableness commentary is required"
+  },
+  "LABEL_PRESENT": {
+   "notempty": "HUD label present indicator is required"
+  },
+  "MANUFACTURER_NAME": {
+   "notempty": "Manufacturer name is required"
+  },
+  "MANUFACTURE_DATE": {
+   "ishuddataplateisattachedcondition": "Manufacture date is required when the HUD data plate is attached"
+  },
+  "MANUFACT_INVOICE_REVIEWED": {
+   "notempty": "Manufacturer invoice reviewed indicator is required"
+  },
+  "MODS": {
+   "notempty": "Modifications type is required"
+  },
+  "MODS_DESC": {
+   "notempty": "Modifications description is required"
+  },
+  "MODS_NO": {
+   "notempty": "Please indicate whether modifications have been made (Yes or No)"
+  },
+  "MODS_YES": {
+   "notempty": "Please indicate whether modifications have been made (Yes or No)"
+  },
+  "MOVED_SINCE_ORIG": {
+   "notempty": "Moved since original installation indicator is required"
+  },
+  "PURCHASE_FROM_RETAILER": {
+   "notempty": "Purchased from retailer indicator is required"
+  },
+  "PU_YEAR_INSTALLED_ESTIMATED_INDICATOR": {
+   "notempty": "Year installed estimated indicator is required"
+  },
+  "PU_YEAR_INSTALLED_YEAR": {
+   "notempty": "Year installed is required"
+  },
+  "RETAILER_INVOICE_REVIEWED": {
+   "notempty": "Retailer invoice reviewed indicator is required"
+  },
+  "RETAILER_NAME": {
+   "notempty": "Retailer name is required"
+  },
+  "ROOF_LOAD_ZONE": {
+   "ishuddataplateisattachedcondition": "Roof load zone is required when the HUD data plate is attached"
+  },
+  "SERIAL_NUMBER": {
+   "ishuddataplateisattachedcondition": "Serial number is required when the HUD data plate is attached"
+  },
+  "SKIRTING_MATERIAL": {
+   "notempty": "Skirting material is required"
+  },
+  "SKIRTING_PRESENT_INDICATOR": {
+   "notempty": "Skirting present indicator is required"
+  },
+  "THERMAL_ZONE": {
+   "ishuddataplateisattachedcondition": "Thermal zone is required when the HUD data plate is attached"
+  },
+  "TOWING_REMOVED": {
+   "notempty": "Towing apparatus removed indicator is required"
+  },
+  "YEAR_INSTALLED": {
+   "yearinstalledfullcondition": "Please complete all required year installed fields"
+  },
+  "MANUFACTURED_HOME_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  },
+  "MANUFACTURED_HOME_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when a photo is attached"
+  },
+  "MANUFACTURED_HOME_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when a photo is attached"
+  }
+ },
+ "market": {
+  "MKT_ACTVE_LISTINGS": {
+   "notempty": "Number of active listings in the market is required"
+  },
+  "MKT_BOUNDARY": {
+   "notempty": "Market boundary/area description is required"
+  },
+  "MKT_DEMAND_SUPPLY": {
+   "notempty": "Market demand/supply condition is required"
+  },
+  "MKT_DISTRESSED_MKT_COMP": {
+   "notempty": "Distressed market comparable indicator is required"
+  },
+  "MKT_GRAPH": {
+   "notempty": "Market trend graph is required"
+  },
+  "MKT_HIGHEST_LIST_PRICE": {
+   "notempty": "Highest listing price in the market is required"
+  },
+  "MKT_HIGHEST_SALE_PRICE": {
+   "notempty": "Highest sale price in the market is required"
+  },
+  "MKT_LOWEST_LIST_PRICE": {
+   "notempty": "Lowest listing price in the market is required"
+  },
+  "MKT_LOWEST_SALE_PRICE": {
+   "notempty": "Lowest sale price in the market is required"
+  },
+  "MKT_MARKETING_TIME": {
+   "notempty": "Estimated marketing time is required"
+  },
+  "MKT_MEDIAN_DAYS_ON_MKT": {
+   "notempty": "Median days on market is required"
+  },
+  "MKT_MEDIAN_LIST_PRICE": {
+   "notempty": "Median listing price in the market is required"
+  },
+  "MKT_MEDIAN_SALE_PRICE": {
+   "notempty": "Median sale price in the market is required"
+  },
+  "MKT_PAST_SALES_MONTHS": {
+   "notempty": "Number of past sales is required"
+  },
+  "MKT_PAST_SALES_MONTHS_NUM": {
+   "notempty": "Past sales time period (months) is required"
+  },
+  "MKT_PENDING_SALES": {
+   "notempty": "Number of pending sales in the market is required"
+  },
+  "MKT_PRICE_TREND_COMMENTARY": {
+   "ispricetrendavailable": "Price trend commentary is required when a price trend is available"
+  },
+  "MKT_PRICE_TREND_SOURCE": {
+   "maxlength": "Price trend data source exceeds maximum allowed length of {max} characters",
+   "notempty": "Price trend data source is required"
+  },
+  "MKT_SEARCH_CRT_DESC": {
+   "notempty": "Market search criteria description is required"
+  }
+ },
+ "obsolescence": {
+  "FO_COMMENTARY": {
+   "functionalobsolescencecommentarycondition": "Functional obsolescence commentary is required based on the reported issue"
+  },
+  "FO_FUNCTIONAL_ISSUE_TYPE": {
+   "notempty": "Functional obsolescence issue type is required"
+  }
+ },
+ "outbuilding": {
+  "CONSIDERED_REAL_PROP": {
+   "notempty": "Considered real property indicator is required"
+  },
+  "COOLING_NO": {
+   "notempty": "Please indicate whether the outbuilding has cooling (Yes or No)"
+  },
+  "COOLING_YES": {
+   "notempty": "Please indicate whether the outbuilding has cooling (Yes or No)"
+  },
+  "DEFECT_DESC": {
+   "outbuildingfeatureenteredcondition": "Outbuilding defect description is required when a defect feature is reported"
+  },
+  "DEFECT_FEATURE": {
+   "isoutbuildingadddenabled": "Outbuilding defect feature is required"
+  },
+  "DEFECT_INTEGRITY": {
+   "outbuildingfeatureenteredcondition": "Outbuilding defect integrity rating is required when a defect feature is reported"
+  },
+  "DEFECT_LOCATION": {
+   "outbuildingfeatureenteredcondition": "Outbuilding defect location is required when a defect feature is reported"
+  },
+  "DEFECT_RECOMMEND_ACTION": {
+   "outbuildingfeatureenteredcondition": "Outbuilding recommended action is required when a defect feature is reported"
+  },
+  "GLA": {
+   "notempty": "Outbuilding gross living area is required"
+  },
+  "HEATING_NO": {
+   "notempty": "Please indicate whether the outbuilding has heating (Yes or No)"
+  },
+  "HEATING_YES": {
+   "notempty": "Please indicate whether the outbuilding has heating (Yes or No)"
+  },
+  "MECH_COOL_SYSTEM": {
+   "notempty": "Outbuilding cooling system type is required"
+  },
+  "MECH_HEAT_DETAIL": {
+   "notempty": "Outbuilding heating fuel/energy source detail is required"
+  },
+  "MECH_HEAT_SYSTEM": {
+   "notempty": "Outbuilding heating system type is required"
+  },
+  "ROOM_SUMMARY_FINISHED": {
+   "roomsummaryfullcondition": "Outbuilding finished room summary is required"
+  },
+  "ROOM_SUMMARY_FINISHED_TYPE": {
+   "outbuildingfeatureenteredcondition": "Outbuilding finished room type is required"
+  },
+  "ROOM_SUMMARY_FINISHED_TYPE_QUANTITY": {
+   "outbuildingfeatureenteredcondition": "Outbuilding finished room type quantity is required"
+  },
+  "TOTAL_AREA_FINISHED": {
+   "notempty": "Outbuilding total finished area is required"
+  },
+  "TOTAL_AREA_UNFINISHED": {
+   "notempty": "Outbuilding total unfinished area is required"
+  },
+  "UTILITIES": {
+   "notempty": "Outbuilding utilities information is required"
+  },
+  "OUTBUILDING_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit",
+   "isaduexhibitphotorequired": "At least one photo is required for the ADU"
+  },
+  "OUTBUILDING_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when a photo is attached"
+  },
+  "OUTBUILDING_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when a photo is attached"
+  }
+ },
+ "qual-cond": {
+  "OQC_OVERALL_COND": {
+   "notempty": "Overall condition rating is required"
+  },
+  "OQC_OVERALL_QUAL": {
+   "notempty": "Overall quality rating is required"
+  },
+  "REC_OF_OVERRAL_QC": {
+   "notempty": "Reconciliation of overall quality and condition is required"
+  },
+  "SSDE1_OQC_EXT_CONDITION": {
+   "notempty": "Exterior overall condition rating is required"
+  },
+  "SSDE1_OQC_EXT_QUALITY": {
+   "notempty": "Exterior overall quality rating is required"
+  },
+  "SSUI1_OQC_INT_CONDITION": {
+   "notempty": "Interior overall condition rating is required"
+  },
+  "SSUI1_OQC_INT_QUALITY": {
+   "notempty": "Interior overall quality rating is required"
+  }
+ },
+ "reconciliation": {
+  "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_HIGH": {
+   "notemptyif": "Reasonable exposure time upper range is required when the range option is selected"
+  },
+  "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_LOW": {
+   "notemptyif": "Reasonable exposure time lower range is required when the range option is selected"
+  },
+  "RECEFFECTDATE": {
+   "notempty": "Reconciliation effective date is required"
+  },
+  "REC_CLIENT_ALT_OPINION": {
+   "notempty": "Client alternative opinion of value is required"
+  },
+  "REC_CLIENT_DURATION": {
+   "notempty": "Client duration/effective age is required"
+  },
+  "REC_CLIENT_DURATION_EFFECTIVE_AGE_PRECISE": {
+   "notemptyif": "Client precise effective age is required when the precise option is selected"
+  },
+  "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_HIGH": {
+   "notemptyif": "Client effective age upper range is required when the range option is selected"
+  },
+  "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_LOW": {
+   "notemptyif": "Client effective age lower range is required when the range option is selected"
+  },
+  "REC_CLIENT_MARKETING_TIME": {
+   "notempty": "Client marketing time is required"
+  },
+  "REC_CLIENT_VALUE_CONDITION": {
+   "notempty": "Client value condition is required"
+  },
+  "REC_CONDITION_COMMENTARY": {
+   "notempty": "Reconciliation condition commentary is required"
+  },
+  "REC_DEFECT_ASIS_RATING": {
+   "notemptyif": "As Is Overall Condition Rating is required when New Construction is No and Market Value Condition is Subject to Completion Per Plans or Subject to Repair"
+  },
+  "REC_DEFECT_TOTAL_COST": {
+   "notemptyif": "Estimated total cost for defect repairs is required when defects are reported"
+  },
+  "REC_DEUI_DEF_REPAIR_COST": {
+   "isdefrepaircostrequired": "Dwelling exterior/interior defect repair cost is required"
+  },
+  "REC_FHA_REO_INSURABILITY": {
+   "notemptyif": "FHA/REO insurability level is required for FHA assignments"
+  },
+  "REC_MARKET_VALUE": {
+   "notempty": "Reconciled market value is required"
+  },
+  "REC_MKT_VAL_COND": {
+   "notempty": "Market value condition is required",
+   "repairorinspectionconflict": "Market Value Condition cannot be 'As Is' when a defect's Recommended Action is 'Inspection' or 'Repair'"
+  },
+  "REC_OB_DEF_REPAIR_COST": {
+   "isdefrepaircostrequired": "Outbuilding defect repair cost is required"
+  },
+  "REC_OPINION_MKT_VAL": {
+   "notempty": "Opinion of market value is required"
+  },
+  "REC_PRO_RATA_CALC_METHOD": {
+   "notemptyif": "Pro rata calculation method is required when the pro rata share section is visible"
+  },
+  "REC_REASONABLE_EXPOSURE_TIME": {
+   "notempty": "Reasonable exposure time is required"
+  },
+  "REC_REASONABLE_EXPOSURE_TIME_PRECISE": {
+   "notemptyif": "Precise reasonable exposure time is required when the precise option is selected"
+  },
+  "REC_REASON_FOR_EXCLUSION_COST_APPROACH": {
+   "notemptyif": "Reason for exclusion of cost approach is required when the cost approach is not developed"
+  },
+  "REC_REASON_FOR_EXCLUSION_INCOME_APPROACH": {
+   "notemptyif": "Reason for exclusion of income approach is required when the income approach is not developed by the appraiser"
+  },
+  "REC_REASON_FOR_EXCLUSION_INDICATED_VALUE": {
+   "notempty": "Reason for exclusion of indicated value is required"
+  },
+  "REC_SIT_DEF_REPAIR_COST": {
+   "isdefrepaircostrequired": "Site defect repair cost is required"
+  },
+  "REC_SPA_DEF_REPAIR_COST": {
+   "isdefrepaircostrequired": "Subject property amenities defect repair cost is required"
+  },
+  "REC_UIDE_DEF_REPAIR_COST": {
+   "isdefrepaircostrequired": "Unit interior defect repair cost is required"
+  },
+  "REC_VS_DEF_REPAIR_COST": {
+   "isdefrepaircostrequired": "Vehicle storage defect repair cost is required"
+  }
+ },
+ "rental-information": {
+  "ACTUAL_RENT": {
+   "notempty": "Actual rent amount is required"
+  },
+  "AD_ADDR1": {
+   "notempty": "Rental comparable street address is required"
+  },
+  "AD_ADDR_FULL": {
+   "addressvalidationfullcondition": "Please complete all required rental comparable address fields"
+  },
+  "BATHS": {
+   "bathsfullcondition": "Please complete all required bathroom fields for rental comparable"
+  },
+  "BEDS": {
+   "comparablerentalanalysiscolumncondition": "Number of bedrooms for rental comparable is required"
+  },
+  "DB_CITY": {
+   "notempty": "Rental comparable city is required"
+  },
+  "DB_STATE": {
+   "notempty": "Rental comparable state is required"
+  },
+  "DB_UNITNO": {
+   "notempty": "Rental comparable unit number is required"
+  },
+  "DB_ZIP": {
+   "notempty": "Rental comparable ZIP code is required"
+  },
+  "FLOOR_NUM": {
+   "comparablerentalanalysiscolumncondition": "Floor number is required"
+  },
+  "FURNISHED": {
+   "comparablerentalanalysiscolumncondition": "Furnished status is required"
+  },
+  "GRADE_LEVEL": {
+   "enteredsourcecondition": "Grade level is required"
+  },
+  "INT_COND_CONDITION": {
+   "comparablerentalanalysiscolumncondition": "Interior condition is required for rental comparable"
+  },
+  "MARKETAREA": {
+   "comparablerentalanalysiscolumncondition": "Market area for rental comparable is required"
+  },
+  "PHOTO": {
+   "notempty": "Rental comparable photo is required"
+  },
+  "PROJ_AMENITIES_COMP": {
+   "comparablerentalanalysiscolumncondition": "Project amenities comparison is required"
+  },
+  "PROX1": {
+   "enteredproxcondition": "Please complete all required proximity to subject fields for rental comparable"
+  },
+  "PU_DIRECTION": {
+   "comparablerentalanalysiscolumncondition": "Direction from subject is required"
+  },
+  "PU_DISTANCE": {
+   "comparablerentalanalysiscolumncondition": "Distance from subject is required"
+  },
+  "PU_FULL_BATHS": {
+   "comparablerentalanalysiscolumncondition": "Number of full baths is required for rental comparable"
+  },
+  "PU_HALF_BATHS": {
+   "comparablerentalanalysiscolumncondition": "Number of half baths is required for rental comparable"
+  },
+  "PU_VEHICLE_STORAGE": {
+   "notempty": "Vehicle storage type is required for rental comparable"
+  },
+  "PU_VEHICLE_STORAGE_SPACES": {
+   "vehiclestoragespacesisrequiredcondition": "Number of vehicle storage spaces is required for rental comparable"
+  },
+  "PU_VEHICLE_STORAGE_SPACES_NUM": {
+   "vehiclestoragespacesnumisrequiredcondition": "Number of vehicle storage spaces is required for rental comparable"
+  },
+  "RENTAL_ANALYSIS_COMMENTARY": {
+   "notempty": "Rental analysis commentary is required"
+  },
+  "RENT_CONC": {
+   "comparablerentalanalysiscolumncondition": "Rent concessions information is required"
+  },
+  "RENT_CONTROL": {
+   "comparablerentalanalysiscolumncondition": "Rent control indicator is required"
+  },
+  "RENT_IMPACT_TO_VALUE": {
+   "schcurrentlyrented": "Rent impact to value is required when rent control is indicated"
+  },
+  "RENT_SCH_FURNISHED": {
+   "schcurrentlyrented": "Furnished status is required when the unit is currently rented"
+  },
+  "RENT_SCH_MONTHLY_RENT": {
+   "notempty": "Rent schedule monthly rent amount is required",
+   "currentoptionmonthlyrentcondition": "This field is required based on related selections"
+  },
+  "RENT_SCH_MONTH_TO_MONTH": {
+   "schcurrentlyrented": "Month-to-month lease indicator is required when the unit is currently rented"
+  },
+  "RENT_SCH_RENT_CONC": {
+   "schcurrentlyrented": "Rent concessions are required when the unit is currently rented"
+  },
+  "RENT_SCH_RENT_CONTROL": {
+   "notempty": "Rent schedule rent control indicator is required"
+  },
+  "RENT_SCH_UTILS_INCLUDED": {
+   "schcurrentlyrented": "Utilities included indicator is required when the unit is currently rented"
+  },
+  "RI_ACT_INC_OTHER_DESC": {
+   "notempty": "Actual income other description is required"
+  },
+  "RI_ACT_INC_OTHER_MONTHLY_RENT": {
+   "none": "Other actual income monthly rent is required when applicable"
+  },
+  "RI_OPN_INC_MONTHLY_RENT": {
+   "currentoptionmonthlyrentcondition": "Opinion income monthly rent is required when a unit ID is specified"
+  },
+  "RI_OPN_INC_OTHER_MONTHLY_RENT": {
+   "none": "Other opinion income monthly rent is required when a description is provided"
+  },
+  "RS1_VEHICLE_STORAGE": {
+   "notempty": "Vehicle storage type is required"
+  },
+  "SC_SOURCE1": {
+   "enteredsourcecondition": "Data source is required when a source entry is provided"
+  },
+  "SF_GLA": {
+   "comparablerentalanalysiscolumncondition": "Gross living area for rental comparable is required"
+  },
+  "SITE_INFLUENCE_COMP": {
+   "comparablerentalanalysiscolumncondition": "Site influence comparison is required"
+  },
+  "SMRY_ADJ_RENT": {
+   "comparablerentalanalysiscolumncondition": "Summary adjusted rent is required"
+  },
+  "SMRY_ADJ_RENTALLOWED_PERC": {
+   "comparablerentalanalysiscolumncondition": "Summary adjusted rent allowed percentage is required"
+  },
+  "SMRY_COMP_WEIGHT": {
+   "comparablerentalanalysiscolumncondition": "Summary comparable weight is required"
+  },
+  "SMRY_OPN_MKT_RENT": {
+   "comparablerentalanalysiscolumncondition": "Summary opinion of market rent is required"
+  },
+  "SMRY_OVRL_COMP_TO_SUB": {
+   "comparablerentalanalysiscolumncondition": "Summary overall comparison to subject is required"
+  },
+  "ST_SITSIZE": {
+   "sitesizerequiredcondition": "Site size is only required when 'Site Owned in Common' indicator is Yes"
+  },
+  "UNIT_VIEW": {
+   "enteredsourcecondition": "Unit view is required"
+  },
+  "UNIT_VIEW_COMP": {
+   "comparablerentalanalysiscolumncondition": "Unit view comparison is required"
+  },
+  "UTILS_INCLUDED": {
+   "comparablerentalanalysiscolumncondition": "Utilities included indicator is required"
+  },
+  "VEHICLE_STORAGE_COMP": {
+   "comparablerentalanalysiscolumncondition": "Vehicle storage comparison is required"
+  },
+  "PU_DATA_SOURCE_ASSESSOR_ID": {
+   "notempty": "This field is required"
+  },
+  "PU_DATA_SOURCE_MLS_NUM": {
+   "notempty": "This field is required"
+  },
+  "RENT_SCH_CURRENTLY_RENTED": {
+   "notempty": "This field is required"
+  },
+  "RENTAL_INFO_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  },
+  "RENTAL_INFO_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when a photo is attached"
+  },
+  "RENTAL_INFO_EXHIBIT_DESC": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when a photo is attached"
+  },
+  "VEHICLE_STORAGE": {
+   "enteredsourcecondition": "This field is required based on related selections"
+  },
+  "HEADER_LABEL": {
+   "headerlabelrequiredcondition": "This field is required based on related selections"
+  },
+  "SITE_OWNED_IN_COMMON": {
+   "siteownedincommonrequiredcondition": "This field is required based on related selections"
+  },
+  "PROJ_NAME": {
+   "projname": "This field is required based on related selections"
+  },
+  "PU_MILES": {
+   "comparablerentalanalysiscolumncondition": "This field is required based on related selections"
+  },
+  "PU_KILOMETERS": {
+   "comparablerentalanalysiscolumncondition": "This field is required based on related selections"
+  }
+ },
+ "revision": {
+  "RN_REC_VAL_COMMENTARY": {
+   "notempty": "Revision reconciliation value commentary is required"
+  },
+  "RN_REC_VAL_DATE": {
+   "notempty": "Revision reconciliation value date is required"
+  },
+  "RN_REC_VAL_RESULT": {
+   "notempty": "Revision reconciliation value result is required"
+  }
+ },
+ "sales-comp": {
+  "ADU_COND_CONDITION": {
+   "comphasaducondition": "ADU condition rating is required"
+  },
+  "ADU_COND_FLOORS": {
+   "comphasaducondition": "ADU floor condition is required"
+  },
+  "ADU_COND_KITCHEN": {
+   "comphasaducondition": "ADU kitchen condition is required"
+  },
+  "ADU_COND_WALLS_CEILINGS": {
+   "comphasaducondition": "ADU walls/ceilings condition is required"
+  },
+  "ADU_QUAL_FLOORS": {
+   "comphasaducondition": "ADU floor quality is required"
+  },
+  "ADU_QUAL_KITCHEN": {
+   "comphasaducondition": "ADU kitchen quality is required"
+  },
+  "ADU_QUAL_QUALITY": {
+   "comphasaducondition": "ADU overall quality rating is required"
+  },
+  "ADU_QUAL_WALLS_CEILINGS": {
+   "comphasaducondition": "ADU walls/ceilings quality is required"
+  },
+  "AD_ADDR": {
+   "addressvalidationfullcondition": "Please complete all required comparable address fields (address, city, state, ZIP)"
+  },
+  "AD_ADDR1": {
+   "notempty": "Comparable street address is required"
+  },
+  "ALL_RIGHTS_INCLUDED": {
+   "allrightsincludedisrequiredcondition": "All rights included indicator is required for the selected property rights"
+  },
+  "AMENITY_OUTDOOR_ACCESSORIES": {
+   "outdooraccessoriesfullcondition": "Please complete all required outdoor accessories fields"
+  },
+  "AMENITY_WATER_FEATURES": {
+   "waterfeaturesfullcondition": "Please complete all required water features fields"
+  },
+  "ANNUAL_GRND_RENT": {
+   "annualgroundrentisrequiredcondition": "Annual ground rent is required for the selected property rights"
+  },
+  "ATT_DET": {
+   "notempty": "Attached/detached designation is required"
+  },
+  "BATHS": {
+   "bathsfullcondition": "Please complete all required bathroom fields"
+  },
+  "BEDS": {
+   "bedsrequiredcondition": "Number of bedrooms is required"
+  },
+  "COMP_NO": {
+   "notempty": "Comparable number is required"
+  },
+  "COMP_NOT_USED_ADDR": {
+   "additionalpropertiesanalyzedfullcondition": "Please complete all required additional properties analyzed address fields"
+  },
+  "COMP_NOT_USED_ADDR1": {
+   "notempty": "Additional property analyzed street address is required"
+  },
+  "COMP_NOT_USED_CITY": {
+   "notempty": "Additional property analyzed city is required"
+  },
+  "COMP_NOT_USED_COMMENT": {
+   "notempty": "Additional property analyzed comment is required"
+  },
+  "COMP_NOT_USED_REASON": {
+   "notempty": "Reason for not using additional property as comparable is required"
+  },
+  "COMP_NOT_USED_RECONSIDER": {
+   "notempty": "Reconsideration status for additional property is required"
+  },
+  "COMP_NOT_USED_SALEDATE": {
+   "comp_not_used_saledate": "Additional property analyzed sale date is required when status is Settled Sale"
+  },
+  "COMP_NOT_USED_STATE": {
+   "notempty": "Additional property analyzed state is required"
+  },
+  "COMP_NOT_USED_STATUS": {
+   "notempty": "Additional property analyzed listing status is required"
+  },
+  "COMP_NOT_USED_ZIP": {
+   "notempty": "Additional property analyzed ZIP code is required"
+  },
+  "CONDITION": {
+   "notempty": "Comparable overall condition rating is required"
+  },
+  "CONT_DATE": {
+   "contractdatefullcondition": "Please complete all required contract date fields"
+  },
+  "CORNER_UNIT": {
+   "cornerunitisrequiredcondition": "Corner unit indicator is required for the selected structure type"
+  },
+  "DB_CITY": {
+   "notempty": "Comparable city is required"
+  },
+  "DB_STATE": {
+   "notempty": "Comparable state is required"
+  },
+  "DB_UNITNO": {
+   "notempty": "Comparable unit number is required"
+  },
+  "DB_ZIP": {
+   "notempty": "Comparable ZIP code is required"
+  },
+  "DISABILITY_FEATURES": {
+   "disabilityfeaturesrequiredcondition": "Disability/accessibility features indicator is required"
+  },
+  "DP_FINTYP1": {
+   "financingtypeisrequiredcondition": "Financing type is required when listing status is Settled Sale"
+  },
+  "DT_SALTIM1": {
+   "saledateisrequiredcondition": "Sale date is required based on the comparable status"
+  },
+  "DWELL_CONST_METHOD": {
+   "constructionmethodfullcondition": "Construction method is required when structure design is not High-rise, Mid-rise, or Low-rise",
+   "constructionmethodcountmatchesyearbuilt": "Number of buildings defined by number of year built values provided"
+  },
+  "DWELL_COOL": {
+   "coolingfullcondition": "Please complete all required cooling system fields"
+  },
+  "DWELL_DISASTER_MIT": {
+   "disastermitigationfullcondition": "Please complete all required disaster mitigation fields"
+  },
+  "DWELL_FUNC_ISSUES": {
+   "functionalissuesfullcondition": "Please complete all required functional issues fields"
+  },
+  "DWELL_HEAT": {
+   "heatingfullcondition": "Please complete all required heating system fields"
+  },
+  "DWELL_MANFCT_HOME_WIDTH": {
+   "manufacturedhomewidthisrequiredcondition": "Manufactured home width is required when the property is a manufactured home"
+  },
+  "PU_DWELL_MANFCT_HOME_WIDTH": {
+   "manufacturedhomewidthisrequiredcondition": "Manufactured home width is required when the property is a manufactured home"
+  },
+  "DWELL_STYLE": {
+   "dwellingstylefullcondition": "Please complete all required dwelling style fields"
+  },
+  "DWELL_TH_BACKTOBACK": {
+   "townhousebacktobackfullcondition": "Please complete all required townhouse back-to-back fields"
+  },
+  "DWELL_TH_ENDUNIT": {
+   "townhouseendunitfullcondition": "Please complete all required townhouse end unit fields"
+  },
+  "DWELL_TH_LOC": {
+   "townhouselocationfullcondition": "Please complete all required townhouse location fields"
+  },
+  "DWELL_TOTAL_VOLUME": {
+   "notempty": "Comparable dwelling total volume is required"
+  },
+  "DWELL_WINDOW_AREA": {
+   "notempty": "Comparable dwelling window area is required"
+  },
+  "EXT_COND_CONDITION": {
+   "anyextqualcondfieldisnotemptycondition": "Exterior overall condition is required"
+  },
+  "EXT_COND_FOUNDATION": {
+   "anyextqualcondfieldisnotemptycondition": "Foundation condition is required"
+  },
+  "EXT_COND_WALLS_TRIM": {
+   "anyextqualcondfieldisnotemptycondition": "Exterior walls/trim condition is required"
+  },
+  "EXT_QUAL_EXT_WALLS_TRIM": {
+   "anyextqualcondfieldisnotemptycondition": "Exterior walls/trim quality is required"
+  },
+  "EXT_QUAL_FOUNDATION": {
+   "anyextqualcondfieldisnotemptycondition": "Foundation quality is required"
+  },
+  "EXT_QUAL_QUALITY": {
+   "anyextqualcondfieldisnotemptycondition": "Exterior overall quality rating is required"
+  },
+  "EXT_QUAL_ROOF": {
+   "anyextqualcondfieldisnotemptycondition": "Roof quality is required"
+  },
+  "EX_CONCAMT": {
+   "salesconcessionsfullcondition": "Please complete all required sales concessions fields"
+  },
+  "EX_DOM": {
+   "notempty": "Days on market is required"
+  },
+  "FLOOR_NUM": {
+   "floornumberisrequiredcondition": "Floor number is required for the selected unit configuration"
+  },
+  "GREEN_BUILD_CERT": {
+   "buildingcertificationfullcondition": "Please complete all required green building certification fields"
+  },
+  "GREEN_EFF_RATING": {
+   "efficiencyratingfullcondition": "Please complete all required green efficiency rating fields"
+  },
+  "GREEN_RENEW_ENERGY_COMPONENT": {
+   "notempty": "Renewable energy component is required"
+  },
+  "INT_ADU_COND_BATHS": {
+   "comphasaducondition": "ADU bathroom condition is required"
+  },
+  "INT_COND_BATHS": {
+   "anyintqualcondfieldisnotemptycondition": "Interior bathroom condition is required"
+  },
+  "INT_COND_CONDITION": {
+   "anyintqualcondfieldisnotemptycondition": "Interior overall condition is required"
+  },
+  "INT_COND_FLOORS": {
+   "anyintqualcondfieldisnotemptycondition": "Interior floor condition is required"
+  },
+  "INT_COND_KITCHEN": {
+   "anyintqualcondfieldisnotemptycondition": "Interior kitchen condition is required"
+  },
+  "INT_COND_WALLS_CEILINGS": {
+   "anyintqualcondfieldisnotemptycondition": "Interior walls/ceilings condition is required"
+  },
+  "INT_QUAL_BATHS": {
+   "anyintqualcondfieldisnotemptycondition": "Interior bathroom quality is required"
+  },
+  "INT_QUAL_FLOORS": {
+   "anyintqualcondfieldisnotemptycondition": "Interior floor quality is required"
+  },
+  "INT_QUAL_KITCHEN": {
+   "anyintqualcondfieldisnotemptycondition": "Interior kitchen quality is required"
+  },
+  "INT_QUAL_QUALITY": {
+   "anyintqualcondfieldisnotemptycondition": "Interior overall quality is required"
+  },
+  "INT_QUAL_STRUCTURE_ID": {
+   "anyintqualcondfieldisnotemptycondition": "Structure ID is required for the selected configuration"
+  },
+  "INT_QUAL_WALLS_CEILINGS": {
+   "anyintqualcondfieldisnotemptycondition": "Interior walls/ceilings quality is required"
+  },
+  "LEVELS": {
+   "levelsrequiredcondition": "Number of levels is required"
+  },
+  "LOC_ADU": {
+   "locationofadufullcondition": "Please complete all required ADU location fields"
+  },
+  "LP_PRICE": {
+   "notempty": "Listing price is required"
+  },
+  "LP_STATUS": {
+   "notempty": "Listing status is required"
+  },
+  "MARKETAREA": {
+   "notempty": "Market area is required"
+  },
+  "NATIVE_AM_LANDS": {
+   "nativeamericanspopupfullcondition": "Please complete all required Native American lands fields"
+  },
+  "NETADJ_COMP_WEIGHT_ADJ": {
+   "notempty": "Net adjustment comparable weight is required"
+  },
+  "OUTBUILDING_BATHS_FULL": {
+   "notempty": "Outbuilding full baths count is required"
+  },
+  "OUTBUILDING_BATHS_HALF": {
+   "notempty": "Outbuilding half baths count is required"
+  },
+  "OUTBUILDING_BUILDING_AREA": {
+   "notempty": "Outbuilding total building area is required"
+  },
+  "OUTBUILDING_COOLING": {
+   "notempty": "Outbuilding cooling type is required"
+  },
+  "OUTBUILDING_FINISHED_AREA": {
+   "notempty": "Outbuilding finished area is required"
+  },
+  "OUTBUILDING_HEATING": {
+   "notempty": "Outbuilding heating type is required"
+  },
+  "OUTBUILDING_KITCHENS": {
+   "notempty": "Outbuilding kitchens count is required"
+  },
+  "OUTBUILDING_REAL_PROPERTY": {
+   "outbuildingtypeisnotemptycondition": "Outbuilding considered real property indicator is required"
+  },
+  "OUTBUILDING_STRUCTURE_VOLUME": {
+   "notempty": "Outbuilding structure volume is required"
+  },
+  "OUTBUILDING_TYPE": {
+   "notempty": "Outbuilding type is required"
+  },
+  "OUTBUILDING_UNFINISHED_AREA": {
+   "notempty": "Outbuilding unfinished area is required"
+  },
+  "OUTBUILDING_UTILITIES": {
+   "notempty": "Outbuilding utilities type is required"
+  },
+  "PHOTO": {
+   "notempty": "Comparable photo is required"
+  },
+  "PROJ_AMENITIES": {
+   "projectamenitiesisrequiredcondition": "Common amenities/services is required when property is in a PUD or project"
+  },
+  "PROJ_MONTHLY_FEE": {
+   "notempty": "Project monthly fee/assessment is required"
+  },
+  "PROJ_NAME": {
+   "projectnameisrequiredcondition": "Please complete all required project name fields"
+  },
+  "PROJ_SPECIAL_ASSESSMENTS": {
+   "projectspecialassessmentsisrequiredcondition": "Special assessments are required when the comparable is in a project and the subject assessment is existing or proposed"
+  },
+  "PROJINFO_OVERALL_ADJ": {
+   "projectinformationadjustmentrequiredcondition": "An adjustment entry is required when subject and comparable Project Information differ"
+  },
+  "PROP_APPRAISER_RIGHTS": {
+   "propertyrightsappraisedisrequiredcondition": "Property rights appraised is required for the selected comparable"
+  },
+  "PROX1": {
+   "proximitytosubjectfullcondition": "Please complete all required proximity to subject fields"
+  },
+  "PR_SALEPR1": {
+   "notempty": "Comparable sale price is required",
+   "salepriceisrequiredcondition": "Comparable sale price is required",
+   "salepricemustbeemptywhennotsettledsale": "Sale price must be removed when listing status is not Settled Sale"
+  },
+  "PU_AMENITY_MISC_NUM": {
+   "propertyamenitymiscnumberisrequiredcondition": "Miscellaneous amenity count is required when a miscellaneous amenity is selected"
+  },
+  "PU_AMENITY_OUTDOOR_ACCESSORIES": {
+   "notempty": "Outdoor accessories type is required"
+  },
+  "PU_AMENITY_OUTDOOR_ACCESSORIES_NUM": {
+   "numbertextisrequiredcondition": "Outdoor accessories count is required when an accessory type is selected"
+  },
+  "PU_AMENITY_WATER_FEATURE_DETAIL": {
+   "notempty": "Water feature detail is required"
+  },
+  "PU_AMENITY_WATER_FEATURE_NUM": {
+   "notempty": "Water feature count is required"
+  },
+  "PU_AMENITY_WHOLE_HOME_NUM": {
+   "propertyamenitiesnumberisrequiredcondition": "Whole home amenity count is required when an amenity type is selected"
+  },
+  "PU_CONC_AMOUNT": {
+   "concamountisrequiredcondition": "Concession amount is required"
+  },
+  "PU_CONT_DATE": {
+   "notempty": "Contract date is required"
+  },
+  "PU_DATA_SOURCE": {
+   "notempty": "Data source is required"
+  },
+  "PU_DATA_SOURCE_ASSESSOR_ID": {
+   "notempty": "Data source assessor ID is required"
+  },
+  "PU_DIRECTION": {
+   "directiontosubjectcondition": "Direction from subject is required"
+  },
+  "PU_DISTANCE": {
+   "notempty": "Distance from subject is required"
+  },
+  "PU_DWELL_CONST_METHOD": {
+   "constructionmethodisrequiredcondition": "Construction method is required when structure design is not High-rise, Mid-rise, or Low-rise"
+  },
+  "PU_DWELL_COOL": {
+   "notempty": "Cooling system type is required"
+  },
+  "PU_DWELL_DISASTER_MIT": {
+   "notempty": "Disaster mitigation feature is required"
+  },
+  "PU_DWELL_FUNC_ISSUES": {
+   "notempty": "Functional issues indicator is required"
+  },
+  "PU_DWELL_HEAT_DETAIL": {
+   "heatingfullcondition": "Heating fuel/energy source detail is required"
+  },
+  "PU_DWELL_HEAT_SYSTEM": {
+   "notempty": "Heating system type is required"
+  },
+  "PU_DWELL_STYLE": {
+   "notempty": "Dwelling style is required"
+  },
+  "PU_DWELL_TH_BACKTOBACK": {
+   "notempty": "Townhouse back-to-back configuration is required"
+  },
+  "PU_DWELL_TH_ENDUNIT": {
+   "notempty": "Townhouse end unit designation is required"
+  },
+  "PU_DWELL_TH_LOC": {
+   "notempty": "Townhouse location is required"
+  },
+  "PU_FULL_BATHS": {
+   "fullbathsrequiredcondition": "Number of full baths is required"
+  },
+  "PU_GREEN_BUILD_CERT_DESC": {
+   "notempty": "Green building certification description is required"
+  },
+  "PU_GREEN_BUILD_CERT_RATE": {
+   "notempty": "Green building certification rating is required"
+  },
+  "PU_GREEN_EFF_RATING": {
+   "efficiencyratingisrequiredcondition": "Green efficiency rating type is required"
+  },
+  "PU_GREEN_EFF_SCORE": {
+   "efficiencyscoreisrequiredcondition": "Green efficiency score is required"
+  },
+  "PU_HALF_BATHS": {
+   "halfbathsrequiredcondition": "Number of half baths is required"
+  },
+  "PU_KILOMETERS": {
+   "notempty": "Please select a distance unit (miles or kilometers)"
+  },
+  "PU_LOC_ADU_DESC": {
+   "adudescrequiredcondition": "ADU location description is required"
+  },
+  "PU_LOC_ADU_TYPE": {
+   "adutyperequiredcondition": "ADU location type is required"
+  },
+  "PU_MILES": {
+   "notempty": "Please select a distance unit (miles or kilometers)"
+  },
+  "PU_NATIVE_AM_LANDS_NO": {
+   "notempty": "Please indicate whether the property is on Native American lands (Yes or No)"
+  },
+  "PU_NATIVE_AM_LANDS_TYPE": {
+   "notempty": "Native American lands type is required"
+  },
+  "PU_NATIVE_AM_LANDS_YES": {
+   "notempty": "Please indicate whether the property is on Native American lands (Yes or No)"
+  },
+  "PU_PROJECT_NAME": {
+   "projectnameisrequiredcondition": "Project name is required for the selected property type"
+  },
+  "PU_SITE_INFLUENCE": {
+   "notempty": "Site influence type is required"
+  },
+  "PU_SITE_INFLUENCE_WATER_TYPE": {
+   "notempty": "Site influence water body type is required"
+  },
+  "PU_SITE_STREET_SURFACE": {
+   "notempty": "Street surface type is required"
+  },
+  "PU_SITE_STREET_TYPE": {
+   "notempty": "Street type is required"
+  },
+  "PU_ST_RANGE": {
+   "notempty": "View range is required"
+  },
+  "PU_ST_VIEW": {
+   "notempty": "View type is required"
+  },
+  "PU_VEHICLE_STORAGE": {
+   "notempty": "Vehicle storage type is required"
+  },
+  "PU_VEHICLE_STORAGE_DETAILS": {
+   "vehiclestorageisrequiredcondition": "Vehicle storage details are required when vehicle storage is present"
+  },
+  "PU_VEHICLE_STORAGE_SPACES": {
+   "vehiclestoragespacesisrequiredcondition": "Number of vehicle storage spaces is required"
+  },
+  "PU_VEHICLE_STORAGE_SPACES_NUM": {
+   "vehiclestoragespacesnumisrequiredcondition": "Number of vehicle storage spaces is required"
+  },
+  "PU_VEHICLE_STORAGE_SQFT": {
+   "vehiclestoragesqftisrequiredcondition": "Vehicle storage square footage is required when applicable"
+  },
+  "PU_WATER_FRONTAGE_ACCESS_DEPTH": {
+   "waterfrontagetypeisrequiredcondition": "Water frontage access depth is required when property has private access to a body of water"
+  },
+  "PU_WATER_FRONTAGE_NAME": {
+   "notempty": "Water frontage body of water name is required"
+  },
+  "PU_WATER_FRONTAGE_TYPE": {
+   "waterfrontagetypeisrequiredcondition": "Water frontage type is required"
+  },
+  "PU_YR_BLT": {
+   "notempty": "Year built is required"
+  },
+  "PU_YR_BLT_EST": {
+   "notempty": "Year built estimated indicator is required"
+  },
+  "QUALITY": {
+   "notempty": "Comparable overall quality rating is required"
+  },
+  "RIGHTS_NOT_INCLUDED": {
+   "rightsincludedisrequiredcondition": "Rights not included is required for the selected property rights"
+  },
+  "SAME_BLDR_AS_SUBJECT": {
+   "samebuilderassubjectisrequiredcondition": "Same builder as subject indicator is required for new construction"
+  },
+  "SA_RECONCILE": {
+   "maxlength": "Sales comparison reconciliation exceeds maximum allowed length of {max} characters",
+   "notempty": "Sales comparison reconciliation is required"
+  },
+  "SCMINDVALUE2": {
+   "notempty": "Sales comparison indicated minimum value is required"
+  },
+  "SC_SOURCE1": {
+   "datasourcevalidationfullcondition": "Please complete all required data source fields"
+  },
+  "SF_FINISHED_AREA": {
+   "noncontinuousfinishedareaisrequiredcondition": "Non-continuous finished area is required for the selected configuration"
+  },
+  "SF_GLA": {
+   "grossbuildingfinishedareaisrequiredcondition": "Gross building finished area is required for the selected configuration"
+  },
+  "SITE_CHARACTERISTICS": {
+   "notempty": "Site characteristics are required"
+  },
+  "SITE_DRAINAGE": {
+   "notempty": "Site drainage is required"
+  },
+  "SITE_EASEMENT": {
+   "notempty": "Site easement indicator is required"
+  },
+  "SITE_ENV_COND": {
+   "notempty": "Site environmental conditions are required"
+  },
+  "SITE_HAZARD_ZONE": {
+   "notempty": "Site hazard zone indicator is required"
+  },
+  "SITE_INFLUENCE": {
+   "siteinfluencepopupfullcondition": "Please complete all required site influence fields"
+  },
+  "SITE_OWNED_IN_COMMON": {
+   "notempty": "Site owned in common indicator is required"
+  },
+  "SITE_PRIMARY_ACCESS": {
+   "primaryaccessisrequiredcondition": "Primary access type is required for the selected comparable"
+  },
+  "SITE_STREET_TYPE": {
+   "streettypefullcondition": "Please complete all required street type and surface fields"
+  },
+  "SITE_TOPOGRAPHY": {
+   "notempty": "Site topography is required"
+  },
+  "SITE_ZONE_COMPLIANCE": {
+   "notempty": "Zoning compliance is required"
+  },
+  "ST_SITSIZE": {
+   "sitesizeisrequiredcondition": "Site size is required for the selected comparable"
+  },
+  "ST_VIEW": {
+   "viewrangefullcondition": "Please complete all required view and range fields"
+  },
+  "TRANSFER_HISTORY_PRESENT": {
+   "transferhistorypresentisrequiredcondition": "Transfer history present indicator is required for the first comparable"
+  },
+  "TRANSFER_TERMS": {
+   "notempty": "Transfer term is required",
+   "transfertermsisrequiredcondition": "Transfer term is required",
+   "transfertermsmustbeemptywhennotsettledsale": "Transfer terms must be removed when listing status is not Settled Sale"
+  },
+  "TRANSFER_TERMS_ADJ": {
+   "notempty": "Transfer terms adjustment is required",
+   "financingtypeisrequiredcondition": "Transfer terms adjustment is required"
+  },
+  "TRANSFER_HISTORY_DATE": {
+   "transferdatecondition": "Transfer date is required"
+  },
+  "TRANSFER_HISTORY_AMOUNT": {
+   "transferamountcondition": "Transfer amount is required"
+  },
+  "TRANSFER_HISTORY_SOURCE": {
+   "transferhistorysourceisrequiredcondition": "Transfer source is required"
+  },
+  "UNITS_SF_GLA": {
+   "unitssfglarequiredcondition": "Unit square footage / GLA is required"
+  },
+  "UNITS_SF_GLA_BELOW_GRD": {
+   "unitssfglabelowgrdrequiredcondition": "Unit GLA below grade is required"
+  },
+  "UNITS_SF_GLA_BELOW_GRD_NONSTD": {
+   "notempty": "Unit GLA below grade non-standard area is required"
+  },
+  "UNITS_SF_GLA_BELOW_GRD_UNFIN": {
+   "notempty": "Unit GLA below grade unfinished area is required"
+  },
+  "UNITS_SF_GLA_NONSTD": {
+   "notempty": "Unit GLA non-standard area is required"
+  },
+  "UNITS_SF_GLA_UNFIN": {
+   "notempty": "Unit GLA unfinished area is required"
+  },
+  "UNIT_ID": {
+   "notempty": "Unit ID is required"
+  },
+  "WATER_FRONTAGE": {
+   "waterfrontageprivateaccessisrequiredcondition": "Water frontage is required when property has private access to a body of water",
+   "waterfrontagefullcondition": "Please complete all required water frontage fields"
+  },
+  "WATER_FRONTAGE_FEAT": {
+   "waterfrontageprivateaccessisrequiredcondition": "Permanent waterfront feature is required when property has private access to a body of water"
+  },
+  "WATER_LINEAR_MEASURE": {
+   "waterfrontageprivateaccessisrequiredcondition": "Total linear measurement is required when property has private access to a body of water"
+  },
+  "WATER_RIGHT_BLD": {
+   "waterfrontageprivateaccessisrequiredcondition": "Right to build is required when property has private access to a body of water"
+  },
+  "YR_BLT": {
+   "yearbuiltfullcondition": "Please complete all required year built fields"
+  },
+  "SALES_COMP_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when an exhibit description is not provided"
+  },
+  "SALES_COMP_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when an exhibit category is not provided or the category is Apparent Defects, Damages, Deficiencies"
+  },
+  "ALL_RIGHTS_INCLUDED_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "AMENITY_MISC_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "AMENITY_OUTDOOR_ACCESSORIES_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "AMENITY_OUTDOOR_LIVING_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "AMENITY_WATER_FEATURES_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "AMENITY_WHOLE_HOME_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "ATT_DET_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "BATHS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "BEDS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "CONDITION_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "CONT_DATE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "CORNER_UNIT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DISABILITY_FEATURES_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DP_FINTYP1_ADJ": {
+   "notempty": "This field is required"
+  },
+  "DT_SALTIM1_ADJ": {
+   "notempty": "This field is required"
+  },
+  "DWELL_CONST_METHOD_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_COOL_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_DESIGN_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  "DWELL_DISASTER_MIT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_FUNC_ISSUES_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_HEAT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_MANFCT_HOME_WIDTH_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_STYLE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  "DWELL_TH_BACKTOBACK_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_TH_ENDUNIT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_TH_LOC_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_TOTAL_VOLUME_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "DWELL_WINDOW_AREA_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "EX_CONCAMT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "FLOOR_NUM_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "GC1_DP_FINTYP1_ADJ": {
+   "financingtypeadjustmentcomparable": "Enter adjustment for Financing Type if needed. Enter '0' is no adjustment is needed."
+  },
+  "GC2_DP_FINTYP1_ADJ": {
+   "financingtypeadjustmentcomparable": "Enter adjustment for Financing Type if needed. Enter '0' is no adjustment is needed."
+  },
+  "GC5_LEVELS": {
+   "levelsinunitcountrequiredforcomps": "Levels in unit is required for each comparable sale."
+  },
+  "LEVELS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "LOC_ADU_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "MARKETAREA_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "NATIVE_AM_LANDS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "OUTBUILDING_TYPE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "PROP_APPRAISER_RIGHTS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "PU_EXT_COND_ROOF_OBSERVABLE": {
+   "notempty": "This field is required"
+  },
+  "QUALITY_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SF_GLA_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_CHARACTERISTICS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_DRAINAGE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_EASEMENT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_ENV_COND_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_HAZARD_ZONE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_INFLUENCE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_OWNED_IN_COMMON_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_PRIMARY_ACCESS_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_PROP_RESTRICT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_STREET_TYPE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_TOPOGRAPHY_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SITE_ZONE_COMPLIANCE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SP_TO_LP_RATIO_ADJ": {
+   "notempty": "This field is required"
+  },
+  "ST_SITSIZE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "ST_VIEW_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "UNITS_SF_GLA_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "UNITS_SF_GLA_BELOW_GRD_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "UNITS_SF_GLA_NONSTD_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "UNITS_SF_GLA_UNFIN_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "VEHICLE_STORAGE_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "YR_BLT_ADJ": {
+   "adjustmentrequiredwhensubjectdiffers": "An adjustment entry is required when subject and comparable data differ"
+  },
+  "SALES_COMP_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  },
+  "PU_DATA_SOURCE_MLS_NUM": {
+   "datasourcemlsnumcondition": "This field is required based on related selections"
+  },
+  "EXT_QUAL_STRUCTURE_ID": {
+   "anyextqualcondfieldisnotemptycondition": "This field is required based on related selections"
+  },
+  "PU_EXT_COND_ROOF_STATUS": {
+   "extcondroofstatusisrequiredcondition": "This field is required based on related selections"
+  },
+  "EXT_COND_ROOF": {
+   "anyextqualcondfieldisnotemptycondition": "This field is required based on related selections"
+  },
+  "EXT_COND_WINDOWS": {
+   "anyextqualcondfieldisnotemptycondition": "This field is required based on related selections"
+  },
+  "VEHICLE_STORAGE": {
+   "vehiclestoragerequiredcondition": "This field is required based on related selections"
+  },
+  "TRANSFER_HISTORY_TERMS": {
+   "transferhistorytermsisrequiredcondition": "This field is required based on related selections"
+  }
+ },
+ "sales-contract": {
+  "SC_ANALYSIS": {
+   "issalescontractanalysisrequired": "Sales contract analysis is required based on the contract information"
+  },
+  "SC_ANALYZED_NO": {
+   "notempty": "Please indicate whether the sales contract was analyzed (Yes or No)"
+  },
+  "SC_ANALYZED_YES": {
+   "notempty": "Please indicate whether the sales contract was analyzed (Yes or No)"
+  },
+  "SC_ARMS_LENGTH_NO": {
+   "notempty": "Please indicate whether the transaction is arms length (Yes or No)"
+  },
+  "SC_ARMS_LENGTH_YES": {
+   "notempty": "Please indicate whether the transaction is arms length (Yes or No)"
+  },
+  "SC_CONCESSIONS_TYPICAL": {
+   "notempty": "Concessions typical for market indicator is required"
+  },
+  "SC_CONTRACT_DATE": {
+   "notempty": "Contract date is required"
+  },
+  "SC_CONTRACT_SALES_PRICE": {
+   "notempty": "Contract sales price is required"
+  },
+  "SC_KWN_CONCESSIONS": {
+   "notempty": "Known concessions indicator is required"
+  },
+  "SC_NON_ARMS_LENGTH_COMMENTARY": {
+   "notempty": "Non-arms length transaction commentary is required"
+  },
+  "SC_PERSONAL_PROPERTY_INC_INCLUDE_INDICATOR": {
+   "notempty": "Personal property included indicator is required"
+  },
+  "SC_TOTAL_CONCESSIONS": {
+   "notempty": "Total concessions amount is required"
+  },
+  "SC_TRANSFER_TERMS": {
+   "notempty": "Transfer terms are required"
+  }
+ },
+ "site": {
+  "ALIAS_SIT_INFL_DTL_WATER": {
+   "detailbodyofwaterfullcondition": "Please complete all required body of water detail fields"
+  },
+  "ALIAS_SIT_INFL_PROX": {
+   "notempty": "Site influence proximity is required"
+  },
+  "APN": {
+   "apnfullcondition": "Please complete all required APN (Assessor Parcel Number) fields"
+  },
+  "APN_DESC": {
+   "apnfullcondition": "Please complete all required APN description fields"
+  },
+  "ELEM_DIV_PARCELS": {
+   "notempty": "Elementary division of parcels information is required"
+  },
+  "PARCELSCONTIGUOUS": {
+   "notempty": "Parcels contiguous indicator is required"
+  },
+  "PARCEL_SIZE": {
+   "isparcelsizerequiredcondition": "Parcel size is required for the selected site configuration",
+   "istotalsitesizematchingparcelsize": "Total Site Size and Parcel Size do not match"
+  },
+  "PU_APN": {
+   "isapnrequiredcondition": "Assessor Parcel Number (APN) is required"
+  },
+  "PU_APN_DESC": {
+   "isapndescrequiredcondition": "APN description is required"
+  },
+  "PU_SITE_FEAT_ENCROACH": {
+   "notempty": "Encroachment type is required"
+  },
+  "PU_SITE_FEAT_SITCHAR": {
+   "notempty": "Site characteristic type is required"
+  },
+  "PU_SITE_INFL_WTR_DTL_TYPE": {
+   "notempty": "Water body detail type is required"
+  },
+  "PU_SIT_UTLIMP_ELEC_DTL": {
+   "iselectricityprivate": "Electricity detail is required when the electricity source is private"
+  },
+  "PU_SIT_UTLIMP_SNTSWR_DTL": {
+   "notempty": "Sanitary sewer detail is required"
+  },
+  "PU_SIT_UTLIMP_WTR_DTL": {
+   "notempty": "Water source detail is required"
+  },
+  "PU_STREET_TYPE": {
+   "notempty": "Street type is required"
+  },
+  "PU_SURFACE_TYPE": {
+   "notempty": "Street surface type is required"
+  },
+  "SITSITEAREA": {
+   "issiteownedcommoncondition": "Site area is required when the site is owned in common",
+   "istotalsitesizematchingparcelsize": "Total Site Size and Parcel Size do not match"
+  },
+  "SIT_CLASSCODE": {
+   "notempty": "Zoning classification code is required"
+  },
+  "SIT_CLASSCODE_DESC": {
+   "notempty": "Zoning classification description is required"
+  },
+  "SIT_COMPLIANCE": {
+   "notempty": "Zoning compliance status is required"
+  },
+  "SIT_DEFECT_DESC": {
+   "apparentdefectsfeaturecondition": "Site defect description is required when a defect feature is reported"
+  },
+  "SIT_DEFECT_FEATURE": {
+   "issiteadddenabled": "Site defect feature selection is required"
+  },
+  "SIT_DEFECT_INTEGRITY": {
+   "apparentdefectsfeaturecondition": "Site defect integrity rating is required when a defect feature is reported"
+  },
+  "SIT_DEFECT_LOCATION": {
+   "apparentdefectsfeaturecondition": "Site defect location is required when a defect feature is reported"
+  },
+  "SIT_DEFECT_RECOMMEND_ACTION": {
+   "apparentdefectsfeaturecondition": "Recommended action is required when a site defect feature is reported"
+  },
+  "SIT_EXHIBIT_PHOTO": {
+   "isphotorequired": "Site exhibit photo description is required when a photo is attached"
+  },
+  "SIT_FEAT_EASEMENT_CMT": {
+   "isimpacteasementisadverseorbeneficial": "Easement commentary is required when the easement impact is adverse or beneficial"
+  },
+  "SIT_FEAT_EASEMENT_DTL": {
+   "notempty": "Easement detail is required"
+  },
+  "SIT_FEAT_EASEMENT_IMP": {
+   "notempty": "Easement impact is required"
+  },
+  "SIT_FEAT_ENCROACH_CMT": {
+   "isimpactencroachmentisadverseorbeneficial": "Encroachment commentary is required when the encroachment impact is adverse or beneficial"
+  },
+  "SIT_FEAT_ENCROACH_DTL": {
+   "notempty": "Encroachment detail is required"
+  },
+  "SIT_FEAT_ENCROACH_IMP": {
+   "notempty": "Encroachment impact is required"
+  },
+  "SIT_FEAT_HZRD_ZONE_CMT": {
+   "isimpactisadverse": "Hazard zone commentary is required when the hazard zone impact is adverse"
+  },
+  "SIT_FEAT_HZRD_ZONE_DTL": {
+   "notempty": "Hazard zone detail is required"
+  },
+  "SIT_FEAT_HZRD_ZONE_IMP": {
+   "notempty": "Hazard zone impact is required"
+  },
+  "SIT_FEAT_RSTRCTN_CMT": {
+   "isimpactrestrictionisadverseorbeneficial": "Restriction commentary is required when the restriction impact is adverse or beneficial"
+  },
+  "SIT_FEAT_RSTRCTN_DTL": {
+   "notempty": "Property restriction detail is required"
+  },
+  "SIT_FEAT_RSTRCTN_IMP": {
+   "notempty": "Property restriction impact is required"
+  },
+  "SIT_FEAT_SITCHAR_CMT": {
+   "isimpactsitecharacteristicisadverseorbeneficial": "Site characteristic commentary is required when the impact is adverse or beneficial"
+  },
+  "SIT_FEAT_SITCHAR_DTL": {
+   "notempty": "Site characteristic detail is required"
+  },
+  "SIT_FEAT_SITCHAR_IMP": {
+   "notempty": "Site characteristic impact is required"
+  },
+  "SIT_IMPACT": {
+   "notempty": "Zoning impact on value is required"
+  },
+  "SIT_INFL_CMT": {
+   "checkcomment": "Site influence commentary is required based on the selected influence"
+  },
+  "SIT_INFL_IMP": {
+   "notempty": "Site influence impact is required"
+  },
+  "SIT_INFL_INFL": {
+   "notempty": "Site influence type is required"
+  },
+  "SIT_INFL_WTR_FRNTG_ACCESS_DEPTH": {
+   "notempty": "Water frontage access depth is required"
+  },
+  "SIT_INFL_WTR_FRNTG_ACCESS_RIGHTS": {
+   "notempty": "Water frontage access rights status is required"
+  },
+  "SIT_INFL_WTR_FRNTG_FEAT": {
+   "notempty": "Water frontage permanent feature is required"
+  },
+  "SIT_INFL_WTR_FRNTG_LNR_MSRMNT": {
+   "notempty": "Water frontage linear measurement is required"
+  },
+  "SIT_KNOWN_MAINT_AGRMNT": {
+   "notempty": "Known maintenance agreement indicator is required"
+  },
+  "SIT_PRIMACCESS": {
+   "notempty": "Primary access type is required"
+  },
+  "SIT_PROP_ACCESS_DESC": {
+   "isnottypicalformarket": "Property access description is required when access is not typical for the market"
+  },
+  "SIT_PROP_USE_NONRES_MOD": {
+   "notempty": "Non-residential use modification indicator is required"
+  },
+  "SIT_PROP_USE_NONRES_USE": {
+   "notempty": "Non-residential use designation is required"
+  },
+  "SIT_PROP_USE_NONRES_USE_MOD_DESC": {
+   "isnonresidentialuserchecked": "Non-residential use modification description is required when non-residential use is checked"
+  },
+  "SIT_PROP_USE_PRIMARY_RES": {
+   "notempty": "Primary residential use designation is required"
+  },
+  "SIT_PROP_USE_RES_USE": {
+   "islegalnonconfirming": "Residential use description is required when zoning is legal non-conforming"
+  },
+  "SIT_REASONS_ILLEGAL": {
+   "notempty": "Reasons for illegal/non-compliant zoning determination is required"
+  },
+  "SIT_STREET_TYPE_SURFACE": {
+   "streettypeandsurfacefullcondition": "Please complete all required street type and surface fields"
+  },
+  "SIT_TYPICAL_MKT": {
+   "notempty": "Typical for market indicator is required"
+  },
+  "SIT_UTLIMP_ELEC_CMT": {
+   "iselectricityadverse": "Electricity commentary is required when the electricity impact is adverse"
+  },
+  "SIT_UTLIMP_SNTSWR_CMT": {
+   "issanitaryseweradverse": "Sanitary sewer commentary is required when the sanitary sewer impact is adverse"
+  },
+  "SIT_UTLIMP_GAS_CMT": {
+   "isgasadverse": "Gas service commentary is required when the gas impact is adverse"
+  },
+  "SIT_UTLIMP_GAS_PRIVATE": {
+   "isgasownershipselectedwhenpresent": "Gas utility ownership type is required when Gas utility is enabled"
+  },
+  "SIT_UTLIMP_GAS_PUBLIC": {
+   "isgaspublictrigger": "Gas utility ownership type is required when Gas utility is enabled"
+  },
+  "PU_SIT_UTLIMP_GAS_DTL": {
+   "isgasprivateselectedwhenpresent": "Gas utility source is required when gas utility ownership is private"
+  },
+  "EXT_SIT_UTIL_CMT": {
+   "isotherutilityadverse": "Other utility commentary is required when the utility impact is adverse"
+  },
+  "SIT_UTLIMP_GAS_IMP": {
+   "isgasprivateselectedwhenpresent": "Gas service impact is required when gas utility ownership is private",
+   "isgasprivate": "Gas service impact is required"
+  },
+  "SIT_UTLIMP_SNTSWR_IMP": {
+   "issanitarysewerprivate": "Sanitary sewer impact is required"
+  },
+  "SIT_UTLIMP_WTR_CMT": {
+   "iswateradverse": "Water service commentary is required when the water impact is adverse"
+  },
+  "SIT_UTLIMP_WTR_IMP": {
+   "iswaterprivate": "Water service impact is required"
+  },
+  "SIT_VALUATION_METHOD": {
+   "notempty": "Site valuation method is required"
+  },
+  "SIT_VALUE_OPINION": {
+   "notempty": "Opinion of site value is required"
+  },
+  "SIT_VWIMP_IMP": {
+   "notempty": "View impact on value is required"
+  },
+  "SIT_VWIMP_RNGVW": {
+   "notempty": "View range is required"
+  },
+  "SIT_VWIMP_VIEW": {
+   "notempty": "View type is required"
+  },
+  "SIT_ZONING_COMPLIANCE_DESC": {
+   "isnotlegalcondition": "Zoning compliance description is required when zoning is not legal"
+  },
+  "SIT_UTLIMP_BRDBD_AVAIL": {
+   "notempty": "Broadband Internet Available entry is required"
+  },
+  "SIT_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when an exhibit description is not provided"
+  },
+  "SIT_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when an exhibit category is not provided or the category is Apparent Defects, Damages, Deficiencies"
+  },
+  "EXT_SIT_UTIL": {
+   "notempty": "This field is required"
+  },
+  "SIT_UTLIMP_ELEC_IMP": {
+   "iselectricityprivate": "This field is required based on related selections"
+  },
+  "EXT_SIT_UTIL_IMP": {
+   "isanyutilityprivate": "This field is required based on related selections"
+  },
+  "PU_SIT_UTLIMP_ELEC_CMT_PRIV": {
+   "iselectricityadverse": "This field is required based on related selections"
+  },
+  "PU_SIT_UTLIMP_SNTSWR_CMT_PRIV": {
+   "issanitaryseweradverse": "This field is required based on related selections"
+  },
+  "PU_SIT_UTLIMP_WTR_CMT_PRIV": {
+   "iswateradverse": "This field is required based on related selections"
+  },
+  "PU_SIT_UTLIMP_GAS_CMT_PRIV": {
+   "isgasadverse": "This field is required based on related selections"
+  },
+  "PU_EXT_SIT_UTIL_CMT_PRIV": {
+   "isotherutilityadverse": "This field is required based on related selections"
+  }
+ },
+ "sub-prop": {
+  "ALL_RIGHTS_INCLUDED": {
+   "notempty": "All rights included indicator is required"
+  },
+  "NEWCONST_YES": {
+   "notempty": "The New Construction Indicator must be marked as either Yes or No."
+  },
+  "NEWCONST_NO": {
+   "notempty": "The New Construction Indicator must be marked as either Yes or No."
+  },
+  "HORESPMAINT_YES": {
+   "notempty": "Homeowner Responsible for all Exterior Maintenance of Dwellings must be marked as either Yes or No."
+  },
+  "HORESPMAINT_NO": {
+   "notempty": "Homeowner Responsible for all Exterior Maintenance of Dwellings must be marked as either Yes or No."
+  },
+  "ATTACHMENT_TYPE": {
+   "notempty": "Attachment type is required"
+  },
+  "COMMUNITY_LAND_TRUST": {
+   "notempty": "Community land trust indicator is required"
+  },
+  "DESC_OF_GROUND_RENT_MKT": {
+   "notempty": "Description of ground rent market is required"
+  },
+  "DESC_OF_RIGHTS_NOT_INCLUDED": {
+   "notempty": "Description of rights not included is required"
+  },
+  "GRAA_EXPIRES": {
+   "notempty": "Ground rental agreement expiration date is required"
+  },
+  "GRAA_RENEWABLE": {
+   "notempty": "Ground rental agreement renewable indicator is required"
+  },
+  "GRAA_TERM": {
+   "notempty": "Ground rental agreement term is required"
+  },
+  "GROUND_RENTAL_ANNUAL_AMOUNT": {
+   "notempty": "Ground rental annual amount is required"
+  },
+  "GSU_LEGAL_DESCRIP_PHOTO": {
+   "notempty": "Legal description exhibit photo is required"
+  },
+  "GSU_LEGAL_DESCRIP_TITLE": {
+   "notempty": "Legal description exhibit title is required"
+  },
+  "NATIVE_AMERICAN_LANDS": {
+   "notempty": "Native American lands indicator is required"
+  },
+  "PROPRIGHTSAPPR": {
+   "notemptyif": "Property rights appraised selection is required for the selected assignment"
+  },
+  "RIGHTS_NOT_INCLUDED": {
+   "notempty": "Rights not included selection is required"
+  },
+  "SPECIAL_TAX_ASSESSMENTS": {
+   "notempty": "Special tax assessments indicator is required"
+  },
+  "SPECIAL_TAX_ASSESSMENTS_DESC": {
+   "notempty": "Special tax assessments description is required"
+  },
+  "SUBCITY": {
+   "notempty": "Subject property city is required"
+  },
+  "SUBCOUNTY": {
+   "maxlength": "Subject property county exceeds maximum allowed length",
+   "notempty": "Subject property county is required"
+  },
+  "SUBJECT_EXHIBIT_DESCRIPTION": {
+   "validatesubjectexhibitdescription": "Subject exhibit description is required when an exhibit is attached"
+  },
+  "SUBJ_CONSTRUCTION_STAGE": {
+   "constructionstagerequiredcondition": "Construction stage is required for the selected property type"
+  },
+  "SUBLEGALDESCRIP": {
+   "notempty": "Subject property legal description is required"
+  },
+  "SUBPROPADDRESS": {
+   "notempty": "Subject property street address is required"
+  },
+  "SUBPROPADDRESS_FULL": {
+   "subpropertyaddressvalidationfullcondition": "Please complete all required subject property address fields (address, city, state, ZIP)"
+  },
+  "SUBSTATE": {
+   "notempty": "Subject property state is required"
+  },
+  "SUBZIP": {
+   "notempty": "Subject property ZIP code is required"
+  }
+ },
+ "subject-listing-info": {
+  "SLI_ANALYSIS_HISTORY": {
+   "notempty": "Subject listing analysis/history is required"
+  },
+  "SLI_DATA_SOURCE": {
+   "notempty": "Subject listing data source is required"
+  },
+  "SLI_LISTINGS": {
+   "notempty": "Subject listing information is required"
+  },
+  "SLI_LIST_CUR_OR_FINAL_LP": {
+   "notempty": "Current or final listing price is required"
+  },
+  "SLI_LIST_DOM": {
+   "notempty": "Days on market is required"
+  },
+  "SLI_LIST_ID": {
+   "listingidrequirecondition": "Listing ID/MLS number is required"
+  },
+  "SLI_LIST_STATUS": {
+   "notempty": "Listing status is required"
+  },
+  "SLI_LIST_TYPE": {
+   "notempty": "Listing type is required"
+  },
+  "SLI_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptiononlyrequired": "Subject listing exhibit description is required when a photo is attached"
+  },
+  "SLI_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  }
+ },
+ "project-info": {
+  "PI_BLANKET_FIN_NO": {
+   "notempty": "This field is required"
+  },
+  "PI_BLANKET_FIN_YES": {
+   "notempty": "This field is required"
+  },
+  "PI_CI_SHARES_ATTR": {
+   "notempty": "This field is required",
+   "maxdigits": "Value cannot exceed {max} digits"
+  },
+  "PI_CI_SHARES_ISSUED": {
+   "notempty": "This field is required",
+   "maxdigits": "Value cannot exceed {max} digits"
+  },
+  "PI_CONVERT_PAST_3YRS_NO": {
+   "notempty": "This field is required"
+  },
+  "PI_CONVERT_PAST_3YRS_YES": {
+   "notempty": "This field is required"
+  },
+  "PI_DEFICIENCY_OBSVERVED_NO": {
+   "notempty": "This field is required"
+  },
+  "PI_DEFICIENCY_OBSVERVED_YES": {
+   "notempty": "This field is required"
+  },
+  "PI_GROUND_RENT_NO": {
+   "notempty": "This field is required"
+  },
+  "PI_GROUND_RENT_YES": {
+   "notempty": "This field is required"
+  },
+  "PI_GR_ANNUAL_AMT": {
+   "notempty": "This field is required"
+  },
+  "PI_GR_EXPIRES": {
+   "notempty": "This field is required"
+  },
+  "PI_LEASE_EXPIRES": {
+   "notempty": "This field is required"
+  },
+  "PI_LINE_LIEN_CREDIT": {
+   "notempty": "This field is required"
+  },
+  "PI_SINGLE_OWN_UNITS_DETAIL": {
+   "notempty": "This field is required"
+  },
+  "PI_SUBJ_PROP_COMPLETE_NO": {
+   "notempty": "This field is required"
+  },
+  "PI_SUBJ_PROP_COMPLETE_YES": {
+   "notempty": "This field is required"
+  },
+  "PI_UNITS_COMPLETE_NO": {
+   "notempty": "This field is required"
+  },
+  "PI_UNITS_COMPLETE_YES": {
+   "notempty": "This field is required"
+  },
+  "PU_AMENITIES_SERVICES_INCLUDED_BSAO": {
+   "notempty": "This field is required"
+  },
+  "PU_AMENITIES_SERVICES_INCLUDED_USAO": {
+   "notempty": "This field is required"
+  },
+  "PU_UNIT_SPECIAL_ASSESSMENTS_DETAIL": {
+   "notempty": "This field is required"
+  },
+  "PU_UNIT_TAX_DETAIL": {
+   "notempty": "This field is required"
+  },
+  "PI_EXHIBIT_PHOTO": {
+   "isphotorequired": "A photo is required for this exhibit"
+  },
+  "PI_EXHIBIT_CATEGORY": {
+   "isexhibitcategoryrequired": "Exhibit category is required when a photo is attached"
+  },
+  "PI_EXHIBIT_DESCRIPTION": {
+   "isexhibitdescriptionrequired": "Exhibit description is required when a photo is attached"
+  },
+  "PI_PROJ_NAME": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_DATA_SOURCE": {
+   "plannedunitorprojectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_TOTAL_UNITS": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_UNITS_SOLD": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_UNITS_FOR_SALE": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_UNITS_RENTED": {
+   "unitsrentedfullcondition": "This field is required based on related selections"
+  },
+  "PU_UNITS_RENTED_ESTIMATED": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_REASONS_UNITS_RENTED": {
+   "isunitsrentedestimated": "This field is required based on related selections"
+  },
+  "PU_UNITS_RENTED": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_MONTHLY_AMOUNT": {
+   "monthlyamountfullcondition": "This field is required based on related selections"
+  },
+  "PU_MONTHLY_AMOUNT": {
+   "ismonthlyamountrequired": "This field is required based on related selections"
+  },
+  "PU_ASSOCIATION_CHARGE_TYPE_AD": {
+   "plannedunitorprojectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_AMENITIES_SERVICES_INCLUDED": {
+   "commonamenitiesfullfullcondition": "This field is required based on related selections"
+  },
+  "PU_AMENITIES_SERVICES_INCLUDED": {
+   "plannedunitorprojectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_UTILS_INCLUDED": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_DEFICIENCY_DESC": {
+   "isdescriptionrequired": "This field is required based on related selections"
+  },
+  "PI_LIEN_UNPAID_BAL": {
+   "lienunpaidbalrequiredcondition": "This field is required based on related selections"
+  },
+  "PI_LIEN_BALLOON_MTG": {
+   "isprojectblanketfinancing": "This field is required based on related selections"
+  },
+  "PI_LIEN_REMAINING_TERM": {
+   "isprojectblanketfinancing": "This field is required based on related selections"
+  },
+  "PI_LIEN_AMORT_TYPE": {
+   "isprojectblanketfinancing": "This field is required based on related selections"
+  },
+  "PI_DEVELOPER_IN_CONTROL_DETAIL": {
+   "plannedunitorprojectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_INCOMPLETE_PROJECT_DETAIL": {
+   "areunitscomplete": "This field is required based on related selections"
+  },
+  "PI_CONVERTED_IN_PAST_3YRS_DETAIL": {
+   "isconvertedpast3years": "This field is required based on related selections"
+  },
+  "PI_SINGLE_OWN_SHARES_DETAIL": {
+   "condoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_KWN_LEGAL_ACTIONS_DETAIL": {
+   "plannedunitorprojectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_DEVELOPER_IN_CONTROL_IMPACT": {
+   "isdeveloperincontrol": "This field is required based on related selections"
+  },
+  "PI_INCOMPLETE_PROJECT_IMPACT": {
+   "areunitsnotcomplete": "This field is required based on related selections"
+  },
+  "PI_CONVERTED_IN_PAST_3YRS_IMPACT": {
+   "isconvertedpast3years": "This field is required based on related selections"
+  },
+  "PI_SINGLE_OWN_SHARES_IMPACT": {
+   "condoorcooporcondop": "This field is required based on related selections"
+  },
+  "PI_KWN_LEGAL_ACTIONS_IMPACT": {
+   "isknownlegalactions": "This field is required based on related selections"
+  },
+  "PI_KWN_LEGAL_ACTIONS_COMMENT": {
+   "isknownlegalactions": "This field is required based on related selections"
+  },
+  "PI_LIEN_CREDIT_LINE": {
+   "lienofcreditfullcondition": "This field is required based on related selections"
+  },
+  "PU_LIEN_CREDIT_LINE_MAX_AMNT": {
+   "islineofcreditrequired": "This field is required based on related selections"
+  },
+  "PU_LIEN_CREDIT_LINE_DRAW_AMNT": {
+   "islineofcreditrequired": "This field is required based on related selections"
+  },
+  "PI_LIEN_MONTHLY_PMT": {
+   "monthlypmtfullcondition": "This field is required based on related selections"
+  },
+  "PU_LIEN_MONTHLY_PMT_KNWN": {
+   "isprojectblanketfinancing": "This field is required based on related selections"
+  },
+  "PU_LIEN_MONTHLY_PMT_AMNT": {
+   "isprojectblanketfinancing": "This field is required based on related selections"
+  },
+  "PU_LIEN_INTEREST_RATE_KNWN": {
+   "isprojectblanketfinancing": "This field is required based on related selections"
+  },
+  "PU_LIEN_INTEREST_RATE": {
+   "isinterestrateknown": "This field is required based on related selections"
+  },
+  "PI_LIEN_INTEREST_RATE": {
+   "interestratefullcondition": "This field is required based on related selections"
+  },
+  "PU_COMMERCIAL_SPACE_DETAIL": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PU_COMMERCIAL_SPACE_PERCENTAGE": {
+   "iscommercialspace": "This field is required based on related selections"
+  },
+  "PI_COMMERCIAL_SPACE_DETAIL": {
+   "commercialspacefullcondition": "This field is required based on related selections"
+  },
+  "PU_UNIT_TRANSFER_FEES_DETAIL": {
+   "projectiscondoorcooporcondop": "This field is required based on related selections"
+  },
+  "PU_UNIT_TRANSFER_FEES_AMNT": {
+   "isunittransferfees": "This field is required based on related selections"
+  },
+  "PI_UNIT_TRANSFER_FEES_DETAIL": {
+   "interestratefullcondition": "This field is required based on related selections"
+  },
+  "PU_UNIT_SPECIAL_ASSESSMENTS_AMNT": {
+   "isoutstandingbalancerequired": "This field is required based on related selections"
+  },
+  "PI_UNIT_SPECIAL_ASSESSMENTS_DETAIL": {
+   "interestratefullcondition": "This field is required based on related selections"
+  },
+  "PU_UNIT_TAX_AMOUNT": {
+   "isunittaxabatementorexcemptions": "This field is required based on related selections"
+  },
+  "PU_UNIT_TAX_EXPIRATION": {
+   "isunittaxabatementorexcemptions": "This field is required based on related selections"
+  },
+  "PI_UNIT_TAX_DETAIL": {
+   "unittaxfullcondition": "This field is required based on related selections"
+  },
+  "PI_COMMERCIAL_SPACE_IMPACT": {
+   "iscommercialspace": "This field is required based on related selections"
+  },
+  "PI_COMMERCIAL_SPACE_COMMENT": {
+   "isadverseorbeneficialrequired": "This field is required based on related selections"
+  },
+  "PI_UNIT_TRANSFER_FEES_IMPACT": {
+   "isunittransferfees": "This field is required based on related selections"
+  },
+  "PI_SINGLE_OWN_UNITS_IMPACT": {
+   "iscondo": "This field is required based on related selections"
+  },
+  "PI_UNIT_TRANSFER_FEES_COMMENT": {
+   "isunittransferfees": "This field is required based on related selections"
+  },
+  "PI_UNIT_SPECIAL_ASSESSMENTS_IMPACT": {
+   "isoutstandingbalancerequired": "This field is required based on related selections"
+  },
+  "PI_UNIT_SPECIAL_ASSESSMENTS_COMMENT": {
+   "isoutstandingbalancerequired": "This field is required based on related selections"
+  },
+  "PI_UNIT_TAX_IMPACT": {
+   "isunittaxabatementorexcemptions": "This field is required based on related selections"
+  },
+  "PI_UNIT_TAX_COMMENT": {
+   "isunittaxabatementorexcemptions": "This field is required based on related selections"
+  },
+  "PI_DEVELOPER_IN_CONTROL_COMMENT": {
+   "isdeveloperincontrol": "This field is required based on related selections"
+  },
+  "PI_INCOMPLETE_PROJECT_COMMENT": {
+   "areunitsnotcomplete": "This field is required based on related selections"
+  },
+  "PI_CONVERTED_IN_PAST_3YRS_COMMENT": {
+   "isconvertedpast3years": "This field is required based on related selections"
+  },
+  "PI_SINGLE_OWN_UNITS_COMMENT": {
+   "issingleentityadverseorbeneficialrequired": "This field is required based on related selections"
+  },
+  "PI_SINGLE_OWN_SHARES_COMMENT": {
+   "issingleentityadverseorbeneficialrequired": "This field is required based on related selections"
+  }
+ },
+ "report-setup": {
+  "SECTION_DESCRIPTION": {
+   "notempty": "This field is required"
+  }
+ },
+ "sketch": {
+  "SKT_EXHIBIT_CATEGORY": {
+   "issketchexhibitphotoattached": "Category is required when a sketch or floor plan image is attached"
+  }
+ }
+}

@@ -1,0 +1,649 @@
+{
+ "source": "Appendix D-1 sample appraisal PDFs",
+ "wrapper_pages": 2,
+ "samples": [
+  {
+   "file": "2-to4-unit_Appraisal_v1.4.pdf",
+   "pdf_pages": 31,
+   "wrapper_pages": 2,
+   "report_pages": 29
+  },
+  {
+   "file": "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+   "pdf_pages": 28,
+   "wrapper_pages": 2,
+   "report_pages": 26
+  },
+  {
+   "file": "Condo1_Appraisal_v1.4.pdf",
+   "pdf_pages": 24,
+   "wrapper_pages": 2,
+   "report_pages": 22
+  },
+  {
+   "file": "Condo2_Appraisal_v1.4.pdf",
+   "pdf_pages": 27,
+   "wrapper_pages": 3,
+   "report_pages": 24
+  },
+  {
+   "file": "Coop1_Appraisal_v1.4.pdf",
+   "pdf_pages": 20,
+   "wrapper_pages": 2,
+   "report_pages": 18
+  },
+  {
+   "file": "MH1_Appraisal_v1.4.pdf",
+   "pdf_pages": 32,
+   "wrapper_pages": 2,
+   "report_pages": 30
+  },
+  {
+   "file": "MH2_Appraisal_v1.4.pdf",
+   "pdf_pages": 22,
+   "wrapper_pages": 2,
+   "report_pages": 20
+  },
+  {
+   "file": "SF1_Appraisal_v1.4.pdf",
+   "pdf_pages": 23,
+   "wrapper_pages": 2,
+   "report_pages": 21
+  },
+  {
+   "file": "SF2_Appraisal_v1.4.pdf",
+   "pdf_pages": 24,
+   "wrapper_pages": 2,
+   "report_pages": 22
+  },
+  {
+   "file": "SF3_Appraisal_v1.4.pdf",
+   "pdf_pages": 25,
+   "wrapper_pages": 2,
+   "report_pages": 23
+  },
+  {
+   "file": "SF4_Appraisal_v1.4.pdf",
+   "pdf_pages": 24,
+   "wrapper_pages": 2,
+   "report_pages": 22
+  },
+  {
+   "file": "SF5_Appraisal_v1.2.pdf",
+   "pdf_pages": 21,
+   "wrapper_pages": 2,
+   "report_pages": 19
+  },
+  {
+   "file": "SF5A_Appraisal_v1.2.pdf",
+   "pdf_pages": 21,
+   "wrapper_pages": 2,
+   "report_pages": 19
+  }
+ ],
+ "page_size_pt": [
+  {
+   "w": 612.0,
+   "h": 1008.0,
+   "pages": 295
+  }
+ ],
+ "header": {
+  "pages_without_header": [
+   [
+    1,
+    13
+   ]
+  ],
+  "left": [
+   {
+    "font": "MyriadPro-Bold",
+    "size": 10.0,
+    "colour": "#231f20",
+    "count": 264
+   },
+   {
+    "font": "Calibri-Bold",
+    "size": 10.0,
+    "colour": "#231f20",
+    "count": 18
+   }
+  ],
+  "right": [
+   {
+    "font": "MyriadPro-Regular",
+    "size": 9.0,
+    "colour": "#231f20",
+    "count": 445
+   },
+   {
+    "font": "Calibri",
+    "size": 9.0,
+    "colour": "#231f20",
+    "count": 36
+   }
+  ],
+  "left_x0": [
+   [
+    36.0,
+    282
+   ]
+  ],
+  "right_x1": [
+   [
+    576.0,
+    481
+   ]
+  ],
+  "baseline_y0": [
+   [
+    33.9,
+    445
+   ],
+   [
+    32.6,
+    264
+   ],
+   [
+    33.8,
+    36
+   ],
+   [
+    32.8,
+    18
+   ]
+  ]
+ },
+ "footer": {
+  "left": [
+   {
+    "font": "MyriadPro-Bold",
+    "size": 8.0,
+    "colour": "#77787b",
+    "count": 552
+   },
+   {
+    "font": "MyriadPro-Bold",
+    "size": 8.0,
+    "colour": "#231f20",
+    "count": 276
+   },
+   {
+    "font": "Calibri-Bold",
+    "size": 8.0,
+    "colour": "#77787b",
+    "count": 38
+   },
+   {
+    "font": "Calibri-Bold",
+    "size": 8.0,
+    "colour": "#231f20",
+    "count": 19
+   },
+   {
+    "font": "MyriadPro-Regular",
+    "size": 9.0,
+    "colour": "#231f20",
+    "count": 1
+   },
+   {
+    "font": "Calibri",
+    "size": 9.0,
+    "colour": "#231f20",
+    "count": 1
+   }
+  ],
+  "left_x0": [
+   [
+    36.0,
+    885
+   ],
+   [
+    40.0,
+    2
+   ]
+  ],
+  "left_y0": [
+   [
+    945.1,
+    276
+   ],
+   [
+    963.1,
+    276
+   ],
+   [
+    972.1,
+    276
+   ],
+   [
+    945.2,
+    19
+   ],
+   [
+    963.2,
+    19
+   ],
+   [
+    972.2,
+    19
+   ]
+  ],
+  "right_label": [
+   {
+    "font": "MyriadPro-Bold",
+    "size": 8.0,
+    "colour": "#231f20",
+    "count": 666
+   },
+   {
+    "font": "Calibri-Bold",
+    "size": 8.0,
+    "colour": "#231f20",
+    "count": 38
+   }
+  ],
+  "right_label_x1": [
+   [
+    535.0,
+    135
+   ],
+   [
+    525.0,
+    124
+   ],
+   [
+    537.0,
+    78
+   ],
+   [
+    526.0,
+    66
+   ],
+   [
+    536.0,
+    63
+   ],
+   [
+    511.0,
+    60
+   ]
+  ],
+  "right_value_x0": [
+   [
+    545.0,
+    135
+   ],
+   [
+    535.0,
+    124
+   ],
+   [
+    542.0,
+    94
+   ],
+   [
+    547.0,
+    78
+   ],
+   [
+    536.0,
+    66
+   ],
+   [
+    546.0,
+    63
+   ]
+  ],
+  "right_y0": [
+   [
+    945.1,
+    276
+   ],
+   [
+    954.1,
+    276
+   ],
+   [
+    963.1,
+    114
+   ],
+   [
+    945.2,
+    19
+   ],
+   [
+    954.2,
+    19
+   ]
+  ]
+ },
+ "body": {
+  "left_edges": [
+   {
+    "pt": 40.0,
+    "pica": 3.333,
+    "count": 6649,
+    "pct": 30.2
+   },
+   {
+    "pt": 181.0,
+    "pica": 15.083,
+    "count": 1265,
+    "pct": 5.7
+   },
+   {
+    "pt": 457.0,
+    "pica": 38.083,
+    "count": 778,
+    "pct": 3.5
+   },
+   {
+    "pt": 316.0,
+    "pica": 26.333,
+    "count": 704,
+    "pct": 3.2
+   },
+   {
+    "pt": 48.0,
+    "pica": 4.0,
+    "count": 495,
+    "pct": 2.2
+   },
+   {
+    "pt": 42.0,
+    "pica": 3.5,
+    "count": 437,
+    "pct": 2.0
+   },
+   {
+    "pt": 472.0,
+    "pica": 39.333,
+    "count": 369,
+    "pct": 1.7
+   },
+   {
+    "pt": 310.0,
+    "pica": 25.833,
+    "count": 368,
+    "pct": 1.7
+   },
+   {
+    "pt": 148.0,
+    "pica": 12.333,
+    "count": 312,
+    "pct": 1.4
+   },
+   {
+    "pt": 364.0,
+    "pica": 30.333,
+    "count": 257,
+    "pct": 1.2
+   },
+   {
+    "pt": 256.0,
+    "pica": 21.333,
+    "count": 255,
+    "pct": 1.2
+   },
+   {
+    "pt": 324.0,
+    "pica": 27.0,
+    "count": 247,
+    "pct": 1.1
+   }
+  ],
+  "right_edges": [
+   {
+    "pt": 246.5,
+    "pica": 20.542,
+    "count": 838,
+    "pct": 3.8
+   },
+   {
+    "pt": 355.0,
+    "pica": 29.583,
+    "count": 672,
+    "pct": 3.1
+   },
+   {
+    "pt": 463.5,
+    "pica": 38.625,
+    "count": 590,
+    "pct": 2.7
+   },
+   {
+    "pt": 572.0,
+    "pica": 47.667,
+    "count": 580,
+    "pct": 2.6
+   },
+   {
+    "pt": 312.5,
+    "pica": 26.042,
+    "count": 522,
+    "pct": 2.4
+   },
+   {
+    "pt": 421.0,
+    "pica": 35.083,
+    "count": 442,
+    "pct": 2.0
+   },
+   {
+    "pt": 529.5,
+    "pica": 44.125,
+    "count": 371,
+    "pct": 1.7
+   },
+   {
+    "pt": 297.0,
+    "pica": 24.75,
+    "count": 175,
+    "pct": 0.8
+   },
+   {
+    "pt": 71.5,
+    "pica": 5.958,
+    "count": 133,
+    "pct": 0.6
+   },
+   {
+    "pt": 54.0,
+    "pica": 4.5,
+    "count": 129,
+    "pct": 0.6
+   },
+   {
+    "pt": 461.5,
+    "pica": 38.458,
+    "count": 122,
+    "pct": 0.6
+   },
+   {
+    "pt": 192.0,
+    "pica": 16.0,
+    "count": 101,
+    "pct": 0.5
+   }
+  ]
+ },
+ "tabs": {
+  "colours": [
+   [
+    "#231f20",
+    437
+   ]
+  ],
+  "heights": [
+   [
+    14.8,
+    437
+   ]
+  ],
+  "widths": [
+   [
+    144.0,
+    253
+   ],
+   [
+    166.0,
+    153
+   ],
+   [
+    182.5,
+    19
+   ],
+   [
+    160.5,
+    6
+   ],
+   [
+    201.0,
+    2
+   ],
+   [
+    178.5,
+    1
+   ],
+   [
+    143.5,
+    1
+   ],
+   [
+    179.0,
+    1
+   ]
+  ],
+  "x0": [
+   [
+    36.0,
+    437
+   ]
+  ],
+  "count": 437
+ },
+ "bars": {
+  "colours": [
+   [
+    "#fff200",
+    55
+   ],
+   [
+    "#e6e7e8",
+    22
+   ],
+   [
+    "#939598",
+    15
+   ],
+   [
+    "#a7a9ac",
+    9
+   ],
+   [
+    "#ffffff",
+    8
+   ],
+   [
+    "#58595b",
+    6
+   ]
+  ],
+  "heights": [
+   [
+    13.0,
+    52
+   ],
+   [
+    13.3,
+    46
+   ],
+   [
+    37.0,
+    8
+   ],
+   [
+    25.3,
+    7
+   ],
+   [
+    28.9,
+    1
+   ],
+   [
+    30.7,
+    1
+   ]
+  ],
+  "widths": [
+   [
+    44.0,
+    51
+   ],
+   [
+    540.0,
+    22
+   ],
+   [
+    271.0,
+    8
+   ],
+   [
+    135.0,
+    7
+   ],
+   [
+    115.0,
+    6
+   ],
+   [
+    431.5,
+    5
+   ],
+   [
+    105.5,
+    4
+   ],
+   [
+    323.0,
+    3
+   ]
+  ],
+  "x0": [
+   [
+    -55.0,
+    44
+   ],
+   [
+    36.0,
+    27
+   ],
+   [
+    307.0,
+    8
+   ],
+   [
+    306.0,
+    7
+   ],
+   [
+    623.0,
+    7
+   ],
+   [
+    36.5,
+    4
+   ],
+   [
+    272.5,
+    4
+   ],
+   [
+    125.0,
+    3
+   ]
+  ],
+  "count": 115
+ }
+}

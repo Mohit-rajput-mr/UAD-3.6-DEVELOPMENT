@@ -1,0 +1,20 @@
+{
+ "in_file": 43,
+ "placed_by_file": 49,
+ "placed_by_category": 1,
+ "placed": 50,
+ "seconds": 217.9,
+ "slots_naming_a_file": 55,
+ "slots_still_empty": [],
+ "differs_from_import": [],
+ "total_owned": [
+  [
+   "PropertyPhoto",
+   "2-4_SubjectProperty.png"
+  ]
+ ],
+ "failed": [],
+ "no_slot": [],
+ "no_section": [],
+ "unavailable": []
+}

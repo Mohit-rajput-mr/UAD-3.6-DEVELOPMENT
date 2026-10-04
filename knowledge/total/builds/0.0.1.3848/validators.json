@@ -1,0 +1,7706 @@
+[
+ {
+  "field": "ASSIGN_REASON",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "BORROWER_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "BORROWER_FIRST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "BORROWER_LAST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "BORROWER_FULL_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "CONTACT_ADDRESS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "contactaddressvalidationfullcondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "CONTACT_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "contactcityvalidationfullcondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "CONTACT_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "contactstatevalidationfullcondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "CONTACT_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "contactzipvalidationfullcondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "CONTACT_FULL_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "contactfullnamevalidationfullcondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUBCUROWNER_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUBCUROWNER_FIRST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUBCUROWNER_LAST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUBCUROWNER_FULL_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "ASSIGN_PROPVALMETHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_FIRST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_LAST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_COMPANY_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_ADDRESS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_SPI_EXTERIOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_SPI_INTERIOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_LEVEL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_EMPLOYEEMENT_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_FIRST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_LAST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_OCCUPATION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_COMPANY_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_ADDRESS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_REFERENCE_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_EXTERIOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_INTERIOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_CRED_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_CRED_STATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "APPRAISER_CRED_EXPIRES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_FIRST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_LAST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_COMPANY_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_ADDRESS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_SPI_EXTERIOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_SPI_INTERIOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_LEVEL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_CRED_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_CRED_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_CRED_EXPIRES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SUPERVISOR_EMPLOYEEMENT_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_LEVEL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_CRED_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_CRED_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_CRED_EXPIRES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_FIRST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_LAST_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "SRPA_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_USED_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PDR_USED_NO",
+   "PDR_USED_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PDR_USED_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PDR_USED_YES",
+   "PDR_USED_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "AssignmentFieldValidators"
+ },
+ {
+  "field": "PU_EE_RENEWABLE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_CERTS_ORGANIZATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_CERTS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dependandOnKnownCertificationOrganizationCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_YEAR",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dependandOnKnownCertificationOrganizationCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_VERSION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dependandOnKnownCertificationOrganizationCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_RATING",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dependandOnKnownCertificationOrganizationCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_GREEN_EFF",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_GREEN_RATING",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dependandOnKnownGreenEnergyEfficiencyOrganizationCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_GREEN_SCORE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dependandOnKnownGreenEnergyEfficiencyOrganizationCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "EE_IMPACT_TO_VAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "EnergyEfficientFieldValidators"
+ },
+ {
+  "field": "FO_FUNCTIONAL_ISSUE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "FunctionalObsolescenceFieldValidators"
+ },
+ {
+  "field": "OQC_OVERALL_QUAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "SSUI1_OQC_INT_QUALITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "SSDE1_OQC_EXT_QUALITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "OQC_OVERALL_COND",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "SSUI1_OQC_INT_CONDITION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "SSDE1_OQC_EXT_CONDITION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "REC_OF_OVERRAL_QC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OverallQuantityAndConditionFieldValidators"
+ },
+ {
+  "field": "HBU_LEGAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "HighestAndBestUseFieldValidators"
+ },
+ {
+  "field": "HBU_PHY_POSSIBLE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "HighestAndBestUseFieldValidators"
+ },
+ {
+  "field": "HBU_FIN_FEASIBL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "HighestAndBestUseFieldValidators"
+ },
+ {
+  "field": "HBU_MAX_PROD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "HighestAndBestUseFieldValidators"
+ },
+ {
+  "field": "HBU_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HBU_NO",
+   "HBU_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "HighestAndBestUseFieldValidators"
+ },
+ {
+  "field": "HBU_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HBU_YES",
+   "HBU_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "HighestAndBestUseFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_LOCATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "featureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "featureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_INTEGRITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "featureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_RECOMMEND_ACTION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "featureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_CATEGORY",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_MATERIAL",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupMaterialValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SPA_AMENITY_DETAIL",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupDetailsValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "PU_SPA_AMENITY_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_SPA_AMENITY_TOTALNUM",
+   "PU_SPA_AMENITY_DETAIL_AREA",
+   "PU_SPA_AMENITY_MATERIAL",
+   "PU_SPA_AMENITY_TYPE"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "PU_SPA_AMENITY_TOTALNUM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupTotalNumValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "PU_SPA_AMENITY_DETAIL_AREA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupDetailAreaValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "PU_SPA_AMENITY_MATERIAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "amenityPopupMaterialValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertiesAmenitiesFieldValidators"
+ },
+ {
+  "field": "SUBCOUNTY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 2,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SUBPROJNAME",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SUBLEGALDESCRIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 2,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SPECIAL_TAX_ASSESSMENTS_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 2,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "HORESPMAINT_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HORESPMAINT_NO",
+   "HORESPMAINT_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "HORESPMAINT_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HORESPMAINT_YES",
+   "HORESPMAINT_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "NATIVE_AMERICAN_LANDS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "GROUND_RENTAL_ANNUAL_AMOUNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "GRAA_RENEWABLE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "GRAA_EXPIRES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "DESC_OF_GROUND_RENT_MKT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "ALL_RIGHTS_INCLUDED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "RIGHTS_NOT_INCLUDED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "DESC_OF_RIGHTS_NOT_INCLUDED",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "ATTACHMENT_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "COMMUNITY_LAND_TRUST",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SPECIAL_TAX_ASSESSMENTS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "GSU_LEGAL_DESCRIP_PHOTO",
+  "trigger": "ValueChanged",
+  "dependants": [
+   "GSU_LEGAL_DESCRIP_TITLE"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "GSU_LEGAL_DESCRIP_TITLE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "GRAA_TERM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SUBPROPADDRESS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SUBCITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SUBSTATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "SUBZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectPropertyFieldValidators"
+ },
+ {
+  "field": "FINISHED_ABOVE_GRADE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "FINISHED_ABOVE_GRADE_NONSTD",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "UNFINISHED_ABOVE_GRADE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "FINISHED_BELOW_GRADE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "FINISHED_BELOW_GRADE_NONSTD",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "UNFINISHED_BELOW_GRADE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "AREA_DATA_SOURCE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ADU_LEGALLY_RENTABLE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ADU_DATA_SOURCE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ADU_TYPICAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ADU_INGRESS_EGRESS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ADU_SEP_ADDR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "OCCUPANCY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "LEVEL_IN_UNIT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "LEVEL_GRADE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "LEVEL_FINISHED_AREA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "LEVEL_UNFINISHED_AREA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "QC_INT_QUAL_RATING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "QC_INT_COND_RATING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "OVERALL_UPD_STATUS_FLOORING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ACCESSFEAT_FEATURE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "DEFECT_FEATURE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isUnitInteriorAdddEnabled"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "DEFECT_LOCATION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "unitInteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "DEFECT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "unitInteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "DEFECT_INTEGRITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "unitInteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "DEFECT_RECOMMEND_ACTION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "unitInteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "INTFEAT_DETAIL_FLOORING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "PU_INTFEAT_DETAIL_WALLS_CEILING_STYLE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "PU_INTFEAT_DETAIL_WALLS_CEILING_HEIGHT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "INTFEAT_DETAIL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "otherFeatureOptionalIsNotEmpty"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "INTFEAT_QUAL_STATUS_FLOORING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "PU_INTFEAT_QUAL_STATUS_WALLS_CEILING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "INTFEAT_QUAL_STATUS_WALLS_CEILING",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "INTFEAT_QUAL_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "otherFeatureOptionalIsNotEmpty"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ROOM_ROOM_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ROOM_LEVEL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ROOM_UPDATE_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "ROOM_CONDITION_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "UI2_UTILS_SEP_METERED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "NON_RES_USE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "OVERALL_UPD_STATUS_BATHS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "UnitInteriorFieldValidators"
+ },
+ {
+  "field": "VS_PU_STORAGE_TYPE_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_STORAGE_SPACE_SQUARE_FEET",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_PARKING_SPACE_ASSIGNMENT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_DRIVEWAY_SURFACE_MATERIAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_CAR_STORAGE_TYPE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_NUM_PARK_SPACES",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "numberParkSpacesValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_STORAGE_NUMBER_SPACES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "numberParkSpacesValidationFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_DEFECT_LOCATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "vehicleStorageFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_DEFECT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "vehicleStorageFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_DEFECT_INTEGRITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "vehicleStorageFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_DEFECT_RECOMMEND_ACTION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "vehicleStorageFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_CAR_STORAGE_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "VS_PU_CAR_STORAGE_NO",
+   "VS_PU_CAR_STORAGE_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "VS_PU_CAR_STORAGE_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "VS_PU_CAR_STORAGE_YES",
+   "VS_PU_CAR_STORAGE_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "VehicleStorageValidators"
+ },
+ {
+  "field": "SLI_LISTINGS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "SLI_DATA_SOURCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "SLI_LIST_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "SLI_LIST_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SLI_LIST_ID"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "SLI_LIST_DOM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "SLI_LIST_CUR_OR_FINAL_LP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "SLI_ANALYSIS_HISTORY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SubjectListingInformationFieldValidators"
+ },
+ {
+  "field": "DM_MITIGATION_FEATURE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DisasterMitigationFieldValidators"
+ },
+ {
+  "field": "DM_MITIGATION_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DisasterMitigationFieldValidators"
+ },
+ {
+  "field": "PHOTO1",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "STRUCTURE_DESIGN_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "FLOORS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "floorInBuildingRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "STYLE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "FRONT_DOOR_ELEV",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "TOWNHOUSE_END_UNIT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isTownhouseCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "TOWNHOUSE_BACK2BACK",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isTownhouseCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "UNITS_ABOVE_OR_BELOW",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isTownhouseCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXTRFSURFACE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_ROOF_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_WINDOW_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_WINDOW_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_OTHER_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "PUIYRBUILT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "PUIYRBUILT_ESTIMATED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "CONST_METHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "floorInBuildingRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "FINISHED_AREA_TOTAL_AREA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "HEAT_SYSTEM",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "HEAT_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "COOL_SYSTEM",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "DEFECT_FEATURE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isDwellingExteriorAdddEnabled"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "FINISHED_AREA_ROOM_SUMMARY_ROOM_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "DEFECT_LOCATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dwellingExteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "DEFECT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "dwellingExteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "DEFECT_INTEGRITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "dwellingExteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "DEFECT_RECOMMEND_ACTION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "dwellingExteriorFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "HEAT_BELOW_GRADE_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HEAT_BELOW_GRADE_NO",
+   "HEAT_BELOW_GRADE_YES"
+  ],
+  "rule_names": [
+   "coreHeatingSystemBelowGradeCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "HEAT_BELOW_GRADE_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HEAT_BELOW_GRADE_YES",
+   "HEAT_BELOW_GRADE_NO"
+  ],
+  "rule_names": [
+   "coreHeatingSystemBelowGradeCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_QUAL_RATING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_COND_RATING",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXTEXTWALLS",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "EXT_FEAT_COND_STATUS"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_FOUNDATION_MATERIAL_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "EXT_FOUNDATION_STATUS"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_FOUNDATION_TYPE_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "EXT_FOUNDATION_STATUS"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXTRFSURFACE_OBSERVABLE",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "EXTRFSURFACE_TYPE",
+   "EXTRFSURFACE_AGE",
+   "EXT_ROOF_STATUS"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXTRFSURFACE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXTRFSURFACE_AGE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_ROOF_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_WINDOW_DETAIL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_WINDOW_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "ATTIC",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "FACTORY_BLT_CERT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_OTHER_DETAIL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "EXT_OTHER_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "DwellingExteriorValidators"
+ },
+ {
+  "field": "CONSIDERED_REAL_PROP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "MECH_HEAT_SYSTEM",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "MECH_COOL_SYSTEM",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "MECH_HEAT_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "GLA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "HEATING_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HEATING_NO",
+   "HEATING_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "HEATING_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "HEATING_YES",
+   "HEATING_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "COOLING_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "COOLING_NO",
+   "COOLING_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "COOLING_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "COOLING_YES",
+   "COOLING_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "UTILITIES",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "TOTAL_AREA_FINISHED",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "TOTAL_AREA_UNFINISHED",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "ROOM_SUMMARY_FINISHED_TYPE_QUANTITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "outbuildingFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "ROOM_SUMMARY_FINISHED_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "outbuildingFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "DEFECT_FEATURE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isOutbuildingAdddEnabled"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "DEFECT_LOCATION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "outbuildingFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "DEFECT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "outbuildingFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "DEFECT_INTEGRITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "outbuildingFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "DEFECT_RECOMMEND_ACTION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "outbuildingFeatureEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "OutbuildingFieldValidators"
+ },
+ {
+  "field": "PARCELSCONTIGUOUS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "APN",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "apnFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "APN_DESC",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "apnFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_APN",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isApnRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_APN_DESC",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isApnDescRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_COMPLIANCE",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SIT_ZONING_COMPLIANCE_DESC"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_CLASSCODE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_CLASSCODE_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_REASONS_ILLEGAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_PRIMACCESS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_TYPICAL_MKT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_STREET_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SURFACE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_KNOWN_MAINT_AGRMNT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_PROP_USE_PRIMARY_RES",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_PROP_USE_NONRES_USE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_PROP_USE_NONRES_MOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_INFL_INFL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "ALIAS_SIT_INFL_PROX",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_INFL_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SITE_INFL_WTR_DTL_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_INFL_WTR_FRNTG_LNR_MSRMNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_INFL_WTR_FRNTG_FEAT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_INFL_WTR_FRNTG_ACCESS_RIGHTS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_INFL_WTR_FRNTG_ACCESS_DEPTH",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_VWIMP_VIEW",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_VWIMP_RNGVW",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_VWIMP_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_HZRD_ZONE_DTL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_DEFECT_FEATURE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isSiteAdddEnabled"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_DEFECT_LOCATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "apparentDefectsFeatureCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_DEFECT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "apparentDefectsFeatureCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_DEFECT_INTEGRITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "apparentDefectsFeatureCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_DEFECT_RECOMMEND_ACTION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "apparentDefectsFeatureCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_VALUE_OPINION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_VALUATION_METHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_RSTRCTN_DTL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_RSTRCTN_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_EASEMENT_DTL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_EASEMENT_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SITE_FEAT_ENCROACH",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_ENCROACH_DTL",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_ENCROACH_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_SITCHAR_DTL",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SITE_FEAT_SITCHAR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_FEAT_SITCHAR_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_ELEC_CMT",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "isElectricityAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_SNTSWR_DTL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "EXT_SIT_UTIL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_ELEC_PRIVATE",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SIT_UTLIMP_ELEC_IMP",
+   "PU_SIT_UTLIMP_ELEC_CMT_PRIV"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_ELEC_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SIT_UTLIMP_ELEC_IMP",
+   "SIT_UTLIMP_ELEC_CMT",
+   "PU_SIT_UTLIMP_ELEC_CMT_PRIV"
+  ],
+  "rule_names": [
+   "isElectricityPrivate"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_SNTSWR_PRIVATE",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SIT_UTLIMP_SNTSWR_IMP",
+   "PU_SIT_UTLIMP_SNTSWR_CMT_PRIV"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_SNTSWR_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SIT_UTLIMP_SNTSWR_IMP",
+   "SIT_UTLIMP_SNTSWR_CMT",
+   "PU_SIT_UTLIMP_SNTSWR_CMT_PRIV"
+  ],
+  "rule_names": [
+   "isSanitarySewerPrivate"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_WTR_PRIVATE",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SIT_UTLIMP_WTR_IMP",
+   "PU_SIT_UTLIMP_WTR_CMT_PRIV"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_WTR_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SIT_UTLIMP_WTR_IMP",
+   "SIT_UTLIMP_WTR_CMT",
+   "PU_SIT_UTLIMP_WTR_CMT_PRIV"
+  ],
+  "rule_names": [
+   "isWaterPrivate"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "EXT_SIT_UTIL_PRIVATE",
+  "trigger": "LeaveField",
+  "dependants": [
+   "EXT_SIT_UTIL_IMP",
+   "EXT_SIT_UTIL_CMT",
+   "PU_EXT_SIT_UTIL_CMT_PRIV"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "EXT_SIT_UTIL_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "EXT_SIT_UTIL_IMP",
+   "EXT_SIT_UTIL_CMT",
+   "PU_EXT_SIT_UTIL_CMT_PRIV"
+  ],
+  "rule_names": [
+   "isAnyUtilityPrivate"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_SNTSWR_CMT",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "isSanitarySewerAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_WTR_DTL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_WTR_CMT",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "isWaterAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_GAS_PUBLIC",
+  "trigger": "ValueChanged",
+  "dependants": [
+   "SIT_UTLIMP_GAS_PUBLIC",
+   "SIT_UTLIMP_GAS_PRIVATE"
+  ],
+  "rule_names": [
+   "isGasPublicTrigger"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_GAS_IMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SIT_UTLIMP_GAS_IMP",
+   "SIT_UTLIMP_GAS_CMT",
+   "PU_SIT_UTLIMP_GAS_CMT_PRIV"
+  ],
+  "rule_names": [
+   "isGasPrivateSelectedWhenPresent"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_GAS_DTL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isGasPrivateSelectedWhenPresent"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_GAS_CMT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isGasAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_ELEC_CMT_PRIV",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isElectricityAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_SNTSWR_CMT_PRIV",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isSanitarySewerAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_WTR_CMT_PRIV",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isWaterAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_SIT_UTLIMP_GAS_CMT_PRIV",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isGasAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "EXT_SIT_UTIL_CMT",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "isOtherUtilityAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "PU_EXT_SIT_UTIL_CMT_PRIV",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isOtherUtilityAdverse"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "ELEM_DIV_PARCELS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "SIT_UTLIMP_BRDBD_AVAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SiteFieldValidators"
+ },
+ {
+  "field": "MANUFACTURER_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "PU_YEAR_INSTALLED_ESTIMATED_INDICATOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "PU_YEAR_INSTALLED_YEAR",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MOVED_SINCE_ORIG",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "ATTACHED_TO_PERM_FOUND",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "TOWING_REMOVED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "HOME_WIDTH",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "LABEL_PRESENT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "SKIRTING_PRESENT_INDICATOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "SKIRTING_MATERIAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MODS_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "MODS_NO",
+   "MODS_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MODS_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "MODS_YES",
+   "MODS_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MODS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MODS_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "HUD_PLATE_ATT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MANUFACTURE_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isHudDataPlateIsAttachedCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "SERIAL_NUMBER",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isHudDataPlateIsAttachedCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "HUD_WIND_ZONE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isHudDataPlateIsAttachedCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "THERMAL_ZONE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isHudDataPlateIsAttachedCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "ROOF_LOAD_ZONE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isHudDataPlateIsAttachedCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "PURCHASE_FROM_RETAILER",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "RETAILER_INVOICE_REVIEWED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "MANUFACT_INVOICE_REVIEWED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "INVOICE_REASONABLE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "RETAILER_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "INVOICE_REASONABLE_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ManufactureHomeFieldValidators"
+ },
+ {
+  "field": "ADDITIONAL_SCOPE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "ADDITIONAL_INTENDED_USE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "ADDITIONAL_INTENDED_USERS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "DSCR_PRIOR_SERVICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "SIGNED_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "SIGNER_LIC_CERT_LEVEL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "SIGNER_LIC_CERT_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "SIGNER_LIC_CERT_STATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "SIGNER_LIC_CERT_EXPIRATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CertificationsFieldValidators"
+ },
+ {
+  "field": "INCOME_APPROACH_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "GROSS_RENT_MULTIPLIER",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "AD_ADDR1",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "DB_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "DB_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "DB_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "PHOTO",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "PU_DISTANCE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "PU_DIRECTION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "UNITS_EXCL_ADU",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "ADU",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "GBFA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "SALE_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "SALE_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "MONTHLY_RENT",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "RENT_MULTIPLIER",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "WEIGHT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "PU_DATA_SOURCE_ASSESSOR_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "PU_DATA_SOURCE_MLS_NUM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "WEIGHT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "incomeApproachEnteredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "IncomeApproachFieldValidators"
+ },
+ {
+  "field": "CA_DWELL_AREA_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_DWELL_AREA_SIZE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_DWELL_PER_UNIT_MEASURE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_DWELL_PHYSICAL_DEPRECIATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "DwellingPhysicalDepreciationChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_DWELL_FUNCTIONAL_DEPRECIATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "DwellingPhysicalDepreciationChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_DWELL_EXTERNAL_DEPRECIATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "DwellingPhysicalDepreciationChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_REMAINING_ECONOMIC_LIFE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "PU_CA_EFFECTIVE_AGE_RANGE_LOW",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "EffectiiveAgeRangeChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "PU_CA_EFFECTIVE_AGE_RANGE_HIGH",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "EffectiiveAgeRangeChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_EFFECTIVE_AGE_PRECISE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "EffectiiveAgeRangeChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_EFFECTIVE_AGE",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_PRIMARY_SITE_VAL_METHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OPINION_SITE_VAL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_COUNTY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "PrimarySiteValMethodIsSalesComparison"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_SOURCE",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_APN",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "PrimarySiteValMethodIsSalesComparison"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_SITSIZE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "PrimarySiteValMethodIsSalesComparison"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_DT_SALTIM1",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "PrimarySiteValMethodIsSalesComparison"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "PrimarySiteValMethodIsSalesComparison"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_SITE_VALUE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_COST_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_COST_DATA_SOURCE",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_COST_DATA_SOURCE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_COST_SERVICE_SOURCE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_EFFECTIVE_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_COST_METHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_DEPRECIATION_METHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_ADDRESS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_LC_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OUT_AREA_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OUT_AREA_SIZE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OUT_PER_UNIT_MEASURE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OUT_PHYSICAL_DEPRECIATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "OutbuildingPhysicalDepreciationChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OUT_FUNCTIONAL_DEPRECIATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "OutbuildingPhysicalDepreciationChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "CA_OUT_EXTERNAL_DEPRECIATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "OutbuildingPhysicalDepreciationChecked"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "COST_APPROACH_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "CostApproachFieldValidators"
+ },
+ {
+  "field": "PHOTO",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "AD_ADDR1",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DB_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DB_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DB_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DATA_SOURCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DISTANCE",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_DIRECTION",
+   "PU_DISTANCE"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_MILES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_MILES",
+   "PU_KILOMETERS"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_KILOMETERS",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_KILOMETERS",
+   "PU_MILES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "LP_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_CONT_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "EX_DOM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DP_FINTYP1",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "financingTypeIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_NATIVE_AM_LANDS_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_NATIVE_AM_LANDS_YES",
+   "PU_NATIVE_AM_LANDS_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_NATIVE_AM_LANDS_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_NATIVE_AM_LANDS_NO",
+   "PU_NATIVE_AM_LANDS_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_NATIVE_AM_LANDS_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_OWNED_IN_COMMON",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "MARKETAREA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_ZONE_COMPLIANCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_HAZARD_ZONE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_SITE_STREET_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_SITE_STREET_SURFACE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_EASEMENT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_TOPOGRAPHY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_DRAINAGE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_ENV_COND",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_SITE_INFLUENCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_SITE_INFLUENCE_WATER_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_ST_VIEW",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_ST_RANGE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_WATER_FRONTAGE_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "waterFrontageTypeIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_WATER_FRONTAGE_ACCESS_DEPTH",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "waterFrontageTypeIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "WATER_FRONTAGE",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "waterFrontagePrivateAccessIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "WATER_FRONTAGE_FEAT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "waterFrontagePrivateAccessIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "WATER_RIGHT_BLD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "waterFrontagePrivateAccessIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "WATER_LINEAR_MEASURE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "waterFrontagePrivateAccessIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_YR_BLT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_YR_BLT_EST",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_TH_ENDUNIT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_TH_BACKTOBACK",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_TH_LOC",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_CONST_METHOD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "constructionMethodIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_TOTAL_VOLUME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_WINDOW_AREA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_FUNC_ISSUES",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_DISASTER_MIT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_HEAT_SYSTEM",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_COOL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "GREEN_RENEW_ENERGY_COMPONENT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_GREEN_BUILD_CERT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_GREEN_BUILD_CERT_RATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_LOC_ADU_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "aduTypeRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_LOC_ADU_DESC",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "aduDescRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "LEVELS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "levelsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "BEDS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "bedsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_FULL_BATHS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "fullBathsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_HALF_BATHS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "halfBathsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "unitsSfGlaRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_NONSTD",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_UNFIN",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_BELOW_GRD",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "unitsSfGlaBelowGrdRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_BELOW_GRD_NONSTD",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_BELOW_GRD_UNFIN",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DISABILITY_FEATURES",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "disabilityFeaturesRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_EXT_COND_ROOF_OBSERVABLE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_QUAL_WALLS_CEILINGS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_COND_WALLS_CEILINGS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_QUAL_QUALITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_QUAL_KITCHEN",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "INT_ADU_COND_BATHS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_QUAL_FLOORS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_COND_CONDITION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_COND_KITCHEN",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ADU_COND_FLOORS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "compHasAduCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "QUALITY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "CONDITION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_AMENITY_OUTDOOR_ACCESSORIES",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_VEHICLE_STORAGE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_VEHICLE_STORAGE_DETAILS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "vehicleStorageIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "NETADJ_COMP_WEIGHT_ADJ",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SCMINDVALUE2",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SA_RECONCILE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NO",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_ADDR1",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_SALEDATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_STATUS",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "COMP_NOT_USED_SALEDATE"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_REASON",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "COMP_NOT_USED_RECONSIDER",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_CHARACTERISTICS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_PROJECT_NAME",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PROJECT_NAME",
+   "PU_PROJECT_NAME"
+  ],
+  "rule_names": [
+   "projectNameIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_PROJECT_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_PROJECT_NAME",
+   "PROJ_NAME"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PU_DWELL_MANFCT_HOME_WIDTH",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "manufacturedHomeWidthIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_MANFCT_HOME_WIDTH",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [
+   "manufacturedHomeWidthIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ALL_RIGHTS_INCLUDED_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "AMENITY_MISC_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "AMENITY_OUTDOOR_LIVING_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "AMENITY_WATER_FEATURES_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "AMENITY_WHOLE_HOME_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ATT_DET_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "BATHS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "gatedAdjustmentRequiredOrBlank"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "BEDS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "CONDITION_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "CONT_DATE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "CORNER_UNIT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DISABILITY_FEATURES_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_CONST_METHOD_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_COOL_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_DISASTER_MIT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_FUNC_ISSUES_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_HEAT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_MANFCT_HOME_WIDTH_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_TH_BACKTOBACK_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_TH_ENDUNIT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_TH_LOC_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_TOTAL_VOLUME_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DWELL_WINDOW_AREA_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "EX_CONCAMT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "FLOOR_NUM_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "LEVELS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "LOC_ADU_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "MARKETAREA_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "NATIVE_AM_LANDS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "OUTBUILDING_TYPE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "PROP_APPRAISER_RIGHTS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "QUALITY_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SF_GLA_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_CHARACTERISTICS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_DRAINAGE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_EASEMENT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_ENV_COND_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_HAZARD_ZONE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_INFLUENCE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_OWNED_IN_COMMON_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_PRIMARY_ACCESS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_PROP_RESTRICT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_STREET_TYPE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_TOPOGRAPHY_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SITE_ZONE_COMPLIANCE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ST_SITSIZE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "ST_VIEW_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_BELOW_GRD_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_NONSTD_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "UNITS_SF_GLA_UNFIN_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "VEHICLE_STORAGE_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "YR_BLT_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "adjustmentRequiredWhenSubjectDiffers"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "TRANSFER_TERMS_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "financingTypeIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DT_SALTIM1_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "DP_FINTYP1_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "SP_TO_LP_RATIO_ADJ",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesComparisonFieldValidators"
+ },
+ {
+  "field": "REC_UIDE_DEF_REPAIR_COST",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isDefRepairCostRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_DEUI_DEF_REPAIR_COST",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isDefRepairCostRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_OB_DEF_REPAIR_COST",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isDefRepairCostRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_SIT_DEF_REPAIR_COST",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isDefRepairCostRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_VS_DEF_REPAIR_COST",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isDefRepairCostRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_SPA_DEF_REPAIR_COST",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isDefRepairCostRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_OPINION_MKT_VAL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_REASONABLE_EXPOSURE_TIME",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_LOW",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_HIGH",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "RECEFFECTDATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CLIENT_VALUE_CONDITION",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CLIENT_MARKETING_TIME",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CLIENT_DURATION",
+  "trigger": "HidePopup",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CLIENT_ALT_OPINION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_LOW",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_HIGH",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_CONDITION_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "REC_MARKET_VALUE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReconciliationFieldValidators"
+ },
+ {
+  "field": "PSH_DATA_SOURCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_TRANSFER_DATA_SOURCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_SUB_ANALYSIS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_TRANSFER_AMOUNT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isCompTransferAmountRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_SUB_TRANSFER_AMOUNT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isSubTransferAmountRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PU_COMP_TRANSFER_AMOUNT_REASON",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_SUB_TRANSFER_AMOUNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_TRANSFER_AMOUNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_ANALYSIS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_TRANSFER_TERMS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_TRANSFER_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_COMP_TRANSFER_NUM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_SUB_TRANSFER_DATA_SOURCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_SUB_TRANSFER_TERMS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "PSH_SUB_TRANSFER_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "PriorSalesTransferHistoryValidators"
+ },
+ {
+  "field": "MKT_BOUNDARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_SEARCH_CRT_DESC",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_ACTVE_LISTINGS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_MEDIAN_DAYS_ON_MKT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_LOWEST_LIST_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_MEDIAN_LIST_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_HIGHEST_LIST_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_PENDING_SALES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_PAST_SALES_MONTHS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_LOWEST_SALE_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_MEDIAN_SALE_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_HIGHEST_SALE_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_PAST_SALES_MONTHS_NUM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_DISTRESSED_MKT_COMP",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_PRICE_TREND_SOURCE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_GRAPH",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "MKT_PRICE_TREND_COMMENTARY"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_DEMAND_SUPPLY",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "MKT_MARKETING_TIME",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "MarkedFieldValidators"
+ },
+ {
+  "field": "AD_ADDR1",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "DB_CITY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "DB_STATE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "DB_ZIP",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "ACTUAL_RENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_CURRENTLY_RENTED",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "RENT_SCH_MONTHLY_RENT"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_MONTHLY_RENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "currentOptionMonthlyRentCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_RENT_CONTROL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RI_ACT_INC_OTHER_DESC",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "RI_ACT_INC_OTHER_MONTHLY_RENT",
+   "RI_OPN_INC_OTHER_MONTHLY_RENT"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_VEHICLE_STORAGE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "GRADE_LEVEL",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "GRADE_LEVEL",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "enteredSourceCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "VEHICLE_STORAGE_COMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "VEHICLE_STORAGE_COMP",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "UNIT_VIEW",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "enteredSourceCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "UNIT_VIEW_COMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "UNIT_VIEW_COMP",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "MARKETAREA",
+  "trigger": "LeaveField",
+  "dependants": [
+   "MARKETAREA",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "FLOOR_NUM",
+  "trigger": "LeaveField",
+  "dependants": [
+   "FLOOR_NUM",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SITE_INFLUENCE_COMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SITE_INFLUENCE_COMP",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SITE_OWNED_IN_COMMON",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SITE_OWNED_IN_COMMON",
+   "ST_SITSIZE",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "siteOwnedInCommonRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "INT_COND_CONDITION",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "INT_COND_CONDITION",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "BEDS",
+  "trigger": "LeaveField",
+  "dependants": [
+   "BEDS",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SF_GLA",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SF_GLA",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "FURNISHED",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "FURNISHED",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "UTILS_INCLUDED",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "UTILS_INCLUDED",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_CONTROL",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "RENT_CONTROL",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_CONC",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "RENT_CONC",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SMRY_OVRL_COMP_TO_SUB",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SMRY_OVRL_COMP_TO_SUB",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SMRY_ADJ_RENTALLOWED_PERC",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SMRY_ADJ_RENTALLOWED_PERC",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SMRY_COMP_WEIGHT",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "SMRY_COMP_WEIGHT",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENTAL_ANALYSIS_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RI_ACT_INC_OTHER_MONTHLY_RENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "otherRealPropertyRentlyTrueIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RI_OPN_INC_OTHER_MONTHLY_RENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "otherRealPropertyRentlyTrueIsRequiredCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RI_OPN_INC_MONTHLY_RENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "currentOptionMonthlyRentCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PROX1",
+  "trigger": "HidePopup",
+  "dependants": [
+   "PROX1",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "enteredPROXCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_FULL_BATHS",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_FULL_BATHS",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_HALF_BATHS",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_HALF_BATHS",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "BATHS",
+  "trigger": "HidePopup",
+  "dependants": [
+   "BATHS",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "bathsFullCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_DISTANCE",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_DISTANCE",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_DIRECTION",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_DIRECTION",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_MONTH_TO_MONTH",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "SchCurrentlyRented"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_RENT_CONC",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "SchCurrentlyRented"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_UTILS_INCLUDED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "SchCurrentlyRented"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "RENT_SCH_FURNISHED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "SchCurrentlyRented"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SMRY_OPN_MKT_RENT",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SMRY_OPN_MKT_RENT",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "SMRY_ADJ_RENT",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SMRY_ADJ_RENT",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_DATA_SOURCE_ASSESSOR_ID",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_DATA_SOURCE_MLS_NUM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PROJ_AMENITIES_COMP",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PROJ_AMENITIES_COMP",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PHOTO",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PROJ_NAME",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PROJ_NAME",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "projName"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_MILES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_MILES",
+   "PU_MILES",
+   "PU_KILOMETERS",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PU_KILOMETERS",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PU_KILOMETERS",
+   "PU_KILOMETERS",
+   "PU_MILES",
+   "HEADER_LABEL"
+  ],
+  "rule_names": [
+   "comparableRentalAnalysisColumnCondition"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "RentalInformationFieldValidators"
+ },
+ {
+  "field": "PI_PROJ_NAME",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_DATA_SOURCE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "plannedUnitOrProjectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_TOTAL_UNITS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNITS_SOLD",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNITS_FOR_SALE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNITS_RENTED_ESTIMATED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNITS_RENTED",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_ASSOCIATION_CHARGE_TYPE_AD",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "plannedUnitOrProjectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_AMENITIES_SERVICES_INCLUDED_BSAO",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_AMENITIES_SERVICES_INCLUDED_BSAO",
+   "PI_AMENITIES_SERVICES_INCLUDED"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_AMENITIES_SERVICES_INCLUDED_USAO",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_AMENITIES_SERVICES_INCLUDED_USAO",
+   "PI_AMENITIES_SERVICES_INCLUDED"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_AMENITIES_SERVICES_INCLUDED",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_AMENITIES_SERVICES_INCLUDED",
+   "PI_AMENITIES_SERVICES_INCLUDED"
+  ],
+  "rule_names": [
+   "plannedUnitOrProjectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UTILS_INCLUDED",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_DEFICIENCY_OBSVERVED_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_DEFICIENCY_OBSVERVED_YES",
+   "PI_DEFICIENCY_OBSVERVED_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_DEFICIENCY_OBSVERVED_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_DEFICIENCY_OBSVERVED_NO",
+   "PI_DEFICIENCY_OBSVERVED_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNITS_COMPLETE_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_UNITS_COMPLETE_YES",
+   "PI_UNITS_COMPLETE_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNITS_COMPLETE_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_UNITS_COMPLETE_NO",
+   "PI_UNITS_COMPLETE_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_SUBJ_PROP_COMPLETE_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_SUBJ_PROP_COMPLETE_YES",
+   "PI_SUBJ_PROP_COMPLETE_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_SUBJ_PROP_COMPLETE_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_SUBJ_PROP_COMPLETE_NO",
+   "PI_SUBJ_PROP_COMPLETE_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CONVERT_PAST_3YRS_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_CONVERT_PAST_3YRS_YES",
+   "PI_CONVERT_PAST_3YRS_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CONVERT_PAST_3YRS_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_CONVERT_PAST_3YRS_NO",
+   "PI_CONVERT_PAST_3YRS_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_GROUND_RENT_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_GROUND_RENT_YES",
+   "PI_GROUND_RENT_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_GROUND_RENT_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_GROUND_RENT_NO",
+   "PI_GROUND_RENT_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_GR_ANNUAL_AMT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_GR_EXPIRES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CI_SHARES_ISSUED",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CI_SHARES_ATTR",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_LEASE_EXPIRES",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_BLANKET_FIN_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_BLANKET_FIN_YES",
+   "PI_BLANKET_FIN_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_BLANKET_FIN_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "PI_BLANKET_FIN_NO",
+   "PI_BLANKET_FIN_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_LINE_LIEN_CREDIT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_LIEN_BALLOON_MTG",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isProjectBlanketFinancing"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_LIEN_REMAINING_TERM",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isProjectBlanketFinancing"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_LIEN_AMORT_TYPE",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isProjectBlanketFinancing"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_DEVELOPER_IN_CONTROL_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "plannedUnitOrProjectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_INCOMPLETE_PROJECT_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "areUnitsComplete"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CONVERTED_IN_PAST_3YRS_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isConvertedPast3Years"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_SINGLE_OWN_UNITS_DETAIL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_SINGLE_OWN_SHARES_DETAIL",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "condoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_KWN_LEGAL_ACTIONS_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "plannedUnitOrProjectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_DEVELOPER_IN_CONTROL_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isDeveloperInControl"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_INCOMPLETE_PROJECT_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "areUnitsNotComplete"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CONVERTED_IN_PAST_3YRS_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isConvertedPast3Years"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_SINGLE_OWN_SHARES_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "condoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_KWN_LEGAL_ACTIONS_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isKnownLegalActions"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_KWN_LEGAL_ACTIONS_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isKnownLegalActions"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_LIEN_CREDIT_LINE_MAX_AMNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isLineOfCreditRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_LIEN_CREDIT_LINE_DRAW_AMNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isLineOfCreditRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_LIEN_MONTHLY_PMT_KNWN",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isProjectBlanketFinancing"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_LIEN_MONTHLY_PMT_AMNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isProjectBlanketFinancing"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_LIEN_INTEREST_RATE_KNWN",
+  "trigger": "SelectClosed",
+  "dependants": [
+   "PU_LIEN_INTEREST_RATE",
+   "PU_LIEN_INTEREST_RATE_KNWN"
+  ],
+  "rule_names": [
+   "isProjectBlanketFinancing"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_COMMERCIAL_SPACE_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_COMMERCIAL_SPACE_PERCENTAGE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isCommercialSpace"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_TRANSFER_FEES_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "projectIsCondoOrCoopOrCondop"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_TRANSFER_FEES_AMNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTransferFees"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_SPECIAL_ASSESSMENTS_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_SPECIAL_ASSESSMENTS_AMNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isOutstandingBalanceRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_TAX_DETAIL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_TAX_AMOUNT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTaxAbatementOrExcemptions"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PU_UNIT_TAX_EXPIRATION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTaxAbatementOrExcemptions"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_COMMERCIAL_SPACE_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isCommercialSpace"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNIT_TRANSFER_FEES_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTransferFees"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNIT_TRANSFER_FEES_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTransferFees"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNIT_SPECIAL_ASSESSMENTS_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isOutstandingBalanceRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNIT_SPECIAL_ASSESSMENTS_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isOutstandingBalanceRequired"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNIT_TAX_IMPACT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTaxAbatementOrExcemptions"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_UNIT_TAX_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isUnitTaxAbatementOrExcemptions"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_INCOMPLETE_PROJECT_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "areUnitsNotComplete"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "PI_CONVERTED_IN_PAST_3YRS_COMMENT",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [
+   "isConvertedPast3Years"
+  ],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "ProjectInformationValidators"
+ },
+ {
+  "field": "RN_REC_VAL_RESULT",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RevisionHistoryFieldValidators"
+ },
+ {
+  "field": "RN_REC_VAL_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RevisionHistoryFieldValidators"
+ },
+ {
+  "field": "RN_REC_VAL_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "RevisionHistoryFieldValidators"
+ },
+ {
+  "field": "SC_ANALYZED_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SC_ANALYZED_YES",
+   "SC_ANALYZED_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_ANALYZED_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SC_ANALYZED_NO",
+   "SC_ANALYZED_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_ARMS_LENGTH_YES",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SC_ARMS_LENGTH_YES",
+   "SC_ARMS_LENGTH_NO"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_ARMS_LENGTH_NO",
+  "trigger": "LeaveField",
+  "dependants": [
+   "SC_ARMS_LENGTH_NO",
+   "SC_ARMS_LENGTH_YES"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_NON_ARMS_LENGTH_COMMENTARY",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_CONTRACT_SALES_PRICE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_CONTRACT_DATE",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_TRANSFER_TERMS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_PERSONAL_PROPERTY_INC_INCLUDE_INDICATOR",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_KWN_CONCESSIONS",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_TOTAL_CONCESSIONS",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SC_CONCESSIONS_TYPICAL",
+  "trigger": "SelectClosed",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "SalesContractFieldValidators"
+ },
+ {
+  "field": "SECTION_DESCRIPTION",
+  "trigger": "LeaveField",
+  "dependants": [],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": true,
+  "validator_class": "ReportSetupFieldValidators"
+ },
+ {
+  "field": "SKT_EXHIBIT_PHOTO",
+  "trigger": "ValueChanged",
+  "dependants": [
+   "SKT_EXHIBIT_CATEGORY"
+  ],
+  "rule_names": [],
+  "rules": 1,
+  "not_empty": false,
+  "validator_class": "SketchFieldValidators"
+ }
+]

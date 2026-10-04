@@ -1,0 +1,367 @@
+{
+ "stage": "field-validation",
+ "field_validation": [
+  {
+   "field": "GC1_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC2_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC3_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC1_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC1_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC2_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC3_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_PROJ_AMENITIES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Common amenities/services is required when property is in a PUD or project"
+  },
+  {
+   "field": "GC2_PROJ_AMENITIES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Common amenities/services is required when property is in a PUD or project"
+  },
+  {
+   "field": "GC3_PROJ_AMENITIES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Common amenities/services is required when property is in a PUD or project"
+  },
+  {
+   "field": "GC1_SITE_ZONE_COMPLIANCE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_SITE_ZONE_COMPLIANCE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_SITE_ZONE_COMPLIANCE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_SITE_ZONE_COMPLIANCE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_SITE_ZONE_COMPLIANCE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_SITE_ZONE_COMPLIANCE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SITE_STREET_TYPE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required street type and surface fields"
+  },
+  {
+   "field": "GC1_SITE_STREET_TYPE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_SITE_STREET_TYPE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required street type and surface fields"
+  },
+  {
+   "field": "GC2_SITE_STREET_TYPE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_SITE_STREET_TYPE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required street type and surface fields"
+  },
+  {
+   "field": "GC3_SITE_STREET_TYPE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC1_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC2_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC3_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_AMENITY_WHOLE_HOME_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_AMENITY_WHOLE_HOME_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_AMENITY_WHOLE_HOME_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_VEHICLE_STORAGE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_VEHICLE_STORAGE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_VEHICLE_STORAGE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  }
+ ],
+ "uad_rules": [],
+ "panel_uad_errors": null
+}

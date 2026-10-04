@@ -1,0 +1,406 @@
+
+<<<PAGE 1 of 6>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the Federal 
+Housing Finance Agency. 
+© 2024 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+Uniform Appraisal Dataset (UAD) Specification 
+Issued by Fannie Mae and Freddie Mac  
+Appendix E‐2:  
+Report Style Guide Supplement – Restricted Appraisal Update Report with Codes
+Document Version 1.2 
+September 17, 2024 
+
+<<<PAGE 2 of 6>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the Federal 
+Housing Finance Agency. 
+© 2024 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+Revision History
+Date 
+Version #  Report Section 
+Change # 
+Revision Description 
+9/17/2024 
+1.2 
+Footer 
+2024‐028 
+Updated date in Footer to September 2024 
+12/12/2023 
+1.1 
+Footer 
+2023‐061 
+Updated date in Footer to December 2023 
+Certifications and 
+Scope of Work 
+2023‐003 
+Updated predefined text for Scope of Work, Appraiser Certifications 18, 24, and 25, and all 
+Supervisory Appraiser Certifications 
+Clarified that Contact Name(s) displays for Appraiser Certification 21 
+3/29/2023 
+1.0
+Initial Publication 
+Introduction   
+The Report Style Guide Supplement is a visual guide to the Report Style Guide. 
+Each section of the Uniform Residential Appraisal Report (URAR), Restricted Appraisal Update Report, and 
+Completion Report is provided with codes in the Report Style Guide. Codes are the specific type face, placement, 
+and visual treatment that must be applied for each component within the sections. 
+Appendix E Supplements are as follows: 
+
+Report Style Guide Supplement – URAR with Codes
+
+Report Style Guide Supplement – Restricted Appraisal Update Report with Codes
+
+Report Style Guide Supplement – Completion Report with Codes
+
+<<<PAGE 3 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Restricted Appraisal Update Report	
+Page [Page] of [Pages]
+Update Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Physical Address
+County
+Property Rights Appraised
+Legal Description
+Original Appraisal
+Effective Date of Appraisal
+Opinion of Market Value
+Reasonable Exposure Time
+Appraiser
+Reference ID
+Original Lender
+Appraisal Update
+Effective Date
+Yes No
+Has the market value of the subject property decreased since the effective date of the original appraisal?
+
+Appraisal Update Commentary
+Appraisal Update Exhibits
+Assignment Information
+Borrower Name
+Appraiser Fee
+AMC Fee
+Government Agency
+Investor Requested Special Identification
+Contact Information
+[Role]/[Role] 
+Company Name
+Company Address
+Credentials
+ID
+State
+Expires
+Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+TAB
+TXR-B
+TXR-B
+TAB
+TXR-B
+TXR-B
+TAB
+TXR-B
+TXR-B
+TXR-I
+CK
+H1
+H1
+H1
+Y/N
+TXR-B
+TXR-B
+TXR-B
+H1
+H2
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TX-B
+TAB
+H2
+TXR-I
+TXR-I
+TX-B
+TXR-I
+TXR-II
+TXR-B
+TXR-I
+TXR-I
+TX-B
+TXR-B
+TXR-II
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+TXR-II
+TXC
+TXC
+
+<<<PAGE 4 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Restricted Appraisal Update Report	
+Page [Page] of [Pages]
+Update Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Supervisory Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Supervisory Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Significant Real Property Appraisal Assistance
+Name
+Credentials
+Level
+ID
+State
+Expires
+Description  
+Assignment Information and Scope of Work Commentary
+H2
+TXR-I
+TXR-I
+TX-B
+TX-B
+H2
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-II
+TXC-B
+TXR-B
+TXR-I
+TXR-I
+TX-B
+TXR-B
+TXR-II
+H1
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-II
+TXC
+
+<<<PAGE 5 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Restricted Appraisal Update Report	
+Page [Page] of [Pages]
+Update Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, the 
+intended use, the definition of market value as defined in the Uniform Residential Appraisal Report, the effective date, the subject property 
+and its relevant characteristics, and the applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate 
+and reliable information for the subject property; (2) research, verify, and analyze adequate and reliable data for the subject market area 
+including data for each comparable property reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Additional Scope of Work
+Additional Scope of Work cannot be contrary to the original Scope of Work.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+The intended use of the appraisal is solely to assist FHA in assessing the risk of the Property securing the FHA-insured Mortgage 
+(24 CFR § 200.145(b)).
+Additional Intended Use
+Additional Intended Use cannot be contrary to the original Intended Use.
+Intended User
+The intended user of this report is the lender/client.
+FHA and the Mortgagee are the intended users of this report.
+The USDA and any other identified lender/client are intended users of this report.
+The VA is also an intended user of this report.
+Additional Intended Users
+Additional Intended Users cannot be contrary to the original Intended User.
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal update in accordance with the scope of work requirements stated in this 
+appraisal update report and concur with the analysis and conclusions in the original appraisal.
+7. I performed this appraisal update in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+update was prepared.
+8. I have updated the appraisal by incorporating the original appraisal report by reference.
+9. I have summarized my analysis and conclusions in this appraisal update and retained all supporting data in my work file.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+H1
+H1
+H2
+TXC
+TXC
+TXC-I
+TXC-I
+H2
+TXC
+H1
+H2
+TXC
+TXC
+TXC-I
+H1
+TAB
+TXC-NP
+TXC
+TXC-NP
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXC
+TXC
+TXC
+
+<<<PAGE 6 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Restricted Appraisal Update Report	
+Page [Page] of [Pages]
+Update Version #
+Fannie Mae | Freddie Mac 
+September 2024
+10. I personally performed an inspection of the exterior areas of the subject property from at least the street. I reported the readily observable 
+condition of the improvements in factual, specific terms. I reported any known physical deficiencies that could affect the soundness or 
+structural integrity of the property.
+10. I did not personally perform an onsite inspection of the subject property as part of this appraisal assignment. I reported the condition of 
+the improvements in factual, specific terms, relying on subject property information data sources I considered reliable. I reported any known 
+physical deficiencies that could affect the soundness or structural integrity of the property.
+11. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+12. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+13. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+13. I personally prepared conclusions and opinions about the real estate that were set forth in this appraisal report. [Contact Name] provided
+significant real property appraisal assistance in the development of this report. I certify that any individual so named is qualified to perform 
+the assistance.
+14. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+15. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+15. I have performed services regarding the subject property within the three years preceding the agreement to perform this assignment.
+Description of Prior Services:
+Additional Appraiser Certifications
+Additional Appraiser Certifications cannot be contrary to the original Appraiser Certifications.
+1. 
+Supervisory Appraiser Certifications
+The Supervisory Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction.
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that
+apply to the appraiser and to the assignment.
+4. I directly supervised the appraiser for this appraisal assignment, have read the appraisal report, and agree with the appraiser’s analyses, 
+opinions, statements, conclusions, and the appraiser’s certification.
+5. The assignment information regarding the scope of inspection by the Supervisory Appraiser is correct.
+6. I accept full responsibility for the contents of this appraisal report including, but not limited to, the appraiser’s analyses, opinions, 
+statements, conclusions, and the appraiser’s certification.
+7. The appraiser identified in this appraisal report is either a subcontractor or an employee of the supervisory appraiser (or the appraisal firm),
+is qualified to perform this appraisal, and is acceptable to perform this appraisal under the applicable law.
+8. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable federal 
+and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation of 
+my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+Additional Supervisory Appraiser Certifications
+Additional Supervisory Appraiser Certifications cannot be contrary to the original Supervisory Appraiser Certifications.
+1. 
+Signature
+[Role]
+[Contact Name]	
+Date of Signature and Report
+Level
+ID
+State
+Expires
+H1
+H2
+TXC-I
+TXC-NP
+TXC-NPI-B
+TXC
+TXC-NP
+TXC-NP
+H1
+H2
+TXC-I
+TXC-NP
+TXC-NP
+TXR-B
+SIG-B
+TX-B
+SIG
+TXC-NP
+TXR-B
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR

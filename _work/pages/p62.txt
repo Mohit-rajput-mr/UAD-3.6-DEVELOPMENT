@@ -1,0 +1,1081 @@
+Agent Single Line - Residential
+Distance
+#
+MLS #
+St
+ 
+Price Subtype Address
+Publish to Internet Y/N
+Post Office/Town
+GLA
+Lot Sz BR
+FB
+HB
+Yr Blt
+DOM List Office ID
+1.4 mi
+64
+920624
+SLD
+$1,716,800
+SIFARE
+62 The Hemlocks
+Yes
+Roslyn Estates
+3,107
+0.3834
+5
+3
+1
+1958
+16
+GALE12
+1.4 mi
+65
+854784
+SLD
+$1,550,000
+SIFARE
+37 Maple Street
+Yes
+Roslyn Heights
+2,500
+0.1148
+4
+2
+1
+2015
+41
+S&S01
+1.4 mi
+66
+L3575838
+SLD
+$1,225,000
+SIFARE
+250 Locust Lane
+Yes
+East Hills
+2,300
+3
+2
+1
+1950
+116
+CMPA05
+1.4 mi
+67
+985540
+SLD
+$1,365,000
+SIFARE
+50 Washington Avenue
+Yes
+Glen Head
+1,204
+0.2296
+2
+2
+0
+1954
+19
+GALE12
+1.4 mi
+68
+929166
+SLD
+$1,688,000
+SIFARE
+52 Glenwood Lane
+Yes
+East Hills
+2,826
+0.3700
+4
+2
+1
+1950
+13
+CMPA05
+1.4 mi
+69
+978440
+SLD
+$1,400,000
+SIFARE
+11 First Street
+Yes
+Glenwood Landing
+3,000
+0.1400
+4
+3
+1
+2025
+100
+MERR01
+1.5 mi
+70
+988963
+SLD
+$1,175,000
+SIFARE
+61 Cleveland Avenue
+Yes
+Glen Head
+1,618
+0.1722
+3
+2
+0
+1948
+82
+GALE15
+1.5 mi
+71
+985774
+SLD
+$1,500,000
+SIFARE
+41 Highfield Lane
+Yes
+East Hills
+0
+0.2432
+3
+2
+0
+1950
+35
+CMPA05
+1.5 mi
+72
+891900
+SLD
+$1,850,000
+SIFARE
+10 Flamingo Road
+Yes
+East Hills
+2,622
+0.3580
+5
+2
+1
+1961
+22
+DERE03
+1.5 mi
+73
+969124
+SLD
+$1,360,000
+SIFARE
+16 Mary Lane
+Yes
+Roslyn Harbor
+2,060
+0.7677
+3
+2
+0
+1948
+7
+GALE12
+1.5 mi
+74
+952762
+SLD
+$1,386,000
+SIFARE
+30 Glenwood Lane
+Yes
+East Hills
+1,860
+0.2399
+4
+2
+0
+1952
+48
+CMPA05
+1.5 mi
+75
+884315
+SLD
+$1,825,000
+SIFARE
+18 Roosevelt Avenue
+Yes
+Glen Head
+2,800
+0.1860
+5
+3
+0
+2023
+38
+CMPA05
+1.5 mi
+76
+886124
+SLD
+$1,357,000
+SIFARE
+46 Garfield Avenue
+Yes
+Glen Head
+2,524
+0.2296
+4
+2
+0
+1951
+18
+GALE15
+1.5 mi
+77
+955306
+SLD
+$1,588,000
+SIFARE
+61 Squirrel Hill Road
+Yes
+East Hills
+1,724
+0.2435
+3
+2
+1
+1938
+19
+MIHA01
+1.5 mi
+78
+954402
+SLD
+$1,740,000
+SIFARE
+53 Tara Drive
+Yes
+Roslyn
+3,256
+0.3535
+5
+4
+1
+1962
+36
+FRSN01
+1.5 mi
+79
+983240
+SLD
+$1,200,000
+SIFARE
+53A Grove Street
+Yes
+Glenwood Landing
+2,719
+0.1561
+4
+2
+1
+1986
+18
+GALE15
+1.6 mi
+80
+929897
+SLD
+$1,578,000
+SIFARE
+57 Red Ground Road
+Yes
+East Hills
+2,288
+0.1150
+4
+3
+0
+1922
+23
+RLLE02
+1.6 mi
+81
+945151
+SLD
+$1,425,000
+SIFARE
+60 Wakefield Avenue
+Yes
+Port Washington
+2,460
+0.1626
+3
+2
+0
+1949
+63
+BRMN18
+1.6 mi
+82
+967116
+SLD
+$1,600,000
+SIFARE
+16 Arbor Road
+Yes
+East Hills
+2,367
+0.2424
+5
+3
+0
+1951
+23
+CMPA03
+1.6 mi
+83
+902031
+SLD
+$1,200,000
+SIFARE
+238 Parkside Drive
+Yes
+Roslyn Heights
+1,800
+0.1980
+3
+2
+1
+1946
+34
+DERE57
+1.6 mi
+84
+948620
+SLD
+$1,505,000
+SIFARE
+32 Arbor Road
+Yes
+East Hills
+2,282
+0.2355
+3
+2
+0
+1952
+15
+CMPA05
+1.7 mi
+85
+919630
+SLD
+$1,150,000
+SIFARE
+64 South Street
+Yes
+East Hills
+1,622
+0.1376
+3
+2
+1
+1958
+29
+SPH18
+1.7 mi
+86
+920469
+SLD
+$1,270,000
+SIFARE
+33 Scudders Lane
+Yes
+Glen Head
+2,500
+0.3115
+3
+2
+1
+1956
+54
+BHHS02
+1.7 mi
+87
+896895
+SLD
+$1,361,000
+SIFARE
+79 Red Ground Road
+Yes
+East Hills
+2,560
+0.1739
+4
+3
+0
+1933
+42
+DERE53
+1.7 mi
+88
+935371
+SLD
+$1,450,000
+SIFARE
+2T Coolidge Avenue
+Yes
+Glen Head
+2,982
+0.1769
+4
+3
+0
+1984
+147
+DERE52
+1.7 mi
+89
+900351
+SLD
+$1,225,000
+SIFARE
+75 George Street
+Yes
+Roslyn Heights
+1,475
+0.2204
+3
+1
+1
+1952
+19
+DERE57
+1.7 mi
+90
+891265
+SLD
+$1,330,000
+SIFARE
+53 Stratford N
+Yes
+Roslyn Heights
+2,169
+0.2240
+4
+2
+1
+1955
+36
+CPLI01
+1.8 mi
+91
+897402
+SLD
+$1,175,000
+SIFARE
+65 Stratford N
+Yes
+Roslyn Heights
+1,855
+0.2238
+3
+2
+1
+1955
+29
+CARE17
+1.8 mi
+92
+999201
+SLD
+$1,240,000
+SIFARE
+149 Princeton Street
+Yes
+Roslyn Heights
+2,322
+0.1790
+4
+3
+0
+1947
+48
+CMPA05
+1.8 mi
+93
+887519
+SLD
+$1,200,000
+SIFARE
+21 Orchard Street
+Yes
+Glen Head
+2,100
+0.1598
+3
+1
+1
+1957
+25
+GALE11
+1.8 mi
+94
+913541
+SLD
+$1,485,000
+SIFARE
+30 Knoll Lane
+Yes
+Glen Head
+2,523
+0.1614
+4
+2
+2
+1984
+19
+GALE15
+1.8 mi
+95
+904805
+SLD
+$1,450,000
+SIFARE
+75 Mimosa Drive
+Yes
+Roslyn
+3,200
+0.6967
+4
+3
+0
+1961
+30
+CARE07
+1.8 mi
+96
+942960
+SLD
+$1,727,000
+SIFARE
+16 Cliff Way
+Yes
+Port Washington
+1,495
+0.2410
+3
+2
+0
+1953
+8
+DERE52
+1.8 mi
+97
+835225
+SLD
+$1,350,000
+SIFARE
+499 Stonytown Road
+Yes
+Manhasset
+2,586
+0.9646
+4
+3
+0
+1957
+54
+LNPN01
+1.8 mi
+98
+961413
+SLD
+$1,450,000
+SIFARE
+499 Stonytown Road
+Yes
+Manhasset
+2,586
+0.9646
+4
+3
+0
+1957
+87
+LNPN01
+1.8 mi
+99
+L3139509
+SLD
+$1,530,000
+SIFARE
+142 Woodhollow Lane
+Yes
+East Hills
+3,500
+5
+4
+1
+1951
+136
+BHHS01
+1.8 mi
+100
+889476
+SLD
+$1,190,000
+SIFARE
+140 Princeton Street
+Yes
+Roslyn Heights
+1,738
+0.1904
+3
+2
+0
+1947
+12
+CHGL01
+1.8 mi
+101
+927117
+SLD
+$1,127,000
+SIFARE
+14 Harbor Lane
+Yes
+Glen Head
+2,115
+0.2722
+4
+2
+0
+1958
+72
+GALE15
+1.8 mi
+102
+963488
+SLD
+$1,100,000
+SIFARE
+26 Pinetree Lane
+Yes
+Roslyn Heights
+2,010
+0.2582
+4
+2
+1
+1947
+40
+RLLE02
+1.8 mi
+103
+947961
+SLD
+$1,500,000
+SIFARE
+11 Manor Avenue
+Yes
+Roslyn Heights
+2,874
+0.1722
+4
+3
+1
+2005
+15
+1HOM01
+1.8 mi
+104
+951418
+SLD
+$1,320,000
+SIFARE
+97 Gilmar Lane
+Yes
+Roslyn Heights
+1,823
+0.1373
+3
+2
+1
+1957
+6
+RTBO01
+1.8 mi
+105
+903709
+SLD
+$1,900,000
+SIFARE
+10 Eastview Lane
+Yes
+Old Brookville
+3,628
+1.3000
+4
+3
+2
+1861
+69
+SHNT02
+1.8 mi
+106
+973310
+SLD
+$1,910,000
+SIFARE
+2 Knoll Lane
+Yes
+Glen Head
+2,985
+0.1900
+4
+2
+1
+2000
+36
+SPH02
+1.8 mi
+107
+998436
+SLD
+$1,880,000
+SIFARE
+18 Sherwood Lane
+Yes
+Roslyn Heights
+3,229
+14,000.0 4
+3
+1
+1951
+63
+GALE19
+1.8 mi
+108
+923442
+SLD
+$1,648,000
+SIFARE
+18 Knoll Lane
+Yes
+Glen Head
+2,957
+0.1860
+5
+3
+1
+1984
+13
+DERE57
+1.9 mi
+109
+882242
+SLD
+$1,425,000
+SIFARE
+6 Glen Avenue
+Yes
+Glen Head
+2,256
+0.4975
+4
+2
+1
+1922
+30
+DERE57
+1.9 mi
+110
+901361
+SLD
+$1,835,000
+SIFARE
+20 Mill Spring Road
+Yes
+Manhasset
+2,439
+0.1848
+3
+3
+1
+1938
+67
+CMPA05
+1.9 mi
+111
+966861
+SLD
+$1,260,000
+SIFARE
+1 Pine Hill Terrace
+Yes
+Old Brookville
+2,500
+1.0000
+4
+2
+1
+1975
+40
+LRE09
+1.9 mi
+112
+918187
+SLD
+$1,205,000
+SIFARE
+129 Gilmar Lane
+Yes
+Roslyn Heights
+1,847
+0.1343
+3
+2
+1
+1957
+45
+DERE41
+1.9 mi
+113
+955768
+SLD
+$1,287,000
+SIFARE
+39 Hillturn Lane
+Yes
+Roslyn Heights
+1,910
+0.1716
+3
+2
+1
+1947
+23
+DERE23
+1.9 mi
+114
+999596
+SLD
+$1,100,000
+SIFARE
+2 Ashley Place
+Yes
+Glen Head
+1,640
+0.2452
+3
+1
+1
+1927
+16
+LRE03
+1.9 mi
+115
+1001673
+SLD
+$1,725,000
+SIFARE
+60 Mill Spring Road
+Yes
+Manhasset
+1,886
+0.1980
+3
+2
+1
+1938
+63
+CMPA05
+1.9 mi
+116
+981193
+SLD
+$1,375,000
+SIFARE
+25 Jaegger Drive
+Yes
+Old Brookville
+2,401
+1.0500
+4
+2
+0
+1958
+48
+INTC01
+1.9 mi
+117
+988576
+SLD
+$1,200,000
+SIFARE
+11 Edgewood Avenue
+Yes
+Glen Head
+2,119
+0.2666
+5
+2
+0
+1951
+7
+OVRS01
+1.9 mi
+118
+1005432
+SLD
+$1,900,000
+SIFARE
+142 Mill Spring Road
+Yes
+Manhasset
+2,139
+0.2002
+3
+2
+1
+1940
+10
+CMPA05
+1.9 mi
+119
+913966
+SLD
+$1,850,000
+SIFARE
+41 Birch Street
+Yes
+Port Washington
+1,953
+0.1623
+3
+3
+1
+1951
+15
+DERE52
+2.0 mi
+120
+L3560923
+SLD
+$1,600,000
+SIFARE
+1 Snapdragon Lane
+Yes
+Roslyn Heights
+6
+3
+0
+1951
+30
+GALE12
+2.0 mi
+121
+949511
+SLD
+$1,562,000
+SIFARE
+47 Birch Street
+Yes
+Port Washington
+1,542
+0.1570
+3
+2
+0
+1951
+8
+CMPA05
+2.0 mi
+122
+918667
+SLD
+$1,930,000
+SIFARE
+31 Knolls Lane
+Yes
+Manhasset
+2,631
+1.1400
+4
+3
+0
+1957
+7
+DERE03
+2.0 mi
+123
+952582
+SLD
+$1,250,000
+SIFARE
+13 Walnut Street
+Yes
+Glen Head
+2,459
+0.3400
+3
+2
+1
+1893
+34
+GALE15
+2.0 mi
+124
+872414
+SLD
+$1,455,000
+SIFARE
+61 Locust Lane
+Yes
+Roslyn Heights
+2,931
+0.3214
+4
+2
+1
+1951
+148
+GALE12
+2.0 mi
+125
+960763
+SLD
+$1,320,000
+SIFARE
+34 Roxbury Road
+Yes
+Port Washington
+2,113
+0.1377
+3
+2
+0
+1951
+71
+DERE51
+2.1 mi
+126
+866454
+SLD
+$1,765,000
+SIFARE
+47 Homewood Place
+Yes
+Manhasset
+2,560
+0.3012
+4
+2
+1
+1975
+28
+DERE23

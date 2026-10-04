@@ -1,0 +1,51 @@
+{
+ "form": "UAD-3.6-AR-1.000",
+ "title": "Uniform Residential Appraisal Report",
+ "form_version": "1.000",
+ "form_build": "1.00",
+ "web_engine_build": "0.0.1.3894",
+ "bundle_sha256": "0e8528461de29a2462185cdd119b403dd2359acb2bff734a9152641798b8a6ab",
+ "extracted": "2026-10-02",
+ "from_report": "146 W 57TH ST Unit 44C",
+ "counts": {
+  "controls": 4483,
+  "distinct_field_names": 2848,
+  "controls_with_fmid": 2419,
+  "distinct_fmids": 1227,
+  "controls_in_templates": 1140,
+  "controls_in_popups": 568,
+  "controls_hidden_by_default": 105,
+  "controls_with_display_rules": 0,
+  "templates": 32,
+  "popups": 191,
+  "repeatable_groups": 196,
+  "shared_lists": 54,
+  "validators": 755,
+  "validators_by_trigger": {
+   "SelectClosed": 320,
+   "LeaveField": 408,
+   "HidePopup": 24,
+   "ValueChanged": 3
+  },
+  "mismo_data_points": 642,
+  "mismo_field_placements": 2002,
+  "wintotal_actions": 42
+ },
+ "files": [
+  "connector.json",
+  "datafields.json",
+  "datamodel.json",
+  "defaults.json",
+  "fields.json",
+  "grids.json",
+  "popups.json",
+  "repeatables.json",
+  "rtv_messages.json",
+  "section_tree.json",
+  "shared_items.json",
+  "templates.json",
+  "uid_map.json",
+  "validators.json",
+  "visibility.json"
+ ]
+}

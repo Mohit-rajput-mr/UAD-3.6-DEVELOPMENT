@@ -1,0 +1,48 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "Building 2 - Unit 2",
+    "caption": "Unit 2",
+    "description": "Unit 2"
+   },
+   {
+    "instance": 2,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 4,
+  "rentalprop": 6,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Attached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "C:\\3.6 uad zips\\_UNZIPPED_ALL\\Appendix D-1 Coop1_Appraisal\\Coop1_Appraisal_v1.4.xml",
+ "import_seconds": 48.3,
+ "import_error": ""
+}

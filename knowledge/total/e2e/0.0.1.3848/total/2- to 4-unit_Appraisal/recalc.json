@@ -1,0 +1,20 @@
+{
+ "all_calcs": "recalculated",
+ "net_adjustments": [
+  {
+   "comp": 1,
+   "before": "$(84,200)",
+   "after": "$(84,200)"
+  },
+  {
+   "comp": 2,
+   "before": "$(4,600)",
+   "after": "$(4,600)"
+  },
+  {
+   "comp": 3,
+   "before": "$(50,500)",
+   "after": "$(50,500)"
+  }
+ ]
+}

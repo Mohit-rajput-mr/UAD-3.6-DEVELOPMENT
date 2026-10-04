@@ -1,0 +1,249 @@
+{
+ "case": {
+  "case_id": "47b269da02e5",
+  "name": "E2E SF1_Appraisal",
+  "template": "sf1_appraisal_v1_4",
+  "property_type": "single_family",
+  "state": "draft",
+  "created": "2026-09-28T13:18:02+00:00",
+  "updated": "2026-09-28T13:18:02+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "SF1_Appraisal_v1.4.xml",
+  "property_type": "single_family",
+  "values": 943,
+  "on_report": 741,
+  "not_displayed": 202,
+  "comparables": {
+   "SalesComparable": 3,
+   "PropertyAnalyzedNotUsed": 5
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "SF1_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "SF1_Garage.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_Garage-1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_HalfBath.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_MediaRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_RecreationRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_WetBar.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_FamilyRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_FullBath3.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_Kitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_FullBath1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_FullBath2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_SubjectProperty.png",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_SubjectProperty-1.png",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_PropertyAccess.png",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_SalesCompMap.png",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_DwellingRear.png",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_DwellingFront.png",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_HERSScore.png",
+    "category": "EnergyEfficientAndGreenFeaturesExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_AbsorptionRate.PNG",
+    "category": "AbsorptionRateGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_MedianDaysOnMarket.PNG",
+    "category": "MedianDaysOnMarketGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_PriceTrends.PNG",
+    "category": "PriceTrendGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_YearBuiltOfSales.PNG",
+    "category": "YearBuiltOfSalesGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_MediaRoom-1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_RoofDefect.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_FloorDefect.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_Comp1.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_Comp2.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "SF1_Comp3.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.65,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

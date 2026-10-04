@@ -1,0 +1,1561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UAD 3.6 Report Platform</title>
+<style>
+/* Monochrome. One hue -- neutral grey -- with black for emphasis. Severity is
+   told by fill and weight, not by colour, so the page stays legible in print
+   and to anyone who does not separate hues. */
+:root{
+  --ink:#101010; --paper:#f2f2f0; --surface:#ffffff; --sunk:#e8e8e5;
+  --rule:#c9c9c5; --rule-2:#9a9a95; --muted:#6a6a66;
+  --fatal:#101010; --warn:#6a6a66;
+  --sans:"Bahnschrift","DIN Next","Saira","Oxanium","Segoe UI",
+         "Liberation Sans",sans-serif;
+  --mono:"Cascadia Mono","Consolas",ui-monospace,monospace;
+  --stretch:88%;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font:400 13px/1.42 var(--sans);font-stretch:var(--stretch);
+  -webkit-font-smoothing:antialiased;
+  display:grid;grid-template-rows:auto 1fr;height:100vh;overflow:hidden;
+}
+button,input,select,textarea{font:inherit;font-stretch:var(--stretch);color:inherit}
+h1,h2,h3{font-weight:600;letter-spacing:.01em;margin:0}
+.k{font:600 10px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+   font-stretch:var(--stretch)}
+
+/* ---------------------------------------------------------------- masthead */
+header{display:flex;align-items:center;gap:20px;padding:0 18px;height:46px;
+       background:var(--ink);color:var(--paper)}
+header .backhome{appearance:none;background:transparent;border:1px solid rgba(255,255,255,.28);
+  color:var(--paper);font:400 17px/1 var(--sans);width:26px;height:26px;border-radius:3px;
+  cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;
+  margin-right:-8px}
+header .backhome:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5)}
+header .mark{font:700 15px/1 var(--sans);letter-spacing:.22em}
+header .sub{font-size:11px;color:#9d9d99;letter-spacing:.09em;text-transform:uppercase}
+header .spacer{flex:1}
+header .stat{font:400 11px/1 var(--mono);color:#9d9d99;display:flex;gap:14px}
+header .stat b{color:#fff;font-weight:700}
+
+/* ------------------------------------------------------------------- shell */
+main{display:grid;grid-template-columns:214px 1fr 312px;min-height:0}
+/* The editor's three panes each scroll on their own, so the shell must not --
+   a page that scrolls as a whole would take the rail and the inspector with
+   it.  The launcher is not that layout: it is one column of cases as long as
+   the list is, and inheriting "the shell never scrolls" simply cut it off at
+   the foot of the window with no way to reach the rest. */
+main.launcher{display:block;overflow-y:auto}
+@media (max-width:1240px){main{grid-template-columns:190px 1fr}
+  aside.inspector{display:none}}
+/* Narrower again: the rail collapses to its numbers and a field stacks its
+   label above its control, so nothing is cut off and the page never scrolls
+   sideways. */
+@media (max-width:820px){
+  main{grid-template-columns:52px 1fr}
+  nav.rail .railitem{grid-template-columns:1fr;gap:2px;padding:6px 4px;text-align:center}
+  nav.rail .railitem .t{display:none}
+  .railhead{font-size:0}
+  .work-head,.panel{padding-left:12px;padding-right:12px}
+  .tabs{flex-wrap:wrap;gap:2px}
+}
+nav.rail{border-right:1px solid var(--rule);overflow-y:auto;background:var(--surface)}
+section.work{overflow-y:auto;min-width:0;display:flex;flex-direction:column}
+aside.inspector{border-left:1px solid var(--rule);overflow-y:auto;background:var(--surface)}
+
+.railhead,.panelhead{position:sticky;top:0;z-index:2;background:var(--surface);
+  padding:11px 14px 7px;border-bottom:1px solid var(--rule);color:var(--muted)}
+.railitem{display:grid;grid-template-columns:24px 1fr auto;gap:7px;
+  align-items:baseline;padding:6px 14px;border-bottom:1px solid var(--rule);
+  cursor:pointer;background:none;border-left:3px solid transparent;
+  width:100%;text-align:left;font-stretch:var(--stretch);position:relative}
+/* how much of the section is filled in, along the foot of its row */
+.railitem .prog{position:absolute;left:0;bottom:0;height:2px;width:100%;
+  grid-column:1/-1;background:linear-gradient(to right,
+  var(--rule-2) var(--p),transparent var(--p))}
+.railitem:hover{background:var(--sunk)}
+.importbox{border:2px dashed var(--rule-2,#999);border-radius:6px;padding:16px 18px;margin:0 0 22px;background:var(--surface)}
+.importbox.over{border-color:var(--ink);background:var(--sunk)}
+.importbox .ib-t{font-weight:700;font-size:16px}
+.importbox .ib-s{color:var(--muted);margin:4px 0 10px}
+.importbox .ib-b{display:flex;gap:8px}
+.importbox .ib-p{margin-top:12px;display:flex;align-items:center;gap:10px}
+.importbox .ib-bar{flex:1;height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.importbox .ib-bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .25s}
+.importbox .ib-r ul{margin:10px 0;padding-left:18px}
+.importbox .ib-r li.ok{color:#2f855a}
+.importbox .ib-r li.warn{color:#b7791f}
+.importbox .ib-r li.bad{color:#c53030}
+.importbox .ib-r li.info{color:var(--muted)}
+.importbox .ib-err{color:#c53030;margin-top:10px;font-weight:700}
+/* saved sections: green all good, orange warnings, red UAD errors */
+.railitem.st-good{background:rgba(47,133,90,.10)}
+.railitem.st-warn{background:rgba(221,107,32,.12)}
+.railitem.st-bad{background:rgba(197,48,48,.12)}
+.railitem.st-good .n,.railitem.st-warn .n,.railitem.st-bad .n{color:#fff;border-radius:3px;text-align:center;padding:0 2px}
+.railitem.st-good .n{background:#2f855a}
+.railitem.st-warn .n{background:#dd6b20}
+.railitem.st-bad .n{background:#c53030}
+.railitem[aria-current=true]{border-left-color:var(--ink);background:var(--sunk)}
+.railitem .n{font:600 10px/1.5 var(--mono);color:var(--muted)}
+.railitem .t{font-size:12px}
+.railitem .c{font:700 9px/1.5 var(--mono);padding:1px 4px}
+.railitem .c.bad{background:var(--ink);color:#fff}
+.railitem .c.warn{border:1px solid var(--rule-2);color:var(--muted)}
+.railitem .c.done{color:var(--muted)}
+.railitem .c.img{border:1px solid var(--rule-2);color:var(--muted)}
+
+/* -------------------------------------------------------------------- work */
+.work-head{position:sticky;top:0;z-index:3;background:var(--paper);
+  padding:14px 20px 0;border-bottom:1px solid var(--rule)}
+.work-head h1{font-size:18px}
+.work-head .meta{margin-top:2px;font:400 11px/1.4 var(--mono);color:var(--muted)}
+.tabs{display:flex;gap:0;margin-top:11px}
+.tab{padding:7px 14px;border:1px solid var(--rule);border-bottom:0;
+  background:var(--sunk);cursor:pointer;color:var(--muted);
+  margin-right:2px;font:600 10px/1 var(--sans);letter-spacing:.14em;
+  text-transform:uppercase;font-stretch:var(--stretch)}
+.tab[aria-selected=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.panel{padding:16px 20px 72px}
+
+.btn,.addbtn{border:1px solid var(--ink);background:var(--surface);cursor:pointer;
+  padding:4px 10px;font:600 10px/1.2 var(--sans);letter-spacing:.12em;
+  text-transform:uppercase;font-stretch:var(--stretch);color:var(--ink)}
+.btn:hover:not([disabled]),.addbtn:hover{background:var(--ink);color:var(--paper)}
+.btn[disabled]{opacity:.3;cursor:not-allowed}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.block{display:block;width:100%;text-align:center;padding:9px;text-decoration:none}
+
+/* per-section images ----------------------------------------------------- */
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));
+  gap:9px;margin-top:9px}
+.shot{border:1px solid var(--rule);background:var(--surface)}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:var(--sunk)}
+.shot .cap{padding:4px 6px;font-size:10px;display:flex;justify-content:space-between;gap:5px}
+.shot .cap button{border:0;background:none;cursor:pointer;font-weight:700;color:var(--ink)}
+.drop{border:1px dashed var(--rule-2);background:var(--surface);display:flex;
+  align-items:center;justify-content:center;aspect-ratio:4/3;cursor:pointer;
+  color:var(--muted);text-align:center;padding:6px}
+.drop:hover,.drop.over{border-color:var(--ink);color:var(--ink);background:var(--sunk)}
+
+/* comparables, in row format -------------------------------------------- */
+.gridwrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table.comps{border-collapse:collapse;width:100%;min-width:640px}
+table.comps th,table.comps td{border-bottom:1px solid var(--rule);
+  border-right:1px solid var(--rule);padding:3px 6px;font-size:11.5px;
+  vertical-align:middle}
+table.comps thead th{position:sticky;top:0;z-index:1;background:var(--ink);
+  color:var(--paper);text-align:left;font:600 10px/1.6 var(--sans);
+  letter-spacing:.12em;text-transform:uppercase;font-stretch:var(--stretch)}
+table.comps tr.head td{background:var(--sunk);font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+table.comps td.lbl{font-weight:600;white-space:nowrap;position:sticky;left:0;
+  background:var(--surface);z-index:1;min-width:190px}
+table.comps tr.head td.lbl{background:var(--sunk)}
+table.comps input{width:100%;border:0;background:transparent;padding:2px 3px;font-size:11.5px}
+table.comps input:focus{outline:2px solid var(--ink);outline-offset:-2px;background:#fff}
+table.comps td.adj{width:78px;background:var(--paper)}
+table.comps th{position:relative;user-select:none}
+table.comps th .grip{position:absolute;top:0;right:0;width:6px;height:100%;
+  cursor:col-resize;background:transparent}
+table.comps th .grip:hover{background:var(--rule-2)}
+table.comps thead th.comp{cursor:grab}
+table.comps thead th.comp.drag{opacity:.45}
+table.comps thead th.comp.over{box-shadow:inset 3px 0 0 var(--paper)}
+.compcell{display:flex;gap:7px;align-items:flex-start}
+.compcell .ph{width:54px;height:40px;flex:none;background:#3a3a38;border:1px solid #55554f;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+.compcell .ph img{width:100%;height:100%;object-fit:cover}
+.compcell .ph span{font:400 8px/1.1 var(--sans);color:#b9b9b4;text-align:center;padding:2px}
+.compcell .meta{min-width:0}
+.compcell .addr{font:400 10px/1.3 var(--sans);text-transform:none;letter-spacing:0;
+  color:#d8d8d4;white-space:normal;word-break:break-word;max-width:150px}
+.compcell .tools{display:flex;gap:4px;margin-top:3px}
+.compcell button{border:1px solid #6d6d66;background:transparent;color:var(--paper);
+  cursor:pointer;font:600 9px/1 var(--sans);letter-spacing:.08em;padding:2px 5px}
+.compcell button:hover{background:var(--paper);color:var(--ink)}
+table.comps select{width:100%;border:0;background:transparent;padding:1px 2px;font-size:11.5px}
+table.comps select:focus{outline:2px solid var(--ink);outline-offset:-2px;background:#fff}
+table.comps td.adj input{text-align:right}
+table.comps .bad{outline:2px solid #9b1c1c;outline-offset:-2px}
+.compbar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.kinds{display:flex;gap:2px}
+
+/* review ----------------------------------------------------------------- */
+.counts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule)}
+.count{background:var(--surface);padding:8px;text-align:center}
+.count b{display:block;font:700 17px/1.1 var(--sans)}
+.count span{font:600 9px/1.4 var(--sans);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted)}
+.count.bad b{background:var(--ink);color:#fff}
+.verdict{padding:9px 11px;font-weight:600;font-size:12px;border:1px solid var(--ink)}
+.verdict.blocked{background:var(--ink);color:var(--paper)}
+.blockers{margin:7px 0 0;padding-left:16px;font-size:11.5px;color:var(--muted)}
+.finding{padding:7px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.finding:hover{background:var(--sunk)}
+.finding .top{display:flex;gap:6px;align-items:baseline}
+.finding code{font:700 10px/1.3 var(--mono)}
+.finding .sev{font:700 9px/1.4 var(--sans);letter-spacing:.08em;
+  text-transform:uppercase;padding:1px 5px}
+.finding .sev.Fatal{background:var(--ink);color:#fff}
+.finding .sev.Warning{border:1px solid var(--rule-2)}
+.finding .sev.Review{color:var(--muted)}
+.finding p{margin:2px 0 0;font-size:11.5px;color:#333}
+.panelblock{padding:12px 14px;border-bottom:1px solid var(--rule)}
+.actions{display:flex;flex-direction:column;gap:5px}
+.acks{max-height:230px;overflow-y:auto;padding:6px 10px}
+.ackrow{display:grid;grid-template-columns:15px 20px 1fr;gap:6px;align-items:center;
+  padding:2px 0;font-size:11.5px;cursor:pointer}
+.ackrow input{width:13px;height:13px;accent-color:#101010;margin:0}
+.ackrow .n{font:600 9.5px/1.4 var(--mono);color:var(--muted)}
+.ackrow .t{color:var(--ink)}
+.ackrow .t:hover{text-decoration:underline}
+
+/* launcher --------------------------------------------------------------- */
+.launch{max-width:900px;margin:0 auto;padding:34px 22px 80px}
+.launch h2{font-size:22px;margin-bottom:3px}
+.launch p.lede{margin:0 0 24px;color:var(--muted);max-width:66ch}
+.group h3{margin:22px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--rule-2);
+  color:var(--muted)}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;
+  padding:8px 0;border-bottom:1px solid var(--rule)}
+.row .nm{font-weight:600}
+.row .dt{font:400 11px/1.4 var(--mono);color:var(--muted)}
+.row .go{display:flex;gap:5px}
+.state{font:700 9px/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 6px;border:1px solid var(--rule-2);color:var(--muted)}
+.state.signed,.state.exported{background:var(--ink);color:#fff;border-color:var(--ink)}
+.frame{width:100%;height:calc(100vh - 150px);border:1px solid var(--rule);background:#6f6f6f;display:block}
+/* the report, being filled in */
+.reportform{display:flex;flex-direction:column;height:calc(100vh - 118px)}
+.rf-bar{display:flex;align-items:center;gap:12px;padding:7px 14px;
+  background:var(--surface);border-bottom:1px solid var(--rule)}
+.rf-note{font-size:11px;color:var(--muted)}
+@media(max-width:1200px){.rf-note{display:none}}
+.rf-toggle{display:flex;align-items:center;gap:5px;font-size:11px;
+  color:var(--ink);white-space:nowrap;cursor:pointer}
+.rf-toggle input{width:13px;height:13px;accent-color:#b47814;margin:0}
+/* an element marked hidden is hidden, whatever display its class gives it */
+[hidden]{display:none !important}
+.rf-agent{display:flex;align-items:center;gap:10px;padding:6px 14px;
+  background:var(--ink);color:var(--paper);font-size:11.5px}
+.rf-agent-dot{width:7px;height:7px;border-radius:50%;background:#ffd76a;
+  animation:rfpulse 1s infinite ease-in-out;flex:none}
+@keyframes rfpulse{0%,100%{opacity:.35}50%{opacity:1}}
+.rf-agent-what{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46%}
+.rf-agent-count{color:#b9b9b4;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rf-agent-track{flex:1;height:3px;background:#3a3a37;position:relative;min-width:80px}
+.rf-agent-track i{position:absolute;inset:0 auto 0 0;width:0;background:#ffd76a;
+  transition:width .18s linear}
+.rf-frame{flex:1;width:100%;border:0;background:#6f6f6f;display:block;min-width:0}
+.rf-body{flex:1;display:flex;min-height:0;position:relative}
+.rf-busy{position:absolute;left:0;top:0;right:0;z-index:5;background:var(--ink);color:var(--paper);
+  font-size:11px;padding:5px 12px;letter-spacing:.04em;display:flex;gap:8px;align-items:center}
+.rf-busy:before{content:'';width:10px;height:10px;border:2px solid #6a6a66;border-top-color:var(--paper);
+  border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* a slim bar across the top while anything is on its way */
+#topbar{position:fixed;left:0;top:0;height:2px;width:0;background:#f2f2f0;z-index:100;
+  opacity:0;transition:width .4s ease,opacity .3s}
+#topbar.on{opacity:1}
+header .powered{font:400 10px/1 var(--mono);color:#9d9d99;letter-spacing:.06em}
+header .powered b{color:#f2f2f0;font-weight:700}
+.keep{height:100%}
+.keep[hidden]{display:none}
+.pvwrap{position:relative;height:calc(100vh - 150px);margin:16px 20px 0}
+.pvwrap .frame{height:100%}
+/* placeholders while a panel's data is on its way */
+.skel{padding:16px 20px}
+.skel i{display:block;height:12px;margin:9px 0;border-radius:2px;background:var(--sunk);
+  position:relative;overflow:hidden}
+.skel i:after{content:'';position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:sh 1.2s infinite}
+@keyframes sh{100%{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.skel i:after,.rf-busy:before{animation:none}}
+.railitem.absent{opacity:.45}
+
+.empty{color:var(--muted);padding:22px 0;font-size:12px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);padding:8px 15px;font-size:12px;z-index:50}
+/* a panel over the report, for something that needs a moment's attention */
+.sheet{position:fixed;inset:0;background:rgba(16,16,16,.45);z-index:60;
+  display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:36px 16px}
+.sheet.over .sheet-in{box-shadow:0 0 0 2px var(--ink)}
+.sheet-in{background:var(--surface);border:1px solid var(--rule);max-width:760px;
+  width:100%;padding:20px 22px 22px}
+.sheet-in h2{font-size:18px}
+.sheet-in .lede{margin:4px 0 14px;color:var(--muted);font-size:12px;max-width:66ch}
+.sheet-in textarea{width:100%;font:400 11px/1.45 var(--mono);padding:7px 9px;
+  border:1px solid var(--rule-2);background:var(--surface);color:var(--ink);resize:vertical}
+.sheet-in .bar{margin-bottom:6px}
+</style>
+</head>
+<body>
+<header>
+  <button class="backhome" id="backhome" hidden title="All reports">&lsaquo;</button>
+  <span class="mark">UAD 3.6</span>
+  <span class="sub">Uniform Residential Appraisal Report</span>
+  <span class="spacer"></span>
+  <span class="stat" id="stat"></span>
+  <span class="powered">powered by <b>Kech</b></span>
+</header>
+<div id="topbar"></div>
+<main id="shell"></main>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const S={caseId:null,section:null,view:'form',data:{}};
+
+function toast(m,ms=2000){const t=document.createElement('div');t.className='toast';
+  t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),ms);}
+/* Anything slower than a blink shows the bar, so a wait is never silent. */
+const BAR={n:0,t:null,w:0};
+function barStart(){
+  if(BAR.n++>0) return;
+  BAR.t=setTimeout(()=>{const b=$('#topbar'); if(!b)return; b.classList.add('on');
+    BAR.w=15; b.style.width='15%';
+    BAR.i=setInterval(()=>{BAR.w=Math.min(90,BAR.w+(90-BAR.w)*.12); b.style.width=BAR.w+'%';},250);},160);
+}
+function barStop(){
+  if(--BAR.n>0) return;
+  clearTimeout(BAR.t); clearInterval(BAR.i);
+  const b=$('#topbar'); if(!b) return;
+  if(b.classList.contains('on')){ b.style.width='100%'; setTimeout(()=>{b.classList.remove('on');b.style.width='0';},300); }
+}
+async function api(path,opts={}){
+  barStart();
+  try{ return await apiRaw(path,opts); } finally{ barStop(); }
+}
+async function apiRaw(path,opts={}){
+  const r=await fetch('/api'+path,{headers:{'Content-Type':'application/json'},...opts});
+  if(r.status===401){location.reload();return null;}
+  /* The report being edited has gone from the server -- deleted from another
+     window, or the case store replaced underneath this one.  Every route for a
+     case checks it exists before anything else, so a 404 on the open case
+     means exactly that.  Staying on a dead report turns every later action
+     into its own confusing failure, so the list is shown instead, once. */
+  if(r.status===404&&S.caseId&&path.indexOf('/cases/'+S.caseId)===0&&!S.goneHome){
+    S.goneHome=true;
+    toast('This report is no longer on the server.',6000);
+    setTimeout(()=>{S.goneHome=false; showLaunch();},60);
+  }
+  const txt=await r.text(); let d; try{d=JSON.parse(txt)}catch{d=txt}
+  return {ok:r.ok,status:r.status,data:d};
+}
+
+/* ------------------------------------------------------------- launcher */
+async function showLaunch(){
+  S.caseId=null;
+  $('#shell').className='launcher';
+  const back=$('#backhome'); if(back) back.hidden=true;
+  $('#shell').innerHTML='<div class="launch">'+
+    '<div class="importbox" id="importbox"><div class="ib-t">Import a UAD 3.6 appraisal</div>'+
+    '<div class="ib-s">Drop the MISMO XML here — alone, as the delivery .zip, with its pictures, or a whole folder. '+
+    'Every value, comparable and picture lands in the report, editable.</div>'+
+    '<div class="ib-b"><button class="addbtn" id="ib-files">Choose files…</button>'+
+    '<button class="addbtn" id="ib-folder">Choose a folder…</button></div>'+
+    '<input type="file" id="ib-in" multiple accept=".xml,.zip,image/*,.pdf" hidden>'+
+    '<input type="file" id="ib-dir" webkitdirectory multiple hidden>'+
+    '<div class="ib-p" id="ib-p" hidden><div class="ib-bar"><i></i></div><span></span></div>'+
+    '<div class="ib-r" id="ib-r"></div></div>'+
+    '<h2>Cases</h2><p class="lede">Every template is one of the GSEs\' own '+
+    'Appendix&nbsp;D-1 sample cases, so a new report starts from a document that '+
+    'already validates against the subschema.</p><div id="cases"></div>'+
+    '<h2 style="font-size:18px;margin-top:30px">Start a report</h2>'+
+    '<div id="tpls"></div></div>';
+  wireImport();
+  const [cs,tp]=await Promise.all([api('/cases'),api('/templates')]);
+  const box=$('#cases');
+  box.innerHTML=cs.data.cases.length?'':'<p class="empty">No cases yet.</p>';
+  for(const c of cs.data.cases){
+    const el=document.createElement('div'); el.className='row';
+    el.innerHTML=`<div><div class="nm" style="cursor:pointer">${esc(c.name)}</div>
+      <div class="dt">${esc(c.property_type.replace(/_/g,' '))} · ${esc(c.case_id)}</div></div>
+      <span class="state ${esc(c.state)}">${esc(c.state.replace('_',' '))}</span>
+      <button class="addbtn">Delete</button>`;
+    el.querySelector('.nm').onclick=()=>openCase(c.case_id);
+    el.querySelector('button').onclick=async()=>{
+      if(!confirm('Delete this case and everything in it?'))return;
+      await api('/cases/'+c.case_id,{method:'DELETE'}); showLaunch();};
+    box.appendChild(el);
+  }
+  const tb=$('#tpls'); tb.innerHTML='';
+  for(const [type,items] of Object.entries(tp.data.templates)){
+    const g=document.createElement('div'); g.className='group';
+    g.innerHTML=`<h3 class="k">${esc(tp.data.property_types[type]||type)}</h3>`;
+    for(const t of items){
+      const r=document.createElement('div'); r.className='row';
+      r.innerHTML=`<div><div class="nm">${esc(t.name)}</div>
+        <div class="dt">${t.comps} comps · ${t.units} unit(s) · ${t.images} images · ${t.elements} elements</div></div>
+        <span></span><div class="go">
+        <button class="addbtn" data-b>New blank</button>
+        <button class="addbtn" data-f>Open sample</button></div>`;
+      r.querySelector('[data-b]').onclick=()=>newCase(t.key,true,t.name);
+      r.querySelector('[data-f]').onclick=()=>newCase(t.key,false,t.name);
+      g.appendChild(r);
+    }
+    tb.appendChild(g);
+  }
+}
+/* ----------------------------------------------------------- import
+   One step: the files go up, the server reads, normalises and places
+   everything in one pass (uad/importer.py), and the report opens. */
+function wireImport(){
+  const box=$('#importbox'); if(!box) return;
+  const pick=$('#ib-in'), dir=$('#ib-dir');
+  $('#ib-files').onclick=()=>pick.click();
+  $('#ib-folder').onclick=()=>dir.click();
+  pick.onchange=()=>importFiles([...pick.files]);
+  dir.onchange=()=>importFiles([...dir.files]);
+  box.addEventListener('dragover',e=>{e.preventDefault();box.classList.add('over');});
+  box.addEventListener('dragleave',()=>box.classList.remove('over'));
+  box.addEventListener('drop',async e=>{
+    e.preventDefault(); box.classList.remove('over');
+    const files=[]; const items=[...(e.dataTransfer.items||[])];
+    const walk=(entry,path)=>new Promise(res=>{
+      if(entry.isFile){ entry.file(f=>{ f._path=path+f.name; files.push(f); res(); }); }
+      else if(entry.isDirectory){
+        const reader=entry.createReader(); const all=[];
+        const more=()=>reader.readEntries(async ents=>{
+          if(!ents.length){ for(const x of all) await walk(x,path+entry.name+'/'); res(); }
+          else { all.push(...ents); more(); }
+        });
+        more();
+      } else res();
+    });
+    if(items.length&&items[0].webkitGetAsEntry){
+      for(const it of items){ const en=it.webkitGetAsEntry(); if(en) await walk(en,''); }
+    } else files.push(...e.dataTransfer.files);
+    importFiles(files);
+  });
+}
+function importFiles(files){
+  if(!files.length) return;
+  const keep=files.filter(f=>/\.(xml|zip|jpe?g|png|gif|bmp|tiff?|webp|pdf)$/i.test(f.name));
+  if(!keep.some(f=>/\.(xml|zip)$/i.test(f.name))){ toast('No XML or zip among those files.',3500); return; }
+  const fd=new FormData();
+  keep.forEach(f=>fd.append('files',f,(f._path||f.webkitRelativePath||f.name)));
+  const bar=$('#ib-p'), fill=bar.querySelector('i'), note=bar.querySelector('span'), out=$('#ib-r');
+  bar.hidden=false; out.innerHTML=''; fill.style.width='0%';
+  note.textContent='Sending '+keep.length+' file(s)…';
+  const x=new XMLHttpRequest();
+  x.open('POST','/api/import');
+  x.upload.onprogress=e=>{ if(e.lengthComputable) fill.style.width=Math.round(70*e.loaded/e.total)+'%'; };
+  x.upload.onload=()=>{ fill.style.width='80%'; note.textContent='Reading the appraisal, placing values and pictures…'; };
+  x.onload=()=>{
+    fill.style.width='100%';
+    let d={}; try{ d=JSON.parse(x.responseText); }catch(_){}
+    if(x.status!==200){ bar.hidden=true; out.innerHTML='<div class="ib-err">'+esc(d.detail||('Import failed ('+x.status+')'))+'</div>'; return; }
+    const r=d.report;
+    const comps=Object.entries(r.comparables||{}).map(([k,v])=>v+' '+k.replace(/([a-z])([A-Z])/g,'$1 $2').toLowerCase()).join(', ');
+    note.textContent='Imported in '+r.seconds+' s';
+    const li=(cls,t)=>'<li class="'+cls+'">'+t+'</li>';
+    let h='<ul>'+li('ok',r.values+' values ('+r.on_report+' on the report, '+r.not_displayed+' carried in the XML only)')
+      +li('ok',comps||'no comparables')
+      +li('ok',r.pictures_placed.length+' picture(s) placed');
+    if(r.pictures_missing.length) h+=li('warn',r.pictures_missing.length+' picture(s) named in the XML but not found: '
+      +r.pictures_missing.slice(0,4).map(m=>esc(m.location||m.category)).join(', '));
+    if(r.pictures_unreferenced.length) h+=li('warn',r.pictures_unreferenced.length+' picture(s) no IMAGE names — kept with the case to place by hand');
+    if(r.normalised_count) h+=li('info',r.normalised_count+' value(s) put in UAD form (dates, amounts, lists)');
+    if(r.invalid_count) h+=li('bad',r.invalid_count+' value(s) need attention: '+r.invalid.slice(0,3).map(i=>esc(i[0].split('/').pop()+': '+i[2])).join('; '));
+    if(r.dropped_count) h+=li('warn',r.dropped_count+' element(s) UAD 3.6 does not have were left out');
+    if(r.schema_errors.length) h+=li('bad',r.schema_errors.length+' schema finding(s) — see Review Master');
+    h+='</ul><button class="addbtn" id="ib-open">Open the report</button>';
+    out.innerHTML=h;
+    $('#ib-open').onclick=()=>openCase(d.case.case_id);
+  };
+  x.onerror=()=>{ bar.hidden=true; out.innerHTML='<div class="ib-err">The connection failed; nothing was imported.</div>'; };
+  x.send(fd);
+}
+async function newCase(template,blank,name){
+  toast('Creating…');
+  const r=await api('/cases',{method:'POST',body:JSON.stringify({template,blank,name})});
+  openCase(r.data.case_id);
+}
+
+/* --------------------------------------------------------------- editor */
+async function openCase(id){
+  S.caseId=id; S.view='report'; S.saveErrors={}; S.saveError=''; S.printed=null; S.atSection=null;
+  S.formReady=false; S.swaps={}; S.review=null; S.case=null; S.checking={};
+  $('#shell').className='';          // back to the three-pane layout
+  const back=$('#backhome'); if(back) back.hidden=false;
+  $('#shell').innerHTML=
+    '<nav class="rail" id="rail"></nav>'+
+    '<section class="work"><div class="work-head" id="head"></div><div id="work">'+
+      '<div id="panel"></div><div id="keep-report" class="keep" hidden></div>'+
+      '<div id="keep-preview" class="keep" hidden></div></div></section>'+
+    '<aside class="inspector" id="insp"></aside>';
+  $('#rail').innerHTML='<div class="railhead k">Sections</div><div class="skel">'+'<i></i>'.repeat(18)+'</div>';
+  $('#head').innerHTML='<div class="skel" style="padding:0 0 10px"><i style="width:40%;height:18px"></i><i style="width:25%"></i></div>';
+  drawWork();
+  await refresh();
+}
+async function refresh(){
+  const caseId=S.caseId;
+  const [c,f,rv,m,pf]=await Promise.all([
+    api('/cases/'+S.caseId), api('/cases/'+S.caseId+'/fields'),
+    api('/cases/'+S.caseId+'/review'), api('/cases/'+S.caseId+'/media'),
+    api('/cases/'+S.caseId+'/prefs')]);
+  if(S.caseId!==caseId)return;
+  S.prefs=(pf&&pf.ok&&pf.data)||{};
+  S.compWidths=S.prefs.compWidths||{};
+  if(!c?.ok||!f?.data?.sections||!rv?.data?.counts||!m?.ok){
+    toast('The report could not be loaded completely. Please retry.',9000);
+    const w=$('#panel');
+    if(w){w.hidden=false;w.innerHTML='<div class="panel">Could not load the report. <button class="btn" id="retry-report">Retry</button></div>';
+      $('#retry-report').onclick=refresh;}
+    return;
+  }
+  S.case=c.data; S.sections=f.data.sections; S.review=rv.data; S.media=m.data;
+  if(S.section===null&&S.sections.length) S.section=S.sections[0].number;
+  drawRail(); drawHead(); drawWork(); drawInsp();
+}
+const sevCount=n=>{const i=(S.review.items||[]).filter(x=>x.section_number===n);
+  return {f:i.filter(x=>x.severity==='Fatal').length,w:i.filter(x=>x.severity==='Warning').length};};
+const shotsIn=n=>(S.media.media||[]).filter(x=>Number(x.section)===n);
+
+function drawRail(){
+  const r=$('#rail'); if(!r)return;
+  r.innerHTML='<div class="railhead k">Sections</div>';
+  for(const s of S.sections||[]){
+    const c=sevCount(s.number), pics=shotsIn(s.number).length;
+    const ack=(S.case.acknowledged||[]).includes(s.number);
+    // a section the appraiser has saved shows how it stands against the UAD
+    const saved=((S.prefs||{}).savedSections||{})[s.number];
+    const total=s.fields.length;
+    const filled=s.fields.filter(f=>f.value).length;
+    const b=document.createElement('button'); b.className='railitem';
+    b.setAttribute('aria-current',String(s.number===S.section));
+    // An error is the one thing worth interrupting for; otherwise the rail
+    // reports how much of the section is filled in and whether it was reviewed.
+    const badge=c.f?`<span class="c bad">${c.f}</span>`
+      :c.w?`<span class="c warn">${c.w}</span>`
+      :ack?'<span class="c done">✓</span>'
+      :total?`<span class="c done">${filled}/${total}</span>`
+      :'<span class="c"></span>';
+    b.title=`${filled} of ${total} field(s) filled`
+      +(pics?` · ${pics} image(s)`:'')
+      +(ack?' · reviewed':' · not yet reviewed');
+    b.innerHTML=`<span class="n">${String(s.number).padStart(2,'0')}</span>
+      <span class="t">${esc(s.tab)}</span>${badge}
+      <span class="prog" style="--p:${total?Math.round(100*filled/total):0}%"></span>`;
+    // The rail moves the report to that section; it does not open a second
+    // page about it.
+    const present=S.printed||[];
+    if(present.length&&!present.includes(s.number)){
+      b.classList.add('absent');
+      b.title+=' · not in this report: the B-1 display rules leave it out for this property';
+    }
+    if(saved){
+      b.classList.add(c.f?'st-bad':c.w?'st-warn':'st-good');
+      b.title+=' · saved '+new Date(saved).toLocaleString()
+        +(c.f?` · ${c.f} UAD error(s)`:c.w?` · ${c.w} warning(s)`:' · no UAD errors or warnings');
+    }
+    b.dataset.secn=s.number;
+    b.onclick=()=>{S.section=s.number;markRail();goToReport({secn:s.number,section:s.name});};
+    r.appendChild(b);
+  }
+}
+/* Move the rail's marker without rebuilding the rail -- the report calls this
+   for every section it scrolls into. */
+function markRail(){
+  const r=$('#rail'); if(!r)return;
+  let on=null;
+  r.querySelectorAll('.railitem').forEach(b=>{
+    const here=Number(b.dataset.secn)===S.section;
+    b.setAttribute('aria-current',String(here));
+    if(here) on=b;
+  });
+  if(on){
+    const a=on.getBoundingClientRect(), box=r.getBoundingClientRect();
+    if(a.top<box.top+34||a.bottom>box.bottom) on.scrollIntoView({block:'nearest'});
+  }
+}
+function drawHead(){
+  const h=$('#head'); if(!h)return; const c=S.case;
+  h.innerHTML=`<h1>${esc(c.name)}</h1>
+    <div class="meta">${esc(c.case_id)} · ${esc(c.property_type.replace(/_/g,' '))} · ${esc(c.state.replace('_',' '))}${c.signed_by?' · signed by '+esc(c.signed_by):''}</div>
+    <div class="tabs" id="tabs"></div>`;
+  // There is one form filler, and it is the report itself.
+  const tabs=[['report','Report'],['extra','Additional Data'],['comps','Comparables'],
+              ['map','Location Map'],['review','Review Master'],
+              ['preview','Preview'],['history','History']];
+  // On a narrow screen the inspector column is gone, so its panel becomes a tab.
+  if(NARROW()) tabs.push(['signoff','Sign-off']);
+  for(const [k,label] of tabs){
+    const t=document.createElement('button'); t.className='tab'; t.textContent=label;
+    t.setAttribute('aria-selected',String(S.view===k));
+    t.onclick=()=>{S.view=k;drawHead();drawWork();};
+    $('#tabs').appendChild(t);
+  }
+  $('#stat').innerHTML=`<span><b>${S.review.counts.fatal}</b> fatal</span>`+
+    `<span><b>${S.review.counts.warning}</b> warning</span>`+
+    `<span><b>${S.review.counts.review}</b> to read</span>`+
+    `<span>XSD v${esc(S.review.schema_version)}</span>`;
+}
+/* Take the report to a section or a field, opening it first if need be.
+   The report takes a while to lay out, so a request made before it is ready
+   is held and sent the moment it says it is. */
+function goToReport(where){
+  S.pendingGoto=where;
+  if(S.view!=='report'){ S.view='report'; drawHead(); drawWork(); return; }
+  if(S.formReady) sendGoto();
+}
+function sendGoto(){
+  const f=$('#rf'), where=S.pendingGoto;
+  if(!where||!f||!f.contentWindow) return;
+  S.pendingGoto=null;
+  f.contentWindow.postMessage({uad:'goto',...where},'*');
+}
+/* Messages from the report being filled in. */
+window.addEventListener('message',e=>{
+  const m=e.data||{}; if(!m.uad) return;
+  for(const kind of ['form','preview']){
+    const nf=S.swaps&&S.swaps[kind];
+    if(nf&&e.source===nf.contentWindow){ if(m.uad==='frame-ready') finishSwap(kind,nf); return; }
+  }
+  const pv=$('#pv');
+  if(pv&&e.source===pv.contentWindow){ if(m.uad==='fresh') swapFrame('preview'); return; }
+  const f=$('#rf');
+  if(!f||e.source!==f.contentWindow) return;
+  if(m.uad==='fresh'){ swapFrame('form'); return; }
+  if(m.uad==='relayout'){ checkFresh('form'); return; }
+  if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove();
+    // what the report actually prints, as laid out -- not a guess from the data
+    if(m.sections){ S.printed=m.sections; drawRail(); }
+    sendGoto(); }
+  if(m.uad==='at'){ S.atSection=m.secn; if(m.secn&&m.secn!==S.section){ S.section=m.secn; markRail(); } }
+  if(m.uad==='goto-result'&&!m.found){
+    if(S.atSection){ S.section=S.atSection; markRail(); }
+    const sec=S.sections.find(x=>x.number===m.secn);
+    toast(m.fid&&!m.secn?'That field is not on the report as it stands.'
+      :`${sec?sec.name:'That section'} is not part of this report — the B-1 display rules leave it out for this property.`,4500);
+  }
+  if(m.uad==='autofill-at') autoFillAt(m);
+  if(m.uad==='autofill-done') autoFillDone();
+  if(m.uad==='media') refreshMedia();
+});
+async function refreshMedia(){
+  const m=await api('/cases/'+S.caseId+'/media');
+  if(m&&m.ok){ S.media=m.data; drawRail(); }
+}
+
+/* The report and the preview are kept alive once opened: switching back to
+   one is instant and keeps its place.  Everything else is drawn in #panel. */
+function drawWork(){
+  const work=$('#work'); if(!work)return;
+  const panel=$('#panel'), kr=$('#keep-report'), kp=$('#keep-preview');
+  const keep=S.view==='report'?kr:S.view==='preview'?kp:null;
+  [kr,kp].forEach(k=>{ if(k) k.hidden=(k!==keep); });
+  panel.hidden=!!keep;
+  if(S.view==='report'){ if(!kr.firstChild) drawReportForm(kr); else checkFresh('form'); return; }
+  if(S.view==='preview'){
+    if(!kp.firstChild){
+      kp.innerHTML=`<div class="pvwrap" id="pvwrap"><iframe class="frame" id="pv" src="/api/cases/${S.caseId}/preview"></iframe></div>`;
+    } else checkFresh('preview');
+    return;
+  }
+  const w=panel;
+  if(S.view==='comps')   return drawComps(w);
+  if(S.view==='extra')   return drawExtra(w);
+  if(S.view==='map'){
+    if(!window.__uadMapListener){window.__uadMapListener=true;
+      window.addEventListener('message',e=>{if(e.data&&e.data.uad==='media-added'){toast('Map saved — refreshing the report');refresh();}});}
+    w.innerHTML=`<div class="panel"><p style="margin:0 0 9px;font-size:11.5px;color:var(--muted)">
+      The subject and the comparables are read from this case. Drag a callout to place it,
+      switch between <b>Location Map</b> and <b>Aerial Map</b>, then <b>Save to report</b> —
+      the exhibit lands in the report as an image.</p>
+      <iframe class="frame" style="height:calc(100vh - 210px)" src="/ui/map/index.html?case=${S.caseId}&seed=1"></iframe></div>`;
+    return;}
+  if(!S.review){ w.innerHTML='<div class="skel">'+'<i></i>'.repeat(12)+'</div>'; return; }
+  if(S.view==='review')  return drawReview(w);
+  if(S.view==='history') return drawHistory(w);
+  if(S.view==='signoff'){
+    w.innerHTML='';
+    const box=document.createElement('div');
+    box.style.maxWidth='420px';
+    fillSignoff(box); w.appendChild(box); return;}
+}
+
+/* Is the page on screen the current layout?  If the case has changed since
+   (an edit, a photo, a comparable) the newer layout is waited for with a quiet
+   strip across the top, then swapped in. */
+async function checkFresh(kind){
+  const frame=kind==='form'?$('#rf'):$('#pv');
+  if(!frame||S.checking[kind]) return;
+  let shown='';
+  try{ shown=(frame.contentWindow.UAD_RENDER||{}).key||''; }catch(_){}
+  if(!shown) return;                               // still loading its first page
+  S.checking[kind]=true;
+  const host=frame.parentNode;
+  let strip=null;
+  try{
+    for(let i=0;i<240;i++){
+      const r=await apiRaw(`/cases/${S.caseId}/render/${kind}`);
+      if(!r||!r.ok) break;
+      if(r.data.key===shown) break;                // nothing newer
+      if(r.data.ready){ swapFrame(kind); break; }
+      if(!strip){ strip=document.createElement('div'); strip.className='rf-busy';
+        strip.textContent='Updating the report…'; host.appendChild(strip); }
+      await new Promise(res=>setTimeout(res,700));
+    }
+  }finally{
+    S.checking[kind]=false;
+    if(strip) setTimeout(()=>strip.remove(),kind==='form'?900:300);
+  }
+}
+
+/* A newer layout has been made in the background.  It is loaded out of sight,
+   scrolled to where the reader is, and only then shown -- never swapped under
+   a caret, an open list or the grid editor. */
+function swapFrame(kind){
+  const old=kind==='form'?$('#rf'):$('#pv');
+  if(!old||S.swaps[kind]) return;
+  try{
+    const d=old.contentDocument, a=d&&d.activeElement;
+    const busy=(a&&(a.isContentEditable||/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName)))
+      ||(d&&d.querySelector('.gedit,.picklist,.mapframe'));
+    if(busy){ setTimeout(()=>swapFrame(kind),1500); return; }
+  }catch(_){}
+  const nf=document.createElement('iframe');
+  nf.className=old.className;
+  nf.style.cssText='position:absolute;left:0;top:0;width:100%;height:100%;visibility:hidden;pointer-events:none';
+  const url=new URL(old.src,location.href); url.searchParams.set('t',Date.now());
+  nf.src=url.pathname+url.search;
+  S.swaps[kind]=nf;
+  old.parentNode.appendChild(nf);
+  setTimeout(()=>{ if(S.swaps[kind]===nf){ nf.remove(); S.swaps[kind]=null; } },60000);
+}
+function finishSwap(kind,nf){
+  const old=kind==='form'?$('#rf'):$('#pv');
+  S.swaps[kind]=null;
+  if(!old){ nf.remove(); return; }
+  try{ nf.contentWindow.scrollTo(0,old.contentWindow.scrollY); }catch(_){}
+  requestAnimationFrame(()=>{
+    nf.id=old.id; nf.style.cssText=''; old.remove();
+    if(kind==='form'){
+      const g=$('#rf-gaps');
+      if(g&&!g.checked) nf.contentWindow.postMessage({uad:'gaps',on:false},'*');
+      const im=$('#rf-imported');
+      if(im&&!im.checked) nf.contentWindow.postMessage({uad:'imported',on:false},'*');
+      // a run in progress carries on in the report that has just been swapped
+      // in, which now holds the rows, the grid cells and the photographs
+      if(S.autoSteps&&S.autoAt<S.autoSteps.length){
+        nf.contentWindow.postMessage(
+          {uad:'autofill',steps:S.autoSteps.slice(S.autoAt),pace:S.autoPace||45},'*');
+      }
+    }
+  });
+}
+
+/* The form IS the report.  Rather than a page that resembles the URAR, this is
+   the URAR -- the same renderer, the same C-1 geometry, fonts and rules -- with
+   every printed value editable where it stands.  What is filled in and what
+   ships are then the same page, not two that have to be kept in step. */
+function drawReportForm(w){
+  if(!window.__uadFormListener){
+    window.__uadFormListener=true;
+    window.addEventListener('message',e=>{
+      if(e.data&&e.data.uad==='saved'){S.dirty=true;}
+      if(e.data&&e.data.uad==='saved-sections'){
+        S.prefs=S.prefs||{}; S.prefs.savedSections=S.prefs.savedSections||{};
+        const now=new Date().toISOString();
+        (e.data.sections||[]).forEach(n=>{S.prefs.savedSections[n]=now;});
+        api('/cases/'+S.caseId+'/review').then(rv=>{ if(rv&&rv.ok){S.review=rv.data;} drawRail(); markRail(); });
+      }
+    });
+  }
+  w.innerHTML=`<div class="reportform">
+    <div class="rf-bar">
+      <span class="k">Filling in the report itself</span>
+      <span class="rf-note">Everything still to be answered is marked. Click a
+        value to type it, a list to pick from it, a box to answer Yes or No.</span>
+      <span class="spacer" style="flex:1"></span>
+      <label class="rf-toggle"><input type="checkbox" id="rf-gaps" checked>
+        Mark what is unanswered</label>
+      <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
+        Mark what was imported</label>
+      <button class="addbtn" id="rf-maps" title="The Sales Comparison Map, drawn by the Location Map tool from the subject and the comparables">Generate map</button>
+      <button class="addbtn" id="rf-market">Import market charts</button>
+      <button class="addbtn primary" id="rf-auto" title="Enter the case: the server writes the whole document while the report is filled in on screen, section by section">Fill the report</button>
+      <input type="file" id="rf-auto-file" accept=".xml,.zip" hidden>
+      <button class="addbtn" id="rf-reload">Reload</button>
+    </div>
+    <div class="rf-agent" id="rf-agent" hidden>
+      <span class="rf-agent-dot"></span>
+      <span class="rf-agent-what" id="rf-agent-what">Preparing the case…</span>
+      <span class="rf-agent-count" id="rf-agent-count"></span>
+      <span class="rf-agent-track"><i id="rf-agent-bar"></i></span>
+    </div>
+    <div class="rf-body" id="rf-body">
+      <iframe class="rf-frame" id="rf" src="/api/cases/${S.caseId}/form?case=${S.caseId}"></iframe>
+    </div>
+  </div>`;
+  S.formReady=false;
+  $('#rf-reload').onclick=()=>{S.dirty=false;swapFrame('form');};
+  $('#rf-auto').onclick=()=>chooseFillSource();
+  $('#rf-auto-file').onchange=async e=>{
+    const file=e.target.files&&e.target.files[0];
+    e.target.value='';
+    if(file) await fillFromFile(file);
+  };
+  $('#rf-market').onclick=()=>marketImport();
+  $('#rf-maps').onclick=async()=>{
+    const b=$('#rf-maps'); b.disabled=true; b.textContent='Drawing the map…';
+    const r=await api(`/cases/${S.caseId}/maps`,{method:'POST'});
+    b.disabled=false; b.textContent='Generate map';
+    if(r&&r.ok&&r.data.state==='current'){
+      toast('Sales Comparison Map drawn — adjust it in the Location Map tab',4500);
+      await refreshMedia(); checkFresh('form');
+    }else toast('The map could not be drawn: '+(((r&&r.data&&r.data.problems)||[]).join('; ')||'unknown error'),8000);
+  };
+  $('#rf-gaps').onchange=e=>{
+    const f=$('#rf'); if(!f||!f.contentWindow)return;
+    f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
+  };
+  /* Green marks what a file brought in.  The toggle only appears once there
+     is an import to show, so a report typed by hand is not asked about it. */
+  $('#rf-imported').onchange=e=>{
+    const f=$('#rf'); if(!f||!f.contentWindow)return;
+    f.contentWindow.postMessage({uad:'imported',on:e.target.checked},'*');
+  };
+  showImportedToggle();
+}
+
+/* The imported-marking toggle belongs to the case, not to the session: it
+   shows whenever this report was brought in from a file, and says how much of
+   it that file answered. */
+async function showImportedToggle(){
+  const wrap=$('#rf-imp-wrap'); if(!wrap) return;
+  const r=await api(`/cases/${S.caseId}/prefs`);
+  const imp=r&&r.ok&&r.data&&r.data.imported;
+  const n=(imp&&imp.fields&&imp.fields.length)||0;
+  wrap.hidden=!n;
+  if(n){
+    const from=(imp.from||'a file');
+    wrap.title=`${n} field(s) came from ${from}`;
+    wrap.lastChild.textContent=` Mark what was imported (${n})`;
+  }
+}
+
+/* Filling the report by itself.
+
+   The server plans the steps and writes the whole document in one pass -- the
+   case is correct within a second of the button being pressed.  The page is
+   given the same list and replays it: it opens each section, goes to the
+   control, opens the list and picks the value, ticks the box, types the text.
+   When the writing is finished the report is reloaded from the server, so the
+   appraiser is left looking at the saved document rather than the animation.
+*/
+/* Fill the report, from what?
+   Until now the answer was always the case's own sample.  An appraiser who
+   has a UAD 3.6 file -- the delivery XML, or the portable one with its
+   pictures inside -- wants to watch that go in, which is the same run against
+   a different source.  So the file is staged first (server side, through the
+   ordinary import, pictures and all) and the filler is pointed at it; nothing
+   about the filling itself changes. */
+function chooseFillSource(){
+  const sheet=document.createElement('div');
+  sheet.className='sheet';
+  sheet.innerHTML=`<div class="sheetbox" style="max-width:520px">
+    <h3 style="margin:0 0 6px">Fill the report</h3>
+    <p class="lede" style="margin:0 0 16px">Watch the report fill itself in, section by
+      section. Choose where the values come from.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="addbtn primary" id="fs-file" style="text-align:left;padding:12px 14px">
+        From a UAD 3.6 file…<br>
+        <small style="font-weight:400;opacity:.72">The delivery XML, the delivery .zip, or a
+        portable XML — its pictures and exhibits go in too.</small></button>
+      <button class="addbtn" id="fs-sample" style="text-align:left;padding:12px 14px">
+        From this template's sample<br>
+        <small style="font-weight:400;opacity:.72">The Appendix D-1 case this report
+        started from.</small></button>
+    </div>
+    <div style="margin-top:18px;text-align:right">
+      <button class="addbtn" id="fs-cancel">Cancel</button></div></div>`;
+  document.body.appendChild(sheet);
+  const close=()=>sheet.remove();
+  sheet.onclick=e=>{ if(e.target===sheet) close(); };
+  sheet.querySelector('#fs-cancel').onclick=close;
+  sheet.querySelector('#fs-file').onclick=()=>{ close(); $('#rf-auto-file').click(); };
+  sheet.querySelector('#fs-sample').onclick=()=>{ close(); S.autoSource=null; autoFill(); };
+}
+
+async function fillFromFile(file){
+  const btn=$('#rf-auto');
+  btn.disabled=true; btn.textContent='Reading…';
+  const fd=new FormData(); fd.append('files',file,file.name);
+  let r;
+  try{
+    const res=await fetch(`/api/cases/${S.caseId}/autofill/source`,{method:'POST',body:fd});
+    let body={}; try{ body=await res.json(); }catch(_){ body={}; }
+    r={ok:res.ok,status:res.status,data:body};
+  }catch(err){ r={ok:false,status:0,data:{detail:String(err)}}; }
+  if(!r.ok){
+    btn.disabled=false; btn.textContent='Fill the report';
+    // A 404 here is the *report* being gone, not the file: another session can
+    // clear the case store underneath an open editor, and "Not Found" on its
+    // own sends the appraiser looking at their file for a fault that is not
+    // in it.
+    if(r.status===404){
+      toast('This report is no longer on the server — opening the list of reports.',7000);
+      showLaunch();
+      return;
+    }
+    const why=(r.data&&r.data.detail)||'the file could not be read';
+    toast(why,8000);
+    return;
+  }
+  S.autoSource=r.data.source; S.autoStage=r.data.source;
+  const pics=r.data.pictures||0, lost=r.data.missing_pictures||0;
+  toast(`${file.name}: ${r.data.values||0} values${pics?', '+pics+' pictures':''} — filling now`,4000);
+  if(!pics&&lost){
+    // the delivery XML names its images but does not carry them
+    toast(`${lost} picture(s) are named in that file but not inside it. Use the portable `+
+          `XML or the delivery .zip to bring the photographs too.`,9000);
+  }
+  await autoFill();
+}
+
+async function dropFillStage(){
+  if(!S.autoStage) return;
+  const stage=S.autoStage; S.autoStage=null; S.autoSource=null;
+  try{ await fetch(`/api/cases/${S.caseId}/autofill/source?source=${stage}`,{method:'DELETE'}); }
+  catch(_){}
+}
+
+async function autoFill(){
+  const btn=$('#rf-auto'), bar=$('#rf-agent');
+  const f=$('#rf');
+  if(!f||!f.contentWindow){ toast('Open the report first.',3000); return; }
+  // Until an intake folder has been read, the case's own sample is the source
+  // of the values; the intake sets S.autoSource to the case it produced.
+  const source=S.autoSource||(S.case&&S.case.template)||'';
+  if(!source){ toast('No intake to fill this report from.',4000); return; }
+  btn.disabled=true; btn.textContent='Filling…';
+  bar.hidden=false; $('#rf-agent-what').textContent='Planning the case…';
+  $('#rf-agent-bar').style.width='0%';
+  const r=await api(`/cases/${S.caseId}/autofill`,{method:'POST',body:JSON.stringify({source})});
+  if(!r||!r.ok){
+    bar.hidden=true; btn.disabled=false; btn.textContent='Fill the report';
+    toast('Could not read that case: '+((r&&r.data&&r.data.detail)||'unknown'),6000);
+    await dropFillStage();
+    return;
+  }
+  S.autoTotal=r.data.total; S.autoSteps=r.data.steps; S.autoAt=0; S.autoSwapped=false;
+  if(!r.data.total){
+    bar.hidden=true; btn.disabled=false; btn.textContent='Fill the report';
+    toast('Nothing to fill: this report already holds those values.',4500);
+    await dropFillStage();
+    return;
+  }
+  // However big the case, the run takes about half a minute: the pace is set
+  // by how many of its steps are acted out on the page.
+  const acted=r.data.steps.filter(s=>s.kind!=='data'&&s.kind!=='link').length;
+  S.autoPace=Math.max(18,Math.min(70,Math.round(26000/Math.max(acted,1))));
+  f.contentWindow.postMessage({uad:'autofill',steps:r.data.steps,pace:S.autoPace},'*');
+  waitForFill();
+}
+
+/* The server finishes writing long before the page finishes showing it.  As
+   soon as it has, the report is laid out again out of sight and swapped in,
+   and the rest of the run carries on against that -- so the rows, the grid
+   cells and the photographs the case brought are there to be filled in. */
+async function waitForFill(){
+  for(let i=0;i<400;i++){
+    const st=await apiRaw(`/cases/${S.caseId}/autofill`);
+    if(st&&st.ok&&!st.data.running){ S.autoResult=st.data; break; }
+    await new Promise(go=>setTimeout(go,250));
+  }
+  if(S.autoSwapped||!S.autoSteps) return;
+  S.autoSwapped=true;
+  const f=$('#rf'); if(f&&f.contentWindow) f.contentWindow.postMessage({uad:'autofill-stop'},'*');
+  S.dirty=false;
+  swapFrame('form');
+}
+
+/* The report tells the shell where the filler has reached. */
+function autoFillAt(m){
+  const what=$('#rf-agent-what'), count=$('#rf-agent-count'), bar=$('#rf-agent-bar');
+  if(!what) return;
+  S.autoAt=Math.max(S.autoAt||0,m.n);
+  const total=S.autoTotal||m.total;
+  what.textContent=m.section+' — '+(m.label||m.value||'');
+  count.textContent=m.n+' of '+total;
+  bar.style.width=Math.round((m.n/total)*100)+'%';
+  if(m.secn&&m.secn!==S.section){ S.section=m.secn; markRail(); }
+}
+async function autoFillDone(){
+  if(S.autoSteps&&S.autoAt<S.autoSteps.length-1&&!S.autoSwapped) return;  // a swap is coming
+  const what=$('#rf-agent-what');
+  if(what) what.textContent='Saving and laying the report out again…';
+  let result=S.autoResult;
+  for(let i=0;i<80&&!result;i++){
+    const st=await api(`/cases/${S.caseId}/autofill`);
+    if(st&&st.ok&&!st.data.running){ result=st.data; break; }
+    await new Promise(go=>setTimeout(go,250));
+  }
+  const bad=((result&&result.failed)||[]).length;
+  toast(bad?`${(result||{}).written} values entered, ${bad} refused — see the Review Master.`
+           :`${(result||{}).written||0} values entered.`,5000);
+  const btn=$('#rf-auto'), bar=$('#rf-agent');
+  if(btn){ btn.disabled=false; btn.textContent='Fill the report'; }
+  if(bar) bar.hidden=true;
+  S.autoSteps=null; S.autoResult=null; S.dirty=false;
+  await dropFillStage();           // the uploaded source has been read; let it go
+  await showImportedToggle();      // the fill answered fields: offer the marking
+  await refreshMedia();
+  const rv=await api('/cases/'+S.caseId+'/review');
+  // the tally in the masthead counts the report as it now stands
+  if(rv&&rv.ok){ S.review=rv.data; drawRail(); markRail(); drawHead(); }
+  swapFrame('form');
+}
+
+/* The five Market graphs are the numbers the appraisal already argues from, so
+   they are drawn rather than pasted in as five screenshots.  The appraiser
+   hands the order sheet and the MLS exports to an assistant with the prompt
+   below, and brings back one file. */
+async function marketImport(){
+  const help=await api('/market/prompt');
+  const box=document.createElement('div'); box.className='sheet';
+  box.innerHTML=`<div class="sheet-in">
+    <h2>Market charts</h2>
+    <p class="lede">Five graphs — ${Object.values(help.data.charts).map(esc).join(', ')} —
+      drawn from figures rather than pasted in as pictures. Give the prompt below to an
+      assistant along with the order sheet, the MLS exports and any market statistics,
+      and drop the file it returns here.</p>
+    <div class="bar k">1 — the prompt</div>
+    <textarea id="mk-prompt" readonly rows="9"></textarea>
+    <div style="display:flex;gap:6px;margin-top:6px">
+      <button class="addbtn" id="mk-copy">Copy the prompt</button>
+      <button class="addbtn" id="mk-example">Load an example file</button>
+    </div>
+    <div class="bar k" style="margin-top:16px">2 — the file it gives back</div>
+    <textarea id="mk-data" rows="10" placeholder="Paste the JSON here, or drop the file anywhere in this panel."></textarea>
+    <p id="mk-msg" class="empty" style="padding:6px 0"></p>
+    <div style="display:flex;gap:6px">
+      <button class="btn primary" id="mk-go">Draw the charts</button>
+      <button class="btn" id="mk-close">Close</button>
+    </div></div>`;
+  document.body.appendChild(box);
+  const $$=s=>box.querySelector(s);
+  $$('#mk-prompt').value=help.data.prompt;
+  const msg=$$('#mk-msg');
+  $$('#mk-copy').onclick=()=>{navigator.clipboard.writeText(help.data.prompt);
+    toast('Prompt copied');};
+  $$('#mk-example').onclick=()=>{$$('#mk-data').value=JSON.stringify(help.data.example,null,1);};
+  $$('#mk-close').onclick=()=>box.remove();
+  box.addEventListener('dragover',e=>{e.preventDefault();box.classList.add('over');});
+  box.addEventListener('dragleave',()=>box.classList.remove('over'));
+  box.addEventListener('drop',async e=>{
+    e.preventDefault(); box.classList.remove('over');
+    const file=e.dataTransfer.files[0]; if(!file)return;
+    $$('#mk-data').value=await file.text();
+    msg.textContent='Read '+file.name+'. Now draw the charts.';
+  });
+  $$('#mk-go').onclick=async()=>{
+    msg.textContent='Drawing…';
+    const r=await fetch(`/api/cases/${S.caseId}/market/charts`,
+      {method:'POST',headers:{'Content-Type':'application/json'},
+       body:$$('#mk-data').value});
+    const d=await r.json();
+    if(!r.ok){msg.textContent=d.detail||'That file could not be read.';return;}
+    toast(d.drawn.length+' chart(s) drawn into the Market section');
+    box.remove(); refresh();
+  };
+}
+
+
+/* ------------------------------------------------ data that does not print
+   A-1 requires these but the report has nowhere to show them: the scope of
+   work, each property's coordinates, whether a reconsideration of value was
+   requested.  One row per data point; a column per comparable where it repeats. */
+async function drawExtra(w){
+  if(!w.querySelector('.xtbl')) w.innerHTML='<div class="skel">'+'<i></i>'.repeat(14)+'</div>';
+  const r=await api(`/cases/${S.caseId}/extra`);
+  if(S.view!=='extra') return;
+  if(!r||!r.ok){ w.innerHTML='<div class="panel empty">Could not load the data.</div>'; return; }
+  const p=document.createElement('div'); p.className='panel';
+  p.innerHTML=`<div class="compbar"><span class="k">Data required by A-1 that does not print</span>
+    <span style="font:400 11px var(--mono);color:var(--muted)">${r.data.missing_required} required value(s) still empty ·
+    saved the moment it changes · checked against the GSE subschema before it is kept</span></div>`;
+  for(const g of r.data.groups){
+    const scopes=[...new Set(g.rows.flatMap(x=>x.answers.map(a=>a.scope)))];
+    const tbl=document.createElement('table'); tbl.className='comps xtbl';
+    tbl.innerHTML=`<thead><tr><th style="width:34%">${esc(g.title)}</th>${scopes.map(s=>`<th>${esc(s)}</th>`).join('')}</tr></thead><tbody></tbody>`;
+    const body=tbl.querySelector('tbody');
+    for(const row of g.rows){
+      const tr=document.createElement('tr');
+      const need=row.conditionality==='R'?'<b title="Required">*</b>':`<span title="${esc(row.details)}" style="color:var(--muted)">†</span>`;
+      tr.innerHTML=`<td class="lbl" title="${esc(row.definition)}">${esc(row.label)} ${need}</td>`;
+      for(let si=0;si<scopes.length;si++){
+        const td=document.createElement('td');
+        const answers=row.answers.map((a,i)=>({...a,i})).filter(a=>a.scope===scopes[si]);
+        if(!answers.length){ td.innerHTML='<span style="color:var(--muted)">—</span>'; tr.appendChild(td); continue; }
+        answers.forEach((a,k)=>{
+          const inst=row.answers.filter(x=>x.scope===a.scope).indexOf(row.answers[a.i]);
+          const ctl=extraControl(row,a.value);
+          if(a.instance){ const l=document.createElement('div'); l.style.cssText='font-size:10px;color:var(--muted)'; l.textContent=a.instance; td.appendChild(l); }
+          ctl.onchange=async()=>{
+            ctl.classList.remove('bad');
+            const res=await api(`/cases/${S.caseId}/extra/${row.uid}`,{method:'PATCH',
+              body:JSON.stringify({value:ctl.value,scope:si,instance:inst})});
+            if(res&&res.ok) toast('Saved '+row.label);
+            else{ ctl.classList.add('bad'); toast((res&&res.data&&res.data.detail)||'Could not save',6000); }
+          };
+          td.appendChild(ctl);
+        });
+        tr.appendChild(td);
+      }
+      body.appendChild(tr);
+    }
+    const wrap=document.createElement('div'); wrap.className='gridwrap'; wrap.style.marginBottom='16px';
+    wrap.appendChild(tbl); p.appendChild(wrap);
+  }
+  w.innerHTML=''; w.appendChild(p);
+}
+function extraControl(row,value){
+  let el;
+  const fmt=(row.format||'').toLowerCase();
+  const opts=fmt==='boolean'?[{value:'true',label:'Yes'},{value:'false',label:'No'}]:row.options;
+  if(opts&&opts.length){
+    el=document.createElement('select');
+    [{value:'',label:''}].concat(opts).forEach(o=>{const op=document.createElement('option');
+      op.value=o.value; op.textContent=o.label.replace(/(?<=[a-z])(?=[A-Z])/g,' '); if(o.value===value) op.selected=true; el.appendChild(op);});
+  }else{
+    el=document.createElement('input'); el.value=value;
+    if(fmt==='numeric') el.inputMode='decimal';
+  }
+  return el;
+}
+
+/* -------------------------------------------- comparables, in row format */
+async function drawComps(w){
+  w.innerHTML='<div class="panel empty">Loading the grid…</div>';
+  const kind=S.compKind||'sales';
+  const r=await api(`/cases/${S.caseId}/comparables?kind=${kind}`);
+  if(!r.ok){w.innerHTML='<div class="panel empty">Could not load the grid.</div>';return;}
+  const g=r.data;
+  const p=document.createElement('div'); p.className='panel';
+  const bar=document.createElement('div'); bar.className='compbar';
+  bar.innerHTML=`<span class="k">${esc(g.title)}</span>
+    <span style="font:400 11px var(--mono);color:var(--muted)">
+    ${g.comparables.length} comparable(s) · ${g.rows.length} rows from the B-1 supplement ·
+    drag a column head to reorder · drag a divider to resize</span>`;
+  const kinds=document.createElement('div'); kinds.className='kinds';
+  for(const [k,label] of [['sales','Sales'],['rental','Rental'],['grm','GRM'],['not_used','Not Used']]){
+    const b=document.createElement('button'); b.className='tab'; b.textContent=label;
+    b.style.borderBottom='1px solid var(--rule)';
+    b.setAttribute('aria-selected',String(kind===k));
+    b.onclick=()=>{S.compKind=k;drawComps(w);};
+    kinds.appendChild(b);
+  }
+  const add=document.createElement('button'); add.className='addbtn';
+  add.textContent='+ Add comparable';
+  add.onclick=async()=>{
+    const res=await api(`/cases/${S.caseId}/comparables`,
+      {method:'POST',body:JSON.stringify({kind})});
+    toast(res.ok?'Comparable added':'Could not add'); drawComps(w);};
+  bar.appendChild(kinds);
+  bar.appendChild(document.createElement('span')).style.flex='1';
+  bar.appendChild(add);
+  p.appendChild(bar);
+
+  const wrap=document.createElement('div'); wrap.className='gridwrap';
+  const n=g.comparables.length;
+  const W=(S.compWidths=S.compWidths||{});
+  const wid=(key,fallback)=>W[kind+'|'+key]||fallback;
+
+  let head=`<colgroup><col style="width:${wid('row',210)}px">`
+          +`<col style="width:${wid('subject',150)}px">`;
+  for(let i=0;i<n;i++) head+=`<col style="width:${wid('c'+i,150)}px"><col style="width:${wid('a'+i,78)}px">`;
+  head+='</colgroup><thead><tr>';
+  head+=`<th data-col="row">Row<span class="grip"></span></th>`;
+  head+=`<th data-col="subject">Subject<span class="grip"></span></th>`;
+  for(const c of g.comparables){
+    head+=`<th class="comp" colspan="2" draggable="true" data-index="${c.index}" data-col="c${c.index-1}">
+      <div class="compcell">
+        <label class="ph" title="Photo of comparable ${c.index}">
+          ${c.photo?`<img src="${esc(c.photo)}" alt="">`:'<span>+ photo</span>'}
+          <input type="file" accept="image/*" hidden>
+        </label>
+        <div class="meta">
+          <div>Comparable #${c.index}</div>
+          <div class="addr">${esc(c.address||'—')}</div>
+          <div class="tools">
+            <button data-act="remove" title="Remove this comparable">Remove</button>
+          </div>
+        </div>
+      </div><span class="grip"></span></th>`;
+  }
+  head+='</tr></thead>';
+
+  let body='';
+  for(const row of g.rows){
+    if(row.heading){
+      body+=`<tr class="head"><td class="lbl">${esc(row.label)}</td><td colspan="${1+2*n}"></td></tr>`;
+      continue;}
+    body+=`<tr><td class="lbl">${esc(row.label)}</td>`;
+    body+=`<td>${cell(row.subject_fid,0,row.subject_points,row.subject_parts)}</td>`;
+    for(let i=0;i<n;i++){
+      const c=row.cells[i]||{};
+      body+=`<td>${cell(row.comp_fid,i+1,row.comp_points,c.parts)}</td>`;
+      body+=`<td class="adj">${row.adjustable
+        ?adjCell(i+1,row.adjust_type,c.adjust_raw||''):''}</td>`;
+    }
+    body+='</tr>';
+  }
+  wrap.innerHTML=`<table class="comps">${head}<tbody>${body}</tbody></table>`;
+  p.appendChild(wrap);
+  w.innerHTML=''; w.appendChild(p);
+  wireGrid(wrap,g,kind,w);
+  if(kind==='sales') p.appendChild(transferLink());
+}
+
+/* A cell is one input per data point the field is made of: an address is six,
+   and writing one string into the first would quietly drop the city. */
+function cell(fid,column,points,parts){
+  if(!fid) return `<span style="color:var(--muted)">—</span>`;
+  const list=(points&&points.length)?points:[{data_point:'',options:[]}];
+  parts=parts||{};
+  return list.map(p=>{
+    const value=parts[p.data_point]||'';
+    const attrs=`data-fid="${esc(fid)}" data-col="${column}" data-dp="${esc(p.data_point)}"`;
+    const hint=list.length>1?` title="${esc(p.data_point)}" placeholder="${esc(p.data_point)}"`:'';
+    if((p.format||'').toLowerCase()==='boolean'){
+      return `<select ${attrs} onchange="saveCell(this)">`
+        +`<option value=""></option>`
+        +`<option value="true"${value==='true'?' selected':''}>Yes</option>`
+        +`<option value="false"${value==='false'?' selected':''}>No</option></select>`;
+    }
+    if(p.options&&p.options.length&&p.options.length<=60){
+      const opts=['<option value=""></option>'].concat(p.options.map(o=>
+        `<option value="${esc(o.value)}"${o.value===value?' selected':''}>${esc(o.label)}</option>`));
+      return `<select ${attrs} onchange="saveCell(this)">${opts.join('')}</select>`;
+    }
+    return `<input value="${esc(value)}" ${attrs}${hint} onchange="saveCell(this)">`;
+  }).join('');
+}
+
+function adjCell(column,adjustType,value){
+  if(!adjustType) return '';
+  return `<input value="${esc(value)}" data-col="${column}"
+    data-adjust="${esc(adjustType)}" onchange="saveCell(this)">`;
+}
+
+/* The widths belong to the report, so the grid a colleague opens is the grid
+   that was set up here. */
+async function saveWidths(){
+  S.prefs=S.prefs||{}; S.prefs.compWidths=S.compWidths;
+  await api(`/cases/${S.caseId}/prefs`,
+    {method:'PUT',body:JSON.stringify({compWidths:S.compWidths})});
+}
+
+/* Column resizing, comparable reordering, removal and photos. */
+function wireGrid(wrap,g,kind,w){
+  const table=wrap.querySelector('table');
+  const cols=[...table.querySelectorAll('col')];
+  const key=name=>kind+'|'+name;
+
+  table.querySelectorAll('th .grip').forEach(grip=>{
+    grip.addEventListener('mousedown',e=>{
+      e.preventDefault(); e.stopPropagation();
+      const th=grip.closest('th');
+      const start=e.clientX;
+      const index=[...th.parentNode.children].indexOf(th);
+      const colIndex=th.classList.contains('comp')? 2+2*([...table.querySelectorAll('th.comp')].indexOf(th)) : index;
+      const col=cols[colIndex];
+      const startW=parseFloat(col.style.width)||th.getBoundingClientRect().width;
+      const move=ev=>{
+        const next=Math.max(46,startW+(ev.clientX-start));
+        col.style.width=next+'px';
+        S.compWidths[key(th.dataset.col)]=next;
+      };
+      const up=()=>{document.removeEventListener('mousemove',move);
+        document.removeEventListener('mouseup',up);
+        saveWidths();};
+      document.addEventListener('mousemove',move);
+      document.addEventListener('mouseup',up);
+    });
+  });
+
+  let dragged=null;
+  table.querySelectorAll('th.comp').forEach(th=>{
+    th.addEventListener('dragstart',e=>{dragged=th;th.classList.add('drag');
+      e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',th.dataset.index);});
+    th.addEventListener('dragend',()=>{th.classList.remove('drag');
+      table.querySelectorAll('th.comp').forEach(x=>x.classList.remove('over'));});
+    th.addEventListener('dragover',e=>{e.preventDefault();th.classList.add('over');});
+    th.addEventListener('dragleave',()=>th.classList.remove('over'));
+    th.addEventListener('drop',async e=>{
+      e.preventDefault(); th.classList.remove('over');
+      if(!dragged||dragged===th) return;
+      const from=Number(dragged.dataset.index), to=Number(th.dataset.index);
+      const order=g.comparables.map(c=>c.index);
+      order.splice(order.indexOf(from),1);
+      order.splice(order.indexOf(to)+(to>from?1:0),0,from);
+      const res=await api(`/cases/${S.caseId}/comparables/order`,
+        {method:'POST',body:JSON.stringify({kind,order})});
+      toast(res.ok?`Comparable ${from} is now #${order.indexOf(from)+1}`:'Could not reorder');
+      drawComps(w);
+    });
+    const remove=th.querySelector('[data-act=remove]');
+    if(remove) remove.onclick=async()=>{
+      if(!confirm(`Remove comparable #${th.dataset.index}? The ones after it move up.`))return;
+      const res=await api(`/cases/${S.caseId}/comparables/${th.dataset.index}?kind=${kind}`,
+        {method:'DELETE'});
+      toast(res.ok?'Comparable removed':'Could not remove'); drawComps(w);
+    };
+    const file=th.querySelector('input[type=file]');
+    if(file) file.onchange=async()=>{
+      if(!file.files.length)return;
+      const fd=new FormData(); fd.append('file',file.files[0]);
+      const q=`?category=comparable&comparable=${th.dataset.index}&section=22`
+             +`&caption=${encodeURIComponent('Comparable #'+th.dataset.index)}`;
+      const res=await fetch(`/api/cases/${S.caseId}/media${q}`,{method:'POST',body:fd});
+      toast(res.ok?'Photo added':'Could not add the photo'); drawComps(w);
+    };
+  });
+}
+
+/* Prior sale and transfer history belongs to the comparables, but it is
+   filled in where it prints -- on the report, like everything else. */
+function transferLink(){
+  const box=document.createElement('div');
+  const s=S.sections.find(x=>x.number===21);
+  if(!s) return box;
+  box.innerHTML='<div class="bar k" style="margin-top:20px">Prior sale and transfer history</div>'
+    +'<p style="font-size:11.5px;color:var(--muted);margin:7px 0 8px">'
+    +'The subject’s and each comparable’s history is filled in on the '
+    +'report itself, in its own section.</p>';
+  const go=document.createElement('button');
+  go.className='btn'; go.textContent='Go to Prior Sale and Transfer History';
+  go.onclick=()=>{S.section=21;drawRail();goToReport({secn:21,section:s.name});};
+  box.appendChild(go);
+  return box;
+}
+
+/* Every cell is written inside the property that column is about, so a
+   comparable's value can never land on the subject. */
+async function saveCell(el){
+  const column=Number(el.dataset.col||0);
+  const kind=S.compKind||'sales';
+  const body={value:el.value,kind};
+  if(el.dataset.adjust) body.adjust_type=el.dataset.adjust;
+  else body.data_point=el.dataset.dp||'';
+  const fid=el.dataset.fid||el.dataset.adjust;
+  const r=await api(
+    `/cases/${S.caseId}/comparables/${column}/fields/${el.dataset.fid||'adjustment'}`,
+    {method:'PATCH',body:JSON.stringify(body)});
+  if(r&&r.ok){ el.classList.remove('bad'); toast('Saved '+fid); }
+  else{ el.classList.add('bad');
+    toast((r&&r.data&&r.data.detail)||('Could not save '+fid),7000); }
+}
+
+/* ------------------------------------------------------------ review */
+/* Errors block the signature, warnings do not, and information is what the
+   engine could not decide for itself and a person must read. */
+const GROUPS=[
+  ['Fatal','Errors','These stop the report being signed.'],
+  ['Warning','Warnings','Worth checking; they do not block the signature.'],
+  ['Review','Information','Rules that need a person to judge them.'],
+];
+
+function drawReview(w){
+  const rep=S.review;
+  const p=document.createElement('div'); p.className='panel';
+  const head=document.createElement('div');
+  head.innerHTML=`<div class="counts" style="max-width:520px">
+    <div class="count bad"><b>${rep.counts.fatal}</b><span>Errors</span></div>
+    <div class="count"><b>${rep.counts.warning}</b><span>Warnings</span></div>
+    <div class="count"><b>${rep.counts.review}</b><span>Information</span></div>
+    <div class="count"><b>${rep.counts.schema}</b><span>Schema</span></div></div>`;
+  const rerun=document.createElement('button');
+  rerun.className='btn'; rerun.style.marginTop='10px';
+  rerun.textContent='Re-run the review';
+  rerun.onclick=async()=>{rerun.disabled=true;rerun.textContent='Re-running…';
+    await refresh(); toast('Review re-run'); };
+  head.appendChild(rerun);
+  p.appendChild(head);
+
+  for(const [sev,title,lede] of GROUPS){
+    const items=(rep.items||[]).filter(i=>i.severity===sev);
+    if(!items.length) continue;
+    const h=document.createElement('div'); h.className='bar k';
+    h.textContent=`${title} — ${items.length}`; p.appendChild(h);
+    const note=document.createElement('p');
+    note.style.cssText='font-size:11.5px;color:var(--muted);margin:6px 0 0';
+    note.textContent=lede; p.appendChild(note);
+    for(const i of items.slice(0,400)) p.appendChild(findingRow(i));
+  }
+  if(!(rep.items||[]).length){
+    const ok=document.createElement('p'); ok.className='empty';
+    ok.textContent='Nothing to report — no finding from the schema, the H-1 rules or completeness.';
+    p.appendChild(ok);
+  }
+  w.innerHTML=''; w.appendChild(p);
+}
+
+/* Every finding names the rule that raised it, where it came from, and the
+   field it is about -- and offers to take the appraiser straight there. */
+function findingRow(i){
+  const d=document.createElement('div'); d.className='finding';
+  d.style.cursor='default';
+  const where=[i.section,i.subsection,i.label].filter(Boolean).join(' · ');
+  d.innerHTML=`<div class="top">
+      <span class="sev ${esc(i.severity)}">${esc(i.severity==='Review'?'Information':i.severity)}</span>
+      <code>${esc(i.code)}</code>
+      <span style="font-size:11px;color:var(--muted)">${esc(i.source)}${i.field_id?' · '+esc(i.field_id):''}</span>
+    </div>
+    <p>${esc(i.message)}</p>
+    ${where?`<p style="color:var(--muted)">${esc(where)}</p>`:''}
+    ${i.detail?`<p style="color:var(--muted)">${esc(i.detail)}</p>`:''}`;
+  if(i.field_id){
+    const fix=document.createElement('button');
+    fix.className='addbtn'; fix.style.marginTop='5px';
+    fix.textContent='Fix this';
+    fix.onclick=e=>{e.stopPropagation();jump(i);};
+    d.appendChild(fix);
+  }
+  return d;
+}
+/* A finding takes the appraiser to the field on the report, not to a form
+   about it. */
+function jump(item){
+  if(item.section_number&&item.section_number!==S.section){
+    S.section=item.section_number; drawRail();
+  }
+  goToReport({fid:item.field_id,secn:item.section_number,
+              section:(S.sections.find(s=>s.number===item.section_number)||{}).name});
+}
+function drawHistory(w){
+  const p=document.createElement('div'); p.className='panel';
+  p.innerHTML='<div class="bar k">Audit trail</div>';
+  w.innerHTML=''; w.appendChild(p);
+  api('/cases/'+S.caseId+'/history').then(r=>{
+    for(const h of r.data.history){
+      const d=document.createElement('div'); d.className='finding'; d.style.cursor='default';
+      d.innerHTML=`<div class="top"><code>${esc(h.at.replace('T',' ').replace('+00:00',''))}</code>
+        <b style="font-size:11.5px">${esc(h.action)}</b>
+        <span style="font-size:11px;color:var(--muted)">${esc(h.actor)}</span></div>
+        ${h.detail?`<p>${esc(h.detail)}</p>`:''}`;
+      p.appendChild(d);}});
+}
+
+/* --------------------------------------------------------- inspector */
+/* Below the breakpoint the inspector column is dropped, so the same panel is
+   reachable as a tab instead -- hiding the only route to Sign off and Export
+   is not a responsive layout, it is a missing feature. */
+const NARROW=()=>window.matchMedia('(max-width:1240px)').matches;
+
+function drawInsp(){
+  const b=$('#insp');
+  if(b&&!NARROW()) fillSignoff(b);
+}
+
+function fillSignoff(b){
+  if(!b)return;
+  const rep=S.review,c=S.case;
+  const ready=rep.ready&&!(rep.blockers||[]).length;
+  b.innerHTML=`<div class="panelhead k">Sign-off</div>
+    <div class="panelblock"><div class="counts">
+      <div class="count bad"><b>${rep.counts.fatal}</b><span>Fatal</span></div>
+      <div class="count"><b>${rep.counts.warning}</b><span>Warn</span></div>
+      <div class="count"><b>${rep.counts.review}</b><span>Read</span></div>
+      <div class="count"><b>${rep.counts.schema}</b><span>XSD</span></div></div></div>
+    <div class="panelblock">
+      <div class="verdict ${ready?'':'blocked'}">${ready?'Ready to sign':'Not ready to sign'}</div>
+      ${(rep.blockers||[]).length?`<ul class="blockers">${rep.blockers.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+    </div>
+    <div class="panelhead k">Delivery package (B-1)</div>
+    <div class="panelblock" id="pkg"><span class="empty" style="padding:0">Checking…</span></div>
+    <div class="panelhead k">Sections reviewed</div>
+    <div class="panelblock acks" id="acks"></div>
+    <div class="panelblock actions">
+      <button class="btn block" id="rev">Move to review</button>
+      <button class="btn block primary" id="sign" ${ready&&c.can.includes('signed')?'':'disabled'}>Sign off</button>
+      <a class="btn block" id="zip" href="/api/cases/${S.caseId}/package.zip">Export ZIP</a>
+      <a class="btn block" href="/api/cases/${S.caseId}/report.pdf" target="_blank">Open PDF</a>
+      <a class="btn block" href="/api/cases/${S.caseId}/mismo.xml" target="_blank">Open MISMO XML</a>
+      <a class="btn block" href="/api/cases/${S.caseId}/portable.xml" download
+         title="The whole appraisal in one UAD 3.6 XML, pictures inside: import it anywhere this software runs">Download portable XML</a>
+      <button class="btn block" id="back">All cases</button></div>`;
+  // Scoped to this panel: the same markup is drawn in the inspector column on
+  // a wide screen and in the work area on a narrow one.
+  const $$=sel=>b.querySelector(sel);
+
+  /* The gate asks that every section the report prints has been reviewed, so
+     the list of them lives beside the signature rather than one tick at a
+     time at the foot of a page. */
+  const acked=new Set(S.case.acknowledged||[]);
+  const drawn=new Set(S.review.sections_present||[]);
+  const box=$$('#acks');
+  for(const s of S.sections||[]){
+    if(drawn.size&&!drawn.has(s.number)) continue;
+    const row=document.createElement('label'); row.className='ackrow';
+    row.innerHTML=`<input type="checkbox"${acked.has(s.number)?' checked':''}>
+      <span class="n">${String(s.number).padStart(2,'0')}</span>
+      <span class="t">${esc(s.tab)}</span>`;
+    row.querySelector('.t').onclick=e=>{
+      e.preventDefault(); S.section=s.number; drawRail(); goToReport({secn:s.number,section:s.name});};
+    row.querySelector('input').onchange=async e=>{
+      await api(`/cases/${S.caseId}/acknowledge`,
+        {method:'POST',body:JSON.stringify({section:s.number,on:e.target.checked})});
+      refresh();};
+    box.appendChild(row);
+  }
+
+  /* What stands between this case and a ZIP UCDP would take: one XML, one
+     PDF, Images, every picture referenced, nothing from a sample. */
+  api(`/cases/${S.caseId}/package/check`).then(r=>{
+    const box=$$('#pkg'); if(!box||!r||!r.ok) return;
+    const d=r.data, faults=(d.faults||[]).filter(f=>f.severity==='Fatal');
+    if(d.ready){ box.innerHTML=`<div class="verdict">Package ready — ${d.images.length} image(s)</div>`; return; }
+    box.innerHTML=`<div class="verdict blocked">${faults.length+(d.schema||[]).length} problem(s)</div>`+
+      `<ul class="blockers">${faults.slice(0,12).map(f=>`<li><b>${esc(f.code)}</b> ${esc(f.message)} ${esc(f.detail||'')}</li>`).join('')}`+
+      `${(d.schema||[]).slice(0,5).map(e=>`<li><b>XSD</b> ${esc(e)}</li>`).join('')}</ul>`;
+  });
+
+  $$('#back').onclick=showLaunch;
+  $$('#rev').onclick=async()=>{await api(`/cases/${S.caseId}/state`,
+    {method:'POST',body:JSON.stringify({state:'in_review'})}); refresh();};
+  $$('#sign').onclick=async()=>{
+    const who=prompt('Sign as (your name):'); if(!who)return;
+    const r=await fetch(`/api/cases/${S.caseId}/state`,{method:'POST',
+      headers:{'Content-Type':'application/json','X-Actor':who},
+      body:JSON.stringify({state:'signed'})});
+    const d=await r.json();
+    if(!r.ok) alert('Cannot sign yet:\n\n'+(d.reasons||[d.error]).join('\n'));
+    else toast('Signed'); refresh();};
+  $$('#zip').onclick=e=>{
+    if(!(c.state==='signed'||c.state==='exported')){e.preventDefault();
+      alert('The package can only be exported once the case is signed.\n\n'+
+        (rep.blockers||[]).join('\n'));}};
+}
+/* Crossing the breakpoint moves the sign-off panel between the inspector
+   column and its own tab, so the chrome is redrawn when it changes. */
+window.matchMedia('(max-width:1240px)').addEventListener('change',()=>{
+  if(!S.caseId)return;
+  if(S.view==='signoff'&&!NARROW()) S.view='form';
+  drawHead(); drawWork(); drawInsp();
+});
+
+window.saveCell=saveCell;
+/* Back to the list of reports.  An unsaved edit is flushed first -- leaving
+   the editor is not a reason to lose the value being typed. */
+document.getElementById('backhome').onclick=async()=>{
+  try{ if(typeof flushPending==='function') await flushPending(); }catch(_){}
+  showLaunch();
+};
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',showLaunch);
+else showLaunch();
+</script>
+</body>
+</html>

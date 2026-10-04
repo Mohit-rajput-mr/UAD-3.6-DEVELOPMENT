@@ -1,0 +1,6693 @@
+{
+ "source_values": 985,
+ "kept": 817,
+ "changed": 41,
+ "dropped": 127,
+ "added": 1006,
+ "rows": [
+  {
+   "scope": "PropertyAnalyzedNotUsed#1",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#1",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1009"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#1",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferDate",
+   "data_point": "OwnershipTransferDate",
+   "file": [],
+   "total": [
+    "2019-07-24"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#1",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionType",
+   "data_point": "OwnershipTransferTransactionType",
+   "file": [],
+   "total": [
+    "Sale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#2",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#2",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "308"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#2",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferDate",
+   "data_point": "OwnershipTransferDate",
+   "file": [],
+   "total": [
+    "2019-07-31"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#2",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionType",
+   "data_point": "OwnershipTransferTransactionType",
+   "file": [],
+   "total": [
+    "Sale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#3",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#3",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "920"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#4",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#4",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "514"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#5",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "PropertyAnalyzedNotUsed#5",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1234"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "1522 Akyawentuo Ave"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Anytown"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "54321"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "IL"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [],
+   "total": [
+    "NorthEast"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [],
+   "total": [
+    "0.25"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "Miles"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "2705"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [],
+   "total": [
+    "3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/ADDITIONAL_RENTAL_COMPARISON_ITEMS/ADDITIONAL_RENTAL_COMPARISON_ITEM/AdditionalComparisonLineItemDescription",
+   "data_point": "AdditionalComparisonLineItemDescription",
+   "file": [],
+   "total": [
+    "Patio"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/ADDITIONAL_RENTAL_COMPARISON_ITEMS/ADDITIONAL_RENTAL_COMPARISON_ITEM/AdditionalComparisonLineItemIdentifier",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "file": [],
+   "total": [
+    "Amenities"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/AmenitiesComparisonType",
+   "data_point": "AmenitiesComparisonType",
+   "file": [],
+   "total": [
+    "Similar"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [],
+   "total": [
+    "Similar"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [],
+   "total": [
+    "Most"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [],
+   "total": [
+    "3500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [],
+   "total": [
+    "Similar"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [],
+   "total": [
+    "Similar"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/ActualRentPerUnitFinishedAreaAmount",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "file": [],
+   "total": [
+    "1.29"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/LeaseStartDate",
+   "data_point": "LeaseStartDate",
+   "file": [],
+   "total": [
+    "2025-03"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitMonthlyActualRentAmount",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "file": [],
+   "total": [
+    "3500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "PropertyPhoto"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\Condo2_RentComp1.jpg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/jpeg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.165174"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328126"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/NEIGHBORHOOD/NEIGHBORHOOD_DETAIL/NeighborhoodName",
+   "data_point": "NeighborhoodName",
+   "file": [],
+   "total": [
+    "Bay Hills"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [],
+   "total": [
+    "Grammy Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [],
+   "total": [
+    "13400"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#1",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "RentalComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "2345467 Golden Tail St"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Anytown"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "54321"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "IL"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "PropertyPhoto"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\Condo2_RentComp2.jpg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/jpeg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.165175"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328127"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#2",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "RentalComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "234912 Whitecrest Dr"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Anytown"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "54321"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "IL"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "PropertyPhoto"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\Condo2_RentComp3.jpg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/jpeg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.165176"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328128"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#3",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "RentalComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "123423 Stoneback Dr"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Anytown"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "54321"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "IL"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "PropertyPhoto"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\Condo2_RentComp4.jpg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/jpeg"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.165177"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328129"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#4",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "RentalComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "341 Nothing Dr"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Anyplace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "1234"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "TX"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "5"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "PropertyPhoto"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\341Nothing.png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.16517"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328128"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#5",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "RentalComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "341 Nothing Dr"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Anyplace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "1234"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "TX"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "6"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "PropertyPhoto"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\341Nothing.png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.16517"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328128"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "RentalComparable#6",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "RentalComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1211"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/CarStorageAreaMeasure",
+   "data_point": "CarStorageAreaMeasure",
+   "file": [],
+   "total": [
+    "400"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/CarStorageAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "CarStorageAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-10000",
+    "-10000",
+    "-2000",
+    "-5000",
+    "-5000",
+    "-9900"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "ApparentEnvironmentalCondition",
+    "FinancingMethod",
+    "GrossBuildingFinishedArea",
+    "HeatingSystem",
+    "LivingUnitBathroomCount",
+    "LivingUnitStandardFinishedAreaAboveGrade"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [
+    "490760"
+   ],
+   "total": [
+    "503060"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/NoFinancingTransactionIndicator",
+   "data_point": "NoFinancingTransactionIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "data_point": "PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "file": [
+    "141"
+   ],
+   "total": [
+    "64"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [
+    "30760"
+   ],
+   "total": [
+    "43060"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/DISASTER_MITIGATION_FEATURES/DISASTER_MITIGATION_FEATURE/DisasterMitigationFeatureType",
+   "data_point": "DisasterMitigationFeatureType",
+   "file": [],
+   "total": [
+    "ImpactResistantGlass",
+    "ImpactResistantShingles"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/CONDITION_COVENANT_RESTRICTIONS/CONDITION_COVENANT_RESTRICTION/RestrictionType",
+   "data_point": "RestrictionType",
+   "file": [],
+   "total": [
+    "HistoricPreservation"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/ENCUMBRANCE_DETAIL/EncumbranceType",
+   "data_point": "EncumbranceType",
+   "file": [],
+   "total": [
+    "ConditionsCovenantsRestrictions"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/GreenCertificationExistsIndicator",
+   "data_point": "GreenCertificationExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationLevelName",
+   "data_point": "GreenCertificationLevelName",
+   "file": [],
+   "total": [
+    "Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationName",
+   "data_point": "GreenCertificationName",
+   "file": [],
+   "total": [
+    "LEED"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/ENVIRONMENTAL_CONDITIONS/ENVIRONMENTAL_CONDITION/EnvironmentalConditionType",
+   "data_point": "EnvironmentalConditionType",
+   "file": [],
+   "total": [
+    "Radon"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeAmount",
+   "data_point": "AssociationChargeAmount",
+   "file": [],
+   "total": [
+    "2631"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargePeriodType",
+   "data_point": "AssociationChargePeriodType",
+   "file": [],
+   "total": [
+    "Monthly"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeType",
+   "data_point": "AssociationChargeType",
+   "file": [],
+   "total": [
+    "AssociationDues",
+    "AssociationSpecialAssessment"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationSpecialAssessmentStatusType",
+   "data_point": "AssociationSpecialAssessmentStatusType",
+   "file": [],
+   "total": [
+    "Existing"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "false",
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling",
+    "Dwelling",
+    "Dwelling",
+    "Outbuilding"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/OutbuildingRealPropertyIndicator",
+   "data_point": "OutbuildingRealPropertyIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/OutbuildingType",
+   "data_point": "OutbuildingType",
+   "file": [],
+   "total": [
+    "Workshop"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/PropertyStructureBuiltYear",
+   "data_point": "PropertyStructureBuiltYear",
+   "file": [],
+   "total": [
+    "1992"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/PropertyStructureBuiltYearEstimatedIndicator",
+   "data_point": "PropertyStructureBuiltYearEstimatedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/MANUFACTURED_HOME/MANUFACTURED_HOME_DETAIL/ManufacturedHomeWidthType",
+   "data_point": "ManufacturedHomeWidthType",
+   "file": [],
+   "total": [
+    "MultiWide",
+    "MultiWide",
+    "MultiWide",
+    "MultiWide"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentConditionSummaryDescription",
+   "data_point": "ImprovementComponentConditionSummaryDescription",
+   "file": [],
+   "total": [
+    "Well maintained with minimal depreciation",
+    "Well maintained with minimal depreciation",
+    "Well maintained with minimal depreciation",
+    "Well maintained with minimal depreciation"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentQualitySummaryDescription",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "9 Ft. | Custom",
+    "Nylon Short Loop and Engineered Wood",
+    "Standard"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "Flooring",
+    "WallsAndCeiling",
+    "WallsAndCeiling",
+    "WallsAndCeiling",
+    "WallsAndCeiling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "file": [],
+   "total": [
+    "FullyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "1300",
+    "1300",
+    "1300"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [],
+   "total": [
+    "2",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/CornerUnitIndicator",
+   "data_point": "CornerUnitIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FloorIdentifier",
+   "data_point": "FloorIdentifier",
+   "file": [],
+   "total": [
+    "1",
+    "12",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [],
+   "total": [
+    "2",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C3",
+    "C3",
+    "C3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorQualityRatingCode",
+   "data_point": "InteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q4",
+    "Q4",
+    "Q4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/LevelCount",
+   "data_point": "LevelCount",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/OverallBathroomsUpdateStatusType",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "file": [],
+   "total": [
+    "FullyUpdated",
+    "ModeratelyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomQualitySummaryDescription",
+   "data_point": "RoomQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "Energy Star appliances and wood cabinets",
+    "Standard"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "data_point": "RoomType",
+   "file": [],
+   "total": [
+    "Kitchen"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "data_point": "RoomUpdateStatusType",
+   "file": [],
+   "total": [
+    "PartiallyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/CONSTRUCTION_METHODS/CONSTRUCTION_METHOD/ConstructionMethodType",
+   "data_point": "ConstructionMethodType",
+   "file": [],
+   "total": [
+    "SiteBuilt"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/EXTERIOR_WALLS/EXTERIOR_WALL/WallMaterialType",
+   "data_point": "WallMaterialType",
+   "file": [],
+   "total": [
+    "EngineeredWood"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/FOUNDATIONS/FOUNDATION/FOUNDATION_STYLES/FOUNDATION_STYLE/FoundationType",
+   "data_point": "FoundationType",
+   "file": [],
+   "total": [
+    "CrawlSpace",
+    "Slab"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_DETAIL/RoofObservableIndicator",
+   "data_point": "RoofObservableIndicator",
+   "file": [],
+   "total": [
+    "true",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+   "data_point": "RoofMaterialType",
+   "file": [],
+   "total": [
+    "Metal"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentConditionStatusType",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "file": [],
+   "total": [
+    "NewOrLikeNew",
+    "NewOrLikeNew",
+    "NewOrLikeNew",
+    "NewOrLikeNew",
+    "TypicalWearAndTear"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "ExteriorWallsAndTrim",
+    "Foundation",
+    "Foundation",
+    "Roof",
+    "Windows",
+    "Windows"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorConditionRatingCode",
+   "data_point": "ExteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorQualityRatingCode",
+   "data_point": "ExteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/LivingUnitCount",
+   "data_point": "LivingUnitCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "4"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingSystemType",
+   "data_point": "HeatingSystemType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "IngroundPool",
+    "Other"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityTypeOtherDescription",
+   "data_point": "AmenityTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Theater"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectLegalStructureType",
+   "data_point": "ProjectLegalStructureType",
+   "file": [],
+   "total": [
+    "Cooperative"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [],
+   "total": [
+    "XYZ Apartments"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityCount",
+   "data_point": "AmenityCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "IndoorFireplace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITY_CATEGORY_DETAIL/AmenityCategoryType",
+   "data_point": "AmenityCategoryType",
+   "file": [],
+   "total": [
+    "WholeHome"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROPERTY_DETAIL/DwellingCount",
+   "data_point": "DwellingCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "2"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyEstateType",
+   "data_point": "PropertyEstateType",
+   "file": [
+    "FeeSimple"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/REAL_PROPERTY_INTERESTS/REAL_PROPERTY_INTEREST/AppraisedIndicator",
+   "data_point": "AppraisedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/REAL_PROPERTY_INTERESTS/REAL_PROPERTY_INTEREST/PropertyPartialInterestType",
+   "data_point": "PropertyPartialInterestType",
+   "file": [],
+   "total": [
+    "MineralRights"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/AllPropertyRightsAppraisedIndicator",
+   "data_point": "AllPropertyRightsAppraisedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/ImprovedSurfaceMaterialType",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "file": [],
+   "total": [
+    "Asphalt"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/StreetAccessType",
+   "data_point": "StreetAccessType",
+   "file": [],
+   "total": [
+    "Local"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "Landscaping"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningComplianceType",
+   "data_point": "SiteZoningComplianceType",
+   "file": [],
+   "total": [
+    "Legal"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1103"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-10000",
+    "-14400",
+    "-14400",
+    "-14400",
+    "-3000",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "ApparentEnvironmentalCondition",
+    "DisasterMitigationFeatures",
+    "FinancingMethod",
+    "GrossBuildingFinishedArea",
+    "LivingUnitFloorNumber",
+    "LivingUnitStandardFinishedAreaAboveGrade"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [
+    "490540"
+   ],
+   "total": [
+    "497840"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/NoFinancingTransactionIndicator",
+   "data_point": "NoFinancingTransactionIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "data_point": "PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "file": [
+    "160"
+   ],
+   "total": [
+    "66"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [
+    "40540"
+   ],
+   "total": [
+    "47840"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/DISASTER_MITIGATION_FEATURES/DISASTER_MITIGATION_FEATURE/DisasterMitigationFeatureType",
+   "data_point": "DisasterMitigationFeatureType",
+   "file": [],
+   "total": [
+    "ImpactResistantGlass"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/CONDITION_COVENANT_RESTRICTIONS/CONDITION_COVENANT_RESTRICTION/RestrictionType",
+   "data_point": "RestrictionType",
+   "file": [],
+   "total": [
+    "HistoricPreservation"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/ENCUMBRANCE_DETAIL/EncumbranceType",
+   "data_point": "EncumbranceType",
+   "file": [],
+   "total": [
+    "ConditionsCovenantsRestrictions"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/GreenCertificationExistsIndicator",
+   "data_point": "GreenCertificationExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationLevelName",
+   "data_point": "GreenCertificationLevelName",
+   "file": [],
+   "total": [
+    "Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationName",
+   "data_point": "GreenCertificationName",
+   "file": [],
+   "total": [
+    "LEED"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/ENVIRONMENTAL_CONDITIONS/ENVIRONMENTAL_CONDITION/EnvironmentalConditionType",
+   "data_point": "EnvironmentalConditionType",
+   "file": [],
+   "total": [
+    "UndergroundStorageTank"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeAmount",
+   "data_point": "AssociationChargeAmount",
+   "file": [],
+   "total": [
+    "2631"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargePeriodType",
+   "data_point": "AssociationChargePeriodType",
+   "file": [],
+   "total": [
+    "Monthly"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeType",
+   "data_point": "AssociationChargeType",
+   "file": [],
+   "total": [
+    "AssociationDues",
+    "AssociationSpecialAssessment"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationSpecialAssessmentStatusType",
+   "data_point": "AssociationSpecialAssessmentStatusType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "false",
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling",
+    "Dwelling",
+    "Dwelling",
+    "Outbuilding"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/OutbuildingRealPropertyIndicator",
+   "data_point": "OutbuildingRealPropertyIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/OutbuildingType",
+   "data_point": "OutbuildingType",
+   "file": [],
+   "total": [
+    "Shed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/PropertyStructureBuiltYear",
+   "data_point": "PropertyStructureBuiltYear",
+   "file": [],
+   "total": [
+    "1940"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/PropertyStructureBuiltYearEstimatedIndicator",
+   "data_point": "PropertyStructureBuiltYearEstimatedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/MANUFACTURED_HOME/MANUFACTURED_HOME_DETAIL/ManufacturedHomeWidthType",
+   "data_point": "ManufacturedHomeWidthType",
+   "file": [],
+   "total": [
+    "MultiWide",
+    "MultiWide",
+    "MultiWide",
+    "MultiWide"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentConditionSummaryDescription",
+   "data_point": "ImprovementComponentConditionSummaryDescription",
+   "file": [],
+   "total": [
+    "Adequately maintained with moderate depreciation",
+    "Adequately maintained with moderate depreciation",
+    "Adequately maintained with moderate depreciation",
+    "Adequately maintained with moderate depreciation"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentQualitySummaryDescription",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "8 Ft. | Stock",
+    "Standard",
+    "Stock Flooring"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "Flooring",
+    "WallsAndCeiling",
+    "WallsAndCeiling",
+    "WallsAndCeiling",
+    "WallsAndCeiling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "file": [],
+   "total": [
+    "FullyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "1350",
+    "1350",
+    "1350"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [],
+   "total": [
+    "2",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/CornerUnitIndicator",
+   "data_point": "CornerUnitIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FloorIdentifier",
+   "data_point": "FloorIdentifier",
+   "file": [],
+   "total": [
+    "1",
+    "11",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [],
+   "total": [
+    "2",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C4",
+    "C4",
+    "C4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorQualityRatingCode",
+   "data_point": "InteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q4",
+    "Q4",
+    "Q4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/LevelCount",
+   "data_point": "LevelCount",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/OverallBathroomsUpdateStatusType",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "file": [],
+   "total": [
+    "NotUpdated",
+    "NotUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomQualitySummaryDescription",
+   "data_point": "RoomQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "Basic",
+    "Builder Grade Quality Appliances and Cabinets"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "data_point": "RoomType",
+   "file": [],
+   "total": [
+    "Kitchen"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "data_point": "RoomUpdateStatusType",
+   "file": [],
+   "total": [
+    "NotUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/CONSTRUCTION_METHODS/CONSTRUCTION_METHOD/ConstructionMethodType",
+   "data_point": "ConstructionMethodType",
+   "file": [],
+   "total": [
+    "SiteBuilt"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/EXTERIOR_WALLS/EXTERIOR_WALL/WallMaterialType",
+   "data_point": "WallMaterialType",
+   "file": [],
+   "total": [
+    "Wood"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/FOUNDATIONS/FOUNDATION/FOUNDATION_STYLES/FOUNDATION_STYLE/FoundationType",
+   "data_point": "FoundationType",
+   "file": [],
+   "total": [
+    "PostAndPier",
+    "PostAndPier"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_DETAIL/RoofObservableIndicator",
+   "data_point": "RoofObservableIndicator",
+   "file": [],
+   "total": [
+    "true",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+   "data_point": "RoofMaterialType",
+   "file": [],
+   "total": [
+    "Metal"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentConditionStatusType",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "file": [],
+   "total": [
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "ExteriorWallsAndTrim",
+    "Foundation",
+    "Foundation",
+    "Roof",
+    "Windows",
+    "Windows"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorConditionRatingCode",
+   "data_point": "ExteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorQualityRatingCode",
+   "data_point": "ExteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q5"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/LivingUnitCount",
+   "data_point": "LivingUnitCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "4"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingSystemType",
+   "data_point": "HeatingSystemType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "IngroundPool",
+    "Other"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityTypeOtherDescription",
+   "data_point": "AmenityTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Theater"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectLegalStructureType",
+   "data_point": "ProjectLegalStructureType",
+   "file": [],
+   "total": [
+    "Cooperative"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [],
+   "total": [
+    "XYZ Apartments"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityCount",
+   "data_point": "AmenityCount",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "IndoorFireplace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITY_CATEGORY_DETAIL/AmenityCategoryType",
+   "data_point": "AmenityCategoryType",
+   "file": [],
+   "total": [
+    "WholeHome"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROPERTY_DETAIL/DwellingCount",
+   "data_point": "DwellingCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "2"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyEstateType",
+   "data_point": "PropertyEstateType",
+   "file": [
+    "FeeSimple"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/REAL_PROPERTY_INTERESTS/REAL_PROPERTY_INTEREST/AppraisedIndicator",
+   "data_point": "AppraisedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/REAL_PROPERTY_INTERESTS/REAL_PROPERTY_INTEREST/PropertyPartialInterestType",
+   "data_point": "PropertyPartialInterestType",
+   "file": [],
+   "total": [
+    "MineralRights"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/AllPropertyRightsAppraisedIndicator",
+   "data_point": "AllPropertyRightsAppraisedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/ImprovedSurfaceMaterialType",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "file": [],
+   "total": [
+    "Asphalt"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/StreetAccessType",
+   "data_point": "StreetAccessType",
+   "file": [],
+   "total": [
+    "Local"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningComplianceType",
+   "data_point": "SiteZoningComplianceType",
+   "file": [],
+   "total": [
+    "Legal"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1627"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-10000",
+    "-10000",
+    "-20000",
+    "-3000",
+    "-5000",
+    "-5000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "CornerUnit",
+    "FinancingMethod",
+    "GrossBuildingFinishedArea",
+    "HeatingSystem",
+    "LivingUnitBathroomCount",
+    "LivingUnitFloorNumber"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [
+    "534400"
+   ],
+   "total": [
+    "532200"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/NoFinancingTransactionIndicator",
+   "data_point": "NoFinancingTransactionIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "data_point": "PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "file": [
+    "185"
+   ],
+   "total": [
+    "83"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [
+    "14400"
+   ],
+   "total": [
+    "12200"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/DISASTER_MITIGATION_FEATURES/DISASTER_MITIGATION_FEATURE/DisasterMitigationFeatureType",
+   "data_point": "DisasterMitigationFeatureType",
+   "file": [],
+   "total": [
+    "ImpactResistantGlass",
+    "ImpactResistantShingles"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/GreenCertificationExistsIndicator",
+   "data_point": "GreenCertificationExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationLevelName",
+   "data_point": "GreenCertificationLevelName",
+   "file": [],
+   "total": [
+    "Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationName",
+   "data_point": "GreenCertificationName",
+   "file": [],
+   "total": [
+    "LEED"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/ENVIRONMENTAL_CONDITIONS/ENVIRONMENTAL_CONDITION/EnvironmentalConditionType",
+   "data_point": "EnvironmentalConditionType",
+   "file": [],
+   "total": [
+    "Landfill"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeAmount",
+   "data_point": "AssociationChargeAmount",
+   "file": [],
+   "total": [
+    "2096"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargePeriodType",
+   "data_point": "AssociationChargePeriodType",
+   "file": [],
+   "total": [
+    "Monthly"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeType",
+   "data_point": "AssociationChargeType",
+   "file": [],
+   "total": [
+    "AssociationDues",
+    "AssociationSpecialAssessment"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationSpecialAssessmentStatusType",
+   "data_point": "AssociationSpecialAssessmentStatusType",
+   "file": [],
+   "total": [
+    "Proposed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/HeatingSystemExistsIndicator",
+   "data_point": "HeatingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Outbuilding",
+    "Outbuilding"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/OutbuildingRealPropertyIndicator",
+   "data_point": "OutbuildingRealPropertyIndicator",
+   "file": [],
+   "total": [
+    "true",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/OutbuildingType",
+   "data_point": "OutbuildingType",
+   "file": [],
+   "total": [
+    "Barn",
+    "Workshop"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/INTERIOR/INTERIOR_ROOM_SUMMARIES/INTERIOR_ROOM_SUMMARY/RoomType",
+   "data_point": "RoomType",
+   "file": [],
+   "total": [
+    "HalfBathroom"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/INTERIOR/INTERIOR_ROOM_SUMMARIES/INTERIOR_ROOM_SUMMARY/TotalRoomCount",
+   "data_point": "TotalRoomCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/MANUFACTURED_HOME/MANUFACTURED_HOME_DETAIL/ManufacturedHomeWidthType",
+   "data_point": "ManufacturedHomeWidthType",
+   "file": [],
+   "total": [
+    "MultiWide"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/OUTBUILDING/OUTBUILDING_UTILITIES/OUTBUILDING_UTILITY/UtilityType",
+   "data_point": "UtilityType",
+   "file": [],
+   "total": [
+    "Electricity",
+    "SanitarySewer",
+    "Water"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentConditionSummaryDescription",
+   "data_point": "ImprovementComponentConditionSummaryDescription",
+   "file": [],
+   "total": [
+    "Well maintained with minimal depreciation",
+    "Well maintained with minimal depreciation",
+    "Well maintained with minimal depreciation",
+    "Well maintained with minimal depreciation"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentQualitySummaryDescription",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "9 Ft. | Custom",
+    "Nylon Short Loop and Engineered Wood",
+    "Standard Dry Wall | Vaulted"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "Flooring",
+    "WallsAndCeiling",
+    "WallsAndCeiling",
+    "WallsAndCeiling",
+    "WallsAndCeiling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "file": [],
+   "total": [
+    "NotUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "1150",
+    "1150",
+    "1150"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet",
+    "SquareFeet",
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/AccessoryDwellingUnitIndicator",
+   "data_point": "AccessoryDwellingUnitIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "false",
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [],
+   "total": [
+    "2",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/CornerUnitIndicator",
+   "data_point": "CornerUnitIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FloorIdentifier",
+   "data_point": "FloorIdentifier",
+   "file": [],
+   "total": [
+    "1",
+    "16",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [],
+   "total": [
+    "2",
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C3",
+    "C3",
+    "C3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorQualityRatingCode",
+   "data_point": "InteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q4",
+    "Q4",
+    "Q4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/LevelCount",
+   "data_point": "LevelCount",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/OverallBathroomsUpdateStatusType",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "file": [],
+   "total": [
+    "FullyUpdated",
+    "NotUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomQualitySummaryDescription",
+   "data_point": "RoomQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "Energy Star appliances and wood cabinets",
+    "Standard"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "data_point": "RoomType",
+   "file": [],
+   "total": [
+    "Kitchen"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "data_point": "RoomUpdateStatusType",
+   "file": [],
+   "total": [
+    "NotUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/FOUNDATIONS/FOUNDATION/FOUNDATION_STYLES/FOUNDATION_STYLE/FoundationType",
+   "data_point": "FoundationType",
+   "file": [],
+   "total": [
+    "CrawlSpace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_DETAIL/RoofObservableIndicator",
+   "data_point": "RoofObservableIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentConditionStatusType",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "file": [],
+   "total": [
+    "NewOrLikeNew",
+    "NewOrLikeNew",
+    "TypicalWearAndTear"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "Foundation",
+    "Windows"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/LivingUnitCount",
+   "data_point": "LivingUnitCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "0",
+    "0",
+    "4"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUFinishedAreaMeasure",
+   "data_point": "StructureExcludingVehicleStorageAndADUFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "1200"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureExcludingVehicleStorageAndADUFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "360"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "Clubhouse",
+    "FitnessArea",
+    "IngroundPool"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectLegalStructureType",
+   "data_point": "ProjectLegalStructureType",
+   "file": [],
+   "total": [
+    "Cooperative"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [],
+   "total": [
+    "MNO Apartments"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityCount",
+   "data_point": "AmenityCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "IndoorFireplace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITY_CATEGORY_DETAIL/AmenityCategoryType",
+   "data_point": "AmenityCategoryType",
+   "file": [],
+   "total": [
+    "WholeHome"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyEstateType",
+   "data_point": "PropertyEstateType",
+   "file": [
+    "FeeSimple"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/REAL_PROPERTY_INTERESTS/REAL_PROPERTY_INTEREST/AppraisedIndicator",
+   "data_point": "AppraisedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/REAL_PROPERTY_INTERESTS/REAL_PROPERTY_INTEREST/PropertyPartialInterestType",
+   "data_point": "PropertyPartialInterestType",
+   "file": [],
+   "total": [
+    "MineralRights"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/AllPropertyRightsAppraisedIndicator",
+   "data_point": "AllPropertyRightsAppraisedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferDate",
+   "data_point": "OwnershipTransferDate",
+   "file": [],
+   "total": [
+    "2018-09-15"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionAmount",
+   "data_point": "OwnershipTransferTransactionAmount",
+   "file": [],
+   "total": [
+    "725000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/OwnershipTransferTransactionType",
+   "data_point": "OwnershipTransferTransactionType",
+   "file": [],
+   "total": [
+    "Sale"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SALES_HISTORIES/SALES_HISTORY/SaleType",
+   "data_point": "SaleType",
+   "file": [],
+   "total": [
+    "TypicallyMotivated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/ImprovedSurfaceMaterialType",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "file": [],
+   "total": [
+    "Concrete"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/StreetAccessType",
+   "data_point": "StreetAccessType",
+   "file": [],
+   "total": [
+    "Arterial"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningComplianceType",
+   "data_point": "SiteZoningComplianceType",
+   "file": [],
+   "total": [
+    "NoZoning"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "3026 Old West St"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "382"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Somecity"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "12345"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "TN"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/CarStorageAreaMeasure",
+   "data_point": "CarStorageAreaMeasure",
+   "file": [],
+   "total": [
+    "400"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/CarStorageAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "CarStorageAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/CarStorageAttachmentType",
+   "data_point": "CarStorageAttachmentType",
+   "file": [],
+   "total": [
+    "Attached"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/CarStorageType",
+   "data_point": "CarStorageType",
+   "file": [],
+   "total": [
+    "Driveway",
+    "Garage"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/ImprovedSurfaceMaterialType",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "file": [],
+   "total": [
+    "Concrete"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/ParkingSpacesCount",
+   "data_point": "ParkingSpacesCount",
+   "file": [],
+   "total": [
+    "2",
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/TenOrMoreParkingSpacesIndicator",
+   "data_point": "TenOrMoreParkingSpacesIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentAmount",
+   "data_point": "ComparableAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-10000",
+    "-15000",
+    "-40000",
+    "-5000",
+    "0",
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_ADJUSTMENTS/COMPARABLE_ADJUSTMENT/ComparableAdjustmentType",
+   "data_point": "ComparableAdjustmentType",
+   "file": [],
+   "total": [
+    "ContractDate",
+    "NeighborhoodName",
+    "OutdoorLivingAmenity",
+    "OverallConditionRating",
+    "ProjectInformation",
+    "SiteInfluence"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/AdjustedSalesPriceAmount",
+   "data_point": "AdjustedSalesPriceAmount",
+   "file": [],
+   "total": [
+    "240270"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [],
+   "total": [
+    "SouthWest"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [],
+   "total": [
+    "Most"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ContractDateUnknownIndicator",
+   "data_point": "ContractDateUnknownIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/PropertyOrdinalNumber",
+   "data_point": "PropertyOrdinalNumber",
+   "file": [],
+   "total": [
+    "4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "Miles"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/SalePriceNetTotalAdjustmentAmount",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "file": [],
+   "total": [
+    "-44730"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/DISASTER_MITIGATION_FEATURES/DISASTER_MITIGATION_FEATURE/DisasterMitigationFeatureType",
+   "data_point": "DisasterMitigationFeatureType",
+   "file": [],
+   "total": [
+    "ImpactResistantGlass",
+    "ImpactResistantShingles"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/GreenCertificationExistsIndicator",
+   "data_point": "GreenCertificationExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationLevelName",
+   "data_point": "GreenCertificationLevelName",
+   "file": [],
+   "total": [
+    "Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationName",
+   "data_point": "GreenCertificationName",
+   "file": [],
+   "total": [
+    "LEED"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeAmount",
+   "data_point": "AssociationChargeAmount",
+   "file": [],
+   "total": [
+    "500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargePeriodType",
+   "data_point": "AssociationChargePeriodType",
+   "file": [],
+   "total": [
+    "Monthly"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationChargeType",
+   "data_point": "AssociationChargeType",
+   "file": [],
+   "total": [
+    "AssociationDues",
+    "AssociationSpecialAssessment"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/HOMEOWNERS_ASSOCIATIONS/HOMEOWNERS_ASSOCIATION/ASSOCIATION_CHARGES/ASSOCIATION_CHARGE/ASSOCIATION_CHARGE_DETAIL/AssociationSpecialAssessmentStatusType",
+   "data_point": "AssociationSpecialAssessmentStatusType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/ImprovementType",
+   "data_point": "ImprovementType",
+   "file": [],
+   "total": [
+    "Dwelling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/PropertyStructureBuiltYear",
+   "data_point": "PropertyStructureBuiltYear",
+   "file": [],
+   "total": [
+    "2020"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/PropertyStructureBuiltYearEstimatedIndicator",
+   "data_point": "PropertyStructureBuiltYearEstimatedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/MANUFACTURED_HOME/MANUFACTURED_HOME_DETAIL/ManufacturedHomeWidthType",
+   "data_point": "ManufacturedHomeWidthType",
+   "file": [],
+   "total": [
+    "MultiWide"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentQualitySummaryDescription",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "9 Ft. | Custom",
+    "Nylon Short Loop and Engineered Wood"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "Flooring",
+    "WallsAndCeiling"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "file": [],
+   "total": [
+    "SignificantlyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/AccessoryDwellingUnitIndicator",
+   "data_point": "AccessoryDwellingUnitIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorQualityRatingCode",
+   "data_point": "InteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/OverallBathroomsUpdateStatusType",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "file": [],
+   "total": [
+    "FullyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomQualitySummaryDescription",
+   "data_point": "RoomQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "Energy Star appliances and wood cabinets"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "data_point": "RoomType",
+   "file": [],
+   "total": [
+    "Kitchen"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "data_point": "RoomUpdateStatusType",
+   "file": [],
+   "total": [
+    "PartiallyUpdated"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/CONSTRUCTION_METHODS/CONSTRUCTION_METHOD/ConstructionMethodType",
+   "data_point": "ConstructionMethodType",
+   "file": [],
+   "total": [
+    "Manufactured",
+    "SiteBuilt"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/EXTERIOR_WALLS/EXTERIOR_WALL/WallMaterialType",
+   "data_point": "WallMaterialType",
+   "file": [],
+   "total": [
+    "Aluminum"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/FOUNDATIONS/FOUNDATION/FOUNDATION_STYLES/FOUNDATION_STYLE/FoundationType",
+   "data_point": "FoundationType",
+   "file": [],
+   "total": [
+    "CrawlSpace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_DETAIL/RoofObservableIndicator",
+   "data_point": "RoofObservableIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+   "data_point": "RoofMaterialType",
+   "file": [],
+   "total": [
+    "Composition"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentConditionStatusType",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "file": [],
+   "total": [
+    "TypicalWearAndTear",
+    "TypicalWearAndTear"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "data_point": "ImprovementComponentType",
+   "file": [],
+   "total": [
+    "ExteriorWallsAndTrim",
+    "Foundation",
+    "Roof"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorConditionRatingCode",
+   "data_point": "ExteriorConditionRatingCode",
+   "file": [],
+   "total": [
+    "C3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorQualityRatingCode",
+   "data_point": "ExteriorQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/LivingUnitCount",
+   "data_point": "LivingUnitCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "360"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/COOLING_SYSTEMS/COOLING_SYSTEM/CoolingSystemType",
+   "data_point": "CoolingSystemType",
+   "file": [],
+   "total": [
+    "Centralized"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingFuelType",
+   "data_point": "HeatingFuelType",
+   "file": [],
+   "total": [
+    "Electric"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingSystemType",
+   "data_point": "HeatingSystemType",
+   "file": [],
+   "total": [
+    "Other"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/SYSTEM/HEATING_SYSTEMS/HEATING_SYSTEM/HeatingSystemTypeOtherDescription",
+   "data_point": "HeatingSystemTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Heat Pump"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/DaysOnMarketCount",
+   "data_point": "DaysOnMarketCount",
+   "file": [],
+   "total": [
+    "92"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/FinalListPriceAmount",
+   "data_point": "FinalListPriceAmount",
+   "file": [],
+   "total": [
+    "285000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingStatusType",
+   "data_point": "ListingStatusType",
+   "file": [],
+   "total": [
+    "Pending"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LatitudeIdentifier",
+   "data_point": "LatitudeIdentifier",
+   "file": [],
+   "total": [
+    "25.165169"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/LOCATION_IDENTIFIER/GEOSPATIAL_INFORMATION/LongitudeIdentifier",
+   "data_point": "LongitudeIdentifier",
+   "file": [],
+   "total": [
+    "-51.328129"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/NEIGHBORHOOD/NEIGHBORHOOD_DETAIL/NeighborhoodName",
+   "data_point": "NeighborhoodName",
+   "file": [],
+   "total": [
+    "Southwest Lake Gardens"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "ClubMembership",
+    "Clubhouse",
+    "GatedCommunity",
+    "IngroundPool",
+    "Other",
+    "TrashRemoval"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROJECT/PROJECT_AMENITIES/PROJECT_AMENITY/AmenityTypeOtherDescription",
+   "data_point": "AmenityTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Snow Removal"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectLegalStructureType",
+   "data_point": "ProjectLegalStructureType",
+   "file": [],
+   "total": [
+    "Condominium"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [],
+   "total": [
+    "Grammy Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityCount",
+   "data_point": "AmenityCount",
+   "file": [],
+   "total": [
+    "2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/AMENITY_DETAIL/AmenityType",
+   "data_point": "AmenityType",
+   "file": [],
+   "total": [
+    "Deck",
+    "IndoorFireplace",
+    "Porch"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITY_CATEGORY_DETAIL/AmenityCategoryType",
+   "data_point": "AmenityCategoryType",
+   "file": [],
+   "total": [
+    "OutdoorLiving",
+    "WholeHome"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/AccessoryDwellingUnitTotalCount",
+   "data_point": "AccessoryDwellingUnitTotalCount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/AttachmentType",
+   "data_point": "AttachmentType",
+   "file": [],
+   "total": [
+    "Detached"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/DwellingCount",
+   "data_point": "DwellingCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/HomeownerResponsibleForExteriorMaintenanceIndicator",
+   "data_point": "HomeownerResponsibleForExteriorMaintenanceIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/LivingUnitExcludingADUCount",
+   "data_point": "LivingUnitExcludingADUCount",
+   "file": [],
+   "total": [
+    "1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/OverallConditionRatingCode",
+   "data_point": "OverallConditionRatingCode",
+   "file": [],
+   "total": [
+    "C3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/OverallQualityRatingCode",
+   "data_point": "OverallQualityRatingCode",
+   "file": [],
+   "total": [
+    "Q3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PUDIndicator",
+   "data_point": "PUDIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PriorSalesOrTransfersIndicator",
+   "data_point": "PriorSalesOrTransfersIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyAmenityExistsIndicator",
+   "data_point": "PropertyAmenityExistsIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyEstateType",
+   "data_point": "PropertyEstateType",
+   "file": [],
+   "total": [
+    "FeeSimple"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/PROPERTY_DETAIL/PropertyInProjectIndicator",
+   "data_point": "PropertyInProjectIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesContractAmount",
+   "data_point": "SalesContractAmount",
+   "file": [],
+   "total": [
+    "275000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SALES_CONTRACTS/SALES_CONTRACT/SALES_CONTRACT_DETAIL/SalesContractDate",
+   "data_point": "SalesContractDate",
+   "file": [],
+   "total": [
+    "2022-03-08"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/HAZARD_ZONES/HAZARD_ZONE/HazardZoneType",
+   "data_point": "HazardZoneType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/ImprovedSurfaceMaterialType",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "file": [],
+   "total": [
+    "Asphalt"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/ACCESS_STREETS/ACCESS_STREET/StreetAccessType",
+   "data_point": "StreetAccessType",
+   "file": [],
+   "total": [
+    "Local"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_DETAIL/LandOwnedInCommonIndicator",
+   "data_point": "LandOwnedInCommonIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/SITE_FEATURE_DETAIL/SiteFeatureType",
+   "data_point": "SiteFeatureType",
+   "file": [],
+   "total": [
+    "Topography"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "data_point": "TopographyType",
+   "file": [],
+   "total": [
+    "Sloping"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_INFLUENCES/SITE_INFLUENCE/BODIES_OF_WATER/BODY_OF_WATER/BodyOfWaterType",
+   "data_point": "BodyOfWaterType",
+   "file": [],
+   "total": [
+    "Lake"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_INFLUENCES/SITE_INFLUENCE/BODIES_OF_WATER/BODY_OF_WATER/PrivateAccessIndicator",
+   "data_point": "PrivateAccessIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_INFLUENCES/SITE_INFLUENCE/SITE_INFLUENCE_DETAIL/SiteInfluenceType",
+   "data_point": "SiteInfluenceType",
+   "file": [],
+   "total": [
+    "BodyOfWater",
+    "Residential"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [],
+   "total": [
+    "13068"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_VIEWS/SITE_VIEW/ViewRangeType",
+   "data_point": "ViewRangeType",
+   "file": [],
+   "total": [
+    "Full"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_VIEWS/SITE_VIEW/ViewType",
+   "data_point": "ViewType",
+   "file": [],
+   "total": [
+    "Residential"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningComplianceType",
+   "data_point": "SiteZoningComplianceType",
+   "file": [],
+   "total": [
+    "Legal"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#4",
+   "path": "PROPERTY@ValuationUseType",
+   "data_point": "PROPERTY@ValuationUseType",
+   "file": [],
+   "total": [
+    "SalesComparable"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDITIONAL_ADDRESSES/ADDITIONAL_ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [],
+   "total": [
+    "201 Underhill Dr"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDITIONAL_ADDRESSES/ADDITIONAL_ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDITIONAL_ADDRESSES/ADDITIONAL_ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "2C"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDITIONAL_ADDRESSES/ADDITIONAL_ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [],
+   "total": [
+    "Nowhere"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDITIONAL_ADDRESSES/ADDITIONAL_ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [],
+   "total": [
+    "90021"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDITIONAL_ADDRESSES/ADDITIONAL_ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [],
+   "total": [
+    "CA"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/AddressUnitDesignatorType",
+   "data_point": "AddressUnitDesignatorType",
+   "file": [],
+   "total": [
+    "Unit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/AddressUnitIdentifier",
+   "data_point": "AddressUnitIdentifier",
+   "file": [],
+   "total": [
+    "1206"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/ImprovedSurfaceMaterialType",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "file": [
+    "Asphalt"
+   ],
+   "total": [
+    "Other"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/CAR_STORAGE_DETAIL/ImprovedSurfaceMaterialTypeOtherDescription",
+   "data_point": "ImprovedSurfaceMaterialTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Pavers"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/CAR_STORAGES/CAR_STORAGE/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Unfinished Space"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/CONDITION_COVENANT_RESTRICTIONS/CONDITION_COVENANT_RESTRICTION/RestrictionDescription",
+   "data_point": "RestrictionDescription",
+   "file": [],
+   "total": [
+    "Quarter acre lot cannot be built on nor can it be separated and sold."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/CONDITION_COVENANT_RESTRICTIONS/CONDITION_COVENANT_RESTRICTION/RestrictionType",
+   "data_point": "RestrictionType",
+   "file": [],
+   "total": [
+    "LandUse"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENCUMBRANCES/ENCUMBRANCE/ENCUMBRANCE_DETAIL/EncumbranceType",
+   "data_point": "EncumbranceType",
+   "file": [],
+   "total": [
+    "ConditionsCovenantsRestrictions"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationAssociationName",
+   "data_point": "GreenCertificationAssociationName",
+   "file": [],
+   "total": [
+    "US Green Building Council"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationLevelAwardedYear",
+   "data_point": "GreenCertificationLevelAwardedYear",
+   "file": [],
+   "total": [
+    "2025"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationLevelName",
+   "data_point": "GreenCertificationLevelName",
+   "file": [],
+   "total": [
+    "Gold"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationName",
+   "data_point": "GreenCertificationName",
+   "file": [],
+   "total": [
+    "LEED"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/GREEN_BUILDING_CERTIFICATIONS/GREEN_BUILDING_CERTIFICATION/GreenCertificationVersionIdentifier",
+   "data_point": "GreenCertificationVersionIdentifier",
+   "file": [],
+   "total": [
+    "V4"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ACCESSIBILITY_FEATURES/ACCESSIBILITY_FEATURE/AccessibilityFeatureType",
+   "data_point": "AccessibilityFeatureType",
+   "file": [
+    "Shower"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ACCESSIBILITY_FEATURES/ACCESSIBILITY_FEATURE/AccessibilityModificationDescription",
+   "data_point": "AccessibilityModificationDescription",
+   "file": [
+    "The shower has been modified."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/FLOOR_COVERINGS/FLOOR_COVERING/FlooringType",
+   "data_point": "FlooringType",
+   "file": [
+    "Carpet",
+    "CeramicTile",
+    "EngineeredWood",
+    "Hardwood"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/FLOOR_COVERINGS/FLOOR_COVERING/ImprovementComponentConditionDescription",
+   "data_point": "ImprovementComponentConditionDescription",
+   "file": [
+    "Original carpet, stained in one corner in the Dining Room."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/FLOOR_COVERINGS/FLOOR_COVERING/ImprovementComponentConditionStatusType",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "file": [
+    "DamagedAndFunctional",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/FLOOR_COVERINGS/FLOOR_COVERING/ImprovementComponentQualityDescription",
+   "data_point": "ImprovementComponentQualityDescription",
+   "file": [
+    "All baths.",
+    "Kitchen and Hallways.",
+    "Throughout all bedrooms and living areas.",
+    "Throughout finished below grade area."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentConditionStatusType",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "file": [
+    "TypicalWearAndTear"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentConditionSummaryDescription",
+   "data_point": "ImprovementComponentConditionSummaryDescription",
+   "file": [],
+   "total": [
+    "Well maintained with minimal depreciation"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentQualityDescription",
+   "data_point": "ImprovementComponentQualityDescription",
+   "file": [
+    "Cathedral ceiling in bedroom, 2 story family room, coffered ceiling in media room. 9 foot ceiling in 1st level."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/ImprovementComponentQualitySummaryDescription",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "file": [],
+   "total": [
+    "9 Ft. and 10 Ft. | Custom",
+    "Nylon Short Loop and Engineered Wood"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "file": [
+    "NotUpdated"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/WALLS_AND_CEILING/CEILING_HEIGHTS/CEILING_HEIGHT/ApproximateCeilingHeightType",
+   "data_point": "ApproximateCeilingHeightType",
+   "file": [
+    "EightFeet",
+    "NineFeet",
+    "TenFeetAndAbove",
+    "TwoOrMoreStories"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/WALLS_AND_CEILING/CEILING_STYLES/CEILING_STYLE/CeilingStyleType",
+   "data_point": "CeilingStyleType",
+   "file": [
+    "Cathedral",
+    "Coffered",
+    "Flat"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/LEVELS/LEVEL/AccessType",
+   "data_point": "AccessType",
+   "file": [
+    "InteriorAndExteriorAccess"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/LEVELS/LEVEL/BelowGradeExteriorAccessType",
+   "data_point": "BelowGradeExteriorAccessType",
+   "file": [
+    "WalkOut"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/LEVELS/LEVEL/GradeLevelType",
+   "data_point": "GradeLevelType",
+   "file": [
+    "AboveGrade",
+    "AboveGrade",
+    "PartiallyBelowGrade"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/LEVELS/LEVEL/LevelFinishedAreaMeasure",
+   "data_point": "LevelFinishedAreaMeasure",
+   "file": [
+    "1300",
+    "1470",
+    "1532"
+   ],
+   "total": [
+    "0",
+    "0",
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/LEVELS/LEVEL/LevelType",
+   "data_point": "LevelType",
+   "file": [
+    "BelowGradeOne",
+    "LevelOne",
+    "LevelTwo"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/LEVELS/LEVEL/LevelUnfinishedAreaMeasure",
+   "data_point": "LevelUnfinishedAreaMeasure",
+   "file": [
+    "230"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitBelowGradeUnfinishedAreaMeasure",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure",
+   "file": [
+    "230"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardAboveGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure",
+   "file": [
+    "3002"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure",
+   "file": [
+    "1300"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [
+    "5"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [
+    "3"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [
+    "C4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorQualityRatingCode",
+   "data_point": "InteriorQualityRatingCode",
+   "file": [
+    "Q4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/LevelCount",
+   "data_point": "LevelCount",
+   "file": [
+    "3"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/OverallBathroomsQualityDescription",
+   "data_point": "OverallBathroomsQualityDescription",
+   "file": [],
+   "total": [
+    "Basic"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/OverallBathroomsUpdateStatusType",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "file": [
+    "ModeratelyUpdated"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/UnitBelowGradeFinishComparisonType",
+   "data_point": "UnitBelowGradeFinishComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/UnitIncludedInRentScheduleIndicator",
+   "data_point": "UnitIncludedInRentScheduleIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/UnitOccupancyType",
+   "data_point": "UnitOccupancyType",
+   "file": [
+    "OwnerOccupied"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/UnitValuationCommentText",
+   "data_point": "UnitValuationCommentText",
+   "file": [
+    "The below grade area has a custom finished wet bar including wood cabinets and countertops. Media room has custom cabinetry for speakers and media devices."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [
+    "Bath 1",
+    "Bath 2",
+    "Bath 3"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "\\\\Images\\SF1_FamilyRoom.png",
+    "\\\\Images\\SF1_FullBath1.png",
+    "\\\\Images\\SF1_FullBath2.png",
+    "\\\\Images\\SF1_FullBath3.png",
+    "\\\\Images\\SF1_HalfBath.png",
+    "\\\\Images\\SF1_Kitchen.png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/LevelType",
+   "data_point": "LevelType",
+   "file": [
+    "BelowGradeOne",
+    "BelowGradeOne",
+    "BelowGradeOne",
+    "BelowGradeOne",
+    "LevelOne",
+    "LevelOne"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomConditionAdditionalDescription",
+   "data_point": "RoomConditionAdditionalDescription",
+   "file": [
+    "Half bath newer than rest of house."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomConditionStatusType",
+   "data_point": "RoomConditionStatusType",
+   "file": [
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear",
+    "TypicalWearAndTear"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomQualityDescription",
+   "data_point": "RoomQualityDescription",
+   "file": [
+    "Ceramic flooring.",
+    "Ceramic flooring.",
+    "Ceramic flooring.",
+    "Corian Countertops, Double Oven, Hardwood floors.",
+    "Double Sink with separate shower and extra-large tub, ceramic flooring."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "data_point": "RoomType",
+   "file": [
+    "Bedroom",
+    "Bedroom",
+    "Bedroom",
+    "Bedroom",
+    "Bedroom",
+    "DiningRoom"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomTypeOtherDescription",
+   "data_point": "RoomTypeOtherDescription",
+   "file": [
+    "Office",
+    "Wet Bar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "data_point": "RoomUpdateStatusType",
+   "file": [
+    "FullyUpdated",
+    "NotUpdated",
+    "NotUpdated",
+    "NotUpdated",
+    "NotUpdated"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdatedTimeframeType",
+   "data_point": "RoomUpdatedTimeframeType",
+   "file": [
+    "FiveToTenYears"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Agricultural - Barn",
+    "Bath 1",
+    "Bath 2",
+    "Bath 2",
+    "Bath 3",
+    "Bedroom 3"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "DwellingExteriorExhibit",
+    "FloorPlan",
+    "NonResidentialUse",
+    "ProjectExhibit",
+    "PropertyBoundaries",
+    "SupplementalExhibit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\2-4_Supplemental.png",
+    "\\\\Images\\Condo1_PropBoundaries.png",
+    "\\\\Images\\Condo2_Kitchen.jpg",
+    "\\\\Images\\Condo2_Mudroom.jpg",
+    "\\\\Images\\Coop_Pool.png",
+    "\\\\Images\\MH1_Barn.png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/jpeg",
+    "image/jpeg",
+    "image/png",
+    "image/png",
+    "image/png",
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/LISTING_INFORMATIONS/LISTING_INFORMATION/LISTING_INFORMATION_DETAIL/ListingTypeOtherDescription",
+   "data_point": "ListingTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Builder Or Developer"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/MARKET/MARKET_TREND/PriceTrendsAnalysisDescription",
+   "data_point": "PriceTrendsAnalysisDescription",
+   "file": [],
+   "total": [
+    "Market data reflects the manufactured and modular home market in the subject's area. The data indicates the market is stable to slightly increasing with sales activity of 1 to 2 sales per month which is typical for this rural area. The Smokey Bear Gazette is a local print media that reports non-MLS home sales and listings. 2 active listings and 3 sales were reported for the 9 months prior to the effective date of the appraisal and are included in the data reported above."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/AmortizationType",
+   "data_point": "AmortizationType",
+   "file": [],
+   "total": [
+    "Fixed",
+    "Fixed"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/BalloonIndicator",
+   "data_point": "BalloonIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/CurrentInterestRatePercent",
+   "data_point": "CurrentInterestRatePercent",
+   "file": [],
+   "total": [
+    "4.06",
+    "5"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/InterestRateAvailableIndicator",
+   "data_point": "InterestRateAvailableIndicator",
+   "file": [],
+   "total": [
+    "true",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LienPriorityType",
+   "data_point": "LienPriorityType",
+   "file": [],
+   "total": [
+    "FirstLien",
+    "SecondLien"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LineOfCreditDrawnAmount",
+   "data_point": "LineOfCreditDrawnAmount",
+   "file": [],
+   "total": [
+    "600000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LineOfCreditDrawnProRataShareAttributableToUnitAmount",
+   "data_point": "LineOfCreditDrawnProRataShareAttributableToUnitAmount",
+   "file": [],
+   "total": [
+    "2308.2"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LineOfCreditIndicator",
+   "data_point": "LineOfCreditIndicator",
+   "file": [],
+   "total": [
+    "false",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LineOfCreditMaximumAmount",
+   "data_point": "LineOfCreditMaximumAmount",
+   "file": [],
+   "total": [
+    "1000000"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LineOfCreditMaximumProRataShareAttributableToUnitAmount",
+   "data_point": "LineOfCreditMaximumProRataShareAttributableToUnitAmount",
+   "file": [],
+   "total": [
+    "3847"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/LoanRemainingMaturityTermMonthsCount",
+   "data_point": "LoanRemainingMaturityTermMonthsCount",
+   "file": [],
+   "total": [
+    "120",
+    "21"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/PaymentAmountAvailableIndicator",
+   "data_point": "PaymentAmountAvailableIndicator",
+   "file": [],
+   "total": [
+    "true",
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/PaymentFrequencyType",
+   "data_point": "PaymentFrequencyType",
+   "file": [],
+   "total": [
+    "Monthly",
+    "Monthly"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/TotalPaymentAmount",
+   "data_point": "TotalPaymentAmount",
+   "file": [],
+   "total": [
+    "6364",
+    "63739"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/UPBAmount",
+   "data_point": "UPBAmount",
+   "file": [],
+   "total": [
+    "10957629"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_BLANKET_FINANCINGS/PROJECT_BLANKET_FINANCING/UPBProRataShareAttributableToUnitAmount",
+   "data_point": "UPBProRataShareAttributableToUnitAmount",
+   "file": [],
+   "total": [
+    "42154"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_COMPONENTS/PROJECT_COMPONENT/ProjectComponentCategoryType",
+   "data_point": "ProjectComponentCategoryType",
+   "file": [],
+   "total": [
+    "Other"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_COMPONENTS/PROJECT_COMPONENT/ProjectComponentCategoryTypeOtherDescription",
+   "data_point": "ProjectComponentCategoryTypeOtherDescription",
+   "file": [],
+   "total": [
+    "Landscaping"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_COMPONENTS/PROJECT_COMPONENT/ProjectComponentCompletedIndicator",
+   "data_point": "ProjectComponentCompletedIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Deck 1"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/DEFECT_DETAIL/DefectComponentLabelType",
+   "data_point": "DefectComponentLabelType",
+   "file": [
+    "Flooring"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/DEFECT_DETAIL/DefectItemDescription",
+   "data_point": "DefectItemDescription",
+   "file": [
+    "Carpet is stained in one corner of the Dining Room."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/DEFECT_DETAIL/DefectItemLocationType",
+   "data_point": "DefectItemLocationType",
+   "file": [
+    "Other"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/DEFECT_DETAIL/DefectItemLocationTypeOtherDescription",
+   "data_point": "DefectItemLocationTypeOtherDescription",
+   "file": [
+    "Dining Room"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/DEFECT_DETAIL/DefectItemRecommendedActionType",
+   "data_point": "DefectItemRecommendedActionType",
+   "file": [
+    "None"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [
+    "Damaged Flashing",
+    "Damaged Flooring"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "\\\\Images\\SF1_FloorDefect.png",
+    "\\\\Images\\SF1_RoofDefect.png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [
+    "image/png",
+    "image/png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DETAIL/FunctionalIssueDescription",
+   "data_point": "FunctionalIssueDescription",
+   "file": [],
+   "total": [
+    "Additional commentary can be added here, if needed by Appraiser."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DETAIL/ProRataSharePercent",
+   "data_point": "ProRataSharePercent",
+   "file": [],
+   "total": [
+    "0.3847"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_TAXES/PROPERTY_TAX/PROPERTY_TAX_EXEMPTIONS/PROPERTY_TAX_EXEMPTION/TaxAbatementsOrExemptionsAnnualAmount",
+   "data_point": "TaxAbatementsOrExemptionsAnnualAmount",
+   "file": [],
+   "total": [
+    "7500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_TAXES/PROPERTY_TAX/PROPERTY_TAX_EXEMPTIONS/PROPERTY_TAX_EXEMPTION/TaxAbatementsOrExemptionsExpirationDate",
+   "data_point": "TaxAbatementsOrExemptionsExpirationDate",
+   "file": [],
+   "total": [
+    "2021-09"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_USES/PROPERTY_USE/NonResidentialUseType",
+   "data_point": "NonResidentialUseType",
+   "file": [],
+   "total": [
+    "Agricultural"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_USE_SUMMARY/NonResidentialModificationIndicator",
+   "data_point": "NonResidentialModificationIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_USE_SUMMARY/NonResidentialUseDescription",
+   "data_point": "NonResidentialUseDescription",
+   "file": [],
+   "total": [
+    "The owner has a hobby farm and raises a few chickens for their own personal use."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_USE_SUMMARY/PropertyMixedUsageIndicator",
+   "data_point": "PropertyMixedUsageIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_USE_SUMMARY/PropertyPrimarilyResidentialUseIndicator",
+   "data_point": "PropertyPrimarilyResidentialUseIndicator",
+   "file": [],
+   "total": [
+    "true"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/ADDITIONAL_RENTAL_INCOMES/ADDITIONAL_RENTAL_INCOME/AdditionalRentalIncomeType",
+   "data_point": "AdditionalRentalIncomeType",
+   "file": [],
+   "total": [
+    "None"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/ADDITIONAL_RENTAL_INCOMES/ADDITIONAL_RENTAL_INCOME/MonthlyActualAdditionalIncomeAmount",
+   "data_point": "MonthlyActualAdditionalIncomeAmount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/ADDITIONAL_RENTAL_INCOMES/ADDITIONAL_RENTAL_INCOME/MonthlyEstimatedAdditionalIncomeAmount",
+   "data_point": "MonthlyEstimatedAdditionalIncomeAmount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/RENTAL_INFORMATION_SUMMARY_DETAIL/TotalMonthlyActualAdditionalIncomeAmount",
+   "data_point": "TotalMonthlyActualAdditionalIncomeAmount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/RENTAL_INFORMATION_SUMMARY_DETAIL/TotalMonthlyActualIncomeAmount",
+   "data_point": "TotalMonthlyActualIncomeAmount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/RENTAL_INFORMATION_SUMMARY_DETAIL/TotalMonthlyActualRentAmount",
+   "data_point": "TotalMonthlyActualRentAmount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/RENTAL_INFORMATION_SUMMARY_DETAIL/TotalMonthlyEstimatedAdditionalIncomeAmount",
+   "data_point": "TotalMonthlyEstimatedAdditionalIncomeAmount",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/RENTAL_INFORMATION_SUMMARY_DETAIL/TotalMonthlyEstimatedIncomeAmount",
+   "data_point": "TotalMonthlyEstimatedIncomeAmount",
+   "file": [],
+   "total": [
+    "3500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/RENTAL_INFORMATION_SUMMARY/RENTAL_INFORMATION_SUMMARY_DETAIL/TotalMonthlyMarketRentAmount",
+   "data_point": "TotalMonthlyMarketRentAmount",
+   "file": [],
+   "total": [
+    "3500"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/PROPERTY_ACCESS_DETAIL/PropertyAccessDescription",
+   "data_point": "PropertyAccessDescription",
+   "file": [],
+   "total": [
+    "Subject's project has designated private asphalt roads. The responsibilities and maintenance of these roads is outlined and stated in the condominium master deed which is recorded. Private roads within condominium complexes in this area are common and have no adverse effect on marketability."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningComplianceDescription",
+   "data_point": "SiteZoningComplianceDescription",
+   "file": [],
+   "total": [
+    "No Zoning typical to County"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/ABOUT_VERSIONS/ABOUT_VERSION/AboutVersionIdentifier",
+   "data_point": "AboutVersionIdentifier",
+   "file": [
+    "4"
+   ],
+   "total": [
+    "3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/INDIVIDUAL/NAME/MiddleName",
+   "data_point": "MiddleName",
+   "file": [],
+   "total": [
+    "P."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceIdentifier",
+   "data_point": "DataSourceIdentifier",
+   "file": [],
+   "total": [
+    "193032"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceType",
+   "data_point": "DataSourceType",
+   "file": [],
+   "total": [
+    "MLS"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/SCOPE_OF_WORK/SCOPE_OF_WORK_DETAIL/RentScheduleIndicator",
+   "data_point": "RentScheduleIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [
+    "true"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/SCOPE_OF_WORK/VALUATION_REPORT_ADDITIONAL_CERTIFICATIONS/VALUATION_REPORT_ADDITIONAL_CERTIFICATION/ValuationAdditionalCertificationIncludedByType",
+   "data_point": "ValuationAdditionalCertificationIncludedByType",
+   "file": [],
+   "total": [
+    "AppraiserSupervisor"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/SCOPE_OF_WORK/VALUATION_REPORT_ADDITIONAL_CERTIFICATIONS/VALUATION_REPORT_ADDITIONAL_CERTIFICATION/ValuationAdditionalCertificationText",
+   "data_point": "ValuationAdditionalCertificationText",
+   "file": [],
+   "total": [
+    "I have not performed any service regarding the subject property within the three years preceding the agreement to perform this assignment."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_COMMENTARIES/VALUATION_COMMENTARY/ValuationAnalysisCategoryType",
+   "data_point": "ValuationAnalysisCategoryType",
+   "file": [],
+   "total": [
+    "Assignment",
+    "ComparableRental",
+    "HazardZones",
+    "IncompleteProject",
+    "Project",
+    "ProjectCommercialSpace"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_COMMENTARIES/VALUATION_COMMENTARY/ValuationCommentText",
+   "data_point": "ValuationCommentText",
+   "file": [],
+   "total": [
+    "Additional commentary can be added here, if needed by Appraiser.",
+    "Additional commentary can be added here, if needed by Appraiser.",
+    "Additional commentary can be added here, if needed by Appraiser.",
+    "Additional commentary can be added here, if needed by Appraiser.",
+    "Additional commentary can be added here, if needed by Appraiser.",
+    "Board fencing around entire property to the barn."
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_RECONCILIATION/VALUATION_RECONCILIATION_SUMMARY/VALUATION_RECONCILIATION_SUMMARY_DETAIL/LineOfCreditProRataShareSelectionMethodType",
+   "data_point": "LineOfCreditProRataShareSelectionMethodType",
+   "file": [],
+   "total": [
+    "Maximum"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REVISIONS/VALUATION_REVISION/RevisionCategoryType",
+   "data_point": "RevisionCategoryType",
+   "file": [],
+   "total": [
+    "AssignmentInformation",
+    "Site"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REVISIONS/VALUATION_REVISION/RevisionDate",
+   "data_point": "RevisionDate",
+   "file": [],
+   "total": [
+    "2019-10-07",
+    "2019-10-12"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REVISIONS/VALUATION_REVISION/RevisionText",
+   "data_point": "RevisionText",
+   "file": [],
+   "total": [
+    "Added comment in \"Description of Zoning Compliance\" at client request",
+    "Corrected borrower name"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "MYAPP"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Some Appraisal Creator"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.1"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Nowhere Technologies"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "\\\\SF1_Appraisal_v1.4.pdf"
+   ],
+   "total": [
+    "\\\\sampleblank.pdf"
+   ],
+   "kind": "changed"
+  }
+ ]
+}

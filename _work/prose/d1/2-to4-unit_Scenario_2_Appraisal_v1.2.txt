@@ -1,0 +1,2699 @@
+
+<<<PAGE 1 of 28>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: 2- to 4-Unit Scenario 2 
+Document Version 1.2 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 28>>>
+ 
+ 
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/10/2025 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+9/17/2024 
+1.0 
+Initial Publication 
+ 
+Introduction  
+This report is for a four unit home in one dwelling. The units are model matches, each with 1,190 square 
+feet with two bedrooms and two full baths. The two first floor units include a patio, while the two 
+second floor units include a balcony. 
+Key Characteristics 
+• 
+Parties associated with this transaction: 
+o Client/Lender 
+o Appraiser  
+o AMC 
+• 
+Construction Method: Site Built 
+• 
+Attachment Type: Detached 
+• 
+No Defects, Damages, or Deficiencies have been identified; the appraisal is made “As Is” 
+• 
+Same properties used for sales comps, rental comps, and GRM comps 
+• 
+Sales Comparison Approach 
+o Illustrates the treatment of common areas (stairwell and landings) in the Gross Building 
+Finished Area row. 
+o Includes a time adjustment in the Contract Date row. 
+• 
+Rental Information 
+o Six rental comps, two from each comparable property 
+▪ 
+Comps 1, 3, and 5 were first floor units and compared to subject units A and B 
+▪ 
+Comps 2, 4, and 6 were second floor units and compared to subject units C and 
+D 
+o Additional row for Amenities 
+ 
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+ 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 3 of 28>>>
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+171 COWBOY LN, ANYPLACE, TX 01234
+SUMMARY
+Opinion of Market Value	
+$785,000
+Effective Date of Appraisal	
+05/01/2023
+Assignment Reason	
+Refinance
+Borrower Name	
+John Seller
+Current Owner of Public Record	
+John Seller
+Listing Status	
+None
+Market Value Condition	
+As Is
+Property Valuation Method	
+Traditional Appraisal
+Appraiser Name	
+John P. Appraiser
+Property Description
+Construction Method	
+Site Built
+Attachment Type	
+Detached
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+4
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Zoning Compliance	
+Legal
+Overall Quality	
+Q4
+Overall Condition	
+C3
+This is where the Dwelling Front photo would display.
+Apparent Defects, Damages, Deficiencies Requiring Action
+None
+
+<<<PAGE 4 of 28>>>
+	
+Page 2 of 26
+Uniform Residential Appraisal Report	
+Page 2 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Assignment Information
+Assignment Reason	
+Refinance
+Borrower Name	
+John Seller
+Current Owner of Public Record	
+John Seller
+Property Valuation Method	
+Traditional Appraisal
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Appraiser Fee	
+$0
+AMC Fee	
+$0
+Contact Information
+Client/Lender
+Company Name	
+Big Bank of Texas
+Company Address	
+712 Tex Bank Dr
+	
+Anyplace, TX 01234
+Appraisal Management Company
+Company Name	
+IDK Appraisal Management  
+Company
+Company Address	
+1515 Ranch St
+	
+Anyplace, TX 01234
+Credentials
+ID	
+ABCD1234
+State	
+TX
+Expires	
+12/31/2024
+Appraiser 
+Name	
+John P. Appraiser
+Company Name	
+XYZ Appraisal Company
+Company Address	
+1621 Cattle Drive Ln
+	
+Anyplace, TX 01234
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+Physical
+Interior	
+Physical
+Inspection Date	
+05/01/2023
+Credentials
+Level	
+Certified Residential
+ID	
+1234ABCD
+State	
+TX
+Expires	
+12/31/2024
+Subject Property
+Physical Address	
+171 Cowboy Ln
+	
+Anyplace, TX 01234
+County	
+Cowboy
+Neighborhood Name	
+Bighorn Ranch
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Detached
+Units Excluding ADUs	
+4
+Accessory Dwelling Units	
+0
+Dwellings Containing Units	
+1
+Special Tax Assessments	
+No
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+All Rights Included in Appraisal	
+Yes
+Legal Description
+Lot 2 Block A Bighorn Ranch
+
+<<<PAGE 5 of 28>>>
+	
+Page 3 of 26
+Uniform Residential Appraisal Report	
+Page 3 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Site
+Total Site Size	
+21,000 Sq. Ft.
+Number of Parcels	
+1
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+WES1932
+ Land with Dwelling
+21,000 Sq. Ft.
+Zoning
+Compliance	
+Legal
+Classification Code	
+MF-3
+Classification Code Description	
+Residential - Multi Family  
+district
+Property Use
+Non-Residential Use	
+None
+Property Access
+Primary Access	
+Public Street
+Street Type and Surface	
+Local Road | Asphalt
+Typical for Market	
+Yes
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Busy Roadway
+Bordering
+Adverse
+Properties such as this in 
+this market area are typically 
+located on busy roadways.
+Residential
+Bordering
+Neutral
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Residential
+Full
+Neutral
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+No Hazard Zone Noted
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Gas
+
+Sanitary Sewer
+
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Exhibits
+Property Access (Street Scene) - Site Influence - Busy 
+Roadway, Residential - View - Residential
+This is where the Street Scene photo would display.
+
+<<<PAGE 6 of 28>>>
+	
+Page 4 of 26
+Uniform Residential Appraisal Report	
+Page 4 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sketch
+Measurement Standard	
+Not Applicable due to property 
+type
+Sketch
+Sketch does not represent actual dimensions of pictures, used for example only.
+Sketch Commentary
+Each unit is 1,190 square feet of finished living area. There is an additional 522 square feet of finished common area within the building, 
+therefore the Gross Building Finished Area is 5,282 square feet. The ANSI measurement standard does not apply to apartment / multifamily 
+buildings. Dimensions provided in the footprint sketch are exterior perimeter measurements.
+
+<<<PAGE 7 of 28>>>
+	
+Page 5 of 26
+Uniform Residential Appraisal Report	
+Page 5 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Dwelling Exterior - Building 1
+Subject Property Units in  
+Structure	
+4
+Dwelling Style	
+Traditional
+Front Door Elevation	
+Ground Level
+Year Built	
+2014
+Construction Method	
+Site Built
+Converted Area	
+None
+This is where the Dwelling Front photo would display.
+Quality and Condition
+Exterior Quality Rating	
+Q4
+Exterior Condition Rating	
+C3
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Brick | Cement Board
+Typical Wear and Tear
+Foundation
+Poured Concrete | Slab
+Typical Wear and Tear
+Roof
+Composition
+Estimated Age: 10-20 Years
+Typical Wear and Tear
+Windows
+Thermal Double Hung
+Typical Wear and Tear
+Mechanical System Details
+System
+Detail
+Heating
+Forced Warm Air
+Electric
+Cooling
+Centralized
+Yes No
+Core Heating System Below Grade
+
+Other Mechanical Systems	
+Water Heater
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior - Building 1)
+None
+Dwelling Exterior Commentary
+Each unit has its own centralized, thermostatically controlled HVAC.
+Unit Interior - Building 1 - Unit A
+Area Breakdown
+Finished Above Grade	
+1,190 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Levels in Unit	
+1
+Floor Number	
+1
+Occupancy	
+Tenant
+Utilities Separately Metered	
+Yes
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+ Above Grade
+Finished
+1,190 Sq. Ft.
+2 - Bath - Full
+2 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Living Room
+
+<<<PAGE 8 of 28>>>
+Unit Interior - Building 1 - Unit A (continued)
+Uniform Residential Appraisal Report	
+Page 6 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C3
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Overall Update Status for  
+Bathrooms	
+Not Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Typical Wear and Tear
+Ceramic Tile
+Typical Wear and Tear
+Walls and Ceiling
+8 Ft. | Flat
+Typical Wear and Tear
+Overall Update Status for  
+Flooring	
+Not Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior - Building 1 - Unit A)
+None
+Unit Interior Exhibits
+Level 1 - Bath - Full - Bath 1
+Level 1 - Bath - Full - Bath 2
+This is where the Unit A Bath 1 photo would display.
+This is where the Unit A Bath 2 photo would display.
+Level 1 - Bedroom - Bedroom 1
+Level 1 - Bedroom - Bedroom 2
+This is where the Unit A Bedroom 1 photo would display.
+This is where the Unit A Bedroom 2 photo would display.
+
+<<<PAGE 9 of 28>>>
+Unit Interior - Building 1 - Unit A (continued)
+Uniform Residential Appraisal Report	
+Page 7 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Level 1 - Dining Room
+Level 1 - Kitchen
+This is where the Unit A Dining Room photo would display.
+This is where the Unit A Kitchen photo would display.
+Level 1 - Living Room
+This is where the Unit A Living Room photo would display.
+Unit Interior - Building 1 - Unit B
+Area Breakdown
+Finished Above Grade	
+1,190 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Levels in Unit	
+1
+Floor Number	
+1
+Occupancy	
+Tenant
+Utilities Separately Metered	
+Yes
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+ Above Grade
+Finished
+1,190 Sq. Ft.
+2 - Bath - Full
+2 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C3
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Overall Update Status for  
+Bathrooms	
+Not Updated
+
+<<<PAGE 10 of 28>>>
+Unit Interior - Building 1 - Unit B (continued)
+Uniform Residential Appraisal Report	
+Page 8 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Typical Wear and Tear
+Ceramic Tile
+Typical Wear and Tear
+Walls and Ceiling
+8 Ft. | Flat
+Typical Wear and Tear
+Overall Update Status for  
+Flooring	
+Not Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior - Building 1 - Unit B)
+None
+Unit Interior Exhibits
+Level 1 - Bath - Full - Bath 1
+Level 1 - Bath - Full - Bath 2
+This is where the Unit B Bath 1 photo would display.
+This is where the Unit B Bath 2 photo would display.
+Level 1 - Bedroom - Bedroom 1
+Level 1 - Bedroom - Bedroom 2
+This is where the Unit B Bedroom 1 photo would display.
+This is where the Unit B Bedroom 2 photo would display.
+Level 1 - Dining Room
+Level 1 - Kitchen
+This is where the Unit B Dining Room photo would display.
+This is where the Unit B Kitchen photo would display.
+
+<<<PAGE 11 of 28>>>
+Unit Interior - Building 1 - Unit B (continued)
+Uniform Residential Appraisal Report	
+Page 9 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Level 1 - Living Room
+This is where the Unit B Living Room photo would display.
+Unit Interior - Building 1 - Unit C
+Area Breakdown
+Finished Above Grade	
+1,190 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Levels in Unit	
+1
+Floor Number	
+2
+Occupancy	
+Tenant
+Utilities Separately Metered	
+Yes
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+ Above Grade
+Finished
+1,190 Sq. Ft.
+2 - Bath - Full
+2 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C3
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Overall Update Status for  
+Bathrooms	
+Not Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Typical Wear and Tear
+Ceramic Tile
+Typical Wear and Tear
+Walls and Ceiling
+8 Ft. | Flat
+Typical Wear and Tear
+Overall Update Status for  
+Flooring	
+Not Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior - Building 1 - Unit C)
+None
+
+<<<PAGE 12 of 28>>>
+Unit Interior - Building 1 - Unit C (continued)
+Uniform Residential Appraisal Report	
+Page 10 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior Exhibits
+Level 1 - Bath - Full - Bath 1
+Level 1 - Bath - Full - Bath 2
+This is where the Unit C Bath 1 photo would display.
+This is where the Unit C Bath 2 photo would display.
+Level 1 - Bedroom - Bedroom 1
+Level 1 - Bedroom - Bedroom 2
+This is where the Unit C Bedroom 1 photo would display.
+This is where the Unit C Bedroom 2 photo would display.
+Level 1 - Dining Room
+Level 1 - Kitchen
+This is where the Unit C Dining Room photo would display.
+This is where the Unit C Kitchen photo would display.
+Level 1 - Living Room
+This is where the Unit C Living Room photo would display.
+
+<<<PAGE 13 of 28>>>
+	
+Page 11 of 26
+Uniform Residential Appraisal Report	
+Page 11 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior - Building 1 - Unit D
+Area Breakdown
+Finished Above Grade	
+1,190 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Levels in Unit	
+1
+Floor Number	
+2
+Occupancy	
+Tenant
+Utilities Separately Metered	
+Yes
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+ Above Grade
+Finished
+1,190 Sq. Ft.
+2 - Bath - Full
+2 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C3
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Typical Wear and Tear
+Overall Update Status for  
+Bathrooms	
+Not Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Typical Wear and Tear
+Ceramic Tile
+Typical Wear and Tear
+Walls and Ceiling
+8 Ft. | Flat
+Typical Wear and Tear
+Overall Update Status for  
+Flooring	
+Not Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior - Building 1 - Unit D)
+None
+Unit Interior Exhibits
+Level 1 - Bath - Full - Bath 1
+Level 1 - Bath - Full - Bath 2
+This is where the Unit D Bath 1 photo would display.
+This is where the Unit D Bath 2 photo would display.
+
+<<<PAGE 14 of 28>>>
+Unit Interior - Building 1 - Unit D (continued)
+Uniform Residential Appraisal Report	
+Page 12 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Level 1 - Bedroom - Bedroom 1
+Level 1 - Bedroom - Bedroom 2
+This is where the Unit D Bedroom 1 photo would display.
+This is where the Unit D Bedroom 2 photo would display.
+Level 1 - Dining Room
+Level 1 - Kitchen
+This is where the Unit D Dining Room photo would display.
+This is where the Unit D Kitchen photo would display.
+Level 1 - Living Room
+This is where the Unit D Living Room photo would display.
+Functional Obsolescence
+Functional Issues	
+None
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Carport
+4
+Detached
+800 Sq. Ft.
+Driveway
+4
+Concrete
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+
+<<<PAGE 15 of 28>>>
+	
+Page 13 of 26
+Vehicle Storage (continued)
+Uniform Residential Appraisal Report	
+Page 13 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Vehicle Storage Exhibits
+Carport - Driveway
+This is where the photo of the Carport and Driveway would display.
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Outdoor Accessories
+Fence
+Irrigation System
+Outdoor Living
+Balcony
+Wood
+80 Sq. Ft.
+Wood
+80 Sq. Ft.
+Patio
+Concrete
+80 Sq. Ft.
+Concrete
+80 Sq. Ft.
+Whole Home
+Multiple Zone HVAC
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+None
+Overall Quality and Condition
+Overall Quality	
+Q4
+Exterior Quality - Building 1	
+Q4
+Interior Quality - Unit A	
+Q4
+Interior Quality - Unit B	
+Q4
+Interior Quality - Unit C	
+Q4
+Interior Quality - Unit D	
+Q4
+Overall Condition	
+C3
+Exterior Condition - Building 1	
+C3
+Interior Condition - Unit A	
+C3
+Interior Condition - Unit B	
+C3
+Interior Condition - Unit C	
+C3
+Interior Condition - Unit D	
+C3
+Reconciliation of Overall Quality and Condition
+The Overall Quality and Condition matches both the Exterior and Interior Quality and Condition, given that both exterior and interior are the 
+same age.
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+
+<<<PAGE 16 of 28>>>
+	
+Page 14 of 26
+Uniform Residential Appraisal Report	
+Page 14 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Market
+Market Area Boundary  The subject’s market area is bounded to the North by I-20, to the East by Sundown Parkway, to the South by Main 
+Street, and to the West by Cowboy County State Park.
+Search Criteria Description  The pool of potential comparable sales was arrived at by applying the following filters: 4 unit properties built 
+within the past 20 years, located within a 5 mile radius of the subject, sold during the past 12 months.
+Search Result Metrics
+Active Listings	
+12
+Median Days on Market	
+43
+Lowest List Price	
+$725,000
+Median List Price	
+$850,000 
+Highest List Price	
+$950,000
+Pending Sales	
+3
+Sales in Past 24 Months	
+18
+Lowest Sale Price	
+$675,000
+Median Sale Price	
+$800,000
+Highest Sale Price	
+$925,000
+Distressed Market Competition	
+No
+Graph	
+Median Days on Market
+Price Trend Source	
+Cowboy County MLS
+Price Trend Analysis Commentary  An analysis of the sales in the past year for the subject’s market area shows sales volume to be stable 
+across the year. Supply and demand are in balance and the absorption rate is in line with historical trends. Sales prices in the market have been 
+increasing.
+Housing Trends
+Demand/Supply	
+In Balance
+Marketing Time	
+Under 3 months
+Market Exhibits
+Median Days on Market
+This is where the Median Days on Market graph would display.
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Current or Relevant Listings	
+None
+Data Source	
+MLS
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Prior Sales or Transfers	
+None
+Data Source	
+MLS
+Analysis of Prior Sale and Transfer History of Subject Property  Built in 2014 and has consistently had one owner in that time frame.
+
+<<<PAGE 17 of 28>>>
+Prior Sale and Transfer History (continued)
+Uniform Residential Appraisal Report	
+Page 15 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+1
+None
+MLS
+2
+None
+MLS
+3
+None
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  None of the comparables utilized in the report have had any additional 
+transfers in the past 12 months.
+
+<<<PAGE 18 of 28>>>
+	
+Page 16 of 26
+Uniform Residential Appraisal Report	
+Page 16 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+171 Cowboy Ln 
+Anyplace, TX 01234
+181 Cattledrive St 
+Anyplace, TX 01234
+123 Something Pl 
+Anyplace, TX 01234
+341 Nothing Dr 
+Anyplace, TX 01234
+ 
+This is where 
+the Dwelling Front 
+photo would display.
+ 
+This is where the photo 
+of 181 Cattledrive St 
+would display.
+ 
+This is where the photo 
+of 123 Something Pl 
+would display.
+ 
+This is where the photo 
+of 341 Nothing Dr 
+would display.
+Data Source
+MLS XY-324811
+MLS XY-123994
+MLS XY-238849
+Proximity to Subject
+3 Miles N
+4.5 Miles S
+3.5 Miles E
+List Price
+—
+$865,000
+$755,000
+$795,000
+Listing Status
+—
+Settled Sale
+Settled Sale
+Settled Sale
+Sale Price
+$850,000
+$750,000
+$780,000
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Sales Concessions
+—
+No
+$0
+No
+$0
+No
+$0
+Contract Date
+—
+03/26/2023
+$10,000
+12/22/2022
+$30,000
+02/25/2023
+$15,000
+Sale Date
+04/28/2023
+$0
+01/20/2023
+$0
+03/15/2023
+$0
+Days on Market
+—
+46
+78
+40
+Attached/Detached
+Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+Site
+Site Size
+21,000 Sq. Ft.
+15,000 Sq. Ft.
+$0
+24,000 Sq. Ft.
+$0
+18,000 Sq. Ft.
+$0
+Site Influence (Location)
+Busy Roadway | Residential
+Residential
+$(25,000)
+Busy Roadway 
+| Residential
+Residential
+$(25,000)
+View | Range
+Residential | Full
+Residential | Full
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+2014
+2015
+$0
+2009
+$20,000
+2014
+Gross Building Finished Area
+5,282 Sq. Ft.
+5,500 Sq. Ft.
+$0
+5,700 Sq. Ft.
+$0
+4,900 Sq. Ft.
+$0
+Construction Method
+Site Built
+Site Built
+Site Built
+Site Built
+Heating
+Forced Warm Air | Electric
+Forced Warm Air
+Forced Warm Air
+Forced Warm Air
+Unit(s)
+Structure ID | Unit ID
+Building 1 | Unit A
+Building 1 | Unit A
+Building 1 | Unit 1
+Building 1 | Unit 1
+Floor Number
+1
+1
+1
+1
+Bedrooms
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,190 Sq. Ft.
+1,300 Sq. Ft.
+$(9,900)
+1,350 Sq. Ft.
+$(14,400)
+1,150 Sq. Ft.
+$3,600
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Structure ID | Unit ID
+Building 1 | Unit B
+Building 1 | Unit B
+Building 1 | Unit 2
+Building 1 | Unit 2
+Floor Number
+1
+1
+1
+1
+Bedrooms
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,190 Sq. Ft.
+1,300 Sq. Ft.
+$(9,900)
+1,350 Sq. Ft.
+$(14,400)
+1,150 Sq. Ft.
+$3,600
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Structure ID | Unit ID
+Building 1 | Unit C
+Building 1 | Unit C
+Building 1 | Unit 3
+Building 1 | Unit 3
+Floor Number
+2
+2
+2
+2
+Bedrooms
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,190 Sq. Ft.
+1,300 Sq. Ft.
+$(9,900)
+1,350 Sq. Ft.
+$(14,400)
+1,150 Sq. Ft.
+$3,600
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Structure ID | Unit ID
+Building 1 | Unit D
+Building 1 | Unit D
+Building 1 | Unit 4
+Building 1 | Unit 4
+Floor Number
+2
+2
+2
+2
+Bedrooms
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,190 Sq. Ft.
+1,300 Sq. Ft.
+$(9,900)
+1,350 Sq. Ft.
+$(14,400)
+1,150 Sq. Ft.
+$3,600
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+
+<<<PAGE 19 of 28>>>
+	
+Page 17 of 26
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 17 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+171 Cowboy Ln 
+Anyplace, TX 01234
+181 Cattledrive St 
+Anyplace, TX 01234
+123 Something Pl 
+Anyplace, TX 01234
+341 Nothing Dr 
+Anyplace, TX 01234
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Structure ID
+Building 1
+Building 1
+Building 1
+Building 1
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+C3
+Interior Quality and Condition
+Structure ID | Unit ID
+Building 1 | Unit A
+Building 1 | Unit A
+Building 1 | Unit 1
+Building 1 | Unit 1
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C4
+C3
+Walls and Ceiling
+Well maintained with 
+minimal depreciation
+Well maintained with 
+minimal depreciation
+Adequately maintained with 
+moderate depreciation
+Well maintained with 
+minimal depreciation
+Structure ID | Unit ID
+Building 1 | Unit B
+Building 1 | Unit B
+Building 1 | Unit 2
+Building 1 | Unit 2
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C4
+C3
+Walls and Ceiling
+Well maintained with 
+minimal depreciation
+Well maintained with 
+minimal depreciation
+Adequately maintained with 
+moderate depreciation
+Well maintained with 
+minimal depreciation
+Structure ID | Unit ID
+Building 1 | Unit C
+Building 1 | Unit C
+Building 1 | Unit 3
+Building 1 | Unit 3
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C4
+C3
+Walls and Ceiling
+Well maintained with 
+minimal depreciation
+Well maintained with 
+minimal depreciation
+Adequately maintained with 
+moderate depreciation
+Well maintained with 
+minimal depreciation
+Structure ID | Unit ID
+Building 1 | Unit D
+Building 1 | Unit D
+Building 1 | Unit 4
+Building 1 | Unit 4
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C4
+C3
+Walls and Ceiling
+Well maintained with 
+minimal depreciation
+Well maintained with 
+minimal depreciation
+Adequately maintained with 
+moderate depreciation
+Well maintained with 
+minimal depreciation
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C4
+$20,000
+C3
+Property Amenities
+Outdoor Living
+Balcony | Balcony 
+| Patio | Patio
+Balcony | Balcony 
+| Patio | Patio
+Patio | Patio
+$10,000
+Balcony | Balcony 
+| Patio | Patio
+Vehicle Storage
+Type | Spaces | Detail
+Carport | 4 | Detached 
+800 Sq. Ft. 
+Driveway | 4 | Concrete
+Carport | 4 | Detached 
+Driveway | 4 | Concrete
+Carport | 4 | Detached 
+Driveway | 4 | Concrete
+Carport | 4 | Detached 
+Driveway | 4 | Concrete
+Summary
+List Price
+—
+$865,000 
+$755,000 
+$795,000 
+Sale Price
+$850,000 
+$750,000 
+$780,000 
+Net Adjustment Total
+$(54,600)
+$22,400 
+$4,400 
+Adjusted Price Per Unit
+$198,850 
+$193,100 
+$196,100 
+Adjusted Price Per Bedroom
+$99,425 
+$96,550 
+$98,050 
+Price Per Gross Building 
+Finished Area
+$155 
+$132 
+$159 
+Adjusted Price
+$795,400 
+$772,400 
+$784,400 
+Comparable Weight
+Less
+Less
+Most
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$785,000
+Reconciliation of Sales Comparison Approach
+All comparables utilized were 4 unit  properties. The time adjustment reflects approximately 1% per month for each comparable. The 
+comparables were built in approximately the same time period offering similar overall utility. Most emphasis is placed on comparable 3, which 
+best reflects the subject property.
+
+<<<PAGE 20 of 28>>>
+	
+Page 18 of 26
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 18 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Map
+ 
+This is where the map of the Sales Comparables, the Rental Comparables, and the GRM Comparables would display.
+
+<<<PAGE 21 of 28>>>
+	
+Page 19 of 26
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 19 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the photo of 181 Cattledrive St would display.
+This is where the photo of 123 Something Pl would display.
+Comparable #3
+This is where the photo of 341 Nothing Dr would display.
+Rental Information
+Rent Schedule
+Subject Property Rental Information
+Currently 
+Rented
+Occupancy
+Monthly 
+Rent
+Month-to-
+Month
+Lease Start
+Rent 
+Control
+Rent 
+Concessions
+Utilities/
+Services 
+Included 
+Furnished
+Unit A
+Yes
+Tenant
+$2,500 
+No
+06/2022
+No
+No
+No
+No
+Unit B
+Yes
+Tenant
+$2,550 
+No
+09/2022
+No
+No
+No
+No
+Unit C
+Yes
+Tenant
+$2,500 
+No
+07/2022
+No
+No
+No
+No
+Unit D
+Yes
+Tenant
+$2,600 
+No
+12/2022
+No
+No
+No
+No
+Actual Income (Monthly)
+Rent
+Unit A
+$2,500
+Unit B
+$2,550
+Unit C
+$2,500
+Unit D
+$2,600
+Subtotal
+$10,150
+Other Real Property Rental Income
+None
+$0
+Subtotal
+$0
+Total
+$10,150
+Opinion of Market Income (Monthly)
+Rent
+Unit A
+$2,600
+Unit B
+$2,600
+Unit C
+$2,600
+Unit D
+$2,600
+Subtotal
+$10,400
+Other Real Property Rental Income
+None
+$0
+Subtotal
+$0
+Total
+$10,400
+
+<<<PAGE 22 of 28>>>
+	
+Page 20 of 26
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 20 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable Rental Properties
+ 
+This is where the 
+Dwelling Front photo 
+would display.
+ 
+This is where the photo 
+of 181 Cattledrive 
+St would display.
+ 
+This is where the photo 
+of 181 Cattledrive 
+St would display.
+ 
+This is where the photo 
+of 123 Something 
+Pl would display.
+ 
+This is where the photo 
+of 123 Something 
+Pl would display.
+ 
+This is where the 
+photo of 341 Nothing 
+Dr would display.
+Subject Property
+171 Cowboy Ln
+Anyplace, TX 01234 
+Comparable #1
+181 Cattledrive St
+Unit B
+Anyplace, TX 01234
+Data Source:  
+MLS XY-347981
+Lease Start 
+Date: 03/2022
+Actual Rent: $2,700
+Comparable #2
+181 Cattledrive St
+Unit C
+Anyplace, TX 01234
+Data Source: 
+MLS XY-324819
+Lease Start 
+Date: 07/2022
+Actual Rent: $2,700
+Comparable #3
+123 Something Pl
+Unit 1
+Anyplace, TX 01234
+Data Source: 
+MLS XY-324720
+Lease Start 
+Date: 07/2022
+Actual Rent: $2,500
+Comparable #4
+123 Something Pl
+Unit 3
+Anyplace, TX 01234
+Data Source: 
+MLS XY-234895
+Lease Start 
+Date: 09/2022
+Actual Rent: $2,500
+Comparable #5
+341 Nothing Dr
+Unit 1
+Anyplace, TX 01234
+Data Source: 
+MLS XY-213840
+Lease Start 
+Date: 01/2023
+Actual Rent: $2,600
+ 
+This is where the 
+photo of 341 Nothing 
+Dr would display.
+Comparable #6
+341 Nothing Dr
+Unit 4
+Anyplace, TX 01234
+Data Source:  
+MLS XY-258927
+Lease Start 
+Date: 02/2023
+Actual Rent: $2,600
+Comparable Rental Analysis
+Subject 
+Comparables
+Subject 
+Comparables
+Unit A
+#1
+#3
+#5
+Unit B
+#1
+#3
+#5
+Proximity to Subject
+3 Miles N
+4.5 Miles S
+3.5 Miles E
+3 Miles N
+4.5 Miles S
+3.5 Miles E
+Floor Number
+1
+1
+1
+1
+1
+1
+1
+1
+Interior Condition
+C3
+C3
+C4
+C3
+C3
+C3
+C4
+C3
+Bedrooms
+2
+2
+2
+2
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area 
+1,190 Sq. Ft.
+1,200 Sq. Ft.
+1,250 Sq. Ft.
+1,050 Sq. Ft.
+1,190 Sq. Ft.
+1,200 Sq. Ft.
+1,250 Sq. Ft.
+1,050 Sq. Ft.
+Vehicle Storage | Spaces
+Carport | 1 
+Driveway | 1
+Similar
+Similar
+Similar
+Carport | 1 
+Driveway | 1
+Similar
+Similar
+Similar
+Amenities
+Patio
+Patio
+Patio
+Patio
+Patio
+Patio
+Patio
+Patio
+Summary
+Rent Per Finished Area
+$2.10
+$2.25
+$2.00
+$2.48
+$2.14
+$2.25
+$2.00
+$2.48
+Actual Rent
+$2,500 
+$2,700 
+$2,500 
+$2,600 
+$2,550 
+$2,700 
+$2,500 
+$2,600 
+Adjusted Rent
+$2,600 
+$2,550 
+$2,650 
+$2,600 
+$2,550 
+$2,650 
+Opinion of 
+Market Rent
+$2,600 
+$2,600 
+Comparable Weight
+Most
+Less
+Most
+Most
+Less
+Most
+
+<<<PAGE 23 of 28>>>
+	
+Page 21 of 26
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 21 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject 
+Comparables
+Subject 
+Comparables
+Unit C
+#2
+#4
+#6
+Unit D
+#2
+#4
+#6
+Proximity to Subject
+3 Miles N
+4.5 Miles S
+3.5 Miles E
+3 Miles N
+4.5 Miles S
+3.5 Miles E
+Floor Number
+2
+2
+2
+2
+2
+2
+2
+2
+Interior Condition
+C3
+C3
+C4
+C3
+C3
+C3
+C4
+C3
+Bedrooms
+2
+2
+2
+2
+2
+2
+2
+2
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area 
+1,190 Sq. Ft.
+1,200 Sq. Ft.
+1,250 Sq. Ft.
+1,050 Sq. Ft.
+1,190 Sq. Ft.
+1,200 Sq. Ft.
+1,250 Sq. Ft.
+1,050 Sq. Ft.
+Vehicle Storage | Spaces
+Carport | 1 
+Driveway | 1
+Similar
+Similar
+Similar
+Carport | 1 
+Driveway | 1
+Similar
+Similar
+Similar
+Amenities
+Balcony
+Balcony
+None
+Balcony
+Balcony
+Balcony
+None
+Balcony
+Summary
+Rent Per Finished Area
+$2.10
+$2.25
+$2.00
+$2.48
+$2.18
+$2.25
+$2.00
+$2.48
+Actual Rent
+$2,500 
+$2,700 
+$2,500 
+$2,600 
+$2,600 
+$2,700 
+$2,500 
+$2,600 
+Adjusted Rent
+$2,600 
+$2,575 
+$2,650 
+$2,600 
+$2,575 
+$2,650 
+Opinion of 
+Market Rent
+$2,600 
+$2,600 
+Comparable Weight
+Most
+Less
+Most
+Most
+Less
+Most
+Rental Analysis Commentary
+The rental comps support estimated rents for the subject.
+Rental Information Exhibits
+Comparable #1
+Comparable #2
+This is where the photo of 181 Cattledrive St would display.
+This is where the photo of 181 Cattledrive St would display.
+Comparable #3
+Comparable #4
+This is where the photo of 123 Something Pl would display.
+This is where the photo of 123 Something Pl would display.
+
+<<<PAGE 24 of 28>>>
+	
+Page 22 of 26
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 22 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable #5
+Comparable #6
+This is where the photo of 341 Nothing Dr would display.
+This is where the photo of 341 Nothing Dr would display.
+Income Approach
+Gross Rent Multiplier Comparables
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+171 Cowboy Ln 
+Anyplace, TX 01234
+181 Cattledrive St 
+Anyplace, TX 01234
+123 Something Pl 
+Anyplace, TX 01234
+341 Nothing Dr 
+Anyplace, TX 01234
+ 
+This is where the Dwelling 
+Front photo would display.
+ 
+This is where the photo 
+of 181 Cattledrive St 
+would display.
+ 
+This is where the photo 
+of 123 Something Pl 
+would display.
+ 
+This is where the 
+photo of 341 Nothing 
+Dr would display.
+Data Source
+MLS XY-324811
+MLS XY-123994
+MLS XY-238849
+Proximity to Subject
+3 Miles N
+4.5 Miles S
+3.5 Miles E
+Units Excluding ADUs
+4
+4
+4
+4
+Sale Price
+$850,000 
+$750,000 
+$780,000 
+Sale Date
+03/30/2023
+12/20/2022
+02/15/2023
+Gross Monthly Rent
+$10,150 
+$10,800 
+$10,000 
+$10,400 
+Gross Rent Multiplier
+79
+75
+75
+Comparable Weight
+Less
+Less
+Most
+Indicated Value by Income Approach
+	
+Total Monthly Market Rent	
+×	
+Gross Rent Multiplier	
+=	
+Indicated Value by Income Approach
+	
+$10,400	
+	
+75	
+	
+$780,000
+Income Approach Commentary
+The appraiser’s analysis of comparable sales of rental properties shows a range for the gross rent multiplier of 75 to 79. This is considered 
+reliable and provides support for the value estimate.
+
+<<<PAGE 25 of 28>>>
+	
+Page 23 of 26
+Income Approach (continued)
+Uniform Residential Appraisal Report	
+Page 23 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Income Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the photo of 181 Cattledrive St would display.
+This is where the photo of 123 Something Pl would display.
+Comparable #3
+
+This is where the photo of 341 Nothing Dr would display.
+
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$785,000
+$780,000
+Reason for Exclusion
+Not Necessary for Credible Results
+Appraisal Summary
+Opinion of Market Value	
+$785,000
+Market Value Condition	
+As Is
+Reasonable Exposure Time	
+30-60 days
+Effective Date of Appraisal	
+05/01/2023
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+Apparent Defects, Damages, Deficiencies
+None
+
+<<<PAGE 26 of 28>>>
+	
+Page 24 of 26
+Uniform Residential Appraisal Report	
+Page 24 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+
+<<<PAGE 27 of 28>>>
+	
+Page 25 of 26
+Uniform Residential Appraisal Report	
+Page 25 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+
+<<<PAGE 28 of 28>>>
+	
+Page 26 of 26
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 26 of 26
+	
+Appraiser Reference ID	
+8238420
+	
+Client Reference ID	
+2381034
+	
+AMC Reference ID	
+4561122
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+Signature
+Appraiser
+John P. Appraiser	
+05/04/2023
+John P. Appraiser	
+Date of Signature and Report
+Level	
+Certified Residential
+ID	
+1234ABCD
+State	
+TX
+Expires	
+12/31/2024

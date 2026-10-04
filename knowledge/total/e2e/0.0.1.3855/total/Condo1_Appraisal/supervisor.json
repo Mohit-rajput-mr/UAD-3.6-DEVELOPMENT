@@ -1,0 +1,10 @@
+{
+ "supervisor_named": false,
+ "has_supervisor": false,
+ "count_before": "0",
+ "count_after": "0",
+ "identifiers": {
+  "buildings": [],
+  "units": []
+ }
+}

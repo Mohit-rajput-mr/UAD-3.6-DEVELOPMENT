@@ -1,0 +1,600 @@
+{
+ "source_values": 986,
+ "kept": 938,
+ "changed": 17,
+ "dropped": 31,
+ "added": 14,
+ "rows": [
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#1",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#2",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable#3",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [
+    "123 Falling Tree Ct"
+   ],
+   "total": [
+    "Sample Blank"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [
+    "Treeville"
+   ],
+   "total": [
+    "Brooklyn"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/CountyName",
+   "data_point": "CountyName",
+   "file": [
+    "Arboreal"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [
+    "12345"
+   ],
+   "total": [
+    "11204"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [
+    "VA"
+   ],
+   "total": [
+    "NY"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/UnitBelowGradeFinishComparisonType",
+   "data_point": "UnitBelowGradeFinishComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/ARCHITECTURAL_DESIGN/ArchitecturalDesignCategoryType",
+   "data_point": "ArchitecturalDesignCategoryType",
+   "file": [
+    "Colonial"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/CONSTRUCTION_METHODS/CONSTRUCTION_METHOD/ConstructionMethodType",
+   "data_point": "ConstructionMethodType",
+   "file": [
+    "SiteBuilt"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorConditionRatingCode",
+   "data_point": "ExteriorConditionRatingCode",
+   "file": [
+    "C4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/ExteriorQualityRatingCode",
+   "data_point": "ExteriorQualityRatingCode",
+   "file": [
+    "Q4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/LivingUnitCount",
+   "data_point": "LivingUnitCount",
+   "file": [
+    "1"
+   ],
+   "total": [
+    "0"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_DETAIL/StructureValuationCommentText",
+   "data_point": "StructureValuationCommentText",
+   "file": [
+    "Condition Status is reflective of noted repair having been completed."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Damaged Flashing",
+    "Damaged Flooring"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [],
+   "total": [
+    "DwellingExteriorExhibit",
+    "UnitInteriorExhibit"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\SF1_FloorDefect.png",
+    "\\\\Images\\SF1_RoofDefect.png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/png",
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/NEIGHBORHOOD/NEIGHBORHOOD_DETAIL/NeighborhoodName",
+   "data_point": "NeighborhoodName",
+   "file": [
+    "Sunnyside"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PARCELS/PARCEL/PARCEL_DETAIL/ParcelAreaMeasure",
+   "data_point": "ParcelAreaMeasure",
+   "file": [
+    "14950"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PARCELS/PARCEL/PARCEL_DETAIL/ParcelAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "ParcelAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PARCELS/PARCEL/PARCEL_DETAIL/ParcelDescriptionClassificationType",
+   "data_point": "ParcelDescriptionClassificationType",
+   "file": [
+    "LandWithDwelling"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PARCEL_SUMMARY/PARCEL_SUMMARY_DETAIL/ParcelsLegalDescription",
+   "data_point": "ParcelsLegalDescription",
+   "file": [
+    "Lot 53 Sunnyside Subdivision"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROJECT/PROJECT_DEVELOPER/ProjectDeveloperOrSponsorControlsProjectManagementIndicator",
+   "data_point": "ProjectDeveloperOrSponsorControlsProjectManagementIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [
+    "Damaged Flashing",
+    "Damaged Flooring"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [
+    "\\\\Images\\SF1_FloorDefect.png",
+    "\\\\Images\\SF1_RoofDefect.png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DEFECT/DEFECTS/DEFECT/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [
+    "image/png",
+    "image/png"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DETAIL/AttachmentType",
+   "data_point": "AttachmentType",
+   "file": [
+    "Detached"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DETAIL/OverallConditionRatingCode",
+   "data_point": "OverallConditionRatingCode",
+   "file": [
+    "C4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_DETAIL/OverallQualityRatingCode",
+   "data_point": "OverallQualityRatingCode",
+   "file": [
+    "Q4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/PROPERTY_TAXES/PROPERTY_TAX/PROPERTY_TAX_DETAIL/SpecialTaxAssessmentsIndicator",
+   "data_point": "SpecialTaxAssessmentsIndicator",
+   "file": [
+    "false"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/HIGHEST_AND_BEST_USE/FinanciallyFeasibleIndicator",
+   "data_point": "FinanciallyFeasibleIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [
+    "false"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/HIGHEST_AND_BEST_USE/LegallyPermissibleIndicator",
+   "data_point": "LegallyPermissibleIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [
+    "false"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/HIGHEST_AND_BEST_USE/MaximallyProductiveIndicator",
+   "data_point": "MaximallyProductiveIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [
+    "false"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/HIGHEST_AND_BEST_USE/PhysicallyPossibleIndicator",
+   "data_point": "PhysicallyPossibleIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [
+    "false"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/PROPERTY_ACCESS/PROPERTY_ACCESS_DETAIL/PropertyAccessTypicalToMarketIndicator",
+   "data_point": "PropertyAccessTypicalToMarketIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [
+    "false"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/SITE_DETAIL/BroadbandInternetAvailableIndicator",
+   "data_point": "BroadbandInternetAvailableIndicator",
+   "file": [
+    "true"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "data_point": "TopographyType",
+   "file": [
+    "Rolling"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningClassificationDescription",
+   "data_point": "SiteZoningClassificationDescription",
+   "file": [
+    "Residential - 10 Dwelling Units per Acre"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningClassificationIdentifier",
+   "data_point": "SiteZoningClassificationIdentifier",
+   "file": [
+    "R10"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty#-",
+   "path": "PROPERTY/SITE/SITE_ZONING/SITE_ZONING_DETAIL/SiteZoningComplianceType",
+   "data_point": "SiteZoningComplianceType",
+   "file": [
+    "Legal"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/ABOUT_VERSIONS/ABOUT_VERSION/AboutVersionIdentifier",
+   "data_point": "AboutVersionIdentifier",
+   "file": [
+    "4"
+   ],
+   "total": [
+    "1"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/APPROACH_TO_VALUE/SALES_COMPARISON_APPROACH/SALES_COMPARISON_APPROACH_DETAIL/SalesComparisonCommentDescription",
+   "data_point": "SalesComparisonCommentDescription",
+   "file": [
+    "Comps 1 and 2 were from the same neighborhood as the Subject. Comp 3 not given as much weight because of different subdivision. Condition Rating adjustments were made to all comps due to the subject's flooring having stained carpets and no updates. Comp 1 also had a partially updated kitchen which was accounted for in the Condition Rating adjustment. Sales with property characteristics of 5 bedrooms, media room and wet bar were in the competitive market area, exhibited in #4 and 5 of the Additional Properties Analyzed Not Used, but were not as comparable since they were larger, farther away, and superior quality."
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/MeasurementStandardPublisherType",
+   "data_point": "MeasurementStandardPublisherType",
+   "file": [
+    "AmericanNationalStandardsInstitute"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "MYAPP"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Some Appraisal Creator"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.1"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Nowhere Technologies"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "\\\\SF1_Appraisal_v1.4.pdf"
+   ],
+   "total": [
+    "\\\\sampleblank.pdf"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE@schemaLocation",
+   "data_point": "MESSAGE@schemaLocation",
+   "file": [
+    "http://www.mismo.org/residential/2009/schemas file:///C:/Users/b2ubck/Fannie%20Mae/OneDrive%20-%20Fannie%20Mae/Desktop/Subschema/GSE_UAD_3.6.0_v1.4_01222026/GSE_UAD_3.6.0_v1.4/GSE_UAD_3.6.0_v1.4.xsd"
+   ],
+   "total": [],
+   "kind": "dropped"
+  }
+ ]
+}

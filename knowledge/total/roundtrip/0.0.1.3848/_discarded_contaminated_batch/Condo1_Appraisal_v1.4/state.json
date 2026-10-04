@@ -1,0 +1,48 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "Building 2 - Unit 2",
+    "caption": "Unit 2",
+    "description": "Unit 2"
+   },
+   {
+    "instance": 2,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 4,
+  "rentalprop": 6,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "No Inspection",
+  "APPRAISER_SPI_INTERIOR": "No Inspection",
+  "ATTACHMENT_TYPE": "Attached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "C:\\3.6 uad zips\\_UNZIPPED_ALL\\Appendix D-1 Condo1_Appraisal\\Condo1_Appraisal_v1.4.xml",
+ "import_seconds": 62.4,
+ "import_error": ""
+}

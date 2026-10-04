@@ -1,0 +1,1080 @@
+Agent Single Line - Residential
+Distance
+#
+MLS #
+St
+ 
+Price Subtype Address
+Publish to Internet Y/N
+Post Office/Town
+GLA
+Lot Sz BR
+FB
+HB
+Yr Blt
+DOM List Office ID
+2.1 mi
+127
+971647
+SLD
+$1,655,000
+SIFARE
+2 Plymouth Road
+Yes
+Port Washington
+1,537
+0.1837
+3
+1
+1
+1938
+7
+GALE10
+2.1 mi
+128
+1016763
+SLD
+$1,503,000
+SIFARE
+25 Andover Road
+Yes
+Port Washington
+1,526
+0.1921
+3
+2
+0
+1951
+14
+GALE10
+2.1 mi
+129
+923862
+SLD
+$1,818,000
+SIFARE
+51 Netz Place
+Yes
+Albertson
+3,672
+0.1700
+5
+3
+0
+2025
+13
+SML01
+2.1 mi
+130
+929882
+SLD
+$1,800,000
+SIFARE
+47 Netz Place
+Yes
+Albertson
+3,672
+0.1700
+5
+3
+0
+2025
+135
+SML01
+2.1 mi
+131
+1009691
+SLD
+$1,690,230
+SIFARE
+22 Andover Road
+Yes
+Port Washington
+1,977
+0.2400
+4
+3
+0
+1951
+20
+GALE10
+2.1 mi
+132
+986958
+SLD
+$1,132,500
+SIFARE
+17 Neulist Avenue
+Yes
+Port Washington
+1,697
+0.1538
+3
+2
+0
+1926
+11
+GALE11
+2.1 mi
+133
+1018137
+SLD
+$1,900,000
+SIFARE
+65 Saddle Lane
+Yes
+Roslyn Heights
+1,808
+0.3214
+3
+2
+0
+1949
+16
+CHRU01
+2.1 mi
+134
+931689
+SLD
+$1,748,000
+SIFARE
+89 Nottingham Road
+Yes
+Manhasset Hills
+3,435
+0.2300
+6
+3
+1
+1963
+168
+BHHS02
+2.1 mi
+135
+886317
+SLD
+$1,650,000
+SIFARE
+18 Locust Lane
+Yes
+Roslyn Heights
+3,476
+0.3214
+5
+3
+1
+1951
+58
+EXP05
+2.1 mi
+136
+990159
+SLD
+$1,371,000
+SIFARE
+27 Whittier Drive
+Yes
+Searingtown
+2,000
+0.2263
+3
+3
+0
+1959
+20
+KWLG01
+2.1 mi
+137
+909974
+SLD
+$1,802,000
+SIFARE
+19 Concord Road
+Yes
+Port Washington
+2,395
+0.2033
+3
+2
+1
+1949
+9
+DERE51
+2.1 mi
+138
+853241
+SLD
+$1,275,000
+SIFARE
+44 Netz Place
+Yes
+Albertson
+3,250
+3
+2
+1
+1953
+142
+DERE61
+2.1 mi
+139
+866335
+SLD
+$1,650,000
+SIFARE
+119 Old Mill Road
+Yes
+Manhasset
+1,710
+0.2169
+3
+2
+1
+1937
+42
+CPLI01
+2.1 mi
+140
+903298
+SLD
+$1,450,000
+SIFARE
+20 Michaels Lane
+Yes
+Old Brookville
+2,200
+1.0200
+4
+3
+0
+1964
+18
+DERE23
+2.2 mi
+141
+950840
+SLD
+$1,680,000
+SIFARE
+112 Crescent Drive
+Yes
+Searingtown
+2,237
+0.2500
+4
+3
+0
+1963
+62
+ESY02
+2.2 mi
+142
+983937
+SLD
+$1,350,000
+SIFARE
+6 Derby Road
+Yes
+Port Washington
+1,571
+0.2169
+4
+2
+0
+1938
+8
+GALE12
+2.2 mi
+143
+951918
+SLD
+$1,710,000
+SIFARE
+97 Bar Beach Road
+Yes
+Port Washington
+1,636
+0.1488
+3
+2
+1
+1928
+5
+GALE10
+2.2 mi
+144
+962358
+SLD
+$1,700,000
+SIFARE
+91 Bar Beach Road
+Yes
+Port Washington
+2,246
+0.1240
+3
+2
+1
+1923
+9
+GALE12
+2.2 mi
+145
+991068
+SLD
+$1,400,000
+SIFARE
+9 Tulip Lane
+Yes
+Port Washington
+1,950
+0.1756
+3
+3
+0
+1955
+12
+DERE61
+2.2 mi
+146
+992208
+SLD
+$1,420,000
+SIFARE
+1 White Oak Drive
+Yes
+Port Washington
+1,906
+0.1722
+3
+3
+0
+1955
+23
+GALE10
+2.2 mi
+147
+927073
+SLD
+$1,300,000
+SIFARE
+32 Fairview Avenue
+Yes
+Port Washington
+1,506
+0.1708
+3
+3
+0
+1958
+27
+NNSE01
+2.2 mi
+148
+943687
+SLD
+$1,375,000
+SIFARE
+100 Birch Hill Drive
+Yes
+Albertson
+2,180
+0.2259
+5
+2
+1
+1963
+20
+GALE31
+2.2 mi
+149
+937141
+SLD
+$1,750,000
+SIFARE
+146 Quaker Ridge Road
+Yes
+Manhasset
+1,649
+0.2123
+3
+1
+1
+1938
+7
+YLEE01
+2.2 mi
+150
+932088
+SLD
+$1,200,000
+SIFARE
+414 Hunt Lane
+Yes
+Manhasset
+1,860
+0.1722
+3
+3
+0
+1935
+18
+GALE11
+2.2 mi
+151
+934398
+SLD
+$1,375,000
+SIFARE
+65 Old Mill Road
+Yes
+Manhasset
+1,558
+0.1928
+3
+2
+1
+1937
+58
+CHHO01
+2.2 mi
+152
+958236
+SLD
+$1,620,000
+SIFARE
+9 Revere Road
+Yes
+Port Washington
+2,355
+0.1525
+4
+3
+1
+2012
+11
+CMPA05
+2.2 mi
+153
+954018
+SLD
+$1,200,000
+SIFARE
+75 Bar Beach Road
+Yes
+Port Washington
+2,079
+0.1001
+3
+1
+1
+1927
+56
+MNTA01
+2.3 mi
+154
+1015540
+SLD
+$1,465,000
+SIFARE
+71 Bar Beach Road
+Yes
+Port Washington
+1,958
+0.1001
+3
+2
+1
+1928
+11
+LBHF01
+2.3 mi
+155
+998811
+SLD
+$1,580,000
+SIFARE
+8 White Oak Drive
+Yes
+Port Washington
+1,950
+0.1561
+3
+3
+0
+1955
+14
+DERE51
+2.3 mi
+156
+897330
+SLD
+$1,495,000
+SIFARE
+83 The Dell
+Yes
+Searingtown
+0
+4
+2
+1
+1961
+128
+LRE01
+2.3 mi
+157
+937038
+SLD
+$1,250,000
+SIFARE
+8 Fairview Avenue
+Yes
+Port Washington
+1,509
+0.1157
+3
+2
+0
+1928
+12
+CMPA05
+2.3 mi
+158
+992632
+SLD
+$1,725,000
+SIFARE
+30 Todd Drive E
+Yes
+Glen Head
+3,318
+0.2507
+5
+4
+2
+1954
+13
+BHHS01
+2.3 mi
+159
+954244
+SLD
+$1,950,000
+SIFARE
+96 Quaker Ridge Road
+Yes
+Manhasset
+1,748
+0.1848
+4
+2
+1
+1937
+8
+DERE52
+2.3 mi
+160
+1014850
+SLD
+$1,205,000
+SIFARE
+7 Fairview Avenue
+Yes
+Port Washington
+1,472
+0.0918
+3
+1
+1
+1928
+12
+CMPA05
+2.3 mi
+161
+857846
+SLD
+$1,199,000
+SIFARE
+348 Littleworth Lane
+Yes
+Sea Cliff
+3,200
+0.4602
+4
+3
+0
+1964
+168
+SPH23
+2.4 mi
+162
+865912
+SLD
+$1,800,000
+SIFARE
+21 Deepdale Drive
+Yes
+Manhasset
+2,562
+0.1837
+5
+2
+1
+1936
+57
+DERE52
+2.4 mi
+163
+1006419
+SLD
+$1,900,000
+SIFARE
+51 Deepdale Drive
+Yes
+Manhasset
+2,085
+0.1800
+4
+2
+1
+1936
+16
+DERE17
+2.4 mi
+164
+951515
+SLD
+$1,750,000
+SIFARE
+214 Downing Avenue
+Yes
+Sea Cliff
+3,405
+0.4600
+4
+3
+1
+1952
+6
+CMPA09
+2.4 mi
+165
+876416
+SLD
+$1,196,800
+SIFARE
+65 Netherwood Drive
+Yes
+Albertson
+2,055
+5
+2
+0
+1941
+20
+CHGL01
+2.4 mi
+166
+861182
+SLD
+$1,900,000
+SIFARE
+25 Belmont Drive W
+Yes
+Roslyn Heights
+3,336
+0.3168
+4
+3
+1
+1958
+38
+AMRP01
+2.4 mi
+167
+966530
+SLD
+$1,463,000
+SIFARE
+69 Bogart Avenue
+Yes
+Port Washington
+2,191
+0.2204
+5
+2
+1
+1957
+20
+DERE53
+2.4 mi
+168
+L3450275
+SLD
+$1,900,000
+SIFARE
+382 I U Willets Road
+Yes
+Roslyn Heights
+4,230
+4
+3
+1
+2009
+85
+BHHS02
+2.4 mi
+169
+900346
+SLD
+$1,833,000
+SIFARE
+30 Roslyn Drive
+Yes
+Glen Head
+3,280
+0.2663
+5
+3
+1
+2025
+57
+DERK01
+2.4 mi
+170
+991218
+SLD
+$1,850,000
+SIFARE
+182 Ryder Road
+Yes
+Manhasset
+1,482
+0.1449
+3
+1
+1
+1928
+7
+GALE11
+2.4 mi
+171
+1008777
+SLD
+$1,475,000
+SIFARE
+22 Duke Of Gloucest
+Yes
+Manhasset
+1,808
+0.1100
+3
+3
+1
+1980
+18
+DERE52
+2.4 mi
+172
+1018454
+SLD
+$1,250,000
+SIFARE
+21 Woodridge Lane
+Yes
+Sea Cliff
+1,912
+0.3269
+3
+2
+1
+1954
+21
+DERE57
+2.5 mi
+173
+886848
+SLD
+$1,438,888
+SIFARE
+3 Grant Avenue
+Yes
+Albertson
+2,115
+5
+3
+0
+1953
+64
+EXP05
+2.5 mi
+174
+1017018
+SLD
+$1,725,000
+SIFARE
+10 Ridge Drive
+Yes
+Port Washington
+1,903
+0.2617
+4
+2
+1
+1938
+16
+GALE10
+2.5 mi
+175
+888826
+SLD
+$1,150,000
+SIFARE
+109 Meldon Avenue
+Yes
+Albertson
+2,075
+0.1377
+4
+2
+0
+1953
+21
+CMPA05
+2.5 mi
+176
+896479
+SLD
+$1,350,000
+SIFARE
+226 Nassau Avenue
+Yes
+Manhasset
+1,467
+0.1607
+3
+3
+0
+1929
+14
+GALE11
+2.5 mi
+177
+979955
+SLD
+$1,520,000
+SIFARE
+8 Laurel Way
+Yes
+Sea Cliff
+2,722
+0.2800
+4
+3
+0
+1966
+27
+GALE12
+2.5 mi
+178
+948982
+SLD
+$1,300,000
+SIFARE
+11 Searingtown Road
+Yes
+Searingtown
+2,173
+0.4038
+3
+2
+1
+1948
+46
+TAIR01
+2.5 mi
+179
+981315
+SLD
+$1,400,000
+SIFARE
+6 Laurel Way
+Yes
+Sea Cliff
+3,192
+0.2604
+4
+3
+0
+1966
+13
+GALE15
+2.5 mi
+180
+962856
+SLD
+$1,425,000
+SIFARE
+24 Orchard Farm Road
+Yes
+Port Washington
+1,673
+0.2165
+3
+1
+1
+1949
+15
+GALE10
+2.5 mi
+181
+862746
+SLD
+$1,675,000
+SIFARE
+29 Sunset Road S
+Yes
+Albertson
+3,912
+0.1950
+4
+2
+1
+1985
+65
+SOHE01
+2.6 mi
+182
+920014
+SLD
+$1,225,000
+SIFARE
+180 Dogwood Road
+Yes
+Roslyn
+1,850
+0.1919
+3
+3
+0
+1951
+5
+CMPA05
+2.6 mi
+183
+907886
+SLD
+$1,900,000
+SIFARE
+59 Crest Hollow Lane
+Yes
+Albertson
+3,500
+5
+4
+1
+1986
+22
+ERLT01
+2.6 mi
+184
+856968
+SLD
+$1,999,000
+SIFARE
+94 Schoolhouse Lane
+Yes
+Roslyn Heights
+4,000
+0.3214
+4
+4
+1
+1951
+96
+CMPA09
+2.6 mi
+185
+882119
+SLD
+$1,599,000
+SIFARE
+29 Crescent Road
+Yes
+Port Washington
+2,080
+0.2640
+4
+2
+1
+1923
+22
+ERABES01
+2.6 mi
+186
+943640
+SLD
+$1,750,000
+SIFARE
+71 Beechwood Avenue
+Yes
+Manhasset
+1,830
+0.1687
+3
+2
+0
+1927
+5
+KEWG01
+2.6 mi
+187
+878988
+SLD
+$1,705,000
+SIFARE
+170 Hillcrest Avenue
+Yes
+Manhasset
+1,862
+0.1694
+3
+1
+1
+1926
+14
+GALE11
+2.6 mi
+188
+949194
+SLD
+$1,350,000
+SIFARE
+2 Terry Court
+Yes
+Glen Head
+2,164
+0.2263
+3
+2
+0
+1965
+13
+GALE15
+2.6 mi
+189
+986292
+SLD
+$1,160,000
+SIFARE
+78 Beechwood Avenue
+Yes
+Port Washington
+1,750
+0.1148
+4
+1
+1
+1923
+21
+BHHS01

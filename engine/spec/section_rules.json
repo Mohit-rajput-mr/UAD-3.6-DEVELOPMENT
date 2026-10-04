@@ -1,0 +1,28 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide v1.4, section overviews",
+ "rules": {
+  "Summary": "The Summary section always displays.",
+  "Subject Property": "The Subject Property section always displays.",
+  "Site": "The Site section always displays in the report; however, there are multiple data points from the Subject Property section that determine conditionality, such as: \u2022 Subject Site Owned in Common - LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.015) \u2022 PropertyInProjectIndicator (UID: 0100.0065, FID: Not on report) \u2022 Subject Property - ProjectLegalStructureType (UID: 2500.0168) o Condominium (FID: 3.011) o Coop (FID: 3.012) o Condop (FID: 3.013) Site Size and Parcels When Subject Site Owned in Common - LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.015) = \"false\" \u2022 Total Site Size - LotSizeAreaMeasure (UID: 1500.0093, FID: 4.000) displays Page 125 Appendix B-1: URAR Implementation Guide v1.4 \u2022 For area less than 1 acre, use square feet in whole numbers (e.",
+  "Disaster Mitigation": "The Disaster Mitigation section displays when DisasterMitigationFeatureType (UID: 3700.0002, FID: 5.000) is a value other than \u2018None\u2019.",
+  "Energy Efficient and Green Features": "The Energy Efficient and Green Features section displays when one or more of the three energy efficient or green features is \"true\".",
+  "Sketch": "The Sketch section always displays.",
+  "Dwelling Exterior": "The Dwelling Exterior section displays when ImprovementType (UID: 0300.0009, FID: Not on report) = \"Dwelling\".",
+  "Manufactured Home": "The Manufactured Home section displays details about the structure, provides space for additional commentary, and exhibits.",
+  "Unit Interior": "The Unit Interior section always displays.",
+  "Functional Obsolescence": "The Functional Obsolescence section always displays in the report.",
+  "Outbuilding": "The Outbuilding section displays when ImprovementType (UID: 0300.0009, FID: Not on report) = \"Outbuilding\".",
+  "Vehicle Storage": "The Vehicle Storage section always displays.",
+  "Subject Property Amenities": "The Subject Property Amenities section always displays in the report.",
+  "Overall Quality and Condition": "The Overall Quality and Condition section always displays.",
+  "Highest and Best Use": "The Highest and Best Use section always displays with the static text, \"Is the present use of the subject property \u2026\", followed by the required fields.",
+  "Market": "The Market section always displays.",
+  "Project Information": "The Project Information section displays when the property is in a project (condominium, cooperative, or condop) or in a PUD.",
+  "Sales Contract": "The Sales Contract section displays when SalesContractExistsIndicator (UID: 0600.0016, FID: 20.000) = \"true\".",
+  "Prior Sale and Transfer History": "The Prior Sale and Transfer History section always displays in the report.",
+  "Rental Information": "The Rental Information section displays when RentScheduleIndicator (UID: 1000.0031, FID: Not on report) = \"true\".",
+  "Cost Approach": "The Cost Approach section displays when CostApproachIndicator (UID: 1000.0027, FID: Not on report) = \"true\".",
+  "Reconciliation": "The Reconciliation section always displays.",
+  "Revision History": "The Revision History section displays only if the information is provided."
+ }
+}

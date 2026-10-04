@@ -1,0 +1,649 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide v1.4.pdf",
+ "chapter_pages": [
+  77,
+  87
+ ],
+ "fields": {
+  "1.000": {
+   "label": "Address",
+   "sources": [
+    "3.000"
+   ],
+   "section": 3,
+   "origin": "Subject"
+  },
+  "1.001": {
+   "label": "Opinion of Market Value",
+   "sources": [
+    "26.007"
+   ],
+   "section": 26,
+   "origin": "Reconciliation"
+  },
+  "1.085": {
+   "label": "(Cooperative Interest)",
+   "sources": [
+    "26.074"
+   ],
+   "section": 26,
+   "origin": "Display (Cooperative Interest) when it is displayed in Reconciliation."
+  },
+  "1.002": {
+   "label": "Final Value Condition Statement",
+   "sources": [
+    "26.013"
+   ],
+   "section": 26,
+   "origin": "Reconciliation"
+  },
+  "1.003": {
+   "label": "Effective Date of Appraisal",
+   "sources": [
+    "26.011"
+   ],
+   "section": 26,
+   "origin": "Reconciliation"
+  },
+  "1.004": {
+   "label": "Assignment Reason",
+   "sources": [
+    "2.000"
+   ],
+   "section": 2,
+   "origin": "Assignment Information"
+  },
+  "1.005": {
+   "label": "Borrower Name",
+   "sources": [
+    "2.001"
+   ],
+   "section": 2,
+   "origin": "Assignment Information"
+  },
+  "1.006": {
+   "label": "Current Owner of Public Record",
+   "sources": [
+    "2.003"
+   ],
+   "section": 2,
+   "origin": "Assignment Information"
+  },
+  "1.007": {
+   "label": "Contract Price",
+   "sources": [
+    "20.004"
+   ],
+   "section": 20,
+   "origin": "Sales Contract | Reconciliation"
+  },
+  "1.008": {
+   "label": "Listing Status",
+   "sources": [
+    "19.002"
+   ],
+   "section": 19,
+   "origin": "Subject Listing information"
+  },
+  "1.009": {
+   "label": "Market Value Condition",
+   "sources": [
+    "26.009"
+   ],
+   "section": 26,
+   "origin": "Reconciliation"
+  },
+  "1.010": {
+   "label": "Property Valuation Method",
+   "sources": [
+    "2.004"
+   ],
+   "section": 2,
+   "origin": "Assignment Information"
+  },
+  "1.011": {
+   "label": "Appraiser Name",
+   "sources": [
+    "2.017"
+   ],
+   "section": 2,
+   "origin": "Assignment Information"
+  },
+  "1.012": {
+   "label": "Construction Method",
+   "sources": [
+    "8.011"
+   ],
+   "section": 8,
+   "origin": "Dwelling Exterior \u2013 display all unique values for each occurrence of"
+  },
+  "1.013": {
+   "label": "Attachment Type",
+   "sources": [
+    "3.004"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.014": {
+   "label": "Structure Design",
+   "sources": [
+    "8.002"
+   ],
+   "section": 8,
+   "origin": "Dwelling Exterior"
+  },
+  "1.015": {
+   "label": "Planned Unit Development (PUD)",
+   "sources": [
+    "3.010"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.016": {
+   "label": "Condominium",
+   "sources": [
+    "3.011"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.017": {
+   "label": "Cooperative",
+   "sources": [
+    "3.012"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.018": {
+   "label": "Condop",
+   "sources": [
+    "3.013"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.019": {
+   "label": "Observed Project Deficiencies",
+   "sources": [
+    "18.014"
+   ],
+   "section": 18,
+   "origin": "Project Information"
+  },
+  "1.020": {
+   "label": "Subject Site Owned in Common",
+   "sources": [
+    "3.015"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.021": {
+   "label": "Units Excluding ADUs",
+   "sources": [
+    "3.005"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.022": {
+   "label": "Accessory Dwelling Units",
+   "sources": [
+    "3.006"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.023": {
+   "label": "Property Rights Appraised",
+   "sources": [
+    "3.019"
+   ],
+   "section": 3,
+   "origin": "Subject Property"
+  },
+  "1.024": {
+   "label": "Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use?",
+   "sources": [
+    "16.004"
+   ],
+   "section": 16,
+   "origin": "Highest and Best Use"
+  },
+  "1.025": {
+   "label": "Property Restriction",
+   "sources": [
+    "4.051"
+   ],
+   "section": 4,
+   "origin": "Site"
+  },
+  "1.026": {
+   "label": "Encroachment",
+   "sources": [
+    "4.059"
+   ],
+   "section": 4,
+   "origin": "Site"
+  },
+  "1.027": {
+   "label": "Zoning Compliance",
+   "sources": [
+    "4.014"
+   ],
+   "section": 4,
+   "origin": "Site"
+  },
+  "1.028": {
+   "label": "HUD Data Plate Attached",
+   "sources": [
+    "9.010"
+   ],
+   "section": 9,
+   "origin": "Manufactured Home"
+  },
+  "1.029": {
+   "label": "HUD Label Present for All Sections",
+   "sources": [
+    "9.016"
+   ],
+   "section": 9,
+   "origin": "Manufactured Home"
+  },
+  "1.030": {
+   "label": "Overall Quality",
+   "sources": [
+    "15.000"
+   ],
+   "section": 15,
+   "origin": "Overall Quality and Condition"
+  },
+  "1.031": {
+   "label": "Overall Condition",
+   "sources": [
+    "15.005"
+   ],
+   "section": 15,
+   "origin": "Overall Quality and Condition"
+  },
+  "1.000.1": {
+   "label": "No label",
+   "sources": [
+    "8.000.1"
+   ],
+   "section": 8,
+   "origin": "Dwelling Exterior [Image]"
+  },
+  "1.032": {
+   "label": "[Static Text] The items listed below represent the As Is condition as of the effective date of this report",
+   "sources": [
+    "26.020"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.033": {
+   "label": "Feature",
+   "sources": [
+    "26.021"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.040": {
+   "label": "Feature",
+   "sources": [
+    "26.028"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.048": {
+   "label": "Feature",
+   "sources": [
+    "26.036"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.055": {
+   "label": "Feature",
+   "sources": [
+    "26.044"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.063": {
+   "label": "Feature",
+   "sources": [
+    "26.052"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.069": {
+   "label": "Feature",
+   "sources": [
+    "26.058"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.075": {
+   "label": "Feature",
+   "sources": [
+    "26.064"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.034": {
+   "label": "Location",
+   "sources": [
+    "26.022"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.041": {
+   "label": "Location",
+   "sources": [
+    "26.029"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.049": {
+   "label": "Location",
+   "sources": [
+    "26.037"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.056": {
+   "label": "Location",
+   "sources": [
+    "26.045"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.064": {
+   "label": "Location",
+   "sources": [
+    "26.053"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.070": {
+   "label": "Location",
+   "sources": [
+    "26.059"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.076": {
+   "label": "Location",
+   "sources": [
+    "26.065"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.035": {
+   "label": "Description",
+   "sources": [
+    "26.023"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.042": {
+   "label": "Description",
+   "sources": [
+    "26.030"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.050": {
+   "label": "Description",
+   "sources": [
+    "26.038"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.057": {
+   "label": "Description",
+   "sources": [
+    "26.046"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.065": {
+   "label": "Description",
+   "sources": [
+    "26.054"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.071": {
+   "label": "Description",
+   "sources": [
+    "26.060"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.077": {
+   "label": "Description",
+   "sources": [
+    "26.066"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.036": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.024"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.043": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.031"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.051": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.039"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.058": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.047"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.066": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.055"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.072": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.061"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.078": {
+   "label": "Affects Soundness or Structural Integrity",
+   "sources": [
+    "26.067"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.037": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.025"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.044": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.032"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.052": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.040"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.059": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.048"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.067": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.056"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.073": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.062"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.079": {
+   "label": "Recommended Action",
+   "sources": [
+    "26.068"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.038": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.026"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.045": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.033"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.053": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.041"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.060": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.049"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.068": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.057"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.074": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.063"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.080": {
+   "label": "Estimated Cost to Repair",
+   "sources": [
+    "26.069"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.081": {
+   "label": "Total Cost",
+   "sources": [
+    "26.070"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.082": {
+   "label": "As Is Overall Condition Rating",
+   "sources": [
+    "26.071"
+   ],
+   "section": 26,
+   "origin": "Reconciliation - Defects, Damages, Deficiencies"
+  },
+  "1.083": {
+   "label": "Total Estimated Cost of Items Recommended for Repair",
+   "sources": [
+    "26.072"
+   ],
+   "section": 26,
+   "origin": "n - Defects, Damages, Deficiencies"
+  }
+ }
+}

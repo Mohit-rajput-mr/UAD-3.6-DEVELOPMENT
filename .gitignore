@@ -1,0 +1,30 @@
+# The whole working folder is versioned here, by the owner's instruction
+# (2026-09-20): the repository is the folder, so a coworker or another agent
+# clones it and has everything -- the engine, the published specifications, the
+# working notes and the live case material.
+#
+# The repository is PRIVATE and must stay private.  It carries real assignments:
+# borrower and owner names, property addresses, loan and order numbers, an
+# appraiser's licence number and signature images.  Making it public would
+# publish all of that.
+#
+# Only machine-generated junk is excluded below -- nothing that carries work.
+
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+*.db-shm
+*.db-wal
+.DS_Store
+Thumbs.db
+
+# a la mode's own form bundle, cached by total-bridge/tools/form_model.py and by
+# investigations: it is their code, not ours -- only the tables we extract from
+# it are kept (knowledge/total/builds/).
+total-bridge/tools/.cache/
+_work/woodycrest/total_index.js

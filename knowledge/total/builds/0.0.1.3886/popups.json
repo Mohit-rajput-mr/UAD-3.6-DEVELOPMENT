@@ -1,0 +1,2114 @@
+[
+ {
+  "key": "_de8b103e-e235-4037-889b-db780ae2d32d",
+  "triggers": [
+   "ASSIGN_BORROWER#0"
+  ],
+  "fields": [
+   "BORROWER_TYPE",
+   "BORROWER_FIRST_NAME",
+   "BORROWER_MIDDLE_NAME",
+   "BORROWER_LAST_NAME",
+   "BORROWER_SUFFIX_NAME",
+   "BORROWER_FULL_NAME",
+   "BORROWER_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_f5664b49-5bc3-40d8-ae79-ec4385d5543d",
+  "triggers": [
+   "ASSIGN_SELLER#0"
+  ],
+  "fields": [
+   "SELLER_TYPE",
+   "SELLER_FIRST_NAME",
+   "SELLER_MIDDLE_NAME",
+   "SELLER_LAST_NAME",
+   "SELLER_SUFFIX_NAME",
+   "SELLER_FULL_NAME",
+   "SELLER_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_82deea89-ce61-4c36-9be7-7755b3d8be19",
+  "triggers": [
+   "SUBCUROWNER#0"
+  ],
+  "fields": [
+   "SUBCUROWNER_SAMEAS_BORROWER_YES",
+   "SUBCUROWNER_SAMEAS_SELLER_YES",
+   "SUBCUROWNER_TYPE",
+   "SUBCUROWNER_FIRST_NAME",
+   "SUBCUROWNER_MIDDLE_NAME",
+   "SUBCUROWNER_LAST_NAME",
+   "SUBCUROWNER_SUFFIX_NAME",
+   "SUBCUROWNER_FULL_NAME",
+   "SUBCUROWNER_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_c84b9e66-24fe-43d6-b7b8-75507ebfb237",
+  "triggers": [
+   "CONTACT_ADDR#0"
+  ],
+  "fields": [
+   "CONTACT_ADDRESS",
+   "CONTACT_CITY",
+   "CONTACT_STATE",
+   "CONTACT_ZIP",
+   "CONTACT_TYPE",
+   "CONTACT_PARTY_ROLE"
+  ]
+ },
+ {
+  "key": "_8dfac083-7e2d-462e-8b07-a09fa468953a",
+  "triggers": [
+   "APPRAISER_NAME#0"
+  ],
+  "fields": [
+   "APPRAISER_FIRST_NAME",
+   "APPRAISER_MIDDLE_NAME",
+   "APPRAISER_LAST_NAME",
+   "APPRAISER_SUFFIX_NAME",
+   "APPRAISER_CONTACT_TYPE",
+   "APPRAISER_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_1192a029-78ec-4b3f-9ced-cf5ddb5ce7ed",
+  "triggers": [
+   "APPRAISER_COMPANY_ADDR#0"
+  ],
+  "fields": [
+   "APPRAISER_ADDRESS",
+   "APPRAISER_CITY",
+   "APPRAISER_STATE",
+   "APPRAISER_ZIP",
+   "APPRAISER_CONTACT_TYPE",
+   "APPRAISER_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_b5c3bbd7-4869-4dae-ba53-a1608a40f5fd",
+  "triggers": [
+   "SUPERVISOR_NAME#0"
+  ],
+  "fields": [
+   "SUPERVISOR_FIRST_NAME",
+   "SUPERVISOR_MIDDLE_NAME",
+   "SUPERVISOR_LAST_NAME",
+   "SUPERVISOR_SUFFIX_NAME",
+   "SUPERVISOR_CONTACT_TYPE",
+   "SUPERVISOR_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_3536eb07-ea22-41b3-aac9-20ced8a36592",
+  "triggers": [
+   "SUPERVISOR_COMPANY_ADDR#0"
+  ],
+  "fields": [
+   "SUPERVISOR_ADDRESS",
+   "SUPERVISOR_CITY",
+   "SUPERVISOR_STATE",
+   "SUPERVISOR_ZIP",
+   "SUPERVISOR_CONTACT_TYPE",
+   "SUPERVISOR_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_c5410a61-2148-4c6c-b6ca-ab5f1462c701",
+  "triggers": [
+   "SRPA_NAME#0"
+  ],
+  "fields": [
+   "SRPA_FIRST_NAME",
+   "SRPA_MIDDLE_NAME",
+   "SRPA_LAST_NAME",
+   "SRPA_SUFFIX_NAME",
+   "SRPA_CONTACT_TYPE",
+   "SRPA_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_3dfb0722-4043-43ad-b66a-0480c3f81ac9",
+  "triggers": [
+   "PDR_NAME#0"
+  ],
+  "fields": [
+   "PDR_FIRST_NAME",
+   "PDR_MIDDLE_NAME",
+   "PDR_LAST_NAME",
+   "PDR_SUFFIX_NAME",
+   "PDR_CONTACT_TYPE",
+   "PDR_PARTY_ROLE_TYPE"
+  ]
+ },
+ {
+  "key": "_0d202826-62a4-4005-bf81-ea76b184e2c6",
+  "triggers": [
+   "PDR_ADDR#0"
+  ],
+  "fields": [
+   "PDR_ADDRESS",
+   "PDR_CITY",
+   "PDR_STATE",
+   "PDR_ZIP"
+  ]
+ },
+ {
+  "key": "_fb07ceea-dc84-489a-8433-89c077cdc7bf",
+  "triggers": [
+   "SUBPROPADDRESS_FULL#0"
+  ],
+  "fields": [
+   "SUBPROPADDRESS",
+   "SUBUNITNO",
+   "SUBCITY",
+   "SUBSTATE",
+   "SUBZIP"
+  ]
+ },
+ {
+  "key": "_7ee0f7ad-d68f-447c-8533-e192990ff990",
+  "triggers": [
+   "ALT_SUBPROPADDRESS#0"
+  ],
+  "fields": [
+   "PU_ALT_SUBPROPADDRESS",
+   "PU_ALT_SUBUNITNO",
+   "PU_ALT_SUBCITY",
+   "PU_ALT_SUBSTATE",
+   "PU_ALT_SUBZIP"
+  ]
+ },
+ {
+  "key": "_b1f63f14-2a2c-43f3-ae79-7c1ab50f1db9",
+  "triggers": [
+   "APN#0",
+   "APN_DESC#0"
+  ],
+  "fields": [
+   "PU_APN",
+   "PU_ALT_APN",
+   "PU_APN_DESC",
+   "LABEL_PU_SOURCE_APN",
+   "PU_SOURCE_APN"
+  ]
+ },
+ {
+  "key": "_53b2066b-0a49-4a76-b35d-561c18626e9d",
+  "triggers": [
+   "SIT_STREET_TYPE_SURFACE#0"
+  ],
+  "fields": [
+   "PU_STREET_TYPE",
+   "PU_SURFACE_TYPE"
+  ]
+ },
+ {
+  "key": "_2f4e19db-a25c-4f6d-ba3a-cfb4174f821f",
+  "triggers": [
+   "ALIAS_SIT_INFL_PROX_ENV_COND#0"
+  ],
+  "fields": [
+   "PU_SITE_INFL_PROXIMITY",
+   "PU_SITE_INFL_DISTANCE",
+   "PU_SITE_INFL_FEET",
+   "PU_SITE_INFL_MILES",
+   "PU_SITE_INFL_KILOMETERS"
+  ]
+ },
+ {
+  "key": "_507c8c8d-6add-4a85-90c2-77d451e8f0c0",
+  "triggers": [
+   "ALIAS_SIT_INFL_DTL_WATER#0"
+  ],
+  "fields": [
+   "PU_SITE_INFL_WTR_DTL_TYPE",
+   "PU_SITE_INFL_WTR_DTL_PRIV_ACCESS"
+  ]
+ },
+ {
+  "key": "_26902314-8f8b-4d8c-afd6-ea4b1818825e",
+  "triggers": [
+   "SIT_FEAT_ENCROACH_DTL#0"
+  ],
+  "fields": [
+   "PU_SITE_FEAT_ENCROACH",
+   "PU_SITE_FEAT_ENCROACH_BRD_ON_SUB",
+   "PU_SITE_FEAT_ENCROACH_SUB_ON_BRD"
+  ]
+ },
+ {
+  "key": "_dc5ae7a2-1379-4c25-9fa2-0baa4048d031",
+  "triggers": [
+   "SIT_FEAT_SITCHAR_DTL#0"
+  ],
+  "fields": [
+   "PU_SITE_FEAT_SITCHAR",
+   "PU_SITE_FEAT_SITCHAR_TOP_TYPE",
+   "PU_SITE_FEAT_SITCHAR_DRAIN_RSN"
+  ]
+ },
+ {
+  "key": "_fc33f2b1-aa78-475f-9389-351fc6691660",
+  "triggers": [
+   "SIT_UTLIMP_ELEC_DTL#0",
+   "SIT_UTLIMP_ELEC_CMT#0"
+  ],
+  "fields": [
+   "PU_SIT_UTLIMP_ELEC_DTL",
+   "PU_SIT_UTLIMP_ELEC_DTL_OTHER_SHARED",
+   "PU_SIT_UTLIMP_ELEC_CMT_PUB",
+   "PU_SIT_UTLIMP_ELEC_CMT_PRIV"
+  ]
+ },
+ {
+  "key": "_8220e8d0-3ccf-4f7f-b4f4-6d3d98c5116c",
+  "triggers": [
+   "SIT_UTLIMP_GAS_DTL#0",
+   "SIT_UTLIMP_GAS_CMT#0"
+  ],
+  "fields": [
+   "PU_SIT_UTLIMP_GAS_DTL",
+   "PU_SIT_UTLIMP_GAS_DTL_SHARED",
+   "PU_SIT_UTLIMP_GAS_CMT_PUB",
+   "PU_SIT_UTLIMP_GAS_CMT_PRIV"
+  ]
+ },
+ {
+  "key": "_4481e83a-6f9b-4717-b0e7-6df9723bd9aa",
+  "triggers": [
+   "SIT_UTLIMP_SNTSWR_DTL#0",
+   "SIT_UTLIMP_SNTSWR_CMT#0"
+  ],
+  "fields": [
+   "PU_SIT_UTLIMP_SNTSWR_DTL",
+   "PU_SIT_UTLIMP_SNTSWR_DTL_OTHER_SHARED",
+   "PU_SIT_UTLIMP_SNTSWR_PUB_AVAIL_YES",
+   "PU_SIT_UTLIMP_SNTSWR_PUB_AVAIL_NO",
+   "PU_SIT_UTLIMP_SNTSWR_CMT_PUB",
+   "PU_SIT_UTLIMP_SNTSWR_CMT_PRIV"
+  ]
+ },
+ {
+  "key": "_e5394990-f16b-476a-a263-bbf7994b811d",
+  "triggers": [
+   "SIT_UTLIMP_WTR_DTL#0",
+   "SIT_UTLIMP_WTR_CMT#0"
+  ],
+  "fields": [
+   "PU_SIT_UTLIMP_WTR_DTL",
+   "PU_SIT_UTLIMP_WTR_WELL",
+   "PU_SIT_UTLIMP_WTR_DTL_OTHER_SHARED",
+   "PU_SIT_UTLIMP_WTR_WELL_MEETS_REQS_YES",
+   "PU_SIT_UTLIMP_WTR_WELL_MEETS_REQS_NO",
+   "PU_SIT_UTLIMP_WTR_PUB_AVAIL_YES",
+   "PU_SIT_UTLIMP_WTR_PUB_AVAIL_NO",
+   "PU_SIT_UTLIMP_WTR_CMT_PUB",
+   "PU_SIT_UTLIMP_WTR_CMT_PRIV"
+  ]
+ },
+ {
+  "key": "_daa9894c-7f95-49fd-ae5a-649a592993b5",
+  "triggers": [
+   "EXT_SIT_UTIL_DTL#0",
+   "EXT_SIT_UTIL_CMT#0"
+  ],
+  "fields": [
+   "PU_EXT_SIT_UTIL_DTL",
+   "PU_EXT_SIT_UTIL_DTL_SHARED",
+   "PU_EXT_SIT_UTIL_CMT_PUB",
+   "PU_EXT_SIT_UTIL_CMT_PRIV"
+  ]
+ },
+ {
+  "key": "_e3162a1e-e9f4-471b-823d-753a3dc2a099",
+  "triggers": [
+   "SIT_VM_ADDR#0"
+  ],
+  "fields": [
+   "SIT_VM_ADDR_ADDR",
+   "SIT_VM_ADDR_UNITNO",
+   "SIT_VM_ADDR_CITY",
+   "SIT_VM_ADDR_STATE",
+   "SIT_VM_ADDR_ZIP"
+  ]
+ },
+ {
+  "key": "_7be16501-0065-44f2-9a9d-8e9ab630bdf3",
+  "triggers": [
+   "SIT_VM_DATA_SOURCE#0"
+  ],
+  "fields": [
+   "PU_SIT_VM_DATA_SOURCE",
+   "PU_SIT_VM_DATA_SOURCE_RECORD_NUM",
+   "PU_SIT_VM_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_b65ca1a0-298e-4546-b361-d8c56502f760",
+  "triggers": [
+   "EE_RENEWABLES#0",
+   "EE_OWNERSHIP#0",
+   "EE_FINANCING#0"
+  ],
+  "fields": [
+   "PU_EE_RENEWABLE_TYPE",
+   "PU_EE_OWNER_TYPE",
+   "PU_EE_FINANCING_ARRANGEMENT_YES",
+   "PU_EE_FINANCING_ARRANGEMENT_NO"
+  ]
+ },
+ {
+  "key": "_9ae35be7-376d-49e7-ba53-e6a8ab7b89c1",
+  "triggers": [
+   "DE1_PJIYRBUILT#0"
+  ],
+  "fields": [
+   "DE1_PUIYRBUILT",
+   "DE1_PUIYRBUILT_ESTIMATED"
+  ]
+ },
+ {
+  "key": "_84b49ed8-23f0-49f9-9e66-cf95ff86e0f8",
+  "triggers": [
+   "DE1_CONVERTED_AREA_REST_OF_LIVING_AREA#0"
+  ],
+  "fields": [
+   "DE1_PU_CONVERTED_AREA_REST_OF_LIVING_AREA",
+   "DE1_PU_CONVERTED_AREA_REST_OF_LIVING_AREA_SIMILARITY"
+  ]
+ },
+ {
+  "key": "_e7af76f2-b690-4839-b2c3-a96d813f5e45",
+  "triggers": [
+   "DE1_EFFECTIVE_AGE#0"
+  ],
+  "fields": [
+   "DE1_EFFECTIVE_AGE_RANGE_ENABLE",
+   "DE1_EFFECTIVE_AGE_PRECISE_ENABLE",
+   "DE1_EFFECTIVE_AGE_RANGE_LOW",
+   "DE1_EFFECTIVE_AGE_RANGE_HIGH",
+   "DE1_EFFECTIVE_AGE_PRECISE"
+  ]
+ },
+ {
+  "key": "_35ad36e0-1f96-43f1-b291-94a56c58a3d2",
+  "triggers": [
+   "DE1_EXT_FOUNDATION_DETAIL#0"
+  ],
+  "fields": [
+   "DE1_EXT_FOUNDATION_MATERIAL_DETAIL",
+   "DE1_EXT_FOUNDATION_TYPE_DETAIL"
+  ]
+ },
+ {
+  "key": "_6fb8627c-daa1-4918-b923-2eb898d99b57",
+  "triggers": [
+   "DE1_EXTRFSURFACE#0"
+  ],
+  "fields": [
+   "DE1_EXTRFSURFACE_OBSERVABLE",
+   "DE1_EXTRFSURFACE_TYPE",
+   "DE1_EXTRFSURFACE_AGE"
+  ]
+ },
+ {
+  "key": "_9bfd96e5-b38a-4f20-b4d1-dfec22227a3e",
+  "triggers": [
+   "UI1_INTFEAT_DETAIL_WALLS_CEILING#0",
+   "UI1_INTFEAT_QUAL_COMMENT_WALLS_CEILING#0",
+   "UI1_INTFEAT_QUAL_STATUS_WALLS_CEILING#0",
+   "UI1_INTFEAT_COND_COMMENT_WALLS_CEILING#0"
+  ],
+  "fields": [
+   "UI1_PU_INTFEAT_DETAIL_WALLS_CEILING_STYLE_TYPE",
+   "UI1_PU_INTFEAT_DETAIL_WALLS_CEILING_HEIGHT",
+   "UI1_PU_INTFEAT_QUAL_COMMENT_WALLS_CEILING",
+   "UI1_PU_INTFEAT_QUAL_STATUS_WALLS_CEILING",
+   "UI1_PU_INTFEAT_COND_COMMENT_WALLS_CEILING"
+  ]
+ },
+ {
+  "key": "_3ff00e40-b403-4fd8-b726-435aaaa6cd37",
+  "triggers": [
+   "VS_CAR_STORAGE#0",
+   "VS_NUM_PARK_SPACES#0",
+   "VS_STORAGE_DETAIL#0"
+  ],
+  "fields": [
+   "VS_PU_CAR_STORAGE_TYPE",
+   "VS_PU_STORAGE_NUMBER_SPACES",
+   "VS_PU_STORAGE_NUMBER_SPACES_NUM",
+   "VS_PU_PARKING_SPACE_ASSIGNMENT",
+   "VS_PU_STORAGE_TYPE_DETAIL",
+   "VS_PU_STORAGE_SPACE_SQUARE_FEET",
+   "VS_PU_DRIVEWAY_SURFACE_MATERIAL"
+  ]
+ },
+ {
+  "key": "_d68b2fb3-1977-4df5-8709-81bca7826484",
+  "triggers": [
+   "SPA_AMENITY_CATEGORY#0",
+   "SPA_AMENITY#0",
+   "SPA_AMENITY_MATERIAL#0",
+   "SPA_AMENITY_DETAIL#0"
+  ],
+  "fields": [
+   "PU_SPA_AMENITY_TYPE",
+   "PU_SPA_AMENITY_CATEGORY",
+   "PU_SPA_AMENITY_MATERIAL_LABEL",
+   "PU_SPA_AMENITY_MATERIAL",
+   "PU_SPA_AMENITY_TOTALNUM",
+   "PU_SPA_AMENITY_DETAIL_FEATURE",
+   "PU_SPA_AMENITY_DETAIL_AREA",
+   "PU_SPA_AMENITY_DETAIL_AREA_UNIT",
+   "PU_SPA_AMENITY_DETAIL_ATTACHED_MH"
+  ]
+ },
+ {
+  "key": "_2fae3d0e-49fb-43f7-871b-b072d698b177",
+  "triggers": [
+   "PI_UNITS_RENTED#0"
+  ],
+  "fields": [
+   "PU_UNITS_RENTED",
+   "PU_UNITS_RENTED_ESTIMATED"
+  ]
+ },
+ {
+  "key": "_07bc0702-ca6d-4ee7-a685-4c7bdc55a7ff",
+  "triggers": [
+   "PI_MONTHLY_AMOUNT#0"
+  ],
+  "fields": [
+   "PU_ASSOCIATION_CHARGE_TYPE_AD",
+   "PU_MONTHLY_AMOUNT"
+  ]
+ },
+ {
+  "key": "_dd321478-34eb-412c-ba14-55c12793817d",
+  "triggers": [
+   "PI_AMENITIES_SERVICES_INCLUDED#0"
+  ],
+  "fields": [
+   "PU_AMENITIES_SERVICES_INCLUDED",
+   "PU_AMENITIES_SERVICES_INCLUDED_BSAO",
+   "PU_AMENITIES_SERVICES_INCLUDED_USAO"
+  ]
+ },
+ {
+  "key": "_9159b0eb-95cb-4cb1-a7cc-208969e70456",
+  "triggers": [
+   "PI_LIEN_CREDIT_LINE#0"
+  ],
+  "fields": [
+   "PU_LIEN_CREDIT_LINE_MAX_AMNT",
+   "PU_LIEN_CREDIT_LINE_DRAW_AMNT"
+  ]
+ },
+ {
+  "key": "_c1b69936-069e-4b54-b6dd-7c5e918d9165",
+  "triggers": [
+   "PI_LIEN_MONTHLY_PMT#0"
+  ],
+  "fields": [
+   "PU_LIEN_MONTHLY_PMT_KNWN",
+   "PU_LIEN_MONTHLY_PMT_AMNT"
+  ]
+ },
+ {
+  "key": "_528a3a60-dbfc-454a-bb54-c87fd7e84620",
+  "triggers": [
+   "PI_LIEN_INTEREST_RATE#0"
+  ],
+  "fields": [
+   "PU_LIEN_INTEREST_RATE_KNWN",
+   "PU_LIEN_INTEREST_RATE"
+  ]
+ },
+ {
+  "key": "_9a271231-1179-49d1-90cf-a832b518d90c",
+  "triggers": [
+   "PI_COMMERCIAL_SPACE_DETAIL#0"
+  ],
+  "fields": [
+   "PU_COMMERCIAL_SPACE_DETAIL",
+   "PU_COMMERCIAL_SPACE_PERCENTAGE"
+  ]
+ },
+ {
+  "key": "_5de67ce1-93d8-4fd0-8daa-12d538b34881",
+  "triggers": [
+   "PI_UNIT_TRANSFER_FEES_DETAIL#0"
+  ],
+  "fields": [
+   "PU_UNIT_TRANSFER_FEES_DETAIL",
+   "PU_UNIT_TRANSFER_FEES_AMNT"
+  ]
+ },
+ {
+  "key": "_00105506-9a71-459b-8dd5-b2085ffeff02",
+  "triggers": [
+   "PI_UNIT_SPECIAL_ASSESSMENTS_DETAIL#0"
+  ],
+  "fields": [
+   "PU_UNIT_SPECIAL_ASSESSMENTS_DETAIL",
+   "PU_UNIT_SPECIAL_ASSESSMENTS_AMNT"
+  ]
+ },
+ {
+  "key": "_be336229-cd40-495f-a564-5fd0877e78ff",
+  "triggers": [
+   "PI_UNIT_TAX_DETAIL#0"
+  ],
+  "fields": [
+   "PU_UNIT_TAX_DETAIL",
+   "PU_UNIT_TAX_AMOUNT",
+   "PU_UNIT_TAX_EXPIRATION"
+  ]
+ },
+ {
+  "key": "_b29e7cd8-2d86-4b6a-aedd-c28df8d012bd",
+  "triggers": [
+   "GC1_AD_ADDR#0"
+  ],
+  "fields": [
+   "GC1_AD_ADDR1",
+   "GC1_DB_UNITNO",
+   "GC1_DB_CITY",
+   "GC1_DB_STATE",
+   "GC1_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_48fa9dce-d499-41d4-ae5d-bbc209df4c82",
+  "triggers": [
+   "GC2_AD_ADDR#0"
+  ],
+  "fields": [
+   "GC2_AD_ADDR1",
+   "GC2_DB_UNITNO",
+   "GC2_DB_CITY",
+   "GC2_DB_STATE",
+   "GC2_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_8ba9835d-38ef-4cd2-bc63-fe760df4bab4",
+  "triggers": [
+   "GC3_AD_ADDR#0"
+  ],
+  "fields": [
+   "GC3_AD_ADDR1",
+   "GC3_DB_UNITNO",
+   "GC3_DB_CITY",
+   "GC3_DB_STATE",
+   "GC3_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_01242d70-a2df-4cd1-a986-a6293d685571",
+  "triggers": [
+   "GC1_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "GC1_PU_DATA_SOURCE",
+   "GC1_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GC1_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_9b4e3837-e7d9-455d-9f47-6c544d2c689b",
+  "triggers": [
+   "GC2_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "GC2_PU_DATA_SOURCE",
+   "GC2_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GC2_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_737c8228-e737-453c-bb35-805d28922b9b",
+  "triggers": [
+   "GC3_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "GC3_PU_DATA_SOURCE",
+   "GC3_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GC3_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_01a26cbd-1f80-4f03-95b9-590b598c715c",
+  "triggers": [
+   "GC1_PROX1#0"
+  ],
+  "fields": [
+   "GC1_PU_DISTANCE",
+   "GC1_PU_MILES",
+   "GC1_PU_KILOMETERS",
+   "GC1_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_faa30be3-2c8f-4e0b-8434-da2b0a6019a2",
+  "triggers": [
+   "GC2_PROX1#0"
+  ],
+  "fields": [
+   "GC2_PU_DISTANCE",
+   "GC2_PU_MILES",
+   "GC2_PU_KILOMETERS",
+   "GC2_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_7b029558-8194-4b1d-8d51-9eaecb220642",
+  "triggers": [
+   "GC3_PROX1#0"
+  ],
+  "fields": [
+   "GC3_PU_DISTANCE",
+   "GC3_PU_MILES",
+   "GC3_PU_KILOMETERS",
+   "GC3_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_2cfaf46e-4b84-43cf-94f0-128236a4e09d",
+  "triggers": [
+   "GC1_CONT_PRICE#0"
+  ],
+  "fields": [
+   "GC1_PU_CONT_PRICE_KNOWN",
+   "GC1_PU_CONT_PRICE"
+  ]
+ },
+ {
+  "key": "_eb271d22-951f-4318-a69c-e7f2689783ad",
+  "triggers": [
+   "GC2_CONT_PRICE#0"
+  ],
+  "fields": [
+   "GC2_PU_CONT_PRICE_KNOWN",
+   "GC2_PU_CONT_PRICE"
+  ]
+ },
+ {
+  "key": "_74fb55e9-1b3c-4786-a8c8-625d7de2b7aa",
+  "triggers": [
+   "GC3_CONT_PRICE#0"
+  ],
+  "fields": [
+   "GC3_PU_CONT_PRICE_KNOWN",
+   "GC3_PU_CONT_PRICE"
+  ]
+ },
+ {
+  "key": "_7643412e-2a64-4f81-adb6-d79031016ede",
+  "triggers": [
+   "GC1_EX_CONCAMT#0"
+  ],
+  "fields": [
+   "GC1_PU_CONC_PRESENT",
+   "GC1_PU_CONC_AMOUNT"
+  ]
+ },
+ {
+  "key": "_0939495f-9d80-4615-bc75-2406561e7d59",
+  "triggers": [
+   "GC2_EX_CONCAMT#0"
+  ],
+  "fields": [
+   "GC2_PU_CONC_PRESENT",
+   "GC2_PU_CONC_AMOUNT"
+  ]
+ },
+ {
+  "key": "_ea6319c7-b828-4d30-9ba2-05bf7127b9f9",
+  "triggers": [
+   "GC3_EX_CONCAMT#0"
+  ],
+  "fields": [
+   "GC3_PU_CONC_PRESENT",
+   "GC3_PU_CONC_AMOUNT"
+  ]
+ },
+ {
+  "key": "_35ea8913-b9b4-4895-8ad2-52599f3d0f79",
+  "triggers": [
+   "GC1_CONT_DATE#0"
+  ],
+  "fields": [
+   "GC1_PU_CONT_DATE_KNOWN",
+   "GC1_PU_CONT_DATE"
+  ]
+ },
+ {
+  "key": "_cfe4088f-1c32-457a-a0b1-c23863d10156",
+  "triggers": [
+   "GC2_CONT_DATE#0"
+  ],
+  "fields": [
+   "GC2_PU_CONT_DATE_KNOWN",
+   "GC2_PU_CONT_DATE"
+  ]
+ },
+ {
+  "key": "_c212622d-9764-496a-b610-1d29882e4580",
+  "triggers": [
+   "GC3_CONT_DATE#0"
+  ],
+  "fields": [
+   "GC3_PU_CONT_DATE_KNOWN",
+   "GC3_PU_CONT_DATE"
+  ]
+ },
+ {
+  "key": "_347491d3-90c1-4e09-aba3-ab806b75f616",
+  "triggers": [
+   "GC1_NATIVE_AM_LANDS#0"
+  ],
+  "fields": [
+   "GC1_PU_NATIVE_AM_LANDS_YES",
+   "GC1_PU_NATIVE_AM_LANDS_NO",
+   "GC1_PU_NATIVE_AM_LANDS_TYPE"
+  ]
+ },
+ {
+  "key": "_d9883375-a672-411c-95ff-11284edb36e9",
+  "triggers": [
+   "GC2_NATIVE_AM_LANDS#0"
+  ],
+  "fields": [
+   "GC2_PU_NATIVE_AM_LANDS_YES",
+   "GC2_PU_NATIVE_AM_LANDS_NO",
+   "GC2_PU_NATIVE_AM_LANDS_TYPE"
+  ]
+ },
+ {
+  "key": "_82bd79a1-a7cb-4543-8ac1-d65ccfc4fee1",
+  "triggers": [
+   "GC3_NATIVE_AM_LANDS#0"
+  ],
+  "fields": [
+   "GC3_PU_NATIVE_AM_LANDS_YES",
+   "GC3_PU_NATIVE_AM_LANDS_NO",
+   "GC3_PU_NATIVE_AM_LANDS_TYPE"
+  ]
+ },
+ {
+  "key": "_82a2136a-d205-48bc-b1d3-2b853e7930da",
+  "triggers": [
+   "GC1_PROJ_NAME#0"
+  ],
+  "fields": [
+   "GC1_PU_PROJECT_NAME",
+   "GC1_PU_SAME_PROJECT_AS_SUBJECT"
+  ]
+ },
+ {
+  "key": "_48b8c1b0-38e8-4893-b9bb-a1c1ca3be128",
+  "triggers": [
+   "GC2_PROJ_NAME#0"
+  ],
+  "fields": [
+   "GC2_PU_PROJECT_NAME",
+   "GC2_PU_SAME_PROJECT_AS_SUBJECT"
+  ]
+ },
+ {
+  "key": "_ab28551a-94ad-42a6-8e6a-ed8138efc5d7",
+  "triggers": [
+   "GC3_PROJ_NAME#0"
+  ],
+  "fields": [
+   "GC3_PU_PROJECT_NAME",
+   "GC3_PU_SAME_PROJECT_AS_SUBJECT"
+  ]
+ },
+ {
+  "key": "_52a910e8-5a15-428b-b34a-dff03f3f2e2d",
+  "triggers": [
+   "GC1_SITE_STREET_TYPE#0"
+  ],
+  "fields": [
+   "GC1_PU_SITE_STREET_TYPE",
+   "GC1_PU_SITE_STREET_SURFACE"
+  ]
+ },
+ {
+  "key": "_be647f75-100b-4e22-85e0-8bf811164951",
+  "triggers": [
+   "GC2_SITE_STREET_TYPE#0"
+  ],
+  "fields": [
+   "GC2_PU_SITE_STREET_TYPE",
+   "GC2_PU_SITE_STREET_SURFACE"
+  ]
+ },
+ {
+  "key": "_358d9464-49d7-4c00-9786-87934d7ee017",
+  "triggers": [
+   "GC3_SITE_STREET_TYPE#0"
+  ],
+  "fields": [
+   "GC3_PU_SITE_STREET_TYPE",
+   "GC3_PU_SITE_STREET_SURFACE"
+  ]
+ },
+ {
+  "key": "_4f84e91c-dfa1-46de-89b3-8478b73d9b9d",
+  "triggers": [
+   "GC1_SITE_INFLUENCE#0"
+  ],
+  "fields": [
+   "GC1_PU_SITE_INFLUENCE",
+   "GC1_PU_SITE_INFLUENCE_WATER_TYPE",
+   "GC1_PU_SITE_INFLUENCE_PRIVATE_ACCESS"
+  ]
+ },
+ {
+  "key": "_1a05d0db-23bc-4cc7-beec-da42d7e4878d",
+  "triggers": [
+   "GC2_SITE_INFLUENCE#0"
+  ],
+  "fields": [
+   "GC2_PU_SITE_INFLUENCE",
+   "GC2_PU_SITE_INFLUENCE_WATER_TYPE",
+   "GC2_PU_SITE_INFLUENCE_PRIVATE_ACCESS"
+  ]
+ },
+ {
+  "key": "_109ea8d3-a7a5-4ccd-abfb-7065694cd4e1",
+  "triggers": [
+   "GC3_SITE_INFLUENCE#0"
+  ],
+  "fields": [
+   "GC3_PU_SITE_INFLUENCE",
+   "GC3_PU_SITE_INFLUENCE_WATER_TYPE",
+   "GC3_PU_SITE_INFLUENCE_PRIVATE_ACCESS"
+  ]
+ },
+ {
+  "key": "_307e2334-2953-4635-93b9-d93315856c95",
+  "triggers": [
+   "GC1_ST_VIEW#0"
+  ],
+  "fields": [
+   "GC1_PU_ST_VIEW",
+   "GC1_PU_ST_RANGE"
+  ]
+ },
+ {
+  "key": "_c7772338-cf8f-42b4-a896-be6db74b1830",
+  "triggers": [
+   "GC2_ST_VIEW#0"
+  ],
+  "fields": [
+   "GC2_PU_ST_VIEW",
+   "GC2_PU_ST_RANGE"
+  ]
+ },
+ {
+  "key": "_5d7052ae-8a02-4104-9fa2-88093bbce662",
+  "triggers": [
+   "GC3_ST_VIEW#0"
+  ],
+  "fields": [
+   "GC3_PU_ST_VIEW",
+   "GC3_PU_ST_RANGE"
+  ]
+ },
+ {
+  "key": "_6a14d915-1093-46f2-adec-e807efbd676f",
+  "triggers": [
+   "GC1_WATER_FRONTAGE#0"
+  ],
+  "fields": [
+   "GC1_PU_WATER_FRONTAGE_TYPE",
+   "GC1_PU_WATER_FRONTAGE_NAME",
+   "GC1_PU_WATER_FRONTAGE_ACCESS_DEPTH"
+  ]
+ },
+ {
+  "key": "_b73e0b0d-0273-4a91-9a1a-ae44629a2314",
+  "triggers": [
+   "GC2_WATER_FRONTAGE#0"
+  ],
+  "fields": [
+   "GC2_PU_WATER_FRONTAGE_TYPE",
+   "GC2_PU_WATER_FRONTAGE_NAME",
+   "GC2_PU_WATER_FRONTAGE_ACCESS_DEPTH"
+  ]
+ },
+ {
+  "key": "_c85974bc-b884-405b-8230-51ba269443b8",
+  "triggers": [
+   "GC3_WATER_FRONTAGE#0"
+  ],
+  "fields": [
+   "GC3_PU_WATER_FRONTAGE_TYPE",
+   "GC3_PU_WATER_FRONTAGE_NAME",
+   "GC3_PU_WATER_FRONTAGE_ACCESS_DEPTH"
+  ]
+ },
+ {
+  "key": "_db45c6fc-9109-4942-8a6a-2feed0d2d13d",
+  "triggers": [
+   "GC1_YR_BLT#0"
+  ],
+  "fields": [
+   "GC1_PU_YR_BLT",
+   "GC1_PU_YR_BLT_EST"
+  ]
+ },
+ {
+  "key": "_19b771fc-f286-4d70-a0d8-3ddc3a1db140",
+  "triggers": [
+   "GC2_YR_BLT#0"
+  ],
+  "fields": [
+   "GC2_PU_YR_BLT",
+   "GC2_PU_YR_BLT_EST"
+  ]
+ },
+ {
+  "key": "_34ff4253-2701-403c-9400-ff176ddd400b",
+  "triggers": [
+   "GC3_YR_BLT#0"
+  ],
+  "fields": [
+   "GC3_PU_YR_BLT",
+   "GC3_PU_YR_BLT_EST"
+  ]
+ },
+ {
+  "key": "_5e152000-4f2d-4348-a43e-07d757230ad8",
+  "triggers": [
+   "GC1_DWELL_DESIGN#0"
+  ],
+  "fields": [
+   "GC1_PU_STRUCTURE_DESIGN"
+  ]
+ },
+ {
+  "key": "_f8037bc6-2819-428c-849a-1015e53cbaf0",
+  "triggers": [
+   "GC2_DWELL_DESIGN#0"
+  ],
+  "fields": [
+   "GC2_PU_STRUCTURE_DESIGN"
+  ]
+ },
+ {
+  "key": "_108b5595-a926-408d-bbd3-e4e36b418298",
+  "triggers": [
+   "GC3_DWELL_DESIGN#0"
+  ],
+  "fields": [
+   "GC3_PU_STRUCTURE_DESIGN"
+  ]
+ },
+ {
+  "key": "_e459f5ee-f3df-4b51-9af8-efc1fd02741f",
+  "triggers": [
+   "GC1_DWELL_TH_ENDUNIT#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_TH_ENDUNIT"
+  ]
+ },
+ {
+  "key": "_5c191037-a7d3-42b7-90f3-90d48a864340",
+  "triggers": [
+   "GC2_DWELL_TH_ENDUNIT#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_TH_ENDUNIT"
+  ]
+ },
+ {
+  "key": "_fb94281e-5894-485e-8c5a-73bbbf292654",
+  "triggers": [
+   "GC3_DWELL_TH_ENDUNIT#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_TH_ENDUNIT"
+  ]
+ },
+ {
+  "key": "_205dd5d6-f794-4f55-8082-da4a297f2e09",
+  "triggers": [
+   "GC1_DWELL_TH_BACKTOBACK#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_TH_BACKTOBACK"
+  ]
+ },
+ {
+  "key": "_7cb9bcc3-53ce-4b9a-b1d0-701341a198b7",
+  "triggers": [
+   "GC2_DWELL_TH_BACKTOBACK#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_TH_BACKTOBACK"
+  ]
+ },
+ {
+  "key": "_8174391b-fc05-48f0-97e0-91919040dafb",
+  "triggers": [
+   "GC3_DWELL_TH_BACKTOBACK#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_TH_BACKTOBACK"
+  ]
+ },
+ {
+  "key": "_cde3966c-adb0-498d-99dc-6dface71c0ed",
+  "triggers": [
+   "GC1_DWELL_TH_LOC#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_TH_LOC"
+  ]
+ },
+ {
+  "key": "_9a9a1336-270a-4b01-b752-936d157daf64",
+  "triggers": [
+   "GC2_DWELL_TH_LOC#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_TH_LOC"
+  ]
+ },
+ {
+  "key": "_4514fcbc-fbfe-4130-ac4f-4a8bff0433bf",
+  "triggers": [
+   "GC3_DWELL_TH_LOC#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_TH_LOC"
+  ]
+ },
+ {
+  "key": "_0633f710-1b34-4c1f-8aa9-d48838e669cf",
+  "triggers": [
+   "GC1_DWELL_CONST_METHOD#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_CONST_METHOD"
+  ]
+ },
+ {
+  "key": "_0985a74f-9fd0-4a07-bb2f-03b77b0d6b28",
+  "triggers": [
+   "GC2_DWELL_CONST_METHOD#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_CONST_METHOD"
+  ]
+ },
+ {
+  "key": "_0bb18de3-bf7e-4774-b83d-2d5b7e9933ba",
+  "triggers": [
+   "GC3_DWELL_CONST_METHOD#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_CONST_METHOD"
+  ]
+ },
+ {
+  "key": "_09ec7435-53ec-4fbd-8613-861daf2a7a3a",
+  "triggers": [
+   "GC1_DWELL_MANFCT_HOME_WIDTH#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_MANFCT_HOME_WIDTH"
+  ]
+ },
+ {
+  "key": "_486c174f-a02b-4ac4-bc86-57c68bcf380f",
+  "triggers": [
+   "GC2_DWELL_MANFCT_HOME_WIDTH#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_MANFCT_HOME_WIDTH"
+  ]
+ },
+ {
+  "key": "_15b60efc-81a2-45ca-86cc-f094afb2382a",
+  "triggers": [
+   "GC3_DWELL_MANFCT_HOME_WIDTH#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_MANFCT_HOME_WIDTH"
+  ]
+ },
+ {
+  "key": "_403d3b41-4c68-470f-9f81-9a53ce9b2c80",
+  "triggers": [
+   "GC1_DWELL_STYLE#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_STYLE"
+  ]
+ },
+ {
+  "key": "_04e52795-be62-4cbe-ac59-e21923db6bd7",
+  "triggers": [
+   "GC2_DWELL_STYLE#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_STYLE"
+  ]
+ },
+ {
+  "key": "_6aaf1aa9-00be-4c12-9ead-753980c9a40a",
+  "triggers": [
+   "GC3_DWELL_STYLE#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_STYLE"
+  ]
+ },
+ {
+  "key": "_21ed62e5-8ebf-4420-9dcc-3cbd71ab3081",
+  "triggers": [
+   "GC1_DWELL_FUNC_ISSUES#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_FUNC_ISSUES"
+  ]
+ },
+ {
+  "key": "_a08482c4-c90e-4374-b46c-0bc01960bf88",
+  "triggers": [
+   "GC2_DWELL_FUNC_ISSUES#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_FUNC_ISSUES"
+  ]
+ },
+ {
+  "key": "_2152b354-6ff1-4d17-8faa-05e9e1add9c8",
+  "triggers": [
+   "GC3_DWELL_FUNC_ISSUES#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_FUNC_ISSUES"
+  ]
+ },
+ {
+  "key": "_9b6e8c0d-f111-4bf8-9933-9591c5e957eb",
+  "triggers": [
+   "GC1_DWELL_DISASTER_MIT#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_DISASTER_MIT"
+  ]
+ },
+ {
+  "key": "_aaa907f6-e15c-4914-9f57-9fccb959b50f",
+  "triggers": [
+   "GC2_DWELL_DISASTER_MIT#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_DISASTER_MIT"
+  ]
+ },
+ {
+  "key": "_82a16eaf-e0bb-49d4-b4e1-eb45390f00af",
+  "triggers": [
+   "GC3_DWELL_DISASTER_MIT#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_DISASTER_MIT"
+  ]
+ },
+ {
+  "key": "_a038835b-75fb-4052-8631-2cc0412b970d",
+  "triggers": [
+   "GC1_DWELL_HEAT#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_HEAT_SYSTEM",
+   "GC1_PU_DWELL_HEAT_DETAIL"
+  ]
+ },
+ {
+  "key": "_56cfd324-944b-4b05-9c5a-ac79519a14b1",
+  "triggers": [
+   "GC2_DWELL_HEAT#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_HEAT_SYSTEM",
+   "GC2_PU_DWELL_HEAT_DETAIL"
+  ]
+ },
+ {
+  "key": "_87a08262-755e-4c3a-b49d-fd6a2d69508e",
+  "triggers": [
+   "GC3_DWELL_HEAT#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_HEAT_SYSTEM",
+   "GC3_PU_DWELL_HEAT_DETAIL"
+  ]
+ },
+ {
+  "key": "_aca0af05-7469-4921-ad2c-9e39f48925b1",
+  "triggers": [
+   "GC1_DWELL_COOL#0"
+  ],
+  "fields": [
+   "GC1_PU_DWELL_COOL"
+  ]
+ },
+ {
+  "key": "_89df4626-653c-4d46-8505-e58eb852fb5a",
+  "triggers": [
+   "GC2_DWELL_COOL#0"
+  ],
+  "fields": [
+   "GC2_PU_DWELL_COOL"
+  ]
+ },
+ {
+  "key": "_1a6bf003-efa7-4371-8e83-5bf7685e4c3b",
+  "triggers": [
+   "GC3_DWELL_COOL#0"
+  ],
+  "fields": [
+   "GC3_PU_DWELL_COOL"
+  ]
+ },
+ {
+  "key": "_de87dc8c-358b-4d49-a25e-46ab079eef9f",
+  "triggers": [
+   "GC1_GREEN_BUILD_CERT#0"
+  ],
+  "fields": [
+   "GC1_PU_GREEN_BUILD_CERT_DESC",
+   "GC1_PU_GREEN_BUILD_CERT_RATE"
+  ]
+ },
+ {
+  "key": "_d9f78172-f29e-4207-8681-78e6ca354a96",
+  "triggers": [
+   "GC2_GREEN_BUILD_CERT#0"
+  ],
+  "fields": [
+   "GC2_PU_GREEN_BUILD_CERT_DESC",
+   "GC2_PU_GREEN_BUILD_CERT_RATE"
+  ]
+ },
+ {
+  "key": "_907ed5f5-35bf-4fe2-ae7b-55363dcc1324",
+  "triggers": [
+   "GC3_GREEN_BUILD_CERT#0"
+  ],
+  "fields": [
+   "GC3_PU_GREEN_BUILD_CERT_DESC",
+   "GC3_PU_GREEN_BUILD_CERT_RATE"
+  ]
+ },
+ {
+  "key": "_10237a92-8d0b-4e9b-86e4-5b4da6d76706",
+  "triggers": [
+   "GC1_GREEN_EFF_RATING#0"
+  ],
+  "fields": [
+   "GC1_PU_GREEN_EFF_RATING",
+   "GC1_PU_GREEN_EFF_SCORE"
+  ]
+ },
+ {
+  "key": "_87955fea-91d5-425e-8236-484e3d2b3f12",
+  "triggers": [
+   "GC2_GREEN_EFF_RATING#0"
+  ],
+  "fields": [
+   "GC2_PU_GREEN_EFF_RATING",
+   "GC2_PU_GREEN_EFF_SCORE"
+  ]
+ },
+ {
+  "key": "_dec0d59c-8de0-4f16-97c2-9570d0db079a",
+  "triggers": [
+   "GC3_GREEN_EFF_RATING#0"
+  ],
+  "fields": [
+   "GC3_PU_GREEN_EFF_RATING",
+   "GC3_PU_GREEN_EFF_SCORE"
+  ]
+ },
+ {
+  "key": "_a76202a4-14da-486e-982b-1adb470f3608",
+  "triggers": [
+   "GC1_LOC_ADU#0"
+  ],
+  "fields": [
+   "GC1_PU_LOC_ADU_TYPE",
+   "GC1_PU_LOC_ADU_DESC"
+  ]
+ },
+ {
+  "key": "_c8781ab7-70ca-4ccd-a0f9-635b1af1a20d",
+  "triggers": [
+   "GC2_LOC_ADU#0"
+  ],
+  "fields": [
+   "GC2_PU_LOC_ADU_TYPE",
+   "GC2_PU_LOC_ADU_DESC"
+  ]
+ },
+ {
+  "key": "_7c94d1db-5ceb-428b-b5de-d4f06b220cdb",
+  "triggers": [
+   "GC3_LOC_ADU#0"
+  ],
+  "fields": [
+   "GC3_PU_LOC_ADU_TYPE",
+   "GC3_PU_LOC_ADU_DESC"
+  ]
+ },
+ {
+  "key": "_9cf04b5c-004c-47c5-bfba-7b859142905d",
+  "triggers": [
+   "GC1_BATHS#0"
+  ],
+  "fields": [
+   "GC1_PU_FULL_BATHS",
+   "GC1_PU_HALF_BATHS"
+  ]
+ },
+ {
+  "key": "_6eb86e8e-6da6-4542-890b-4d1ef45df90d",
+  "triggers": [
+   "GC2_BATHS#0"
+  ],
+  "fields": [
+   "GC2_PU_FULL_BATHS",
+   "GC2_PU_HALF_BATHS"
+  ]
+ },
+ {
+  "key": "_966245cf-b0bd-4811-b098-d155aee0d5d5",
+  "triggers": [
+   "GC3_BATHS#0"
+  ],
+  "fields": [
+   "GC3_PU_FULL_BATHS",
+   "GC3_PU_HALF_BATHS"
+  ]
+ },
+ {
+  "key": "_2330139f-c719-4bcf-a406-4ff65e22ae2a",
+  "triggers": [
+   "GC1_EXT_COND_ROOF#0"
+  ],
+  "fields": [
+   "GC1_PU_EXT_COND_ROOF_OBSERVABLE",
+   "GC1_PU_EXT_COND_ROOF_STATUS"
+  ]
+ },
+ {
+  "key": "_a8712c0c-25a5-46fc-88e3-286e6d950209",
+  "triggers": [
+   "GC2_EXT_COND_ROOF#0"
+  ],
+  "fields": [
+   "GC2_PU_EXT_COND_ROOF_OBSERVABLE",
+   "GC2_PU_EXT_COND_ROOF_STATUS"
+  ]
+ },
+ {
+  "key": "_be732d95-59e3-419a-b97b-25907f2fbe56",
+  "triggers": [
+   "GC3_EXT_COND_ROOF#0"
+  ],
+  "fields": [
+   "GC3_PU_EXT_COND_ROOF_OBSERVABLE",
+   "GC3_PU_EXT_COND_ROOF_STATUS"
+  ]
+ },
+ {
+  "key": "_1dec8340-8da1-430f-b488-008e135429be",
+  "triggers": [
+   "GC1_AMENITY_OUTDOOR_ACCESSORIES#0"
+  ],
+  "fields": [
+   "GC1_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC1_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ]
+ },
+ {
+  "key": "_e8806d92-0b6a-4524-a4cb-2b1599924292",
+  "triggers": [
+   "GC2_AMENITY_OUTDOOR_ACCESSORIES#0"
+  ],
+  "fields": [
+   "GC2_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC2_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ]
+ },
+ {
+  "key": "_92934e90-2b5c-4f5a-85f0-355240e45209",
+  "triggers": [
+   "GC3_AMENITY_OUTDOOR_ACCESSORIES#0"
+  ],
+  "fields": [
+   "GC3_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC3_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ]
+ },
+ {
+  "key": "_f82e3455-2c8b-4fc1-8f18-080d02e90df3",
+  "triggers": [
+   "GC1_AMENITY_OUTDOOR_LIVING#0"
+  ],
+  "fields": [
+   "GC1_PU_AMENITY_OUTDOOR_LIVING"
+  ]
+ },
+ {
+  "key": "_2a9cd0fc-4b5d-4d07-983d-aa51fc933b3c",
+  "triggers": [
+   "GC2_AMENITY_OUTDOOR_LIVING#0"
+  ],
+  "fields": [
+   "GC2_PU_AMENITY_OUTDOOR_LIVING"
+  ]
+ },
+ {
+  "key": "_a448da5f-cd50-4b87-880d-e444b89bca45",
+  "triggers": [
+   "GC3_AMENITY_OUTDOOR_LIVING#0"
+  ],
+  "fields": [
+   "GC3_PU_AMENITY_OUTDOOR_LIVING"
+  ]
+ },
+ {
+  "key": "_815944b9-ac9e-4701-a7e5-494b2cd7aedb",
+  "triggers": [
+   "GC1_AMENITY_WATER_FEATURES#0"
+  ],
+  "fields": [
+   "GC1_PU_AMENITY_WATER_FEATURE",
+   "GC1_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GC1_PU_AMENITY_WATER_FEATURE_NUM"
+  ]
+ },
+ {
+  "key": "_b376b3c2-389e-45cd-bc0d-775d1d115076",
+  "triggers": [
+   "GC2_AMENITY_WATER_FEATURES#0"
+  ],
+  "fields": [
+   "GC2_PU_AMENITY_WATER_FEATURE",
+   "GC2_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GC2_PU_AMENITY_WATER_FEATURE_NUM"
+  ]
+ },
+ {
+  "key": "_299038f7-ecae-4f7b-a2c3-22515f22ef6d",
+  "triggers": [
+   "GC3_AMENITY_WATER_FEATURES#0"
+  ],
+  "fields": [
+   "GC3_PU_AMENITY_WATER_FEATURE",
+   "GC3_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GC3_PU_AMENITY_WATER_FEATURE_NUM"
+  ]
+ },
+ {
+  "key": "_bd7d5836-fe5f-4934-983a-12694a220a95",
+  "triggers": [
+   "GC1_AMENITY_WHOLE_HOME#0"
+  ],
+  "fields": [
+   "GC1_PU_AMENITY_WHOLE_HOME",
+   "GC1_PU_AMENITY_WHOLE_HOME_NUM"
+  ]
+ },
+ {
+  "key": "_f7907849-9ba9-49d0-a261-bf3380cda543",
+  "triggers": [
+   "GC2_AMENITY_WHOLE_HOME#0"
+  ],
+  "fields": [
+   "GC2_PU_AMENITY_WHOLE_HOME",
+   "GC2_PU_AMENITY_WHOLE_HOME_NUM"
+  ]
+ },
+ {
+  "key": "_662b381d-d336-4ef0-b35b-b6b49e107aa5",
+  "triggers": [
+   "GC3_AMENITY_WHOLE_HOME#0"
+  ],
+  "fields": [
+   "GC3_PU_AMENITY_WHOLE_HOME",
+   "GC3_PU_AMENITY_WHOLE_HOME_NUM"
+  ]
+ },
+ {
+  "key": "_39809d5c-cafe-406c-9650-6f978e32ab77",
+  "triggers": [
+   "GC1_AMENITY_MISC#0"
+  ],
+  "fields": [
+   "GC1_PU_AMENITY_MISC",
+   "GC1_PU_AMENITY_MISC_NUM"
+  ]
+ },
+ {
+  "key": "_def9f661-2ec0-4734-9747-c06005ba87d3",
+  "triggers": [
+   "GC2_AMENITY_MISC#0"
+  ],
+  "fields": [
+   "GC2_PU_AMENITY_MISC",
+   "GC2_PU_AMENITY_MISC_NUM"
+  ]
+ },
+ {
+  "key": "_75781d39-92fa-4563-8c14-d7d8eab4678b",
+  "triggers": [
+   "GC3_AMENITY_MISC#0"
+  ],
+  "fields": [
+   "GC3_PU_AMENITY_MISC",
+   "GC3_PU_AMENITY_MISC_NUM"
+  ]
+ },
+ {
+  "key": "_890776b4-d768-4674-bd97-36e99260bca7",
+  "triggers": [
+   "GC1_VEHICLE_STORAGE#0"
+  ],
+  "fields": [
+   "GC1_PU_VEHICLE_STORAGE",
+   "GC1_PU_VEHICLE_STORAGE_SPACES_NUM",
+   "GC1_PU_VEHICLE_STORAGE_SPACES",
+   "GC1_PU_VEHICLE_STORAGE_DETAILS",
+   "GC1_PU_VEHICLE_STORAGE_SQFT"
+  ]
+ },
+ {
+  "key": "_96cc8f52-9211-4c26-91a5-20e5897a5f30",
+  "triggers": [
+   "GC2_VEHICLE_STORAGE#0"
+  ],
+  "fields": [
+   "GC2_PU_VEHICLE_STORAGE",
+   "GC2_PU_VEHICLE_STORAGE_SPACES_NUM",
+   "GC2_PU_VEHICLE_STORAGE_SPACES",
+   "GC2_PU_VEHICLE_STORAGE_DETAILS",
+   "GC2_PU_VEHICLE_STORAGE_SQFT"
+  ]
+ },
+ {
+  "key": "_196666d3-48b0-40d7-a2ac-a166440c8fc5",
+  "triggers": [
+   "GC3_VEHICLE_STORAGE#0"
+  ],
+  "fields": [
+   "GC3_PU_VEHICLE_STORAGE",
+   "GC3_PU_VEHICLE_STORAGE_SPACES_NUM",
+   "GC3_PU_VEHICLE_STORAGE_SPACES",
+   "GC3_PU_VEHICLE_STORAGE_DETAILS",
+   "GC3_PU_VEHICLE_STORAGE_SQFT"
+  ]
+ },
+ {
+  "key": "_f9fd7188-80fa-4c4a-a96d-d8e89f3edaa8",
+  "triggers": [
+   "GSU_TRANSFER_HISTORY_AMOUNT#0"
+  ],
+  "fields": [
+   "GSU_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GSU_DFE_TRANSFER_HISTORY_AMOUNT_REASON"
+  ]
+ },
+ {
+  "key": "_a462269a-6a66-4683-92f3-b8171c1b3c6f",
+  "triggers": [
+   "GC1_TRANSFER_HISTORY_AMOUNT#0"
+  ],
+  "fields": [
+   "GC1_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON"
+  ]
+ },
+ {
+  "key": "_bafcceba-d991-43d2-8719-7f857aa78c67",
+  "triggers": [
+   "GC2_TRANSFER_HISTORY_AMOUNT#0"
+  ],
+  "fields": [
+   "GC2_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GC2_DFE_TRANSFER_HISTORY_AMOUNT_REASON"
+  ]
+ },
+ {
+  "key": "_fbad2bc7-34c6-409d-9121-c017f562627e",
+  "triggers": [
+   "GC3_TRANSFER_HISTORY_AMOUNT#0"
+  ],
+  "fields": [
+   "GC3_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GC3_DFE_TRANSFER_HISTORY_AMOUNT_REASON"
+  ]
+ },
+ {
+  "key": "_bf27355b-8849-42a2-bfc7-75be28dd6bcd",
+  "triggers": [
+   "COMP_NOT_USED_ADDR#0"
+  ],
+  "fields": [
+   "COMP_NOT_USED_ADDR1",
+   "COMP_NOT_USED_UNITNO",
+   "COMP_NOT_USED_CITY",
+   "COMP_NOT_USED_STATE",
+   "COMP_NOT_USED_ZIP"
+  ]
+ },
+ {
+  "key": "_67142bf0-3645-4ce4-999a-e97af1762391",
+  "triggers": [
+   "RP1_AD_ADDR_FULL#0"
+  ],
+  "fields": [
+   "RP1_AD_ADDR1",
+   "RP1_DB_UNITNO",
+   "RP1_DB_CITY",
+   "RP1_DB_STATE",
+   "RP1_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_c59cde01-d0ce-4d19-8036-7078326d9749",
+  "triggers": [
+   "RP1_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "RP1_PU_DATA_SOURCE",
+   "RP1_PU_DATA_SOURCE_ASSESSOR_ID",
+   "RP1_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_536e21ee-f0d3-4822-a7cc-fef351680640",
+  "triggers": [
+   "RCX_PROX1#0"
+  ],
+  "fields": [
+   "RCX_PU_DISTANCE",
+   "RCX_PU_MILES",
+   "RCX_PU_KILOMETERS",
+   "RCX_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_bda9e8c7-4766-478e-86cd-2e2e5ea3d390",
+  "triggers": [
+   "RCX_BATHS#0"
+  ],
+  "fields": [
+   "RCX_PU_FULL_BATHS",
+   "RCX_PU_HALF_BATHS"
+  ]
+ },
+ {
+  "key": "_80afe978-a4f1-40a4-a8b6-a0224686167b",
+  "triggers": [
+   "RSX_VEHICLE_STORAGE#0"
+  ],
+  "fields": [
+   "RSX_PU_VEHICLE_STORAGE",
+   "RSX_PU_VEHICLE_STORAGE_SPACES"
+  ]
+ },
+ {
+  "key": "_03e91635-7920-49c3-9155-749ddf3c1ed2",
+  "triggers": [
+   "GR1_AD_ADDR#0"
+  ],
+  "fields": [
+   "GR1_AD_ADDR1",
+   "GR1_DB_UNITNO",
+   "GR1_DB_CITY",
+   "GR1_DB_STATE",
+   "GR1_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_060ba3c7-aa61-4c0d-b44e-53dd67ede05e",
+  "triggers": [
+   "GR2_AD_ADDR#0"
+  ],
+  "fields": [
+   "GR2_AD_ADDR1",
+   "GR2_DB_UNITNO",
+   "GR2_DB_CITY",
+   "GR2_DB_STATE",
+   "GR2_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_4be91505-4272-42b1-97e9-d22ac0603773",
+  "triggers": [
+   "GR3_AD_ADDR#0"
+  ],
+  "fields": [
+   "GR3_AD_ADDR1",
+   "GR3_DB_UNITNO",
+   "GR3_DB_CITY",
+   "GR3_DB_STATE",
+   "GR3_DB_ZIP"
+  ]
+ },
+ {
+  "key": "_0d30bd39-b81d-4f96-b9b9-c6ac81cc443e",
+  "triggers": [
+   "GR1_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "GR1_PU_DATA_SOURCE",
+   "GR1_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GR1_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_a012aa60-7bef-4590-80e3-e4d9a91b1f28",
+  "triggers": [
+   "GR2_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "GR2_PU_DATA_SOURCE",
+   "GR2_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GR2_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_4b782ec9-3eb0-44da-ab19-4c962322d197",
+  "triggers": [
+   "GR3_SC_SOURCE1#0"
+  ],
+  "fields": [
+   "GR3_PU_DATA_SOURCE",
+   "GR3_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GR3_PU_DATA_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_9e1a09fc-408f-4841-8514-e915b6b07445",
+  "triggers": [
+   "GR1_PROX1#0"
+  ],
+  "fields": [
+   "GR1_PU_DISTANCE",
+   "GR1_PU_MILES",
+   "GR1_PU_KILOMETERS",
+   "GR1_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_4b8168df-d795-495d-abad-ec4e77312f8b",
+  "triggers": [
+   "GR2_PROX1#0"
+  ],
+  "fields": [
+   "GR2_PU_DISTANCE",
+   "GR2_PU_MILES",
+   "GR2_PU_KILOMETERS",
+   "GR2_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_b2bbad7b-2222-4235-9636-465dc50d5ce6",
+  "triggers": [
+   "GR3_PROX1#0"
+  ],
+  "fields": [
+   "GR3_PU_DISTANCE",
+   "GR3_PU_MILES",
+   "GR3_PU_KILOMETERS",
+   "GR3_PU_DIRECTION"
+  ]
+ },
+ {
+  "key": "_0f8a15a6-9517-4168-b4f0-5837349bf603",
+  "triggers": [
+   "GR1_MONTHLY_RENT#0"
+  ],
+  "fields": [
+   "GR1_PU_MONTHLY_RENT",
+   "GR1_PU_RENT_ESTIMATED"
+  ]
+ },
+ {
+  "key": "_58e29bd2-983d-4227-b65f-8dbbee0d9127",
+  "triggers": [
+   "GR2_MONTHLY_RENT#0"
+  ],
+  "fields": [
+   "GR2_PU_MONTHLY_RENT",
+   "GR2_PU_RENT_ESTIMATED"
+  ]
+ },
+ {
+  "key": "_2308c4cc-cc7d-451c-97af-5365c82c69d2",
+  "triggers": [
+   "GR3_MONTHLY_RENT#0"
+  ],
+  "fields": [
+   "GR3_PU_MONTHLY_RENT",
+   "GR3_PU_RENT_ESTIMATED"
+  ]
+ },
+ {
+  "key": "_3079c40d-98db-48b0-a410-f7a9d026141d",
+  "triggers": [
+   "SSDE1_CA_EFFECTIVE_AGE#0"
+  ],
+  "fields": [
+   "SSDE1_PU_CA_EFFECTIVE_AGE_RANGE",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_PRECISE",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_RANGE_LOW",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_RANGE_HIGH",
+   "SSDE1_CA_EFFECTIVE_AGE_PRECISE"
+  ]
+ },
+ {
+  "key": "_ffeab8fd-0a6e-4ae7-8ddc-70c27b3d4652",
+  "triggers": [
+   "CA_LC_ADDR#0"
+  ],
+  "fields": [
+   "CA_LC_ADDRESS",
+   "CA_LC_UNITNO",
+   "CA_LC_CITY",
+   "CA_LC_STATE",
+   "CA_LC_ZIP"
+  ]
+ },
+ {
+  "key": "_b5701736-ce9b-4290-bae4-2bc3ddf059e5",
+  "triggers": [
+   "CA_LC_SOURCE#0"
+  ],
+  "fields": [
+   "CA_LC_SOURCE_TYPE",
+   "CA_LC_SOURCE_RECORD_NUM",
+   "CA_LC_SOURCE_MLS_NUM"
+  ]
+ },
+ {
+  "key": "_5f9616f8-28e9-423a-8442-f469cd6d78d1",
+  "triggers": [
+   "CA_COST_DATA_SOURCE#0"
+  ],
+  "fields": [
+   "CA_COST_DATA_SOURCE_TYPE",
+   "CA_COST_SERVICE_SOURCE_TYPE"
+  ]
+ },
+ {
+  "key": "_f3ad2a08-1a06-4101-9c83-6cff65011bc7",
+  "triggers": [
+   "REC_REASONABLE_EXPOSURE_TIME#0"
+  ],
+  "fields": [
+   "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_PRECISE",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_LOW",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_HIGH",
+   "REC_REASONABLE_EXPOSURE_TIME_PRECISE"
+  ]
+ },
+ {
+  "key": "_4f502686-0b75-4c4a-91f4-52d500735345",
+  "triggers": [
+   "REC_CLIENT_DURATION#0"
+  ],
+  "fields": [
+   "REC_CLIENT_DURATION_AGE_RANGE_ENABLE",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_PRECISE_ENABLE",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_LOW",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_HIGH",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_PRECISE"
+  ]
+ },
+ {
+  "key": "_7bfd56dc-412d-491b-ba9b-6f55b0663815",
+  "triggers": [
+   "ORD_SUBPROPADDRESS_FULL#0"
+  ],
+  "fields": [
+   "ORD_SUBPROPADDRESS",
+   "ORD_SUBUNITNO",
+   "ORD_SUBCITY",
+   "ORD_SUBSTATE",
+   "ORD_SUBZIP"
+  ]
+ },
+ {
+  "key": "_50f2ce32-dc38-4ba5-90d0-f8a6efc9c74d",
+  "triggers": [
+   "ORD_CONTACT_ADDR#0"
+  ],
+  "fields": [
+   "ORD_PU_CONTACT_ADDRESS",
+   "ORD_PU_CONTACT_CITY",
+   "ORD_PU_CONTACT_STATE",
+   "ORD_PU_CONTACT_ZIP"
+  ]
+ },
+ {
+  "key": "_a226bb30-80be-4259-ad57-afd8075ee857",
+  "triggers": [
+   "ORD_APPRAISER_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_APPRAISER_FIRST_NAME",
+   "ORD_PU_APPRAISER_MIDDLE_NAME",
+   "ORD_PU_APPRAISER_LAST_NAME",
+   "ORD_PU_APPRAISER_SUFFIX_NAME"
+  ]
+ },
+ {
+  "key": "_64894781-2867-49b8-bb62-27dd861d99a2",
+  "triggers": [
+   "ORD_APPRAISER_COMPANY_ADDR#0"
+  ],
+  "fields": [
+   "ORD_PU_APPRAISER_ADDRESS",
+   "ORD_PU_APPRAISER_CITY",
+   "ORD_PU_APPRAISER_STATE",
+   "ORD_PU_APPRAISER_ZIP"
+  ]
+ },
+ {
+  "key": "_604a495c-84e9-4756-98f3-9bf24dc7a4d9",
+  "triggers": [
+   "ORD_SUPERVISOR_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_SUPERVISOR_FIRST_NAME",
+   "ORD_PU_SUPERVISOR_MIDDLE_NAME",
+   "ORD_PU_SUPERVISOR_LAST_NAME",
+   "ORD_PU_SUPERVISOR_SUFFIX_NAME"
+  ]
+ },
+ {
+  "key": "_b1b3d504-cf73-4825-8533-c578082538e8",
+  "triggers": [
+   "ORD_SUPERVISOR_COMPANY_ADDR#0"
+  ],
+  "fields": [
+   "ORD_PU_SUPERVISOR_ADDRESS",
+   "ORD_PU_SUPERVISOR_CITY",
+   "ORD_PU_SUPERVISOR_STATE",
+   "ORD_PU_SUPERVISOR_ZIP"
+  ]
+ },
+ {
+  "key": "_8117da78-e6af-4501-8896-e366af704d7b",
+  "triggers": [
+   "ORD_SRPA_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_SRPA_FIRST_NAME",
+   "ORD_PU_SRPA_MIDDLE_NAME",
+   "ORD_PU_SRPA_LAST_NAME",
+   "ORD_PU_SRPA_SUFFIX_NAME"
+  ]
+ },
+ {
+  "key": "_4bfc7f55-ca0a-4425-8112-42922c8338df",
+  "triggers": [
+   "ORD_BORROWER_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_BORROWER_TYPE",
+   "ORD_PU_BORROWER_FIRST_NAME",
+   "ORD_PU_BORROWER_MIDDLE_NAME",
+   "ORD_PU_BORROWER_LAST_NAME",
+   "ORD_PU_BORROWER_SUFFIX_NAME",
+   "ORD_PU_BORROWER_ENTITY_NAME"
+  ]
+ },
+ {
+  "key": "_3ed4d84b-15b2-41a0-8164-90a463513a93",
+  "triggers": [
+   "ORD_SELLER_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_SELLER_TYPE",
+   "ORD_PU_SELLER_FIRST_NAME",
+   "ORD_PU_SELLER_MIDDLE_NAME",
+   "ORD_PU_SELLER_LAST_NAME",
+   "ORD_PU_SELLER_SUFFIX_NAME",
+   "ORD_PU_SELLER_ENTITY_NAME"
+  ]
+ },
+ {
+  "key": "_298701a7-7b11-4ccd-a1e4-a0a8ff4c583d",
+  "triggers": [
+   "ORD_OWNER_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_OWNER_SAME_AS_BORROWER",
+   "ORD_PU_OWNER_SAME_AS_SELLER",
+   "ORD_PU_OWNER_TYPE",
+   "ORD_PU_OWNER_FIRST_NAME",
+   "ORD_PU_OWNER_MIDDLE_NAME",
+   "ORD_PU_OWNER_LAST_NAME",
+   "ORD_PU_OWNER_SUFFIX_NAME",
+   "ORD_PU_OWNER_ENTITY_NAME"
+  ]
+ },
+ {
+  "key": "_7ebbb4ba-d36f-4264-9e0e-6764853a8d4f",
+  "triggers": [
+   "ORD_OCCUPANT_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_OCCUPANT_FIRST_NAME",
+   "ORD_PU_OCCUPANT_MIDDLE_NAME",
+   "ORD_PU_OCCUPANT_LAST_NAME",
+   "ORD_PU_OCCUPANT_SUFFIX_NAME"
+  ]
+ },
+ {
+  "key": "_340ebc1c-118c-487b-ba8c-50ed5432be03",
+  "triggers": [
+   "ORD_AGENT_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_AGENT_FIRST_NAME",
+   "ORD_PU_AGENT_MIDDLE_NAME",
+   "ORD_PU_AGENT_LAST_NAME",
+   "ORD_PU_AGENT_SUFFIX_NAME"
+  ]
+ },
+ {
+  "key": "_807b2d1f-0c12-4c23-95d0-d14c5dec3ab2",
+  "triggers": [
+   "ORD_OTHER_NAME#0"
+  ],
+  "fields": [
+   "ORD_PU_OTHER_FIRST_NAME",
+   "ORD_PU_OTHER_MIDDLE_NAME",
+   "ORD_PU_OTHER_LAST_NAME",
+   "ORD_PU_OTHER_SUFFIX_NAME"
+  ]
+ }
+]

@@ -1,0 +1,60 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "Building 1",
+    "caption": "Building 1",
+    "description": "Building 1"
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "Building 1 - Unit A",
+    "caption": "Unit A",
+    "description": "Unit A"
+   },
+   {
+    "instance": 2,
+    "identifier": "Building 1 - Unit B",
+    "caption": "Unit B",
+    "description": "Unit B"
+   },
+   {
+    "instance": 3,
+    "identifier": "Building 1 - Unit C",
+    "caption": "Unit C",
+    "description": "Unit C"
+   },
+   {
+    "instance": 4,
+    "identifier": "Building 1 - Unit D",
+    "caption": "Unit D",
+    "description": "Unit D"
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 3,
+  "rentalprop": 6,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "4",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "..\\knowledge\\total\\e2e\\0.0.1.3848\\2- to 4-unit_Scenario_2_Appraisal\\portable.xml",
+ "import_seconds": 55.6,
+ "import_error": ""
+}

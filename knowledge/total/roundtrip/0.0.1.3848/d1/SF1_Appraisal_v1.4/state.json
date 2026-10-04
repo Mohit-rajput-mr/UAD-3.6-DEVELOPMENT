@@ -1,0 +1,42 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 3,
+  "rentalprop": 1,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "X",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "C:\\3.6 uad zips\\_UNZIPPED_ALL\\Appendix D-1 SF1_Appraisal\\SF1_Appraisal_v1.4.xml",
+ "import_seconds": 17.3,
+ "import_error": ""
+}

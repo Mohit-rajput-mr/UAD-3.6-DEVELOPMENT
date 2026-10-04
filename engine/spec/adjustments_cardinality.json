@@ -1,0 +1,350 @@
+{
+ "source": "Appendix H-1 UAD Compliance Rules - URAR v1.5.xlsm / Adjustments Cardinality",
+ "rows": [
+  {
+   "ComparableAdjustmentType": "AccessoryDwellingUnitLocation",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitStandardFinishedAreaBelowGrade",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitBathroomCount",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitBedroomCount",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitStandardFinishedAreaAboveGrade",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitFeaturesForIndividualsWithDisabilities",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitFloorNumber",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitLevelCount",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitNonStandardFinishedAreaAboveGrade",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitNonStandardFinishedAreaBelowGrade",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitUnfinishedAreaAboveGrade",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LivingUnitUnfinishedAreaBelowGrade",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "Outbuilding",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SalesComparableAdditionalAdjustableComparisonItem",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SalesComparableAdditionalNonAdjustableComparisonItem",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "GrossRentMultiplierAdditionalNonAdjustableComparisonItem",
+   "Adjustment Repeatability": "Adjustment can repeat when there is more than one living unit",
+   "ValuationUseType": "GrossRentMultiplierComparable"
+  },
+  {
+   "ComparableAdjustmentType": "CornerUnit",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "ApparentEnvironmentalCondition",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "YearBuilt",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "AttachedOrDetached",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "ConstructionMethod",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "ContractDate",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "OverallConditionRating",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SaleDate",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "DwellingStyle",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "DisasterMitigationFeatures",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "EnergyEfficientAndGreenFeatures",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "Easement",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "GrossBuildingFinishedArea",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "HazardZone",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "StructureDesign",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "LandOwnedInCommon",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "FunctionalIssues",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "VehicleStorage",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "CoolingSystem",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "HeatingSystem",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "ProjectInformation",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "OutdoorLivingAmenity",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "ManufacturedHomeWidth",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "MiscellaneousAmenity",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "PropertyRightsAppraised",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "OverallQualityRating",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "NativeAmericanLands",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "NeighborhoodName",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "NonContinuousFinishedArea",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "OutdoorAccessoryAmenity",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "OwnershipRightsConveyed",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "PropertyOwnershipTransferTerms",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "PropertyPrimaryAccess",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "PropertyRestriction",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SiteSize",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "PropertyStreetAccessAndSurface",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "RowhouseTownhouseBackToBack",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "RowhouseTownhouseEndUnit",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "View",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "RowhouseTownhouseLocation",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SiteInfluence",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "FinancingMethod",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SalesConcessions",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SaleToListPriceRatio",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SiteCharacteristic",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "SiteDrainage",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "Topography",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "TotalDwellingVolume",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "WaterFeaturesAmenity",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "WaterFrontage",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "WholeHomeAmenity",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "WindowSurfaceArea",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  },
+  {
+   "ComparableAdjustmentType": "ZoningCompliance",
+   "Adjustment Repeatability": "Adjustment cannot repeat",
+   "ValuationUseType": "SalesComparable"
+  }
+ ]
+}

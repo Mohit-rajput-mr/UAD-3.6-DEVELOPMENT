@@ -1,0 +1,2473 @@
+
+<<<PAGE 1 of 27>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of 
+the Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: Condominium Scenario 2  
+Document Version 1.4 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 27>>>
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.4 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/10/2025 
+1.3 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+9/17/2024 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+12/12/2023 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/27/2023 
+1.0 
+Initial Publication 
+ 
+Introduction 
+This report is for a detached condominium, and the site is not owned in common. The rights to the land 
+are owned by the homeowner, and the homeowner is responsible for the maintenance of the dwelling. 
+The legal description references condominium.  
+The home has one level above grade, one level below grade (walkout basement), and noncontinuous 
+finished space above the garage. It is new construction in a community with a country club and golf 
+course. Membership in the country club is mandatory for anyone who purchases a home in this 
+community. The subject has a golf course view. 
+Key Characteristics 
+• 
+Parties associated with this transaction: 
+o Lender 
+o AMC (Client) 
+o Appraiser 
+• 
+Market Value Condition: As Is 
+• 
+No Defects, Damages, or Deficiencies noted 
+• 
+Desktop appraisal 
+o No subject property inspection by the appraiser (see also Cert 10) 
+• 
+Subject Property 
+o Project Legal Structure: Condominium 
+o Site Owned in Common: No 
+o Attachment Type : Detached 
+o Units Excluding ADUs: 1 
+o Homeowner responsible for all exterior maintenance 
+o New construction built less than 12 months ago and never lived in. C1 condition rating. 
+• 
+Energy Efficient and Green Features 
+o Building Certification (LEED Gold) 
+• 
+Dwelling Exterior  
+o Noncontinuous Finished Area 
+o Core heating system below grade 
+• 
+Rental Information 
+o Single family rent schedule with no Income Approach 
+o Rental comps and sales comps display on one map (Sales Comparison Approach) 
+• 
+Use of 3D scan for measurements 
+ 
+Note: Condominiums with sites that are not owned in common are not a typical occurrence. The 
+Scenario illustrates the flexibility of the UAD dataset and the URAR to accommodate all forms of 
+ownership. 
+ 
+
+<<<PAGE 3 of 27>>>
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+ 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 4 of 27>>>
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+8675309 JENNY LN, ANYTOWN, IL 54321
+SUMMARY
+Opinion of Market Value	
+$900,000
+Effective Date of Appraisal	
+01/12/2026
+Assignment Reason	
+Purchase
+Borrower Name	
+Mary Jones
+	
+Michael Jones
+Current Owner of Public Record	
+XYZ Builders
+Contract Price	
+$895,000
+Listing Status	
+Pending
+Market Value Condition	
+As Is
+Property Valuation Method	
+Desktop Appraisal
+Appraiser Name	
+Sam Appraiser
+Property Description
+Construction Method	
+Site Built
+Attachment Type	
+Detached
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Observed Project Deficiencies
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Zoning Compliance	
+Legal
+Overall Quality	
+Q3
+Overall Condition	
+C1
+ 
+This is where the Dwelling Front photo would display.
+Apparent Defects, Damages, Deficiencies Requiring Action
+None
+
+<<<PAGE 5 of 27>>>
+	
+Page 2 of 24
+Uniform Residential Appraisal Report	
+Page 2 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Assignment Information
+Assignment Reason	
+Purchase
+Borrower Name	
+Mary Jones
+	
+Michael Jones
+Seller Name	
+XYZ Builders
+Current Owner of Public Record	
+XYZ Builders
+Property Valuation Method	
+Desktop Appraisal
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Appraiser Fee	
+$0
+AMC Fee	
+$0
+Contact Information
+Lender
+Company Name	
+ABC Lender
+Company Address	
+400 Apple Ln
+	
+Anytown, IL 54321
+Client/Appraisal Management Company
+Company Name	
+DIY AMC
+Company Address	
+500 Park St
+	
+Othertown, IL 54322
+Credentials
+ID	
+12345
+State	
+IL
+Expires	
+10/31/2027
+Appraiser
+Name	
+Sam Appraiser
+Company Name	
+XYZ Appraisals
+Company Address	
+123 Main St
+	
+Anytown, IL 54321
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+No Inspection
+Interior	
+No Inspection
+Credentials
+Level	
+Certified Residential
+ID	
+5555-2222
+State	
+IL
+Expires	
+06/30/2027
+Assignment Information and Scope of Work Commentary
+The client has requested a desktop appraisal which requires no inspection of the subject property from the appraiser. All information 
+regarding the quality and condition of the property will be made through the use of MLS photos and a conversation with the real estate agent. 
+Dimensions of the home have been provided by the builder and a 3D scan was completed by the real estate agent.
+Subject Property
+Physical Address	
+8675309 Jenny Ln
+	
+Anytown, IL 54321
+County	
+Blank
+Neighborhood Name	
+Grammy Gold
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Detached
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Special Tax Assessments	
+No
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+All Rights Included in Appraisal	
+Yes
+Legal Description
+Dwelling No. 8675309 in the condominium project known as Grammy Gold
+Subject Property Commentary
+The subject property is a single family detached condominium. The land it sits on is not owned in common with the condominium association 
+referenced in the subject property’s legal description. All units in the project consist of similar detached condominiums.
+
+<<<PAGE 6 of 27>>>
+	
+Page 3 of 24
+Uniform Residential Appraisal Report	
+Page 3 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Site
+Total Site Size	
+13,939 Sq. Ft.
+Number of Parcels	
+1
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+300.200.1000
+Land with Dwelling
+13,939 Sq. Ft.
+Zoning
+Compliance	
+Legal
+Classification Code	
+RC-1
+Classification Code Description	
+Residential - Condominium
+Property Use
+Non-Residential Use	
+None
+Property Access
+Primary Access	
+Private Street
+Street Type and Surface	
+Cul-de-sac | Asphalt
+Known Maintenance Agreement	
+Yes
+Typical for Market	
+Yes
+Description of Property Access  Subject’s project has designated 
+private asphalt roads. The responsibilities and maintenance of these 
+roads is outlined and stated in the condominium master deed which 
+is recorded. Private roads within condominium complexes in this 
+area are common and have no adverse effect on marketability.
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Gated Community
+Onsite
+Beneficial
+Comments can be added 
+here.
+Golf Course
+Bordering
+Beneficial
+Comments can be added 
+here.
+Site Influence Commentary  The subject property backs to a golf course with views of the 15th hole. The property does sit back from the 
+course and is unaffected by stray golf balls.
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Golf Course (Primary)
+Full
+Beneficial
+Residential
+Full
+Neutral
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+No Hazard Zone Noted
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Gas
+
+Sanitary Sewer
+
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Exhibits
+Property Access (Street Scene) - East
+Property Access (Street Scene) - West
+This is where the Property Access East photo would display.
+This is where the Property Access West photo would display.
+
+<<<PAGE 7 of 27>>>
+	
+Page 4 of 24
+Site (continued)
+Uniform Residential Appraisal Report	
+Page 4 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Site Influence - View - Golf Course
+This is where the Golf Course photo would display.
+Disaster Mitigation
+Mitigation Feature	
+Impact Resistant Glass
+	
+Impact Resistant Shingles
+Disaster Mitigation Commentary
+The house was built with impact resistant roof and windows for mitigation against hail and high winds.
+Energy Efficient and Green Features
+Known Renewable Energy Components	
+None
+Building Certification Organization
+Certification
+Year
+Version
+Rating
+US Green Building Council
+LEED
+2025
+V4
+Gold
+Known Efficiency Ratings	
+None
+Energy Efficient and Green Features Impact to Value/Marketability
+Impact to Value/Marketability	
+Neutral
+
+<<<PAGE 8 of 27>>>
+	
+Page 5 of 24
+Uniform Residential Appraisal Report	
+Page 5 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sketch
+Measurement Standard	
+ANSI
+Floor Plan
+Sketch does not represent actual dimensions of pictures, used for example only.
+Sketch Commentary
+As represented in the area breakdown section, there is 1552 sq ft in the below grade area (walkout basement), of which 320 sq ft is a utility 
+room that is not considered finished area even though the sketch might suggest that. The area breakdown section is correct and accurate. The 
+sketch also represents 360 sq ft of a family room/bonus room above the garage that is noncontinuous with the rest of the home but has its 
+own entrance and is finished and usable.
+
+<<<PAGE 9 of 27>>>
+	
+Page 6 of 24
+Uniform Residential Appraisal Report	
+Page 6 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Dwelling Exterior
+Subject Property Units in  
+Structure	
+1
+Dwelling Style	
+Ranch
+Front Door Elevation	
+1-2 Ft.
+Year Built	
+2025
+Construction Method	
+Site Built
+Converted Area	
+None
+This is where the Dwelling Front photo would display.
+Quality and Condition
+Exterior Quality Rating	
+Q3
+Exterior Condition Rating	
+C1
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Cement Board
+The exterior of the homes 
+is a mix of Hardie plank and 
+stone.
+New or Like New
+Foundation
+Poured Concrete | Basement
+Subject has a walkout lower 
+level, concrete covered with 
+Hardie plank.
+New or Like New
+Roof
+Composition  
+Estimated Age:  
+Less than 1 year
+Roof is covered with a 50 year 
+composition roof.
+New or Like New
+Windows
+Subject has a mix of double 
+hung and casement 
+windows, all are low e.
+Windows are metal clad with 
+paintable wood interior.
+New or Like New
+Noncontinuous Finished Area
+The table below depicts any finished area that is attached to the dwelling but separate and not directly accessible from any unit
+Finish
+Total Area
+Room Summary
+Finished
+360 Sq. Ft.
+1 - Family Room
+Mechanical System Details
+System
+Detail
+Heating
+Forced Warm Air
+Natural Gas
+Cooling
+Centralized
+Yes No
+Core Heating System Below Grade
+
+Other Mechanical Systems	
+Sump Pump
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior)
+None
+Dwelling Exterior Commentary
+The subject is a new construction home with no damages, defects or deficiencies and is built using green materials.
+Dwelling Exterior Exhibits
+Noncontinuous Area - Bonus Room
+Dwelling Rear
+This is where the Noncontinuous Area photo would display.
+This is where the Dwelling Rear photo would display.
+
+<<<PAGE 10 of 27>>>
+	
+Page 7 of 24
+Uniform Residential Appraisal Report	
+Page 7 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior
+Area Breakdown
+Finished Above Grade	
+1,552 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+1,232 Sq. Ft.
+Unfinished Below Grade	
+320 Sq. Ft.
+Area Data Source	
+Assessor Record
+	
+Builder or Developer
+	
+MLS
+	
+Real Estate Agent
+	
+Three-Dimensional Scan
+Below Grade Finish Compared  
+to Above	
+Similar
+Levels in Unit	
+2
+Occupancy	
+Vacant
+Total Bedrooms	
+3
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+1
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level B1
+Partially Below Grade
+Interior and Exterior Access
+Walk Out
+Finished
+1,232 Sq. Ft.
+1 - Bath - Full
+2 - Bedroom
+1 - Family Room
+1 - Sunroom
+Unfinished
+320 Sq. Ft.
+Level 1
+Above Grade
+Finished
+1,552 Sq. Ft.
+1 - Bath - Full
+1 - Bath - Half
+1 - Bedroom
+1 - Dining Room
+1 - Family Room
+1 - Kitchen
+1 - Mudroom
+1 - Office
+Quality and Condition
+Interior Quality Rating	
+Q3
+Interior Condition Rating	
+C1
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Fully Updated
+Less than 1 year
+Wood framed cabinets, 
+granite counters, 
+commercial style 
+appliances, sink is 
+located in an oversize 
+island.
+New or Like New
+Bath - Full
+Level 1
+Fully Updated
+Less than 1 year
+Separate tub and 
+shower, large room, tile 
+on the floor and walls, 
+granite counters.
+New or Like New
+Bath - Full
+Level B1
+Fully Updated
+Less than 1 year
+Tile on the floor, walls, 
+and shower; granite 
+counters.
+New or Like New
+Bath - Half
+Level 1
+Fully Updated
+Less than 1 year
+Pedestal sink, tile floor.
+New or Like New
+Overall Update Status for  
+Bathrooms	
+Fully Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Carpet is Nylon short loop.
+New or Like New
+Ceramic Tile
+18” square stone tile.
+New or Like New
+Engineered Wood
+6” engineered oak plank.
+New or Like New
+Walls and Ceiling
+9 Ft. | 10 or more feet | Beams
+Beamed 10’ ceilings 
+on the first level.
+New or Like New
+Overall Update Status for  
+Flooring	
+Fully Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior)
+None
+
+<<<PAGE 11 of 27>>>
+	
+Page 8 of 24
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 8 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior Exhibits
+Level B1 - Bath - Full
+Level B1 - Bedroom - Bedroom 1
+This is where the Full Bathroom 1 photo would display.
+This is where the Bedroom 1 photo would display.
+Level B1 - Bedroom - Bedroom 2
+Level B1 - Family Room
+This is where the Bedroom 2 photo would display.
+This is where the Family Room 1 photo would display.
+Level B1 - Sunroom
+Level 1 - Bath - Full
+This is where the Sunroom photo would display.
+This is where the Full Bathroom 2 photo would display.
+Level 1 - Bath - Half
+Level 1 - Bedroom
+This is where the Half Bathroom photo would display.
+This is where the Bedroom 3 photo would display.
+
+<<<PAGE 12 of 27>>>
+	
+Page 9 of 24
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 9 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Level 1 - Dining Room
+Level 1 - Family Room
+This is where the Dining Room photo would display.
+This is where the Family Room 2 photo would display.
+Level 1 - Kitchen
+Level 1 - Mudroom
+This is where the Kitchen photo would display.
+This is where the Mudroom photo would display.
+Level 1 - Office
+This is where the Office photo would display.
+Functional Obsolescence
+Functional Issues	
+None
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Driveway
+4
+Asphalt
+Garage
+3
+Attached
+626 Sq. Ft.
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+
+<<<PAGE 13 of 27>>>
+	
+Page 10 of 24
+Uniform Residential Appraisal Report	
+Page 10 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Outdoor Living
+Patio
+Concrete
+120 Sq. Ft.
+Porch
+Composite
+92 Sq. Ft.
+Whole Home
+Indoor Fireplace
+Total Number - 2
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+None
+Subject Property Amenities Commentary
+The subject amenities are typical for a home of this quality and from this market. If necessary, any differences have been addressed in the sales 
+comparison grid.
+Subject Property Amenities Exhibits
+Indoor Fireplace - Living Room Fireplace
+Indoor Fireplace - Bedroom Fireplace
+This is where the Indoor Fireplace 1 photo would display.
+This is where the Indoor Fireplace 2 photo would display.
+Patio
+Porch
+This is where the Patio photo would display.
+This is where the Porch photo would display.
+Overall Quality and Condition
+Overall Quality	
+Q3
+Exterior Quality	
+Q3
+Interior Quality	
+Q3
+Overall Condition	
+C1
+Exterior Condition	
+C1
+Interior Condition	
+C1
+Reconciliation of Overall Quality and Condition
+The subject is new construction that is less than 12 months old, never lived in, and meets the C1 rating definition. The subject was built with 
+materials that align with a Q3 rating. Though the subject is not custom it was built with materials to withstand the elements and have lower 
+overall maintenance.
+
+<<<PAGE 14 of 27>>>
+	
+Page 11 of 24
+Uniform Residential Appraisal Report	
+Page 11 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+The subject is a legally permissible use based on its current zoning. Also, the lot size, shape, and land-to-building ratio allow the present 
+structure and indicate a good utilization of the improvements.
+Market
+Market Area Boundary  Pioneer Drive to the North, Bailey Road to the East, Military Road to the South, Radio Drive to the West.
+Search Criteria Description  Search limited to detached condominium housing with a footprint between 1,300-1,800 Sq. Ft. Additional 
+limiting factors include 2-4 bedrooms, 2-4 bathrooms, and a basement.
+Search Result Metrics
+Active Listings	
+8
+Median Days on Market	
+44
+Lowest List Price	
+$550,000
+Median List Price	
+$875,000
+Highest List Price	
+$1,450,000
+Pending Sales	
+2
+Sales in Past 12 Months	
+32
+Lowest Sale Price	
+$535,000
+Median Sale Price	
+$850,000
+Highest Sale Price	
+$1,350,000
+Distressed Market Competition	
+No
+Price Trend Source	
+Blank Gazette
+Price Trend Analysis Commentary  The subject is located in a suburban area where there has not been a robust sales market for new 
+construction within a golf community. To develop a reasonable price trend there was a need to go back 12 months to review enough activity 
+to develop a market trend. The inventory remains low to moderate, and homes are selling in less than 60 days on average.
+Housing Trends
+Demand/Supply	
+In Balance
+Marketing Time	
+Under 3 months
+Market Commentary
+The subject is located in a golf course community so comparable selection focused on properties with similar influences. The subject is 
+considered a detached condominium, the land is not owned in common. These property types are somewhat unique so finding sales with the 
+same ownership rights is more limited. There is no measurable impact to marketability within this area.
+Project Information	
+Planned Unit Development (PUD)   
+   Condominium   
+   Cooperative   
+   Condop  
+Project Name	
+Grammy Gold
+Project Information Data Source	
+Assessor Record
+	
+Builder or Developer
+	
+HOA
+Total Units	
+50
+Units Sold	
+47
+Units for Sale	
+3
+Units Rented	
+~2
+Reason Units Rented is Estimated  The data shows only two off-
+site mailing addresses, therefore assumed that they are rented units.
+Mandatory Fees (HOA, PUD, or Co-op)
+Monthly Amount	
+$500
+Common Amenities/ 
+Services Included	
+Clubhouse
+	
+Club Membership
+	
+Gated Community
+	
+Inground Pool
+	
+Snow Removal
+	
+Trash Removal
+Utilities Included	
+None
+Yes No
+Observed Deficiencies
+
+Project Completeness
+Yes No
+Are units, common areas, and amenities in project 
+complete?
+
+Converted in Past 3 Years
+
+Ground Rent
+
+
+<<<PAGE 15 of 27>>>
+	
+Page 12 of 24
+Uniform Residential Appraisal Report	
+Page 12 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Project Factors and Impact to Value/Marketability
+Project Factor
+Detail
+Impact
+Comment
+Developer/Sponsor in Control
+No
+Single Entity Ownership of Multiple 
+Units
+Greatest Number of Units Owned - 3
+Neutral
+3 units owned by developer are for sale.
+Commercial Space
+None
+Known Legal Actions
+None
+Unit Transfer Fees
+None
+Unit Special Assessments
+None
+Unit Tax Abatements or Exemptions
+None
+Project Factors Commentary  The Developer is not in control of the HOA. This appraiser’s research of the subject property and project did 
+not indicate the presence of any known legal actions, tax abatements, or any tax exemptions of any manner.
+Project Information Commentary
+Club Membership is for the golf course and is required to live in this community. Dues are handled through the HOA fee. Membership requires 
+the one time payment of $10,000 that is handled outside of this transaction.
+Project Information Exhibits
+Common Amenity or Service - Clubhouse
+Common Amenity or Service - Gated Community
+This is where the Clubhouse photo would display.
+This is where the Gated Community photo would display.
+Common Amenity or Service - Inground Pool
+This is where the Inground Pool photo would display.
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Listing Status
+Listing Type
+Listing ID
+Start Date
+End Date
+DOM
+Starting  
+List Price
+Current or 
+Final List Price
+Pending
+Builder or 
+Developer
+123456
+12/03/2025
+12/29/2025
+27
+$905,000
+$895,000
+Total DOM
+27
+Analysis of Subject Property Listing History  There were no known or noted issues with the subject’s listing. Twenty seven days on market 
+appears to be in the typical acceptable range for the subject’s market area.
+Project Information (continued)
+
+<<<PAGE 16 of 27>>>
+	
+Page 13 of 24
+Uniform Residential Appraisal Report	
+Page 13 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Contract
+Yes No
+Is there a sales contract?
+
+Was sales contract information analyzed?
+
+Does this appear to be an arm’s length transaction?
+
+Contract Price	
+$895,000
+Contract Date	
+12/29/2025
+Transfer Terms	
+Typically Motivated
+Personal Property Conveyed	
+No
+Financial Sales Concessions	
+Financial assistance paid by or on behalf of the seller as an inducement to purchase the subject property
+Known Sales Concessions	
+No
+Sales Contract Analysis
+A review of a fully executed sales contract was completed by this appraiser. There was no indication of atypical terms or agreements. No noted 
+concessions, gifts, or other types of assistance were indicated in the purchase contract.
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Transfer Terms
+Date
+Amount
+Data Source
+Pre-Subdivision Sale
+10/01/2023
+$2,500,000
+Assessor Record
+MLS
+Analysis of Prior Sale and Transfer History of Subject Property  Land was purchased in a bulk sale for the current subdivision Grammy 
+Gold.
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+1
+Typically Motivated
+06/07/2024
+$805,000
+MLS
+Assessor Record
+2
+None
+MLS
+3
+None
+MLS
+4
+None
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  Comparable #1 had a prior transfer. The prior sale appears to be a market 
+motivated arm’s length transaction with no unusual concessions noted. The increase in value appears to be based upon recent improvements 
+made to the comparable which include, but are not limited to, the finishing of the below grade area to include a family room, bedroom, and 
+bathroom. No other prior sales have been reported for the remaining comparable properties.
+
+<<<PAGE 17 of 27>>>
+	
+Page 14 of 24
+Uniform Residential Appraisal Report	
+Page 14 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+8675309 Jenny Ln 
+Anytown, IL 54321
+44828 Jane Ln 
+Anytown, IL 54321
+28200 Mary Ln 
+Anytown, IL 54321
+23454 Sue Rd 
+Anytown, IL 54321
+ 
+This is where the Dwelling 
+Front photo would display.
+ 
+This is where the 
+Comparable 1 photo 
+would display.
+ 
+This is where the 
+Comparable 2 photo 
+would display.
+ 
+This is where the 
+Comparable 3 photo 
+would display.
+Data Source
+MLS 2342532 | 
+Assessor Record
+MLS 3425353 | 
+Assessor Record
+MLS 32453404 | 
+Assessor Record
+Proximity to Subject
+0.75 Miles NE
+0.85 Miles NE
+0.12 Miles E
+List Price
+$895,000
+$905,000
+$827,000
+$899,000
+Listing Status
+Pending
+Settled Sale
+Settled Sale
+Settled Sale
+Contract Price
+$895,000
+—
+—
+—
+Sale Price
+$905,000
+$835,000
+$905,000
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Financing Type
+Cash
+$0
+Cash
+$0
+Cash
+$0
+Sales Concessions
+No
+Unknown
+$0
+Unknown
+$0
+No
+Contract Date
+12/29/2025
+Unknown
+$0
+Unknown
+$0
+03/01/2025
+$0
+Sale Date
+03/30/2025
+$0
+03/30/2025
+$0
+04/30/2025
+$0
+Days on Market
+27
+21
+55
+16
+Attached/Detached
+Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+Same Builder as Subject
+No
+No
+Yes
+Project Information
+$0
+$10,000
+Project Name | Same 
+Project as Subject
+Grammy Gold
+XYZ Project | No
+Fox Hollow | No
+Grammy Gold | Yes
+Monthly Fee
+$500
+$525
+$235
+$500
+Common Amenities/Services
+Clubhouse | Club 
+Membership | Gated 
+Community | Inground 
+Pool | Snow Removal 
+| Trash Removal
+Clubhouse | Club 
+Membership | Gated 
+Community | Inground 
+Pool | Snow Removal 
+| Trash Removal
+Inground Pool | Sports Court
+Clubhouse | Club 
+Membership | Gated 
+Community | Inground 
+Pool | Snow Removal 
+| Trash Removal
+Site
+Site Owned in Common
+No
+No
+No
+No
+Site Size
+13,939 Sq. Ft.
+13,010 Sq. Ft.
+$0
+12,950 Sq. Ft.
+$0
+14,300 Sq. Ft.
+$0
+Neighborhood Name
+Grammy Gold
+Ducks on 
+the Pond
+$0
+Timberwolf 
+Hollow
+$0
+Grammy Gold
+Site Influence (Location)
+Gated Community 
+| Golf Course
+Gated 
+Community | 
+Golf Course
+Park | Residential
+$8,500
+Gated 
+Community | 
+Golf Course
+View | Range
+Golf Course | Full 
+Residential | Full
+Golf Course | Full 
+Residential | Full
+Pond | Full 
+Residential | Full
+$0
+Golf Course | Full 
+Residential | Full
+Dwelling(s)
+Year Built
+2025
+2024
+$0
+2025
+2025
+Noncontinuous 
+Finished Area
+360 Sq. Ft.
+0 Sq. Ft.
+$9,000
+0 Sq. Ft.
+$9,000
+360 Sq. Ft.
+Construction Method
+Site Built
+Site Built
+Site Built
+Site Built
+Disaster Mitigation
+Impact Resistant Glass | 
+Impact Resistant Shingles
+Impact Resistant 
+Glass | Impact 
+Resistant 
+Shingles
+Impact Resistant 
+Glass
+$3,000
+Impact Resistant 
+Glass | Impact 
+Resistant 
+Shingles
+Heating
+Forced Warm Air | Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Energy Efficient and Green Features
+Building Certification
+LEED | Gold
+LEED | Gold
+LEED | Gold
+LEED | Gold
+
+<<<PAGE 18 of 27>>>
+	
+Page 15 of 24
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 15 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+8675309 Jenny Ln 
+Anytown, IL 54321
+44828 Jane Ln 
+Anytown, IL 54321
+28200 Mary Ln 
+Anytown, IL 54321
+23454 Sue Rd 
+Anytown, IL 54321
+Unit(s)
+Levels in Unit
+2
+2
+2
+2
+Bedrooms
+3
+5
+$(15,000)
+2
+$7,500
+3
+Baths - Full | Half
+2 | 1
+3 | 1
+$(10,000)
+2 | 2
+$(3,500)
+2 | 1
+Finished Area Above Grade
+1,552 Sq. Ft.
+1,600 Sq. Ft.
+$0
+1,350 Sq. Ft.
+$25,250
+1,650 Sq. Ft.
+$(12,250)
+Finished Area Below Grade
+1,232 Sq. Ft.
+1,300 Sq. Ft.
+$0
+1,200 Sq. Ft.
+$0
+1,350 Sq. Ft.
+$0
+Unfinished Area 
+Below Grade
+320 Sq. Ft.
+300 Sq. Ft.
+$0
+150 Sq. Ft.
+$3,400
+300 Sq. Ft.
+$0
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q3
+Q3
+Q4
+Q3
+Exterior Walls and Trim
+Cement Board
+Cement Board
+Vinyl
+Cement Board
+Foundation
+Basement
+Basement
+Basement
+Basement
+Roof
+Composition
+Composition
+Composition
+Composition
+Condition
+C1
+C2
+C1
+C1
+Interior Quality and Condition
+Quality
+Q3
+Q3
+Q4
+Q3
+Kitchen
+Commercial Grade 
+Appliances
+Commercial Grade 
+Appliances
+Stock Grade Appliances
+Commercial Grade 
+Appliances
+Overall Bathrooms
+Mixture of Tile and Granite
+Mixture of Tile and Granite
+Mid-Grade Finishes
+Mixture of Tile and Granite
+Overall Flooring
+Nylon Short Loop and 
+Engineered Wood
+Nylon Short Loop and 
+Engineered Wood
+Stock Flooring
+Nylon Short Loop and 
+Engineered Wood
+Walls and Ceiling
+9 Ft. and 10 Ft. | Custom
+9 Ft. | Custom
+8 Ft. | Stock
+9 Ft. | Custom
+Condition
+C1
+C2
+C1
+C1
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q3
+Q3
+Q4
+$12,500
+Q3
+Condition
+C1
+C2
+$12,500
+C1
+C1
+Property Amenities
+Outdoor Living
+Patio | Porch
+Deck | Patio 
+| Porch
+$(2,000)
+Deck | Patio 
+| Porch
+$(2,000)
+Patio | Porch
+Whole Home
+Indoor Fireplace - 2
+Indoor 
+Fireplace - 2
+Indoor 
+Fireplace - 2
+Indoor 
+Fireplace - 2
+Vehicle Storage
+$10,000
+Type | Spaces | Detail
+Driveway | 4 | Asphalt 
+Garage | 3 | Attached 626 Sq. Ft.
+Driveway | 4 | Asphalt 
+Garage | 3 | Attached
+Driveway | 4 | Asphalt 
+Garage | 2 | Attached
+Driveway | 4 | Asphalt 
+Garage | 3 | Attached
+Summary
+List Price
+$895,000
+$905,000
+$827,000
+$899,000
+Contract Price
+$895,000
+—
+—
+—
+Sale Price
+$905,000
+$835,000
+$905,000
+Net Adjustment Total
+$(5,500)
+$83,650
+$(12,250)
+Price Per Finished Area  
+Above Grade
+$566
+$619
+$548
+Adjusted Price
+$899,500
+$918,650
+$892,750
+Comparable Weight
+Less
+Less
+Most
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$900,000
+
+<<<PAGE 19 of 27>>>
+	
+Page 16 of 24
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 16 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #4
+General Information
+Property Address
+8675309 Jenny Ln 
+Anytown, IL 54321
+23412 Josephine St 
+Anytown, IL 54321
+ 
+This is where the Dwelling 
+Front photo would display.
+ 
+This is where the 
+Comparable 4 photo 
+would display.
+Data Source
+MLS 5420130 | 
+Assessor Record
+Proximity to Subject
+0.12 Miles S
+List Price
+$895,000
+$915,000
+Listing Status
+Pending
+Active
+Contract Price
+$895,000
+—
+Sale Price
+—
+Transfer Terms
+—
+Financing Type
+—
+Sales Concessions
+No
+—
+Contract Date
+12/29/2025
+—
+Sale Date
+—
+Days on Market
+27
+28
+Attached/Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Same Builder as Subject
+Yes
+Project Information
+Project Name | Same 
+Project as Subject
+Grammy Gold
+Grammy Gold | Yes
+Monthly Fee
+$500
+$500
+Common Amenities/Services
+Clubhouse | Club 
+Membership | Gated 
+Community | Inground 
+Pool | Snow Removal 
+| Trash Removal
+Clubhouse | Club 
+Membership | Gated 
+Community | Inground 
+Pool | Snow Removal 
+| Trash Removal
+Site
+Site Owned in Common
+No
+No
+Site Size
+13,939 Sq. Ft.
+14,100 Sq. Ft.
+$0
+Neighborhood Name
+Grammy Gold
+Grammy Gold
+Site Influence (Location)
+Gated Community 
+| Golf Course
+Gated 
+Community | 
+Golf Course
+View | Range
+Golf Course | Full 
+Residential | Full
+Golf Course | Full 
+Residential | Full
+Dwelling(s)
+Year Built
+2025
+2025
+Noncontinuous 
+Finished Area
+360 Sq. Ft.
+360 Sq. Ft.
+Construction Method
+Site Built
+Site Built
+Disaster Mitigation
+Impact Resistant Glass | 
+Impact Resistant Shingles
+Impact Resistant 
+Glass | Impact 
+Resistant 
+Shingles
+Heating
+Forced Warm Air | Natural Gas
+Forced Warm Air 
+| Natural Gas
+Energy Efficient and Green Features
+Building Certification
+LEED | Gold
+LEED | Gold
+
+<<<PAGE 20 of 27>>>
+	
+Page 17 of 24
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 17 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #4
+Property Address
+8675309 Jenny Ln 
+Anytown, IL 54321
+23412 Josephine St 
+Anytown, IL 54321
+Unit(s)
+Levels in Unit
+2
+2
+Bedrooms
+3
+3
+Baths - Full | Half
+2 | 1
+2 | 1
+Finished Area Above Grade
+1,552 Sq. Ft.
+1,550 Sq. Ft.
+$0
+Finished Area Below Grade
+1,232 Sq. Ft.
+1,250 Sq. Ft.
+$0
+Unfinished Area 
+Below Grade
+320 Sq. Ft.
+300 Sq. Ft.
+$0
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q3
+Q3
+Exterior Walls and Trim
+Cement Board
+Cement Board
+Foundation
+Basement
+Basement
+Roof
+Composition
+Composition
+Condition
+C1
+C1
+Interior Quality and Condition
+Quality
+Q3
+Q3
+Kitchen
+Commercial Grade 
+Appliances
+Commercial Grade 
+Appliances
+Overall Bathrooms
+Mixture of Tile and Granite
+Mixture of Tile and Granite
+Overall Flooring
+Nylon Short Loop and 
+Engineered Wood
+Nylon Short Loop and 
+Engineered Wood
+Walls and Ceiling
+9 Ft. and 10 Ft. | Custom
+9 Ft. | Custom
+Condition
+C1
+C1
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q3
+Q3
+Condition
+C1
+C1
+Property Amenities
+Outdoor Living
+Patio | Porch
+Deck | Patio 
+| Porch
+$(2,000)
+Whole Home
+Indoor Fireplace - 2
+Indoor 
+Fireplace - 2
+Vehicle Storage
+Type | Spaces | Detail
+Driveway | 4 | Asphalt 
+Garage | 3 | Attached 626 Sq. Ft.
+Driveway | 4 | Asphalt 
+Garage | 3 | Attached
+Summary
+List Price
+$895,000
+$915,000
+Contract Price
+$895,000
+—
+Sale Price
+—
+Net Adjustment Total
+$(2,000)
+Price Per Finished Area  
+Above Grade
+$590
+Adjusted Price
+$913,000
+Comparable Weight
+Most
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$900,000
+Reconciliation of Sales Comparison Approach
+The comparable properties used are detached condominiums which are similar to the subject property in ownership rights conveyed, 
+design/style, and functional utility. Comparable #1 is located within a competing gated community that is within the subject market area. 
+Comparable #2 is not sited in a gated community which required adjustments for Project and Location. Comparable #3 is a recent sale of a 
+newly constructed model match from the subject project. Comparable #4 is an Active Listing from the subject project. Collectively, these 
+comparables serve as reliable indicators of value and marketability for the subject property.
+
+<<<PAGE 21 of 27>>>
+	
+Page 18 of 24
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 18 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Map
+This is where the map of sales and rental comparables would display.
+
+<<<PAGE 22 of 27>>>
+	
+Page 19 of 24
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 19 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the Comparable 1 photo would display.
+This is where the Comparable 2 photo would display.
+Comparable #3
+Comparable #4
+This is where the Comparable 3 photo would display.
+This is where the Comparable 4 photo would display.
+Rental Information
+Rent Schedule
+Subject Property Rental Information
+Currently 
+Rented
+Occupancy
+Monthly 
+Rent
+Month-to-
+Month
+Lease Start
+Rent 
+Control
+Rent 
+Concessions
+Utilities/
+Services 
+Included 
+Furnished
+No
+Vacant
+$0
+No
+Actual Income (Monthly)
+Rent
+$0
+Subtotal
+$0
+Other Real Property Rental Income
+None
+$0
+Subtotal
+$0
+Total
+$0
+Opinion of Market Income (Monthly)
+Rent
+$3,500
+Subtotal
+$3,500
+Other Real Property Rental Income
+None
+$0
+Subtotal
+$0
+Total
+$3,500
+
+<<<PAGE 23 of 27>>>
+	
+Page 20 of 24
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 20 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable Rental Properties
+ 
+This is where the 
+Dwelling Front photo 
+would display.
+ 
+This is where the 
+Rental Comparable 1 
+photo would display.
+ 
+This is where the 
+Rental Comparable 2 
+photo would display.
+ 
+This is where the 
+Rental Comparable 3 
+photo would display.
+ 
+This is where the 
+Rental Comparable 4 
+photo would display.
+Subject Property
+8675309 Jenny Ln
+Anytown, IL 54321
+Comparable #1
+1522 Akyawentuo Ave
+Anytown, IL 54321
+Data Source: 
+MLS 32495234
+Lease Start Date: 
+03/2025
+Actual Rent:
+$3,500
+Comparable #2
+2345467 Golden Tail St
+Anytown, IL 54321
+Data Source: 
+MLS 23458202
+Lease Start Date: 
+01/2025
+Actual Rent:
+$3,600
+Comparable #3
+234912 Whitecrest Dr
+Anytown, IL 54321
+Data Source: 
+MLS 25394502
+Lease Start Date: 
+12/2024
+Actual Rent:
+$3,350
+Comparable #4
+123423 Stoneback Dr
+Anytown, IL 54321
+Data Source: 
+MLS 12458450
+Lease Start Date: 
+11/2024
+Actual Rent:
+$3,200
+Comparable Rental Analysis
+Subject
+Comparables
+#1
+#2
+#3
+#4
+Proximity to Subject
+0.25 Miles NE
+0.2 Miles W
+1.5 Miles E
+1.7 Miles E
+Project Name 
+Grammy Gold
+Grammy Gold
+Grammy Gold
+Platinum 
+Records
+Platinum 
+Records
+Project Common 
+Amenities/Services
+Clubhouse 
+| Club 
+Membership 
+| Gated 
+Community 
+| Inground 
+Pool | Snow 
+Removal 
+| Trash 
+Removal
+Similar
+Similar
+Inferior
+Inferior
+View from Unit
+Golf Course | 
+Residential
+Similar
+Similar
+Inferior
+Inferior
+Site Size 
+13,939 Sq. Ft.
+13,400 Sq. Ft.
+14,230 Sq. Ft.
+13,800 Sq. Ft.
+12,989 Sq. Ft.
+Interior Condition
+C1
+C2
+C2
+C2
+C2
+Bedrooms
+3
+3
+4
+3
+4
+Baths - Full | Half
+2 | 1
+2 | 1
+3 | 0
+2 | 1
+2 | 1
+Finished Area
+2,784 Sq. Ft.
+2,705 Sq. Ft.
+2,810 Sq. Ft.
+2,905 Sq. Ft.
+2,695 Sq. Ft.
+Vehicle Storage | Spaces
+Driveway | 4 
+Garage | 3
+Similar
+Similar
+Similar
+Similar
+Summary
+Rent Per Finished Area
+$0
+$1.29 
+$1.28 
+$1.15 
+$1.19 
+Actual Rent
+$0
+$3,500 
+$3,600 
+$3,350
+$3,200 
+Overall Comparison 
+to Subject
+Similar
+Similar
+Similar
+Similar
+Adjusted Rent
+$3,500 
+$3,400 
+$3,575 
+$3,525 
+Opinion of 
+Market Rent
+$3,500
+Comparable Weight
+Most
+Most
+Less
+Less
+Rental Analysis Commentary
+Comparables 1 and 2 are from the subject’s community, have the same influences and amenities, and are therefore given the most weight.
+
+<<<PAGE 24 of 27>>>
+	
+Page 21 of 24
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 21 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Rental Information Exhibits
+Comparable #1
+Comparable #2
+This is where the Rental Comparable 1 photo would display.
+This is where the Rental Comparable 2 photo would display.
+Comparable #3
+Comparable #4
+This is where the Rental Comparable 3 photo would display.
+This is where the Rental Comparable 4 photo would display.
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$900,000
+Reason for Exclusion
+Not Necessary for Credible Results
+Not Necessary for Credible Results
+Appraisal Summary
+Contract Price	
+$895,000
+Opinion of Market Value	
+$900,000
+Market Value Condition	
+As Is
+Reasonable Exposure Time	
+30-90 days
+Effective Date of Appraisal	
+01/12/2026
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+Apparent Defects, Damages, Deficiencies
+None
+
+<<<PAGE 25 of 27>>>
+	
+Page 22 of 24
+Uniform Residential Appraisal Report	
+Page 22 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+
+<<<PAGE 26 of 27>>>
+	
+Page 23 of 24
+Uniform Residential Appraisal Report	
+Page 23 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I did not personally perform an onsite inspection of the subject property as part of this appraisal assignment. I reported the condition of 
+the improvements in factual, specific terms, relying on subject property information data sources I considered reliable. I reported any known 
+physical deficiencies that could affect the soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+
+<<<PAGE 27 of 27>>>
+	
+Page 24 of 24
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 24 of 24
+	
+Appraiser Reference ID	
+123456
+	
+Client Reference ID	
+AA-4456767
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+Signature
+Appraiser
+Sam Appraiser	
+01/12/2026
+Sam Appraiser	
+Date of Signature and Report
+Level	
+Certified Residential
+ID	
+5555-2222
+State	
+IL
+Expires	
+06/30/2027

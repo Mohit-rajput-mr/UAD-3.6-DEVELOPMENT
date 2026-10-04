@@ -1,0 +1,22 @@
+[
+ "salescomp-rights-not-included|0",
+ "salescomp-site-hazard-zone|0",
+ "salescomp-site-characteristics|0",
+ "salescomp-dwell-disaster-mit|0",
+ "salescomp-ext-qual-foundation|0",
+ "salescomp-ext-cond-roof|0",
+ "salescomp-ext-cond-windows|0",
+ "salescomp-ext-qual-foundation|1",
+ "salescomp-ext-cond-roof|1",
+ "salescomp-ext-cond-windows|1",
+ "salescomp-int-qual-kitchen|0",
+ "salescomp-int-qual-baths|0",
+ "salescomp-int-qual-walls-ceilings|0",
+ "salescomp-int-cond-baths|0",
+ "salescomp-int-qual-kitchen|1",
+ "salescomp-int-qual-baths|1",
+ "salescomp-int-qual-walls-ceilings|1",
+ "salescomp-int-cond-baths|1",
+ "salescomp-outbuilding-type|0",
+ "salescomp-outbuilding-real-property|0"
+]

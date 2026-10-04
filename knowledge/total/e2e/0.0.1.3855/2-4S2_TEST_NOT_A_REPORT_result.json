@@ -1,0 +1,3783 @@
+{
+ "deliver": {
+  "file": "..\\knowledge\\total\\e2e\\0.0.1.3855\\2-4S2_TEST_NOT_A_REPORT.xml",
+  "import_error": "",
+  "import_seconds": 78.0,
+  "photos": {
+   "in_file": 52,
+   "placed_by_file": 59,
+   "placed_by_category": 1,
+   "placed": 60,
+   "seconds": 248.2,
+   "slots_naming_a_file": 65,
+   "slots_still_empty": [],
+   "differs_from_import": [],
+   "total_owned": [
+    [
+     "PropertyPhoto",
+     "DwellingFront.png"
+    ]
+   ],
+   "failed": [],
+   "no_slot": [],
+   "no_section": [],
+   "unavailable": []
+  },
+  "rows_shown": [
+   "salescomp-floor-num|0",
+   "salescomp-floor-num|1",
+   "salescomp-floor-num|2",
+   "salescomp-floor-num|3",
+   "salescomp-int-cond-walls-ceilings|0",
+   "salescomp-int-cond-walls-ceilings|1",
+   "salescomp-int-cond-walls-ceilings|2",
+   "salescomp-int-cond-walls-ceilings|3"
+  ],
+  "recalc": {
+   "all_calcs": "recalculated",
+   "net_adjustments": [
+    {
+     "comp": 1,
+     "before": "$(54,600)",
+     "after": "$(54,600)"
+    },
+    {
+     "comp": 2,
+     "before": "$22,400",
+     "after": "$22,400"
+    },
+    {
+     "comp": 3,
+     "before": "$4,400",
+     "after": "$4,400"
+    }
+   ]
+  },
+  "supervisor": {
+   "supervisor_named": false,
+   "has_supervisor": false,
+   "count_before": "0",
+   "count_after": "0"
+  },
+  "identifiers": {
+   "buildings": [
+    "Building 1"
+   ],
+   "units": [
+    "Unit A",
+    "Unit B",
+    "Unit C",
+    "Unit D"
+   ]
+  },
+  "diff": {
+   "source_values": 1805,
+   "kept": 1746,
+   "changed": 8,
+   "dropped": 51,
+   "added": 30,
+   "rows": [
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/MortgageType",
+     "data_point": "MortgageType",
+     "file": [
+      "Conventional"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+     "data_point": "EfficiencyRatingExistsIndicator",
+     "file": [],
+     "total": [
+      "false"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/FUNCTIONAL_ISSUES/FUNCTIONAL_ISSUE/FunctionalIssueType",
+     "data_point": "FunctionalIssueType",
+     "file": [
+      "None"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+     "data_point": "OverallFlooringUpdateStatusType",
+     "file": [
+      "NotUpdated",
+      "NotUpdated",
+      "NotUpdated",
+      "NotUpdated"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+     "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+     "file": [],
+     "total": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+     "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+     "file": [],
+     "total": [
+      "SquareFeet",
+      "SquareFeet",
+      "SquareFeet",
+      "SquareFeet"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+     "data_point": "RoomType",
+     "file": [
+      "Kitchen"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+     "data_point": "RoomUpdateStatusType",
+     "file": [
+      "NotUpdated"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+     "data_point": "RoofMaterialType",
+     "file": [
+      "Composition"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+     "data_point": "ImprovementComponentType",
+     "file": [],
+     "total": [
+      "ExteriorWallsAndTrim"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@123 SOMETHING PL",
+     "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+     "data_point": "TopographyType",
+     "file": [
+      "Flat"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/MortgageType",
+     "data_point": "MortgageType",
+     "file": [
+      "Conventional"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+     "data_point": "EfficiencyRatingExistsIndicator",
+     "file": [],
+     "total": [
+      "false"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/FUNCTIONAL_ISSUES/FUNCTIONAL_ISSUE/FunctionalIssueType",
+     "data_point": "FunctionalIssueType",
+     "file": [
+      "None"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+     "data_point": "OverallFlooringUpdateStatusType",
+     "file": [
+      "NotUpdated",
+      "NotUpdated",
+      "NotUpdated",
+      "NotUpdated"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+     "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+     "file": [],
+     "total": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+     "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+     "file": [],
+     "total": [
+      "SquareFeet",
+      "SquareFeet",
+      "SquareFeet",
+      "SquareFeet"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+     "data_point": "RoomType",
+     "file": [
+      "Kitchen"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+     "data_point": "RoomUpdateStatusType",
+     "file": [
+      "NotUpdated"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+     "data_point": "RoofMaterialType",
+     "file": [
+      "Composition"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+     "data_point": "ImprovementComponentType",
+     "file": [],
+     "total": [
+      "ExteriorWallsAndTrim"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@181 CATTLEDRIVE ST",
+     "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+     "data_point": "TopographyType",
+     "file": [
+      "Flat"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/MortgageType",
+     "data_point": "MortgageType",
+     "file": [
+      "Conventional"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+     "data_point": "EfficiencyRatingExistsIndicator",
+     "file": [],
+     "total": [
+      "false"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/FUNCTIONAL_ISSUES/FUNCTIONAL_ISSUE/FunctionalIssueType",
+     "data_point": "FunctionalIssueType",
+     "file": [
+      "None"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+     "data_point": "OverallFlooringUpdateStatusType",
+     "file": [
+      "NotUpdated",
+      "NotUpdated",
+      "NotUpdated",
+      "NotUpdated"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+     "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+     "file": [],
+     "total": [
+      "0",
+      "0",
+      "0",
+      "0"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+     "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+     "file": [],
+     "total": [
+      "SquareFeet",
+      "SquareFeet",
+      "SquareFeet",
+      "SquareFeet"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+     "data_point": "RoomType",
+     "file": [
+      "Kitchen"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+     "data_point": "RoomUpdateStatusType",
+     "file": [
+      "NotUpdated"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+     "data_point": "RoofMaterialType",
+     "file": [
+      "Composition"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+     "data_point": "ImprovementComponentType",
+     "file": [],
+     "total": [
+      "ExteriorWallsAndTrim"
+     ],
+     "kind": "added"
+    },
+    {
+     "scope": "SalesComparable@341 NOTHING DR",
+     "path": "PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+     "data_point": "TopographyType",
+     "file": [
+      "Flat"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SubjectProperty",
+     "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FloorIdentifier",
+     "data_point": "FloorIdentifier",
+     "file": [
+      "1",
+      "1",
+      "2",
+      "2"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "SubjectProperty",
+     "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+     "data_point": "ImageFileLocationIdentifier",
+     "file": [
+      "dwellingfront"
+     ],
+     "total": [
+      "dwellingfront-1"
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/AddressLineText",
+     "data_point": "AddressLineText",
+     "file": [
+      "1515 Ranch St"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/CityName",
+     "data_point": "CityName",
+     "file": [
+      "Anyplace"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/PostalCode",
+     "data_point": "PostalCode",
+     "file": [
+      "1234"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/StateCode",
+     "data_point": "StateCode",
+     "file": [
+      "TX"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/LEGAL_ENTITY/LEGAL_ENTITY_DETAIL/FullName",
+     "data_point": "FullName",
+     "file": [
+      "IDK Appraisal Management Company"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseExpirationDate",
+     "data_point": "LicenseExpirationDate",
+     "file": [
+      "2024-12-31"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseIdentifier",
+     "data_point": "LicenseIdentifier",
+     "file": [
+      "ABCD1234"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseIssuingAuthorityStateCode",
+     "data_point": "LicenseIssuingAuthorityStateCode",
+     "file": [
+      "TX"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/ROLE_DETAIL/PartyRoleType",
+     "data_point": "PartyRoleType",
+     "file": [
+      "ManagementCompany"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/SERVICE_PROVIDER/PROVIDED_SERVICES/PROVIDED_SERVICE/FeeType",
+     "data_point": "FeeType",
+     "file": [
+      "AppraisalManagementCompanyFee"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/SERVICE_PROVIDER/PROVIDED_SERVICES/PROVIDED_SERVICE/ProvidedServiceActualCostAmount",
+     "data_point": "ProvidedServiceActualCostAmount",
+     "file": [
+      "0"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceIdentifier",
+     "data_point": "DataSourceIdentifier",
+     "file": [
+      "XY-123994",
+      "XY-238849",
+      "XY-324811"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceType",
+     "data_point": "DataSourceType",
+     "file": [
+      "MLS",
+      "MLS",
+      "MLS"
+     ],
+     "total": [],
+     "kind": "dropped"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifierType",
+     "data_point": "AdditionalValuationIdentifierType",
+     "file": [
+      "ManagementCompany"
+     ],
+     "total": [
+      "ValuationSoftwareVendor"
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+     "data_point": "ValuationReportContentIdentifier",
+     "file": [
+      "URAR Delivery Specification v1.4"
+     ],
+     "total": [
+      "URAR Delivery Specification v1.3"
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+     "data_point": "ValuationSoftwareProductIdentifier",
+     "file": [
+      "Kech"
+     ],
+     "total": [
+      "UADAPI006"
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+     "data_point": "ValuationSoftwareProductName",
+     "file": [
+      "Kech"
+     ],
+     "total": [
+      "TOTAL"
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+     "data_point": "ValuationSoftwareProductVersionIdentifier",
+     "file": [
+      "11.2.1"
+     ],
+     "total": [
+      "TOTAL v6.331 | v0.0.1.3855"
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+     "data_point": "ValuationSoftwareVendorName",
+     "file": [
+      "Kech"
+     ],
+     "total": [
+      "Cotality | a la mode, inc."
+     ],
+     "kind": "changed"
+    },
+    {
+     "scope": "report",
+     "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+     "data_point": "ObjectURL",
+     "file": [
+      "\\\\appraisal.pdf"
+     ],
+     "total": [
+      "\\\\SAMPLEBLANK.pdf"
+     ],
+     "kind": "changed"
+    }
+   ]
+  },
+  "value_diffs": [],
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": [
+    {
+     "field": "GC1_SITE_TOPOGRAPHY",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC2_SITE_TOPOGRAPHY",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC3_SITE_TOPOGRAPHY",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC1_DWELL_STYLE_ADJ",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment blank instead of entering $0."
+    },
+    {
+     "field": "GC2_DWELL_STYLE_ADJ",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment blank instead of entering $0."
+    },
+    {
+     "field": "GC3_DWELL_STYLE_ADJ",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment blank instead of entering $0."
+    },
+    {
+     "field": "GC1_DWELL_FUNC_ISSUES",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Please complete all required functional issues fields"
+    },
+    {
+     "field": "GC2_DWELL_FUNC_ISSUES",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Please complete all required functional issues fields"
+    },
+    {
+     "field": "GC3_DWELL_FUNC_ISSUES",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Please complete all required functional issues fields"
+    },
+    {
+     "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Validation failed"
+    },
+    {
+     "field": "GC1_EXT_QUAL_ROOF",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Roof quality is required"
+    },
+    {
+     "field": "GC2_EXT_QUAL_ROOF",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Roof quality is required"
+    },
+    {
+     "field": "GC3_EXT_QUAL_ROOF",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Roof quality is required"
+    },
+    {
+     "field": "GC1_INT_COND_KITCHEN",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_KITCHEN",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_KITCHEN",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_FLOORS",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_FLOORS",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_FLOORS",
+     "instance": 0,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_KITCHEN",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_KITCHEN",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_KITCHEN",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_FLOORS",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_FLOORS",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_FLOORS",
+     "instance": 1,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_KITCHEN",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_KITCHEN",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_KITCHEN",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_FLOORS",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_FLOORS",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_FLOORS",
+     "instance": 2,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_KITCHEN",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_KITCHEN",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_KITCHEN",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Interior kitchen condition is required"
+    },
+    {
+     "field": "GC1_INT_COND_FLOORS",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC2_INT_COND_FLOORS",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "GC3_INT_COND_FLOORS",
+     "instance": 3,
+     "section": "sales-comp",
+     "message": "Interior floor condition is required"
+    },
+    {
+     "field": "RC1.1_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC1.2_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC1.3_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC1.1_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC1.2_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC1.3_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC1.1_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC1.2_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC1.3_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC1.1_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC1.2_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC1.3_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC1.1_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC1.2_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC1.3_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC1.1_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC1.2_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC1.3_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC2.1_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC2.2_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC2.3_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC2.1_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC2.2_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC2.3_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC2.1_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC2.2_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC2.3_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC2.1_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC2.2_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC2.3_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC2.1_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC2.2_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC2.3_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC2.1_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC2.2_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC2.3_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC3.3_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC3.3_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC3.3_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC3.3_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC3.3_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC3.3_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "RC4.3_MARKETAREA",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Market area for rental comparable is required"
+    },
+    {
+     "field": "RC4.3_FURNISHED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Furnished status is required"
+    },
+    {
+     "field": "RC4.3_UTILS_INCLUDED",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Utilities included indicator is required"
+    },
+    {
+     "field": "RC4.3_RENT_CONTROL",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent control indicator is required"
+    },
+    {
+     "field": "RC4.3_RENT_CONC",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Rent concessions information is required"
+    },
+    {
+     "field": "RC4.3_SMRY_OVRL_COMP_TO_SUB",
+     "instance": 0,
+     "section": "rental-information",
+     "message": "Summary overall comparison to subject is required"
+    },
+    {
+     "field": "GR1_GBFA",
+     "instance": 0,
+     "section": "income-approach",
+     "message": "Gross building finished area is required when an income approach comparable is entered"
+    },
+    {
+     "field": "GR2_GBFA",
+     "instance": 0,
+     "section": "income-approach",
+     "message": "Gross building finished area is required when an income approach comparable is entered"
+    },
+    {
+     "field": "GR3_GBFA",
+     "instance": 0,
+     "section": "income-approach",
+     "message": "Gross building finished area is required when an income approach comparable is entered"
+    }
+   ],
+   "uad_rules": [],
+   "panel_uad_errors": null
+  }
+ },
+ "diagnostics": [
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Gross building finished area is required when an income approach comparable is entered",
+   "blocking": "e&o",
+   "section": "income-approach",
+   "field": "GR1_GBFA",
+   "instance": 0,
+   "data_point": "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure",
+   "uid": "1200.0036",
+   "fid": "24.014",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Gross building finished area is required when an income approach comparable is entered",
+   "blocking": "e&o",
+   "section": "income-approach",
+   "field": "GR2_GBFA",
+   "instance": 0,
+   "data_point": "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure",
+   "uid": "1800.0184",
+   "fid": "24.003",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Gross building finished area is required when an income approach comparable is entered",
+   "blocking": "e&o",
+   "section": "income-approach",
+   "field": "GR3_GBFA",
+   "instance": 0,
+   "data_point": "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure",
+   "uid": "1800.0184",
+   "fid": "24.003",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.1_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.1_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.1_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.1_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.1_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.1_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.2_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.2_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.2_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.2_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.2_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.2_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.3_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.3_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.3_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.3_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC1.3_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.1_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.1_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.1_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.1_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.1_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.1_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.2_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.2_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.2_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.2_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.2_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.2_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.3_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.3_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.3_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.3_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC2.3_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC3.3_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC3.3_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC3.3_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC3.3_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC3.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC3.3_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Furnished status is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC4.3_FURNISHED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Market area for rental comparable is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC4.3_MARKETAREA",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent concessions information is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC4.3_RENT_CONC",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Rent control indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC4.3_RENT_CONTROL",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Summary overall comparison to subject is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC4.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Superior, Similar, Inferior",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Utilities included indicator is required",
+   "blocking": "e&o",
+   "section": "rental-information",
+   "field": "RC4.3_UTILS_INCLUDED",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "options: Yes, No",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Please complete all required functional issues fields",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "data_point": "FunctionalIssueType",
+   "uid": "1800.0121",
+   "fid": "22.05.45",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment blank instead of entering $0.",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "data_point": "ComparableAdjustmentAmount",
+   "uid": "1800.0317",
+   "fid": "22.05.40",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Roof quality is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_EXT_QUAL_ROOF",
+   "instance": 0,
+   "data_point": "RoofMaterialType",
+   "uid": "1800.0175",
+   "fid": "22.08.20",
+   "where": "",
+   "cause": "",
+   "fix": "options: Asbestos, Asphalt, Ceramic Tile, Clay, Composition, Concrete, Copper, Metal",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 0,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "1800.0336",
+   "fid": "22.09.28",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 1,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "1800.0336",
+   "fid": "22.09.28",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 2,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "1800.0336",
+   "fid": "22.09.28",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 3,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "1800.0336",
+   "fid": "22.09.28",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 0,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "1800.0326",
+   "fid": "22.09.26",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 1,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "1800.0326",
+   "fid": "22.09.26",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 2,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "1800.0326",
+   "fid": "22.09.26",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 3,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "1800.0326",
+   "fid": "22.09.26",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_SITE_TOPOGRAPHY",
+   "instance": 0,
+   "data_point": "TopographyType",
+   "uid": "1800.0225",
+   "fid": "22.03.36",
+   "where": "",
+   "cause": "",
+   "fix": "options: Flat, Rocky, Rolling, Sloping",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0399",
+   "fid": "22.07.38",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 1,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0399",
+   "fid": "22.07.38",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 2,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0399",
+   "fid": "22.07.38",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 3,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0399",
+   "fid": "22.07.38",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Please complete all required functional issues fields",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "data_point": "FunctionalIssueType",
+   "uid": "3600.0002",
+   "fid": "22.05.14",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment blank instead of entering $0.",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "data_point": "ComparableAdjustmentAmount",
+   "uid": "1800.0317",
+   "fid": "22.05.40",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Roof quality is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_EXT_QUAL_ROOF",
+   "instance": 0,
+   "data_point": "RoofMaterialType",
+   "uid": "0300.0050",
+   "fid": "22.08.05",
+   "where": "",
+   "cause": "",
+   "fix": "options: Asbestos, Asphalt, Ceramic Tile, Clay, Composition, Concrete, Copper, Metal",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 0,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 1,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 2,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 3,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 0,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 1,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 2,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 3,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_SITE_TOPOGRAPHY",
+   "instance": 0,
+   "data_point": "TopographyType",
+   "uid": "1500.0065",
+   "fid": "22.03.10",
+   "where": "",
+   "cause": "",
+   "fix": "options: Flat, Rocky, Rolling, Sloping",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 1,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 2,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 3,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Please complete all required functional issues fields",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "data_point": "FunctionalIssueType",
+   "uid": "3600.0002",
+   "fid": "22.05.14",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "When subject and comparable characteristics are the same and no adjustment is warranted, leave the adjustment blank instead of entering $0.",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "data_point": "ComparableAdjustmentAmount",
+   "uid": "1800.0317",
+   "fid": "22.05.40",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Roof quality is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_EXT_QUAL_ROOF",
+   "instance": 0,
+   "data_point": "RoofMaterialType",
+   "uid": "0300.0050",
+   "fid": "22.08.05",
+   "where": "",
+   "cause": "",
+   "fix": "options: Asbestos, Asphalt, Ceramic Tile, Clay, Composition, Concrete, Copper, Metal",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 0,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 1,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 2,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior floor condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 3,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "0700.0122",
+   "fid": "22.09.13",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Significantly Updated, Moderately Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 0,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 1,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 2,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Interior kitchen condition is required",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 3,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "0700.0036",
+   "fid": "22.09.11",
+   "where": "",
+   "cause": "",
+   "fix": "options: Fully Updated, Partially Updated, Not Updated",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_SITE_TOPOGRAPHY",
+   "instance": 0,
+   "data_point": "TopographyType",
+   "uid": "1500.0065",
+   "fid": "22.03.10",
+   "where": "",
+   "cause": "",
+   "fix": "options: Flat, Rocky, Rolling, Sloping",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 1,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 2,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-field-validation",
+   "severity": "severe",
+   "message": "Validation failed",
+   "blocking": "e&o",
+   "section": "sales-comp",
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 3,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "1800.0398",
+   "fid": "22.07.12",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Conventional'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "MortgageType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/COMPARABLE/COMPARABLE_DETAIL/MortgageType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['false']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['None'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "FunctionalIssueType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/FUNCTIONAL_ISSUES/FUNCTIONAL_ISSUE/FunctionalIssueType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['NotUpdated', 'NotUpdated', 'NotUpdated'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['0', '0', '0']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['SquareFeet', 'SquareFeet', 'SquareFeet']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Kitchen'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoomType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['NotUpdated'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Composition'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoofMaterialType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['ExteriorWallsAndTrim']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ImprovementComponentType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Flat'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "TopographyType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@123 SOMETHING PL: PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Conventional'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "MortgageType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/COMPARABLE/COMPARABLE_DETAIL/MortgageType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['false']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['None'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "FunctionalIssueType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/FUNCTIONAL_ISSUES/FUNCTIONAL_ISSUE/FunctionalIssueType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['NotUpdated', 'NotUpdated', 'NotUpdated'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['0', '0', '0']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['SquareFeet', 'SquareFeet', 'SquareFeet']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Kitchen'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoomType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['NotUpdated'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Composition'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoofMaterialType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['ExteriorWallsAndTrim']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ImprovementComponentType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Flat'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "TopographyType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@181 CATTLEDRIVE ST: PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Conventional'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "MortgageType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/COMPARABLE/COMPARABLE_DETAIL/MortgageType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['false']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['None'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "FunctionalIssueType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/FUNCTIONAL_ISSUES/FUNCTIONAL_ISSUE/FunctionalIssueType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['NotUpdated', 'NotUpdated', 'NotUpdated'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "OverallFlooringUpdateStatusType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/INTERIOR_COMPONENTS/INTERIOR_COMPONENT/INTERIOR_COMPONENT_DETAIL/OverallFlooringUpdateStatusType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['0', '0', '0']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['SquareFeet', 'SquareFeet', 'SquareFeet']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Kitchen'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoomType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['NotUpdated'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoomUpdateStatusType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/ROOMS/ROOM/ROOM_DETAIL/RoomUpdateStatusType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Composition'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "RoofMaterialType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/ROOF/ROOF_MATERIALS/ROOF_MATERIAL/RoofMaterialType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "added: package [] -> TOTAL ['ExteriorWallsAndTrim']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ImprovementComponentType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/IMPROVEMENTS/IMPROVEMENT/STRUCTURE/STRUCTURE_COMPONENTS/STRUCTURE_COMPONENT/STRUCTURE_COMPONENT_DETAIL/ImprovementComponentType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Flat'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "TopographyType",
+   "uid": "",
+   "fid": "",
+   "where": "SalesComparable@341 NOTHING DR: PROPERTY/SITE/SITE_FEATURES/SITE_FEATURE/TOPOGRAPHIES/TOPOGRAPHY/TopographyType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['1', '1', '2'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "FloorIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "SubjectProperty: PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FloorIdentifier",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "changed: package ['dwellingfront'] -> TOTAL ['dwellingfront-1']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ImageFileLocationIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "SubjectProperty: PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['1515 Ranch St'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "AddressLineText",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/AddressLineText",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['Anyplace'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "CityName",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/CityName",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['1234'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "PostalCode",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/PostalCode",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['TX'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "StateCode",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/StateCode",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['IDK Appraisal Management Company'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "FullName",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/LEGAL_ENTITY/LEGAL_ENTITY_DETAIL/FullName",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['2024-12-31'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "LicenseExpirationDate",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseExpirationDate",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['ABCD1234'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "LicenseIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseIdentifier",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['TX'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "LicenseIssuingAuthorityStateCode",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseIssuingAuthorityStateCode",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['ManagementCompany'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "PartyRoleType",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/ROLE_DETAIL/PartyRoleType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['AppraisalManagementCompanyFee'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "FeeType",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/SERVICE_PROVIDER/PROVIDED_SERVICES/PROVIDED_SERVICE/FeeType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['0'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ProvidedServiceActualCostAmount",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/SERVICE_PROVIDER/PROVIDED_SERVICES/PROVIDED_SERVICE/ProvidedServiceActualCostAmount",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['XY-123994', 'XY-238849', 'XY-324811'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "DataSourceIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceIdentifier",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "dropped: package ['MLS', 'MLS', 'MLS'] -> TOTAL []",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "DataSourceType",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "warning",
+   "message": "changed: package ['ManagementCompany'] -> TOTAL ['ValuationSoftwareVendor']",
+   "blocking": "unknown",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "AdditionalValuationIdentifierType",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifierType",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "configuration",
+   "severity": "info",
+   "message": "URAR UAD-3.6-AR-1.000 -- 1025 (72); 1 building(s), 4 unit(s)",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "info",
+   "message": "changed: package ['URAR Delivery Specification v1.4'] -> TOTAL ['URAR Delivery Specification v1.3'] -- expected: TOTAL writes 'URAR Delivery Specification v' + a constant (1.3 in builds 0.0.1.3848 and 0.0.1.3855)",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ValuationReportContentIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "cause": "builds/0.0.1.3855/configuration.json ValuationReportContentIdentifierVersion",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "info",
+   "message": "changed: package ['Kech'] -> TOTAL ['UADAPI006'] -- expected: TOTAL writes its own product identifier",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "cause": "IMPORT_PROFILE 'Values TOTAL owns'",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "info",
+   "message": "changed: package ['Kech'] -> TOTAL ['TOTAL'] -- expected: TOTAL writes its own product",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ValuationSoftwareProductName",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "cause": "IMPORT_PROFILE 'Values TOTAL owns'",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "info",
+   "message": "changed: package ['11.2.1'] -> TOTAL ['TOTAL v6.331 | v0.0.1.3855'] -- expected: TOTAL writes its own version and web-engine build",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "cause": "IMPORT_PROFILE 'Values TOTAL owns'",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "info",
+   "message": "changed: package ['Kech'] -> TOTAL ['Cotality | a la mode, inc.'] -- expected: TOTAL writes its own vendor",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ValuationSoftwareVendorName",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "cause": "IMPORT_PROFILE 'Values TOTAL owns'; every D-1 round trip",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "roundtrip",
+   "severity": "info",
+   "message": "changed: package ['\\\\\\\\appraisal.pdf'] -> TOTAL ['\\\\\\\\SAMPLEBLANK.pdf'] -- expected: the PDF TOTAL names after the report",
+   "blocking": "none",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "ObjectURL",
+   "uid": "",
+   "fid": "",
+   "where": "report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "cause": "IMPORT_PROFILE 'Values TOTAL owns'",
+   "fix": "",
+   "rule": ""
+  },
+  {
+   "layer": "total-uad",
+   "severity": "info",
+   "message": "TOTAL's UAD rules did not run: field validation is not clear (P21) -- clear it and diagnose again",
+   "blocking": "e&o",
+   "section": "",
+   "field": "",
+   "instance": 0,
+   "data_point": "",
+   "uid": "",
+   "fid": "",
+   "where": "",
+   "cause": "P21 E-012",
+   "fix": "",
+   "rule": ""
+  }
+ ]
+}

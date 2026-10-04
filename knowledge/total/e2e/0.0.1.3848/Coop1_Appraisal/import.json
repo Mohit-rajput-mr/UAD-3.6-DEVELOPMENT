@@ -1,0 +1,186 @@
+{
+ "case": {
+  "case_id": "19092dc0cbf0",
+  "name": "E2E Coop1_Appraisal",
+  "template": "coop1_appraisal_v1_4",
+  "property_type": "cooperative",
+  "state": "draft",
+  "created": "2026-09-28T13:17:55+00:00",
+  "updated": "2026-09-28T13:17:55+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "Coop1_Appraisal_v1.4.xml",
+  "property_type": "cooperative",
+  "values": 818,
+  "on_report": 646,
+  "not_displayed": 172,
+  "comparables": {
+   "SalesComparable": 3,
+   "PropertyAnalyzedNotUsed": 5
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "Coop1_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "Coop_Bedroom.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Dining_Room.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Bath.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Kitchen.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Living_Room.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Dwelling_Front.PNG",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Dwelling_Front-1.PNG",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Sketch.png",
+    "category": "SubjectPropertyImprovementSketch",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Sales_Map.PNG",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Property_Access.PNG",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Price_Trend_Graph.PNG",
+    "category": "PriceTrendGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Dwelling_Rear.PNG",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_View.PNG",
+    "category": "View",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Pool.PNG",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Theater.PNG",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Balcony.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Dwelling_Front-2.PNG",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Dwelling_Front-3.PNG",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "Coop_Comparable.PNG",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.57,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

@@ -1,0 +1,214 @@
+{
+ "case": {
+  "case_id": "c0d3ec86872a",
+  "name": "E2E Condo1_Appraisal",
+  "template": "condo1_appraisal_v1_4",
+  "property_type": "condominium",
+  "state": "draft",
+  "created": "2026-09-28T13:17:50+00:00",
+  "updated": "2026-09-28T13:17:50+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "Condo1_Appraisal_v1.4.xml",
+  "property_type": "condominium",
+  "values": 991,
+  "on_report": 784,
+  "not_displayed": 207,
+  "comparables": {
+   "SalesComparable": 4,
+   "PropertyAnalyzedNotUsed": 5
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "Condo1_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "Condo1_DiningRoom.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_BathFull1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_BathFull2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Kitchen.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_LivingRoom.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_SubjectFront.PNG",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Floorplan.jpg",
+    "category": "FloorPlan",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_SalesCompMap.PNG",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_SubjectFront-1.PNG",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_PropertyAccess.JPG",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_MedianDaysOnMarket.PNG",
+    "category": "MedianDaysOnMarketGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_PriceTrends.PNG",
+    "category": "PriceTrendGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_SubjectRear.PNG",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Pool.jpg",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Spa.JPG",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_ProjectDeficiency.JPG",
+    "category": "ProjectDeficiency",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_PropBoundaries.PNG",
+    "category": "PropertyBoundaries",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_UnitDefect.PNG",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_AmenityDefect.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_SubjectFront-2.PNG",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Comp2.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Comp3.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo1_Comp4.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 4,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.72,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

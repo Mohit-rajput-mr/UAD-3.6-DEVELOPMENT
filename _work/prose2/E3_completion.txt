@@ -1,0 +1,436 @@
+
+<<<PAGE 1 of 6>>>
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of  the 
+Federal Housing Finance Agency. 
+©2024 Freddie Mac and Fannie Mae. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification 
+Issued by Fannie Mae and Freddie Mac 
+Appendix E‐3: Report Style Guide Supplement – Completion Report with Codes 
+Document Version 1.2 
+September 17, 2024 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 6>>>
+Revision History 
+ 
+Date 
+Version # 
+Report Section 
+Change # 
+Revision Description 
+9/17/2024 
+1.2 
+Footer 
+2024‐028 
+Updated date in Footer to September 2024 
+12/12/2023 
+1.1 
+Footer 
+2023‐061 
+Updated date in Footer to December 2023 
+Certifications and Scope 
+of Work 
+2023‐003 
+Updated predefined text for all Supervisory Appraiser Certifications 
+3/29/2023 
+1.0 
+ 
+ 
+Initial Publication 
+  
+Introduction   
+The Report Style Guide Supplement is a visual guide to the Report Style Guide. 
+Each section of the Uniform Residential Appraisal Report (URAR), Restricted Appraisal Update Report, and 
+Completion Report is provided with codes in the Report Style Guide. Codes are the specific type face, placement, 
+and visual treatment that must be applied for each component within the sections. 
+Appendix E Supplements are as follows: 
+ 
+Report Style Guide Supplement – URAR with Codes 
+ 
+Report Style Guide Supplement – Restricted Appraisal Update Report with Codes 
+ 
+Report Style Guide Supplement – Completion Report with Codes 
+ 
+ 
+ 
+ 
+
+<<<PAGE 3 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Completion Report	
+Page [Page] of [Pages]
+Completion Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Physical Address
+County
+Legal Description
+Original Appraisal
+Effective Date of Appraisal
+Opinion of Market Value
+Market Value Condition
+Appraiser
+Reference ID
+Original Lender
+Final Value Condition Statement  
+Itemized List of Repairs
+Feature
+Location
+Description
+Affects 
+Soundness 
+or Structural 
+Integrity
+Repair 
+Completed
+Inspection Date 
+Completion 
+Comment
+New Observed Items for Repair
+Feature
+Location
+Description
+Affects Soundness 
+or Structural 
+Integrity
+Recommended 
+Action
+Inspection Date
+Completion Status
+Yes No
+Is construction complete?
+
+Was construction completed in a manner consistent with the original plans and 
+specifications?
+
+Feature
+Location
+Comparison to Original 
+Plans/Specs
+Comment
+Completion Report Commentary
+Completion Report Exhibits
+Assignment Information
+Borrower Name
+Appraiser Fee
+AMC Fee
+Government Agency
+Investor Requested Special Identification
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+TXR-I
+TCH
+TB
+TAB
+TAB
+TCH
+TB
+TAB
+TAB
+TAB
+TXR-B
+TXR-B
+TXR-B
+H1
+TAB
+TXR-B
+TXR-B
+TXC-B
+TCH
+TB
+TAB
+CK
+CK
+Y/N
+TXR-B
+TXR-B
+TXR-B
+TAB
+TXC
+TXC
+
+<<<PAGE 4 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Completion Report	
+Page [Page] of [Pages]
+Completion Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Contact Information
+[Role]/[Role] 
+Company Name
+Company Address
+Credentials
+ID
+State
+Expires
+Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Supervisory Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Supervisory Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Assignment Information and Scope of Work Commentary
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+H2
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+H2
+TX-B
+H2
+TXR-I
+TXR-I
+TX-B
+TXR-I
+TXR-I
+TX-B
+H1
+TXR-I
+TXR-II
+TXR-I
+TXR-II
+TXR-B
+TXR-I
+TXR-I
+TX-B
+TXR-B
+TXR-B
+TXR-I
+TXR-I
+TX-B
+TXR-B
+TXR-II
+TXR-II
+TXR-II
+TXR-II
+TXC
+
+<<<PAGE 5 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Completion Report	
+Page [Page] of [Pages]
+Completion Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Intended Use
+The intended use of this certification of completion is for the lender/client to confirm that the requirements or conditions stated in the 
+appraisal report referenced above have been met.
+Additional Intended Use
+Additional Intended Use cannot be contrary to the original Intended Use.
+Intended User
+The intended user of this report is the lender/client.
+FHA and the Mortgagee are the intended users of this report.
+The USDA and any other identified lender/client are intended users of this report.
+The VA is also an intended user of this report.
+Additional Intended Users
+Additional Intended Users cannot be contrary to the original Intended User.
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the subject property, or relationship with the present or prospective owners or occupants of the 
+subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the subject property, or the demographics 
+of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my conclusions on the actual or perceived race, color, religion, sex (including sexual orientation or gender 
+identity), age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the 
+present or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other 
+basis prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to the assumptions and 
+limiting conditions herein.
+6. I certify that I did perform a personal onsite inspection of the subject property to determine if the conditions or requirements stated in the 
+original appraisal have been satisfied.
+6. I certify that I did not perform a personal onsite inspection of the subject property to determine if the conditions or requirements stated in 
+the original appraisal have been satisfied.
+Description:
+7. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable federal 
+and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation of 
+my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+Additional Appraiser Certifications
+Additional Appraiser Certifications cannot be contrary to the original Appraiser Certifications.
+1. 
+Supervisory Appraiser Certifications
+The Supervisory Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the subject property, or relationship with the present or prospective owners or occupants of the 
+subject property, or other parties involved in this transaction.
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the subject property, or the demographics 
+of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that
+apply to the appraiser and to the assignment.
+4. I accept full responsibility for this certification of completion.
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+H1
+H2
+TXC
+TXC
+TXC-I
+TXC-I
+H2
+TXC
+H1
+TXC
+H1
+TAB
+TXC-NP
+TXC
+TXC-NP
+TXC-NPI-B
+TXC-NP
+TXC-NP
+H2
+TXC-I
+TXC-NP
+TXC-NP
+TXC
+TXC
+
+<<<PAGE 6 of 6>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Completion Report	
+Page [Page] of [Pages]
+Completion Version #
+Fannie Mae | Freddie Mac 
+September 2024
+5. The assignment information regarding the scope of inspection by the Supervisory Appraiser is correct.
+6. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable federal 
+and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation of 
+my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+Additional Supervisory Appraiser Certifications
+Additional Supervisory Appraiser Certifications cannot be contrary to the original Supervisory Appraiser Certifications.
+1. 
+Signature
+[Role]
+[Contact Name]	
+Date of Signature and Report
+Level
+ID
+State
+Expires
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXC-NP
+TXC-NP
+H2
+TXC-I
+TXC-NP
+H1
+SIG-B
+TX-B
+SIG
+TXR-B
+TXR-B

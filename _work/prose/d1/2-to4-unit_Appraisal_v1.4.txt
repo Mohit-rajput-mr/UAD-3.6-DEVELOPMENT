@@ -1,0 +1,2863 @@
+
+<<<PAGE 1 of 31>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: 2- to 4-unit Scenario 
+Document Version 1.4 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 31>>>
+ 
+ 
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.4 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/10/2025 
+1.3 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+9/17/2024 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+12/12/2023 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+3/29/2023 
+1.0 
+Initial Publication 
+ 
+Introduction  
+This report is for a two unit home that fronts to a collector road with high density traffic. The subject 
+falls within USGS Lava Flow Zone 2, a hazard zone, with adverse impact due to volcanic activity.  
+The subject property has two detached dwellings with one unit in each dwelling, each unit consisting of 
+864 sq. ft. The units have matching layouts and contain two bedrooms, one bathroom, a kitchen, living 
+room, and dining area. Both units have typical wear and tear throughout that does not affect the 
+livability of either unit. Rust is noted on each unit’s metal roof; however, neither roof has ruptures or 
+leaks due to the deterioration. The subject has newer impact-resistant glass to protect from potential 
+wind damage. One of the units has access to a carport and the other unit has access to a driveway. Each 
+unit has its own outdoor shower. 
+The subject is for sale by owner and currently pending with a current list price of $160,000. 
+Key Characteristics 
+• 
+Connected to public electricity and water, and private cesspool 
+• 
+Construction Method: Site Built 
+• 
+Attachment Type: Detached 
+• 
+Property Rights: Mineral Rights not included  
+• 
+Defects, Damages, Deficiencies have been identified 
+• 
+Includes Income Approach  
+o Rent Schedule 
+o Gross Rent Multiplier Comparables 
+• 
+Parties associated with this transaction: 
+o Appraiser (Trainee) 
+o Supervisory Appraiser (did not inspect) 
+• 
+Includes Revision History and Supplemental Information sections 
+ 
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+ 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 3 of 31>>>
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+12345 HOLIDAY HWY, SURFSIDE, HI 12345
+SUMMARY
+Opinion of Market Value	
+$195,000
+Market Value Condition	
+As Is
+Effective Date of Appraisal	
+10/05/2019
+Assignment Reason	
+Purchase
+Borrower Name	
+Betty Borrower
+Current Owner of Public Record	
+Sydney Seller
+Contract Price	
+$160,000
+Listing Status	
+Pending
+Property Valuation Method	
+Traditional Appraisal
+Appraiser Name	
+Tom Appraiser
+Property Description
+Construction Method	
+Site Built
+Attachment Type	
+Detached
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+2
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Zoning Compliance	
+Legal Nonconforming
+Overall Quality	
+Q5
+Overall Condition	
+C4
+This is where the Subject Property photo would display.
+Apparent Defects, Damages, Deficiencies Requiring Action
+There are no apparent defects, damages, or deficiencies requiring action. For details, reference the ‘Reconciliation’ section.
+
+<<<PAGE 4 of 31>>>
+	
+Page 2 of 29
+Uniform Residential Appraisal Report	
+Page 2 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Assignment Information
+Assignment Reason	
+Purchase
+Borrower Name	
+Betty Borrower
+Seller Name	
+Sydney Seller
+Current Owner of Public Record	
+Sydney Seller
+Property Valuation Method	
+Traditional Appraisal
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Contact Information
+Client/Lender 
+Company Name	
+Random National Bank
+Company Address	
+123456 Main St
+	
+Nowhere, NE 98765
+Appraiser
+Name	
+Tom Appraiser
+Company Name	
+Arthur Appraiser Appraisals
+Company Address	
+98765 Holiday Hwy
+	
+Surfside, HI 12345
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+Physical
+Interior	
+Physical
+Inspection Date	
+10/05/2019
+Credentials
+Level	
+Trainee Appraiser
+ID	
+1111TRHI
+State	
+HI
+Expires	
+12/31/2021
+Supervisory Appraiser 
+Name	
+Arthur Appraiser
+Designation	
+ASA
+Company Name	
+Arthur Appraiser Appraisals
+Company Address	
+98765 Holiday Hwy
+	
+Surfside, HI 12345
+Scope of Inspection by Supervisory Appraiser
+Subject Property Inspection
+Exterior	
+No Inspection
+Interior	
+No Inspection
+Credentials
+Level	
+Certified General
+ID	
+987654HI
+State	
+HI
+Expires	
+12/31/2021
+Assignment Information and Scope of Work Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Subject Property
+Physical Address	
+12345 Holiday Hwy
+	
+Surfside, HI 12345
+County	
+Hawaii
+Neighborhood Name	
+Hawaiian Vista
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Detached
+Units Excluding ADUs	
+2
+Accessory Dwelling Units	
+0
+Dwellings Containing Units	
+2
+Special Tax Assessments	
+No
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+All Rights Included in Appraisal	
+No
+Rights Not Included	
+Mineral Rights
+Description of Rights Not Included  All mineral rights are held by 
+the state of Hawaii.
+
+<<<PAGE 5 of 31>>>
+	
+Page 3 of 29
+Subject Property (continued)
+Uniform Residential Appraisal Report	
+Page 3 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Legal Description
+Lot 4, Block 35, Hawaiian Vista
+Subject Property Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Site
+Total Site Size	
+11,997 Sq. Ft.
+Number of Parcels	
+1
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+3-1-5-067-055
+Land with Dwelling
+11,997 Sq. Ft.
+Zoning
+Compliance	
+Legal Nonconforming
+Classification Code	
+A-1A
+Classification Code Description	
+Agricultural/Residential,  
+	
+1.00 Acre Minimum
+Impact	
+Neutral
+Description of Zoning Compliance  According to Hawaii 
+Planning and Zoning Office, the subject can be rebuilt if destroyed. 
+Nonconforming to zoning due to smaller lot size than currently 
+allowed.
+Property Use
+Non-Residential Use	
+None
+Property Access
+Primary Access	
+Public Street  
+Street Type and Surface	
+Collector Street | Asphalt
+Typical for Market	
+Yes
+Description of Property Access  Subject fronts onto a collector 
+street.
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Busy Roadway
+Bordering
+Adverse
+Site fronts to a collector 
+street through the 
+community, which has higher 
+density traffic impacting 
+subject’s marketability.
+Site Influence Commentary  Additional commentary can be added here, if needed by Appraiser.
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Residential
+Full
+Neutral
+View Commentary  Additional commentary can be added here, if needed by Appraiser.
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+USGS Lava Flow Zone 2
+Adverse
+There is volcanic activity in the Puna District on the 
+southeast portion of the island of Hawaii.
+Site Features Commentary  Additional commentary can be added here, if needed by Appraiser.
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Sanitary Sewer
+
+Cesspool
+Neutral
+Cesspools are typical in this jurisdiction.
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Commentary
+Additional commentary can be added here, if needed by Appraiser.
+
+<<<PAGE 6 of 31>>>
+	
+Page 4 of 29
+Site (continued)
+Uniform Residential Appraisal Report	
+Page 4 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Site Exhibits
+Property Access (Street Scene) - East
+Property Access (Street Scene) - West
+This is where the Property Access East Facing photo would display.
+This is where the Property Access West Facing photo would display.
+Hazard Zone - USGS Lava Flow Zone
+Disaster Mitigation
+Mitigation Feature	
+Impact Resistant Glass
+Disaster Mitigation Commentary
+The subject has impact resistant glass to protect from potential wind damage.
+
+<<<PAGE 7 of 31>>>
+	
+Page 5 of 29
+Uniform Residential Appraisal Report	
+Page 5 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Sketch
+Measurement Standard	
+ANSI
+Floor Plan
+This is where the Floor Plan image would display.
+Sketch Commentary
+Additional commentary can be added here, if needed by Appraiser.
+
+<<<PAGE 8 of 31>>>
+	
+Page 6 of 29
+Uniform Residential Appraisal Report	
+Page 6 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Dwelling Exterior - Building 1
+Subject Property Units in  
+Structure	
+1
+Dwelling Style	
+Ranch
+Front Door Elevation	
+Up to 1 foot
+Year Built	
+1985
+Construction Method	
+Site Built
+Converted Area	
+None
+This is where the Dwelling 1 Front photo would display.
+Quality and Condition
+Exterior Quality Rating	
+Q5
+Exterior Condition Rating	
+C4
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Engineered Wood
+T-111 siding
+Typical Wear and Tear
+Add comment if needed.
+Foundation
+Metal | Post and Pier
+Add comment if needed.
+Typical Wear and Tear
+Add comment if needed.
+Roof
+Metal
+Estimated Age:  
+20 or more years
+Add comment if needed.
+Typical Wear and Tear
+Rust noted on the roof. 
+Metal galvanized roofs can 
+deteriorate when rust forms. 
+No ruptures or leaks noted at 
+the time of inspection.
+Windows
+Insulated
+Add comment if needed.
+New or Like New
+Add comment if needed.
+Mechanical System Details
+System
+Detail
+Heating
+None
+Typical for Market
+Cooling
+None
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior - Building 1)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Roof
+Entire Roof
+Rust noted on the roof. Metal galvanized roofs 
+can deteriorate when rust forms. No ruptures 
+or leaks noted at the time of inspection.
+No
+None
+Dwelling Exterior Commentary
+Utilities were on and functioning during time of inspection.
+Dwelling Exterior Exhibits
+Dwelling Rear
+Apparent Defects, Damages, Deficiencies - Roof
+This is where the Dwelling 1 Rear photo would display.
+This is where the Dwelling 1 Roof Defect photo would display.
+
+<<<PAGE 9 of 31>>>
+	
+Page 7 of 29
+Uniform Residential Appraisal Report	
+Page 7 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior - Building 1 - Unit 1
+Area Breakdown
+Finished Above Grade	
+864 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Assessor Record
+	
+Physical Measurement
+Levels in Unit	
+1
+Occupancy	
+Tenant
+Utilities Separately Metered	
+Yes
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+1
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+Above Grade
+Finished
+864 Sq. Ft.
+1 - Bath - Full
+2 - Bedroom
+1 - Kitchen
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q5
+Interior Condition Rating	
+C4
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen 
+Level 1
+Not Updated
+The stove is fully 
+functional but 
+considered outdated, 
+undersized and does 
+not meet current 
+standards in the market.
+Damaged and 
+Functional
+Some cabinet hardware 
+and cabinet fronts 
+missing exhibiting 
+moderate wear and 
+tear.
+Bath - Full 
+Level 1
+Partially Updated
+5–10 years
+Basic quality cabinetry 
+and fixtures
+Typical Wear and Tear
+Newer laminate floor 
+installed. Some cabinet 
+hardware missing.
+Overall Update Status for  
+Bathrooms	
+Moderately Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Commercial grade carpeting
+New or Like New
+Add comment if needed.
+Laminate
+Add comment if needed.
+New or Like New
+Add comment if needed.
+Walls and Ceiling
+8 Ft. | Flat
+Add comment if needed.
+Typical Wear and Tear
+Paint shows wear, needs to 
+be updated.
+Overall Update Status for  
+Flooring	
+Fully Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior - Building 1 - Unit 1)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Appliances
+Kitchen
+The stove is fully functional but considered 
+outdated, undersized and does not meet 
+current standards in the market.
+No
+None
+Cabinetry
+Full Bathroom
+Some cabinet hardware is missing exhibiting 
+moderate wear and tear.
+No
+None
+Cabinetry
+Kitchen
+Some cabinet hardware and cabinet fronts 
+missing exhibiting moderate wear and tear.
+No
+None
+Doors
+Full Bathroom
+Peeling paint that is cosmetic in nature.
+No
+None
+Walls and Ceiling
+Full Bathroom
+Peeling and worn paint that is cosmetic in 
+nature.
+No
+None
+Unit Interior Commentary
+Some areas of deferred maintenance noted and identified in the report for this unit, but the livability of the unit is not affected.
+
+<<<PAGE 10 of 31>>>
+Unit Interior - Building 1 - Unit 1 (continued)
+Uniform Residential Appraisal Report	
+Page 8 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior Exhibits
+Level 1 - Bedroom - Bedroom 1
+Level 1 - Bedroom - Bedroom 2
+This is where the Unit 1 Bedroom 1 photo would display.
+This is where the Unit 1 Bedroom 2 photo would display.
+Level 1 - Bath - Full
+Level 1 - Kitchen
+This is where the Full Bathroom photo would display.
+This is where the Kitchen photo would display.
+Level 1 - Living Room
+Apparent Defects, Damages, Deficiencies - Appliances -  
+Kitchen
+This is where the Living Room photo would display.
+This is where the Appliance Defect photo would display.
+Apparent Defects, Damages, Deficiencies - Cabinetry -  
+Bathroom
+Apparent Defects, Damages, Deficiencies - Cabinetry -  
+Kitchen
+This is where the Bathroom Cabinet Defect photo would display.
+This is where the Kitchen Cabinet Defect photo would display.
+
+<<<PAGE 11 of 31>>>
+Unit Interior - Building 1 - Unit 1 (continued)
+Uniform Residential Appraisal Report	
+Page 9 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies - Doors - Bathroom
+Apparent Defects, Damages, Deficiencies - Walls and  
+Ceiling - Bathroom
+This is where the Bathroom Door Defect photo would display.
+This is where the Bathroom Wall Defect photo would display.
+Dwelling Exterior - Building 2
+Subject Property Units in  
+Structure	
+1
+Dwelling Style	
+Ranch
+Front Door Elevation	
+Up to 1 foot
+Year Built 	
+1985
+Construction Method	
+Site Built
+Converted Area	
+None
+This is where the Dwelling 2 Front photo would display.
+Quality and Condition
+Exterior Quality Rating	
+Q5
+Exterior Condition Rating	
+C4
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Engineered Wood
+T-111 siding
+Typical Wear and Tear
+Add comment if needed.
+Foundation
+Metal | Post and Pier
+Add comment if needed.
+Typical Wear and Tear
+Add comment if needed.
+Roof
+Metal
+Estimated Age:  
+20 or more years
+Add comment if needed.
+Typical Wear and Tear
+Rust noted on the roof. 
+Metal galvanized roofs can 
+deteriorate when rust forms. 
+No ruptures or leaks noted at 
+the time of inspection.
+Windows
+Insulated
+Add comment if needed.
+New or Like New
+Add comment if needed.
+Mechanical System Details
+System
+Detail
+Heating
+None
+Typical for Market
+Cooling
+None
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior - Building 2)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Roof
+Entire Roof
+Rust noted on the roof. Metal galvanized roofs 
+can deteriorate when rust forms. No ruptures 
+or leaks noted at the time of inspection.
+No
+None
+Dwelling Exterior Commentary 
+Additional commentary can be added here, if needed by Appraiser.
+
+<<<PAGE 12 of 31>>>
+Dwelling Exterior - Building 2 (continued)
+Uniform Residential Appraisal Report	
+Page 10 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Dwelling Exterior Exhibits
+Dwelling Rear
+Apparent Defects, Damages, Deficiencies - Roof
+This is where the Dwelling 2 Rear photo would display.
+This is where the Dwelling 2 Roof Defect photo would display.
+Unit Interior - Building 2 - Unit 2
+Area Breakdown
+Finished Above Grade	
+864 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Assessor Record
+	
+Physical Measurement
+Levels in Unit	
+1
+Occupancy	
+Owner
+Utilities Separately Metered	
+Yes
+Total Bedrooms	
+2
+Total Bathrooms - Full	
+1
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+Above Grade
+Finished
+864 Sq. Ft.
+1 - Bath - Full
+2 - Bedroom
+1 - Kitchen
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q5
+Interior Condition Rating	
+C4
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report 
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen 
+Level 1
+Partially Updated
+5–10 years
+Add comment if 
+needed.
+Typical Wear and Tear
+Some hardware noted 
+to be missing from 
+cabinets.
+Bath - Full 
+Level 1
+Partially Updated
+5–10 years
+Add comment if 
+needed.
+Typical Wear and Tear
+Newer laminate floor 
+installed. Some cabinet 
+hardware missing.
+Overall Update Status for  
+Bathrooms	
+ Moderately Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Add comment if needed.
+Typical Wear and Tear
+Add comment if needed.
+Laminate
+Add comment if needed.
+New or Like New
+Add comment if needed.
+Walls and Ceiling
+8 Ft. | Flat
+Add comment if needed.
+Typical Wear and Tear
+Add comment if needed.
+Overall Update Status for  
+Flooring	
+Moderately Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior - Building 2 - Unit 2)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Cabinetry
+Full Bathroom
+Some hardware noted to be missing from 
+cabinets exhibiting moderate wear and tear.
+No
+None
+Cabinetry
+Kitchen
+Some hardware noted to be missing from  
+cabinets exhibiting moderate wear and tear.
+No
+None
+
+<<<PAGE 13 of 31>>>
+Unit Interior - Building 2 - Unit 2 (continued)
+Uniform Residential Appraisal Report	
+Page 11 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior Commentary
+Some areas of deferred maintenance noted and identified in the report for this unit, but the livability of the unit is not affected.
+Unit Interior Exhibits
+Level 1 - Bedroom - Bedroom 1
+Level 1 - Bedroom - Bedroom 2
+This is where the Unit 2 Bedroom 1 photo would display.
+This is where the Unit 2 Bedroom 2 photo would display.
+Level 1 - Bath - Full
+Level 1 - Kitchen
+This is where the Full Bathroom photo would display.
+This is where the Kitchen photo would display.
+ Level 1 - Living Room
+Apparent Defects, Damages, Deficiencies - Cabinetry - 
+Bathroom
+This is where the Living Room photo would display.
+This is where the Bathroom Cabinet Defect photo would display.
+
+<<<PAGE 14 of 31>>>
+Unit Interior - Building 2 - Unit 2 (continued)
+Uniform Residential Appraisal Report	
+Page 12 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies - Cabinetry -  
+Kitchen
+This is where the Kitchen Cabinet Defect photo would display.
+Functional Obsolescence
+Functional Issues	
+None
+Functional Obsolescence Commentary
+No functional or external obsolescence noted.
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Carport
+2
+Detached
+400 Sq. Ft.
+Driveway
+6
+Gravel
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+Vehicle Storage Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Water Features
+Outdoor Shower
+Total Number - 2
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+None
+Subject Property Amenities Commentary
+Each unit has its own outdoor shower.
+Overall Quality and Condition
+Overall Quality	
+Q5
+Exterior Quality - Building 1	
+Q5
+Interior Quality - Unit 1	
+Q5
+Exterior Quality - Building 2	
+Q5
+Interior Quality - Unit 2	
+Q5
+Overall Condition	
+C4
+Exterior Condition - Building 1	
+C4
+Interior Condition - Unit 1	
+C4
+Exterior Condition - Building 2	
+C4
+Interior Condition - Unit 2	
+C4
+Reconciliation of Overall Quality and Condition
+The appraiser’s inspection was visual and not technical in nature. Quality and condition ratings are based on the appraiser’s observations on 
+the date of inspection. See the defects, damages, and deficiencies table for specifics.
+
+<<<PAGE 15 of 31>>>
+	
+Page 13 of 29
+Uniform Residential Appraisal Report	
+Page 13 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Market
+Market Area Boundary  The subject market is roughly bounded by Keaau and Hawaii State parkland to the north, the Pacific Ocean to the 
+east and the south, and State Route 130 to the west.
+Search Criteria Description  Closing dates between 09/01/2018-09/01/2019 and bounded by Keaau and Hawaii State parkland to the north, 
+the Pacific Ocean to the east and the south, and State Route 130 to the west.
+Search Result Metrics
+Active Listings	
+7
+Median Days on Market	
+148
+Lowest List Price	
+$234,900
+Median List Price 	
+$352,000
+Highest List Price	
+$739,000
+Pending Sales	
+1
+Sales in Past 12 Months	
+10
+Lowest Sale Price	
+$200,500
+Median Sale Price	
+$403,230
+Highest Sale Price	
+$620,000
+Distressed Market Competition	
+No
+Price Trend Source	
+MLS
+Price Trend Analysis Commentary  An analysis of the sales in the past year for the subject’s market area shows sales volume to be consistent 
+across the year. Supply and demand are in balance and the absorption rate is typical of historical trends. The market in the subject area is 
+considered to be stable.
+Housing Trends
+Demand/Supply	
+In Balance
+Marketing Time	
+3 to 6 months
+Market Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Listing Status
+Listing Type
+Listing ID
+Start Date
+End Date
+DOM
+Starting  
+List Price
+Current or 
+Final List Price
+Pending
+FSBO
+0
+$160,000
+Total DOM
+0
+Analysis of Subject Property Listing History  The subject was not listed on the open market. This is a private sale between investors. The 
+appraiser is unaware of any other listings or agreements for sale.
+Sales Contract
+Yes No
+Is there a sales contract?
+
+Was sales contract information analyzed?
+
+Does this appear to be an arm’s length transaction?
+
+Contract Price	
+$160,000
+Contract Date	
+08/25/2019
+Transfer Terms	
+Private Sale
+Personal Property Conveyed	
+No
+Financial Sales Concessions	
+Financial assistance paid by or on behalf of the seller as an inducement to purchase the subject property
+Known Sales Concessions	
+No
+Sales Contract Analysis
+This is a FSBO. This transaction is between investors with a contract price below market value.
+
+<<<PAGE 16 of 31>>>
+	
+Page 14 of 29
+Uniform Residential Appraisal Report	
+Page 14 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Prior Sales or Transfers	
+None
+Data Source	
+Assessor Record
+	
+MLS
+Analysis of Prior Sale and Transfer History of Subject Property  My research revealed no prior transactions within the past 3 years.
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms
+Date 
+Amount 
+Data Source 
+1
+Typically Motivated
+11/20/2018
+$275,000
+Assessor Record
+MLS
+2
+None
+Assessor Record
+MLS
+3
+Estate Sale
+11/01/2018
+Not Disclosed
+Assessor Record
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  The prior sale for comparable #1 was a market sale listed in the MLS. The 
+original owner was forced to relist the property as a result of an unexpected job transfer. The appraiser was unable to determine the prior sales 
+price for comparable #3. Information from the tax record indicates that the property was transferred as part of an estate settlement/sale.
+
+<<<PAGE 17 of 31>>>
+	
+Page 15 of 29
+Uniform Residential Appraisal Report	
+Page 15 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+12345 Holiday Hwy 
+Surfside, HI 12345
+13-222 N Trail Loop 
+Surfside, HI 12345
+25-1837 Highmountain Pl 
+Surfside, HI 12345
+22-1713 Broad Ave 
+Surfside, HI 12345
+ 
+This is where the 
+Subject Property photo 
+would display.
+ 
+This is where the 
+Comparable 1 photo 
+would display.
+ 
+This is where the 
+Comparable 2 photo 
+would display.
+ 
+This is where the 
+Comparable 3 photo 
+would display.
+Data Source
+Assessor Record | 
+MLS 2345850
+Assessor Record | 
+MLS 32498543
+Assessor Record | 
+MLS 2354398
+Proximity to Subject
+1.1 Miles S
+5.1 Miles NW
+4.4 Miles W
+List Price
+$160,000
+$279,000
+$210,000
+$257,500
+Listing Status
+Pending
+Settled Sale
+Settled Sale
+Settled Sale
+Contract Price
+$160,000
+—
+—
+—
+Sale Price
+$279,000
+$200,500
+$249,750
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Financing Type
+VA
+$0
+Conventional
+$0
+Conventional
+$0
+Sales Concessions
+No
+No
+No
+No
+Contract Date
+08/25/2019
+02/22/2019
+$0
+10/01/2018
+$0
+03/20/2019
+$0
+Sale Date
+04/30/2019
+$0
+12/03/2018
+$0
+05/30/2019
+$0
+Days on Market
+0
+115
+94
+87
+Attached/Detached
+Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+All Rights Included
+No
+No
+No
+No
+Rights Not Included
+Mineral Rights
+Mineral Rights
+Mineral Rights
+Mineral Rights
+Site
+Site Size
+11,997 Sq. Ft.
+11,965 Sq. Ft.
+$0
+1 Acres
+$(15,000)
+1 Acres
+$(15,000)
+Neighborhood Name
+Hawaiian Vista
+Hawaiian Parks
+$0
+Ocean Vista Park
+$0
+Ocean Vista Park
+$0
+Zoning Compliance
+Legal Nonconforming
+Legal 
+Nonconforming
+Legal
+$0
+Legal
+$0
+Hazard Zone
+USGS Lava Flow Zone 2
+USGS Lava 
+Flow Zone 2
+USGS Lava 
+Flow Zone 3
+$(15,000)
+USGS Lava 
+Flow Zone 3
+$(15,000)
+Site Characteristics
+None
+Landscaping
+$(2,000)
+None
+None
+Site Influence (Location)
+Busy Roadway
+Busy Roadway 
+| Ocean
+$(25,000)
+Residential
+$(5,000)
+Residential
+$(5,000)
+View | Range
+Residential | Full
+Residential | Full
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+1985 | 1985
+2005 | 1992
+$(5,000)
+1946 | 1940
+$10,000
+1992
+$0
+Gross Building Finished Area
+1,728 Sq. Ft.
+2,790 Sq. Ft.
+$0
+1,288 Sq. Ft.
+$0
+1,456 Sq. Ft.
+$0
+Construction Method
+Site Built
+Site Built
+Site Built
+Site Built
+Disaster Mitigation
+Impact Resistant Glass
+Impact Resistant 
+Glass
+None
+$5,000
+Impact Resistant 
+Glass
+Heating
+None
+None
+None
+None
+None
+None
+None
+Unit(s)
+Structure ID | Unit ID
+Building 1 | Unit 1
+Building 1 | Unit 1
+Building 1 | Unit 1
+Building 1 | Unit 1
+Bedrooms
+2
+2
+3
+$0
+2
+Baths - Full | Half
+1 | 0
+1 | 0
+1 | 0
+1 | 0
+Finished Area Above  
+Grade
+864 Sq. Ft.
+864 Sq. Ft.
+612 Sq. Ft.
+$8,800
+728 Sq. Ft.
+$4,750
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Structure ID | Unit ID
+Building 2 | Unit 2
+Building 2 | Unit 2
+Building 2 | Unit 2
+Building 1 | Unit 2
+Bedrooms
+2
+2
+2
+2
+Baths - Full | Half
+1 | 0
+3 | 0
+$(5,000)
+1 | 0
+1 | 0
+Finished Area Above  
+Grade
+864 Sq. Ft.
+1,926 Sq. Ft.
+$(37,200)
+676 Sq. Ft.
+$6,600
+728 Sq. Ft.
+$4,750
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+
+<<<PAGE 18 of 31>>>
+	
+Page 16 of 29
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 16 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+12345 Holiday Hwy 
+Surfside, HI 12345
+13-222 N Trail Loop 
+Surfside, HI 12345
+25-1837 Highmountain Pl 
+Surfside, HI 12345
+22-1713 Broad Ave 
+Surfside, HI 12345
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Structure ID
+Building 1
+Building 1
+Building 1
+Building 1
+Quality
+Q5
+Q5
+Q5
+Q4
+Exterior Walls and Trim
+Engineered Wood
+Engineered Wood
+Wood
+Engineered Wood
+Foundation
+Post and Pier
+Post and Pier
+Post and Pier
+Slab
+Roof
+Metal
+Metal
+Metal
+Metal
+Condition
+C4
+C4
+C4
+C4
+Roof
+Typical Wear and Tear
+Typical Wear and Tear
+Typical Wear and Tear
+Typical Wear and Tear
+Windows
+New or Like New
+New or Like New
+Typical Wear and Tear
+Typical Wear and Tear
+Structure ID
+Building 2
+Building 2
+Building 2
+—
+Quality
+Q5
+Q4
+Q5
+—
+Exterior Walls and Trim
+Engineered Wood
+Engineered Wood
+Wood
+—
+Foundation
+Post and Pier
+Slab
+Post and Pier
+—
+Roof
+Metal
+Metal
+Metal
+—
+Condition
+C4
+C4
+C4
+—
+Roof
+Typical Wear and Tear
+Typical Wear and Tear
+Typical Wear and Tear
+—
+Windows
+New or Like New
+New or Like New
+Typical Wear and Tear
+—
+Interior Quality and Condition
+Structure ID | Unit ID
+Building 1 | Unit 1
+Building 1 | Unit 1
+Building 1 | Unit 1
+Building 1 | Unit 1
+Quality
+Q5
+Q5
+Q5
+Q4
+Kitchen
+Basic
+Basic
+Basic
+Standard
+Overall Bathrooms
+Basic
+Basic
+Basic
+Standard
+Walls and Ceiling
+Standard
+Standard
+Standard
+Standard Dry Wall | Vaulted
+Condition
+C4
+C4
+C4
+C4
+Kitchen
+Not Updated
+Not Updated
+Not Updated
+Not Updated
+Overall Bathrooms
+Moderately Updated
+Moderately Updated
+Not Updated
+Not Updated
+Overall Flooring
+Fully Updated
+Fully Updated
+Fully Updated
+Not Updated
+Structure ID | Unit ID
+Building 2 | Unit 2
+Building 2 | Unit 2
+Building 2 | Unit 2
+Building 1 | Unit 2
+Quality
+Q5
+Q4
+Q5
+Q4
+Kitchen
+Standard
+Standard
+Basic
+Standard
+Overall Bathrooms
+Basic
+Standard
+Basic
+Standard
+Walls and Ceiling
+Standard
+Standard
+Standard
+Standard Dry Wall | Vaulted
+Condition
+C4
+C4
+C4
+C4
+Kitchen
+Partially Updated
+Partially Updated
+Not Updated
+Not Updated
+Overall Bathrooms
+Moderately Updated
+Moderately Updated
+Not Updated
+Not Updated
+Overall Flooring
+Moderately Updated
+Fully Updated
+Fully Updated
+Not Updated
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q5
+Q4
+$(10,000)
+Q5
+Q4
+$(20,000)
+Condition
+C4
+C4
+C4
+C4
+Property Amenities
+Outdoor Living
+—
+Porch
+$(3,000)
+—
+Deck | Porch
+$(5,000)
+Water Features
+Outdoor Shower - 2
+—
+$0
+—
+$0
+—
+$0
+Vehicle Storage
+$3,000
+$0
+$0
+Type | Spaces | Detail
+Carport | 2 | Detached 
+400 Sq. Ft. 
+Driveway | 6 | Gravel
+Driveway | 6 | Gravel
+Carport | 2 | Attached 
+Driveway | 6 | Gravel
+Carport | 2 | Attached 
+Driveway | 6 | Gravel
+Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)
+Outbuilding Type
+—
+—
+Shed
+$0
+—
+
+<<<PAGE 19 of 31>>>
+	
+Page 17 of 29
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 17 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+12345 Holiday Hwy 
+Surfside, HI 12345
+13-222 N Trail Loop 
+Surfside, HI 12345
+25-1837 Highmountain Pl 
+Surfside, HI 12345
+22-1713 Broad Ave 
+Surfside, HI 12345
+Summary
+List Price
+$160,000
+$279,000
+$210,000
+$257,500
+Contract Price
+$160,000
+—
+—
+—
+Sale Price
+$279,000
+$200,500
+$249,750
+Net Adjustment Total
+$(84,200)
+$(4,600)
+$(50,500)
+Adjusted Price Per Unit
+$97,400
+$97,950
+$99,625
+Adjusted Price Per Bedroom
+$48,700
+$39,180
+$49,813
+Price Per Gross Building 
+Finished Area
+$100
+$156
+$172
+Adjusted Price
+$194,800
+$195,900
+$199,250
+Comparable Weight
+Less
+Most
+Less
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$195,000
+Reconciliation of Sales Comparison Approach
+Comparables #1 and 2 are similar in function and utility as they are both two unit, two building properties and adjust towards the lower end 
+of the range. Hazard zone adjustment is based on market adjustment for differences between location in USGS Lava Flow Zones 2 and 3. 
+Ranges for price per unit and bedroom count are supportive of the value estimate. Comparable #2 has the least gross adjustments in the sales 
+comparison approach, is the most similar in style, quality and condition, and is given most weight.
+
+<<<PAGE 20 of 31>>>
+	
+Page 18 of 29
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 18 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Map
+ 
+This is where the Sales Comparable Map photo would display.
+
+<<<PAGE 21 of 31>>>
+	
+Page 19 of 29
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 19 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the Comparable 1 photo would display.
+This is where the Comparable 2 photo would display.
+Comparable #3
+This is where the Comparable 3 photo would display.
+Rental Information
+Rent Schedule
+Subject Property Rental Information
+Currently 
+Rented
+Occupancy
+Monthly 
+Rent
+Month-to-
+Month
+Lease Start
+Rent 
+Control
+Rental 
+Concessions
+Utilities/
+Services 
+Included
+Furnished
+Unit 1
+Yes
+Tenant
+$875
+Yes
+No
+No
+No
+No
+Unit 2
+No
+Owner
+$0
+No
+Actual Income (Monthly)
+Rent
+Unit 1
+$875
+Unit 2
+$0
+Subtotal
+$875
+Other Real Property Rental Income
+None
+$0
+Subtotal
+$0
+Total
+$875
+Opinion of Market Income (Monthly)
+Rent
+Unit 1
+$875
+Unit 2
+$925
+Subtotal
+$1,800
+Other Real Property Rental Income
+None
+$0
+Subtotal
+$0
+Total
+$1,800
+
+<<<PAGE 22 of 31>>>
+	
+Page 20 of 29
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 20 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable Rental Properties
+ 
+This is where the 
+Subject Property 
+photo would display.
+ 
+This is where the 
+Rental Comparable 1 
+photo would display.
+ 
+This is where the 
+Rental Comparable 2 
+photo would display.
+ 
+This is where the 
+Rental Comparable 3 
+photo would display.
+ 
+This is where the 
+Rental Comparable 4 
+photo would display.
+ 
+This is where the 
+Rental Comparable 5 
+photo would display.
+Subject Property
+12345 Holiday Hwy 
+Surfside, HI 12345
+Comparable #1
+8275 Youngish St 
+Surfside, HI 12345
+Data Source: 
+MLS 142332
+Lease Start 
+Date: 09/2019
+Actual Rent: $925
+Comparable #2
+1337 Stone Back Blvd 
+Surfside, HI 12345
+Data Source: 
+MLS 425021
+Lease Start 
+Date: 08/2019
+Actual Rent: $800
+Comparable #3
+420 Long Ear Ave 
+Surfside, HI 12345
+Data Source: 
+MLS 342332
+Lease Start 
+Date: 02/2020
+Actual Rent: $1,000
+Comparable #4
+1776 Whitecrest Rd 
+Unit 1 
+Surfside, HI 12345
+Data Source: 
+MLS 442332
+Lease Start 
+Date: 10/2019
+Actual Rent: $1,300
+Comparable #5
+1776 Whitecrest Rd 
+Unit 2 
+Surfside, HI 12345
+Data Source: 
+MLS 542332
+Lease Start 
+Date: 09/2019
+Actual Rent: $1,200
+Comparable Rental Analysis
+Subject
+Comparables
+Subject
+Comparables
+Unit 1
+#1
+#2
+#3
+Unit 2
+#1
+#4
+#5
+Proximity to Subject
+0.4 Miles N
+0.4 Miles SE
+1 Miles W
+0.4 Miles N
+0.5 Miles NE
+0.5 Miles NE
+Neighborhood Name
+Hawaiian 
+Vista
+Bay Hills
+Hillview
+Bayville
+Hawaiian 
+Vista
+Bay Hills
+Hillview 
+Gardens
+Hillview 
+Gardens
+Site Influence
+Busy 
+Roadway
+Similar
+Similar
+Similar
+Busy 
+Roadway
+Similar
+Similar
+Similar
+View from Unit
+Residential
+Similar
+Similar
+Superior
+Residential
+Similar
+Similar
+Similar
+Site Size
+11,997 Sq. Ft.
+1 Acres
+8,250 Sq. Ft.
+15,000 Sq. Ft.
+11,997 Sq. Ft.
+1 Acres
+12,000 Sq. Ft.
+12,000 Sq. Ft.
+Interior Condition
+C4
+C4
+C4
+C4
+C4
+C4
+C3
+C4
+Bedrooms
+2
+2
+2
+3
+2
+2
+2
+3
+Baths - Full | Half
+1 | 0
+1 | 0
+1 | 0
+2 | 0
+1 | 0
+1 | 0
+1 | 0
+2 | 0
+Finished Area
+864 Sq. Ft.
+864 Sq. Ft.
+820 Sq. Ft.
+1,056 Sq. Ft.
+864 Sq. Ft.
+864 Sq. Ft.
+900 Sq. Ft.
+1,260 Sq. Ft.
+Furnished
+No
+No
+No
+No
+—
+No
+No
+No
+Utilities/Services 
+Included
+No
+No
+No
+No
+—
+No
+No
+No
+Rent Control
+No
+No
+No
+No
+No
+No
+No
+No
+Rent Concessions
+No
+No
+No
+No
+—
+No
+No
+No
+Vehicle Storage | Spaces
+Driveway | 6
+Superior
+Superior
+Similar
+Carport | 2
+Similar
+Similar
+Inferior
+Summary
+Rent Per Finished Area
+$1.01
+$1.07
+$0.98
+$0.95
+$0
+$1.07
+$1.44
+$0.95
+Actual Rent
+$875
+$925
+$800
+$1,000
+$0
+$925
+$1,300
+$1,200
+Overall Comparison 
+to Subject
+Similar
+Similar
+Superior
+Similar
+Superior
+Superior
+Adjusted Rent
+$900
+$800
+$900
+$925
+$900
+$850
+Opinion of 
+Market Rent
+$875
+$925
+Comparable Weight
+Most
+Less
+Less
+Most
+Less
+Less
+Rental Analysis Commentary
+This data and other rent comparable information gathered from discussions with landlords, owners, and property managers support 
+estimated rents for the subject. Estimated rents have been based on the above rent survey as well as a rental survey of the general area.
+
+<<<PAGE 23 of 31>>>
+	
+Page 21 of 29
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 21 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Rental Information Exhibits
+Map of Rental Comparables
+ 
+This is where the Rental Comparable Map photo would display.
+Comparable #1
+Comparable #2
+This is where the Rental Comparable 1 photo would display.
+This is where the Rental Comparable 2 photo would display.
+
+<<<PAGE 24 of 31>>>
+	
+Page 22 of 29
+Rental Information (continued)
+Uniform Residential Appraisal Report	
+Page 22 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable #3
+Comparable #4
+This is where the Rental Comparable 3 photo would display.
+This is where the Rental Comparable 4 photo would display.
+Comparable #5
+This is where the Rental Comparable 5 photo would display.
+Income Approach
+Gross Rent Multiplier Comparables
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+12345 Holiday Hwy 
+Surfside, HI 12345
+16-204 Whitecrest Dr 
+Surfside, HI 12345
+15-137 Stoneback Ave 
+Surfside, HI 12345
+16-207 Starmind Blvd 
+Surfside, HI 12345
+ 
+This is where the 
+Subject Property photo 
+would display.
+ 
+This is where the GRM 
+Comparable 1 photo 
+would display.
+ 
+This is where the GRM 
+Comparable 2 photo 
+would display.
+ 
+This is where the GRM 
+Comparable 3 photo 
+would display.
+Data Source
+MLS 77777
+MLS 88888
+MLS 99999
+Proximity to Subject
+0.8 Miles W
+0.3 Miles E
+1.2 Miles W
+Units Excluding ADUs
+2
+2
+3
+2
+Sale Price
+$265,000
+$289,000
+$190,000
+Sale Date
+02/24/2019
+05/31/2019
+08/30/2019
+Gross Monthly Rent
+$875
+~$2,300
+$2,700
+$1,700
+Gross Rent Multiplier
+115
+107
+112
+Comparable Weight
+Less
+Less
+Most
+Indicated Value by Income Approach
+	
+Total Monthly Market Rent	
+×	
+Gross Rent Multiplier	
+=	
+Indicated Value by Income Approach
+	
+$1,800	
+	
+110	
+	
+$198,000
+Income Approach Commentary
+The appraiser’s analysis of comparable sales of rental properties shows a range for the gross rent multiplier of 107 to 115. Comparable #3 
+is most similar in size and utility and is given most weight. The income approach is considered reliable and provides support for the value 
+estimate. Comparable #1’s gross monthly rent estimated due to owner occupancy of one of the units.
+
+<<<PAGE 25 of 31>>>
+	
+Page 23 of 29
+Income Approach (continued)
+Uniform Residential Appraisal Report	
+Page 23 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Income Approach Exhibits
+Map of GRM Comparables
+ 
+This is where the GRM Comparable Map photo would display.
+Comparable #1
+Comparable #2
+This is where the GRM Comparable 1 photo would display.
+This is where the GRM Comparable 2 photo would display.
+
+<<<PAGE 26 of 31>>>
+	
+Page 24 of 29
+Income Approach (continued)
+Uniform Residential Appraisal Report	
+Page 24 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable #3
+This is where the GRM Comparable 3 photo would display.
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$195,000
+$198,000
+Reason for Exclusion
+Difficulty Estimating Depreciation
+Appraisal Summary
+Contract Price	
+$160,000
+Opinion of Market Value	
+$195,000
+Market Value Condition	
+As Is
+Reasonable Exposure Time	
+90-120 days
+Effective Date of Appraisal	
+10/05/2019
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+Apparent Defects, Damages, Deficiencies
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Dwelling Exterior - Building 1
+Roof
+Entire Roof
+Rust noted on the roof. Metal galvanized roofs 
+can detriorate when rust forms. No ruptures 
+or leaks noted at the time of inspection.
+No
+None
+Unit Interior - Building 1 - Unit 1
+Appliances
+Kitchen
+The stove is fully functional but considered 
+outdated, undersized and does not meet 
+current standards in the market.
+No
+None
+Cabinetry
+Full Bathroom
+Some cabinet hardware is missing exhibiting 
+moderate wear and tear.
+No
+None
+Cabinetry
+Kitchen
+Some cabinet hardware and cabinet fronts 
+missing exhibiting moderate wear and tear.
+No
+None
+Doors
+Full Bathroom
+Peeling paint that is cosmetic in nature.
+No
+None
+Walls and Ceiling
+Full Bathroom
+Peeling and worn paint that is cosmetic in 
+nature.
+No
+None
+Dwelling Exterior - Building 2
+Roof
+Entire Roof
+Rust noted on the roof. Metal galvanized roofs 
+can detriorate when rust forms. No ruptures 
+or leaks noted at the time of inspection.
+No
+None
+Unit Interior - Building 2 - Unit 2
+Cabinetry
+Full Bathroom
+Some hardware noted to be missing from 
+cabinets exhibiting moderate wear and tear.
+No
+None
+Cabinetry
+Kitchen
+Some hardware noted to be missing from 
+cabinets exhibiting moderate wear and tear.
+No
+None
+
+<<<PAGE 27 of 31>>>
+	
+Page 25 of 29
+Uniform Residential Appraisal Report	
+Page 25 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Revision History
+Revision Date
+URAR Section
+Description
+10/07/2019
+Assignment Information
+Corrected borrower name
+10/12/2019
+Site
+Added comment in “Description of Zoning Compliance” at client request
+Supplemental Information
+Supplemental Information Exhibits
+[Photo Caption Displays Here]
+This is where the Supplemental Information photo would display.
+
+<<<PAGE 28 of 31>>>
+	
+Page 26 of 29
+Uniform Residential Appraisal Report	
+Page 26 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this appraisal report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+
+<<<PAGE 29 of 31>>>
+	
+Page 27 of 29
+Uniform Residential Appraisal Report	
+Page 27 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+
+<<<PAGE 30 of 31>>>
+	
+Page 28 of 29
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 28 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+Supervisory Appraiser Certifications
+The Supervisory Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction.
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment.
+4. I directly supervised the appraiser for this appraisal assignment, have read the appraisal report, and agree with the appraiser’s analyses, 
+opinions, statements, conclusions, and the appraiser’s certification.
+5. The assignment information regarding the scope of inspection by the Supervisory Appraiser is correct.
+6. I accept full responsibility for the contents of this appraisal report including, but not limited to, the appraiser’s analyses, opinions, 
+statements, conclusions, and the appraiser’s certification.
+7. The appraiser identified in this appraisal report is either a subcontractor or an employee of the supervisory appraiser (or the appraisal firm), 
+is qualified to perform this appraisal, and is acceptable to perform this appraisal under the applicable law.
+8. This appraisal report complies with the Uniform Standards of Professional Appraisal Practice that were adopted and promulgated by the 
+Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal report was transmitted.
+9. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable federal 
+and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation of 
+my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+Additional Supervisory Appraiser Certifications
+Additional Supervisory Appraiser Certifications cannot be contrary to the original Supervisory Appraiser Certifications.
+1. I have performed services regarding the subject property within the three years preceding the agreement to perform this assignment. I 
+performed an appraisal on April 13, 2018.
+
+<<<PAGE 31 of 31>>>
+	
+Page 29 of 29
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 29 of 29
+	
+Appraiser Reference ID	
+12345HI
+	
+Client Reference ID	
+34205-UH
+Appraisal Version #3
+Fannie Mae | Freddie Mac 
+September 2024
+Signature
+Appraiser
+Tom Appraiser	
+10/12/2019
+Tom Appraiser	
+Date of Signature and Report
+Level	
+Trainee Appraiser
+ID	
+1111TRHI
+State	
+HI
+Expires	
+12/31/2021
+Supervisory Appraiser
+Arthur Appraiser	
+10/12/2019
+Arthur Appraiser	
+Date of Signature and Report
+Level	
+Certified General
+ID	
+987654HI
+State	
+HI
+Expires	
+12/31/2021

@@ -1,0 +1,235 @@
+204 stand-in value(s) written, 0 defect caption(s), 30 finding(s) skipped -> ..\knowledge\total\e2e\0.0.1.3855\2-4S2_TEST2_NOT_A_REPORT.xml
+  + GC1_TRANSFER_TERMS_ADJ                   PropertyOwnershipTransferTerms = 0
+  + GC2_TRANSFER_TERMS_ADJ                   PropertyOwnershipTransferTerms = 0
+  + GC3_TRANSFER_TERMS_ADJ                   PropertyOwnershipTransferTerms = 0
+  + GC1_DP_FINTYP1                           MortgageType = Conventional
+  + GC1_DP_FINTYP1                           NoFinancingTransactionIndicator = true
+  + GC1_DP_FINTYP1_ADJ                       FinancingMethod = 0
+  + GC2_DP_FINTYP1                           MortgageType = Conventional
+  + GC2_DP_FINTYP1                           NoFinancingTransactionIndicator = true
+  + GC2_DP_FINTYP1_ADJ                       FinancingMethod = 0
+  + GC3_DP_FINTYP1                           MortgageType = Conventional
+  + GC3_DP_FINTYP1                           NoFinancingTransactionIndicator = true
+  + GC3_DP_FINTYP1_ADJ                       FinancingMethod = 0
+  + GC1_SP_TO_LP_RATIO_ADJ                   SaleToListPriceRatio = 0
+  + GC2_SP_TO_LP_RATIO_ADJ                   SaleToListPriceRatio = 0
+  + GC3_SP_TO_LP_RATIO_ADJ                   SaleToListPriceRatio = 0
+  + GC1_ALL_RIGHTS_INCLUDED_ADJ              OwnershipRightsConveyed = 0
+  + GC2_ALL_RIGHTS_INCLUDED_ADJ              OwnershipRightsConveyed = 0
+  + GC3_ALL_RIGHTS_INCLUDED_ADJ              OwnershipRightsConveyed = 0
+  + GC1_MARKETAREA_ADJ                       NeighborhoodName = 0
+  + GC2_MARKETAREA_ADJ                       NeighborhoodName = 0
+  + GC3_MARKETAREA_ADJ                       NeighborhoodName = 0
+  + GC1_SITE_PRIMARY_ACCESS_ADJ              PropertyPrimaryAccess = 0
+  + GC2_SITE_PRIMARY_ACCESS_ADJ              PropertyPrimaryAccess = 0
+  + GC3_SITE_PRIMARY_ACCESS_ADJ              PropertyPrimaryAccess = 0
+  + GC1_SITE_STREET_TYPE                     ImprovedSurfaceMaterialType = Asphalt
+  + GC1_SITE_STREET_TYPE                     StreetAccessType = Local
+  + GC1_SITE_STREET_TYPE_ADJ                 PropertyStreetAccessAndSurface = 0
+  + GC2_SITE_STREET_TYPE                     ImprovedSurfaceMaterialType = Asphalt
+  + GC2_SITE_STREET_TYPE                     StreetAccessType = Local
+  + GC2_SITE_STREET_TYPE_ADJ                 PropertyStreetAccessAndSurface = 0
+  + GC3_SITE_STREET_TYPE                     ImprovedSurfaceMaterialType = Asphalt
+  + GC3_SITE_STREET_TYPE                     StreetAccessType = Local
+  + GC3_SITE_STREET_TYPE_ADJ                 PropertyStreetAccessAndSurface = 0
+  + GC1_SITE_TOPOGRAPHY                      TopographyType = Flat
+  + GC2_SITE_TOPOGRAPHY                      TopographyType = Flat
+  + GC3_SITE_TOPOGRAPHY                      TopographyType = Flat
+  + GC1_DWELL_STYLE                          ArchitecturalDesignCategoryType = Traditional
+  + GC1_DWELL_STYLE_ADJ                      DwellingStyle = 0
+  + GC2_DWELL_STYLE                          ArchitecturalDesignCategoryType = Traditional
+  + GC2_DWELL_STYLE_ADJ                      DwellingStyle = 0
+  + GC3_DWELL_STYLE                          ArchitecturalDesignCategoryType = Traditional
+  + GC3_DWELL_STYLE_ADJ                      DwellingStyle = 0
+  + GC1_DWELL_FUNC_ISSUES                    FunctionalIssueType = None
+  + GC1_DWELL_FUNC_ISSUES_ADJ                FunctionalIssues = 0
+  + GC2_DWELL_FUNC_ISSUES                    FunctionalIssueType = None
+  + GC2_DWELL_FUNC_ISSUES_ADJ                FunctionalIssues = 0
+  + GC3_DWELL_FUNC_ISSUES                    FunctionalIssueType = None
+  + GC3_DWELL_FUNC_ISSUES_ADJ                FunctionalIssues = 0
+  + GC1_DWELL_HEAT_ADJ                       HeatingSystem = 0
+  + GC2_DWELL_HEAT_ADJ                       HeatingSystem = 0
+  + GC3_DWELL_HEAT_ADJ                       HeatingSystem = 0
+  + GC1_DWELL_COOL                           CoolingSystemExistsIndicator = true
+  + GC1_DWELL_COOL                           CoolingSystemType = Centralized
+  + GC1_DWELL_COOL_ADJ                       CoolingSystem = 0
+  + GC2_DWELL_COOL                           CoolingSystemExistsIndicator = true
+  + GC2_DWELL_COOL                           CoolingSystemType = Centralized
+  + GC2_DWELL_COOL_ADJ                       CoolingSystem = 0
+  + GC3_DWELL_COOL                           CoolingSystemExistsIndicator = true
+  + GC3_DWELL_COOL                           CoolingSystemType = Centralized
+  + GC3_DWELL_COOL_ADJ                       CoolingSystem = 0
+  + GC1_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit A)
+  + GC2_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 1)
+  + GC3_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 1)
+  + GC1_LEVELS                               LevelCount = 1 (unit 1)
+  + GC1_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit A)
+  + GC2_LEVELS                               LevelCount = 1 (unit 1)
+  + GC2_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 1)
+  + GC3_LEVELS                               LevelCount = 1 (unit 1)
+  + GC3_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 1)
+  + GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit A)
+  + GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 1)
+  + GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 1)
+  + GC1_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit B)
+  + GC2_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 2)
+  + GC3_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 2)
+  + GC1_LEVELS                               LevelCount = 1 (unit 2)
+  + GC1_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit B)
+  + GC2_LEVELS                               LevelCount = 1 (unit 2)
+  + GC2_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 2)
+  + GC3_LEVELS                               LevelCount = 1 (unit 2)
+  + GC3_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 2)
+  + GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit B)
+  + GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 2)
+  + GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 2)
+  + GC1_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit C)
+  + GC2_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 3)
+  + GC3_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 3)
+  + GC1_LEVELS                               LevelCount = 1 (unit 3)
+  + GC1_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit C)
+  + GC2_LEVELS                               LevelCount = 1 (unit 3)
+  + GC2_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 3)
+  + GC3_LEVELS                               LevelCount = 1 (unit 3)
+  + GC3_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 3)
+  + GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit C)
+  + GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 3)
+  + GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 3)
+  + GC1_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit D)
+  + GC2_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 4)
+  + GC3_FLOOR_NUM_ADJ                        LivingUnitFloorNumber = 0 (Unit 4)
+  + GC1_LEVELS                               LevelCount = 1 (unit 4)
+  + GC1_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit D)
+  + GC2_LEVELS                               LevelCount = 1 (unit 4)
+  + GC2_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 4)
+  + GC3_LEVELS                               LevelCount = 1 (unit 4)
+  + GC3_LEVELS_ADJ                           LivingUnitLevelCount = 0 (Unit 4)
+  + GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit D)
+  + GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 4)
+  + GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ    LivingUnitNonStandardFinishedAreaBelowGrade = 0 (Unit 4)
+  + GC1_EXT_QUAL_EXT_WALLS_TRIM              WallMaterialType = Brick
+  + GC2_EXT_QUAL_EXT_WALLS_TRIM              WallMaterialType = Brick
+  + GC3_EXT_QUAL_EXT_WALLS_TRIM              WallMaterialType = Brick
+  + GC1_EXT_QUAL_ROOF                        RoofMaterialType = Composition
+  + GC2_EXT_QUAL_ROOF                        RoofMaterialType = Composition
+  + GC3_EXT_QUAL_ROOF                        RoofMaterialType = Composition
+  + GC1_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 1)
+  + GC2_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 1)
+  + GC3_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 1)
+  + GC1_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 1)
+  + GC2_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 1)
+  + GC3_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 1)
+  + GC1_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 2)
+  + GC2_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 2)
+  + GC3_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 2)
+  + GC1_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 2)
+  + GC2_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 2)
+  + GC3_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 2)
+  + GC1_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 3)
+  + GC2_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 3)
+  + GC3_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 3)
+  + GC1_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 3)
+  + GC2_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 3)
+  + GC3_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 3)
+  + GC1_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 4)
+  + GC2_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 4)
+  + GC3_INT_COND_KITCHEN                     RoomUpdateStatusType = NotUpdated (unit 4)
+  + GC1_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 4)
+  + GC2_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 4)
+  + GC3_INT_COND_FLOORS                      OverallFlooringUpdateStatusType = NotUpdated (unit 4)
+  + GC1_AMENITY_OUTDOOR_ACCESSORIES_ADJ      OutdoorAccessoryAmenity = 0
+  + GC2_AMENITY_OUTDOOR_ACCESSORIES_ADJ      OutdoorAccessoryAmenity = 0
+  + GC3_AMENITY_OUTDOOR_ACCESSORIES_ADJ      OutdoorAccessoryAmenity = 0
+  + GC1_AMENITY_WHOLE_HOME_ADJ               WholeHomeAmenity = 0
+  + GC2_AMENITY_WHOLE_HOME_ADJ               WholeHomeAmenity = 0
+  + GC3_AMENITY_WHOLE_HOME_ADJ               WholeHomeAmenity = 0
+  + GC1_VEHICLE_STORAGE_ADJ                  VehicleStorage = 0
+  + GC2_VEHICLE_STORAGE_ADJ                  VehicleStorage = 0
+  + GC3_VEHICLE_STORAGE_ADJ                  VehicleStorage = 0
+  + RC1.1_MARKETAREA                         NeighborhoodName = Bighorn Ranch (unit 1)
+  + RC1.3_MARKETAREA                         NeighborhoodName = Bighorn Ranch (unit 1)
+  + RC1.1_FURNISHED                          UnitFurnishedIndicator = false (unit 1)
+  + RC1.3_FURNISHED                          UnitFurnishedIndicator = false (unit 1)
+  + RC1.1_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 1)
+  + RC1.3_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 1)
+  + RC1.1_RENT_CONTROL                       RentControlStatusType = No (unit 1)
+  + RC1.3_RENT_CONTROL                       RentControlStatusType = No (unit 1)
+  + RC1.1_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 1)
+  + RC1.3_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 1)
+  + RC1.1_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 1)
+  + RC1.3_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 1)
+  + RC2.1_FURNISHED                          UnitFurnishedIndicator = false (unit 2)
+  + RC2.2_FURNISHED                          UnitFurnishedIndicator = false (unit 2)
+  + RC2.3_FURNISHED                          UnitFurnishedIndicator = false (unit 2)
+  + RC2.1_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 2)
+  + RC2.2_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 2)
+  + RC2.3_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 2)
+  + RC2.1_RENT_CONTROL                       RentControlStatusType = No (unit 2)
+  + RC2.2_RENT_CONTROL                       RentControlStatusType = No (unit 2)
+  + RC2.3_RENT_CONTROL                       RentControlStatusType = No (unit 2)
+  + RC2.1_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 2)
+  + RC2.2_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 2)
+  + RC2.3_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 2)
+  + RC2.1_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 2)
+  + RC2.2_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 2)
+  + RC2.3_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 2)
+  + RC3.1_FURNISHED                          UnitFurnishedIndicator = false (unit 3)
+  + RC3.2_FURNISHED                          UnitFurnishedIndicator = false (unit 3)
+  + RC3.3_FURNISHED                          UnitFurnishedIndicator = false (unit 3)
+  + RC3.1_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 3)
+  + RC3.2_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 3)
+  + RC3.3_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 3)
+  + RC3.1_RENT_CONTROL                       RentControlStatusType = No (unit 3)
+  + RC3.2_RENT_CONTROL                       RentControlStatusType = No (unit 3)
+  + RC3.3_RENT_CONTROL                       RentControlStatusType = No (unit 3)
+  + RC3.1_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 3)
+  + RC3.2_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 3)
+  + RC3.3_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 3)
+  + RC3.1_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 3)
+  + RC3.2_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 3)
+  + RC3.3_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 3)
+  + RC4.1_FURNISHED                          UnitFurnishedIndicator = false (unit 4)
+  + RC4.2_FURNISHED                          UnitFurnishedIndicator = false (unit 4)
+  + RC4.3_FURNISHED                          UnitFurnishedIndicator = false (unit 4)
+  + RC4.1_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 4)
+  + RC4.2_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 4)
+  + RC4.3_UTILS_INCLUDED                     UnitChargesIncludeUtilitiesIndicator = false (unit 4)
+  + RC4.1_RENT_CONTROL                       RentControlStatusType = No (unit 4)
+  + RC4.2_RENT_CONTROL                       RentControlStatusType = No (unit 4)
+  + RC4.3_RENT_CONTROL                       RentControlStatusType = No (unit 4)
+  + RC4.1_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 4)
+  + RC4.2_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 4)
+  + RC4.3_RENT_CONC                          FinancialRentalConcessionIndicator = false (unit 4)
+  + RC4.1_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 4)
+  + RC4.2_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 4)
+  + RC4.3_SMRY_OVRL_COMP_TO_SUB              RentalUnitToSubjectComparisonType = Inferior (unit 4)
+  - GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD        nothing written (already present or no stand-in)
+  - RC1.2_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC1.2_FURNISHED                          nothing written (already present or no stand-in)
+  - RC1.2_UTILS_INCLUDED                     nothing written (already present or no stand-in)
+  - RC1.2_RENT_CONTROL                       nothing written (already present or no stand-in)
+  - RC1.2_RENT_CONC                          nothing written (already present or no stand-in)
+  - RC1.2_SMRY_OVRL_COMP_TO_SUB              nothing written (already present or no stand-in)
+  - RC2.1_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC2.2_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC2.3_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC3.1_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC3.2_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC3.3_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC4.1_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC4.2_MARKETAREA                         nothing written (already present or no stand-in)
+  - RC4.3_MARKETAREA                         nothing written (already present or no stand-in)
+  - GR1_GBFA                                 nothing written (already present or no stand-in)
+  - GR2_GBFA                                 nothing written (already present or no stand-in)
+  - GR3_GBFA                                 nothing written (already present or no stand-in)

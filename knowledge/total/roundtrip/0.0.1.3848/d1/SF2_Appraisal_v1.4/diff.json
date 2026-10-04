@@ -1,0 +1,486 @@
+{
+ "source_values": 1054,
+ "kept": 1032,
+ "changed": 12,
+ "dropped": 10,
+ "added": 26,
+ "rows": [
+  {
+   "scope": "SalesComparable@2134 NOTHING HILL PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".06"
+   ],
+   "total": [
+    "0.06"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@2134 NOTHING HILL PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@2134 NOTHING HILL PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@2134 NOTHING HILL PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@2134 NOTHING HILL PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3214 SOMEWHERE PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".03"
+   ],
+   "total": [
+    "0.03"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@3214 SOMEWHERE PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3214 SOMEWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3214 SOMEWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3214 SOMEWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3245 NOWHERE PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".12"
+   ],
+   "total": [
+    "0.12"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@3245 NOWHERE PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3245 NOWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3245 NOWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@3245 NOWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@6543 ANYWHERE PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".09"
+   ],
+   "total": [
+    "0.09"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@6543 ANYWHERE PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@6543 ANYWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@6543 ANYWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@6543 ANYWHERE PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@7890 SOME PL",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".03"
+   ],
+   "total": [
+    "0.03"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@7890 SOME PL",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@7890 SOME PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@7890 SOME PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@7890 SOME PL",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [
+    "Project Pool"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/INSPECTIONS/INSPECTION/IMAGES/IMAGE/ImageCategoryType",
+   "data_point": "ImageCategoryType",
+   "file": [
+    "ProjectAmenity"
+   ],
+   "total": [
+    "ProjectExhibit"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/IMAGES/IMAGE/ImageCaptionCommentDescription",
+   "data_point": "ImageCaptionCommentDescription",
+   "file": [],
+   "total": [
+    "Downstairs Deck",
+    "Upstairs Deck"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/IMAGES/IMAGE/ImageFileLocationIdentifier",
+   "data_point": "ImageFileLocationIdentifier",
+   "file": [],
+   "total": [
+    "\\\\Images\\SF2_Deck1.png",
+    "\\\\Images\\SF2_Deck2.png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SubjectProperty",
+   "path": "PROPERTY/PROPERTY_AMENITY/AMENITY_CATEGORIES/AMENITY_CATEGORY/AMENITIES/AMENITY/IMAGES/IMAGE/MIMETypeIdentifier",
+   "data_point": "MIMETypeIdentifier",
+   "file": [],
+   "total": [
+    "image/png",
+    "image/png"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [
+    "123 Main St"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [
+    "Somecity"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [
+    "40121"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [
+    "IA"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/LEGAL_ENTITY/LEGAL_ENTITY_DETAIL/FullName",
+   "data_point": "FullName",
+   "file": [
+    "ZYX Appraisal Management Company"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseExpirationDate",
+   "data_point": "LicenseExpirationDate",
+   "file": [
+    "2020-12-15"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseIdentifier",
+   "data_point": "LicenseIdentifier",
+   "file": [
+    "222222"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/LICENSES/LICENSE/LICENSE_DETAIL/LicenseIssuingAuthorityStateCode",
+   "data_point": "LicenseIssuingAuthorityStateCode",
+   "file": [
+    "MD"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/ROLE_DETAIL/PartyRoleType",
+   "data_point": "PartyRoleType",
+   "file": [
+    "ManagementCompany"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "MYAPP"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Some Appraisal Creator"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.1"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Nowhere Technologies"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "\\\\SF2_Appraisal_v1.4.pdf"
+   ],
+   "total": [
+    "\\\\sampleblank.pdf"
+   ],
+   "kind": "changed"
+  }
+ ]
+}

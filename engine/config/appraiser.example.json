@@ -1,0 +1,26 @@
+{
+  "_note": "The appraiser who signs the report.  Copy to appraiser.json and fill in.  The real file is git-ignored: a licence number is a credential and does not belong in a repository.",
+  "name": { "first": "", "middle": "", "last": "", "suffix": "", "full": "" },
+  "company_name": "",
+  "company_address": { "line": "", "city": "", "state": "", "postal_code": "" },
+  "mailing_address": { "line": "", "city": "", "state": "", "postal_code": "" },
+  "telephone": "",
+  "email": "",
+  "license": {
+    "level": "CertifiedGeneral",
+    "level_display": "Certified General",
+    "identifier": "",
+    "state": "",
+    "effective_date": "",
+    "expiration_date": "",
+    "issuing_authority": "",
+    "control_number": ""
+  },
+  "assets": {
+    "license_image": "",
+    "signature_image": "",
+    "credentials_block_image": "",
+    "insurance_image": ""
+  },
+  "_provenance": "Transcribe from the licence and signature block. Verify before signing any report."
+}

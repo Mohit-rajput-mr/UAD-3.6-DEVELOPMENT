@@ -1,0 +1,242 @@
+{
+ "case": {
+  "case_id": "c2d70b3fbfa0",
+  "name": "E2E MH2_Appraisal",
+  "template": "mh1_appraisal_v1_4",
+  "property_type": "manufactured",
+  "state": "draft",
+  "created": "2026-09-28T13:18:00+00:00",
+  "updated": "2026-09-28T13:18:00+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "MH2_Appraisal_v1.4.xml",
+  "property_type": "manufactured",
+  "values": 988,
+  "on_report": 780,
+  "not_displayed": 208,
+  "comparables": {
+   "SalesComparable": 4,
+   "LandComparable": 4
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "MH2_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "MH2_Bedroom_1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Bedroom_2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Bedroom_3.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Dining_Room.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Bath_2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Bath_1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Living_Room.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Living_Room-1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Dwelling_Front.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Street_Access.jpg",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Dwelling_Front-1.jpg",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Comp_Map.jpg",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Floorplan.png",
+    "category": "FloorPlan",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Street_Access-1.jpg",
+    "category": "SiteInfluence",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Street_Access-2.jpg",
+    "category": "View",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Park.jpg",
+    "category": "SiteInfluence",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Dwelling_Rear.jpg",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Skirting.png",
+    "category": "ManufacturedHomeExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_ChoiceHome.png",
+    "category": "ManufacturedHomeFinancingProgramEligibilityCertification",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_MHAdvantage.png",
+    "category": "ManufacturedHomeFinancingProgramEligibilityCertification",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Certification_Label_1.jpg",
+    "category": "ManufacturedHomeHUDCertificationLabel",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Certification_Label_2.jpg",
+    "category": "ManufacturedHomeHUDCertificationLabel",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_HUD_Data_Plate.jpg",
+    "category": "ManufacturedHomeHUDDataPlate",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Comp1.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Comp2.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Comp3.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "MH2_Comp4.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 4,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.64,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

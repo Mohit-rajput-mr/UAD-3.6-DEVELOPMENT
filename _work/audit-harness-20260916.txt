@@ -1,0 +1,149 @@
+VALIDATING THE CHECKS against the official samples
+
+  [  ok  ] schema         12/12 official samples pass
+  [  ok  ] compliance     12/12 official samples pass
+  [  ok  ] fonts          12/12 official PDFs pass
+  [  ok  ] furniture      12/12 official PDFs pass
+
+
+RUNNING THE CHECKS against regenerated output
+
+  scenario                              packa  schem  compl  fonts  furni  grid   trace  archi  
+  ----------------------------------------------------------------------------------------------
+  condo1_appraisal_v1_4                 gap    ok     ok     ok     ok     ok     ok     ok     
+  condo2_appraisal_v1_4                 gap    ok     ok     ok     ok     ok     ok     ok     
+  coop1_appraisal_v1_4                  gap    ok     ok     ok     ok     ok     ok     ok     
+  mh1_appraisal_v1_4                    gap    ok     ok     ok     ok     ok     FAIL   ok     
+  mh2_appraisal_v1_4                    gap    ok     ok     ok     ok     ok     ok     ok     
+  sf1_appraisal_v1_4                    gap    ok     ok     ok     ok     ok     ok     ok     
+  sf2_appraisal_v1_4                    gap    ok     ok     ok     ok     ok     ok     ok     
+  sf3_appraisal_v1_4                    gap    ok     ok     ok     ok     ok     ok     ok     
+  sf4_appraisal_v1_4                    ok     ok     ok     ok     ok     ok     ok     ok     
+  sf5_appraisal_v1_2                    gap    ok     ok     ok     ok     ok     ok     ok     
+  2_to_4_unit_appraisal_v1_4            gap    ok     ok     ok     ok     ok     ok     ok     
+  2_to_4_unit_scenario_2_appraisal_v1_  gap    ok     ok     ok     ok     ok     ok     ok     
+
+
+DETAIL
+
+  condo1_appraisal_v1_4
+     [ gap  ] package       18 pages against the sample's 22; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 17 of 18 pages, footer on 18
+     [  ok  ] grid          2 block(s), 158 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  428 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  condo2_appraisal_v1_4
+     [ gap  ] package       21 pages against the sample's 24; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 20 of 21 pages, footer on 21
+     [  ok  ] grid          2 block(s), 160 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  464 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  coop1_appraisal_v1_4
+     [ gap  ] package       16 pages against the sample's 18; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 15 of 16 pages, footer on 16
+     [  ok  ] grid          1 block(s), 57 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  411 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  mh1_appraisal_v1_4
+     [ gap  ] package       23 pages against the sample's 30; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 22 of 23 pages, footer on 23
+     [  ok  ] grid          1 block(s), 84 rows, all from the supplement's 170 and in its order
+     [ FAIL ] traceability  1 figure(s) not in the XML, e.g. ["8.74985e+15 in '8749846151354210'"]
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  mh2_appraisal_v1_4
+     [ gap  ] package       19 pages against the sample's 20; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         Calibri, MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 18 of 19 pages, footer on 19
+     [  ok  ] grid          2 block(s), 162 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  512 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  sf1_appraisal_v1_4
+     [ gap  ] package       17 pages against the sample's 21; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 16 of 17 pages, footer on 17
+     [  ok  ] grid          1 block(s), 78 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  400 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  sf2_appraisal_v1_4
+     [ gap  ] package       18 pages against the sample's 22; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 17 of 18 pages, footer on 18
+     [  ok  ] grid          2 block(s), 125 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  483 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  sf3_appraisal_v1_4
+     [ gap  ] package       21 pages against the sample's 23; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 20 of 21 pages, footer on 21
+     [  ok  ] grid          1 block(s), 83 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  517 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  sf4_appraisal_v1_4
+     [  ok  ] package       22 pages, 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 21 of 22 pages, footer on 22
+     [  ok  ] grid          1 block(s), 85 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  490 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  sf5_appraisal_v1_2
+     [ gap  ] package       17 pages against the sample's 19; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 16 of 17 pages, footer on 17
+     [  ok  ] grid          2 block(s), 116 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  409 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  2_to_4_unit_appraisal_v1_4
+     [ gap  ] package       19 pages against the sample's 29; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 18 of 19 pages, footer on 19
+     [  ok  ] grid          1 block(s), 88 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  465 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  2_to_4_unit_scenario_2_appraisal_v1_2
+     [ gap  ] package       23 pages against the sample's 26; page size matches at 612x1008 pt
+     [  ok  ] schema        valid against v1.3
+     [  ok  ] compliance    0 fatal, 0 warning, 171 for a reader
+     [  ok  ] fonts         MyriadPro-Bold, MyriadPro-BoldIt, MyriadPro-It, MyriadPro-Regular, Wingdings2
+     [  ok  ] furniture     no header on the Summary, header on 22 of 23 pages, footer on 23
+     [  ok  ] grid          1 block(s), 66 rows, all from the supplement's 170 and in its order
+     [  ok  ] traceability  469 printed figures all traced
+     [  ok  ] archive       appraisal.pdf, mismo.xml, Images/ (8)
+
+  84 pass · 1 fail · 11 gap · 0 not applicable   (12 scenarios x 8 checks)

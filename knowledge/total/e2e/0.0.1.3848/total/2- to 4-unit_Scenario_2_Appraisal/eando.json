@@ -1,0 +1,1717 @@
+{
+ "stage": "field-validation",
+ "field_validation": [
+  {
+   "field": "GC1_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC2_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC3_TRANSFER_TERMS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Transfer terms adjustment is required"
+  },
+  {
+   "field": "GC1_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC1_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC2_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_DP_FINTYP1",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Financing type is required when listing status is Settled Sale"
+  },
+  {
+   "field": "GC3_DP_FINTYP1_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_SP_TO_LP_RATIO_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_MARKETAREA_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_MARKETAREA_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_MARKETAREA_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SITE_STREET_TYPE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required street type and surface fields"
+  },
+  {
+   "field": "GC1_SITE_STREET_TYPE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_SITE_STREET_TYPE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required street type and surface fields"
+  },
+  {
+   "field": "GC2_SITE_STREET_TYPE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_SITE_STREET_TYPE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required street type and surface fields"
+  },
+  {
+   "field": "GC3_SITE_STREET_TYPE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_SITE_CHARACTERISTICS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_SITE_CHARACTERISTICS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_SITE_CHARACTERISTICS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC1_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC2_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC2_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC3_DWELL_STYLE",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Dwelling Style is required for Detached comparables when the row is included."
+  },
+  {
+   "field": "GC3_DWELL_STYLE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+  },
+  {
+   "field": "GC1_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_DWELL_FUNC_ISSUES",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required functional issues fields"
+  },
+  {
+   "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_DWELL_DISASTER_MIT",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required disaster mitigation fields"
+  },
+  {
+   "field": "GC2_DWELL_DISASTER_MIT",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required disaster mitigation fields"
+  },
+  {
+   "field": "GC3_DWELL_DISASTER_MIT",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Please complete all required disaster mitigation fields"
+  },
+  {
+   "field": "GC1_DWELL_HEAT_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_DWELL_HEAT_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_DWELL_HEAT_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_FLOOR_NUM_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_FLOOR_NUM_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_FLOOR_NUM_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC1_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC2_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_LEVELS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC3_LEVELS_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_FLOOR_NUM_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_FLOOR_NUM_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_FLOOR_NUM_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_LEVELS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC1_LEVELS_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_LEVELS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC2_LEVELS_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_LEVELS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC3_LEVELS_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_FLOOR_NUM_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_FLOOR_NUM_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_FLOOR_NUM_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_LEVELS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC1_LEVELS_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_LEVELS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC2_LEVELS_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_LEVELS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC3_LEVELS_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_FLOOR_NUM_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_FLOOR_NUM_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_FLOOR_NUM_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_LEVELS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC1_LEVELS_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_LEVELS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC2_LEVELS_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_LEVELS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Number of levels is required"
+  },
+  {
+   "field": "GC3_LEVELS_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Validation failed"
+  },
+  {
+   "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC1_EXT_QUAL_EXT_WALLS_TRIM",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Exterior walls/trim quality is required"
+  },
+  {
+   "field": "GC2_EXT_QUAL_EXT_WALLS_TRIM",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Exterior walls/trim quality is required"
+  },
+  {
+   "field": "GC3_EXT_QUAL_EXT_WALLS_TRIM",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Exterior walls/trim quality is required"
+  },
+  {
+   "field": "GC1_EXT_QUAL_FOUNDATION",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Foundation quality is required"
+  },
+  {
+   "field": "GC2_EXT_QUAL_FOUNDATION",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Foundation quality is required"
+  },
+  {
+   "field": "GC3_EXT_QUAL_FOUNDATION",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Foundation quality is required"
+  },
+  {
+   "field": "GC1_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC2_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC3_EXT_QUAL_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Roof quality is required"
+  },
+  {
+   "field": "GC1_EXT_COND_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "This field is required based on related selections"
+  },
+  {
+   "field": "GC2_EXT_COND_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "This field is required based on related selections"
+  },
+  {
+   "field": "GC3_EXT_COND_ROOF",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "This field is required based on related selections"
+  },
+  {
+   "field": "GC1_EXT_COND_WINDOWS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "This field is required based on related selections"
+  },
+  {
+   "field": "GC2_EXT_COND_WINDOWS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "This field is required based on related selections"
+  },
+  {
+   "field": "GC3_EXT_COND_WINDOWS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "This field is required based on related selections"
+  },
+  {
+   "field": "GSU_INT_QUAL_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_WALLS_CEILINGS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_WALLS_CEILINGS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_WALLS_CEILINGS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_WALLS_CEILINGS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_BATHS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_WALLS_CEILINGS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_WALLS_CEILINGS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_WALLS_CEILINGS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_WALLS_CEILINGS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_BATHS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 1,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_WALLS_CEILINGS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_WALLS_CEILINGS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_WALLS_CEILINGS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_WALLS_CEILINGS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_BATHS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 2,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom quality is required"
+  },
+  {
+   "field": "GSU_INT_QUAL_WALLS_CEILINGS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_QUAL_WALLS_CEILINGS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC2_INT_QUAL_WALLS_CEILINGS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC3_INT_QUAL_WALLS_CEILINGS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior walls/ceilings quality is required"
+  },
+  {
+   "field": "GC1_INT_COND_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_KITCHEN",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior kitchen condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_BATHS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior bathroom condition is required"
+  },
+  {
+   "field": "GC1_INT_COND_FLOORS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC2_INT_COND_FLOORS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC3_INT_COND_FLOORS",
+   "instance": 3,
+   "section": "sales-comp",
+   "message": "Interior floor condition is required"
+  },
+  {
+   "field": "GC1_VEHICLE_STORAGE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC2_VEHICLE_STORAGE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "GC3_VEHICLE_STORAGE_ADJ",
+   "instance": 0,
+   "section": "sales-comp",
+   "message": "An adjustment entry is required when subject and comparable data differ"
+  },
+  {
+   "field": "RC1.1_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC1.2_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC1.3_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC1.1_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC1.2_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC1.3_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC1.1_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC1.2_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC1.3_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC1.1_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC1.2_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC1.3_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC1.1_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC1.2_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC1.3_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC1.1_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC1.2_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC1.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC2.1_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC2.2_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC2.3_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC2.1_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC2.2_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC2.3_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC2.1_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC2.2_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC2.3_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC2.1_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC2.2_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC2.3_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC2.1_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC2.2_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC2.3_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC2.1_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC2.2_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC2.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC3.1_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC3.2_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC3.3_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC3.1_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC3.2_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC3.3_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC3.1_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC3.2_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC3.3_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC3.1_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC3.2_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC3.3_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC3.1_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC3.2_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC3.3_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC3.1_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC3.2_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC3.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC4.1_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC4.2_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC4.3_MARKETAREA",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Market area for rental comparable is required"
+  },
+  {
+   "field": "RC4.1_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC4.2_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC4.3_FURNISHED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Furnished status is required"
+  },
+  {
+   "field": "RC4.1_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC4.2_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC4.3_UTILS_INCLUDED",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Utilities included indicator is required"
+  },
+  {
+   "field": "RC4.1_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC4.2_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC4.3_RENT_CONTROL",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent control indicator is required"
+  },
+  {
+   "field": "RC4.1_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC4.2_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC4.3_RENT_CONC",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Rent concessions information is required"
+  },
+  {
+   "field": "RC4.1_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC4.2_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "RC4.3_SMRY_OVRL_COMP_TO_SUB",
+   "instance": 0,
+   "section": "rental-information",
+   "message": "Summary overall comparison to subject is required"
+  },
+  {
+   "field": "GR1_GBFA",
+   "instance": 0,
+   "section": "income-approach",
+   "message": "Gross building finished area is required when an income approach comparable is entered"
+  },
+  {
+   "field": "GR2_GBFA",
+   "instance": 0,
+   "section": "income-approach",
+   "message": "Gross building finished area is required when an income approach comparable is entered"
+  },
+  {
+   "field": "GR3_GBFA",
+   "instance": 0,
+   "section": "income-approach",
+   "message": "Gross building finished area is required when an income approach comparable is entered"
+  }
+ ],
+ "uad_rules": [],
+ "panel_uad_errors": null
+}

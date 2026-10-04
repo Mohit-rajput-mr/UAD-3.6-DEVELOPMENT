@@ -1,0 +1,848 @@
+{
+ "source": "Appendix D-1 sample appraisal PDFs",
+ "vertical_line_x": [
+  {
+   "x": 250.5,
+   "pica": 20.875,
+   "count": 1131
+  },
+  {
+   "x": 142.0,
+   "pica": 11.833,
+   "count": 1102
+  },
+  {
+   "x": 359.0,
+   "pica": 29.917,
+   "count": 936
+  },
+  {
+   "x": 467.5,
+   "pica": 38.958,
+   "count": 805
+  },
+  {
+   "x": 316.5,
+   "pica": 26.375,
+   "count": 556
+  },
+  {
+   "x": 36.5,
+   "pica": 3.042,
+   "count": 546
+  },
+  {
+   "x": 425.0,
+   "pica": 35.417,
+   "count": 468
+  },
+  {
+   "x": 36.0,
+   "pica": 3.0,
+   "count": 437
+  },
+  {
+   "x": 533.5,
+   "pica": 44.458,
+   "count": 395
+  },
+  {
+   "x": 306.5,
+   "pica": 25.542,
+   "count": 385
+  },
+  {
+   "x": 306.0,
+   "pica": 25.5,
+   "count": 274
+  },
+  {
+   "x": 576.5,
+   "pica": 48.042,
+   "count": 271
+  },
+  {
+   "x": 180.0,
+   "pica": 15.0,
+   "count": 253
+  },
+  {
+   "x": 144.0,
+   "pica": 12.0,
+   "count": 213
+  },
+  {
+   "x": 252.0,
+   "pica": 21.0,
+   "count": 206
+  },
+  {
+   "x": 360.0,
+   "pica": 30.0,
+   "count": 198
+  },
+  {
+   "x": 468.0,
+   "pica": 39.0,
+   "count": 198
+  },
+  {
+   "x": 171.0,
+   "pica": 14.25,
+   "count": 193
+  },
+  {
+   "x": 216.0,
+   "pica": 18.0,
+   "count": 180
+  },
+  {
+   "x": 202.0,
+   "pica": 16.833,
+   "count": 153
+  },
+  {
+   "x": 576.0,
+   "pica": 48.0,
+   "count": 142
+  },
+  {
+   "x": 441.0,
+   "pica": 36.75,
+   "count": 139
+  },
+  {
+   "x": 396.0,
+   "pica": 33.0,
+   "count": 130
+  },
+  {
+   "x": 54.0,
+   "pica": 4.5,
+   "count": 76
+  }
+ ],
+ "horizontal_rules": [
+  {
+   "colour": "#939598",
+   "width": 0.5,
+   "count": 15646
+  },
+  {
+   "colour": "none",
+   "width": 0,
+   "count": 874
+  },
+  {
+   "colour": "#e6e7e8",
+   "width": 15.0,
+   "count": 736
+  },
+  {
+   "colour": "#939598",
+   "width": 1.0,
+   "count": 652
+  },
+  {
+   "colour": "#231f20",
+   "width": 0.5,
+   "count": 452
+  },
+  {
+   "colour": "#231f20",
+   "width": 2.0,
+   "count": 321
+  },
+  {
+   "colour": "#231f20",
+   "width": 1.0,
+   "count": 122
+  },
+  {
+   "colour": "#939598",
+   "width": 2.0,
+   "count": 104
+  },
+  {
+   "colour": "#231f20",
+   "width": 0.75,
+   "count": 66
+  }
+ ],
+ "stroke_colours": [
+  {
+   "colour": "#939598",
+   "width": 0.5,
+   "count": 19825
+  },
+  {
+   "colour": "#231f20",
+   "width": 0.5,
+   "count": 4690
+  },
+  {
+   "colour": "#939598",
+   "width": 1.0,
+   "count": 1884
+  },
+  {
+   "colour": "#e6e7e8",
+   "width": 15.0,
+   "count": 736
+  },
+  {
+   "colour": "#231f20",
+   "width": 0.75,
+   "count": 428
+  },
+  {
+   "colour": "#231f20",
+   "width": 2.0,
+   "count": 321
+  },
+  {
+   "colour": "#231f20",
+   "width": 1.0,
+   "count": 124
+  },
+  {
+   "colour": "#939598",
+   "width": 2.0,
+   "count": 104
+  },
+  {
+   "colour": "#ffffff",
+   "width": 0.75,
+   "count": 86
+  },
+  {
+   "colour": "#ffffff",
+   "width": 0.5,
+   "count": 76
+  },
+  {
+   "colour": "#a7a9ac",
+   "width": 0.5,
+   "count": 7
+  },
+  {
+   "colour": "#6d6e71",
+   "width": 0.5,
+   "count": 6
+  }
+ ],
+ "fills": [
+  {
+   "colour": "#231f20",
+   "height": 14.8,
+   "count": 437
+  },
+  {
+   "colour": "#e6e7e8",
+   "height": 13.0,
+   "count": 22
+  },
+  {
+   "colour": "#939598",
+   "height": 13.0,
+   "count": 15
+  },
+  {
+   "colour": "#a7a9ac",
+   "height": 13.0,
+   "count": 9
+  },
+  {
+   "colour": "#ffffff",
+   "height": 37.0,
+   "count": 8
+  },
+  {
+   "colour": "#58595b",
+   "height": 13.0,
+   "count": 6
+  },
+  {
+   "colour": "#e6e7e8",
+   "height": 52.0,
+   "count": 4
+  },
+  {
+   "colour": "#939598",
+   "height": 57.2,
+   "count": 1
+  },
+  {
+   "colour": "#a7a9ac",
+   "height": 57.0,
+   "count": 1
+  }
+ ],
+ "fill_examples": {
+  "#231f20": [
+   {
+    "x0": 36.0,
+    "x1": 180.0,
+    "w": 144.0,
+    "h": 14.8,
+    "page": 2,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Assignment Information"
+   },
+   {
+    "x0": 36.0,
+    "x1": 180.0,
+    "w": 144.0,
+    "h": 14.8,
+    "page": 2,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Subject Property"
+   },
+   {
+    "x0": 36.0,
+    "x1": 202.0,
+    "w": 166.0,
+    "h": 14.8,
+    "page": 3,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Subject Property (continued)"
+   },
+   {
+    "x0": 36.0,
+    "x1": 180.0,
+    "w": 144.0,
+    "h": 14.8,
+    "page": 3,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Site"
+   }
+  ],
+  "#ffffff": [
+   {
+    "x0": 307.0,
+    "x1": 578.0,
+    "w": 271.0,
+    "h": 37.0,
+    "page": 12,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": ""
+   },
+   {
+    "x0": 307.0,
+    "x1": 578.0,
+    "w": 271.0,
+    "h": 37.0,
+    "page": 24,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": ""
+   },
+   {
+    "x0": 307.0,
+    "x1": 578.0,
+    "w": 271.0,
+    "h": 37.0,
+    "page": 9,
+    "file": "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+    "text": ""
+   },
+   {
+    "x0": 307.0,
+    "x1": 578.0,
+    "w": 271.0,
+    "h": 37.0,
+    "page": 12,
+    "file": "Condo1_Appraisal_v1.4.pdf",
+    "text": ""
+   }
+  ],
+  "#939598": [
+   {
+    "x0": 306.0,
+    "x1": 441.0,
+    "w": 135.0,
+    "h": 13.0,
+    "page": 13,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Total DOM 0"
+   },
+   {
+    "x0": 36.0,
+    "x1": 576.0,
+    "w": 540.0,
+    "h": 57.2,
+    "page": 19,
+    "file": "Condo1_Appraisal_v1.4.pdf",
+    "text": "Unit Interior Walls and Ceiling Bedroom Peeling paint was ob"
+   },
+   {
+    "x0": 306.0,
+    "x1": 441.0,
+    "w": 135.0,
+    "h": 13.0,
+    "page": 13,
+    "file": "Condo2_Appraisal_v1.4.pdf",
+    "text": "Total DOM 27"
+   },
+   {
+    "x0": 306.0,
+    "x1": 441.0,
+    "w": 135.0,
+    "h": 13.0,
+    "page": 11,
+    "file": "Coop1_Appraisal_v1.4.pdf",
+    "text": "Total DOM 31"
+   }
+  ],
+  "#58595b": [
+   {
+    "x0": 36.0,
+    "x1": 576.0,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 17,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Summary"
+   },
+   {
+    "x0": 36.0,
+    "x1": 576.0,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 13,
+    "file": "Coop1_Appraisal_v1.4.pdf",
+    "text": "Summary"
+   },
+   {
+    "x0": 36.0,
+    "x1": 576.0,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 11,
+    "file": "SF5_Appraisal_v1.2.pdf",
+    "text": "Summary"
+   },
+   {
+    "x0": 36.0,
+    "x1": 467.5,
+    "w": 431.5,
+    "h": 13.0,
+    "page": 13,
+    "file": "SF5_Appraisal_v1.2.pdf",
+    "text": "Summary"
+   }
+  ],
+  "#e6e7e8": [
+   {
+    "x0": 36.0,
+    "x1": 576.0,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 17,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Indicated Value by Sales Comparison Approach"
+   },
+   {
+    "x0": 36.5,
+    "x1": 576.5,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 20,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Summary"
+   },
+   {
+    "x0": 36.5,
+    "x1": 576.5,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 20,
+    "file": "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+    "text": "Summary"
+   },
+   {
+    "x0": 36.5,
+    "x1": 576.5,
+    "w": 540.0,
+    "h": 13.0,
+    "page": 21,
+    "file": "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+    "text": "Summary"
+   }
+  ],
+  "#a7a9ac": [
+   {
+    "x0": 125.0,
+    "x1": 240.0,
+    "w": 115.0,
+    "h": 13.0,
+    "page": 19,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Total $875"
+   },
+   {
+    "x0": 401.0,
+    "x1": 516.0,
+    "w": 115.0,
+    "h": 13.0,
+    "page": 19,
+    "file": "2-to4-unit_Appraisal_v1.4.pdf",
+    "text": "Total $1,800"
+   },
+   {
+    "x0": 125.0,
+    "x1": 240.0,
+    "w": 115.0,
+    "h": 13.0,
+    "page": 19,
+    "file": "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+    "text": "Total $10,150"
+   },
+   {
+    "x0": 401.0,
+    "x1": 516.0,
+    "w": 115.0,
+    "h": 13.0,
+    "page": 19,
+    "file": "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+    "text": "Total $10,400"
+   }
+  ]
+ },
+ "tab_widths": [
+  [
+   [
+    36.0,
+    180.0
+   ],
+   253
+  ],
+  [
+   [
+    36.0,
+    202.0
+   ],
+   153
+  ],
+  [
+   [
+    36.0,
+    218.5
+   ],
+   19
+  ],
+  [
+   [
+    36.0,
+    196.5
+   ],
+   6
+  ],
+  [
+   [
+    36.0,
+    237.0
+   ],
+   2
+  ],
+  [
+   [
+    36.0,
+    214.5
+   ],
+   1
+  ],
+  [
+   [
+    36.0,
+    179.5
+   ],
+   1
+  ],
+  [
+   [
+    36.0,
+    215.0
+   ],
+   1
+  ],
+  [
+   [
+    36.0,
+    255.5
+   ],
+   1
+  ]
+ ],
+ "tab_labels": [
+  [
+   "Sales Comparison Approach (continued)",
+   53
+  ],
+  [
+   "Unit Interior (continued)",
+   18
+  ],
+  [
+   "Certifications (continued)",
+   15
+  ],
+  [
+   "Assignment Information",
+   13
+  ],
+  [
+   "Subject Property",
+   13
+  ],
+  [
+   "Site",
+   13
+  ],
+  [
+   "Sketch",
+   13
+  ],
+  [
+   "Functional Obsolescence",
+   13
+  ],
+  [
+   "Vehicle Storage",
+   13
+  ],
+  [
+   "Subject Property Amenities",
+   13
+  ],
+  [
+   "Overall Quality and Condition",
+   13
+  ],
+  [
+   "Highest and Best Use",
+   13
+  ],
+  [
+   "Market",
+   13
+  ],
+  [
+   "Subject Listing Information",
+   13
+  ],
+  [
+   "Prior Sale and Transfer History",
+   13
+  ],
+  [
+   "Sales Comparison Approach",
+   13
+  ],
+  [
+   "Reconciliation",
+   13
+  ],
+  [
+   "Certifications",
+   13
+  ],
+  [
+   "Dwelling Exterior",
+   11
+  ],
+  [
+   "Market (continued)",
+   11
+  ],
+  [
+   "Site (continued)",
+   10
+  ],
+  [
+   "Unit Interior",
+   9
+  ],
+  [
+   "Rental Information (continued)",
+   8
+  ],
+  [
+   "Sales Contract",
+   7
+  ],
+  [
+   "Dwelling Exterior (continued)",
+   7
+  ],
+  [
+   "Reconciliation (continued)",
+   6
+  ],
+  [
+   "Project Information",
+   5
+  ],
+  [
+   "Project Information (continued)",
+   5
+  ],
+  [
+   "Unit Interior - Primary Dwelling (continued)",
+   5
+  ],
+  [
+   "Subject Property (continued)",
+   4
+  ],
+  [
+   "Subject Property Amenities (continued)",
+   4
+  ],
+  [
+   "Energy Efficient and Green Features",
+   4
+  ],
+  [
+   "Manufactured Home (continued)",
+   4
+  ],
+  [
+   "Rental Information",
+   3
+  ],
+  [
+   "Income Approach (continued)",
+   3
+  ],
+  [
+   "Revision History",
+   3
+  ],
+  [
+   "Cost Approach (continued)",
+   3
+  ],
+  [
+   "Disaster Mitigation",
+   2
+  ],
+  [
+   "Dwelling Exterior - Building 1",
+   2
+  ],
+  [
+   "Unit Interior - Building 1 - Unit 1 (continued)",
+   2
+  ]
+ ],
+ "table_column_sets": [
+  {
+   "cols": [
+    36.0,
+    144.0,
+    252.0,
+    360.0,
+    468.0,
+    576.0
+   ],
+   "count": 43
+  },
+  {
+   "cols": [
+    36.0,
+    142.0,
+    250.5,
+    316.5,
+    359.0,
+    425.0,
+    467.5,
+    533.5,
+    576.0
+   ],
+   "count": 31
+  },
+  {
+   "cols": [
+    144.0,
+    252.0,
+    360.0,
+    468.0
+   ],
+   "count": 12
+  },
+  {
+   "cols": [
+    36.0,
+    216.0,
+    396.0,
+    576.0
+   ],
+   "count": 9
+  },
+  {
+   "cols": [
+    36.0,
+    130.0,
+    224.0,
+    388.0,
+    482.0,
+    576.0
+   ],
+   "count": 9
+  },
+  {
+   "cols": [
+    36.0,
+    96.0,
+    175.0,
+    300.0
+   ],
+   "count": 8
+  },
+  {
+   "cols": [
+    54.0,
+    171.0,
+    306.0,
+    441.0
+   ],
+   "count": 8
+  },
+  {
+   "cols": [
+    36.0,
+    142.0,
+    250.5,
+    316.5,
+    359.0,
+    425.0,
+    467.5
+   ],
+   "count": 8
+  },
+  {
+   "cols": [
+    36.0,
+    120.0,
+    169.0,
+    216.0,
+    300.0,
+    384.0,
+    576.0
+   ],
+   "count": 7
+  },
+  {
+   "cols": [
+    36.0,
+    126.0,
+    216.0,
+    306.0,
+    396.0,
+    486.0,
+    576.0
+   ],
+   "count": 7
+  }
+ ]
+}

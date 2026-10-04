@@ -1,0 +1,198 @@
+{
+ "TwoToFourUnit": {
+  "property_type": "TwoToFourUnit",
+  "sections": [
+   "Summary",
+   "Assignment Information",
+   "Subject Property",
+   "Site",
+   "Disaster Mitigation",
+   "Sketch",
+   "Functional Obsolescence",
+   "Vehicle Storage",
+   "Subject Property Amenities",
+   "Overall Quality and Condition",
+   "Highest and Best Use",
+   "Market",
+   "Subject Listing Information",
+   "Sales Contract",
+   "Prior Sale and Transfer History",
+   "Sales Comparison Approach",
+   "Rental Information",
+   "Income Approach",
+   "Cost Approach",
+   "Reconciliation",
+   "Revision History",
+   "Supplemental Information",
+   "Certifications"
+  ],
+  "scenarios": [
+   "2- to 4-unit_Appraisal",
+   "2- to 4-unit_Scenario_2_Appraisal"
+  ]
+ },
+ "Condominium": {
+  "property_type": "Condominium",
+  "sections": [
+   "Summary",
+   "Assignment Information",
+   "Subject Property",
+   "Site",
+   "Disaster Mitigation",
+   "Energy Efficient and Green Features",
+   "Sketch",
+   "Dwelling Exterior",
+   "Unit Interior",
+   "Functional Obsolescence",
+   "Vehicle Storage",
+   "Subject Property Amenities",
+   "Overall Quality and Condition",
+   "Highest and Best Use",
+   "Market",
+   "Project Information",
+   "Subject Listing Information",
+   "Sales Contract",
+   "Prior Sale and Transfer History",
+   "Sales Comparison Approach",
+   "Rental Information",
+   "Income Approach",
+   "Cost Approach",
+   "Reconciliation",
+   "Revision History",
+   "Certifications"
+  ],
+  "scenarios": [
+   "Condo1_Appraisal",
+   "Condo2_Appraisal"
+  ]
+ },
+ "Cooperative": {
+  "property_type": "Cooperative",
+  "sections": [
+   "Summary",
+   "Assignment Information",
+   "Subject Property",
+   "Site",
+   "Sketch",
+   "Dwelling Exterior",
+   "Unit Interior",
+   "Functional Obsolescence",
+   "Vehicle Storage",
+   "Subject Property Amenities",
+   "Overall Quality and Condition",
+   "Highest and Best Use",
+   "Market",
+   "Project Information",
+   "Subject Listing Information",
+   "Sales Contract",
+   "Prior Sale and Transfer History",
+   "Sales Comparison Approach",
+   "Income Approach",
+   "Cost Approach",
+   "Reconciliation",
+   "Revision History",
+   "Certifications"
+  ],
+  "scenarios": [
+   "Coop1_Appraisal"
+  ]
+ },
+ "ManufacturedHome": {
+  "property_type": "ManufacturedHome",
+  "sections": [
+   "Summary",
+   "Assignment Information",
+   "Subject Property",
+   "Site",
+   "Sketch",
+   "Dwelling Exterior",
+   "Manufactured Home",
+   "Unit Interior",
+   "Functional Obsolescence",
+   "Vehicle Storage",
+   "Subject Property Amenities",
+   "Overall Quality and Condition",
+   "Highest and Best Use",
+   "Market",
+   "Subject Listing Information",
+   "Prior Sale and Transfer History",
+   "Sales Comparison Approach",
+   "Income Approach",
+   "Cost Approach",
+   "Reconciliation",
+   "Revision History",
+   "Certifications"
+  ],
+  "scenarios": [
+   "MH1_Appraisal",
+   "MH2_Appraisal"
+  ]
+ },
+ "PlannedUnitDevelopment": {
+  "property_type": "PlannedUnitDevelopment",
+  "sections": [
+   "Summary",
+   "Assignment Information",
+   "Subject Property",
+   "Site",
+   "Energy Efficient and Green Features",
+   "Sketch",
+   "Dwelling Exterior",
+   "Unit Interior",
+   "Functional Obsolescence",
+   "Vehicle Storage",
+   "Subject Property Amenities",
+   "Overall Quality and Condition",
+   "Highest and Best Use",
+   "Market",
+   "Project Information",
+   "Subject Listing Information",
+   "Sales Contract",
+   "Prior Sale and Transfer History",
+   "Sales Comparison Approach",
+   "Income Approach",
+   "Cost Approach",
+   "Reconciliation",
+   "Revision History",
+   "Certifications"
+  ],
+  "scenarios": [
+   "SF1",
+   "SF1_Appraisal",
+   "SF2_Appraisal"
+  ]
+ },
+ "SingleFamily": {
+  "property_type": "SingleFamily",
+  "sections": [
+   "Summary",
+   "Assignment Information",
+   "Subject Property",
+   "Site",
+   "Energy Efficient and Green Features",
+   "Sketch",
+   "Dwelling Exterior",
+   "Unit Interior",
+   "Functional Obsolescence",
+   "Vehicle Storage",
+   "Subject Property Amenities",
+   "Overall Quality and Condition",
+   "Highest and Best Use",
+   "Market",
+   "Subject Listing Information",
+   "Sales Contract",
+   "Prior Sale and Transfer History",
+   "Sales Comparison Approach",
+   "Income Approach",
+   "Cost Approach",
+   "Reconciliation",
+   "Revision History",
+   "Certifications"
+  ],
+  "scenarios": [
+   "SF3_Appraisal",
+   "SF4_Appraisal",
+   "SF5_Appraisal"
+  ]
+ }
+}

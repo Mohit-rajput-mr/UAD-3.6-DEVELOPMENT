@@ -1,0 +1,1013 @@
+{
+ "source_values": 1315,
+ "kept": 1229,
+ "changed": 9,
+ "dropped": 77,
+ "added": 18,
+ "rows": [
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [
+    "East"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    "1.7"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [
+    "Miles"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "file": [
+    "2695"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [
+    "4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [
+    "2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [
+    "1"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [
+    "C2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/AmenitiesComparisonType",
+   "data_point": "AmenitiesComparisonType",
+   "file": [
+    "Inferior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [
+    "Less"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [
+    "3525"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [
+    "Inferior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/ActualRentPerUnitFinishedAreaAmount",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "file": [
+    "1.19"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/LeaseStartDate",
+   "data_point": "LeaseStartDate",
+   "file": [
+    "2024-11"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitMonthlyActualRentAmount",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "file": [
+    "3200"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [
+    "Platinum Records"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [
+    "12989"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@123423 STONEBACK DR",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [
+    "West"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    "0.2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [
+    "Miles"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "file": [
+    "2810"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [
+    "4"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [
+    "3"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [
+    "0"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [
+    "C2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/AmenitiesComparisonType",
+   "data_point": "AmenitiesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [
+    "Most"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [
+    "3400"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/ActualRentPerUnitFinishedAreaAmount",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "file": [
+    "1.28"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/LeaseStartDate",
+   "data_point": "LeaseStartDate",
+   "file": [
+    "2025-01"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitMonthlyActualRentAmount",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "file": [
+    "3600"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [
+    "Grammy Gold"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [
+    "14230"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@2345467 GOLDEN TAIL ST",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ComparableToSubjectDirectionType",
+   "data_point": "ComparableToSubjectDirectionType",
+   "file": [
+    "East"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    "1.5"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure@LinearUnitOfMeasureType",
+   "file": [
+    "Miles"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "file": [
+    "2905"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitTotalFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/BedroomCount",
+   "data_point": "BedroomCount",
+   "file": [
+    "3"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/FullBathroomCount",
+   "data_point": "FullBathroomCount",
+   "file": [
+    "2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/HalfBathroomCount",
+   "data_point": "HalfBathroomCount",
+   "file": [
+    "1"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_DETAIL/InteriorConditionRatingCode",
+   "data_point": "InteriorConditionRatingCode",
+   "file": [
+    "C2"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/AmenitiesComparisonType",
+   "data_point": "AmenitiesComparisonType",
+   "file": [
+    "Inferior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/CarStoragesComparisonType",
+   "data_point": "CarStoragesComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ComparableWeightType",
+   "data_point": "ComparableWeightType",
+   "file": [
+    "Less"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitAdjustedRentAmount",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "file": [
+    "3575"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/RentalUnitToSubjectComparisonType",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "file": [
+    "Similar"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/RENTAL_INFORMATIONS/RENTAL_INFORMATION/RENTAL_COMPARISON/RENTAL_COMPARISON_DETAIL/ViewsComparisonType",
+   "data_point": "ViewsComparisonType",
+   "file": [
+    "Inferior"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/ActualRentPerUnitFinishedAreaAmount",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "file": [
+    "1.15"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/LeaseStartDate",
+   "data_point": "LeaseStartDate",
+   "file": [
+    "2024-12"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/UNIT_RENT_SCHEDULE/UnitMonthlyActualRentAmount",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "file": [
+    "3350"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/PROJECT/PROJECT_DETAIL/ProjectName",
+   "data_point": "ProjectName",
+   "file": [
+    "Platinum Records"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure",
+   "data_point": "LotSizeAreaMeasure",
+   "file": [
+    "13800"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "RentalComparable@234912 WHITECREST DR",
+   "path": "PROPERTY/SITE/SITE_SIZE_LAYOUT/LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "LotSizeAreaMeasure@AreaUnitOfMeasureType",
+   "file": [
+    "SquareFeet"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "SalesComparable@23412 JOSEPHINE ST",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23412 JOSEPHINE ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23412 JOSEPHINE ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23412 JOSEPHINE ST",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23454 SUE RD",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".12"
+   ],
+   "total": [
+    "0.12"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@23454 SUE RD",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23454 SUE RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23454 SUE RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@23454 SUE RD",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@28200 MARY LN",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".85"
+   ],
+   "total": [
+    "0.85"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@28200 MARY LN",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@28200 MARY LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@28200 MARY LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@28200 MARY LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@44828 JANE LN",
+   "path": "PROPERTY/COMPARABLE/COMPARABLE_DETAIL/ProximityToSubjectDistanceLinearMeasure",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "file": [
+    ".75"
+   ],
+   "total": [
+    "0.75"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "SalesComparable@44828 JANE LN",
+   "path": "PROPERTY/ENERGY_EFFICIENCY_AND_GREEN/ENERGY_EFFICIENCY_AND_GREEN_DETAIL/EfficiencyRatingExistsIndicator",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@44828 JANE LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/IMPROVEMENT_DETAIL/CoolingSystemExistsIndicator",
+   "data_point": "CoolingSystemExistsIndicator",
+   "file": [],
+   "total": [
+    "false"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@44828 JANE LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "file": [],
+   "total": [
+    "0"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "SalesComparable@44828 JANE LN",
+   "path": "PROPERTY/IMPROVEMENTS/IMPROVEMENT/PROPERTY_UNITS/PROPERTY_UNIT/PROPERTY_UNIT_AREA/UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure@AreaUnitOfMeasureType",
+   "file": [],
+   "total": [
+    "SquareFeet"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/AddressLineText",
+   "data_point": "AddressLineText",
+   "file": [
+    "400 Apple Ln"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/CityName",
+   "data_point": "CityName",
+   "file": [
+    "Anytown"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/PostalCode",
+   "data_point": "PostalCode",
+   "file": [
+    "54321"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ADDRESSES/ADDRESS/StateCode",
+   "data_point": "StateCode",
+   "file": [
+    "IL"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/LEGAL_ENTITY/LEGAL_ENTITY_DETAIL/FullName",
+   "data_point": "FullName",
+   "file": [
+    "ABC Lender"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/PARTIES/PARTY/ROLES/ROLE/ROLE_DETAIL/PartyRoleType",
+   "data_point": "PartyRoleType",
+   "file": [
+    "Lender"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceIdentifier",
+   "data_point": "DataSourceIdentifier",
+   "file": [
+    "12458450",
+    "23458202",
+    "25394502",
+    "32495234"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/DATA_SOURCES/DATA_SOURCE/DataSourceType",
+   "data_point": "DataSourceType",
+   "file": [
+    "MLS",
+    "MLS",
+    "MLS",
+    "MLS"
+   ],
+   "total": [],
+   "kind": "dropped"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifier",
+   "data_point": "AdditionalValuationIdentifier",
+   "file": [],
+   "total": [
+    "AA-4456767"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/ADDITIONAL_IDENTIFIERS/ADDITIONAL_IDENTIFIER/AdditionalValuationIdentifierType",
+   "data_point": "AdditionalValuationIdentifierType",
+   "file": [],
+   "total": [
+    "ValuationSoftwareVendor"
+   ],
+   "kind": "added"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_REPORT_DETAIL/ValuationReportContentIdentifier",
+   "data_point": "ValuationReportContentIdentifier",
+   "file": [
+    "URAR Delivery Specification v1.4"
+   ],
+   "total": [
+    "URAR Delivery Specification v1.3"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductIdentifier",
+   "data_point": "ValuationSoftwareProductIdentifier",
+   "file": [
+    "MYAPP"
+   ],
+   "total": [
+    "UADAPI006"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductName",
+   "data_point": "ValuationSoftwareProductName",
+   "file": [
+    "Some Appraisal Creator"
+   ],
+   "total": [
+    "TOTAL"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareProductVersionIdentifier",
+   "data_point": "ValuationSoftwareProductVersionIdentifier",
+   "file": [
+    "11.2.1"
+   ],
+   "total": [
+    "TOTAL v6.331 | v0.0.1.3848"
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/DEAL_SETS/DEAL_SET/DEALS/DEAL/SERVICES/SERVICE/VALUATION/VALUATION_RESPONSE/VALUATION_ANALYSES/VALUATION_ANALYSIS/VALUATION_REPORT/VALUATION_SOFTWARE_SYSTEMS/VALUATION_SOFTWARE_SYSTEM/ValuationSoftwareVendorName",
+   "data_point": "ValuationSoftwareVendorName",
+   "file": [
+    "Nowhere Technologies"
+   ],
+   "total": [
+    "Cotality | a la mode, inc."
+   ],
+   "kind": "changed"
+  },
+  {
+   "scope": "report",
+   "path": "MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUMENTS/DOCUMENT/VIEWS/VIEW/VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT/ObjectURL",
+   "data_point": "ObjectURL",
+   "file": [
+    "\\\\Condo2_Appraisal_v1.4.pdf"
+   ],
+   "total": [
+    "\\\\sampleblank.pdf"
+   ],
+   "kind": "changed"
+  }
+ ]
+}

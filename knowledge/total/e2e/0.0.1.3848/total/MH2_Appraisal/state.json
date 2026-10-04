@@ -1,0 +1,49 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ]
+ },
+ "grids": {
+  "sales": 4,
+  "rentalprop": 1,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "..\\knowledge\\total\\e2e\\0.0.1.3848\\MH2_Appraisal\\portable.xml",
+ "import_seconds": 20.6,
+ "import_error": ""
+}

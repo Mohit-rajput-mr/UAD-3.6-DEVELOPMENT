@@ -1,0 +1,44 @@
+The Lender/Client name and address must match the Lender name and address provided on this Order Form. In
+some cases the lender will differ from our client. If there are special instructions indicating to put the lender/client as
+a specific company, please make sure this is done before uploading your final report. If the Borrower name or
+Subject Property Address on your appraisal report differ at all from those provided on this Order form, add a
+comment in the addendum that identifies the difference and explains the sources used for the correct name and/or
+address.
+The actual Owner of Public Record must be clearly displayed. Do not state "Same as Borrower”.
+2. Lender Requirements:
+Two of the comparable sales must have closed within the last 90 days.
+At least one current listing or pending sale must be provided.
+If you are unable to provide two comparable sales within 90 days, then you may use one sale within the last 90 days
+and two current listings or pending sales with explanation.
+If you are unable to provide any sales within 90 days, please add direct verbiage of your attempt to find sales within
+90 days and why you were unable to provide them.
+Any time a comp is used that exceeds 6 months, the appraiser needs to state that it was utilized because it was the
+best available due to a minimum number of good comps in the area.
+For listings or pendings, make appropriate adjustments for a typical list-to-sale price ratio in your area
+corresponding with the information in your 1004MC.
+If location is marked as Urban and any of the comparables exceed five miles or marked as Suburban/Rural and any
+of the comparables exceed five miles, please add a comment advising why it was necessary to go farther than
+typical.
+The gross living area of the subject should be bracketed by your comparables. Also, the estimated value of subject
+should be bracketed by the actual sales price and the adjusted sales prices of the comparable sales used.
+In case of adjustments exceeding the recommended Fannie Mae guidelines of 10/15/25 for any comparables used,
+please add a comment advising why it was necessary.
+In case of large age differences between the subject and comparables, please comment.
+Verification of comparable sales with a reliable party that is not associated with the subject property or the subject
+property’s development, and at least two comparables, must be verified through the Multiple Listing Service (MLS)
+as arms-length transactions.
+Day-on-market (DOM) for subject and comparable sales must be provided, if applicable. The average dayson-
+market for the comparable sales should not exceed the “Marketing Time” box marked by the appraiser, if possible.
+Provide a 12-month listing history for the property. Frequent listings and/or sales require explanation on each
+occurrence or listing and should include the data sources(s), offering prices, date(s), and any further evaluation
+that may indicate “flipping.”
+The presence of any detrimental condition, such as infestations or expansive soils, must be noted by the appraiser
+and considered in estimating the value and marketability of the property.
+If applicable, the appraiser must note and address the presence of: A. Hazardous wastes, such as toxic substances,
+asbestos containing materials, urea-formaldehyde insulation, or radon gas or B. Adverse physical influence, such
+as railroad tracks, freeways, airport flight paths, shopping centers, and commercial businesses.
+Appraise all acres unless otherwise specified.
+Complete all appraisals "as is" unless otherwise specified.
+FHA REPORTS: A. Must be completed by a FHA Certified appraiser. B. The appraisal report must be made As-Is. If
+repairs are necessary then in the Addendum please provide an itemized list of repairs with an estimated cost to cure
+‐

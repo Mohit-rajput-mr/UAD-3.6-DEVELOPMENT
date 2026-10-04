@@ -1,0 +1,418 @@
+{
+ "case": {
+  "case_id": "c65e81c18133",
+  "name": "E2E 2- to 4-unit_Scenario_2_Appraisal",
+  "template": "2_to_4_unit_appraisal_v1_4",
+  "property_type": "two_to_four_unit",
+  "state": "draft",
+  "created": "2026-09-28T13:17:47+00:00",
+  "updated": "2026-09-28T13:17:47+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "2- to 4-unit_Scenario_2_Appraisal_v1.2.xml",
+  "property_type": "two_to_four_unit",
+  "values": 1418,
+  "on_report": 1091,
+  "not_displayed": 327,
+  "comparables": {
+   "SalesComparable": 3,
+   "RentalComparable": 6,
+   "GrossRentMultiplierComparable": 3
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "Carport.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Carport-1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitABath1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitABath2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitABedroom1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitABedroom2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitADiningRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitAKitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitALivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBBath1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBBath2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBBedroom1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBBedroom2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBDiningRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBKitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitBLivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCBath1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCBath2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCBedroom1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCBedroom2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCDiningRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCKitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitCLivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDBath1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDBath2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDBedroom1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDBedroom2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDDiningRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDKitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "UnitDLivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "DwellingFront.png",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "DwellingFront-1.png",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "PropertyAccess.png",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "ComparablesMap.png",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "ComparablesMap-1.png",
+    "category": "RentalComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "ComparablesMap-2.png",
+    "category": "GrossRentMultiplierComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "PropertyAccess-1.png",
+    "category": "SiteInfluence",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "PropertyAccess-2.png",
+    "category": "View",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Sketch.png",
+    "category": "SubjectPropertyImprovementSketch",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "MedianDays.png",
+    "category": "MedianDaysOnMarketGraph",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "181Cattledrive.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "123Something.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "341Nothing.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "181Cattledrive-1.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "181Cattledrive-2.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "123Something-1.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "123Something-2.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 4,
+    "source": "bundle"
+   },
+   {
+    "name": "341Nothing-1.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 5,
+    "source": "bundle"
+   },
+   {
+    "name": "341Nothing-2.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 6,
+    "source": "bundle"
+   },
+   {
+    "name": "181Cattledrive-3.png",
+    "category": "PropertyPhoto",
+    "owner": "GrossRentMultiplierComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "123Something-3.png",
+    "category": "PropertyPhoto",
+    "owner": "GrossRentMultiplierComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "341Nothing-3.png",
+    "category": "PropertyPhoto",
+    "owner": "GrossRentMultiplierComparable",
+    "comparable": 3,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.76,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

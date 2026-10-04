@@ -1,0 +1,20 @@
+{
+ "in_file": 52,
+ "placed_by_file": 59,
+ "placed_by_category": 1,
+ "placed": 60,
+ "seconds": 241.6,
+ "slots_naming_a_file": 65,
+ "slots_still_empty": [],
+ "differs_from_import": [],
+ "total_owned": [
+  [
+   "PropertyPhoto",
+   "DwellingFront.png"
+  ]
+ ],
+ "failed": [],
+ "no_slot": [],
+ "no_section": [],
+ "unavailable": []
+}

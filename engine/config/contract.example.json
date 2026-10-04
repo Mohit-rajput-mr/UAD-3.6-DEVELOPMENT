@@ -1,0 +1,8 @@
+{
+  "_note": "The contract of sale behind a purchase assignment.  Copy to contract.json; the real file is git-ignored because it names the parties.",
+  "contract_date": "",
+  "purchase_price": 0,
+  "downpayment": 0,
+  "sellers": [],
+  "buyers": []
+}

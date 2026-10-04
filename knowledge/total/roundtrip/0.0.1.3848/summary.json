@@ -1,0 +1,42 @@
+[
+ {
+  "file": "SF1_Appraisal_v1.4_noxsi",
+  "import_error": "",
+  "import_seconds": 16.5,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 1,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 3,
+   "rentalprop": 1,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "X",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 985,
+   "kept": 972,
+   "changed": 7,
+   "dropped": 6,
+   "added": 14
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 102,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ }
+]

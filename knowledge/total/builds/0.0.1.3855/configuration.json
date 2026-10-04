@@ -1,0 +1,167 @@
+{
+ "form_codes": {
+  "FORM_URAR_1_000": "UAD-3.6-AR-1.000",
+  "FORM_TFM_1_000": "UAD-3.6-TM-1.000",
+  "FORM_COMPLETION_1_000": "UAD-3.6-CR-1.000",
+  "FORM_COMPLETION_TFM_1_000": "UAD-3.6-CR-TM-1.000",
+  "FORM_UPDATE_1_000": "UAD-3.6-AU-1.000"
+ },
+ "common_info": {
+  "class": "SharedDataCommonInfo",
+  "switches": [
+   {
+    "name": "AccessoryDwellingUnitTotalCount",
+    "kind": "integer",
+    "field": "ACCESSORY_DWELL_UNIT",
+    "instance": 0
+   },
+   {
+    "name": "AdditionalPropertiesAnalyzedNotUsedIndicator",
+    "kind": "checkbox",
+    "yes": "CHECK_COMP_ADD_PROP_ENABLE",
+    "no": "CHECK_COMP_ADD_PROP_DISABLE",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "CostApproachIndicator",
+    "kind": "checkbox",
+    "yes": "CHECK_COST_APPROACH_ENABLE",
+    "no": "CHECK_COST_APPROACH_DISABLE",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "CostToRepairType",
+    "kind": "enumeration",
+    "field": "COST_TO_REPAIR_TYPE"
+   },
+   {
+    "name": "GovAgencyIndicator",
+    "kind": "nonempty",
+    "field": "HIDDEN_GOV_AGENCY_VISIBLE",
+    "instance": 0,
+    "and_nonempty": "governmentAgencyAppraisalType"
+   },
+   {
+    "name": "HomeownerResponsibleForExteriorMaintenanceIndicator",
+    "kind": "checkbox",
+    "yes": "HORESPMAINT_YES",
+    "no": "HORESPMAINT_NO",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "IncomeApproachIndicator",
+    "kind": "checkbox",
+    "yes": "IA_DEV_BY_APPRAISER_YES",
+    "no": "IA_DEV_BY_APPRAISER_NO",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "LivingUnitExcludingADUCount",
+    "kind": "integer",
+    "field": "UNIT_EXCL_ADU",
+    "instance": 0
+   },
+   {
+    "name": "PriorSalesOrTransfersIndicator",
+    "kind": "selector",
+    "field": "PSH_PRIOR_SALES",
+    "instance": 0
+   },
+   {
+    "name": "PropertyAmenityExistsIndicator",
+    "kind": "checkbox",
+    "yes": "CHECK_SUB_PROP_AMENITY_ENABLE",
+    "no": "CHECK_SUB_PROP_AMENITY_DISABLE",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "ReconsiderationOfValueIndicator",
+    "kind": "checkbox-text",
+    "only_if": "!0===this.RevisionHistoryIndicator",
+    "yes": "CHECK_REVISION_HISTORY_REC_VAL_ENABLE",
+    "no": "CHECK_REVISION_HISTORY_REC_VAL_DISABLED",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "RentComparisonApproachIndicator",
+    "kind": "sections",
+    "call": "IncludeInRentChecked"
+   },
+   {
+    "name": "RevisionHistoryIndicator",
+    "kind": "checkbox",
+    "yes": "CHECK_REVISION_HISTORY_ENABLE",
+    "no": "CHECK_REVISION_HISTORY_DISABLED",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "SalesComparisonApproachIndicator",
+    "kind": "constant",
+    "value": true
+   },
+   {
+    "name": "SalesContractIndicator",
+    "kind": "checkbox",
+    "yes": "SC_CONTRACT_YES",
+    "no": "SC_CONTRACT_NO",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "SketchOrPlan",
+    "kind": "checkbox",
+    "yes": "SKETCH_OR_PLAN_YES",
+    "no": "SKETCH_OR_PLAN_NO",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "SubjectPropertyAmenitiesDefectsExistIndicator",
+    "kind": "checkbox",
+    "yes": "CHECK_SUB_PROP_DEFECT_ENABLE",
+    "no": "CHECK_SUB_PROP_DEFECT_DISABLE",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "SubjectPropertyLatitude",
+    "kind": "value",
+    "field": "LATITUDE",
+    "instance": 0
+   },
+   {
+    "name": "SubjectPropertyLongitude",
+    "kind": "value",
+    "field": "LONGITUDE",
+    "instance": 0
+   },
+   {
+    "name": "ValuationReportContentIdentifierVersion",
+    "kind": "constant",
+    "value": "1.3"
+   },
+   {
+    "name": "VehicleStorageDefectsExistIndicator",
+    "kind": "checkbox",
+    "yes": "CHECK_STORAGE_DEFECT_ENABLE",
+    "no": "CHECK_STORAGE_DEFECT_DISABLE",
+    "mark": "X",
+    "instance": 0
+   },
+   {
+    "name": "governmentAgencyAppraisalType",
+    "kind": "multiselect",
+    "field": "GOV_AGENCY",
+    "instance": 0
+   }
+  ],
+  "module": "7419"
+ }
+}

@@ -1,0 +1,7 @@
+{
+  "_note": "Photo manifest for one assignment.  'category' must be a UAD ImageCategoryType (see engine/spec/uad_map.json); 'name' becomes the file's base name inside Images/.  Copy to images.json; the real file is git-ignored because it points at a real inspection.",
+  "_root": "",
+  "photos": [
+    { "file": "", "category": "DwellingFront", "name": "DWELLING_FRONT_1", "caption": "" }
+  ]
+}

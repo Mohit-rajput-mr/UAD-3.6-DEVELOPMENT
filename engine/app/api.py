@@ -1,0 +1,1978 @@
+"""The REST API.
+
+Everything the browser can do, a program can do: the interface is the API, and
+the single-page front end is one of its clients rather than a privileged path.
+That is what lets a case be driven headlessly -- intake a folder, fill fields,
+read the compliance findings, sign off and export -- without a person at a
+keyboard.
+
+Two rules hold throughout:
+
+* Every write goes through the same editor the UI uses, so a value set by a
+  script lands exactly where a value typed into the form would.
+* Export is reachable only from a signed case.  The route asks the state
+  machine, and the state machine asks the Review Master; there is no parameter
+  that skips either.
+"""
+from __future__ import annotations
+
+import io
+import json
+import mimetypes
+import shutil
+import zipfile
+from copy import deepcopy
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+from fastapi import APIRouter, Body, File, HTTPException, Query, Request, UploadFile
+from fastapi.responses import HTMLResponse, JSONResponse, Response, StreamingResponse
+from lxml import etree
+
+from uad import (bind, compliance, delivery, edit, extra, integrity, maps, market, parties, review, schema,
+                 templates)
+from uad.report import comparables, flow, paginate, urar
+from uad.report import form as report_form
+
+from . import autofill, renders
+
+from .cases import (DRAFT, EXPORTED, IN_REVIEW, MEDIA_CATEGORIES, SIGNED,
+                    GateError, Store)
+
+router = APIRouter(prefix="/api")
+STORE: Store | None = None
+
+
+def store() -> Store:
+    if STORE is None:
+        raise RuntimeError("the case store has not been opened")
+    return STORE
+
+
+def _actor(request: Request) -> str:
+    return request.headers.get("X-Actor") or "appraiser"
+
+
+def _case_or_404(case_id: str):
+    try:
+        return store().get(case_id)
+    except KeyError:
+        raise HTTPException(404, f"no case {case_id}")
+
+
+def _comp_photo(case_id: str, number: int) -> str:
+    """The photo an appraiser attached to this comparable, if any."""
+    for m in store().media(case_id):
+        if int(m.comparable or 0) == number:
+            return f"/api/cases/{case_id}/media/{m.media_id}/file"
+    return ""
+
+
+def _labels(tree, kind: str = "sales") -> list[str]:
+    """The comparables' durable identifiers, in their current order."""
+    _sheet, role, _title = comparables.SHEETS[kind]
+    root = tree.getroot() if hasattr(tree, "getroot") else tree
+    return comparables.labels(root, role)
+
+
+def _fills(case_id: str) -> dict:
+    """Which of the document's own image boxes each stored image fills.
+
+    There is one Sales Comparison Map (Appendix E p66).  A map saved before it
+    was linked to the document's SalesComparableMap box would otherwise print
+    beside that box as a second map page, so it is linked here, once, for the
+    form, the preview and the package alike."""
+    st = store()
+    prefs = get_prefs(case_id) if (st.folder(case_id) / "editor.json").exists() else {}
+    fills = dict(prefs.get("fills") or {})
+    used = set(fills.values())
+    maps_ = [m for m in st.media(case_id) if m.category == "map"
+             and (m.caption or "").strip() == "Sales Comparison Map" and m.media_id not in used]
+    if maps_:
+        M_ = f"{{{bind.MISMO}}}"
+        for image in st.tree(case_id).getroot().iter(f"{M_}IMAGE"):
+            if image.findtext(f"{M_}ImageCategoryType", "").strip() != "SalesComparableMap":
+                continue
+            loc = image.findtext(f"{M_}ImageFileLocationIdentifier", "").strip()
+            if loc and loc not in fills:
+                fills[loc] = maps_[-1].media_id
+                break
+    return fills
+
+
+def _media_for_render(case_id: str) -> list[dict]:
+    """The case's images, with the path and section the renderer needs."""
+    st = store()
+    folder = st.media_dir(case_id)
+    # A photo can fill one of the document's own exhibit boxes (an IMAGE whose
+    # file is not there -- a template's "Property Access" box, say); the box
+    # is named by its ImageFileLocationIdentifier.
+    fills = {media_id: location for location, media_id in _fills(case_id).items()}
+    # The comparable's number travels with its photo: without it the grid had
+    # no way to tell whose thumbnail an image was, and printed none.
+    return [{"path": str(folder / m.filename), "caption": m.caption,
+             "section": m.section, "category": m.category,
+             "comparable": int(m.comparable or 0), "media_id": m.media_id,
+             "fills": fills.get(m.media_id, ""),
+             "section_name": bind.SECTION_NAME.get(int(m.section or 0), "")}
+            for m in st.media(case_id) if m.section or m.comparable]
+
+
+# ------------------------------------------------------------------ templates
+@router.get("/templates")
+def list_templates() -> dict:
+    """The starting points, grouped by property type."""
+    groups: dict[str, list] = {}
+    for tpl in templates.catalogue():
+        groups.setdefault(tpl.property_type, []).append(tpl.to_json())
+    return {"property_types": templates.PROPERTY_TYPES, "templates": groups}
+
+
+# ---------------------------------------------------------------------- cases
+# A case created only to be read from -- the file behind "Fill the report".
+# It holds the uploaded document and its pictures so the filler can walk them
+# exactly as it walks a template, and it is removed when the run ends.  The
+# appraiser never chose it, so it does not belong in their list of jobs.
+STAGING_PREFIX = "‹fill source› "
+
+
+@router.get("/cases")
+def list_cases() -> dict:
+    return {"cases": [c.to_json() for c in store().list()
+                      if not (c.name or "").startswith(STAGING_PREFIX)]}
+
+
+@router.post("/cases")
+def create_case(request: Request, body: dict = Body(...)) -> dict:
+    template = body.get("template")
+    if not template:
+        raise HTTPException(400, "a template is required; see /api/templates")
+    try:
+        case = store().create(template=template, name=body.get("name", ""),
+                              blank=bool(body.get("blank", True)),
+                              actor=_actor(request))
+    except KeyError:
+        raise HTTPException(404, f"no template {template}")
+    return case.to_json()
+
+
+# ------------------------------------------------------------ import (UAD 3.6)
+IMPORT_CATEGORY = {"SalesComparableMap": "map", "SubjectPropertyImprovementSketch": "sketch",
+                   "FloorPlan": "floor_plan"}
+
+
+@router.post("/import")
+async def import_appraisal(request: Request, files: list[UploadFile] = File(...),
+                           name: str = Query(""), into: str = Query("")) -> dict:
+    """A UAD 3.6 appraisal in, as a new case: the XML (alone, in the B-1
+    delivery zip, or with its image files) and every picture it names.
+
+    All of it is read, normalised and checked in memory first (``uad/importer``);
+    only then is a case created, so a failed import leaves nothing behind.
+    """
+    import time
+    from uad import importer
+    started = time.time()
+    sent = [(f.filename or "file", await f.read()) for f in files]
+    report = importer.Report()
+    try:
+        xml_name, xml_bytes, assets = importer.open_bundle(sent)
+        tree = importer.parse(xml_bytes)
+        report.xml_name = xml_name
+        # a portable file carries its pictures (and the editor's state) inside
+        carried, editor_state = importer.take_embedded(tree, report)
+        for low, item in carried.items():
+            assets.setdefault(low, item)
+        importer.normalise(tree, report)
+        importer.repair_enumerations(tree, report)
+        pictures = importer.pictures(tree, assets, report)
+    except importer.ImportError_ as exc:
+        raise HTTPException(422, str(exc))
+    root = tree.getroot()
+    det = {k: templates._text(root, xp) for k, (_fid, xp) in templates.determinants().items()}
+    report.property_type = templates.classify({k: v for k, v in det.items() if v})
+    family = templates.by_property_type().get(report.property_type) or templates.by_property_type().get("single_family")         or [templates.catalogue()[0]]
+    report.schema_errors = [e.message[:240] for e in schema.validate(tree)][:50]
+    try:
+        importer.count(tree, report)
+    except Exception:                                   # noqa: BLE001 -- counting is a courtesy
+        pass
+
+    st = store()
+    subject_addr = " ".join(filter(None, [
+        root.findtext(f".//{{{bind.MISMO}}}PROPERTY[@ValuationUseType='SubjectProperty']/{{{bind.MISMO}}}ADDRESS/{{{bind.MISMO}}}AddressLineText"),
+        root.findtext(f".//{{{bind.MISMO}}}PROPERTY[@ValuationUseType='SubjectProperty']/{{{bind.MISMO}}}ADDRESS/{{{bind.MISMO}}}CityName")]))
+    # Into the case the appraiser already has open, when one is named: an
+    # import is not always a new job.  A blank template is opened first and
+    # the file poured into it, and creating a second case instead would leave
+    # the appraiser looking at the empty one.
+    if into:
+        case = _case_or_404(into)
+        replacing = True
+    else:
+        case = st.create(template=family[0].key, name=name or subject_addr or xml_name,
+                         blank=True, actor=_actor(request))
+        replacing = False
+    try:
+        st.save_tree(case.case_id, tree, allow_invalid=True)
+        folder = st.media_dir(case.case_id)
+        fills: dict[str, str] = {}
+        by_file: dict[str, str] = {}
+        for pic in pictures:
+            (folder / pic.name).write_bytes(pic.data)
+            if pic.name not in by_file:
+                if pic.comparable and pic.owner and pic.owner != "SubjectProperty" and pic.category in ("PropertyPhoto", ""):
+                    category = "comparable"
+                elif pic.category in ("DwellingFront", "PropertyPhoto") and pic.owner == "SubjectProperty":
+                    category = "subject"
+                else:
+                    category = IMPORT_CATEGORY.get(pic.category, "other")
+                caption = "Sales Comparison Map" if category == "map" else pic.caption
+                # A-1 gives every ImageCategoryType a Report Location, so the
+                # picture knows which section's exhibits it belongs under.
+                # Without it an imported report's images arrived with no
+                # section at all and had no slot to appear in -- thirty-four
+                # of the forty-two in a real file.
+                from uad import uadmap
+                item = st.add_media(case.case_id, category=category, filename=pic.name, caption=caption,
+                                    comparable=pic.comparable if category == "comparable" else 0,
+                                    section=uadmap.image_section(pic.category),
+                                    size=len(pic.data), content_type=importer.IMAGE_TYPES.get(
+                                        Path(pic.name).suffix.lower(), "image/jpeg"))
+                by_file[pic.name] = item.media_id
+            fills[pic.location] = by_file[pic.name]
+        # pictures the bundle carried that no IMAGE names: kept, to be placed by hand
+        for low in list(report.pictures_unreferenced):
+            base, data = assets[low.lower()]
+            target = folder / base
+            if not target.exists():
+                target.write_bytes(data)
+                st.add_media(case.case_id, category="other", filename=base, size=len(data),
+                             content_type=importer.IMAGE_TYPES.get(Path(base).suffix.lower(), "image/jpeg"))
+        # What the file answered, so the editor can show it: a value read back
+        # cannot say where it came from, so it is recorded here while we know.
+        from uad import provenance
+        brought = provenance.imported_fields(tree.getroot())
+        prefs = {**{k: v for k, v in editor_state.items()
+                    if k in ("mapState", "savedSections", "autoMaps", "exhibitSlots", "compWidths")},
+                 "fills": fills, "imported": {"from": xml_name, "at": time.time(),
+                                              "fields": brought}}
+        if any(p.category == "SalesComparableMap" for p in pictures):
+            prefs["autoMaps"] = False          # the appraisal brought its own map: keep it
+        set_prefs(case.case_id, prefs)
+        rv = st.review(case.case_id)
+        report.compliance = dict(rv.counts) if hasattr(rv, "counts") else {}
+        st.log(case.case_id, _actor(request), "imported",
+               f"{xml_name}: {report.values} values, {len(pictures)} pictures")
+    except Exception as exc:
+        if not replacing:
+            st.delete(case.case_id)            # all or nothing
+        raise HTTPException(500, f"The import could not be completed, nothing was kept: {exc}")
+    report.seconds = round(time.time() - started, 2)
+    try:
+        renderer().request(case.case_id, "form")          # lay it out while the page opens
+    except Exception:                                      # noqa: BLE001
+        pass
+    return {"case": st.get(case.case_id).to_json(), "report": report.to_json()}
+
+
+@router.patch("/cases/{case_id}/images")
+def name_image(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """An exhibit's name, written to its IMAGE's ImageCaptionCommentDescription."""
+    _case_or_404(case_id)
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    image = bind.find_path(tree.getroot(), str(body.get("key", "")))
+    if image is None or etree.QName(image).localname != "IMAGE":
+        raise HTTPException(404, "That picture is no longer in the report.")
+    text = str(body.get("caption", "")).strip()
+    node = image.find(f"{{{bind.MISMO}}}ImageCaptionCommentDescription")
+    if text:
+        if node is None:
+            node = edit.insert_ordered(image, "ImageCaptionCommentDescription")
+        node.text = text
+    elif node is not None:
+        image.remove(node)
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "exhibit named")
+    return {"caption": text}
+
+
+@router.delete("/cases/{case_id}/images")
+def remove_image(case_id: str, request: Request, key: str = Query(...)) -> dict:
+    """Take a picture out of the report: its IMAGE, and the file linked to it."""
+    _case_or_404(case_id)
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    image = bind.find_path(tree.getroot(), key)
+    if image is None or etree.QName(image).localname != "IMAGE":
+        raise HTTPException(404, "That picture is no longer in the report.")
+    loc = (image.findtext(f"{{{bind.MISMO}}}ImageFileLocationIdentifier") or "").strip()
+    parent = image.getparent()
+    parent.remove(image)
+    if not len(parent):
+        parent.getparent().remove(parent)          # an empty IMAGES is not valid
+    st.save_tree(case_id, tree)
+    prefs = get_prefs(case_id)
+    fills = dict(prefs.get("fills") or {})
+    media_id = fills.pop(loc, None)
+    if media_id is not None:
+        set_prefs(case_id, {"fills": fills})
+        if media_id not in fills.values():
+            st.remove_media(case_id, media_id)
+    st.invalidate(case_id, _actor(request), "exhibit removed")
+    return {"removed": loc}
+
+
+@router.get("/cases/{case_id}/portable.xml")
+def portable_xml(case_id: str) -> Response:
+    """The whole appraisal in one UAD 3.6 XML: every placed picture inside its
+    IMAGE (EXTENSION/OTHER, schema-valid), and the editor's state, so that
+    importing this one file restores the report exactly."""
+    from uad import importer
+    _case_or_404(case_id)
+    st = store()
+    built = _delivery(case_id)
+    prefs = get_prefs(case_id) if (st.folder(case_id) / "editor.json").exists() else {}
+    state = {k: prefs[k] for k in ("mapState", "savedSections", "autoMaps", "exhibitSlots", "compWidths")
+             if k in prefs}
+    result = importer.embed(built.tree, built.images, state)
+    data = etree.tostring(built.tree, xml_declaration=True, encoding="utf-8", pretty_print=True)
+    name = st.get(case_id).name.replace(" ", "_") or case_id
+    return Response(data, media_type="application/xml",
+                    headers={"Content-Disposition": f'attachment; filename="{name}_UAD36_portable.xml"',
+                             "X-Embedded-Pictures": str(result["embedded"]),
+                             "X-Missing-Pictures": str(len(result["missing"]))})
+
+
+@router.get("/cases/{case_id}")
+def get_case(case_id: str) -> dict:
+    case = _case_or_404(case_id)
+    st = store()
+    out = case.to_json()
+    out["sections_present"] = st.sections_present(case_id)
+    out["media"] = len(st.media(case_id))
+    out["blockers"] = st.blockers(case_id)
+    return out
+
+
+@router.delete("/cases/{case_id}")
+def delete_case(case_id: str) -> dict:
+    _case_or_404(case_id)
+    store().delete(case_id)
+    return {"deleted": case_id}
+
+
+@router.get("/cases/{case_id}/history")
+def case_history(case_id: str) -> dict:
+    _case_or_404(case_id)
+    return {"history": store().history(case_id)}
+
+
+@router.get("/cases/{case_id}/mismo.xml")
+def case_xml(case_id: str) -> Response:
+    _case_or_404(case_id)
+    data = store().xml_path(case_id).read_bytes()
+    return Response(data, media_type="application/xml")
+
+
+@router.post("/cases/{case_id}/mismo.xml")
+async def replace_xml(case_id: str, request: Request) -> dict:
+    _case_or_404(case_id)
+    body = await request.body()
+    errors = schema.validate(body)
+    store().import_xml(case_id, body, _actor(request))
+    return {"imported": True, "schema_errors": [str(e) for e in errors[:20]]}
+
+
+# --------------------------------------------------------------------- fields
+def _write_checked(tree, pf, value: str, *, data_point: str = "", ordinal: int = 1):
+    """Never persist an edit that the field cannot read back."""
+    candidate = deepcopy(tree)
+    written = edit.write(candidate, pf.field_id, value, data_point=data_point,
+                         ordinal=ordinal, binding=pf.binding)
+    if pf.field_id in ("2.010", "2.011"):
+        # The client's second role is found by an anchor ("the party already
+        # tagged Client") that a normal read-back would mistake for the
+        # value itself.
+        actual = edit.read_client_role(candidate.getroot())
+    else:
+        node = bind.locate(candidate.getroot(), pf.binding, written.data_point,
+                           ordinal=ordinal)
+        actual = (node.text or "").strip() if node is not None else ""
+    # compared with what was stored ("$515k" is stored 515000), not the typing
+    if actual != written.new:
+        raise ValueError(
+            f"Field {pf.field_id} could not be saved to its matching report field. "
+            "Check the related type or applicability selection first. No changes were saved.")
+    return candidate, written
+
+
+@router.get("/cases/{case_id}/fields")
+def case_fields(case_id: str, section: int | None = Query(None),
+                only_filled: bool = Query(False)) -> dict:
+    """The form: every field the specification places on the page, with values.
+
+    Each field carries where its value came from, so any figure on the report
+    can be traced to the data point and xPath that produced it.
+    """
+    _case_or_404(case_id)
+    tree = store().tree(case_id)
+    root = tree.getroot()
+    findings = compliance.evaluate(tree)
+    by_field: dict[str, list[dict]] = {}
+    for f in findings:
+        if f.status == compliance.FINDING and f.field_id:
+            by_field.setdefault(f.field_id, []).append(f.to_json())
+
+    model = bind.page_model()
+    sections = []
+    for number, name in bind.SECTIONS:
+        if section is not None and number != section:
+            continue
+        fields = model.get(number, [])
+        if not fields:
+            continue
+        rows = []
+        for pf in fields:
+            groups = bind.read_groups(root, pf.binding, ordinal=pf.ordinal)
+            parts = [p for g in groups for p in g]
+            text = bind.display_value(groups, pf.binding)
+            if only_filled and not text:
+                continue
+            try:
+                dp = edit.choose_data_point(pf.binding)
+            except KeyError:
+                dp = {}
+            # A printed value may contain currency symbols, units or several
+            # data points. Editing must use the XML value of the write target.
+            target = dp.get("mismo", "")
+            node = bind.locate(root, pf.binding, target, ordinal=pf.ordinal) if target else None
+            rows.append({
+                "field_id": pf.field_id,
+                "label": pf.label,
+                "subsection": pf.subsection,
+                "column": pf.column,
+                "indent": pf.indent,
+                "ordinal": pf.ordinal,
+                "group": pf.group,
+                "value": text,
+                "edit_value": (node.text or "").strip() if node is not None else "",
+                "edit_data_point": target,
+                "definition": dp.get("definition", ""),
+                "editors": [
+                    {
+                        "data_point": point["mismo"],
+                        "value": next((v for n, v in parts if n == point["mismo"]), ""),
+                        "format": point.get("format_type", ""),
+                        "definition": point.get("definition", ""),
+                        "options": [{"value": o["value"],
+                                     "label": o.get("display") or o["value"]}
+                                    for o in point.get("enumerations", []) if o.get("value")],
+                    }
+                    for point in {d["mismo"]: d for d in pf.binding.data_points
+                                  if d.get("mismo") and not d.get("attribute")}.values()
+                ],
+                "raw": [{"data_point": n, "value": v} for n, v in parts],
+                "format": dp.get("format_type", ""),
+                "format_details": dp.get("format_details", ""),
+                "conditionality": dp.get("conditionality", ""),
+                "conditionality_details": dp.get("conditionality_details", ""),
+                "options": [
+                    {"value": o["value"], "label": o.get("display") or o["value"]}
+                    for o in dp.get("enumerations", []) if o.get("value")],
+                "data_points": [d.get("mismo") for d in pf.binding.data_points
+                                if d.get("mismo")],
+                "xpath": dp.get("xpath", ""),
+                "source": dp.get("source", ""),
+                "display_rules": pf.binding.display_rules,
+                "findings": by_field.get(pf.field_id, []),
+            })
+        sections.append({"number": number, "name": name,
+                         "tab": bind.TAB_NAME.get(number, name), "fields": rows})
+    return {"sections": sections}
+
+
+# --------------------------------------------------------------- table cells
+def _new_instance(root, dp: dict, base):
+    """Add another instance of the repeating container a data point lives in,
+    next to the ones already there, and return it."""
+    M_ = f"{{{bind.MISMO}}}"
+    segments = [t for t in dp.get("xpath", "").strip("/").split("/") if t and t != "MESSAGE"]
+    plural = [i for i in range(1, len(segments)) if bind.is_plural_of(segments[i - 1], segments[i])]
+    if not plural:
+        return None
+    i = plural[-1]
+    container = segments[i]
+    if base is None and "PROPERTY" in segments:
+        base = bind.subject(root)
+    start = base if base is not None else root
+    # a sibling that already exists names the parent
+    for existing in start.iter(f"{M_}{container}"):
+        return edit.insert_ordered(existing.getparent(), container)
+    upto = segments[:i]
+    if base is not None:
+        tag = etree.QName(base).localname
+        if tag in upto:
+            upto = upto[upto.index(tag) + 1:]
+    holder = start
+    for depth in range(len(upto), 0, -1):
+        found = start.find("/".join(f"{M_}{t}" for t in upto[:depth]))
+        if found is not None:
+            holder, upto = found, upto[depth:]
+            break
+    parent, _ = edit.ensure_path(holder, upto)
+    return edit.insert_ordered(parent, container)
+
+def _instance_count(root, binding, data_point: str, scope) -> tuple[int, str]:
+    """How many instances of this field's repeating container exist, and its tag."""
+    node = bind.locate(root, binding, data_point, scope, 1)
+    if node is None:
+        return 0, ""
+    container = bind.find_path(root, bind.instance_of(node))
+    if container is None:
+        return 0, ""
+    parent = container.getparent()
+    return len(parent.findall(container.tag)), etree.QName(container).localname
+
+
+@router.patch("/cases/{case_id}/cells/{field_id}")
+def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Write one table cell, inside the instance its row stands for.
+
+    ``key`` is the path of the row's repeating container.  A fixed row that has
+    no instance yet sends the field that identifies it (``sel``) and its label
+    (``label``): the instance is created with that value first.  The empty line
+    under a repeating table sends ``new``: a new instance is created.  Nothing
+    is saved unless the value reads back and the document still validates.
+    """
+    _case_or_404(case_id)
+    st = store()
+    try:
+        binding = edit._binding_for(field_id)
+    except KeyError:
+        raise HTTPException(404, f"no field {field_id}")
+    candidate = deepcopy(st.tree(case_id))
+    root = candidate.getroot()
+    value = str(body.get("value", ""))
+    key = str(body.get("key") or "")
+    base = None
+    if body.get("scope"):
+        base = bind.find_path(root, str(body["scope"]))
+    try:
+        dp = edit.choose_data_point(binding, body.get("data_point", ""))
+        scope = None
+        if key:
+            scope = bind.find_path(root, key)
+            if scope is None:
+                raise ValueError("that row is no longer in the report; reload it")
+            from uad.report import form as _form
+            if (not value.strip() and _form.repeats_as_list(field_id)
+                    and dp.get("mismo") == (_form.printed_point(field_id) or dp.get("mismo"))
+                    and etree.QName(scope).localname == bind.repeating_container(dp.get("xpath", ""))):
+                # clearing one value of a list removes its whole block (the
+                # amenity and its description), never leaving half of it
+                holder = scope.getparent()
+                holder.remove(scope)
+                if not len(holder) and holder.getparent() is not None:
+                    holder.getparent().remove(holder)
+                st.save_tree(case_id, candidate)
+                st.invalidate(case_id, _actor(request), f"{field_id} value removed")
+                return {"value": "", "key": "", "removed": True, "state": st.get(case_id).state}
+        elif body.get("sel") and body.get("label"):
+            sel_binding = edit._binding_for(str(body["sel"]))
+            sel_dp = edit.choose_data_point(sel_binding)
+            label = str(body["label"]).strip().casefold()
+            want = next((v for v, shown in report_form.choices_for(str(body["sel"]))
+                         if label in (v.casefold(), shown.casefold())), str(body["label"]))
+            n, _tag = _instance_count(root, sel_binding, sel_dp["mismo"], base)
+            made = edit.write(candidate, str(body["sel"]), want, ordinal=n + 1,
+                              binding=sel_binding, scope=base)
+            node = bind.locate(root, sel_binding, made.data_point, base, n + 1)
+            if node is None:
+                raise ValueError("the row could not be created")
+            scope = bind.find_path(root, bind.instance_of(node))
+        elif body.get("new"):
+            scope = _new_instance(root, dp, base)
+            if scope is None:
+                raise ValueError("the row could not be created")
+        if scope is None and body.get("cat") and "VALUATION_COMMENTAR" in dp.get("xpath", ""):
+            # a row's impact and comment live in the commentary of its category
+            cat = str(body["cat"])
+            M_ = f"{{{bind.MISMO}}}"
+            scope = next((vc for vc in root.iter(f"{M_}VALUATION_COMMENTARY")
+                          if (vc.findtext(f"{M_}ValuationAnalysisCategoryType") or "").strip() == cat), None)
+            if scope is None:
+                segments = [t for t in dp["xpath"].strip("/").split("/") if t and t != "MESSAGE"]
+                upto = segments[:segments.index("VALUATION_COMMENTARIES") + 1]
+                holder = root
+                for depth in range(len(upto), 0, -1):
+                    found = root.find("/".join(f"{M_}{t}" for t in upto[:depth]))
+                    if found is not None:
+                        holder, upto = found, upto[depth:]
+                        break
+                parent, _ = edit.ensure_path(holder, upto)
+                scope = edit.insert_ordered(parent, "VALUATION_COMMENTARY")
+                edit.insert_ordered(scope, "ValuationAnalysisCategoryType").text = cat
+        if scope is None:
+            scope = base
+        if scope is not None:
+            # write inside the nearest element on this data point's own path
+            segments = [t for t in dp.get("xpath", "").strip("/").split("/") if t]
+            holder = scope
+            while holder is not None and etree.QName(holder).localname not in segments:
+                holder = holder.getparent()
+            if holder is None:
+                raise ValueError(f"Field {field_id} does not belong to this row.")
+            scope = holder
+        written = edit.write(candidate, field_id, value, binding=binding,
+                             data_point=body.get("data_point", ""), scope=scope)
+        back = bind.locate(root, binding, written.data_point, scope, 1)
+        got = (back.text or "").strip() if back is not None else ""
+        if got != written.new:
+            raise ValueError(f"Field {field_id} could not be saved to this row. No changes were saved.")
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, candidate)          # refuses a write that adds a schema error
+    st.invalidate(case_id, _actor(request), f"{field_id} changed")
+    st.log(case_id, _actor(request), "edited", f"{field_id} (table) {written.old!r} -> {written.new!r}")
+    new_key = bind.stable_path(scope) if scope is not None else ""
+    shown = bind.trim_cents(bind.display_value([(written.data_point, written.new)], binding),
+                            binding.label) if written.new else ""
+    return {"value": shown, "key": new_key, "state": st.get(case_id).state}
+
+
+@router.patch("/cases/{case_id}/client-role")
+def set_client_role(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Client/[Party Role Type] (A-1 2.010/2.011): the client party, and the
+    second role it plays -- Attorney, Investor, Lender, Appraisal Management
+    Company, or Other with its description (H-1 UAD1542, UAD1543)."""
+    from uad.report import form as report_form
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    root = tree.getroot()
+    M_ = f"{{{bind.MISMO}}}"
+    value = str(body.get("value", "")).strip()
+    point = str(body.get("data_point", ""))
+    allowed = [e["value"] for e in edit._binding_for("2.011").data_points[0].get("enumerations") or []]
+    party = next((p for p in root.iter(f"{M_}PARTY")
+                  if any((r.text or "").strip() == "Client" for r in p.iter(f"{M_}PartyRoleType"))), None)
+    if party is None:
+        parties = next(root.iter(f"{M_}PARTIES"))
+        party = edit.insert_ordered(parties, "PARTY")
+        role, _ = edit.ensure_path(party, ["ROLES", "ROLE"])
+        detail, _ = edit.ensure_path(role, ["ROLE_DETAIL"])
+        edit.insert_ordered(detail, "PartyRoleType").text = "Client"
+    detail, _shown = report_form.client_role(party)
+    if detail is None:
+        roles, _ = edit.ensure_path(party, ["ROLES"])
+        role = edit.insert_ordered(roles, "ROLE")
+        detail, _ = edit.ensure_path(role, ["ROLE_DETAIL"])
+    kind = detail.find(f"{M_}PartyRoleType")
+    other = detail.find(f"{M_}PartyRoleTypeOtherDescription")
+    if point == "PartyRoleTypeOtherDescription":
+        if (kind is None or (kind.text or "") != "Other"):
+            raise HTTPException(422, "Pick Other before describing it.")
+        if other is None:
+            other = edit.insert_ordered(detail, "PartyRoleTypeOtherDescription")
+        other.text = value[:50]
+    else:
+        if value and value not in allowed:
+            raise HTTPException(422, f"{value!r} is not one of {allowed}")
+        if kind is None:
+            kind = edit.insert_ordered(detail, "PartyRoleType")
+        if not value:
+            detail.getparent().getparent().remove(detail.getparent())
+        else:
+            kind.text = value
+            if value != "Other" and other is not None:
+                detail.remove(other)
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "client role changed")
+    _d, shown = report_form.client_role(party)
+    return {"value": shown, "state": st.get(case_id).state}
+
+
+@router.patch("/cases/{case_id}/fields/{field_id}")
+def set_field(case_id: str, field_id: str, request: Request,
+              body: dict = Body(...)) -> dict:
+    case = _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    if field_id.split(".")[0] == "1":
+        # B-1 chapter 01: the Summary redisplays the report; its values are
+        # entered where they come from, never here
+        raise HTTPException(422, "The Summary redisplays the rest of the report and cannot be edited.")
+    if parties.name_role(field_id) and not body.get("data_point"):
+        # a party's name: person or organisation, one party per name, and the
+        # owner as B-1 Case A / B / C -- never another party's name
+        candidate = deepcopy(tree)
+        result = parties.write(candidate, field_id, str(body.get("value", "")), str(body.get("kind", "")))
+        st.save_tree(case_id, candidate)
+        st.invalidate(case_id, _actor(request), f"{field_id} changed")
+        st.log(case_id, _actor(request), "edited", f"{field_id} -> {result['value']!r}")
+        return {**result, "state": st.get(case_id).state}
+    try:
+        pf = edit.field(field_id)
+    except KeyError:
+        raise HTTPException(404, f"no field {field_id}")
+    try:
+        ordinal = int(body.get("ordinal") or pf.ordinal)
+        if ordinal < 1:
+            raise ValueError("The field instance must be at least 1")
+        tree, written = _write_checked(tree, pf, str(body.get("value", "")),
+                                       data_point=body.get("data_point", ""),
+                                       ordinal=ordinal)
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), f"{field_id} changed")
+    st.log(case_id, _actor(request), "edited",
+           f"{field_id} {written.old!r} -> {written.new!r}")
+    root = tree.getroot()
+    groups = bind.read_groups(root, pf.binding, ordinal=ordinal)
+    return {"written": written.to_json(),
+            # what the report prints: whole dollars without cents, as D-1 sets them
+            "value": bind.trim_cents(bind.display_value(groups, pf.binding), pf.label),
+            "state": st.get(case_id).state}
+
+
+@router.post("/cases/{case_id}/fields")
+def set_fields(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Set many fields at once -- what a headless intake uses."""
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    results, failures = [], []
+    for item in body.get("fields", []):
+        fid = item.get("field_id", "")
+        try:
+            if fid.split(".")[0] == "1":
+                raise ValueError("The Summary redisplays the rest of the report and cannot be edited.")
+            if parties.name_role(fid) and not item.get("data_point"):
+                candidate = deepcopy(tree)
+                done = parties.write(candidate, fid, str(item.get("value", "")), str(item.get("kind", "")))
+                tree = candidate
+                results.append({"field_id": fid, "new": done["value"]})
+                continue
+            pf = edit.field(fid)
+            ordinal = int(item.get("ordinal") or pf.ordinal)
+            if ordinal < 1:
+                raise ValueError("The field instance must be at least 1")
+            tree, written = _write_checked(tree, pf, str(item.get("value", "")),
+                                           data_point=item.get("data_point", ""),
+                                           ordinal=ordinal)
+            results.append(written.to_json())
+        except (KeyError, ValueError) as exc:
+            failures.append({"field_id": fid, "error": str(exc)})
+    if results:
+        st.save_tree(case_id, tree)
+        st.invalidate(case_id, _actor(request), f"{len(results)} field(s) changed")
+        st.log(case_id, _actor(request), "edited", f"{len(results)} fields")
+    return {"written": results, "failed": failures}
+
+
+# -------------------------------------------------------------- preferences
+# How the appraiser has arranged the editor for this report -- column widths,
+# chiefly.  It belongs to the case, so the grid a colleague opens is the grid
+# that was set up, but it is not part of the deliverable and never enters the
+# package.
+def _prefs_path(case_id: str) -> Path:
+    return store().folder(case_id) / "editor.json"
+
+
+@router.get("/cases/{case_id}/prefs")
+def get_prefs(case_id: str) -> dict:
+    _case_or_404(case_id)
+    path = _prefs_path(case_id)
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:
+        return {}
+
+
+@router.put("/cases/{case_id}/prefs")
+def set_prefs(case_id: str, body: dict = Body(...)) -> dict:
+    _case_or_404(case_id)
+    merged = {**get_prefs(case_id), **body}
+    _prefs_path(case_id).write_text(json.dumps(merged, indent=1),
+                                    encoding="utf-8")
+    if {"exhibitSlots", "fills"} & set(body):
+        renderer().changed(case_id)       # the form draws these
+    return merged
+
+
+# --------------------------------------------------------------- review master
+@router.get("/cases/{case_id}/review")
+def case_review(case_id: str, include_review: bool = Query(True)) -> dict:
+    """Every compliance finding, from all three authorities, in one list."""
+    case = _case_or_404(case_id)
+    st = store()
+    report = st.review(case_id, include_review=include_review)
+    out = report.to_json()
+    out["by_section"] = {
+        name: [i.to_json() for i in items]
+        for name, items in report.by_section().items()}
+    out["state"] = case.state
+    out["acknowledged"] = case.acknowledged
+    out["sections_present"] = st.sections_present(case_id)
+    out["blockers"] = st.blockers(case_id)
+    return out
+
+
+@router.get("/cases/{case_id}/integrity")
+def case_integrity(case_id: str, deep: bool = Query(False)) -> dict:
+    """Whether the report, the document and the package agree with each other.
+
+    ``deep`` also draws the report and compares the figures on the page with
+    the ones in the document, which costs a render.
+    """
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    html = ""
+    if deep:
+        html = flow.build(tree, folder=st.folder(case_id),
+                          media=_media_for_render(case_id), screen=False)
+    found = integrity.check(tree, st.media(case_id), html=html)
+    return {"counts": integrity.counts(found),
+            "findings": [f.to_json() for f in found]}
+
+
+@router.get("/cases/{case_id}/rules")
+def rule_coverage() -> dict:
+    """What the compliance engine executes, and what it leaves for a reader."""
+    rules = compliance.rules()
+    kinds: dict[str, int] = {}
+    reasons: dict[str, int] = {}
+    for r in rules:
+        kinds[r.kind] = kinds.get(r.kind, 0) + 1
+        if not r.executable:
+            reasons[r.reason] = reasons.get(r.reason, 0) + 1
+    return {"total": len(rules),
+            "executable": sum(1 for r in rules if r.executable),
+            "by_kind": kinds, "not_executed": reasons,
+            "schema_version": schema.schema_version()}
+
+
+# ---------------------------------------------------------- comparable grid
+@router.get("/cases/{case_id}/comparables")
+def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
+    """The comparable grid as rows, which is how it is entered and printed.
+
+    Each row is one line of the grid -- Property Address, Sale Price, a
+    Condition adjustment -- and carries the Report Field ID to write for the
+    subject, for each comparable, and for that comparable's adjustment.  The
+    editor is then the grid, not a form that happens to feed one.
+    """
+    _case_or_404(case_id)
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    tree = store().tree(case_id)
+    root = tree.getroot()
+    _sheet, role, title = comparables.SHEETS[kind]
+    props = comparables.properties(root, role)
+    subject = bind.subject(root)
+
+    rows = []
+    for spec in comparables.specs(root, kind, every_row=True):
+        cells = []
+        for prop in props:
+            cells.append({
+                "value": (comparables.value_for(root, spec.comp_fid, prop, spec)
+                          if spec.comp_fid else ""),
+                "parts": (comparables.parts_for(root, spec.comp_fid, prop)
+                          if spec.comp_fid else {}),
+                "adjustment": comparables.adjustment_for(root, spec, prop),
+                "adjust_raw": (comparables.adjustment_value(prop, spec.adjust_type)
+                               if spec.adjust_type else ""),
+            })
+        rows.append({
+            "options": comparables.options_for(spec.comp_fid or spec.subject_fid),
+            "comp_points": comparables.points_for(spec.comp_fid),
+            "subject_points": comparables.points_for(spec.subject_fid),
+            "subject_parts": (comparables.parts_for(root, spec.subject_fid, subject)
+                              if spec.subject_fid else {}),
+            "label": spec.label,
+            "heading": spec.heading,
+            "always": spec.always,
+            "adjustable": spec.adjustable,
+            "subject_fid": spec.subject_fid,
+            "comp_fid": spec.comp_fid,
+            "adjust_fid": spec.adjust_fid,
+            "adjust_type": spec.adjust_type,
+            "item_name": spec.item_name,
+            "container": spec.container,
+            "new_item": spec.new_item,
+            "subject": (comparables.value_for(root, spec.subject_fid, subject, spec)
+                        if spec.subject_fid else ""),
+            "cells": cells,
+        })
+    return {
+        "kind": kind, "title": title, "role": role,
+        "comparables": [{"index": i + 1,
+                         "label": f"Comparable #{i + 1}",
+                         "address": comparables.value_for(root, "22.01.17", p),
+                         "photo": _comp_photo(case_id, i + 1)}
+                        for i, p in enumerate(props)],
+        "rows": rows,
+    }
+
+
+def _grid_scope(root, kind: str, number: int):
+    """The property a grid cell belongs to -- 0 is the subject column."""
+    if number == 0:
+        return bind.subject(root)
+    _sheet, role, _title = comparables.SHEETS[kind]
+    props = comparables.properties(root, role)
+    if not 1 <= number <= len(props):
+        raise HTTPException(404, f"no comparable #{number}")
+    return props[number - 1]
+
+
+@router.patch("/cases/{case_id}/comparables/{number}/fields/{field_id}")
+def set_comparable_field(case_id: str, number: int, field_id: str,
+                         request: Request, body: dict = Body(...)) -> dict:
+    """Write one cell of the grid, inside the property that cell is about.
+
+    The form's own route cannot serve this: a data point under a PROPERTY is
+    taken to be the subject's unless it is told which property is meant, so
+    without the scope every comparable's value would be written over the
+    subject's.
+    """
+    _case_or_404(case_id)
+    st = store()
+    kind = body.get("kind", "sales")
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    tree = st.tree(case_id)
+    value = str(body.get("value", ""))
+    point = body.get("data_point", "")
+    adjust_type = body.get("adjust_type", "")
+
+    pf = None
+    if not adjust_type:
+        try:
+            pf = edit.field(field_id)
+        except KeyError:
+            raise HTTPException(404, f"no field {field_id}")
+
+    candidate = deepcopy(tree)
+    scope = _grid_scope(candidate.getroot(), kind, number)
+    if scope is None:
+        raise HTTPException(404, "this case has no property for that column")
+    try:
+        if adjust_type:
+            written = comparables.write_adjustment(scope, adjust_type, value)
+        else:
+            # A comparable on a 2-4 unit report has more than one living
+            # unit, and the grid asks for bedrooms, bathrooms and area for each
+            # of them.  Without the ordinal every unit wrote over unit one, so
+            # the second unit of every comparable was unreportable.
+            ordinal = int(body.get("ordinal") or 1)
+            if ordinal < 1:
+                raise ValueError("The field instance must be at least 1")
+            written = edit.write(candidate, field_id, value, data_point=point,
+                                 ordinal=ordinal, binding=pf.binding,
+                                 scope=scope)
+            node = bind.locate(candidate.getroot(), pf.binding,
+                               written.data_point, scope, ordinal)
+            actual = (node.text or "").strip() if node is not None else ""
+            if actual != written.new:
+                raise ValueError(
+                    f"Field {field_id} could not be saved to this comparable. "
+                    "No changes were saved.")
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+
+    st.save_tree(case_id, candidate)
+    st.invalidate(case_id, _actor(request), f"{field_id} changed")
+    st.log(case_id, _actor(request), "edited",
+           f"{field_id} on {'subject' if not number else f'comparable #{number}'}")
+    root = candidate.getroot()
+    again = _grid_scope(root, kind, number)
+    return {"value": (comparables.adjustment_value(again, adjust_type)
+                      if adjust_type
+                      else comparables.value_for(root, field_id, again)),
+            "state": st.get(case_id).state}
+
+
+@router.put("/cases/{case_id}/comparables/lineitems")
+def name_line_item(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Name, rename or remove a row the appraiser adds to a grid.
+
+    B-1 gives each grid group an "[Additional Row]" the appraiser names --
+    "Below Grade Exterior Access" -- and A-1 keeps that name against every
+    property the grid shows, so naming it here writes it to the subject and to
+    every comparable at once.  Renaming follows the same rule, and an empty
+    name removes the row from all of them.
+    """
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    root = tree.getroot()
+    kind = str(body.get("kind") or "sales")
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    container = str(body.get("container") or "")
+    adjust_type = str(body.get("adjust_type") or "")
+    was = str(body.get("was") or "").strip()
+    name = str(body.get("name") or "").strip()
+    if not container:
+        raise HTTPException(422, "the row does not say where it is kept")
+    if not name and not was:
+        raise HTTPException(422, "give the row a name")
+    _sheet, role, _title = comparables.SHEETS[kind]
+    props = comparables.properties(root, role)
+    subject = bind.subject(root)
+    everywhere = ([subject] if subject is not None else []) + props
+    named = comparables.named_row(kind, *_line_row(kind, container))
+    if named is None:
+        raise HTTPException(422, f"no added-row template for {container}")
+    if name and any(name == other
+                    for other in comparables.named_values(root, named, everywhere)
+                    if other != was):
+        raise HTTPException(422, f"this grid already has a row called {name!r}")
+    for prop in everywhere:
+        node = comparables.named_node(prop, named, was or name,
+                                      create=bool(name and not was))
+        if node is None:
+            if not name:
+                continue
+            node = comparables.named_node(prop, named, name, create=True)
+        if not name:
+            node.getparent().remove(node)
+            continue
+        label = node.find(f"{{{bind.MISMO}}}{named.name_dp}")
+        if label is None:
+            label = edit.insert_ordered(node, named.name_dp)
+        label.text = name
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "grid row named")
+    st.log(case_id, _actor(request), "edited",
+           f"added row {was!r} -> {name!r}" if was else f"added row {name!r}")
+    return {"name": name, "removed": not name, "state": st.get(case_id).state}
+
+
+def _line_row(kind: str, container: str) -> tuple[str, str, str]:
+    """The workbook's own template for the rows kept in this container."""
+    for row in comparables.rows(kind):
+        fid = row.subject_fid or row.comp_fid
+        named = comparables.named_row(kind, fid, row.data_point, row.adjust_type)
+        if named is not None and named.container == container:
+            return fid, row.data_point, row.adjust_type
+    raise HTTPException(422, f"no added-row template for {container}")
+
+
+@router.post("/cases/{case_id}/comparables")
+def add_comparable(case_id: str, request: Request,
+                   body: dict = Body(default={})) -> dict:
+    """Add another comparable property to the case."""
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    kind = body.get("kind", "sales")
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    _sheet, role, _title = comparables.SHEETS[kind]
+    added = comparables.add_property(tree, role)
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "a comparable was added")
+    st.log(case_id, _actor(request), "added a comparable", f"{role} #{added}")
+    return {"added": added, "kind": kind}
+
+
+@router.delete("/cases/{case_id}/comparables/{number}")
+def remove_comparable(case_id: str, number: int, request: Request,
+                      kind: str = Query("sales")) -> dict:
+    """Delete a comparable; the ones after it move up a place."""
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    _sheet, role, _title = comparables.SHEETS[kind]
+    st.backfill_comparable_keys(case_id, _labels(tree, kind))
+    try:
+        comparables.remove_property(tree, role, number)
+    except IndexError as exc:
+        raise HTTPException(404, str(exc))
+    # The property is gone, so its photographs are too, and the ones after it
+    # take their number from where they now sit.
+    if kind == "sales":
+        # comparable photographs are the sales grid's (media carry a column
+        # number, not a grid): removing a rental, GRM or "not used" entry
+        # must never take a sale's photo with it
+        st.drop_comparable_media(case_id, number)
+        st.renumber_comparable_media(case_id, _labels(tree, kind))
+    left = len(_labels(tree, kind))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "a comparable was removed")
+    st.log(case_id, _actor(request), "removed a comparable", f"{role} #{number}")
+    return {"removed": number, "remaining": left, "kind": kind}
+
+
+@router.post("/cases/{case_id}/comparables/order")
+def order_comparables(case_id: str, request: Request,
+                      body: dict = Body(...)) -> dict:
+    """Reorder the comparables; every section that numbers them follows."""
+    _case_or_404(case_id)
+    st = store()
+    kind = body.get("kind", "sales")
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    _sheet, role, _title = comparables.SHEETS[kind]
+    tree = st.tree(case_id)
+    st.backfill_comparable_keys(case_id, _labels(tree, kind))
+    moved = comparables.reorder(tree, role, [int(n) for n in body.get("order", [])])
+    st.renumber_comparable_media(case_id, _labels(tree, kind))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "the comparables were reordered")
+    st.log(case_id, _actor(request), "reordered comparables", str(body.get("order")))
+    # The comparables' former numbers, in the order they now appear.
+    return {"order": [old for old, _new in sorted(moved.items(),
+                                                  key=lambda kv: kv[1])],
+            "kind": kind}
+
+
+# ---------------------------------------------------------------------- media
+@router.get("/cases/{case_id}/media")
+def list_media(case_id: str, category: str = Query("")) -> dict:
+    _case_or_404(case_id)
+    return {"categories": list(MEDIA_CATEGORIES),
+            "media": [m.to_json() for m in store().media(case_id, category)]}
+
+
+# ---------------------------------------------------------------- auto-fill
+# A case arrives as an order sheet, an MLS export and a folder of photographs.
+# The appraiser watches it being entered rather than being handed a filled
+# report: the server writes the whole document in one pass while the page
+# replays the same steps, section by section, control by control.
+AUTOFILL: dict[str, dict] = {}
+
+
+@router.post("/cases/{case_id}/autofill/source")
+async def autofill_source(case_id: str, request: Request,
+                          files: list[UploadFile] = File(...)) -> dict:
+    """Stage an uploaded UAD 3.6 file as the source "Fill the report" reads.
+
+    The filler already knows how to walk a document and act every value out on
+    screen; what it lacked was a way to be handed one.  So the upload goes
+    through the same import the rest of the application uses -- normalised,
+    pictures decoded and written out, whether they arrive in a portable file's
+    EXTENSION nodes, in a delivery zip or as loose files -- and lands in a
+    case the filler then reads exactly as it reads a template.  Nothing about
+    the filling itself changes.
+
+    The staged case is hidden from the case list and removed when the run
+    ends (``DELETE .../autofill/source``).
+    """
+    _case_or_404(case_id)
+    from uad import importer, uadmap
+
+    sent = [(f.filename or "file", await f.read()) for f in files]
+    report = importer.Report()
+    try:
+        xml_name, xml_bytes, assets = importer.open_bundle(sent)
+        tree = importer.parse(xml_bytes)
+        report.xml_name = xml_name
+        carried, _state = importer.take_embedded(tree, report)
+        for low, item in carried.items():
+            assets.setdefault(low, item)
+        importer.normalise(tree, report)
+        importer.repair_enumerations(tree, report)
+        pictures = importer.pictures(tree, assets, report)
+        importer.count(tree, report)          # so the page can say what arrived
+    except importer.ImportError_ as exc:
+        raise HTTPException(422, str(exc))
+
+    st = store()
+    stage = st.create(template=st.get(case_id).template,
+                      name=f"{STAGING_PREFIX}{xml_name}", blank=True,
+                      actor=_actor(request))
+    try:
+        st.save_tree(stage.case_id, tree, allow_invalid=True)
+        folder = st.media_dir(stage.case_id)
+        for pic in pictures:
+            (folder / pic.name).write_bytes(pic.data)
+            category = ("comparable" if (pic.comparable and pic.owner
+                                         and pic.owner != "SubjectProperty"
+                                         and pic.category in ("PropertyPhoto", ""))
+                        else "subject" if (pic.category in ("DwellingFront", "PropertyPhoto")
+                                           and pic.owner == "SubjectProperty")
+                        else IMPORT_CATEGORY.get(pic.category, "other"))
+            st.add_media(stage.case_id, category=category, filename=pic.name,
+                         caption=pic.caption,
+                         comparable=pic.comparable if category == "comparable" else 0,
+                         section=uadmap.image_section(pic.category),
+                         size=len(pic.data),
+                         content_type=importer.IMAGE_TYPES.get(
+                             Path(pic.name).suffix.lower(), "image/jpeg"))
+    except Exception as exc:                                   # noqa: BLE001
+        st.delete(stage.case_id)
+        raise HTTPException(500, f"The file could not be staged: {exc}")
+    return {"source": stage.case_id, "name": xml_name,
+            "pictures": len(pictures), "values": report.values,
+            "missing_pictures": len(report.pictures_missing)}
+
+
+@router.delete("/cases/{case_id}/autofill/source")
+def drop_autofill_source(case_id: str, source: str = Query(...)) -> dict:
+    """Remove a staged source once the run has finished with it."""
+    _case_or_404(case_id)
+    st = store()
+    try:
+        staged = st.get(source)
+    except Exception:
+        return {"dropped": False}
+    if not (staged.name or "").startswith(STAGING_PREFIX):
+        raise HTTPException(400, "that case is not a staged fill source")
+    st.delete(source)
+    return {"dropped": True}
+
+
+@router.post("/cases/{case_id}/autofill")
+def start_autofill(case_id: str, request: Request, body: dict = Body(default={})) -> dict:
+    """Plan the steps that fill this case, and begin writing them."""
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    source = str(body.get("source") or "")
+    if not source:
+        raise HTTPException(422, "Name the case or template the values come from.")
+    src_folder, src_media = None, []
+    try:
+        tpl = templates.get(source)
+        src_root = etree.parse(str(tpl.path)).getroot()
+        src_folder = tpl.path.parent
+        src_media = [{"category": "other", "filename": p.name, "caption": "",
+                      "section": 0, "order": n, "content_type": "image/jpeg",
+                      "path": str(p)}
+                     for n, p in enumerate(tpl.images[:60], start=1)]
+    except KeyError:
+        try:
+            src_root = st.tree(source).getroot()
+            src_folder = st.folder(source)
+            src_media = [{**m.to_json(), "path": str(st.media_dir(source) / m.filename)}
+                         for m in st.media(source)]
+        except Exception:
+            raise HTTPException(404, f"no source {source!r}")
+    source_name = source
+    try:
+        staged = st.get(source)
+        if (staged.name or "").startswith(STAGING_PREFIX):
+            source_name = staged.name[len(STAGING_PREFIX):]
+    except Exception:                                   # noqa: BLE001
+        pass
+    have = {m.filename for m in st.media(case_id)}
+    src_media = [m for m in src_media if m["filename"] not in have]
+    steps = autofill.plan(tree, src_root, folder=st.folder(case_id),
+                          source_folder=src_folder, media=src_media)
+    job = {"running": True, "written": 0, "total": len(steps), "failed": []}
+    AUTOFILL[case_id] = job
+
+    def add_comparable(kind: str) -> int:
+        working_ = st.tree(case_id)
+        number = comparables.add_property(working_, comparables.SHEETS[kind][1])
+        st.save_tree(case_id, working_, allow_invalid=True)
+        return number
+
+    # Which of the document's own image boxes each photograph fills.  Without
+    # this the report draws both: the IMAGE the document carries (the values
+    # for it are written like any other) and, beside it, the photograph that
+    # *is* that image -- so every exhibit came out twice.  The import has
+    # always recorded this; the filler did not.
+    filled_boxes: dict[str, str] = {}
+
+    def add_media(row: dict) -> None:
+        origin = Path(row.get("path") or "")
+        if not origin.exists():
+            raise FileNotFoundError(row.get("filename", ""))
+        target = st.media_dir(case_id) / origin.name
+        if not target.exists():
+            shutil.copy2(origin, target)
+        item = st.add_media(case_id, category=row.get("category") or "other",
+                            filename=origin.name, caption=row.get("caption") or "",
+                            order=int(row.get("order") or 0),
+                            comparable=int(row.get("comparable") or 0),
+                            section=int(row.get("section") or 0),
+                            size=target.stat().st_size,
+                            content_type=row.get("content_type") or "image/jpeg",
+                            provenance=row.get("provenance") or "template")
+        filled_boxes[delivery.location_of(origin.name)] = item.media_id
+
+    def run() -> None:
+        try:
+            # The comparables are created first, through the same route the
+            # editor uses, so the grid has columns to write into.
+            for step in steps:
+                if step.kind == autofill.COMP:
+                    add_comparable(step.comp_kind)
+            working = st.tree(case_id)
+            result = autofill.apply(
+                working, [s for s in steps if s.kind != autofill.COMP],
+                source=src_root, add_media=add_media)
+            result["written"] += sum(1 for s in steps if s.kind == autofill.COMP)
+            st.save_tree(case_id, working, allow_invalid=True)
+            # A fill answers the same fields an import would, so it is
+            # recorded the same way: the appraiser can then turn the green
+            # marking on and see exactly what the file put in.
+            import time as _time
+
+            from uad import provenance
+            brought = provenance.imported_fields(st.tree(case_id).getroot())
+            prior = get_prefs(case_id)
+            was = prior.get("imported") or {}
+            update = {"imported": {**was, "from": source_name,
+                                   "at": _time.time(), "fields": brought}}
+            if filled_boxes:
+                update["fills"] = {**(prior.get("fills") or {}), **filled_boxes}
+            set_prefs(case_id, update)
+            st.invalidate(case_id, _actor(request), "filled from intake")
+            st.log(case_id, _actor(request), "autofill",
+                   f"{result['written']} of {len(steps)} values written")
+            job.update(result)
+        except Exception as exc:                        # noqa: BLE001
+            job["failed"].append({"n": 0, "fid": "", "reason": str(exc)[:200]})
+        finally:
+            job["running"] = False
+
+    renders.background(run)
+    return {"steps": [s.to_json() for s in steps], "total": len(steps)}
+
+
+@router.get("/cases/{case_id}/autofill")
+def autofill_status(case_id: str) -> dict:
+    _case_or_404(case_id)
+    return AUTOFILL.get(case_id) or {"running": False, "written": 0, "total": 0, "failed": []}
+
+
+@router.post("/cases/{case_id}/media")
+async def add_media(case_id: str, request: Request,
+                    file: UploadFile = File(...),
+                    category: str = Query("other"),
+                    caption: str = Query(""),
+                    comparable: int = Query(0),
+                    section: int = Query(0)) -> dict:
+    _case_or_404(case_id)
+    if category not in MEDIA_CATEGORIES:
+        raise HTTPException(400, f"category must be one of {MEDIA_CATEGORIES}")
+    st = store()
+    data = await file.read()
+    name = Path(file.filename or "image.jpg").name
+    target = st.media_dir(case_id) / name
+    stem, suffix, n = target.stem, target.suffix, 1
+    while target.exists():
+        target = target.with_name(f"{stem}-{n}{suffix}")
+        n += 1
+    target.write_bytes(data)
+    # The front of the dwelling and a comparable's thumbnail are single
+    # slots: a new photo takes the place of the old one rather than queueing
+    # behind it where the report would never show it.
+    for old in st.media(case_id, category):
+        if (category == "subject") or (category == "comparable" and comparable
+                                       and int(old.comparable or 0) == comparable):
+            st.remove_media(case_id, old.media_id)
+    existing = [m for m in st.media(case_id, category)]
+    # A photograph belongs to a property, not to a position in the grid, so the
+    # property's own identifier is recorded beside the number.
+    comp_key = ""
+    if comparable:
+        marks = _labels(st.tree(case_id))
+        if 1 <= comparable <= len(marks):
+            comp_key = marks[comparable - 1]
+    item = st.add_media(case_id, category=category, filename=target.name,
+                        caption=caption, order=len(existing) + 1,
+                        comparable=comparable, comp_key=comp_key,
+                        section=section, size=len(data),
+                        content_type=file.content_type or
+                        mimetypes.guess_type(target.name)[0] or "image/jpeg")
+    st.log(case_id, _actor(request), "added media", f"{category}: {target.name}")
+    st.invalidate(case_id, _actor(request), "media added")
+    return item.to_json()
+
+
+@router.patch("/cases/{case_id}/media/{media_id}")
+def update_media(case_id: str, media_id: str, request: Request,
+                 body: dict = Body(...)) -> dict:
+    """Rename an exhibit -- its caption is the name printed above it."""
+    _case_or_404(case_id)
+    st = store()
+    if not any(m.media_id == media_id for m in st.media(case_id)):
+        raise HTTPException(404, f"no media {media_id}")
+    caption = str(body.get("caption", "")).strip()
+    st.set_media_caption(case_id, media_id, caption)
+    st.log(case_id, _actor(request), "renamed media", f"{media_id}: {caption}")
+    st.invalidate(case_id, _actor(request), "media renamed")
+    return next(m.to_json() for m in st.media(case_id) if m.media_id == media_id)
+
+
+@router.delete("/cases/{case_id}/media/{media_id}")
+def remove_media(case_id: str, media_id: str, request: Request) -> dict:
+    _case_or_404(case_id)
+    store().remove_media(case_id, media_id)
+    # a photo that filled one of the document's own exhibit boxes leaves the
+    # box empty again, rather than pointing at a file that is gone
+    prefs = get_prefs(case_id)
+    fills = {k: v for k, v in (prefs.get("fills") or {}).items() if v != media_id}
+    if fills != (prefs.get("fills") or {}):
+        set_prefs(case_id, {"fills": fills})
+    store().invalidate(case_id, _actor(request), "media removed")
+    return {"deleted": media_id}
+
+
+@router.get("/cases/{case_id}/media/{media_id}/file")
+def media_file(case_id: str, media_id: str) -> Response:
+    _case_or_404(case_id)
+    for m in store().media(case_id):
+        if m.media_id == media_id:
+            path = store().media_dir(case_id) / m.filename
+            if not path.exists():
+                raise HTTPException(404, "the file is missing from the case folder")
+            return Response(path.read_bytes(),
+                            media_type=m.content_type or "image/jpeg")
+    raise HTTPException(404, media_id)
+
+
+# -------------------------------------------------------------------- preview
+@router.get("/cases/{case_id}/preview", response_class=HTMLResponse)
+def preview(case_id: str, request: Request, screen: bool = Query(True)) -> HTMLResponse:
+    """The report, drawn by the engine that prints the PDF (Appendix C-1 form)."""
+    _case_or_404(case_id)
+    if screen:
+        return _rendered(case_id, "preview", request)
+    st = store()
+    html = flow.build(st.tree(case_id), folder=st.folder(case_id),
+                      media=_media_for_render(case_id), screen=False)
+    return HTMLResponse(html)
+
+
+@router.get("/geocode/suggest")
+def address_suggestions(q: str = Query("")) -> dict:
+    """Candidate real addresses for what has been typed (see ``maps.suggest``)."""
+    return {"suggestions": maps.suggest(q)}
+
+
+@router.get("/fields/{field_id}/options")
+def field_options(field_id: str, dp: str = Query("")) -> dict:
+    """What a field may be set to -- for one of its data points when a table
+    row names it (``dp``), since a field can bind several.
+
+    Fetched when a list is opened rather than written into the page: there are
+    a hundred and thirty of them on a report and most are never opened.
+    """
+    from uad.report import form as report_form
+
+    choices = report_form.choices_for(field_id)
+    if dp:
+        b = report_form.binding(field_id)
+        point = next((d for d in (b.data_points if b else []) if d.get("mismo") == dp
+                      and not d.get("attribute")), None)
+        if point is not None:
+            choices = report_form.point_choices(point)
+    # An "Other" with a description data point beside it (A-1: CR, IF
+    # XType = "Other") asks for the description when it is picked.
+    b = report_form.binding(field_id)
+    others = {}
+    for d in (b.data_points if b else []):
+        for key, want in (d.get("requires") or {}).items():
+            if want == "Other" and d.get("mismo", "").endswith("OtherDescription") and not d.get("attribute"):
+                others[key] = {"data_point": d["mismo"],
+                               "max": int(d["format_details"]) if str(d.get("format_details", "")).isdigit() else 0}
+    enum_name = dp or next((d.get("mismo") for d in (b.data_points if b else [])
+                            if d.get("enumerations") and not d.get("attribute")), "")
+    out = []
+    for value, label in choices:
+        item = {"value": value, "label": label}
+        if value == "Other" and enum_name in others:
+            item["other"] = others[enum_name]
+        out.append(item)
+    return {"field_id": field_id, "options": out}
+
+
+# ------------------------------------------------------------ market charts
+MARKET_SECTION = 17
+
+
+@router.get("/market/prompt")
+def market_prompt() -> dict:
+    """What to hand an assistant, with the order and the MLS exports, to get
+    the import file back."""
+    return {"prompt": market.PROMPT, "example": market.example(),
+            "charts": {key: caption for key, caption in market.CHARTS.values()}}
+
+
+@router.post("/cases/{case_id}/market/charts")
+async def import_market_charts(case_id: str, request: Request) -> dict:
+    """Draw the Market section's graphs from imported figures.
+
+    The five charts are the same numbers the appraisal already argues from, so
+    they are drawn rather than pasted: one file in, five exhibits out, in the
+    report's own face and at its own measure.
+    """
+    _case_or_404(case_id)
+    st = store()
+    body = await request.body()
+    try:
+        series = market.parse(body.decode("utf-8"))
+    except market.MarketDataError as exc:
+        raise HTTPException(422, str(exc))
+    except UnicodeDecodeError:
+        raise HTTPException(422, "the file is not text")
+
+    # Drawing them again replaces the last set rather than stacking a second.
+    drawn = {c.title for c in series}
+    for item in st.media(case_id):
+        if item.section == MARKET_SECTION and item.caption in drawn:
+            st.remove_media(case_id, item.media_id)
+
+    tree = st.tree(case_id)
+    folder = st.media_dir(case_id)
+    made = []
+    for chart in series:
+        name = f"market-{chart.key.replace('_', '-')}.svg"
+        (folder / name).write_text(market.svg(chart), encoding="utf-8")
+        category = market.category_of(chart)
+        # A case started from a sample already carries the GSEs' own picture
+        # of this chart.  Point that IMAGE at the drawing instead of adding a
+        # second one, or the report shows both.
+        replaced = market.point_image_at(tree, category, name)
+        if not replaced:
+            st.add_media(case_id, category="other", filename=name,
+                         caption=chart.title, section=MARKET_SECTION,
+                         size=(folder / name).stat().st_size,
+                         content_type="image/svg+xml")
+        made.append({"chart": chart.key, "title": chart.title,
+                     "category": category, "periods": len(chart.periods),
+                     "series": len(chart.plots), "replaced": replaced})
+    st.save_tree(case_id, tree)
+    st.log(case_id, _actor(request), "imported market charts",
+           ", ".join(m["title"] for m in made))
+    st.invalidate(case_id, _actor(request), "the market charts changed")
+    return {"drawn": made}
+
+
+@router.get("/cases/{case_id}/form", response_class=HTMLResponse)
+def editable_form(case_id: str, request: Request) -> HTMLResponse:
+    """The report itself, with every value typed into where it stands.
+
+    Not a form that resembles the report: the same renderer, the same C-1
+    geometry, the same fonts and rules, with each printed value carrying the
+    Report Field ID behind it so it can be edited in place.  What an appraiser
+    fills in and what the lender receives are then the same page.
+
+    Served from the background renderer (``app/renders.py``) so opening it
+    does not wait on a layout pass.
+    """
+    _case_or_404(case_id)
+    return _rendered(case_id, "form", request)
+
+
+@router.get("/cases/{case_id}/render/{kind}")
+def render_status(case_id: str, kind: str) -> dict:
+    """Whether the current render of the form or preview is ready."""
+    _case_or_404(case_id)
+    if kind not in renders.KINDS:
+        raise HTTPException(404, f"no render kind {kind}")
+    have, want = renderer().get(case_id, kind)
+    return {"ready": have is not None and have.key == want, "key": want,
+            "stale": have is not None and have.key != want}
+
+
+@router.get("/cases/{case_id}/asset/{name}")
+def render_asset(case_id: str, name: str) -> Response:
+    """A photograph or font a rendered page references, named by its digest --
+    so it never changes and the browser may keep it."""
+    import re as _re
+    if not _re.fullmatch(r"[0-9a-f]{20}\.[a-z0-9]{2,5}", name):
+        raise HTTPException(404, "no such asset")
+    path = renderer().assets(case_id) / name
+    if not path.is_file():
+        raise HTTPException(404, "no such asset")
+    kind = {"ttf": "font/ttf", "otf": "font/otf", "svg": "image/svg+xml",
+            "jpg": "image/jpeg", "tif": "image/tiff"}.get(path.suffix[1:]) or         mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+    return Response(path.read_bytes(), media_type=kind,
+                    headers={"Cache-Control": "private, max-age=31536000, immutable"})
+
+
+RENDERER = None
+
+
+def renderer():
+    global RENDERER
+    if RENDERER is None:
+        RENDERER = renders.Renderer(store, _media_for_render, get_prefs)
+    return RENDERER
+
+
+def _rendered(case_id: str, kind: str, request: Request) -> HTMLResponse:
+    """The newest render there is, never an unexpected wait in a browser.
+
+    A browser (it asks for text/html) gets the current render at once, an
+    older one marked stale that replaces itself when the fresh one lands, or a
+    loading page that waits for it.  Anything else -- a test, a script --
+    waits for the current render, so it never reads a stale report.
+    """
+    from uad.report import browser
+    if not browser.AVAILABLE:
+        # no Chromium here (Vercel): the layout would never land -- say why now
+        raise browser.BrowserUnavailable(browser.MESSAGE)
+    r = renderer()
+    browser = "text/html" in request.headers.get("accept", "")
+    have, want = r.get(case_id, kind)
+    if have is not None and have.key == want:
+        return _page(have.html, case_id, kind, want, stale=False)
+    if not browser:
+        fresh = r.wait(case_id, kind)
+        if fresh is None:
+            raise HTTPException(503, "the report is still being laid out")
+        return _page(fresh.html, case_id, kind, fresh.key, stale=False)
+    if have is not None:
+        return _page(have.html, case_id, kind, want, stale=True)
+    return HTMLResponse(_loading_page(case_id, kind), headers={"Cache-Control": "no-store"})
+
+
+def _page(html: str, case_id: str, kind: str, key: str, *, stale: bool) -> HTMLResponse:
+    info = json.dumps({"case": case_id, "kind": kind, "key": key, "stale": stale})
+    tag = f"<script>window.UAD_RENDER={info};</script>"
+    return HTMLResponse(html.replace("</head>", tag + FRESH_JS + "</head>", 1),
+                        headers={"Cache-Control": "no-store", "X-Render-Key": key,
+                                 "X-Render-Stale": "1" if stale else "0"})
+
+
+# A page served stale watches for its fresh render and tells the editor, which
+# swaps it in behind the scenes; a page on its own reloads.
+FRESH_JS = """<script>
+(function(){
+  var R=window.UAD_RENDER||{}; var parentWin=(window.parent!==window)?window.parent:null;
+  window.addEventListener('load',function(){
+    if(parentWin) parentWin.postMessage({uad:'frame-ready',kind:R.kind,key:R.key,stale:!!R.stale},'*');
+  });
+  if(!R.stale) return;
+  function poll(){
+    fetch('/api/cases/'+R.case+'/render/'+R.kind).then(function(r){return r.json();})
+      .then(function(s){
+        if(s.ready){
+          // never swap the page out from under an edit in progress
+          if(document.querySelector('.gedit,.picklist,.mapframe')){
+            setTimeout(poll,1500); return;
+          }
+          if(parentWin) parentWin.postMessage({uad:'fresh',kind:R.kind,key:s.key},'*');
+          else location.reload();
+          return;
+        }
+        setTimeout(poll,700);
+      }).catch(function(){ setTimeout(poll,1500); });
+  }
+  setTimeout(poll,400);
+})();
+</script>"""
+
+
+def _loading_page(case_id: str, kind: str) -> str:
+    """Shown only while a report has never been laid out before."""
+    what = "report" if kind == "form" else "preview"
+    return (LOADING_HTML.replace("{{case}}", case_id).replace("{{kind}}", kind)
+            .replace("{{what}}", what))
+
+
+LOADING_HTML = """<!doctype html><html><head><meta charset='utf-8'>
+<title>Preparing the report</title><style>
+html,body{margin:0;height:100%;background:#6f6f6f;font:13px/1.4 'Segoe UI',system-ui,sans-serif}
+.wrap{display:flex;flex-direction:column;align-items:center;padding:28px 12px}
+.page{width:min(816px,96vw);aspect-ratio:612/1008;background:#fff;position:relative;overflow:hidden;
+  box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.bar{position:absolute;left:6%;right:6%;height:10px;border-radius:2px;background:#e6e7e8;overflow:hidden}
+.bar:after{content:'';position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);animation:sh 1.3s infinite}
+.tab{position:absolute;left:6%;width:30%;height:16px;background:#231f20;border-radius:0 8px 0 0;opacity:.85}
+@keyframes sh{100%{transform:translateX(100%)}}
+.msg{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#101010;color:#f2f2f0;
+  padding:9px 16px;border-radius:2px;display:flex;gap:10px;align-items:center;z-index:2;
+  box-shadow:0 2px 10px rgba(0,0,0,.3);white-space:nowrap}
+.spin{width:14px;height:14px;border:2px solid #6a6a66;border-top-color:#f2f2f0;border-radius:50%;
+  animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.prog{position:fixed;left:0;top:0;height:3px;background:#f2f2f0;width:0;transition:width .5s ease}
+@media (prefers-reduced-motion:reduce){.bar:after,.spin{animation:none}}
+</style></head><body>
+<div class='prog' id='prog'></div>
+<div class='msg'><span class='spin'></span><span id='say'>Preparing the {{what}}...</span></div>
+<div class='wrap'><div class='page' id='page'></div></div>
+<script>
+(function(){
+  var page=document.getElementById('page'), y=7;
+  for(var i=0;i<34;i++){
+    var el=document.createElement('div');
+    if(i%9===0){ el.className='tab'; el.style.top=y+'%'; y+=3.2; }
+    else { el.className='bar'; el.style.top=y+'%'; el.style.right=(6+((i*37)%30))+'%'; y+=2.6; }
+    page.appendChild(el);
+  }
+  var steps=['Preparing the {{what}}...','Reading the case document...',
+             'Measuring every line against Appendix C-1...','Placing photographs and exhibits...',
+             'Checking nothing runs off the page...','Almost there...'];
+  var n=0, t0=Date.now(), prog=document.getElementById('prog');
+  setInterval(function(){ n=Math.min(n+1,steps.length-1); document.getElementById('say').textContent=steps[n]; },1600);
+  setInterval(function(){ var s=(Date.now()-t0)/1000; prog.style.width=Math.min(92,100*(1-Math.exp(-s/4)))+'%'; },250);
+  function poll(){
+    fetch('/api/cases/{{case}}/render/{{kind}}').then(function(r){return r.json();}).then(function(s){
+      if(s.ready){ prog.style.width='100%'; location.reload(); return; }
+      setTimeout(poll,500);
+    }).catch(function(){ setTimeout(poll,1500); });
+  }
+  poll();
+})();
+</script></body></html>"""
+
+
+def _render_pdf(case_id: str):
+    st = store()
+    html = flow.build(st.tree(case_id), folder=st.folder(case_id),
+                      media=_media_for_render(case_id), screen=False)
+    out = st.folder(case_id) / "appraisal.pdf"
+    flow.to_pdf(html, out)
+    return out
+
+
+@router.get("/cases/{case_id}/report.pdf")
+def report_pdf(case_id: str) -> Response:
+    _case_or_404(case_id)
+    out = _render_pdf(case_id)
+    return Response(out.read_bytes(), media_type="application/pdf",
+                    headers={"Content-Disposition":
+                             'inline; filename="appraisal.pdf"'})
+
+
+# ------------------------------------------------------------------- sign-off
+@router.post("/cases/{case_id}/state")
+def set_state(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    _case_or_404(case_id)
+    to = body.get("state", "")
+    try:
+        case = store().transition(case_id, to, _actor(request),
+                                  force=bool(body.get("force")))
+    except GateError as exc:
+        return JSONResponse(
+            {"error": str(exc), "reasons": exc.reasons}, status_code=409)
+    return case.to_json()
+
+
+@router.post("/cases/{case_id}/acknowledge")
+def acknowledge(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    _case_or_404(case_id)
+    case = store().acknowledge(case_id, int(body.get("section", 0)),
+                               _actor(request), bool(body.get("on", True)))
+    return case.to_json()
+
+
+# --------------------------------------------------------------------- export
+def _delivery(case_id: str) -> "delivery.Package":
+    """The XML and images this case would ship, with every delivery fault."""
+    st = store()
+    templates_ = {m.filename for m in st.media(case_id) if m.provenance == "template"}
+    return delivery.build(st.tree(case_id), st.media(case_id), st.media_dir(case_id),
+                          fills=_fills(case_id), template_names=templates_)
+
+
+# ------------------------------------------------------------------- maps
+MAPPER = None
+
+
+# the running server's own address and session, for its headless map tool
+SERVER: dict | None = None
+
+
+def mapper():
+    global MAPPER
+    if MAPPER is None:
+        from . import mapper as _mapper
+        MAPPER = _mapper.Mapper(store, get_prefs, set_prefs, lambda: SERVER)
+    return MAPPER
+
+
+@router.post("/cases/{case_id}/maps")
+def generate_maps(case_id: str) -> dict:
+    """Draw the Sales Comparison Map now, with the Location Map tool (Appendix
+    E p66: the map sets full page)."""
+    _case_or_404(case_id)
+    return mapper().generate(case_id, force=True)
+
+
+@router.post("/cases/{case_id}/maps/aerial")
+def generate_aerial(case_id: str) -> dict:
+    """The subject from above, as a Site exhibit at the exhibit picture's size."""
+    _case_or_404(case_id)
+    return mapper().aerial(case_id)
+
+
+@router.post("/cases/{case_id}/maps/image")
+async def save_map_image(case_id: str, file: UploadFile = File(...)) -> dict:
+    """The Location Map tool's own export, saved as the Sales Comparison Map."""
+    _case_or_404(case_id)
+    data = await file.read()
+    if not data.startswith(bytes([0x89]) + b"PNG"):
+        raise HTTPException(422, "the map must be a PNG exported by the map tool")
+    media_id = mapper().store_png(case_id, data)
+    return {"media_id": media_id}
+
+
+@router.get("/cases/{case_id}/maps")
+def maps_status(case_id: str) -> dict:
+    _case_or_404(case_id)
+    return {**mapper().status(case_id),
+            "auto": get_prefs(case_id).get("autoMaps") is not False}
+
+
+@router.get("/cases/{case_id}/maps/places")
+def map_places(case_id: str, kind: str = Query("sales")) -> dict:
+    """The subject and its comparables, with the coordinates the case holds.
+
+    A-1 requires LatitudeIdentifier and LongitudeIdentifier on every property,
+    and an appraisal that arrives from other software carries them -- so the
+    map had no business looking any of it up.  It was seeding itself from the
+    printed addresses and geocoding each one: a request a second, against an
+    address the report prints for a person to read rather than for a gazetteer
+    to parse ("15 S Beechwood Rd Unit"), so the comparables came back
+    unplaced and the subject, whose coordinates it did take, was the only pin
+    on the map.
+
+    Here the coordinates are simply handed over.  Geocoding stays as the
+    fallback for a property the document has none for.
+    """
+    _case_or_404(case_id)
+    root = store().tree(case_id).getroot()
+    # The map's own words for what a property is: a closed sale, an active
+    # listing or a rental.  It colours and labels the callout from this --
+    # yellow for a sale, purple for a listing, green for a rental -- so the
+    # value handed over has to be one the map knows, not the one A-1 uses.
+    status = {"listing": "active", "sale": "closed"}
+    if kind in ("rental", "grm"):
+        status = dict.fromkeys(("listing", "sale"), "rent")
+    out = []
+    for place in maps.places(root, kind):
+        out.append({"kind": "subject" if place.kind == "subject" else "comp",
+                    "number": place.number,
+                    "address": place.address,
+                    "lines": list(place.lines),
+                    "lat": place.lat, "lon": place.lon,
+                    "status": status.get(place.kind, "closed")})
+    return {"kind": kind, "places": out}
+
+
+# ------------------------------------------------ data that does not print
+@router.get("/cases/{case_id}/extra")
+def extra_data(case_id: str) -> dict:
+    """What A-1 requires that has no place on the report (``uad/extra.py``)."""
+    _case_or_404(case_id)
+    groups = extra.groups(store().tree(case_id).getroot())
+    missing = sum(1 for g in groups for r in g["rows"] if r["conditionality"] == "R"
+                  for a in r["answers"] if not a["value"])
+    return {"groups": groups, "missing_required": missing}
+
+
+@router.patch("/cases/{case_id}/extra/{uid}")
+def set_extra_data(case_id: str, uid: str, request: Request, body: dict = Body(...)) -> dict:
+    _case_or_404(case_id)
+    try:
+        row = extra.by_uid(uid)
+    except KeyError:
+        raise HTTPException(404, f"no data point {uid} to edit here")
+    st = store()
+    try:
+        tree = extra.write(st.tree(case_id), row, str(body.get("value", "")),
+                           scope=int(body.get("scope") or 0),
+                           instance=int(body.get("instance") or 0))
+    except ValueError as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), f"{row.name} changed")
+    st.log(case_id, _actor(request), "edited", f"{row.name} ({uid}) -> {body.get('value')!r}")
+    return {"answers": extra.read(tree.getroot(), row)}
+
+
+@router.get("/cases/{case_id}/package/check")
+def package_check(case_id: str) -> dict:
+    """What stands between this case and a deliverable ZIP (B-1 pp 69-73)."""
+    _case_or_404(case_id)
+    built = _delivery(case_id)
+    problems = schema.validate(built.tree)
+    return {"faults": [f.to_json() for f in built.faults],
+            "schema": [str(e) for e in problems[:50]],
+            "images": sorted(built.images),
+            "ready": not built.fatal and not problems}
+
+
+@router.get("/cases/{case_id}/package.zip")
+def package(case_id: str) -> Response:
+    """The deliverable: appraisal.pdf, mismo.xml and Images/, in one archive.
+
+    The gate is asked first and there is no way past it, so an archive can only
+    exist for a case an appraiser has signed.
+    """
+    _case_or_404(case_id)
+    st = store()
+    allowed, reasons = st.exportable(case_id)
+    if not allowed:
+        return JSONResponse(
+            {"error": "this case cannot be exported yet", "reasons": reasons},
+            status_code=409)
+
+    tree = st.tree(case_id)
+    built = _delivery(case_id)
+    if built.fatal:
+        return JSONResponse(
+            {"error": "the package does not meet the delivery requirements",
+             "reasons": [f"{f.code}: {f.message} {f.detail}".strip() for f in built.fatal]},
+            status_code=409)
+    # The XML that ships must still be valid once the images and the PDF
+    # reference are written into it.
+    problems = schema.validate(built.tree)
+    if problems:
+        return JSONResponse(
+            {"error": "the delivered XML does not validate",
+             "reasons": [str(e) for e in problems[:20]]}, status_code=409)
+    pdf_path = _render_pdf(case_id)
+
+    # B-1 p69-73: one XML, one PDF, and the Images folder -- nothing else.
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.write(pdf_path, delivery.PDF_NAME)
+        zf.writestr(delivery.XML_NAME, etree.tostring(
+            built.tree, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+        for name, path in sorted(built.images.items()):
+            zf.writestr(f"{delivery.IMAGES}/{name}", path.read_bytes())
+
+    size_faults = delivery.check_size(buffer.getbuffer().nbytes)
+    if size_faults:
+        return JSONResponse({"error": "the package is too large",
+                             "reasons": [f"{f.code}: {f.message} {f.detail}" for f in size_faults]},
+                            status_code=409)
+
+    # The archive is inspected as an archive before anyone is handed it: what
+    # it actually contains, against what this case actually references.
+    buffer.seek(0)
+    with zipfile.ZipFile(buffer) as zipped:
+        names = zipped.namelist()
+    html = flow.build(tree, folder=st.folder(case_id),
+                      media=_media_for_render(case_id), screen=False)
+    shipped = [m for m in st.media(case_id) if m.filename in built.images]
+    faults = [f for f in integrity.check(tree, shipped, html=html, names=names)
+              if f.severity == integrity.FATAL]
+    if faults:
+        return JSONResponse(
+            {"error": "the package does not match the report",
+             "reasons": [f"{f.code}: {f.message} {f.detail}".strip()
+                         for f in faults]},
+            status_code=409)
+
+    buffer.seek(0)
+    st.transition(case_id, EXPORTED, "system", force=True)
+    st.log(case_id, "system", "exported", "package.zip built")
+    name = f"{st.get(case_id).name.replace(' ', '_')}.zip"
+    return StreamingResponse(
+        buffer, media_type="application/zip",
+        headers={"Content-Disposition": f'attachment; filename="{name}"'})

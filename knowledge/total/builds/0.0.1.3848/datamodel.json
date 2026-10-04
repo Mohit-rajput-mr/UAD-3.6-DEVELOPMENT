@@ -1,0 +1,7395 @@
+[
+ {
+  "group": "interior",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "UI1_HIDDEN_LEVEL-DETAILS_COUNT",
+   "UI1_HIDDEN_LEVEL-DETAILS-PRINT-PREVIEW_COUNT",
+   "UI1_HIDDEN_ROOM-DETAILS_COUNT",
+   "UI1_HIDDEN_KITCHEN-AND-BATHROOM-DETAILS-PRINT-PREVIEW_COUNT",
+   "UI1_HIDDEN_MOBILE_STATUS_SECTION_INSTANCE_UNIT",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_ACCESSIBILITY",
+   "UI1_SECTION_KEY",
+   "UI1_INCLUDED_IN_RENT_SCHEDULE",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_EXHIBITS",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_COMMENTARY",
+   "UI1_HIDDEN_KITCHEN-DETAILS_COUNT",
+   "UI1_HIDDEN_INTERIOR-EXHIBITS_COUNT",
+   "UI1_HIDDEN_INT-FEATURES_COUNT",
+   "UI1_HIDDEN_ACCESSIBILITY-FEATURES_COUNT",
+   "UI1_HIDDEN_INT-FEATURES-FLOORING_COUNT",
+   "UI1_HIDDEN_DEFECTS_COUNT",
+   "UI1_CHECK_ACCESSFEAT_ENABLE",
+   "UI1_CHECK_ACCESSFEAT_DISABLE",
+   "UI1_SECTION_OUTBUILDING_TYPE",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_FLOORING",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_WALLS_CEILING",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_QUALITY_CONDITION",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_DETAIL",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_INT_FEATURES",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_DEFECTS_DAMAGES_DEFICIENCIES",
+   "UI1_SECTION_DESCRIPTION",
+   "UI1_SECTION_CAPTION",
+   "UI1_SECTION_REPORT_SETUP_DROPDOWN",
+   "UI1_SECTION_PARENT_GUID",
+   "UI1_SECTION_GUID",
+   "UI1_SECTION_UNIT_IDENTIFIER",
+   "UI1_FINISHED_ABOVE_GRADE",
+   "UI1_FINISHED_ABOVE_GRADE_NONSTD",
+   "UI1_UNFINISHED_ABOVE_GRADE",
+   "UI1_FINISHED_BELOW_GRADE",
+   "UI1_FINISHED_BELOW_GRADE_NONSTD",
+   "UI1_UNFINISHED_BELOW_GRADE",
+   "UI1_AREA_DATA_SOURCE_TYPE",
+   "UI1_AREA_DATA_SOURCE_TYPE_OTHER",
+   "UI1_HIDDEN_AREA-DATA-SOURCE-PRINT_COUNT",
+   "UI1_BELOW_GRADE_CMP_ABOVE",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_AREA_FINISH",
+   "UI1_ADU_YES",
+   "UI1_ADU_NO",
+   "UI1_ADU_LEGALLY_RENTABLE",
+   "UI1_ADU_DATA_SOURCE_TYPE",
+   "UI1_ADU_DATA_SOURCE_TYPE_OTHER",
+   "UI1_ADU_TYPICAL",
+   "UI1_ADU_INGRESS_EGRESS",
+   "UI1_ADU_SEP_ADDR",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_ADU",
+   "UI1_UNIT_LEVELS",
+   "UI1_FLOOR_NUMBER",
+   "UI1_CORNER_UNIT",
+   "UI1_OCCUPANCY",
+   "UI1_UTILS_SEP_METERED",
+   "UI1_UTILS_OPERATING",
+   "UI1_TOT_BEDS",
+   "UI1_TOT_BATHS_FULL",
+   "UI1_TOT_BATHS_HALF",
+   "UI1_NON_RES_USE",
+   "UI1_LIVE_WORK_SPACE",
+   "UI1_ALLOW_WORK_SPACE",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_OCCUPANCY",
+   "UI1_HIDDEN_MOBILE_SITOWNEDCOMMON_YES_NO",
+   "UI1_QC_INT_QUAL_RATING",
+   "UI1_QC_INT_COND_RATING",
+   "UI1_QC_TABLES",
+   "UI1_OVERALL_UPD_STATUS_BATHS",
+   "UI1_OVERALL_UPD_STATUS_BATHS_PRINT_PREVIEW",
+   "UI1_OVERALL_UPD_STATUS_FLOORING",
+   "UI1_INTFEAT_OVEERALL_UPD_STATUS_FLOOR",
+   "UI1_CHECK_ACCESSFEAT_DEFECT_ENABLE",
+   "UI1_CHECK_ACCESSFEAT_DEFECT_DISABLE",
+   "UI1_ACCESSFEAT_ITEMS",
+   "UI1_COMMENTARY"
+  ],
+  "groups": [
+   "ui1-area-data-source-print",
+   "ui1-level-details",
+   "ui1-level-details-print-preview",
+   "ui1-room-details",
+   "ui1-kitchen-and-bathroom-details-print-preview",
+   "ui1-int-features-flooring",
+   "ui1-int-features-walls-ceiling",
+   "ui1-int-features",
+   "ui1-accessibility-features",
+   "ui1-defects",
+   "ui1-interior-exhibits"
+  ]
+ },
+ {
+  "group": "ui1-area-data-source-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_AREA_DATA_SOURCE_TYPE_LABEL_PRINT",
+   "UI1_AREA_DATA_SOURCE_TYPE_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-level-details",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_LEVEL_ROW_ID",
+   "UI1_LEVEL_IN_UNIT",
+   "UI1_LEVEL_GRADE_TYPE",
+   "UI1_LEVEL_BELOW_GRADE_ACCESS",
+   "UI1_LEVEL_BELOW_GRADE_EXTERIOR_ACCESS",
+   "UI1_LEVEL_BELOW_GRADE_EXTERIOR_ACCESS_OTHER",
+   "UI1_LEVEL_FINISHED_AREA",
+   "UI1_LEVEL_FINISHED_AREA_NONSTANDARD",
+   "UI1_LEVEL_UNFINISHED_AREA",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_LEVEL",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_LEVEL_UNFIN_PHOTO",
+   "UI1_HIDDEN_MOBILE_LEVEL_SKETCH_ID",
+   "UI1_HIDDEN_MOBILE_LEVEL_SKETCH_AREA",
+   "UI1_HIDDEN_MOBILE_LEVEL_SKETCH_FINISHED_AREA",
+   "UI1_HIDDEN_MOBILE_LEVEL_SKETCH_UNFINISHED_AREA"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-level-details-print-preview",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_LEVEL_IN_UNIT_PRINT_PREVIEW",
+   "UI1_LEVEL_GRADE_TYPE_PRINT_PREVIEW",
+   "UI1_LEVEL_FINISHED_AREA_PRINT_PREVIEW",
+   "UI1_LEVEL_UNFINISHED_AREA_PRINT_PREVIEW",
+   "UI1_ROOM_SUMMARY_PRINT_PREVIEW"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-room-details",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_LEVEL_ROOM_ROW_ID",
+   "UI1_ROOM_ROW_ID",
+   "UI1_ROOM_LEVEL",
+   "UI1_ROOM_ROOM_TYPE",
+   "UI1_ROOM_ROOM_TYPE_OTHER",
+   "UI1_ROOM_UPDATE_STATUS",
+   "UI1_ROOM_TIME_FRAME",
+   "UI1_ROOM_QUALITY_COMMENT",
+   "UI1_ROOM_CONDITION_STATUS",
+   "UI1_ROOM_CONDITION_COMMENT",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_LEVEL_ROOM",
+   "UI1_HIDDEN_MOBILE_ROOM_SKETCH_ID"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-kitchen-and-bathroom-details-print-preview",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_KITBTH_ROOM_PRINT_PREVIEW",
+   "UI1_KITBTH_UPDATE_STATUS_PRINT_PREVIEW",
+   "UI1_KITBTH_TIME_FRAME_PRINT_PREVIEW",
+   "UI1_KITBTH_QUALITY_COMMENT_PRINT_PREVIEW",
+   "UI1_KITBTH_COND_STATUS_PRINT_PREVIEW",
+   "UI1_KITBTH_COND_COMMENT_PRINT_PREVIEW"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-int-features-flooring",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_INTFEAT_FLOORING_LABEL",
+   "UI1_INTFEAT_DETAIL_FLOORING",
+   "UI1_INTFEAT_DETAIL_FLOORING_OTHER",
+   "UI1_INTFEAT_QUAL_COMMENT_FLOORING",
+   "UI1_INTFEAT_QUAL_STATUS_FLOORING",
+   "UI1_INTFEAT_COND_COMMENT_FLOORING",
+   "UI1_INTFEAT_FLOORING_MOBILE_DDD_LINK_ID",
+   "UI1_INTFEAT_FLOORING_ROW_ID",
+   "UI1_HIDDEN_MOBILE_UNIT_ADDITIONAL_FLOOR_STATUS",
+   "UI1_HIDDEN_MOBILE_UNIT_FLOORING_DEFECT_ENABLE",
+   "UI1_HIDDEN_MOBILE_UNIT_FLOORING_DEFECT_DISABLE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-int-features-walls-ceiling",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_INTFEAT_DETAIL_WALLS_CEILING",
+   "UI1_INTFEAT_DETAIL_WALLS_CEILING_HEIGHT",
+   "UI1_PU_INTFEAT_DETAIL_WALLS_CEILING_HEIGHT",
+   "UI1_INTFEAT_DETAIL_WALLS_CEILING_STYLE_TYPE",
+   "UI1_PU_INTFEAT_DETAIL_WALLS_CEILING_STYLE_TYPE",
+   "UI1_PU_INTFEAT_DETAIL_WALLS_CEILING_STYLE_TYPE_OTHER",
+   "UI1_INTFEAT_QUAL_COMMENT_WALLS_CEILING",
+   "UI1_PU_INTFEAT_QUAL_COMMENT_WALLS_CEILING",
+   "UI1_INTFEAT_QUAL_STATUS_WALLS_CEILING",
+   "UI1_PU_INTFEAT_QUAL_STATUS_WALLS_CEILING",
+   "UI1_INTFEAT_COND_COMMENT_WALLS_CEILING",
+   "UI1_PU_INTFEAT_COND_COMMENT_WALLS_CEILING",
+   "UI1_INTFEAT_WALL_CEIL_MOBILE_DDD_LINK_ID",
+   "UI1_INTFEAT_WALL_CEIL_ROW_ID",
+   "UI1_HIDDEN_MOBILE_UNIT_WALLS_CEILING_DEFECT_ENABLE",
+   "UI1_HIDDEN_MOBILE_UNIT_WALLS_CEILING_DEFECT_DISABLE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-int-features",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_INTFEAT_OTHER_MOBILE_DDD_LINK_ID",
+   "UI1_INTFEAT_FEATURE",
+   "UI1_INTFEAT_DETAIL",
+   "UI1_INTFEAT_QUAL_COMMENT",
+   "UI1_INTFEAT_QUAL_STATUS",
+   "UI1_INTFEAT_COND_COMMENT",
+   "UI1_INTFEAT_OTHER_ROW_ID",
+   "UI1_HIDDEN_MOBILE_UNIT_OTHER_FEAT_DEFECT_ENABLE",
+   "UI1_HIDDEN_MOBILE_UNIT_OTHER_FEAT_DEFECT_DISABLE",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_INTERIOR_FEATURE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-accessibility-features",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_ACCESSFEAT_FEATURE",
+   "UI1_PU_ACCESSFEAT_FEATURE_TYPE_OTHER",
+   "UI1_ACCESSFEAT_COMMENT",
+   "UI1_HIDDEN_MOBILE_STATUS_UNIT_ACCESSIBILITIES_ACCESSIBILITY"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-defects",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_UNIT_INTERIOR_DEFECT_ROW_ID",
+   "UI1_DEFECT_MOBILE_FEATURE_LINK_ID",
+   "UI1_DEFECT_FEATURE",
+   "UI1_DEFECT_FEATURE_OTHER",
+   "UI1_DEFECT_LOCATION",
+   "UI1_DEFECT_LOCATION_OTHER",
+   "UI1_DEFECT_DESC",
+   "UI1_DEFECT_INTEGRITY",
+   "UI1_DEFECT_RECOMMEND_ACTION",
+   "UI1_HIDDEN_DEFECT_REPAIR_COST",
+   "UI1_HIDDEN_MOBILE_UNIT_DEFECT_STATUS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ui1-interior-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/interior",
+  "fields": [
+   "UI1_UNIT_INTERIOR_EXHIBIT_GUID_ID",
+   "UI1_UNIT_INTERIOR_EXHIBIT_REQUIRED_GUID_ID",
+   "UI1_UNIT_INTERIOR_EXHIBIT_CATEGORY",
+   "UI1_UNIT_INTERIOR_EXHIBIT_DESCRIPTION",
+   "UI1_UNIT_INTERIOR_EXHIBIT_CAPTION",
+   "UI1_UNIT_INTERIOR_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "summary",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "SUM_SUBPROPADDRESS",
+   "OPINION_MKT_VALUE",
+   "SUM_FINAL_COND_STATEMENT",
+   "SUM_RECEFFECDATE",
+   "SUM_ASSIGN_REASON",
+   "SUM_CONTRACT_PRICE",
+   "SUM_LISTING_STATUS",
+   "SUM_PROP_VAL_METHOD",
+   "SUM_APPR_NAME",
+   "CONSTRUCTION_METHOD",
+   "HIDDEN_CONSTRUCTION_SECTION_ROW-PRINT_COUNT",
+   "SUM_ATTACHMENT_TYPE",
+   "STRUCTURE_DESIGN",
+   "OVERALL_QUALITY",
+   "OVERALL_COND",
+   "SUM_PUD_YES",
+   "SUM_PUD_NO",
+   "SUM_CONDO_YES",
+   "SUM_CONDO_NO",
+   "SUM_COOP_YES",
+   "SUM_COOP_NO",
+   "SUM_CONDOP_YES",
+   "SUM_CONDOP_NO",
+   "SUM_NATAMLAND_YES",
+   "SUM_NATAMLAND_NO",
+   "SUM_SITOWNEDCOMMON_YES",
+   "SUM_SITOWNEDCOMMON_NO",
+   "SUM_UNITS_EX_ADUS",
+   "SUM_ACCESSORY_DW_UNITS",
+   "SUM_PROP_RIGHTS_APPRAISED",
+   "SUM_HBU_YES",
+   "SUM_HBU_NO",
+   "SUM_ZONING_COMP",
+   "SUM_HUD_DATA_PLATE_ATT",
+   "SUM_HUD_LABEL_PRESENT",
+   "GSU_PHOTO_SUMMARY",
+   "SUMMARY_ADDD_TOTAL_COST",
+   "SUMMARY_AS_IS_CONDITION",
+   "SUMMARY_ADDD_ESTIMATED_TOTAL_COST",
+   "SUMMARY_ADDD_NONE"
+  ],
+  "groups": [
+   "sum-market-value-condition",
+   "summary-borrower",
+   "summary-owner-public-records",
+   "construction_section_row-print",
+   "property_restrict",
+   "property_encroachment",
+   "sum-addd-site-section",
+   "sum-ss-defects-damages-deficiencies-parent",
+   "sum-addd-vehicle-storage-section",
+   "sum-addd-subject-property-amenities-section"
+  ]
+ },
+ {
+  "group": "sum-market-value-condition",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "SUM_MKT_VAL_COND"
+  ],
+  "groups": []
+ },
+ {
+  "group": "summary-borrower",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "SUM_ASSIGN_BORROWER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "summary-owner-public-records",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "SUM_ASSIGN_CUROWNER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "construction_section_row-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "CONSTRUCTION_METHOD_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "property_restrict",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "SUM_PROP_RESTRICT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "property_encroachment",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "SUM_ENCROACHMENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sum-addd-site-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "SITE_FEATURE",
+   "SITE_LOCATION",
+   "SITE_DESCRIPTION",
+   "SITE_INTEGRITY",
+   "SITE_ACTION",
+   "SITE_REPAIR"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sum-ss-defects-damages-deficiencies-parent",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [],
+  "groups": [
+   "sum-addd-dw-exterior",
+   "sum-addd-ui-interior"
+  ]
+ },
+ {
+  "group": "sum-addd-dw-exterior",
+  "instance": 0,
+  "depth": 2,
+  "path": "/summary/sum-ss-defects-damages-deficiencies-parent",
+  "fields": [],
+  "groups": [
+   "ssde1-sum-addd-dw-exterior-table"
+  ]
+ },
+ {
+  "group": "ssde1-sum-addd-dw-exterior-table",
+  "instance": 0,
+  "depth": 3,
+  "path": "/summary/sum-ss-defects-damages-deficiencies-parent/sum-addd-dw-exterior",
+  "fields": [
+   "SSDE1_DW_EXT_FEATURE",
+   "SSDE1_DW_EXT_LOCATION",
+   "SSDE1_DW_EXT_DESCRIPTION",
+   "SSDE1_DW_EXT_INTEGRITY",
+   "SSDE1_DW_EXT_ACTION",
+   "SSDE1_DW_EXT_REPAIR"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sum-addd-ui-interior",
+  "instance": 0,
+  "depth": 2,
+  "path": "/summary/sum-ss-defects-damages-deficiencies-parent",
+  "fields": [],
+  "groups": [
+   "ssui1-sum-addd-ui-interior-table"
+  ]
+ },
+ {
+  "group": "ssui1-sum-addd-ui-interior-table",
+  "instance": 0,
+  "depth": 3,
+  "path": "/summary/sum-ss-defects-damages-deficiencies-parent/sum-addd-ui-interior",
+  "fields": [
+   "SSUI1_UI_FEATURE",
+   "SSUI1_UI_LOCATION",
+   "SSUI1_UI_DESCRIPTION",
+   "SSUI1_UI_INTEGRITY",
+   "SSUI1_UI_ACTION",
+   "SSUI1_UI_REPAIR"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sum-addd-vehicle-storage-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "VEHICLE_STG_FEATURE",
+   "VEHICLE_STG_LOCATION",
+   "VEHICLE_STG_DESCRIPTION",
+   "VEHICLE_STG_INTEGRITY",
+   "VEHICLE_STG_ACTION",
+   "VEHICLE_STG_REPAIR"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sum-addd-subject-property-amenities-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/summary",
+  "fields": [
+   "AMENITIES_FEATURE",
+   "AMENITIES_LOCATION",
+   "AMENITIES_DESCRIPTION",
+   "AMENITIES_INTEGRITY",
+   "AMENITIES_ACTION",
+   "AMENITIES_REPAIR"
+  ],
+  "groups": []
+ },
+ {
+  "group": "assignment",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "ASSIGN_REASON",
+   "ASSIGN_REASON_OTHER",
+   "ASSIGN_PROPVALMETHOD",
+   "PDR_USED_YES",
+   "PDR_USED_NO",
+   "AGENCY_CASE_REFERENCE_ID",
+   "HIDDEN_APPRAISER_FEE_VISIBLE",
+   "HIDDEN_AMC_FEE_VISIBLE",
+   "HIDDEN_AMC_CONTACT_EXISTS",
+   "HIDDEN_GOV_AGENCY_VISIBLE",
+   "HIDDEN_MOBILE_GOV_AGENCY",
+   "HIDDEN_INVESTOR_ID_VISIBLE",
+   "HIDDEN_APPRAISER-COMPANY-ADDRESS-PRINT_COUNT",
+   "HAS_SUPERVISOR",
+   "HIDDEN_SUPERVISOR-COMPANY-ADDRESS-PRINT_COUNT",
+   "ASSIGNMENT_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_GENERAL",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_BORR_SELL",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_LEN_CLI_AMC",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APP_SUP",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_PHOTOS",
+   "HIDDEN_MOBILE_STATUS_SECTION_ASSIGN"
+  ],
+  "groups": [
+   "borrower",
+   "seller",
+   "subcurowner",
+   "appraiser-fee",
+   "amc-fee",
+   "government-agency-appraisal-indicator",
+   "investor-requested-identification-code",
+   "contact",
+   "appraiser",
+   "appraiser-company-address-print",
+   "supervisor",
+   "supervisor-company-address-print",
+   "srpa",
+   "pdr",
+   "assignment-documents",
+   "assignment-graphs",
+   "assignment-exhibit"
+  ]
+ },
+ {
+  "group": "borrower",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "ASSIGN_BORROWER",
+   "BORROWER_TYPE",
+   "BORROWER_PARTY_ROLE_TYPE",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_BSO_BORROWER"
+  ],
+  "groups": [
+   "borrower-individual",
+   "borrower-legal-entity"
+  ]
+ },
+ {
+  "group": "borrower-individual",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/borrower",
+  "fields": [
+   "LABEL_ASSIGN_BORROWER",
+   "BORROWER_FIRST_NAME",
+   "BORROWER_MIDDLE_NAME",
+   "BORROWER_LAST_NAME",
+   "BORROWER_SUFFIX_NAME"
+  ],
+  "groups": []
+ },
+ {
+  "group": "borrower-legal-entity",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/borrower",
+  "fields": [
+   "BORROWER_FULL_NAME"
+  ],
+  "groups": []
+ },
+ {
+  "group": "seller",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "ASSIGN_SELLER",
+   "SELLER_TYPE",
+   "SELLER_PARTY_ROLE_TYPE",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_BSO_SELLER"
+  ],
+  "groups": [
+   "seller-individual",
+   "seller-legal-entity"
+  ]
+ },
+ {
+  "group": "seller-individual",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/seller",
+  "fields": [
+   "SELLER_FIRST_NAME",
+   "SELLER_MIDDLE_NAME",
+   "SELLER_LAST_NAME",
+   "SELLER_SUFFIX_NAME"
+  ],
+  "groups": []
+ },
+ {
+  "group": "seller-legal-entity",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/seller",
+  "fields": [
+   "SELLER_FULL_NAME"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subcurowner",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "SUBCUROWNER",
+   "SUBCUROWNER_SAMEAS_BORROWER_YES",
+   "SUBCUROWNER_SAMEAS_SELLER_YES",
+   "SUBCUROWNER_TYPE",
+   "SUBCUROWNER_PARTY_ROLE_TYPE",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_BSO_OWNER"
+  ],
+  "groups": [
+   "subcurowner-individual",
+   "subcurowner-legal-entity"
+  ]
+ },
+ {
+  "group": "subcurowner-individual",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/subcurowner",
+  "fields": [
+   "SUBCUROWNER_FIRST_NAME",
+   "SUBCUROWNER_MIDDLE_NAME",
+   "SUBCUROWNER_LAST_NAME",
+   "SUBCUROWNER_SUFFIX_NAME"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subcurowner-legal-entity",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/subcurowner",
+  "fields": [
+   "SUBCUROWNER_FULL_NAME"
+  ],
+  "groups": []
+ },
+ {
+  "group": "appraiser-fee",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "APPRAISER_FEE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "amc-fee",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "AMC_FEE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "government-agency-appraisal-indicator",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "GOV_AGENCY"
+  ],
+  "groups": []
+ },
+ {
+  "group": "investor-requested-identification-code",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "INVESTOR_ID"
+  ],
+  "groups": []
+ },
+ {
+  "group": "contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "HIDDEN_MOBILE_STATUS_ASSIGN_LENDER_CLIENT_AMC",
+   "HIDDEN_MOBILE_CONTACT_IS_CLIENT",
+   "CONTACT_TYPE",
+   "CONTACT_LABEL_HEADER",
+   "IS_CONTACT_CLIENT",
+   "CONTACT_CLIENT",
+   "CONTACT_DESC",
+   "CONTACT_FULL_NAME",
+   "CONTACT_ADDR",
+   "CONTACT_CLIENT_REFERENCE_ID",
+   "CONTACT_AMC_REFERENCE_ID",
+   "CONTACT_ADDR_PRINT",
+   "CONTACT_CITY_STATE_ZIP_PRINT",
+   "CONTACT_ADDRESS",
+   "CONTACT_CITY",
+   "CONTACT_STATE",
+   "CONTACT_ZIP",
+   "CONTACT_PARTY_ROLE"
+  ],
+  "groups": [
+   "contact-creds"
+  ]
+ },
+ {
+  "group": "contact-creds",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/contact",
+  "fields": [
+   "CONTACT_CRED_ID",
+   "CONTACT_CRED_STATE",
+   "CONTACT_CRED_EXP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "appraiser",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPRAISER",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPRAISER_CREDS",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPRAISER_SCOPE",
+   "APPRAISER_TYPE",
+   "APPRAISER_NAME",
+   "APPRAISER_DESIGNATION",
+   "APPRAISER_DESIGNATION_OTHER",
+   "APPRAISER_COMPANY_NAME",
+   "APPRAISER_COMPANY_ADDR",
+   "APPRAISER_SPI_EXTERIOR",
+   "APPRAISER_SPI_INTERIOR",
+   "APPRAISER_SPI_DATE",
+   "APPRAISER_FIRST_NAME",
+   "APPRAISER_MIDDLE_NAME",
+   "APPRAISER_LAST_NAME",
+   "APPRAISER_SUFFIX_NAME",
+   "APPRAISER_CONTACT_TYPE",
+   "APPRAISER_PARTY_ROLE_TYPE",
+   "APPRAISER_ADDRESS",
+   "APPRAISER_CITY",
+   "APPRAISER_STATE",
+   "APPRAISER_ZIP",
+   "CONTACT_APPRAISER_REFERENCE_ID",
+   "APPRAISER_LEVEL",
+   "APPRAISER_ASC_IDENTIFIER"
+  ],
+  "groups": [
+   "appraiser-creds",
+   "appraiser-va-id",
+   "appraiser-fha-id",
+   "appraiser-employee-type"
+  ]
+ },
+ {
+  "group": "appraiser-creds",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/appraiser",
+  "fields": [
+   "APPRAISER_CRED_ID",
+   "APPRAISER_CRED_STATE",
+   "APPRAISER_CRED_EXPIRES"
+  ],
+  "groups": []
+ },
+ {
+  "group": "appraiser-va-id",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/appraiser",
+  "fields": [
+   "APPRAISER_VA_ID"
+  ],
+  "groups": []
+ },
+ {
+  "group": "appraiser-fha-id",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/appraiser",
+  "fields": [
+   "APPRAISER_FHA_ID"
+  ],
+  "groups": []
+ },
+ {
+  "group": "appraiser-employee-type",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/appraiser",
+  "fields": [
+   "APPRAISER_EMPLOYEEMENT_TYPE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "appraiser-company-address-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "APPRAISER_COMPANY_ADDR_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supervisor",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_SUPAPPRAISER_CREDS",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_SUPAPPRAISER_SCOPE",
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_SUPER",
+   "SUPERVISOR_TYPE",
+   "SUPERVISOR_NAME",
+   "SUPERVISOR_DESIGNATION",
+   "SUPERVISOR_DESIGNATION_OTHER",
+   "SUPERVISOR_COMPANY_NAME",
+   "SUPERVISOR_COMPANY_ADDR",
+   "SUPERVISOR_SPI_EXTERIOR",
+   "SUPERVISOR_SPI_INTERIOR",
+   "SUPERVISOR_SPI_DATE",
+   "SUPERVISOR_FIRST_NAME",
+   "SUPERVISOR_MIDDLE_NAME",
+   "SUPERVISOR_LAST_NAME",
+   "SUPERVISOR_SUFFIX_NAME",
+   "SUPERVISOR_CONTACT_TYPE",
+   "SUPERVISOR_PARTY_ROLE_TYPE",
+   "SUPERVISOR_ADDRESS",
+   "SUPERVISOR_CITY",
+   "SUPERVISOR_STATE",
+   "SUPERVISOR_ZIP",
+   "SUPERVISOR_LEVEL",
+   "SUPERVISOR_ASC_IDENTIFIER"
+  ],
+  "groups": [
+   "supervisor-creds",
+   "supervisor-va-id",
+   "supervisor-fha-id",
+   "supervisor-employee-type"
+  ]
+ },
+ {
+  "group": "supervisor-creds",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/supervisor",
+  "fields": [
+   "SUPERVISOR_CRED_ID",
+   "SUPERVISOR_CRED_STATE",
+   "SUPERVISOR_CRED_EXPIRES"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supervisor-va-id",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/supervisor",
+  "fields": [
+   "SUPERVISOR_VA_ID"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supervisor-fha-id",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/supervisor",
+  "fields": [
+   "SUPERVISOR_FHA_ID"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supervisor-employee-type",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/supervisor",
+  "fields": [
+   "SUPERVISOR_EMPLOYEEMENT_TYPE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supervisor-company-address-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "SUPERVISOR_COMPANY_ADDR_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "srpa",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPASSISTANT",
+   "SRPA_TYPE",
+   "SRPA_NAME",
+   "SRPA_FIRST_NAME",
+   "SRPA_MIDDLE_NAME",
+   "SRPA_LAST_NAME",
+   "SRPA_SUFFIX_NAME",
+   "SRPA_CONTACT_TYPE",
+   "SRPA_PARTY_ROLE_TYPE",
+   "SRPA_LEVEL",
+   "SRPA_DESC"
+  ],
+  "groups": [
+   "srpa-creds"
+  ]
+ },
+ {
+  "group": "srpa-creds",
+  "instance": 0,
+  "depth": 2,
+  "path": "/assignment/srpa",
+  "fields": [
+   "SRPA_CRED_ID",
+   "SRPA_CRED_STATE",
+   "SRPA_CRED_EXPIRES"
+  ],
+  "groups": []
+ },
+ {
+  "group": "pdr",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "PDR_TYPE",
+   "PDR_NAME",
+   "PDR_OCCUPATION",
+   "PDR_OCCUPATION_OTHER",
+   "PDR_COMPANY_NAME",
+   "PDR_ADDR",
+   "PDR_REFERENCE_ID",
+   "PDR_EXTERIOR",
+   "PDR_INTERIOR",
+   "PDR_INSPECTION_DATE",
+   "PDR_FIRST_NAME",
+   "PDR_MIDDLE_NAME",
+   "PDR_LAST_NAME",
+   "PDR_SUFFIX_NAME",
+   "PDR_CONTACT_TYPE",
+   "PDR_PARTY_ROLE_TYPE",
+   "PDR_ADDRESS",
+   "PDR_CITY",
+   "PDR_STATE",
+   "PDR_ZIP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "assignment-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "ASSIGNMENT_DOCUMENT_DESCRIPTION",
+   "ASSIGNMENT_DOCUMENT_CAPTION",
+   "ASSIGNMENT_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "assignment-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "ASSIGNMENT_GRAPH_DESCRIPTION",
+   "ASSIGNMENT_GRAPH_CAPTION",
+   "ASSIGNMENT_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "assignment-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/assignment",
+  "fields": [
+   "ASSIGNMENT_EXHIBIT_DESC",
+   "ASSIGNMENT_EXHIBIT_CAPTION",
+   "ASSIGNMENT_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sub-prop",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "COST_TO_REPAIR_TYPE",
+   "SUBPROPADDRESS_FULL",
+   "HIDDEN_SUBPROPADDRESS-FULL-PRINT_COUNT",
+   "HIDDEN_ALT-SUBPROPADDRESS-PRINT_COUNT",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_PHYSICAL_ADDRESS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_ALTERNATE_PHYSICAL_ADDRESS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_PROPERTY_CHARACTERISTICS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_SPECIAL_TAX_ASSESSMENTS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_ATTACHMENTS_UNITS_DWELLINGS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_PROPERTY_RIGHTS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_OWNERSHIP_RIGHTS",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_GROUND_RENT",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_LEGAL_DESCRIPTION",
+   "HIDDEN_MOBILE_STATUS_SUBJECT_EXHIBITS",
+   "HIDDEN_MOBILE_IN_PUD_OR_PROJECT",
+   "HIDDEN_MOBILE_STATUS_SECTION_SUB_PROP",
+   "SUBCOUNTY",
+   "SUBPROJNAME",
+   "ATTACHMENT_TYPE",
+   "UNIT_EXCL_ADU",
+   "ACCESSORY_DWELL_UNIT",
+   "DWELL_CONTAINING_UNITS",
+   "SPECIAL_TAX_ASSESSMENTS",
+   "SPECIAL_TAX_ASSESSMENTS_DESC",
+   "PUD_YES",
+   "PUD_NO",
+   "CONDO_YES",
+   "CONDO_NO",
+   "COOP_YES",
+   "COOP_NO",
+   "CONDOP_YES",
+   "CONDOP_NO",
+   "NATAMLAND_YES",
+   "NATAMLAND_NO",
+   "SITOWNEDCOMMON_YES",
+   "SITOWNEDCOMMON_NO",
+   "HORESPMAINT_YES",
+   "HORESPMAINT_NO",
+   "NEWCONST_YES",
+   "NEWCONST_NO",
+   "SUBJ_CONSTRUCTION_STAGE",
+   "PROPRIGHTSAPPR",
+   "PROPERTY_RIGHTS_APPRAISED_OTHER",
+   "COMMUNITY_LAND_TRUST",
+   "NATIVE_AMERICAN_LANDS",
+   "NATIVE_AMERICAN_LANDS_OTHER",
+   "HIDDEN_MOBILE_NATIVE_AMERICAN_LAND_TYPE",
+   "GROUND_RENTAL_ANNUAL_AMOUNT",
+   "GRAA_RENEWABLE",
+   "GRAA_TERM",
+   "GRAA_EXPIRES",
+   "DESC_OF_GROUND_RENT_MKT",
+   "ALL_RIGHTS_INCLUDED",
+   "MINERAL_RIGHTS_LEASED",
+   "DESC_OF_RIGHTS_NOT_INCLUDED",
+   "LEGAL_IS_TEXT",
+   "LEGAL_IS_PHOTO",
+   "SUBLEGALDESCRIP",
+   "SUBCOMMENTARY"
+  ],
+  "groups": [
+   "subpropaddress",
+   "subpropaddress-full-print",
+   "alt-subpropaddress",
+   "alt-subpropaddress-print",
+   "rights-not-included",
+   "legal-desc-image",
+   "subject-documents",
+   "subject-graphs",
+   "subject-exhibit"
+  ]
+ },
+ {
+  "group": "subpropaddress",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "SUBPROPADDRESS",
+   "SUBUNITNO",
+   "SUBCITY",
+   "SUBSTATE",
+   "SUBZIP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subpropaddress-full-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "SUBPROPADDRESS_FULL_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "alt-subpropaddress",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "ALT_SUBPROPADDRESS",
+   "PU_ALT_SUBPROPADDRESS",
+   "PU_ALT_SUBUNITNO",
+   "PU_ALT_SUBCITY",
+   "PU_ALT_SUBSTATE",
+   "PU_ALT_SUBZIP",
+   "HIDDEN_MOBILE_ALT_ADDRESS_STATUS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "alt-subpropaddress-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "ALT_SUBPROPADDRESS_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rights-not-included",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "RIGHTS_NOT_INCLUDED",
+   "RIGHTS_NOT_INCLUDED_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "legal-desc-image",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "GSU_LEGAL_DESCRIP_TITLE",
+   "GSU_LEGAL_DESCRIP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "SUBJECT_DOCUMENT_DESCRIPTION",
+   "SUBJECT_DOCUMENT_CAPTION",
+   "SUBJECT_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "SUBJECT_GRAPH_DESCRIPTION",
+   "SUBJECT_GRAPH_CAPTION",
+   "SUBJECT_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sub-prop",
+  "fields": [
+   "SUBJECT_EXHIBIT_DESCRIPTION",
+   "SUBJECT_EXHIBIT_CAPTION",
+   "SUBJECT_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "site",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_MOBILE_STATUS_SECTION_SITE",
+   "HIDDEN_MOBILE_STATUS_SITE_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_ADDITIONAL_PHOTOS",
+   "SITSITEAREA",
+   "SITSIZE",
+   "NUMPARCELS",
+   "PARCELSCONTIGUOUS",
+   "HIDDEN_MOBILE_STATUS_SITE_GENERAL_INFORMATION",
+   "SIT_COMPLIANCE",
+   "SIT_CLASSCODE",
+   "SIT_CLASSCODE_DESC",
+   "SIT_IMPACT",
+   "SIT_RBLDBL_CRNT_DNSTY",
+   "SIT_ZONING_COMPLIANCE_DESC",
+   "HIDDEN_MOBILE_STATUS_SITE_ZONING",
+   "SIT_KNOWN_MAINT_AGRMNT",
+   "SIT_TYPICAL_MKT",
+   "SIT_PROP_ACCESS_DESC",
+   "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_ACCESS",
+   "CHECK_SIT_PROP_USE_NONRES_USE_YES",
+   "CHECK_SIT_PROP_USE_NONRES_USE_NO",
+   "SIT_PROP_USE_PRIMARY_RES",
+   "SIT_PROP_USE_RES_USE",
+   "SIT_PROP_USE_NONRES_USE",
+   "SIT_PROP_USE_NONRES_USE_OTHER",
+   "SIT_PROP_USE_NONRES_MOD",
+   "SIT_PROP_USE_NONRES_USE_MOD_DESC",
+   "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_USE",
+   "SIT_INFL_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_INFLUENCE_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_SITE_INFLUENCES",
+   "SIT_INFL_WTR_FRNTG_LNR_MSRMNT",
+   "SIT_INFL_WTR_FRNTG_FEAT",
+   "SIT_INFL_WTR_FRNTG_FEAT_OTHER",
+   "HIDDEN_PERMANENT-WATERFRONT-FEATURE-PRINT_COUNT",
+   "SIT_INFL_WTR_FRNTG_BUILD_RIGHTS",
+   "SIT_INFL_WTR_FRNTG_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_WATER_FRONTAGE",
+   "HIDDEN_MOBILE_STATUS_SITE_WATER_FRONTAGE_FIELDS",
+   "HIDDEN_MOBILE_STATUS_SITE_PERM_WATER_FRONTAGE_PHOTO",
+   "HIDDEN_MOBILE_STATUS_SITE_WTR_FRONT_COMMENTARY",
+   "SIT_VWIMP_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_PRIMARY_VIEW",
+   "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_TO_VALUE_MARKET",
+   "HIDDEN_MOBILE_STATUS_SITE_HAZARDS",
+   "SIT_FEATURE_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_FEATURES_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SITE_SITE_FEATURES_AND_IMPACT_TO_VALUE_MARKET",
+   "SIT_UTLIMP_BRDBD_AVAIL",
+   "SIT_DWELL_IMP_UTIL_EASEMENT",
+   "HIDDEN_SITE_UTILITIES_GAS_PRESENT",
+   "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_AND_IMPACT_TO_VALUE_MARKET",
+   "CHECK_SITE_APPARENT_DEFECTS_ENABLE",
+   "CHECK_SITE_APPARENT_DEFECTS_DISABLE",
+   "HIDDEN_MOBILE_STATUS_SITE_DEFECTS_DAMAGES_DEFICIENCIES",
+   "CHECK_SITE_VAL_METHOD_ENABLE",
+   "CHECK_SITE_VAL_METHOD_DISABLE",
+   "SIT_VALUE_OPINION",
+   "SIT_VALUATION_METHOD",
+   "SIT_VALUATION_METHOD_OTHER",
+   "SIT_REC_SITE_VALUE",
+   "SIT_COMMENTARY"
+  ],
+  "groups": [
+   "dfg-site-elem-div-parcels",
+   "table-site-apn",
+   "dfg-site-reasons-illegal",
+   "dfg-site-primary-access",
+   "table-site-access-street-type-surface",
+   "table-site-influence",
+   "permanent-waterfront-feature-print",
+   "table-site-infl-wtr-frntg-details",
+   "table-site-view-impact",
+   "table-site-feature-nonres-use",
+   "table-site-feature-hazard",
+   "table-site-feature-restrict",
+   "table-site-feature-easement",
+   "table-site-feature-encroach",
+   "table-site-feature-sitchar",
+   "table-site-util-imp-electric",
+   "table-site-util-imp-gas",
+   "table-site-util-imp-sewer",
+   "table-site-util-imp-water",
+   "table-site-util-imp-other",
+   "table-site-defect-add-row",
+   "table-site-valuation-methodology",
+   "flow-site-map-exhibits",
+   "site-non-res-use-exhibits",
+   "flow-site-exhibits"
+  ]
+ },
+ {
+  "group": "dfg-site-elem-div-parcels",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "ELEM_DIV_PARCELS",
+   "ELEM_DIV_PARCELS_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-apn",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "APN",
+   "APN_DESC",
+   "PARCEL_SIZE",
+   "PU_APN",
+   "PU_ALT_APN",
+   "PU_APN_DESC",
+   "PU_APN_DESC_OTHER",
+   "PU_SOURCE_APN",
+   "HIDDEN_MOBILE_STATUS_SITE_GENERAL_PARCELS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "dfg-site-reasons-illegal",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_REASONS_ILLEGAL",
+   "SIT_REASONS_ILLEGAL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "dfg-site-primary-access",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_PRIMACCESS",
+   "SIT_PRIMACCESS_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-access-street-type-surface",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_STREET_TYPE_SURFACE",
+   "PU_STREET_TYPE",
+   "PU_STREET_TYPE_OTHER",
+   "PU_SURFACE_TYPE",
+   "PU_SURFACE_TYPE_OTHER",
+   "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_ACCESS_STREET",
+   "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_ACCESS_FIELDS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-influence",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_INFL_INFL_ROW_ID",
+   "SIT_INFL_INFL",
+   "SIT_INFL_INFL_OTHER",
+   "SIT_INFL_PROX",
+   "ALIAS_SIT_INFL_PROX",
+   "ALIAS_SIT_INFL_PROX_ENV_COND",
+   "PU_SITE_INFL_PROXIMITY",
+   "PU_SITE_INFL_DISTANCE",
+   "PU_SITE_INFL_FEET",
+   "PU_SITE_INFL_MILES",
+   "PU_SITE_INFL_KILOMETERS",
+   "HIDDEN_MOBILE_SITE_INFL_DISTANCE_UOM",
+   "SIT_INFL_DTL",
+   "ALIAS_SIT_INFL_DTL_ENV_COND",
+   "SIT_INFL_DTL_ENV_COND_OTHER",
+   "ALIAS_SIT_INFL_DTL_AIRPORT",
+   "SIT_INFL_DTL_AIRPORT_OTHER",
+   "ALIAS_SIT_INFL_DTL_WATER",
+   "PU_SITE_INFL_WTR_DTL_TYPE",
+   "PU_SITE_INFL_WTR_DTL_TYPE_OTHER",
+   "PU_SITE_INFL_WTR_DTL_PRIV_ACCESS",
+   "HIDDEN_SITE_INFL_WTR_DTL_ID",
+   "ALIAS_SIT_INFL_DTL_UTIL",
+   "SIT_INFL_IMP",
+   "SIT_INFL_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_SITE_INFLUENCE",
+   "HIDDEN_MOBILE_PRIVATE_ACCESS_WATER_INFLU"
+  ],
+  "groups": []
+ },
+ {
+  "group": "permanent-waterfront-feature-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_INFL_WTR_FRNTG_FEAT_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-infl-wtr-frntg-details",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_INFL_WTR_FRNTG_TYPE",
+   "SIT_INFL_WTR_FRNTG_NAME",
+   "SIT_INFL_WTR_FRNTG_ACCESS_RIGHTS",
+   "SIT_INFL_WTR_FRNTG_ACCESS_RIGHTS_OTHER",
+   "SIT_INFL_WTR_FRNTG_ACCESS_DEPTH",
+   "SIT_INFL_WTR_FRNTG_ACCESS_DEPTH_OTHER",
+   "HIDDEN_SITE_INFL_WTR_FRNTG_DETAILS_ID",
+   "SITE_INFL_WTR_FRNTG_ROW_ID",
+   "HIDDEN_MOBILE_STATUS_SITE_SITE_INFLUENCES_FRONTAGE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-view-impact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_VWIMP_VIEW",
+   "SIT_VWIMP_VIEW_OTHER",
+   "SIT_VWIMP_RNGVW",
+   "SIT_VWIMP_RNGVW_OTHER",
+   "SIT_VWIMP_IMP",
+   "SIT_VWIMP_VIEW_ROW_ID",
+   "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_VIEWS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-feature-nonres-use",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_FEAT_NONRES_USE_FEAT",
+   "SIT_FEAT_NONRES_USE_DTL",
+   "SIT_FEAT_NONRES_USE_IMP",
+   "SIT_FEAT_NONRES_USE_CMT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-feature-hazard",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_FEAT_HZRD_ZONE_FEAT",
+   "SIT_FEAT_HZRD_ZONE_DTL",
+   "SIT_FEAT_HZRD_ZONE_DTL_OTHER",
+   "SIT_FEAT_HZRD_ZONE_IMP",
+   "SIT_FEAT_HZRD_ZONE_CMT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-feature-restrict",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_FEAT_RSTRCTN",
+   "SIT_FEAT_RSTRCTN_DTL",
+   "SIT_FEAT_RSTRCTN_DTL_OTHER",
+   "SIT_FEAT_RSTRCTN_IMP",
+   "SIT_FEAT_RSTRCTN_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_FEATURES_RESTRICTION"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-feature-easement",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_FEAT_EASEMENT",
+   "SIT_FEAT_EASEMENT_DTL",
+   "SIT_FEAT_EASEMENT_DTL_OTHER",
+   "SIT_FEAT_EASEMENT_IMP",
+   "SIT_FEAT_EASEMENT_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_FEATURES_EASEMENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-feature-encroach",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_FEAT_ENCROACH_ROW_ID",
+   "SIT_FEAT_ENCROACH",
+   "SIT_FEAT_ENCROACH_DTL",
+   "PU_SITE_FEAT_ENCROACH",
+   "PU_SITE_FEAT_ENCROACH_OTHER",
+   "PU_SITE_FEAT_ENCROACH_BRD_ON_SUB",
+   "PU_SITE_FEAT_ENCROACH_SUB_ON_BRD",
+   "HIDDEN_MOBILE_ENCROACH_DIRECTION",
+   "SIT_FEAT_ENCROACH_IMP",
+   "SIT_FEAT_ENCROACH_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_FEATURES_ENCROACHMENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-feature-sitchar",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_FEAT_SITCHAR_ROW_ID",
+   "SIT_FEAT_SITCHAR",
+   "SIT_FEAT_SITCHAR_DTL",
+   "PU_SITE_FEAT_SITCHAR",
+   "PU_SITE_FEAT_SITCHAR_OTHER",
+   "PU_SITE_FEAT_SITCHAR_TOP_TYPE",
+   "PU_SITE_FEAT_SITCHAR_TOP_TYPE_OTHER",
+   "PU_SITE_FEAT_SITCHAR_DRAIN_RSN",
+   "PU_SITE_FEAT_SITCHAR_DRAIN_RSN_OTHER",
+   "SIT_FEAT_SITCHAR_IMP",
+   "SIT_FEAT_SITCHAR_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_FEATURES_CHARACTERISTIC"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-util-imp-electric",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "LABEL_SIT_UTLIMP_ELEC",
+   "SIT_UTLIMP_ELEC_PUBLIC",
+   "SIT_UTLIMP_ELEC_PRIVATE",
+   "SIT_UTLIMP_ELEC_DTL",
+   "PU_SIT_UTLIMP_ELEC_DTL",
+   "PU_SIT_UTLIMP_ELEC_DTL_OTHER",
+   "PU_SIT_UTLIMP_ELEC_DTL_OTHER_SHARED",
+   "PU_SIT_UTLIMP_ELEC_CMT_PUB",
+   "PU_SIT_UTLIMP_ELEC_CMT_PRIV",
+   "SIT_UTLIMP_ELEC_IMP",
+   "SIT_UTLIMP_ELEC_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_ELECTRIC"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-util-imp-gas",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "LABEL_SIT_UTLIMP_GAS",
+   "SIT_UTLIMP_GAS_PUBLIC",
+   "SIT_UTLIMP_GAS_PRIVATE",
+   "SIT_UTLIMP_GAS_DTL",
+   "PU_SIT_UTLIMP_GAS_DTL",
+   "PU_SIT_UTLIMP_GAS_DTL_SHARED",
+   "PU_SIT_UTLIMP_GAS_CMT_PUB",
+   "PU_SIT_UTLIMP_GAS_CMT_PRIV",
+   "SIT_UTLIMP_GAS_IMP",
+   "SIT_UTLIMP_GAS_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_GAS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-util-imp-sewer",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "LABEL_SIT_UTLIMP_SNTSWR",
+   "SIT_UTLIMP_SNTSWR_PUBLIC",
+   "SIT_UTLIMP_SNTSWR_PRIVATE",
+   "SIT_UTLIMP_SNTSWR_DTL",
+   "PU_SIT_UTLIMP_SNTSWR_DTL",
+   "PU_SIT_UTLIMP_SNTSWR_DTL_OTHER",
+   "PU_SIT_UTLIMP_SNTSWR_DTL_OTHER_SHARED",
+   "PU_SIT_UTLIMP_SNTSWR_PUB_AVAIL_YES",
+   "PU_SIT_UTLIMP_SNTSWR_PUB_AVAIL_NO",
+   "HIDDEN_MOBILE_PUBLIC_SEWER_AVAILABILITY",
+   "PU_SIT_UTLIMP_SNTSWR_CMT_PUB",
+   "PU_SIT_UTLIMP_SNTSWR_CMT_PRIV",
+   "SIT_UTLIMP_SNTSWR_IMP",
+   "SIT_UTLIMP_SNTSWR_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_SEWER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-util-imp-water",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "LABEL_SIT_UTLIMP_WTR",
+   "SIT_UTLIMP_WTR_PUBLIC",
+   "SIT_UTLIMP_WTR_PRIVATE",
+   "SIT_UTLIMP_WTR_DTL",
+   "PU_SIT_UTLIMP_WTR_DTL",
+   "PU_SIT_UTLIMP_WTR_DTL_OTHER",
+   "PU_SIT_UTLIMP_WTR_WELL",
+   "PU_SIT_UTLIMP_WTR_WELL_OTHER",
+   "PU_SIT_UTLIMP_WTR_DTL_OTHER_SHARED",
+   "PU_SIT_UTLIMP_WTR_WELL_MEETS_REQS_YES",
+   "PU_SIT_UTLIMP_WTR_WELL_MEETS_REQS_NO",
+   "PU_SIT_UTLIMP_WTR_PUB_AVAIL_YES",
+   "PU_SIT_UTLIMP_WTR_PUB_AVAIL_NO",
+   "HIDDEN_MOBILE_PUBLIC_WATER_AVAILABILITY",
+   "PU_SIT_UTLIMP_WTR_CMT_PUB",
+   "PU_SIT_UTLIMP_WTR_CMT_PRIV",
+   "SIT_UTLIMP_WTR_IMP",
+   "SIT_UTLIMP_WTR_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_WATER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-util-imp-other",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "EXT_SIT_UTIL",
+   "EXT_SIT_UTIL_PUBLIC",
+   "EXT_SIT_UTIL_PRIVATE",
+   "EXT_SIT_UTIL_DTL",
+   "PU_EXT_SIT_UTIL_DTL",
+   "PU_EXT_SIT_UTIL_DTL_SHARED",
+   "EXT_SIT_UTIL_IMP",
+   "PU_EXT_SIT_UTIL_CMT_PUB",
+   "PU_EXT_SIT_UTIL_CMT_PRIV",
+   "EXT_SIT_UTIL_CMT",
+   "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-defect-add-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_DEFECT_FEATURE",
+   "SIT_DEFECT_LOCATION",
+   "SIT_DEFECT_DESC",
+   "SIT_DEFECT_INTEGRITY",
+   "SIT_DEFECT_RECOMMEND_ACTION",
+   "HIDDEN_MOBILE_SITE_DEFECT_STATUS",
+   "SIT_DEFECT_ROW_ID",
+   "HIDDEN_SIT_DEF_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-site-valuation-methodology",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_VM_NO",
+   "SIT_VM_ADDR",
+   "SIT_VM_COUNTY",
+   "SIT_VM_DATA_SOURCE",
+   "PU_SIT_VM_DATA_SOURCE",
+   "PU_SIT_VM_DATA_SOURCE_OTHER",
+   "PU_SIT_VM_DATA_SOURCE_MLS_NUM",
+   "PU_SIT_VM_DATA_SOURCE_RECORD_NUM",
+   "SIT_VM_APN",
+   "SIT_VM_SIT_SIZE",
+   "SIT_VM_SALE_DATE",
+   "SIT_VM_PRICE",
+   "SIT_VM_LATITUDE",
+   "SIT_VM_LONGITUDE",
+   "SIT_VM_GEOMATCH",
+   "SIT_VM_ADDRESSVALIDATED"
+  ],
+  "groups": [
+   "SIT_VM_ADDR_GROUP"
+  ]
+ },
+ {
+  "group": "SIT_VM_ADDR_GROUP",
+  "instance": 0,
+  "depth": 2,
+  "path": "/site/table-site-valuation-methodology",
+  "fields": [
+   "SIT_VM_ADDR_ADDR",
+   "SIT_VM_ADDR_UNITNO",
+   "SIT_VM_ADDR_CITY",
+   "SIT_VM_ADDR_STATE",
+   "SIT_VM_ADDR_ZIP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-site-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_MAP_EXHIBIT_CATEGORY",
+   "SIT_MAP_EXHIBIT_DESCRIPTION",
+   "SIT_MAP_EXHIBIT_CAPTION",
+   "SIT_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "site-non-res-use-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_NON_RES_USE_EXHIBIT_GUID_ID",
+   "SIT_NON_RES_USE_EXHIBIT_REQUIRED_GUID_ID",
+   "SIT_NON_RES_USE_EXHIBIT_CATEGORY",
+   "SIT_NON_RES_USE_EXHIBIT_DESCRIPTION",
+   "SIT_NON_RES_USE_EXHIBIT_CAPTION",
+   "SIT_NON_RES_USE_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-site-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/site",
+  "fields": [
+   "SIT_EXHIBIT_GUID_ID",
+   "SIT_EXHIBIT_REQUIRED_GUID_ID",
+   "SIT_EXHIBIT_CATEGORY",
+   "SIT_EXHIBIT_DESCRIPTION",
+   "SIT_EXHIBIT_CAPTION",
+   "SIT_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "disaster-mitigation",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_DISASTER_MITIGATION_ENABLE",
+   "CHECK_DISASTER_MITIGATION_DISABLE",
+   "DM_MITIGATION_COMMENTARY",
+   "DM_HAS_FEATURES",
+   "HIDDEN_MOBILE_STATUS_DISA_MITI_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_DISA_MITI_PHOTOS",
+   "HIDDEN_MOBILE_STATUS_SECTION_DIS_MIT"
+  ],
+  "groups": [
+   "disaster-mitigation-feature",
+   "disaster-mitigation-exhibit"
+  ]
+ },
+ {
+  "group": "disaster-mitigation-feature",
+  "instance": 0,
+  "depth": 1,
+  "path": "/disaster-mitigation",
+  "fields": [
+   "DM_MITIGATION_FEATURE",
+   "DM_MITIGATION_FEATURE_OTHER",
+   "HIDDEN_DISASTER-MITIGATION-FEATURE-PRINT_COUNT",
+   "HIDDEN_MOBILE_STATUS_DISA_MITI_FEATURE"
+  ],
+  "groups": [
+   "disaster-mitigation-feature-print"
+  ]
+ },
+ {
+  "group": "disaster-mitigation-feature-print",
+  "instance": 0,
+  "depth": 2,
+  "path": "/disaster-mitigation/disaster-mitigation-feature",
+  "fields": [
+   "DM_MITIGATION_FEATURE_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "disaster-mitigation-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/disaster-mitigation",
+  "fields": [
+   "DM_EXHIBIT_DESC",
+   "DM_EXHIBIT_CAPTION",
+   "DM_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "green-energy",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_EE_ENABLE",
+   "CHECK_EE_DISABLE",
+   "HIDDEN_MOBILE_STATUS_SECTION_EE",
+   "EE_KNOWN_COMPONENTS",
+   "EE_KNOWN_CERTS",
+   "EE_KNOWN_EFFICIENCY",
+   "EE_IMPACT_TO_VAL",
+   "EE_DESCRIPTION",
+   "EE_GREEN_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_GREEN_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_GREEN_IMPACT_TO_VALUE_MARKETABILITY",
+   "HIDDEN_MOBILE_STATUS_GREEN_ADDITIONAL_PHOTOS"
+  ],
+  "groups": [
+   "ee-components-table",
+   "ee-green-certification-exists-table",
+   "ee-known-efficiency-table",
+   "ee-exhibit"
+  ]
+ },
+ {
+  "group": "ee-components-table",
+  "instance": 0,
+  "depth": 1,
+  "path": "/green-energy",
+  "fields": [
+   "EE_RENEWABLES",
+   "EE_OWNERSHIP",
+   "EE_FINANCING",
+   "PU_EE_RENEWABLE_TYPE",
+   "PU_EE_OWNER_TYPE",
+   "EE_RENEWABLE_TYPE_OTHER",
+   "EE_OWNER_TYPE_OTHER",
+   "PU_EE_FINANCING_ARRANGEMENT_YES",
+   "PU_EE_FINANCING_ARRANGEMENT_NO",
+   "HIDDEN_MOBILE_GREEN_COMPONENT_STATUS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ee-green-certification-exists-table",
+  "instance": 0,
+  "depth": 1,
+  "path": "/green-energy",
+  "fields": [
+   "EE_CERTS_ORGANIZATION",
+   "EE_CERTS",
+   "EE_YEAR",
+   "EE_VERSION",
+   "EE_RATING",
+   "HIDDEN_MOBILE_GREEN_CERT_STATUS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ee-known-efficiency-table",
+  "instance": 0,
+  "depth": 1,
+  "path": "/green-energy",
+  "fields": [
+   "EE_GREEN_EFF",
+   "EE_GREEN_RATING",
+   "EE_GREEN_SCORE",
+   "HIDDEN_MOBILE_GREEN_RATING_STATUS"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ee-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/green-energy",
+  "fields": [
+   "EE_EXHIBIT_DESCRIPTION",
+   "EE_EXHIBIT_CAPTION",
+   "EE_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sketch",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "SKETCH_OR_PLAN_YES",
+   "SKETCH_OR_PLAN_NO",
+   "HIDDEN_SKETCH_TYPE_SKETCH_VISIBLE",
+   "HIDDEN_SKETCH_TYPE_FLOOR_PLAN_VISIBLE",
+   "HIDDEN_SKETCH_TYPE_NONE_VISIBLE",
+   "HIDDEN_MOBILE_STATUS_SKETCH_INFO_FLOOR_PLAN",
+   "HIDDEN_MOBILE_STATUS_SKETCH_INFO_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SECTION_SKETCH_INFO",
+   "SKT_COMMENTARY_LBL",
+   "SKT_MEASURE_STD",
+   "PU_SKT_MEASURE_STD_OTHER",
+   "SKT_COMMENTARY"
+  ],
+  "groups": [
+   "sketch-exhibits"
+  ]
+ },
+ {
+  "group": "sketch-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sketch",
+  "fields": [
+   "SKT_EXHIBIT_IMPORTED_FROM_PRODUCT",
+   "SKT_EXHIBIT_CATEGORY",
+   "SKT_EXHIBIT_DESCRIPTION",
+   "SKT_EXHIBIT_CAPTION",
+   "SKT_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "obsolescence",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_MOBILE_FO_ENABLED",
+   "FO_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_FUNC_PHOTOS",
+   "HIDDEN_MOBILE_STATUS_FUNC_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SECTION_FUNC_OBSOL"
+  ],
+  "groups": [
+   "functional-issue",
+   "functional-obs-exhibits"
+  ]
+ },
+ {
+  "group": "functional-issue",
+  "instance": 0,
+  "depth": 1,
+  "path": "/obsolescence",
+  "fields": [
+   "FO_FUNCTIONAL_ISSUE_TYPE",
+   "FO_FUNCTIONAL_ISSUE_TYPE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "functional-obs-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/obsolescence",
+  "fields": [
+   "FO_EXHIBIT_DESC",
+   "FO_EXHIBIT_CAPTION",
+   "FO_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "garage",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_STORAGE_ENABLE",
+   "CHECK_STORAGE_DISABLE",
+   "CHECK_STORAGE_DEFECT_ENABLE",
+   "CHECK_STORAGE_DEFECT_DISABLE",
+   "VS_AS_IS_DISCLAIMER",
+   "VS_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_SECTION_VEHC_STORE",
+   "HIDDEN_MOBILE_STATUS_VEHICLE_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_VEHICLE_ADDITIONAL_PHOTOS"
+  ],
+  "groups": [
+   "vehicle-storage-table",
+   "vehicle-storage-defects",
+   "vehicle-storage-exhibits"
+  ]
+ },
+ {
+  "group": "vehicle-storage-table",
+  "instance": 0,
+  "depth": 1,
+  "path": "/garage",
+  "fields": [
+   "VS_CAR_STORAGE_ROW_ID",
+   "HIDDEN_MOBILE_VEH_STR_DDD_LINK_ID",
+   "HIDDEN_MOBILE_VEH_STR_SKETCH_ID",
+   "VS_CAR_STORAGE_TYPE",
+   "VS_CAR_STORAGE",
+   "VS_NUM_PARK_SPACES",
+   "VS_STORAGE_DETAIL",
+   "VS_PU_CAR_STORAGE_TYPE",
+   "VS_PU_CAR_STORAGE_TYPE_OTHER",
+   "VS_PU_CAR_STORAGE_YES",
+   "VS_PU_CAR_STORAGE_NO",
+   "VS_PU_PARKING_SPACE_ASSIGNMENT",
+   "VS_PU_STORAGE_TYPE_DETAIL",
+   "VS_PU_STORAGE_SPACE_SQUARE_FEET",
+   "VS_PU_DRIVEWAY_SURFACE_MATERIAL",
+   "VS_PU_OTHER",
+   "VS_PU_STORAGE_NUMBER_SPACES",
+   "HIDDEN_MOBILE_VS_PU_STORAGE_SPACE_TEN_OR_MORE",
+   "HIDDEN_MOBILE_VEHC_STORAGE_STATUS",
+   "HIDDEN_MOBILE_VEHC_STORE_DEFECT_ENABLE",
+   "HIDDEN_MOBILE_VEHC_STORE_DEFECT_DISABLE",
+   "HIDDEN_MOBILE_VEH_STR_SKETCH_AREA"
+  ],
+  "groups": []
+ },
+ {
+  "group": "vehicle-storage-defects",
+  "instance": 0,
+  "depth": 1,
+  "path": "/garage",
+  "fields": [
+   "VS_DEFECT_ROW_ID",
+   "VS_DEFECT_FEATURE",
+   "VS_DEFECT_LOCATION",
+   "VS_DEFECT_DESC",
+   "VS_DEFECT_INTEGRITY",
+   "VS_DEFECT_RECOMMEND_ACTION",
+   "HIDDEN_MOBILE_DDD_VEH_STR_LINK_ID",
+   "HIDDEN_MOBILE_VEHC_STORE_DEFECT_STATUS",
+   "HIDDEN_VS_DEFECT_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "vehicle-storage-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/garage",
+  "fields": [
+   "VS_EXHIBIT_GUID_ID",
+   "VS_EXHIBIT_REQUIRED_GUID_ID",
+   "VS_EXHIBIT_CATEGORY",
+   "VS_EXHIBIT_DESCRIPTION",
+   "VS_EXHIBIT_CAPTION",
+   "VS_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "amenities",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_SUB_PROP_AMENITY_ENABLE",
+   "CHECK_SUB_PROP_AMENITY_DISABLE",
+   "CHECK_SUB_PROP_DEFECT_ENABLE",
+   "CHECK_SUB_PROP_DEFECT_DISABLE",
+   "SPA_COMMENTARY"
+  ],
+  "groups": [
+   "subj-amenity-table",
+   "subj-amenity-defect-row",
+   "subj-amenity-exhibit"
+  ]
+ },
+ {
+  "group": "subj-amenity-table",
+  "instance": 0,
+  "depth": 1,
+  "path": "/amenities",
+  "fields": [
+   "SPA_AMENITY_ROW_ID",
+   "HIDDEN_MOBILE_AMENITY_DDD_LINK_ID",
+   "HIDDEN_MOBILE_AMENITY_SKETCH_ID",
+   "SPA_AMENITY_CATEGORY",
+   "SPA_AMENITY",
+   "SPA_AMENITY_MATERIAL",
+   "SPA_AMENITY_DETAIL",
+   "PU_SPA_AMENITY_TYPE",
+   "PU_SPA_AMENITY_TYPE_OTHER",
+   "PU_SPA_AMENITY_CATEGORY",
+   "PU_SPA_AMENITY_MATERIAL_LABEL",
+   "PU_SPA_AMENITY_MATERIAL",
+   "PU_SPA_MATERIAL_OTHER",
+   "PU_SPA_AMENITY_DETAIL",
+   "PU_SPA_AMENITY_TOTALNUM",
+   "PU_SPA_AMENITY_DETAIL_FEATURE",
+   "PU_SPA_AMENITY_DETAIL_FEATURE_OTHER",
+   "PU_SPA_AMENITY_DETAIL_AREA",
+   "PU_SPA_AMENITY_DETAIL_AREA_UNIT",
+   "PU_SPA_AMENITY_DETAIL_ATTACHED_MH",
+   "HIDDEN_MOBILE_AMENITY_DEFECT_ENABLE",
+   "HIDDEN_MOBILE_AMENITY_DEFECT_DISABLE",
+   "HIDDEN_MOBILE_AMENITY_STATUS",
+   "HIDDEN_MOBILE_AMENITY_SKETCH_AREA"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subj-amenity-defect-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/amenities",
+  "fields": [
+   "SPA_AMENITY_FEATURE",
+   "SPA_AMENITY_LOCATION",
+   "SPA_AMENITY_DESC",
+   "SPA_AMENITY_INTEGRITY",
+   "SPA_AMENITY_RECOMMEND_ACTION",
+   "SPA_ROW_ID",
+   "HIDDEN_MOBILE_DDD_AMENITY_LINK_ID",
+   "HIDDEN_MOBILE_AMENITY_DEFECT_STATUS",
+   "HIDDEN_SPA_AMENITY_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subj-amenity-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/amenities",
+  "fields": [
+   "SPA_EXHIBIT_GUID_ID",
+   "SPA_EXHIBIT_REQUIRED_GUID_ID",
+   "SPA_EXHIBIT_CATEGORY",
+   "SPA_EXHIBIT_DESCRIPTION",
+   "SPA_EXHIBIT_CAPTION",
+   "SPA_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "qual-cond",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "OQC_OVERALL_QUAL",
+   "OQC_OVERALL_COND",
+   "REC_OF_OVERRAL_QC",
+   "HIDDEN_MOBILE_STATUS_QUALITY_OVERALL_QUALITY",
+   "HIDDEN_MOBILE_STATUS_QUALITY_OVERALL_CONDITION",
+   "HIDDEN_MOBILE_STATUS_QUALITY_EXTERIOR",
+   "HIDDEN_MOBILE_STATUS_QUALITY_INTERIOR",
+   "HIDDEN_MOBILE_STATUS_QUALITY_REC_COMMENTS",
+   "HIDDEN_MOBILE_STATUS_SECTION_QUALITY"
+  ],
+  "groups": [
+   "overall-qual-sections",
+   "overall-cond-sections"
+  ]
+ },
+ {
+  "group": "overall-qual-sections",
+  "instance": 0,
+  "depth": 1,
+  "path": "/qual-cond",
+  "fields": [],
+  "groups": [
+   "overall-qual-ext-section",
+   "overall-qual-int-section"
+  ]
+ },
+ {
+  "group": "overall-qual-ext-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/qual-cond/overall-qual-sections",
+  "fields": [
+   "SSDE1_OQC_EXT_QUALITY_LBL",
+   "SSDE1_OQC_EXT_QUALITY"
+  ],
+  "groups": []
+ },
+ {
+  "group": "overall-qual-int-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/qual-cond/overall-qual-sections",
+  "fields": [
+   "SSUI1_OQC_INT_QUALITY_LBL",
+   "SSUI1_OQC_INT_QUALITY"
+  ],
+  "groups": []
+ },
+ {
+  "group": "overall-cond-sections",
+  "instance": 0,
+  "depth": 1,
+  "path": "/qual-cond",
+  "fields": [],
+  "groups": [
+   "overall-cond-ext-section",
+   "overall-cond-int-section"
+  ]
+ },
+ {
+  "group": "overall-cond-ext-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/qual-cond/overall-cond-sections",
+  "fields": [
+   "SSDE1_OQC_EXT_CONDITION_LBL",
+   "SSDE1_OQC_EXT_CONDITION"
+  ],
+  "groups": []
+ },
+ {
+  "group": "overall-cond-int-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/qual-cond/overall-cond-sections",
+  "fields": [
+   "SSUI1_OQC_INT_CONDITION_LBL",
+   "SSUI1_OQC_INT_CONDITION"
+  ],
+  "groups": []
+ },
+ {
+  "group": "best-use",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HBU_LEGAL",
+   "HBU_PHY_POSSIBLE",
+   "HBU_FIN_FEASIBL",
+   "HBU_MAX_PROD",
+   "HBU_YES",
+   "HBU_NO",
+   "HBU_COMMENTARY",
+   "HIDDEN_MOBILE_STATUS_BESTUSE_FOUR_TESTS",
+   "HIDDEN_MOBILE_STATUS_SECTION_BESTUSE",
+   "HIDDEN_MOBILE_STATUS_BESTUSE_PHOTOS"
+  ],
+  "groups": [
+   "highest-best-use-exhibits"
+  ]
+ },
+ {
+  "group": "highest-best-use-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/best-use",
+  "fields": [
+   "HBU_EXHIBIT_DESCRIPTION",
+   "HBU_EXHIBIT_CAPTION",
+   "HBU_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "market",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "MKT_BOUNDARY",
+   "MKT_SEARCH_CRT_DESC",
+   "MKT_ACTVE_LISTINGS",
+   "MKT_MEDIAN_DAYS_ON_MKT",
+   "MKT_LOWEST_LIST_PRICE",
+   "MKT_MEDIAN_LIST_PRICE",
+   "MKT_HIGHEST_LIST_PRICE",
+   "MKT_PENDING_SALES",
+   "MKT_PAST_SALES_MONTHS_NUM",
+   "MKT_PAST_SALES_MONTHS",
+   "MKT_LOWEST_SALE_PRICE",
+   "MKT_MEDIAN_SALE_PRICE",
+   "MKT_HIGHEST_SALE_PRICE",
+   "MKT_DISTRESSED_MKT_COMP",
+   "MKT_GRAPH",
+   "MKT_GRAPH_OTHER",
+   "HIDDEN_GRAPH-PRINT_COUNT",
+   "MKT_PRICE_TREND_COMMENTARY",
+   "MKT_DEMAND_SUPPLY",
+   "MKT_MARKETING_TIME",
+   "MKT_COMMENTARY"
+  ],
+  "groups": [
+   "market-price-trend-source",
+   "graph-print",
+   "mkt-map-exhibits",
+   "mkt-graph-exhibits",
+   "mkt-exhibits"
+  ]
+ },
+ {
+  "group": "market-price-trend-source",
+  "instance": 0,
+  "depth": 1,
+  "path": "/market",
+  "fields": [
+   "MKT_PRICE_TREND_SOURCE_LABEL",
+   "MKT_PRICE_TREND_SOURCE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "graph-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/market",
+  "fields": [
+   "MKT_GRAPH_LABEL_PRINT",
+   "MKT_GRAPH_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "mkt-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/market",
+  "fields": [
+   "MKT_MAP_EXHIBIT_DESCRIPTION",
+   "MKT_MAP_EXHIBIT_CAPTION",
+   "MKT_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "mkt-graph-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/market",
+  "fields": [
+   "MKT_GRAPH_EXHIBIT_GUID_ID",
+   "MKT_GRAPH_EXHIBIT_REQUIRED_GUID_ID",
+   "MKT_GRAPH_EXHIBIT_CATEGORY",
+   "MKT_GRAPH_EXHIBIT_DESCRIPTION",
+   "MKT_GRAPH_EXHIBIT_CAPTION",
+   "MKT_GRAPH_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "mkt-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/market",
+  "fields": [
+   "MKT_EXHIBIT_DESCRIPTION",
+   "MKT_EXHIBIT_CAPTION",
+   "MKT_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "project-info",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "PRJ_PUD_YES",
+   "PRJ_CONDO_YES",
+   "PRJ_COOP_YES",
+   "PRJ_CONDOP_YES",
+   "PI_PROJ_NAME",
+   "PI_DATA_SOURCE",
+   "PI_DATA_SOURCE_OTHER",
+   "HIDDEN_GEN-INFO-PI-DATA-SOURCE-PRINT_COUNT",
+   "PI_TOTAL_UNITS",
+   "PI_UNITS_SOLD",
+   "PI_UNITS_FOR_SALE",
+   "PI_UNITS_RENTED",
+   "PU_UNITS_RENTED",
+   "PU_UNITS_RENTED_ESTIMATED",
+   "PI_REASONS_UNITS_RENTED",
+   "PI_MONTHLY_AMOUNT",
+   "PU_MONTHLY_AMOUNT",
+   "PU_ASSOCIATION_CHARGE_TYPE_AD",
+   "PI_AMENITIES_SERVICES_INCLUDED",
+   "HIDDEN_PROJ-INFO-AMENITIES-SERVICES-PRINT_COUNT",
+   "PU_AMENITIES_SERVICES_INCLUDED",
+   "PU_AMENITIES_SERVICES_INCLUDED_OTHER",
+   "PU_AMENITIES_SERVICES_INCLUDED_BSAO",
+   "PU_AMENITIES_SERVICES_INCLUDED_BSAO_OTHER",
+   "PU_AMENITIES_SERVICES_INCLUDED_USAO",
+   "PU_AMENITIES_SERVICES_INCLUDED_USAO_OTHER",
+   "PI_UTILS_INCLUDED",
+   "PI_UTILS_INCLUDED_OTHER",
+   "HIDDEN_PROJ-INFO-UTILITIES-INCLUDED-PRINT_COUNT",
+   "PI_DEFICIENCY_OBSVERVED_YES",
+   "PI_DEFICIENCY_OBSVERVED_NO",
+   "PI_DEFICIENCY_DESC",
+   "PI_UNITS_COMPLETE_YES",
+   "PI_UNITS_COMPLETE_NO",
+   "PI_SUBJ_PROP_COMPLETE_YES",
+   "PI_SUBJ_PROP_COMPLETE_NO",
+   "PI_CONVERT_PAST_3YRS_YES",
+   "PI_CONVERT_PAST_3YRS_NO",
+   "PI_GROUND_RENT_YES",
+   "PI_GROUND_RENT_NO",
+   "PI_GR_ANNUAL_AMT",
+   "PI_GR_EXPIRES",
+   "PI_GR_EXPIRES_DESC",
+   "PI_CI_SHARES_ISSUED",
+   "PI_CI_SHARES_ATTR",
+   "PI_LEASE_EXPIRES",
+   "PI_BLANKET_FIN_YES",
+   "PI_BLANKET_FIN_NO",
+   "PI_PRO_RATA_SHARE",
+   "PI_DEVELOPER_IN_CONTROL_DETAIL",
+   "PI_DEVELOPER_IN_CONTROL_IMPACT",
+   "PI_DEVELOPER_IN_CONTROL_COMMENT",
+   "PI_INCOMPLETE_PROJECT_DETAIL",
+   "PI_INCOMPLETE_PROJECT_DETAIL_OTHER",
+   "PI_INCOMPLETE_PROJECT_IMPACT",
+   "PI_INCOMPLETE_PROJECT_COMMENT",
+   "PI_CONVERTED_IN_PAST_3YRS_DETAIL",
+   "PI_CONVERTED_IN_PAST_3YRS_DETAIL_OTHER",
+   "PI_CONVERTED_IN_PAST_3YRS_IMPACT",
+   "PI_CONVERTED_IN_PAST_3YRS_COMMENT",
+   "PI_SINGLE_OWN_UNITS_DETAIL",
+   "PI_SINGLE_OWN_UNITS_IMPACT",
+   "PI_SINGLE_OWN_UNITS_COMMENT",
+   "PI_SINGLE_OWN_SHARES_DETAIL",
+   "PI_SINGLE_OWN_SHARES_IMPACT",
+   "PI_SINGLE_OWN_SHARES_COMMENT",
+   "PI_COMMERCIAL_SPACE_DETAIL",
+   "PU_COMMERCIAL_SPACE_DETAIL",
+   "PU_COMMERCIAL_SPACE_PERCENTAGE",
+   "PI_COMMERCIAL_SPACE_IMPACT",
+   "PI_COMMERCIAL_SPACE_COMMENT",
+   "PI_KWN_LEGAL_ACTIONS_DETAIL",
+   "PI_KWN_LEGAL_ACTIONS_IMPACT",
+   "PI_KWN_LEGAL_ACTIONS_COMMENT",
+   "PI_UNIT_TRANSFER_FEES_DETAIL",
+   "PU_UNIT_TRANSFER_FEES_DETAIL",
+   "PU_UNIT_TRANSFER_FEES_AMNT",
+   "PI_UNIT_TRANSFER_FEES_IMPACT",
+   "PI_UNIT_TRANSFER_FEES_COMMENT",
+   "PI_UNIT_SPECIAL_ASSESSMENTS_DETAIL",
+   "PU_UNIT_SPECIAL_ASSESSMENTS_DETAIL",
+   "PU_ASSOCIATION_CHARGE_TYPE_SA",
+   "PU_UNIT_SPECIAL_ASSESSMENTS_AMNT",
+   "PI_UNIT_SPECIAL_ASSESSMENTS_IMPACT",
+   "PI_UNIT_SPECIAL_ASSESSMENTS_COMMENT",
+   "PI_UNIT_TAX_DETAIL",
+   "PU_UNIT_TAX_DETAIL",
+   "PU_UNIT_TAX_AMOUNT",
+   "PU_UNIT_TAX_EXPIRATION",
+   "PI_UNIT_TAX_IMPACT",
+   "PI_UNIT_TAX_COMMENT",
+   "PI_PROJECT_FACTORS_COMMENTARY",
+   "PI_PROJECT_INFO_COMMENTARY"
+  ],
+  "groups": [
+   "gen-info-pi-data-source-print",
+   "proj-info-amenities-services-print",
+   "proj-info-utilities-included-print",
+   "lien",
+   "project-info-documents",
+   "project-info-graphs",
+   "project-info-exhibits"
+  ]
+ },
+ {
+  "group": "gen-info-pi-data-source-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "PI_DATA_SOURCE_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "proj-info-amenities-services-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "PI_AMENITIES_SERVICES_INCLUDED_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "proj-info-utilities-included-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "PI_UTILS_INCLUDED_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "lien",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "HIDDEN_LIEN_COUNT",
+   "PI_LIEN_LABEL",
+   "PI_LINE_LIEN_CREDIT",
+   "PI_LIEN_UNPAID_BAL",
+   "PI_LIEN_CREDIT_LINE",
+   "PU_LIEN_CREDIT_LINE_DRAW_AMNT",
+   "PU_LIEN_CREDIT_LINE_MAX_AMNT",
+   "PI_LIEN_BALLOON_MTG",
+   "PI_LIEN_REMAINING_TERM",
+   "PI_LIEN_MONTHLY_PMT",
+   "PU_LIEN_MONTHLY_PMT_KNWN",
+   "PU_LIEN_MONTHLY_PMT_AMNT",
+   "PI_LIEN_INTEREST_RATE",
+   "PU_LIEN_INTEREST_RATE_KNWN",
+   "PU_LIEN_INTEREST_RATE",
+   "PI_LIEN_AMORT_TYPE",
+   "PI_LIEN_AMORT_TYPE_OTHER",
+   "PI_LIEN_SHARE_BAL",
+   "HIDDEN_PI_LIEN_SHARE_BAL_DRAW",
+   "HIDDEN_PI_LIEN_SHARE_BAL_MAX"
+  ],
+  "groups": []
+ },
+ {
+  "group": "project-info-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "PI_DOCUMENT_DESCRIPTION",
+   "PI_DOCUMENT_CAPTION",
+   "PI_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "project-info-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "PI_GRAPH_DESCRIPTION",
+   "PI_GRAPH_CAPTION",
+   "PI_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "project-info-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/project-info",
+  "fields": [
+   "PI_EXHIBIT_CATEGORY",
+   "PI_EXHIBIT_DESCRIPTION",
+   "PI_EXHIBIT_CAPTION",
+   "PI_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-listing-info",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "SLI_LISTINGS",
+   "SLI_DATA_SOURCE",
+   "SLI_DATA_SOURCE_OTHER",
+   "SLI_TOTAL_DOM",
+   "SLI_ANALYSIS_HISTORY"
+  ],
+  "groups": [
+   "subj-listing-history-row",
+   "subject-listing-info-documents",
+   "subject-listing-info-graphs",
+   "subject-listing-info-exhibits"
+  ]
+ },
+ {
+  "group": "subj-listing-history-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/subject-listing-info",
+  "fields": [
+   "SLI_LIST_STATUS",
+   "SLI_LIST_TYPE",
+   "SLI_LIST_TYPE_OTHER",
+   "SLI_LIST_ID",
+   "SLI_LIST_START_DATE",
+   "SLI_LIST_END_DATE",
+   "SLI_LIST_DOM",
+   "SLI_LIST_STARING_LP",
+   "SLI_LIST_CUR_OR_FINAL_LP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-listing-info-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/subject-listing-info",
+  "fields": [
+   "SLI_DOCUMENT_DESCRIPTION",
+   "SLI_DOCUMENT_CAPTION",
+   "SLI_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-listing-info-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/subject-listing-info",
+  "fields": [
+   "SLI_GRAPH_DESCRIPTION",
+   "SLI_GRAPH_CAPTION",
+   "SLI_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-listing-info-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/subject-listing-info",
+  "fields": [
+   "SLI_EXHIBIT_DESCRIPTION",
+   "SLI_EXHIBIT_CAPTION",
+   "SLI_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-contract",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_SC_ENABLE",
+   "CHECK_SC_DISABLE",
+   "SC_CONTRACT_YES",
+   "SC_CONTRACT_NO",
+   "SC_ANALYZED_YES",
+   "SC_ANALYZED_NO",
+   "SC_ARMS_LENGTH_YES",
+   "SC_ARMS_LENGTH_NO",
+   "SC_NON_ARMS_LENGTH_COMMENTARY",
+   "SC_CONTRACT_SALES_PRICE",
+   "SC_CONTRACT_DATE",
+   "SC_TRANSFER_TERMS",
+   "SC_TRANSFER_TERMS_OTHER",
+   "SC_PERSONAL_PROPERTY_INC_INCLUDE_INDICATOR",
+   "SC_KWN_CONCESSIONS",
+   "SC_TOTAL_CONCESSIONS",
+   "SC_CONCESSIONS_TYPICAL",
+   "SC_ANALYSIS"
+  ],
+  "groups": [
+   "sales-contract-documents",
+   "sales-contract-graphs",
+   "sales-contract-exhibits"
+  ]
+ },
+ {
+  "group": "sales-contract-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-contract",
+  "fields": [
+   "SC_DOCUMENT_DESCRIPTION",
+   "SC_DOCUMENT_CAPTION",
+   "SC_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-contract-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-contract",
+  "fields": [
+   "SC_GRAPH_DESCRIPTION",
+   "SC_GRAPH_CAPTION",
+   "SC_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-contract-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-contract",
+  "fields": [
+   "SC_EXHIBIT_DESCRIPTION",
+   "SC_EXHIBIT_CAPTION",
+   "SC_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "history",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "PSH_PRIOR_SALES",
+   "PSH_SUB_ANALYSIS",
+   "PSH_COMP_ANALYSIS"
+  ],
+  "groups": [
+   "prior-sales-data-source",
+   "prior-sale-comps",
+   "prior-sales-documents",
+   "prior-sales-graphs",
+   "prior-sales-exhibits"
+  ]
+ },
+ {
+  "group": "prior-sales-data-source",
+  "instance": 0,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PSH_DATA_SOURCE",
+   "PSH_DATA_SOURCE_OTHER"
+  ],
+  "groups": [
+   "prior-sales"
+  ]
+ },
+ {
+  "group": "prior-sales",
+  "instance": 0,
+  "depth": 2,
+  "path": "/history/prior-sales-data-source",
+  "fields": [
+   "PSH_SUB_TRANSFER_TERMS",
+   "PSH_SUB_TRANSFER_TERMS_OTHER",
+   "PSH_SUB_TRANSFER_DATE",
+   "PSH_SUB_TRANSFER_AMOUNT",
+   "PU_SUB_TRANSFER_AMOUNT_VALUE",
+   "SUB_TRANSFER_AMOUNT_REASON",
+   "SUB_TRANSFER_AMOUNT_REASON_DESC",
+   "PSH_SUB_TRANSFER_DATA_SOURCE",
+   "PSH_SUB_TRANSFER_DATA_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "prior-sale-comps",
+  "instance": 0,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PSH_COMP_TRANSFER_NUM",
+   "PSH_COMP_TRANSFER_TERMS",
+   "PSH_COMP_TRANSFER_TERMS_OTHER",
+   "PSH_COMP_TRANSFER_DATE",
+   "PSH_COMP_TRANSFER_AMOUNT",
+   "PU_COMP_TRANSFER_AMOUNT_VALUE",
+   "PU_COMP_TRANSFER_AMOUNT_REASON",
+   "PU_COMP_TRANSFER_AMOUNT_REASON_OTHER",
+   "PSH_COMP_TRANSFER_DATA_SOURCE",
+   "PSH_COMP_TRANSFER_DATA_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "prior-sale-comps",
+  "instance": 1,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PSH_COMP_TRANSFER_NUM",
+   "PSH_COMP_TRANSFER_TERMS",
+   "PSH_COMP_TRANSFER_TERMS_OTHER",
+   "PSH_COMP_TRANSFER_DATE",
+   "PSH_COMP_TRANSFER_AMOUNT",
+   "PU_COMP_TRANSFER_AMOUNT_VALUE",
+   "PU_COMP_TRANSFER_AMOUNT_REASON",
+   "PU_COMP_TRANSFER_AMOUNT_REASON_OTHER",
+   "PSH_COMP_TRANSFER_DATA_SOURCE",
+   "PSH_COMP_TRANSFER_DATA_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "prior-sale-comps",
+  "instance": 2,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PSH_COMP_TRANSFER_NUM",
+   "PSH_COMP_TRANSFER_TERMS",
+   "PSH_COMP_TRANSFER_TERMS_OTHER",
+   "PSH_COMP_TRANSFER_DATE",
+   "PSH_COMP_TRANSFER_AMOUNT",
+   "PU_COMP_TRANSFER_AMOUNT_VALUE",
+   "PU_COMP_TRANSFER_AMOUNT_REASON",
+   "PU_COMP_TRANSFER_AMOUNT_REASON_OTHER",
+   "PSH_COMP_TRANSFER_DATA_SOURCE",
+   "PSH_COMP_TRANSFER_DATA_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "prior-sales-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PRIOR_SALES_DOCUMENT_DESCRIPTION",
+   "PRIOR_SALES_DOCUMENT_CAPTION",
+   "PRIOR_SALES_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "prior-sales-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PRIOR_SALES_GRAPH_DESCRIPTION",
+   "PRIOR_SALES_GRAPH_CAPTION",
+   "PRIOR_SALES_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "prior-sales-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/history",
+  "fields": [
+   "PRIOR_SALES_EXHIBIT_DESCRIPTION",
+   "PRIOR_SALES_EXHIBIT_CAPTION",
+   "PRIOR_SALES_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-comp",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_SALESCOMP_COUNT",
+   "HIDDEN_MOBILE_STATUS_SECTION_SALES_COMP",
+   "HIDDEN_SALESCOMP-GENERAL-INFO-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-SITE-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-DWELLING-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-UNITS-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-EXT-QUAL-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-EXT-COND-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-INT-QUAL-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-INT-COND-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-ADU-QUAL-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-ADU-COND-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-VEHICLE-STORAGE-BLANK-ROW_COUNT",
+   "HIDDEN_SALESCOMP-OUTBUILDING-BLANK-ROW_COUNT",
+   "HIDDEN_SALES-COMP-EXHIBITS-COMPS_COUNT",
+   "HIDDEN_SALES-COMP-EXHIBITS_COUNT",
+   "HIDDEN_SALESCOMP-UNITS-SECTION_COUNT",
+   "HIDDEN_SALESCOMP-TRANSFER-HISTORY-SECTION_COUNT",
+   "HIDDEN_SALESCOMP-QUALITY-CONDITION-EXTERIOR-SECTION_COUNT",
+   "HIDDEN_SALESCOMP-QUALITY-CONDITION-INTERIOR-SECTION_COUNT",
+   "HIDDEN_SALESCOMP-QUALITY-CONDITION-ADU-SECTION_COUNT",
+   "HIDDEN_SALESCOMP-OUTBUILDING-SECTION_COUNT",
+   "GSU_AD_ADDR",
+   "GSU_AD_ADDR1",
+   "GSU_AD_ADDR2",
+   "GSU_DB_UNITNO",
+   "GSU_DB_CITY",
+   "GSU_DB_STATE",
+   "GSU_DB_ZIP",
+   "GSU_GUID_ID",
+   "GSU_PHOTO",
+   "GSU_LP_PRICE",
+   "GSU_PRICE_PER_SQFT",
+   "GSU_LP_STATUS",
+   "GSU_CONT_PRICE",
+   "GSU_EX_CONCAMT",
+   "GSU_PU_CONC_PRESENT",
+   "GSU_PU_CONC_AMOUNT",
+   "GSU_CONT_DATE",
+   "GSU_EX_DOM",
+   "GSU_ATT_DET",
+   "GSU_PROP_APPRAISER_RIGHTS",
+   "GSU_ANNUAL_GRND_RENT",
+   "GSU_NATIVE_AM_LANDS",
+   "GSU_PU_NATIVE_AM_LANDS_YES",
+   "GSU_PU_NATIVE_AM_LANDS_NO",
+   "GSU_PU_NATIVE_AM_LANDS_TYPE",
+   "GSU_PU_NATIVE_AM_LANDS_TYPE_OTHER",
+   "GSU_ALL_RIGHTS_INCLUDED",
+   "GSU_RIGHTS_NOT_INCLUDED",
+   "GSU_PROJ_NAME",
+   "GSU_PROJ_MONTHLY_FEE",
+   "GSU_PROJ_AMENITIES",
+   "GSU_PROJ_SPECIAL_ASSESSMENTS",
+   "GSU_SITE_PROJECT_TYPE",
+   "GSU_SITE_OWNED_IN_COMMON",
+   "GSU_ST_SITSIZE",
+   "GSU_MARKETAREA",
+   "GSU_SITE_ZONE_COMPLIANCE",
+   "GSU_SITE_HAZARD_ZONE",
+   "GSU_SITE_PRIMARY_ACCESS",
+   "GSU_SITE_STREET_TYPE",
+   "GSU_SITE_PROP_RESTRICT",
+   "GSU_SITE_EASEMENT",
+   "GSU_SITE_TOPOGRAPHY",
+   "GSU_SITE_DRAINAGE",
+   "GSU_SITE_CHARACTERISTICS",
+   "GSU_SITE_INFLUENCE",
+   "GSU_SITE_ENV_COND",
+   "GSU_ST_VIEW",
+   "GSU_WATER_FRONTAGE",
+   "GSU_WATER_FRONTAGE_FEAT",
+   "GSU_WATER_RIGHT_BLD",
+   "GSU_WATER_LINEAR_MEASURE",
+   "GSU_YR_BLT",
+   "GSU_PU_YR_BLT",
+   "GSU_PU_YR_BLT_EST",
+   "GSU_DWELL_DESIGN",
+   "GSU_SF_GLA",
+   "GSU_SF_FINISHED_AREA",
+   "GSU_DWELL_TH_ENDUNIT",
+   "GSU_DWELL_TH_BACKTOBACK",
+   "GSU_DWELL_TH_LOC",
+   "GSU_DWELL_CONST_METHOD",
+   "GSU_DWELL_MANFCT_HOME_WIDTH",
+   "GSU_DWELL_STYLE",
+   "GSU_DWELL_TOTAL_VOLUME",
+   "GSU_DWELL_WINDOW_AREA",
+   "GSU_DWELL_FUNC_ISSUES",
+   "GSU_DWELL_DISASTER_MIT",
+   "GSU_DWELL_DISASTER_MIT_OTHER",
+   "GSU_DWELL_HEAT",
+   "GSU_DWELL_HEAT_OTHER",
+   "GSU_DWELL_COOL",
+   "GSU_DWELL_COOL_OTHER",
+   "GSU_GREEN_RENEW_ENERGY_COMPONENT",
+   "GSU_GREEN_RENEW_ENERGY_COMPONENT_OTHER",
+   "GSU_GREEN_BUILD_CERT",
+   "GSU_GREEN_EFF_RATING",
+   "GSU_QUALITY",
+   "GSU_CONDITION",
+   "GSU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GSU_AMENITY_OUTDOOR_LIVING",
+   "GSU_AMENITY_WATER_FEATURES",
+   "GSU_AMENITY_WHOLE_HOME",
+   "GSU_AMENITY_MISC",
+   "GSU_VEHICLE_STORAGE",
+   "GSU_LIST_PRICE",
+   "GSU_CONTRACT_PRICE",
+   "GSU_SCMINDVALUE2",
+   "CHECK_COMP_ADD_PROP_ENABLE",
+   "CHECK_COMP_ADD_PROP_DISABLE",
+   "SA_RECONCILE",
+   "COMP_RENTCOMP_IN_SALESCOMP_MAP_YES",
+   "COMP_RENTCOMP_IN_SALESCOMP_MAP_NO",
+   "COMP_GRMCOMP_IN_SALESCOMP_MAP_YES",
+   "COMP_GRMCOMP_IN_SALESCOMP_MAP_NO",
+   "GSU_MAP"
+  ],
+  "groups": [
+   "subject-general-information-custom-row",
+   "subject-site-custom-row",
+   "subject-dwellings-custom-row",
+   "gsu-pu-green-build-cert",
+   "gsu-pu-green-rating-score",
+   "salescomp-subject-units-section",
+   "salescomp-subject-quality-condition-exterior-section",
+   "salescomp-subject-quality-condition-interior-section",
+   "salescomp-subject-quality-condition-adu-section",
+   "gsu-pu-amenity-outdoor-accessories",
+   "gsu-pu-amenity-outdoor-living",
+   "gsu-pu-amenity-water-features",
+   "gsu-pu-amenity-whole-home",
+   "gsu-pu-amenity-misc",
+   "subject-vehicle-storage-custom-row",
+   "salescomp-subject-outbuilding-section",
+   "salescomp-subject-transfer-history-section",
+   "properties-not-used",
+   "salescomp",
+   "sales-comp-exhibits-comps",
+   "sales-comp-exhibits"
+  ]
+ },
+ {
+  "group": "subject-general-information-custom-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_GI_BLANK_DESC",
+   "GSU_GI_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-site-custom-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_SITE_BLANK_DESC",
+   "GSU_SITE_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-dwellings-custom-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_DWELL_OTHR1_TEXT",
+   "GSU_DWELL_OTHR1_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-green-build-cert",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_GREEN_BUILD_CERT_DESC",
+   "GSU_PU_GREEN_BUILD_CERT_RATE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-green-rating-score",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_GREEN_EFF_RATING",
+   "GSU_PU_GREEN_EFF_SCORE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-subject-units-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_UNIT_ID",
+   "GSU_UNITS_IS_AN_ADU",
+   "GSU_LOC_ADU",
+   "GSU_PU_LOC_ADU_TYPE",
+   "GSU_PU_LOC_ADU_DESC",
+   "GSU_FLOOR_NUM",
+   "GSU_CORNER_UNIT",
+   "GSU_LEVELS",
+   "GSU_BEDS",
+   "GSU_BATHS",
+   "GSU_UNITS_SF_GLA",
+   "GSU_UNITS_SF_GLA_NONSTD",
+   "GSU_UNITS_SF_GLA_UNFIN",
+   "GSU_UNITS_SF_GLA_BELOW_GRD",
+   "GSU_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "GSU_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "GSU_DISABILITY_FEATURES"
+  ],
+  "groups": [
+   "subject-units-custom-row"
+  ]
+ },
+ {
+  "group": "subject-units-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-units-section",
+  "fields": [
+   "GSU_UNITS_BLANK_DESC",
+   "GSU_UNITS_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-subject-quality-condition-exterior-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_EXT_QUAL_STRUCTURE_ID",
+   "GSU_EXT_QUAL_QUALITY",
+   "GSU_EXT_QUAL_EXT_WALLS_TRIM",
+   "GSU_EXT_QUAL_FOUNDATION",
+   "GSU_EXT_QUAL_ROOF",
+   "GSU_EXT_QUAL_WINDOWS",
+   "GSU_EXT_COND_CONDITION",
+   "GSU_EXT_COND_WALLS_TRIM",
+   "GSU_EXT_COND_FOUNDATION",
+   "GSU_EXT_COND_ROOF",
+   "GSU_EXT_COND_WINDOWS"
+  ],
+  "groups": [
+   "exterior-quality-custom-row",
+   "exterior-condition-custom-row"
+  ]
+ },
+ {
+  "group": "exterior-quality-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-quality-condition-exterior-section",
+  "fields": [
+   "GSU_EXT_QUAL_BLANK_LABEL",
+   "GSU_EXT_QUAL_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "exterior-condition-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-quality-condition-exterior-section",
+  "fields": [
+   "GSU_EXT_COND_BLANK_LABEL",
+   "GSU_EXT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-subject-quality-condition-interior-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_INT_QUAL_STRUCTURE_ID",
+   "GSU_INT_QUAL_QUALITY",
+   "GSU_INT_QUAL_KITCHEN",
+   "GSU_INT_QUAL_BATHS",
+   "GSU_INT_QUAL_FLOORS",
+   "GSU_INT_QUAL_WALLS_CEILINGS",
+   "GSU_INT_COND_CONDITION",
+   "GSU_INT_COND_KITCHEN",
+   "GSU_INT_COND_BATHS",
+   "GSU_INT_COND_FLOORS",
+   "GSU_INT_COND_WALLS_CEILINGS"
+  ],
+  "groups": [
+   "interior-quality-custom-row",
+   "interior-condition-custom-row"
+  ]
+ },
+ {
+  "group": "interior-quality-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-quality-condition-interior-section",
+  "fields": [
+   "GSU_INT_QUAL_BLANK_LABEL",
+   "GSU_INT_QUAL_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "interior-condition-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-quality-condition-interior-section",
+  "fields": [
+   "GSU_INT_COND_BLANK_LABEL",
+   "GSU_INT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-subject-quality-condition-adu-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_ADU_LOCATION",
+   "GSU_ADU_QUAL_QUALITY",
+   "GSU_ADU_QUAL_KITCHEN",
+   "GSU_INT_ADU_COND_BATHS",
+   "GSU_ADU_QUAL_FLOORS",
+   "GSU_ADU_QUAL_WALLS_CEILINGS",
+   "GSU_ADU_COND_CONDITION",
+   "GSU_ADU_COND_KITCHEN",
+   "GSU_ADU_COND_BATHS",
+   "GSU_ADU_COND_FLOORS",
+   "GSU_ADU_COND_WALLS_CEILINGS"
+  ],
+  "groups": [
+   "adu-quality-custom-row",
+   "adu-condition-custom-row"
+  ]
+ },
+ {
+  "group": "adu-quality-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-quality-condition-adu-section",
+  "fields": [
+   "GSU_ADU_QUAL_BLANK_LABEL",
+   "GSU_ADU_QUAL_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "adu-condition-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-quality-condition-adu-section",
+  "fields": [
+   "GSU_ADU_COND_BLANK_LABEL",
+   "GSU_ADU_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-amenity-outdoor-accessories",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GSU_PU_AMENITY_OUTDOOR_ACCESSORIES_OTHER",
+   "GSU_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-amenity-outdoor-living",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_AMENITY_OUTDOOR_LIVING",
+   "GSU_PU_AMENITY_OUTDOOR_LIVING_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-amenity-water-features",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_AMENITY_WATER_FEATURE",
+   "GSU_PU_AMENITY_WATER_FEATURE_OTHER",
+   "GSU_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GSU_PU_AMENITY_WATER_FEATURE_DETAIL_OTHER",
+   "GSU_PU_AMENITY_WATER_FEATURE_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-amenity-whole-home",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_AMENITY_WHOLE_HOME",
+   "GSU_PU_AMENITY_WHOLE_HOME_OTHER",
+   "GSU_PU_AMENITY_WHOLE_HOME_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gsu-pu-amenity-misc",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_PU_AMENITY_MISC",
+   "GSU_PU_AMENITY_MISC_OTHER",
+   "GSU_PU_AMENITY_MISC_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "subject-vehicle-storage-custom-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_BL_VEHICLE_STORAGE_BLANK",
+   "GSU_BL_VEHICLE_STORAGE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-subject-outbuilding-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_OUTBUILDING_TYPE",
+   "GSU_OUTBUILDING_REAL_PROPERTY",
+   "GSU_OUTBUILDING_BUILDING_AREA",
+   "GSU_OUTBUILDING_FINISHED_AREA",
+   "GSU_OUTBUILDING_UNFINISHED_AREA",
+   "GSU_OUTBUILDING_STRUCTURE_VOLUME",
+   "GSU_OUTBUILDING_BATHS_FULL",
+   "GSU_OUTBUILDING_BATHS_HALF",
+   "GSU_OUTBUILDING_KITCHENS",
+   "GSU_OUTBUILDING_HEATING",
+   "GSU_OUTBUILDING_COOLING",
+   "GSU_OUTBUILDING_UTILITIES"
+  ],
+  "groups": [
+   "outbuilding-custom-row"
+  ]
+ },
+ {
+  "group": "outbuilding-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp-subject-outbuilding-section",
+  "fields": [
+   "GSU_BL_OUTBUILDING_BLANK",
+   "GSU_BL_OUTBUILDING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-subject-transfer-history-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GSU_TRANSFER_HISTORY_PRESENT",
+   "GSU_TRANSFER_HISTORY_TERMS",
+   "GSU_PSH_TRANSFER_HISTORY_TERMS_OTHER",
+   "GSU_TRANSFER_HISTORY_DATE",
+   "GSU_TRANSFER_HISTORY_AMOUNT",
+   "GSU_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GSU_DFE_TRANSFER_HISTORY_AMOUNT_REASON",
+   "GSU_DFE_TRANSFER_HISTORY_AMOUNT_REASON_OTHER",
+   "GSU_TRANSFER_HISTORY_SOURCE",
+   "GSU_PSH_TRANSFER_HISTORY_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "properties-not-used",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "COMP_NO",
+   "COMP_NOT_USED_ADDR",
+   "COMP_NOT_USED_ADDR1",
+   "COMP_NOT_USED_ADDR2",
+   "COMP_NOT_USED_UNITNO",
+   "COMP_NOT_USED_CITY",
+   "COMP_NOT_USED_STATE",
+   "COMP_NOT_USED_ZIP",
+   "COMP_NOT_USED_SALEDATE",
+   "COMP_NOT_USED_STATUS",
+   "COMP_NOT_USED_REASON",
+   "COMP_NOT_USED_REASON_OTHER",
+   "COMP_NOT_USED_COMMENT",
+   "COMP_NOT_USED_RECONSIDER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GC1_MOBILE_SALES_COMP_STATUS",
+   "GC1_MOBILE_STATUS_SALES_COMP_ADDRESS",
+   "GC1_SALES_COMP_QUICKNOTE",
+   "GC1_COMPNUM",
+   "GC1_HEADER_LABEL",
+   "GC1_AD_ADDR",
+   "GC1_AD_ADDR1",
+   "GC1_AD_ADDR2",
+   "GC1_DB_UNITNO",
+   "GC1_DB_CITY",
+   "GC1_DB_STATE",
+   "GC1_DB_ZIP",
+   "GC1_GUID_ID",
+   "GC1_PHOTO",
+   "GC1_SC_SOURCE1",
+   "GC1_PU_DATA_SOURCE",
+   "GC1_PU_DATA_SOURCE_OTHER",
+   "GC1_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GC1_PU_DATA_SOURCE_MLS_NUM",
+   "GC1_PROX1",
+   "GC1_PU_DISTANCE",
+   "GC1_PU_MILES",
+   "GC1_PU_KILOMETERS",
+   "GC1_PU_DIRECTION",
+   "GC1_LP_PRICE",
+   "GC1_PRICE_PER_SQFT",
+   "GC1_LP_STATUS",
+   "GC1_CONT_PRICE",
+   "GC1_PU_CONT_PRICE_KNOWN",
+   "GC1_PU_CONT_PRICE",
+   "GC1_PR_SALEPR1",
+   "GC1_TRANSFER_TERMS",
+   "GC1_TRANSFER_TERMS_OTHER",
+   "GC1_TRANSFER_TERMS_ADJ",
+   "GC1_DP_FINTYP1",
+   "GC1_DP_FINTYP1_OTHER",
+   "GC1_DP_FINTYP1_ADJ",
+   "GC1_EX_CONCAMT",
+   "GC1_PU_CONC_PRESENT",
+   "GC1_PU_CONC_AMOUNT",
+   "GC1_EX_CONCAMT_ADJ",
+   "GC1_CONT_DATE",
+   "GC1_PU_CONT_DATE_KNOWN",
+   "GC1_PU_CONT_DATE",
+   "GC1_CONT_DATE_ADJ",
+   "GC1_DT_SALTIM1",
+   "GC1_DT_SALTIM1_ADJ",
+   "GC1_EX_DOM",
+   "GC1_SP_TO_LP_RATIO",
+   "GC1_SP_TO_LP_RATIO_ADJ",
+   "GC1_ATT_DET",
+   "GC1_ATT_DET_ADJ",
+   "GC1_PROP_APPRAISER_RIGHTS",
+   "GC1_PROP_APPRAISER_RIGHTS_OTHER",
+   "GC1_PROP_APPRAISER_RIGHTS_ADJ",
+   "GC1_ANNUAL_GRND_RENT",
+   "GC1_NATIVE_AM_LANDS",
+   "GC1_PU_NATIVE_AM_LANDS_YES",
+   "GC1_PU_NATIVE_AM_LANDS_NO",
+   "GC1_PU_NATIVE_AM_LANDS_TYPE",
+   "GC1_PU_NATIVE_AM_LANDS_TYPE_OTHER",
+   "GC1_NATIVE_AM_LANDS_ADJ",
+   "GC1_ALL_RIGHTS_INCLUDED",
+   "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+   "GC1_RIGHTS_NOT_INCLUDED",
+   "GC1_RIGHTS_NOT_INCLUDED_OTHER",
+   "GC1_SAME_BLDR_AS_SUBJECT",
+   "GC1_GI_BLANK",
+   "GC1_GI_BLANK_ADJ",
+   "GC1_PROJINFO_OVERALL_ADJ",
+   "GC1_PROJ_NAME",
+   "GC1_PU_PROJECT_NAME",
+   "GC1_PU_SAME_PROJECT_AS_SUBJECT",
+   "GC1_PROJ_MONTHLY_FEE",
+   "GC1_PROJ_AMENITIES",
+   "GC1_PROJ_AMENITIES_OTHER",
+   "GC1_PROJ_SPECIAL_ASSESSMENTS",
+   "GC1_SITE_PROJECT_TYPE",
+   "GC1_SITE_OWNED_IN_COMMON",
+   "GC1_SITE_OWNED_IN_COMMON_ADJ",
+   "GC1_ST_SITSIZE",
+   "GC1_ST_SITSIZE_ADJ",
+   "GC1_MARKETAREA",
+   "GC1_MARKETAREA_ADJ",
+   "GC1_SITE_ZONE_COMPLIANCE",
+   "GC1_SITE_ZONE_COMPLIANCE_ADJ",
+   "GC1_SITE_HAZARD_ZONE",
+   "GC1_SITE_HAZARD_ZONE_OTHER",
+   "GC1_SITE_HAZARD_ZONE_ADJ",
+   "GC1_SITE_PRIMARY_ACCESS",
+   "GC1_SITE_PRIMARY_ACCESS_OTHER",
+   "GC1_SITE_PRIMARY_ACCESS_ADJ",
+   "GC1_SITE_STREET_TYPE",
+   "GC1_SITE_STREET_TYPE_ADJ",
+   "GC1_SITE_PROP_RESTRICT",
+   "GC1_SITE_PROP_RESTRICT_OTHER",
+   "GC1_SITE_PROP_RESTRICT_ADJ",
+   "GC1_SITE_EASEMENT",
+   "GC1_SITE_EASEMENT_OTHER",
+   "GC1_SITE_EASEMENT_ADJ",
+   "GC1_SITE_TOPOGRAPHY",
+   "GC1_SITE_TOPOGRAPHY_OTHER",
+   "GC1_SITE_TOPOGRAPHY_ADJ",
+   "GC1_SITE_CHARACTERISTICS",
+   "GC1_SITE_CHARACTERISTICS_OTHER",
+   "GC1_SITE_CHARACTERISTICS_ADJ",
+   "GC1_SITE_INFLUENCE",
+   "GC1_PU_SITE_INFLUENCE",
+   "GC1_PU_SITE_INFLUENCE_PRIVATE_ACCESS",
+   "GC1_PU_SITE_INFLUENCE_OTHER",
+   "GC1_PU_SITE_INFLUENCE_WATER_TYPE",
+   "GC1_PU_SITE_INFLUENCE_WATER_TYPE_OTHER",
+   "GC1_SITE_INFLUENCE_ADJ",
+   "GC1_SITE_ENV_COND",
+   "GC1_SITE_ENV_COND_OTHER",
+   "GC1_SITE_ENV_COND_ADJ",
+   "GC1_ST_VIEW",
+   "GC1_ST_VIEW_ADJ",
+   "GC1_SITE_BLANK",
+   "GC1_SITE_BLANK_ADJ",
+   "GC1_WATER_OVERALL_ADJ",
+   "GC1_WATER_FRONTAGE",
+   "GC1_WATER_FRONTAGE_FEAT",
+   "GC1_WATER_FRONTAGE_FEAT_OTHER",
+   "GC1_WATER_RIGHT_BLD",
+   "GC1_WATER_LINEAR_MEASURE",
+   "GC1_YR_BLT",
+   "GC1_YR_BLT_ADJ",
+   "GC1_DWELL_DESIGN",
+   "GC1_DWELL_DESIGN_ADJ",
+   "GC1_SF_GLA",
+   "GC1_SF_GLA_ADJ",
+   "GC1_SF_FINISHED_AREA",
+   "GC1_FINISHED_AREA_ADJ",
+   "GC1_DWELL_TH_ENDUNIT",
+   "GC1_DWELL_TH_ENDUNIT_ADJ",
+   "GC1_DWELL_TH_BACKTOBACK",
+   "GC1_DWELL_TH_BACKTOBACK_ADJ",
+   "GC1_DWELL_TH_LOC",
+   "GC1_DWELL_TH_LOC_ADJ",
+   "GC1_DWELL_CONST_METHOD",
+   "GC1_DWELL_CONST_METHOD_ADJ",
+   "GC1_DWELL_MANFCT_HOME_WIDTH",
+   "GC1_DWELL_MANFCT_HOME_WIDTH_ADJ",
+   "GC1_DWELL_STYLE",
+   "GC1_DWELL_STYLE_ADJ",
+   "GC1_DWELL_TOTAL_VOLUME",
+   "GC1_DWELL_TOTAL_VOLUME_ADJ",
+   "GC1_DWELL_WINDOW_AREA",
+   "GC1_DWELL_WINDOW_AREA_ADJ",
+   "GC1_DWELL_FUNC_ISSUES",
+   "GC1_DWELL_FUNC_ISSUES_ADJ",
+   "GC1_DWELL_DISASTER_MIT",
+   "GC1_DWELL_DISASTER_MIT_OTHER",
+   "GC1_DWELL_DISASTER_MIT_ADJ",
+   "GC1_DWELL_HEAT",
+   "GC1_DWELL_HEAT_ADJ",
+   "GC1_DWELL_COOL",
+   "GC1_DWELL_COOL_ADJ",
+   "GC1_GREEN_ENERGY_OVERRALL_ADJ",
+   "GC1_GREEN_RENEW_ENERGY_COMPONENT",
+   "GC1_GREEN_RENEW_ENERGY_COMPONENT_OTHER",
+   "GC1_GREEN_BUILD_CERT",
+   "GC1_GREEN_EFF_RATING",
+   "GC1_QUALITY",
+   "GC1_QUALITY_ADJ",
+   "GC1_CONDITION",
+   "GC1_CONDITION_ADJ",
+   "GC1_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC1_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "GC1_AMENITY_OUTDOOR_LIVING",
+   "GC1_AMENITY_OUTDOOR_LIVING_ADJ",
+   "GC1_AMENITY_WATER_FEATURES",
+   "GC1_AMENITY_WATER_FEATURES_ADJ",
+   "GC1_AMENITY_WHOLE_HOME",
+   "GC1_AMENITY_WHOLE_HOME_ADJ",
+   "GC1_AMENITY_MISC",
+   "GC1_AMENITY_MISC_OTHER",
+   "GC1_AMENITY_MISC_ADJ",
+   "GC1_VEHICLE_STORAGE_ADJ",
+   "GC1_VEHICLE_STORAGE",
+   "GC1_BL_VEHICLE_STORAGE",
+   "GC1_LIST_PRICE",
+   "GC1_CONTRACT_PRICE",
+   "GC1_SALE_PRICE",
+   "GC1_NETADJ_ADJ",
+   "GC1_NETADJ_PER_UNIT_ADJ",
+   "GC1_NETADJ_PRICE_PER_BED_ADJ",
+   "GC1_NETADJ_PRICE_GRS_BLD_FIN_AREA_ADJ",
+   "GC1_NETADJ_PRICE_PER_FIN_ABV_GRD_ADJ",
+   "GC1_NETADJ_PRICE_ADJ",
+   "GC1_NETADJ_COMP_WEIGHT_ADJ",
+   "GC1_LATITUDE",
+   "GC1_LONGITUDE",
+   "GC1_GEOMATCH",
+   "GC1_ADDRESSVALIDATED"
+  ],
+  "groups": [
+   "gc1-pu-street-type-surface",
+   "gc1-pu-drainage-type",
+   "gc1-pu-view-range",
+   "gc1-pu-water-frontage-type-name-depth",
+   "gc1-pu-year-blt",
+   "gc1-pu-structure-design",
+   "gc1-pu-dwelling-th-endunit",
+   "gc1-pu-dwelling-th-backtoback",
+   "gc1-pu-dwelling-th-loc",
+   "gc1-pu-dwelling-const-method",
+   "gc1-pu-dwell-manfct-home-width",
+   "gc1-pu-dwelling-style",
+   "gc1-pu-dwell-function-issues",
+   "gc1-pu-dwell-disaster-mit",
+   "gc1-pu-dwell-heat-system",
+   "gc1-pu-dwell-cool-system",
+   "dwellings-custom-row",
+   "gc1-pu-green-build-cert",
+   "gc1-pu-green-rating-score",
+   "salescomp-comp-units-section",
+   "salescomp-comp-quality-condition-exterior-section",
+   "salescomp-comp-quality-condition-interior-section",
+   "salescomp-comp-quality-condition-adu-section",
+   "gc1-pu-amenity-outdoor-accessories",
+   "gc1-pu-amenity-outdoor-living",
+   "gc1-pu-amenity-water-features",
+   "gc1-pu-amenity-whole-home",
+   "gc1-pu-amenity-misc",
+   "gc1-pu-vehicle-storage",
+   "salescomp-comp-outbuilding-section",
+   "salescomp-comp-transfer-history-section"
+  ]
+ },
+ {
+  "group": "gc1-pu-street-type-surface",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_SITE_STREET_TYPE",
+   "GC1_PU_SITE_STREET_TYPE_OTHER",
+   "GC1_PU_SITE_STREET_SURFACE",
+   "GC1_PU_SITE_STREET_SURFACE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-drainage-type",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_SITE_DRAINAGE",
+   "GC1_SITE_DRAINAGE_OTHER",
+   "GC1_SITE_DRAINAGE_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-view-range",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_ST_VIEW",
+   "GC1_PU_ST_VIEW_OTHER",
+   "GC1_PU_ST_RANGE",
+   "GC1_PU_ST_RANGE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-water-frontage-type-name-depth",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_WATER_FRONTAGE_TYPE",
+   "GC1_PU_WATER_FRONTAGE_TYPE_OTHER",
+   "GC1_PU_WATER_FRONTAGE_NAME",
+   "GC1_PU_WATER_FRONTAGE_ACCESS_DEPTH",
+   "GC1_PU_WATER_FRONTAGE_ACCESS_DEPTH_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-year-blt",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_YR_BLT",
+   "GC1_PU_YR_BLT_EST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-structure-design",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_STRUCTURE_DESIGN",
+   "GC1_PU_STRUCTURE_DESIGN_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwelling-th-endunit",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_TH_ENDUNIT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwelling-th-backtoback",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_TH_BACKTOBACK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwelling-th-loc",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_TH_LOC"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwelling-const-method",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_CONST_METHOD",
+   "GC1_PU_DWELL_CONST_METHOD_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwell-manfct-home-width",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_MANFCT_HOME_WIDTH"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwelling-style",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_STYLE",
+   "GC1_PU_DWELL_STYLE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwell-function-issues",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_FUNC_ISSUES",
+   "GC1_PU_DWELL_FUNC_ISSUES_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwell-disaster-mit",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_DISASTER_MIT",
+   "GC1_PU_DWELL_DISASTER_MIT_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwell-heat-system",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_HEAT_SYSTEM",
+   "GC1_PU_DWELL_HEAT_SYSTEM_OTHER",
+   "GC1_PU_DWELL_HEAT_DETAIL",
+   "GC1_PU_DWELL_HEAT_DETAIL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-dwell-cool-system",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_DWELL_COOL",
+   "GC1_PU_DWELL_COOL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "dwellings-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_DWELL_OTHR1_BLANK",
+   "GC1_DWELL_OTHR1_BLANK_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-green-build-cert",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_GREEN_BUILD_CERT_DESC",
+   "GC1_PU_GREEN_BUILD_CERT_RATE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-green-rating-score",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_GREEN_EFF_RATING",
+   "GC1_PU_GREEN_EFF_SCORE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-units-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_UNIT_ID",
+   "GC1_UNITS_IS_AN_ADU",
+   "GC1_LOC_ADU",
+   "GC1_PU_LOC_ADU_TYPE",
+   "GC1_PU_LOC_ADU_DESC",
+   "GC1_PU_LOC_ADU_DESC_OTHER",
+   "GC1_LOC_ADU_ADJ",
+   "GC1_FLOOR_NUM",
+   "GC1_FLOOR_NUM_ADJ",
+   "GC1_CORNER_UNIT",
+   "GC1_CORNER_UNIT_ADJ",
+   "GC1_LEVELS",
+   "GC1_LEVELS_ADJ",
+   "GC1_BEDS",
+   "GC1_BEDS_ADJ",
+   "GC1_BATHS",
+   "GC1_PU_FULL_BATHS",
+   "GC1_PU_HALF_BATHS",
+   "GC1_BATHS_ADJ",
+   "GC1_UNITS_SF_GLA",
+   "GC1_UNITS_SF_GLA_ADJ",
+   "GC1_UNITS_SF_GLA_NONSTD",
+   "GC1_UNITS_SF_GLA_NONSTD_ADJ",
+   "GC1_UNITS_SF_GLA_UNFIN",
+   "GC1_UNITS_SF_GLA_UNFIN_ADJ",
+   "GC1_UNITS_SF_GLA_BELOW_GRD",
+   "GC1_UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "GC1_DISABILITY_FEATURES",
+   "GC1_DISABILITY_FEATURES_OTHER",
+   "GC1_DISABILITY_FEATURES_ADJ",
+   "GC1_UNITS_BLANK",
+   "GC1_UNITS_BLANK_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-exterior-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_EXT_QUAL_STRUCTURE_ID",
+   "GC1_EXT_QUAL_QUALITY",
+   "GC1_EXT_QUAL_EXT_WALLS_TRIM",
+   "GC1_EXT_QUAL_EXT_WALLS_TRIM_OTHER",
+   "GC1_EXT_QUAL_FOUNDATION",
+   "GC1_EXT_QUAL_FOUNDATION_OTHER",
+   "GC1_EXT_QUAL_ROOF",
+   "GC1_EXT_QUAL_ROOF_OTHER",
+   "GC1_EXT_QUAL_WINDOWS",
+   "GC1_EXT_QUAL_BLANK",
+   "GC1_EXT_COND_CONDITION",
+   "GC1_EXT_COND_WALLS_TRIM",
+   "GC1_EXT_COND_FOUNDATION",
+   "GC1_EXT_COND_ROOF",
+   "GC1_PU_EXT_COND_ROOF_OBSERVABLE",
+   "GC1_PU_EXT_COND_ROOF_STATUS",
+   "GC1_EXT_COND_WINDOWS",
+   "GC1_EXT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-interior-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_INT_QUAL_STRUCTURE_ID",
+   "GC1_INT_QUAL_QUALITY",
+   "GC1_INT_QUAL_KITCHEN",
+   "GC1_INT_QUAL_BATHS",
+   "GC1_INT_QUAL_FLOORS",
+   "GC1_INT_QUAL_WALLS_CEILINGS",
+   "GC1_INT_QUAL_BLANK",
+   "GC1_INT_COND_CONDITION",
+   "GC1_INT_COND_KITCHEN",
+   "GC1_INT_COND_BATHS",
+   "GC1_INT_COND_FLOORS",
+   "GC1_INT_COND_WALLS_CEILINGS",
+   "GC1_INT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-adu-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_ADU_LOCATION",
+   "GC1_ADU_QUAL_QUALITY",
+   "GC1_ADU_QUAL_KITCHEN",
+   "GC1_INT_ADU_COND_BATHS",
+   "GC1_ADU_QUAL_FLOORS",
+   "GC1_ADU_QUAL_WALLS_CEILINGS",
+   "GC1_ADU_QUAL_BLANK",
+   "GC1_ADU_COND_CONDITION",
+   "GC1_ADU_COND_KITCHEN",
+   "GC1_ADU_COND_BATHS",
+   "GC1_ADU_COND_FLOORS",
+   "GC1_ADU_COND_WALLS_CEILINGS",
+   "GC1_ADU_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-amenity-outdoor-accessories",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC1_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-amenity-outdoor-living",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_AMENITY_OUTDOOR_LIVING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-amenity-water-features",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_AMENITY_WATER_FEATURE",
+   "GC1_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GC1_PU_AMENITY_WATER_FEATURE_DETAIL_OTHER",
+   "GC1_PU_AMENITY_WATER_FEATURE_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-amenity-whole-home",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_AMENITY_WHOLE_HOME",
+   "GC1_PU_AMENITY_WHOLE_HOME_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-amenity-misc",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_AMENITY_MISC",
+   "GC1_PU_AMENITY_MISC_OTHER",
+   "GC1_PU_AMENITY_MISC_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc1-pu-vehicle-storage",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_PU_VEHICLE_STORAGE",
+   "GC1_PU_VEHICLE_STORAGE_OTHER",
+   "GC1_PU_VEHICLE_STORAGE_SPACES",
+   "GC1_PU_VEHICLE_STORAGE_DETAILS",
+   "GC1_PU_VEHICLE_STORAGE_SQFT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-outbuilding-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_OUTBUILDING_TYPE",
+   "GC1_OUTBUILDING_TYPE_OTHER",
+   "GC1_OUTBUILDING_TYPE_ADJ",
+   "GC1_OUTBUILDING_REAL_PROPERTY",
+   "GC1_OUTBUILDING_BUILDING_AREA",
+   "GC1_OUTBUILDING_FINISHED_AREA",
+   "GC1_OUTBUILDING_UNFINISHED_AREA",
+   "GC1_OUTBUILDING_STRUCTURE_VOLUME",
+   "GC1_OUTBUILDING_BATHS_FULL",
+   "GC1_OUTBUILDING_BATHS_HALF",
+   "GC1_OUTBUILDING_KITCHENS",
+   "GC1_OUTBUILDING_HEATING",
+   "GC1_OUTBUILDING_COOLING",
+   "GC1_OUTBUILDING_UTILITIES",
+   "GC1_OUTBUILDING_UTILITIES_OTHER",
+   "GC1_BL_OUTBUILDING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-transfer-history-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC1_TRANSFER_HISTORY_PRESENT",
+   "GC1_TRANSFER_HISTORY_TERMS",
+   "GC1_PSH_TRANSFER_HISTORY_TERMS_OTHER",
+   "GC1_TRANSFER_HISTORY_DATE",
+   "GC1_TRANSFER_HISTORY_AMOUNT",
+   "GC1_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON",
+   "GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON_OTHER",
+   "GC1_TRANSFER_HISTORY_SOURCE",
+   "GC1_PSH_TRANSFER_HISTORY_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp",
+  "instance": 1,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GC2_MOBILE_SALES_COMP_STATUS",
+   "GC2_MOBILE_STATUS_SALES_COMP_ADDRESS",
+   "GC2_SALES_COMP_QUICKNOTE",
+   "GC2_COMPNUM",
+   "GC2_HEADER_LABEL",
+   "GC2_AD_ADDR",
+   "GC2_AD_ADDR1",
+   "GC2_AD_ADDR2",
+   "GC2_DB_UNITNO",
+   "GC2_DB_CITY",
+   "GC2_DB_STATE",
+   "GC2_DB_ZIP",
+   "GC2_GUID_ID",
+   "GC2_PHOTO",
+   "GC2_SC_SOURCE1",
+   "GC2_PU_DATA_SOURCE",
+   "GC2_PU_DATA_SOURCE_OTHER",
+   "GC2_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GC2_PU_DATA_SOURCE_MLS_NUM",
+   "GC2_PROX1",
+   "GC2_PU_DISTANCE",
+   "GC2_PU_MILES",
+   "GC2_PU_KILOMETERS",
+   "GC2_PU_DIRECTION",
+   "GC2_LP_PRICE",
+   "GC2_PRICE_PER_SQFT",
+   "GC2_LP_STATUS",
+   "GC2_CONT_PRICE",
+   "GC2_PU_CONT_PRICE_KNOWN",
+   "GC2_PU_CONT_PRICE",
+   "GC2_PR_SALEPR1",
+   "GC2_TRANSFER_TERMS",
+   "GC2_TRANSFER_TERMS_OTHER",
+   "GC2_TRANSFER_TERMS_ADJ",
+   "GC2_DP_FINTYP1",
+   "GC2_DP_FINTYP1_OTHER",
+   "GC2_DP_FINTYP1_ADJ",
+   "GC2_EX_CONCAMT",
+   "GC2_PU_CONC_PRESENT",
+   "GC2_PU_CONC_AMOUNT",
+   "GC2_EX_CONCAMT_ADJ",
+   "GC2_CONT_DATE",
+   "GC2_PU_CONT_DATE_KNOWN",
+   "GC2_PU_CONT_DATE",
+   "GC2_CONT_DATE_ADJ",
+   "GC2_DT_SALTIM1",
+   "GC2_DT_SALTIM1_ADJ",
+   "GC2_EX_DOM",
+   "GC2_SP_TO_LP_RATIO",
+   "GC2_SP_TO_LP_RATIO_ADJ",
+   "GC2_ATT_DET",
+   "GC2_ATT_DET_ADJ",
+   "GC2_PROP_APPRAISER_RIGHTS",
+   "GC2_PROP_APPRAISER_RIGHTS_OTHER",
+   "GC2_PROP_APPRAISER_RIGHTS_ADJ",
+   "GC2_ANNUAL_GRND_RENT",
+   "GC2_NATIVE_AM_LANDS",
+   "GC2_PU_NATIVE_AM_LANDS_YES",
+   "GC2_PU_NATIVE_AM_LANDS_NO",
+   "GC2_PU_NATIVE_AM_LANDS_TYPE",
+   "GC2_PU_NATIVE_AM_LANDS_TYPE_OTHER",
+   "GC2_NATIVE_AM_LANDS_ADJ",
+   "GC2_ALL_RIGHTS_INCLUDED",
+   "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+   "GC2_RIGHTS_NOT_INCLUDED",
+   "GC2_RIGHTS_NOT_INCLUDED_OTHER",
+   "GC2_SAME_BLDR_AS_SUBJECT",
+   "GC2_GI_BLANK",
+   "GC2_GI_BLANK_ADJ",
+   "GC2_PROJINFO_OVERALL_ADJ",
+   "GC2_PROJ_NAME",
+   "GC2_PU_PROJECT_NAME",
+   "GC2_PU_SAME_PROJECT_AS_SUBJECT",
+   "GC2_PROJ_MONTHLY_FEE",
+   "GC2_PROJ_AMENITIES",
+   "GC2_PROJ_AMENITIES_OTHER",
+   "GC2_PROJ_SPECIAL_ASSESSMENTS",
+   "GC2_SITE_PROJECT_TYPE",
+   "GC2_SITE_OWNED_IN_COMMON",
+   "GC2_SITE_OWNED_IN_COMMON_ADJ",
+   "GC2_ST_SITSIZE",
+   "GC2_ST_SITSIZE_ADJ",
+   "GC2_MARKETAREA",
+   "GC2_MARKETAREA_ADJ",
+   "GC2_SITE_ZONE_COMPLIANCE",
+   "GC2_SITE_ZONE_COMPLIANCE_ADJ",
+   "GC2_SITE_HAZARD_ZONE",
+   "GC2_SITE_HAZARD_ZONE_OTHER",
+   "GC2_SITE_HAZARD_ZONE_ADJ",
+   "GC2_SITE_PRIMARY_ACCESS",
+   "GC2_SITE_PRIMARY_ACCESS_OTHER",
+   "GC2_SITE_PRIMARY_ACCESS_ADJ",
+   "GC2_SITE_STREET_TYPE",
+   "GC2_SITE_STREET_TYPE_ADJ",
+   "GC2_SITE_PROP_RESTRICT",
+   "GC2_SITE_PROP_RESTRICT_OTHER",
+   "GC2_SITE_PROP_RESTRICT_ADJ",
+   "GC2_SITE_EASEMENT",
+   "GC2_SITE_EASEMENT_OTHER",
+   "GC2_SITE_EASEMENT_ADJ",
+   "GC2_SITE_TOPOGRAPHY",
+   "GC2_SITE_TOPOGRAPHY_OTHER",
+   "GC2_SITE_TOPOGRAPHY_ADJ",
+   "GC2_SITE_CHARACTERISTICS",
+   "GC2_SITE_CHARACTERISTICS_OTHER",
+   "GC2_SITE_CHARACTERISTICS_ADJ",
+   "GC2_SITE_INFLUENCE",
+   "GC2_PU_SITE_INFLUENCE",
+   "GC2_PU_SITE_INFLUENCE_PRIVATE_ACCESS",
+   "GC2_PU_SITE_INFLUENCE_OTHER",
+   "GC2_PU_SITE_INFLUENCE_WATER_TYPE",
+   "GC2_PU_SITE_INFLUENCE_WATER_TYPE_OTHER",
+   "GC2_SITE_INFLUENCE_ADJ",
+   "GC2_SITE_ENV_COND",
+   "GC2_SITE_ENV_COND_OTHER",
+   "GC2_SITE_ENV_COND_ADJ",
+   "GC2_ST_VIEW",
+   "GC2_ST_VIEW_ADJ",
+   "GC2_SITE_BLANK",
+   "GC2_SITE_BLANK_ADJ",
+   "GC2_WATER_OVERALL_ADJ",
+   "GC2_WATER_FRONTAGE",
+   "GC2_WATER_FRONTAGE_FEAT",
+   "GC2_WATER_FRONTAGE_FEAT_OTHER",
+   "GC2_WATER_RIGHT_BLD",
+   "GC2_WATER_LINEAR_MEASURE",
+   "GC2_YR_BLT",
+   "GC2_YR_BLT_ADJ",
+   "GC2_DWELL_DESIGN",
+   "GC2_DWELL_DESIGN_ADJ",
+   "GC2_SF_GLA",
+   "GC2_SF_GLA_ADJ",
+   "GC2_SF_FINISHED_AREA",
+   "GC2_FINISHED_AREA_ADJ",
+   "GC2_DWELL_TH_ENDUNIT",
+   "GC2_DWELL_TH_ENDUNIT_ADJ",
+   "GC2_DWELL_TH_BACKTOBACK",
+   "GC2_DWELL_TH_BACKTOBACK_ADJ",
+   "GC2_DWELL_TH_LOC",
+   "GC2_DWELL_TH_LOC_ADJ",
+   "GC2_DWELL_CONST_METHOD",
+   "GC2_DWELL_CONST_METHOD_ADJ",
+   "GC2_DWELL_MANFCT_HOME_WIDTH",
+   "GC2_DWELL_MANFCT_HOME_WIDTH_ADJ",
+   "GC2_DWELL_STYLE",
+   "GC2_DWELL_STYLE_ADJ",
+   "GC2_DWELL_TOTAL_VOLUME",
+   "GC2_DWELL_TOTAL_VOLUME_ADJ",
+   "GC2_DWELL_WINDOW_AREA",
+   "GC2_DWELL_WINDOW_AREA_ADJ",
+   "GC2_DWELL_FUNC_ISSUES",
+   "GC2_DWELL_FUNC_ISSUES_ADJ",
+   "GC2_DWELL_DISASTER_MIT",
+   "GC2_DWELL_DISASTER_MIT_OTHER",
+   "GC2_DWELL_DISASTER_MIT_ADJ",
+   "GC2_DWELL_HEAT",
+   "GC2_DWELL_HEAT_ADJ",
+   "GC2_DWELL_COOL",
+   "GC2_DWELL_COOL_ADJ",
+   "GC2_GREEN_ENERGY_OVERRALL_ADJ",
+   "GC2_GREEN_RENEW_ENERGY_COMPONENT",
+   "GC2_GREEN_RENEW_ENERGY_COMPONENT_OTHER",
+   "GC2_GREEN_BUILD_CERT",
+   "GC2_GREEN_EFF_RATING",
+   "GC2_QUALITY",
+   "GC2_QUALITY_ADJ",
+   "GC2_CONDITION",
+   "GC2_CONDITION_ADJ",
+   "GC2_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC2_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "GC2_AMENITY_OUTDOOR_LIVING",
+   "GC2_AMENITY_OUTDOOR_LIVING_ADJ",
+   "GC2_AMENITY_WATER_FEATURES",
+   "GC2_AMENITY_WATER_FEATURES_ADJ",
+   "GC2_AMENITY_WHOLE_HOME",
+   "GC2_AMENITY_WHOLE_HOME_ADJ",
+   "GC2_AMENITY_MISC",
+   "GC2_AMENITY_MISC_OTHER",
+   "GC2_AMENITY_MISC_ADJ",
+   "GC2_VEHICLE_STORAGE_ADJ",
+   "GC2_VEHICLE_STORAGE",
+   "GC2_BL_VEHICLE_STORAGE",
+   "GC2_LIST_PRICE",
+   "GC2_CONTRACT_PRICE",
+   "GC2_SALE_PRICE",
+   "GC2_NETADJ_ADJ",
+   "GC2_NETADJ_PER_UNIT_ADJ",
+   "GC2_NETADJ_PRICE_PER_BED_ADJ",
+   "GC2_NETADJ_PRICE_GRS_BLD_FIN_AREA_ADJ",
+   "GC2_NETADJ_PRICE_PER_FIN_ABV_GRD_ADJ",
+   "GC2_NETADJ_PRICE_ADJ",
+   "GC2_NETADJ_COMP_WEIGHT_ADJ",
+   "GC2_LATITUDE",
+   "GC2_LONGITUDE",
+   "GC2_GEOMATCH",
+   "GC2_ADDRESSVALIDATED"
+  ],
+  "groups": [
+   "gc2-pu-street-type-surface",
+   "gc2-pu-drainage-type",
+   "gc2-pu-view-range",
+   "gc2-pu-water-frontage-type-name-depth",
+   "gc2-pu-year-blt",
+   "gc2-pu-structure-design",
+   "gc2-pu-dwelling-th-endunit",
+   "gc2-pu-dwelling-th-backtoback",
+   "gc2-pu-dwelling-th-loc",
+   "gc2-pu-dwelling-const-method",
+   "gc2-pu-dwell-manfct-home-width",
+   "gc2-pu-dwelling-style",
+   "gc2-pu-dwell-function-issues",
+   "gc2-pu-dwell-disaster-mit",
+   "gc2-pu-dwell-heat-system",
+   "gc2-pu-dwell-cool-system",
+   "dwellings-custom-row",
+   "gc2-pu-green-build-cert",
+   "gc2-pu-green-rating-score",
+   "salescomp-comp-units-section",
+   "salescomp-comp-quality-condition-exterior-section",
+   "salescomp-comp-quality-condition-interior-section",
+   "salescomp-comp-quality-condition-adu-section",
+   "gc2-pu-amenity-outdoor-accessories",
+   "gc2-pu-amenity-outdoor-living",
+   "gc2-pu-amenity-water-features",
+   "gc2-pu-amenity-whole-home",
+   "gc2-pu-amenity-misc",
+   "gc2-pu-vehicle-storage",
+   "salescomp-comp-outbuilding-section",
+   "salescomp-comp-transfer-history-section"
+  ]
+ },
+ {
+  "group": "gc2-pu-street-type-surface",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_SITE_STREET_TYPE",
+   "GC2_PU_SITE_STREET_TYPE_OTHER",
+   "GC2_PU_SITE_STREET_SURFACE",
+   "GC2_PU_SITE_STREET_SURFACE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-drainage-type",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_SITE_DRAINAGE",
+   "GC2_SITE_DRAINAGE_OTHER",
+   "GC2_SITE_DRAINAGE_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-view-range",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_ST_VIEW",
+   "GC2_PU_ST_VIEW_OTHER",
+   "GC2_PU_ST_RANGE",
+   "GC2_PU_ST_RANGE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-water-frontage-type-name-depth",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_WATER_FRONTAGE_TYPE",
+   "GC2_PU_WATER_FRONTAGE_TYPE_OTHER",
+   "GC2_PU_WATER_FRONTAGE_NAME",
+   "GC2_PU_WATER_FRONTAGE_ACCESS_DEPTH",
+   "GC2_PU_WATER_FRONTAGE_ACCESS_DEPTH_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-year-blt",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_YR_BLT",
+   "GC2_PU_YR_BLT_EST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-structure-design",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_STRUCTURE_DESIGN",
+   "GC2_PU_STRUCTURE_DESIGN_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwelling-th-endunit",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_TH_ENDUNIT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwelling-th-backtoback",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_TH_BACKTOBACK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwelling-th-loc",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_TH_LOC"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwelling-const-method",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_CONST_METHOD",
+   "GC2_PU_DWELL_CONST_METHOD_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwell-manfct-home-width",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_MANFCT_HOME_WIDTH"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwelling-style",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_STYLE",
+   "GC2_PU_DWELL_STYLE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwell-function-issues",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_FUNC_ISSUES",
+   "GC2_PU_DWELL_FUNC_ISSUES_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwell-disaster-mit",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_DISASTER_MIT",
+   "GC2_PU_DWELL_DISASTER_MIT_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwell-heat-system",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_HEAT_SYSTEM",
+   "GC2_PU_DWELL_HEAT_SYSTEM_OTHER",
+   "GC2_PU_DWELL_HEAT_DETAIL",
+   "GC2_PU_DWELL_HEAT_DETAIL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-dwell-cool-system",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_DWELL_COOL",
+   "GC2_PU_DWELL_COOL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "dwellings-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_DWELL_OTHR1_BLANK",
+   "GC2_DWELL_OTHR1_BLANK_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-green-build-cert",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_GREEN_BUILD_CERT_DESC",
+   "GC2_PU_GREEN_BUILD_CERT_RATE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-green-rating-score",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_GREEN_EFF_RATING",
+   "GC2_PU_GREEN_EFF_SCORE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-units-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_UNIT_ID",
+   "GC2_UNITS_IS_AN_ADU",
+   "GC2_LOC_ADU",
+   "GC2_PU_LOC_ADU_TYPE",
+   "GC2_PU_LOC_ADU_DESC",
+   "GC2_PU_LOC_ADU_DESC_OTHER",
+   "GC2_LOC_ADU_ADJ",
+   "GC2_FLOOR_NUM",
+   "GC2_FLOOR_NUM_ADJ",
+   "GC2_CORNER_UNIT",
+   "GC2_CORNER_UNIT_ADJ",
+   "GC2_LEVELS",
+   "GC2_LEVELS_ADJ",
+   "GC2_BEDS",
+   "GC2_BEDS_ADJ",
+   "GC2_BATHS",
+   "GC2_PU_FULL_BATHS",
+   "GC2_PU_HALF_BATHS",
+   "GC2_BATHS_ADJ",
+   "GC2_UNITS_SF_GLA",
+   "GC2_UNITS_SF_GLA_ADJ",
+   "GC2_UNITS_SF_GLA_NONSTD",
+   "GC2_UNITS_SF_GLA_NONSTD_ADJ",
+   "GC2_UNITS_SF_GLA_UNFIN",
+   "GC2_UNITS_SF_GLA_UNFIN_ADJ",
+   "GC2_UNITS_SF_GLA_BELOW_GRD",
+   "GC2_UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "GC2_DISABILITY_FEATURES",
+   "GC2_DISABILITY_FEATURES_OTHER",
+   "GC2_DISABILITY_FEATURES_ADJ",
+   "GC2_UNITS_BLANK",
+   "GC2_UNITS_BLANK_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-exterior-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_EXT_QUAL_STRUCTURE_ID",
+   "GC2_EXT_QUAL_QUALITY",
+   "GC2_EXT_QUAL_EXT_WALLS_TRIM",
+   "GC2_EXT_QUAL_EXT_WALLS_TRIM_OTHER",
+   "GC2_EXT_QUAL_FOUNDATION",
+   "GC2_EXT_QUAL_FOUNDATION_OTHER",
+   "GC2_EXT_QUAL_ROOF",
+   "GC2_EXT_QUAL_ROOF_OTHER",
+   "GC2_EXT_QUAL_WINDOWS",
+   "GC2_EXT_QUAL_BLANK",
+   "GC2_EXT_COND_CONDITION",
+   "GC2_EXT_COND_WALLS_TRIM",
+   "GC2_EXT_COND_FOUNDATION",
+   "GC2_EXT_COND_ROOF",
+   "GC2_PU_EXT_COND_ROOF_OBSERVABLE",
+   "GC2_PU_EXT_COND_ROOF_STATUS",
+   "GC2_EXT_COND_WINDOWS",
+   "GC2_EXT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-interior-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_INT_QUAL_STRUCTURE_ID",
+   "GC2_INT_QUAL_QUALITY",
+   "GC2_INT_QUAL_KITCHEN",
+   "GC2_INT_QUAL_BATHS",
+   "GC2_INT_QUAL_FLOORS",
+   "GC2_INT_QUAL_WALLS_CEILINGS",
+   "GC2_INT_QUAL_BLANK",
+   "GC2_INT_COND_CONDITION",
+   "GC2_INT_COND_KITCHEN",
+   "GC2_INT_COND_BATHS",
+   "GC2_INT_COND_FLOORS",
+   "GC2_INT_COND_WALLS_CEILINGS",
+   "GC2_INT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-adu-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_ADU_LOCATION",
+   "GC2_ADU_QUAL_QUALITY",
+   "GC2_ADU_QUAL_KITCHEN",
+   "GC2_INT_ADU_COND_BATHS",
+   "GC2_ADU_QUAL_FLOORS",
+   "GC2_ADU_QUAL_WALLS_CEILINGS",
+   "GC2_ADU_QUAL_BLANK",
+   "GC2_ADU_COND_CONDITION",
+   "GC2_ADU_COND_KITCHEN",
+   "GC2_ADU_COND_BATHS",
+   "GC2_ADU_COND_FLOORS",
+   "GC2_ADU_COND_WALLS_CEILINGS",
+   "GC2_ADU_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-amenity-outdoor-accessories",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC2_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-amenity-outdoor-living",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_AMENITY_OUTDOOR_LIVING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-amenity-water-features",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_AMENITY_WATER_FEATURE",
+   "GC2_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GC2_PU_AMENITY_WATER_FEATURE_DETAIL_OTHER",
+   "GC2_PU_AMENITY_WATER_FEATURE_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-amenity-whole-home",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_AMENITY_WHOLE_HOME",
+   "GC2_PU_AMENITY_WHOLE_HOME_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-amenity-misc",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_AMENITY_MISC",
+   "GC2_PU_AMENITY_MISC_OTHER",
+   "GC2_PU_AMENITY_MISC_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc2-pu-vehicle-storage",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_PU_VEHICLE_STORAGE",
+   "GC2_PU_VEHICLE_STORAGE_OTHER",
+   "GC2_PU_VEHICLE_STORAGE_SPACES",
+   "GC2_PU_VEHICLE_STORAGE_DETAILS",
+   "GC2_PU_VEHICLE_STORAGE_SQFT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-outbuilding-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_OUTBUILDING_TYPE",
+   "GC2_OUTBUILDING_TYPE_OTHER",
+   "GC2_OUTBUILDING_TYPE_ADJ",
+   "GC2_OUTBUILDING_REAL_PROPERTY",
+   "GC2_OUTBUILDING_BUILDING_AREA",
+   "GC2_OUTBUILDING_FINISHED_AREA",
+   "GC2_OUTBUILDING_UNFINISHED_AREA",
+   "GC2_OUTBUILDING_STRUCTURE_VOLUME",
+   "GC2_OUTBUILDING_BATHS_FULL",
+   "GC2_OUTBUILDING_BATHS_HALF",
+   "GC2_OUTBUILDING_KITCHENS",
+   "GC2_OUTBUILDING_HEATING",
+   "GC2_OUTBUILDING_COOLING",
+   "GC2_OUTBUILDING_UTILITIES",
+   "GC2_OUTBUILDING_UTILITIES_OTHER",
+   "GC2_BL_OUTBUILDING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-transfer-history-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC2_TRANSFER_HISTORY_PRESENT",
+   "GC2_TRANSFER_HISTORY_TERMS",
+   "GC2_PSH_TRANSFER_HISTORY_TERMS_OTHER",
+   "GC2_TRANSFER_HISTORY_DATE",
+   "GC2_TRANSFER_HISTORY_AMOUNT",
+   "GC2_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GC2_DFE_TRANSFER_HISTORY_AMOUNT_REASON",
+   "GC2_DFE_TRANSFER_HISTORY_AMOUNT_REASON_OTHER",
+   "GC2_TRANSFER_HISTORY_SOURCE",
+   "GC2_PSH_TRANSFER_HISTORY_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp",
+  "instance": 2,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "GC3_MOBILE_SALES_COMP_STATUS",
+   "GC3_MOBILE_STATUS_SALES_COMP_ADDRESS",
+   "GC3_SALES_COMP_QUICKNOTE",
+   "GC3_COMPNUM",
+   "GC3_HEADER_LABEL",
+   "GC3_AD_ADDR",
+   "GC3_AD_ADDR1",
+   "GC3_AD_ADDR2",
+   "GC3_DB_UNITNO",
+   "GC3_DB_CITY",
+   "GC3_DB_STATE",
+   "GC3_DB_ZIP",
+   "GC3_GUID_ID",
+   "GC3_PHOTO",
+   "GC3_SC_SOURCE1",
+   "GC3_PU_DATA_SOURCE",
+   "GC3_PU_DATA_SOURCE_OTHER",
+   "GC3_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GC3_PU_DATA_SOURCE_MLS_NUM",
+   "GC3_PROX1",
+   "GC3_PU_DISTANCE",
+   "GC3_PU_MILES",
+   "GC3_PU_KILOMETERS",
+   "GC3_PU_DIRECTION",
+   "GC3_LP_PRICE",
+   "GC3_PRICE_PER_SQFT",
+   "GC3_LP_STATUS",
+   "GC3_CONT_PRICE",
+   "GC3_PU_CONT_PRICE_KNOWN",
+   "GC3_PU_CONT_PRICE",
+   "GC3_PR_SALEPR1",
+   "GC3_TRANSFER_TERMS",
+   "GC3_TRANSFER_TERMS_OTHER",
+   "GC3_TRANSFER_TERMS_ADJ",
+   "GC3_DP_FINTYP1",
+   "GC3_DP_FINTYP1_OTHER",
+   "GC3_DP_FINTYP1_ADJ",
+   "GC3_EX_CONCAMT",
+   "GC3_PU_CONC_PRESENT",
+   "GC3_PU_CONC_AMOUNT",
+   "GC3_EX_CONCAMT_ADJ",
+   "GC3_CONT_DATE",
+   "GC3_PU_CONT_DATE_KNOWN",
+   "GC3_PU_CONT_DATE",
+   "GC3_CONT_DATE_ADJ",
+   "GC3_DT_SALTIM1",
+   "GC3_DT_SALTIM1_ADJ",
+   "GC3_EX_DOM",
+   "GC3_SP_TO_LP_RATIO",
+   "GC3_SP_TO_LP_RATIO_ADJ",
+   "GC3_ATT_DET",
+   "GC3_ATT_DET_ADJ",
+   "GC3_PROP_APPRAISER_RIGHTS",
+   "GC3_PROP_APPRAISER_RIGHTS_OTHER",
+   "GC3_PROP_APPRAISER_RIGHTS_ADJ",
+   "GC3_ANNUAL_GRND_RENT",
+   "GC3_NATIVE_AM_LANDS",
+   "GC3_PU_NATIVE_AM_LANDS_YES",
+   "GC3_PU_NATIVE_AM_LANDS_NO",
+   "GC3_PU_NATIVE_AM_LANDS_TYPE",
+   "GC3_PU_NATIVE_AM_LANDS_TYPE_OTHER",
+   "GC3_NATIVE_AM_LANDS_ADJ",
+   "GC3_ALL_RIGHTS_INCLUDED",
+   "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+   "GC3_RIGHTS_NOT_INCLUDED",
+   "GC3_RIGHTS_NOT_INCLUDED_OTHER",
+   "GC3_SAME_BLDR_AS_SUBJECT",
+   "GC3_GI_BLANK",
+   "GC3_GI_BLANK_ADJ",
+   "GC3_PROJINFO_OVERALL_ADJ",
+   "GC3_PROJ_NAME",
+   "GC3_PU_PROJECT_NAME",
+   "GC3_PU_SAME_PROJECT_AS_SUBJECT",
+   "GC3_PROJ_MONTHLY_FEE",
+   "GC3_PROJ_AMENITIES",
+   "GC3_PROJ_AMENITIES_OTHER",
+   "GC3_PROJ_SPECIAL_ASSESSMENTS",
+   "GC3_SITE_PROJECT_TYPE",
+   "GC3_SITE_OWNED_IN_COMMON",
+   "GC3_SITE_OWNED_IN_COMMON_ADJ",
+   "GC3_ST_SITSIZE",
+   "GC3_ST_SITSIZE_ADJ",
+   "GC3_MARKETAREA",
+   "GC3_MARKETAREA_ADJ",
+   "GC3_SITE_ZONE_COMPLIANCE",
+   "GC3_SITE_ZONE_COMPLIANCE_ADJ",
+   "GC3_SITE_HAZARD_ZONE",
+   "GC3_SITE_HAZARD_ZONE_OTHER",
+   "GC3_SITE_HAZARD_ZONE_ADJ",
+   "GC3_SITE_PRIMARY_ACCESS",
+   "GC3_SITE_PRIMARY_ACCESS_OTHER",
+   "GC3_SITE_PRIMARY_ACCESS_ADJ",
+   "GC3_SITE_STREET_TYPE",
+   "GC3_SITE_STREET_TYPE_ADJ",
+   "GC3_SITE_PROP_RESTRICT",
+   "GC3_SITE_PROP_RESTRICT_OTHER",
+   "GC3_SITE_PROP_RESTRICT_ADJ",
+   "GC3_SITE_EASEMENT",
+   "GC3_SITE_EASEMENT_OTHER",
+   "GC3_SITE_EASEMENT_ADJ",
+   "GC3_SITE_TOPOGRAPHY",
+   "GC3_SITE_TOPOGRAPHY_OTHER",
+   "GC3_SITE_TOPOGRAPHY_ADJ",
+   "GC3_SITE_CHARACTERISTICS",
+   "GC3_SITE_CHARACTERISTICS_OTHER",
+   "GC3_SITE_CHARACTERISTICS_ADJ",
+   "GC3_SITE_INFLUENCE",
+   "GC3_PU_SITE_INFLUENCE",
+   "GC3_PU_SITE_INFLUENCE_PRIVATE_ACCESS",
+   "GC3_PU_SITE_INFLUENCE_OTHER",
+   "GC3_PU_SITE_INFLUENCE_WATER_TYPE",
+   "GC3_PU_SITE_INFLUENCE_WATER_TYPE_OTHER",
+   "GC3_SITE_INFLUENCE_ADJ",
+   "GC3_SITE_ENV_COND",
+   "GC3_SITE_ENV_COND_OTHER",
+   "GC3_SITE_ENV_COND_ADJ",
+   "GC3_ST_VIEW",
+   "GC3_ST_VIEW_ADJ",
+   "GC3_SITE_BLANK",
+   "GC3_SITE_BLANK_ADJ",
+   "GC3_WATER_OVERALL_ADJ",
+   "GC3_WATER_FRONTAGE",
+   "GC3_WATER_FRONTAGE_FEAT",
+   "GC3_WATER_FRONTAGE_FEAT_OTHER",
+   "GC3_WATER_RIGHT_BLD",
+   "GC3_WATER_LINEAR_MEASURE",
+   "GC3_YR_BLT",
+   "GC3_YR_BLT_ADJ",
+   "GC3_DWELL_DESIGN",
+   "GC3_DWELL_DESIGN_ADJ",
+   "GC3_SF_GLA",
+   "GC3_SF_GLA_ADJ",
+   "GC3_SF_FINISHED_AREA",
+   "GC3_FINISHED_AREA_ADJ",
+   "GC3_DWELL_TH_ENDUNIT",
+   "GC3_DWELL_TH_ENDUNIT_ADJ",
+   "GC3_DWELL_TH_BACKTOBACK",
+   "GC3_DWELL_TH_BACKTOBACK_ADJ",
+   "GC3_DWELL_TH_LOC",
+   "GC3_DWELL_TH_LOC_ADJ",
+   "GC3_DWELL_CONST_METHOD",
+   "GC3_DWELL_CONST_METHOD_ADJ",
+   "GC3_DWELL_MANFCT_HOME_WIDTH",
+   "GC3_DWELL_MANFCT_HOME_WIDTH_ADJ",
+   "GC3_DWELL_STYLE",
+   "GC3_DWELL_STYLE_ADJ",
+   "GC3_DWELL_TOTAL_VOLUME",
+   "GC3_DWELL_TOTAL_VOLUME_ADJ",
+   "GC3_DWELL_WINDOW_AREA",
+   "GC3_DWELL_WINDOW_AREA_ADJ",
+   "GC3_DWELL_FUNC_ISSUES",
+   "GC3_DWELL_FUNC_ISSUES_ADJ",
+   "GC3_DWELL_DISASTER_MIT",
+   "GC3_DWELL_DISASTER_MIT_OTHER",
+   "GC3_DWELL_DISASTER_MIT_ADJ",
+   "GC3_DWELL_HEAT",
+   "GC3_DWELL_HEAT_ADJ",
+   "GC3_DWELL_COOL",
+   "GC3_DWELL_COOL_ADJ",
+   "GC3_GREEN_ENERGY_OVERRALL_ADJ",
+   "GC3_GREEN_RENEW_ENERGY_COMPONENT",
+   "GC3_GREEN_RENEW_ENERGY_COMPONENT_OTHER",
+   "GC3_GREEN_BUILD_CERT",
+   "GC3_GREEN_EFF_RATING",
+   "GC3_QUALITY",
+   "GC3_QUALITY_ADJ",
+   "GC3_CONDITION",
+   "GC3_CONDITION_ADJ",
+   "GC3_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC3_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "GC3_AMENITY_OUTDOOR_LIVING",
+   "GC3_AMENITY_OUTDOOR_LIVING_ADJ",
+   "GC3_AMENITY_WATER_FEATURES",
+   "GC3_AMENITY_WATER_FEATURES_ADJ",
+   "GC3_AMENITY_WHOLE_HOME",
+   "GC3_AMENITY_WHOLE_HOME_ADJ",
+   "GC3_AMENITY_MISC",
+   "GC3_AMENITY_MISC_OTHER",
+   "GC3_AMENITY_MISC_ADJ",
+   "GC3_VEHICLE_STORAGE_ADJ",
+   "GC3_VEHICLE_STORAGE",
+   "GC3_BL_VEHICLE_STORAGE",
+   "GC3_LIST_PRICE",
+   "GC3_CONTRACT_PRICE",
+   "GC3_SALE_PRICE",
+   "GC3_NETADJ_ADJ",
+   "GC3_NETADJ_PER_UNIT_ADJ",
+   "GC3_NETADJ_PRICE_PER_BED_ADJ",
+   "GC3_NETADJ_PRICE_GRS_BLD_FIN_AREA_ADJ",
+   "GC3_NETADJ_PRICE_PER_FIN_ABV_GRD_ADJ",
+   "GC3_NETADJ_PRICE_ADJ",
+   "GC3_NETADJ_COMP_WEIGHT_ADJ",
+   "GC3_LATITUDE",
+   "GC3_LONGITUDE",
+   "GC3_GEOMATCH",
+   "GC3_ADDRESSVALIDATED"
+  ],
+  "groups": [
+   "gc3-pu-street-type-surface",
+   "gc3-pu-drainage-type",
+   "gc3-pu-view-range",
+   "gc3-pu-water-frontage-type-name-depth",
+   "gc3-pu-year-blt",
+   "gc3-pu-structure-design",
+   "gc3-pu-dwelling-th-endunit",
+   "gc3-pu-dwelling-th-backtoback",
+   "gc3-pu-dwelling-th-loc",
+   "gc3-pu-dwelling-const-method",
+   "gc3-pu-dwell-manfct-home-width",
+   "gc3-pu-dwelling-style",
+   "gc3-pu-dwell-function-issues",
+   "gc3-pu-dwell-disaster-mit",
+   "gc3-pu-dwell-heat-system",
+   "gc3-pu-dwell-cool-system",
+   "dwellings-custom-row",
+   "gc3-pu-green-build-cert",
+   "gc3-pu-green-rating-score",
+   "salescomp-comp-units-section",
+   "salescomp-comp-quality-condition-exterior-section",
+   "salescomp-comp-quality-condition-interior-section",
+   "salescomp-comp-quality-condition-adu-section",
+   "gc3-pu-amenity-outdoor-accessories",
+   "gc3-pu-amenity-outdoor-living",
+   "gc3-pu-amenity-water-features",
+   "gc3-pu-amenity-whole-home",
+   "gc3-pu-amenity-misc",
+   "gc3-pu-vehicle-storage",
+   "salescomp-comp-outbuilding-section",
+   "salescomp-comp-transfer-history-section"
+  ]
+ },
+ {
+  "group": "gc3-pu-street-type-surface",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_SITE_STREET_TYPE",
+   "GC3_PU_SITE_STREET_TYPE_OTHER",
+   "GC3_PU_SITE_STREET_SURFACE",
+   "GC3_PU_SITE_STREET_SURFACE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-drainage-type",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_SITE_DRAINAGE",
+   "GC3_SITE_DRAINAGE_OTHER",
+   "GC3_SITE_DRAINAGE_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-view-range",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_ST_VIEW",
+   "GC3_PU_ST_VIEW_OTHER",
+   "GC3_PU_ST_RANGE",
+   "GC3_PU_ST_RANGE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-water-frontage-type-name-depth",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_WATER_FRONTAGE_TYPE",
+   "GC3_PU_WATER_FRONTAGE_TYPE_OTHER",
+   "GC3_PU_WATER_FRONTAGE_NAME",
+   "GC3_PU_WATER_FRONTAGE_ACCESS_DEPTH",
+   "GC3_PU_WATER_FRONTAGE_ACCESS_DEPTH_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-year-blt",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_YR_BLT",
+   "GC3_PU_YR_BLT_EST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-structure-design",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_STRUCTURE_DESIGN",
+   "GC3_PU_STRUCTURE_DESIGN_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwelling-th-endunit",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_TH_ENDUNIT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwelling-th-backtoback",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_TH_BACKTOBACK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwelling-th-loc",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_TH_LOC"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwelling-const-method",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_CONST_METHOD",
+   "GC3_PU_DWELL_CONST_METHOD_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwell-manfct-home-width",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_MANFCT_HOME_WIDTH"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwelling-style",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_STYLE",
+   "GC3_PU_DWELL_STYLE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwell-function-issues",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_FUNC_ISSUES",
+   "GC3_PU_DWELL_FUNC_ISSUES_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwell-disaster-mit",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_DISASTER_MIT",
+   "GC3_PU_DWELL_DISASTER_MIT_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwell-heat-system",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_HEAT_SYSTEM",
+   "GC3_PU_DWELL_HEAT_SYSTEM_OTHER",
+   "GC3_PU_DWELL_HEAT_DETAIL",
+   "GC3_PU_DWELL_HEAT_DETAIL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-dwell-cool-system",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_DWELL_COOL",
+   "GC3_PU_DWELL_COOL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "dwellings-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_DWELL_OTHR1_BLANK",
+   "GC3_DWELL_OTHR1_BLANK_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-green-build-cert",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_GREEN_BUILD_CERT_DESC",
+   "GC3_PU_GREEN_BUILD_CERT_RATE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-green-rating-score",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_GREEN_EFF_RATING",
+   "GC3_PU_GREEN_EFF_SCORE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-units-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_UNIT_ID",
+   "GC3_UNITS_IS_AN_ADU",
+   "GC3_LOC_ADU",
+   "GC3_PU_LOC_ADU_TYPE",
+   "GC3_PU_LOC_ADU_DESC",
+   "GC3_PU_LOC_ADU_DESC_OTHER",
+   "GC3_LOC_ADU_ADJ",
+   "GC3_FLOOR_NUM",
+   "GC3_FLOOR_NUM_ADJ",
+   "GC3_CORNER_UNIT",
+   "GC3_CORNER_UNIT_ADJ",
+   "GC3_LEVELS",
+   "GC3_LEVELS_ADJ",
+   "GC3_BEDS",
+   "GC3_BEDS_ADJ",
+   "GC3_BATHS",
+   "GC3_PU_FULL_BATHS",
+   "GC3_PU_HALF_BATHS",
+   "GC3_BATHS_ADJ",
+   "GC3_UNITS_SF_GLA",
+   "GC3_UNITS_SF_GLA_ADJ",
+   "GC3_UNITS_SF_GLA_NONSTD",
+   "GC3_UNITS_SF_GLA_NONSTD_ADJ",
+   "GC3_UNITS_SF_GLA_UNFIN",
+   "GC3_UNITS_SF_GLA_UNFIN_ADJ",
+   "GC3_UNITS_SF_GLA_BELOW_GRD",
+   "GC3_UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "GC3_DISABILITY_FEATURES",
+   "GC3_DISABILITY_FEATURES_OTHER",
+   "GC3_DISABILITY_FEATURES_ADJ",
+   "GC3_UNITS_BLANK",
+   "GC3_UNITS_BLANK_ADJ"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-exterior-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_EXT_QUAL_STRUCTURE_ID",
+   "GC3_EXT_QUAL_QUALITY",
+   "GC3_EXT_QUAL_EXT_WALLS_TRIM",
+   "GC3_EXT_QUAL_EXT_WALLS_TRIM_OTHER",
+   "GC3_EXT_QUAL_FOUNDATION",
+   "GC3_EXT_QUAL_FOUNDATION_OTHER",
+   "GC3_EXT_QUAL_ROOF",
+   "GC3_EXT_QUAL_ROOF_OTHER",
+   "GC3_EXT_QUAL_WINDOWS",
+   "GC3_EXT_QUAL_BLANK",
+   "GC3_EXT_COND_CONDITION",
+   "GC3_EXT_COND_WALLS_TRIM",
+   "GC3_EXT_COND_FOUNDATION",
+   "GC3_EXT_COND_ROOF",
+   "GC3_PU_EXT_COND_ROOF_OBSERVABLE",
+   "GC3_PU_EXT_COND_ROOF_STATUS",
+   "GC3_EXT_COND_WINDOWS",
+   "GC3_EXT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-interior-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_INT_QUAL_STRUCTURE_ID",
+   "GC3_INT_QUAL_QUALITY",
+   "GC3_INT_QUAL_KITCHEN",
+   "GC3_INT_QUAL_BATHS",
+   "GC3_INT_QUAL_FLOORS",
+   "GC3_INT_QUAL_WALLS_CEILINGS",
+   "GC3_INT_QUAL_BLANK",
+   "GC3_INT_COND_CONDITION",
+   "GC3_INT_COND_KITCHEN",
+   "GC3_INT_COND_BATHS",
+   "GC3_INT_COND_FLOORS",
+   "GC3_INT_COND_WALLS_CEILINGS",
+   "GC3_INT_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-quality-condition-adu-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_ADU_LOCATION",
+   "GC3_ADU_QUAL_QUALITY",
+   "GC3_ADU_QUAL_KITCHEN",
+   "GC3_INT_ADU_COND_BATHS",
+   "GC3_ADU_QUAL_FLOORS",
+   "GC3_ADU_QUAL_WALLS_CEILINGS",
+   "GC3_ADU_QUAL_BLANK",
+   "GC3_ADU_COND_CONDITION",
+   "GC3_ADU_COND_KITCHEN",
+   "GC3_ADU_COND_BATHS",
+   "GC3_ADU_COND_FLOORS",
+   "GC3_ADU_COND_WALLS_CEILINGS",
+   "GC3_ADU_COND_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-amenity-outdoor-accessories",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_AMENITY_OUTDOOR_ACCESSORIES",
+   "GC3_PU_AMENITY_OUTDOOR_ACCESSORIES_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-amenity-outdoor-living",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_AMENITY_OUTDOOR_LIVING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-amenity-water-features",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_AMENITY_WATER_FEATURE",
+   "GC3_PU_AMENITY_WATER_FEATURE_DETAIL",
+   "GC3_PU_AMENITY_WATER_FEATURE_DETAIL_OTHER",
+   "GC3_PU_AMENITY_WATER_FEATURE_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-amenity-whole-home",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_AMENITY_WHOLE_HOME",
+   "GC3_PU_AMENITY_WHOLE_HOME_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-amenity-misc",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_AMENITY_MISC",
+   "GC3_PU_AMENITY_MISC_OTHER",
+   "GC3_PU_AMENITY_MISC_NUM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "gc3-pu-vehicle-storage",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_PU_VEHICLE_STORAGE",
+   "GC3_PU_VEHICLE_STORAGE_OTHER",
+   "GC3_PU_VEHICLE_STORAGE_SPACES",
+   "GC3_PU_VEHICLE_STORAGE_DETAILS",
+   "GC3_PU_VEHICLE_STORAGE_SQFT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-outbuilding-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_OUTBUILDING_TYPE",
+   "GC3_OUTBUILDING_TYPE_OTHER",
+   "GC3_OUTBUILDING_TYPE_ADJ",
+   "GC3_OUTBUILDING_REAL_PROPERTY",
+   "GC3_OUTBUILDING_BUILDING_AREA",
+   "GC3_OUTBUILDING_FINISHED_AREA",
+   "GC3_OUTBUILDING_UNFINISHED_AREA",
+   "GC3_OUTBUILDING_STRUCTURE_VOLUME",
+   "GC3_OUTBUILDING_BATHS_FULL",
+   "GC3_OUTBUILDING_BATHS_HALF",
+   "GC3_OUTBUILDING_KITCHENS",
+   "GC3_OUTBUILDING_HEATING",
+   "GC3_OUTBUILDING_COOLING",
+   "GC3_OUTBUILDING_UTILITIES",
+   "GC3_OUTBUILDING_UTILITIES_OTHER",
+   "GC3_BL_OUTBUILDING"
+  ],
+  "groups": []
+ },
+ {
+  "group": "salescomp-comp-transfer-history-section",
+  "instance": 0,
+  "depth": 2,
+  "path": "/sales-comp/salescomp",
+  "fields": [
+   "GC3_TRANSFER_HISTORY_PRESENT",
+   "GC3_TRANSFER_HISTORY_TERMS",
+   "GC3_PSH_TRANSFER_HISTORY_TERMS_OTHER",
+   "GC3_TRANSFER_HISTORY_DATE",
+   "GC3_TRANSFER_HISTORY_AMOUNT",
+   "GC3_DFE_TRANSFER_HISTORY_AMOUNT_VALUE",
+   "GC3_DFE_TRANSFER_HISTORY_AMOUNT_REASON",
+   "GC3_DFE_TRANSFER_HISTORY_AMOUNT_REASON_OTHER",
+   "GC3_TRANSFER_HISTORY_SOURCE",
+   "GC3_PSH_TRANSFER_HISTORY_SOURCE_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-comp-exhibits-comps",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "SALES_COMP_EXHIBIT_GUID_ID",
+   "SALES_COMP_EXHIBIT_REQUIRED_GUID_ID",
+   "SALES_COMP_EXHIBIT_COMP_CATEGORY",
+   "SALES_COMP_EXHIBIT_COMP_DESCRIPTION",
+   "SALES_COMP_EXHIBIT_COMP_CAPTION",
+   "SALES_COMP_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-comp-exhibits-comps",
+  "instance": 1,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "SALES_COMP_EXHIBIT_GUID_ID",
+   "SALES_COMP_EXHIBIT_REQUIRED_GUID_ID",
+   "SALES_COMP_EXHIBIT_COMP_CATEGORY",
+   "SALES_COMP_EXHIBIT_COMP_DESCRIPTION",
+   "SALES_COMP_EXHIBIT_COMP_CAPTION",
+   "SALES_COMP_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-comp-exhibits-comps",
+  "instance": 2,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "SALES_COMP_EXHIBIT_GUID_ID",
+   "SALES_COMP_EXHIBIT_REQUIRED_GUID_ID",
+   "SALES_COMP_EXHIBIT_COMP_CATEGORY",
+   "SALES_COMP_EXHIBIT_COMP_DESCRIPTION",
+   "SALES_COMP_EXHIBIT_COMP_CAPTION",
+   "SALES_COMP_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "sales-comp-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/sales-comp",
+  "fields": [
+   "SALES_COMP_EXHIBIT_CATEGORY",
+   "SALES_COMP_EXHIBIT_DESCRIPTION",
+   "SALES_COMP_EXHIBIT_CAPTION",
+   "SALES_COMP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rental-information",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_RENTALUNITCOMP-BLANK-ROW_COUNT",
+   "HIDDEN_RENTALPROPCOMP_COUNT",
+   "HIDDEN_RENTALUNIT-COMP-TEMPLATE_COUNT",
+   "HIDDEN_RENTAL-INFO-EXHIBITS-COMPS_COUNT",
+   "HIDDEN_RENTAL-INFO-EXHIBITS_COUNT",
+   "HIDDEN_MOBILE_STATUS_SECTION_RENT_COMP",
+   "HIDDEN_RENTAL-INFO-MAP-EXHIBITS_COUNT",
+   "RENT_IMPACT_TO_VALUE",
+   "RI_ACT_INC_SUBTOTAL",
+   "RI_ACT_INC_OTHER_SUBTOTAL",
+   "RI_ACT_INC_TOTAL",
+   "RI_OPN_INC_SUBTOTAL",
+   "RI_OPN_INC_OTHER_SUBTOTAL",
+   "RI_OPN_INC_TOTAL",
+   "RSU_PHOTO",
+   "RSU_AD_ADDR_FULL",
+   "RSU_AD_ADDR1",
+   "RSU_AD_ADDR2",
+   "RSU_DB_UNITNO",
+   "RSU_DB_CITY",
+   "RSU_DB_STATE",
+   "RSU_DB_ZIP",
+   "RENTAL_ANALYSIS_COMMENTARY",
+   "COMP_RENTCOMP_RI_IN_SALESCOMP_MAP_YES",
+   "COMP_RENTCOMP_RI_IN_SALESCOMP_MAP_NO"
+  ],
+  "groups": [
+   "table-sub-prop-rental-info",
+   "table-sub-prop-actual-income",
+   "table-sub-prop-actual-income-other",
+   "table-sub-prop-opinion-income",
+   "table-sub-prop-opinion-income-other",
+   "rentalpropcomp",
+   "rentalunit-subject-template",
+   "rentalunit-comp-template",
+   "rental-info-map-exhibits",
+   "flow-rental-info-land-map-exhibits",
+   "rental-info-exhibits-comps",
+   "rental-info-exhibits"
+  ]
+ },
+ {
+  "group": "table-sub-prop-rental-info",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "ASSOC_KEY_PREFIX",
+   "RENT_SCH_UNIT_IDENTIFIER",
+   "RENT_SCH_CURRENTLY_RENTED",
+   "RENT_SCH_OCCUPANCY",
+   "RENT_SCH_MONTHLY_RENT",
+   "RENT_SCH_MONTH_TO_MONTH",
+   "RENT_SCH_LEASE_START",
+   "RENT_SCH_RENT_CONTROL",
+   "RENT_SCH_RENT_CONC",
+   "RENT_SCH_UTILS_INCLUDED",
+   "RENT_SCH_FURNISHED"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-sub-prop-actual-income",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RI_ACT_INC_UNIT_ID",
+   "RI_ACT_INC_MONTHLY_RENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-sub-prop-actual-income-other",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RI_ACT_INC_OTHER_DESC",
+   "RI_ACT_INC_OTHER_DESC_OTHER",
+   "RI_ACT_INC_OTHER_MONTHLY_RENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-sub-prop-opinion-income",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RI_OPN_INC_UNIT_ID",
+   "RI_OPN_INC_MONTHLY_RENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "table-sub-prop-opinion-income-other",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RI_OPN_INC_OTHER_DESC",
+   "RI_OPN_INC_OTHER_MONTHLY_RENT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rentalpropcomp",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RP1_MOBILE_RENTAL_COMP_STATUS",
+   "RP1_MOBILE_STATUS_RENTAL_COMP_ADDRESS",
+   "RP1_RENTAL_COMP_QUICKNOTE",
+   "RP1_GUID_ID",
+   "RP1_PHOTO",
+   "RP1_COMPNUM",
+   "RP1_HEADER_LABEL",
+   "RP1_AD_ADDR_FULL",
+   "RP1_AD_ADDR1",
+   "RP1_AD_ADDR2",
+   "RP1_DB_UNITNO",
+   "RP1_DB_CITY",
+   "RP1_DB_STATE",
+   "RP1_DB_ZIP",
+   "RP1_SC_SOURCE1",
+   "RP1_PU_DATA_SOURCE",
+   "RP1_PU_DATA_SOURCE_OTHER",
+   "RP1_PU_DATA_SOURCE_ASSESSOR_ID",
+   "RP1_PU_DATA_SOURCE_MLS_NUM",
+   "RP1_LEASE_START_DATE",
+   "RP1_ACTUAL_RENT",
+   "RP1_LATITUDE",
+   "RP1_LONGITUDE",
+   "RP1_GEOMATCH",
+   "RP1_ADDRESSVALIDATED"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rentalunit-subject-template",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RSX_HEADER_LABEL",
+   "RSX_MARKETAREA",
+   "RSX_PROJ_NAME",
+   "RSX_PROJ_AMENITIES",
+   "RSX_SITE_INFLUENCE",
+   "RSX_UNIT_VIEW",
+   "RSX_UNIT_VIEW_OTHER",
+   "RSX_FLOOR_NUM",
+   "RSX_ST_SITSIZE",
+   "RSX_GRADE_LEVEL",
+   "RSX_INT_COND_CONDITION",
+   "RSX_BEDS",
+   "RSX_BATHS",
+   "RSX_SF_GLA",
+   "RSX_FURNISHED",
+   "RSX_SITE_OWNED_IN_COMMON",
+   "RSX_UTILS_INCLUDED",
+   "RSX_RENT_CONTROL",
+   "RSX_RENT_CONC",
+   "RSX_VEHICLE_STORAGE",
+   "RSX_SMRY_RENT_PER_FIN_AREA",
+   "RSX_SMRY_ACT_RENT",
+   "RSX_SMRY_OPN_MKT_RENT"
+  ],
+  "groups": [
+   "rsx-pu-vehicle-storage",
+   "rentalunit-subject-custom-row"
+  ]
+ },
+ {
+  "group": "rsx-pu-vehicle-storage",
+  "instance": 0,
+  "depth": 2,
+  "path": "/rental-information/rentalunit-subject-template",
+  "fields": [
+   "RSX_PU_VEHICLE_STORAGE",
+   "RSX_PU_VEHICLE_STORAGE_OTHER",
+   "RSX_PU_VEHICLE_STORAGE_SPACES"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rentalunit-subject-custom-row",
+  "instance": 0,
+  "depth": 2,
+  "path": "/rental-information/rentalunit-subject-template",
+  "fields": [
+   "RSX_BLANK_DESC",
+   "RSX_BLANK"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rentalunit-comp-template",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RCX_HEADER_LABEL",
+   "RCX_PROX1",
+   "RCX_PU_DISTANCE",
+   "RCX_PU_MILES",
+   "RCX_PU_KILOMETERS",
+   "RCX_PU_DIRECTION",
+   "RCX_MARKETAREA",
+   "RCX_PROJ_NAME",
+   "RCX_PROJ_AMENITIES_COMP",
+   "RCX_SITE_INFLUENCE_COMP",
+   "RCX_UNIT_VIEW_COMP",
+   "RCX_FLOOR_NUM",
+   "RCX_ST_SITSIZE",
+   "RCX_GRADE_LEVEL",
+   "RCX_INT_COND_CONDITION",
+   "RCX_BEDS",
+   "RCX_BATHS",
+   "RCX_PU_FULL_BATHS",
+   "RCX_PU_HALF_BATHS",
+   "RCX_SF_GLA",
+   "RCX_FURNISHED",
+   "RCX_SITE_OWNED_IN_COMMON",
+   "RCX_UTILS_INCLUDED",
+   "RCX_RENT_CONTROL",
+   "RCX_RENT_CONC",
+   "RCX_VEHICLE_STORAGE_COMP",
+   "RCX_BLANK",
+   "RCX_SMRY_RENT_PER_FIN_AREA",
+   "RCX_SMRY_ACT_RENT",
+   "RCX_SMRY_OVRL_COMP_TO_SUB",
+   "RCX_SMRY_ADJ_RENT",
+   "RCX_SMRY_COMP_WEIGHT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rental-info-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RENTAL_INFO_MAP_EXHIBIT_CATEGORY",
+   "RENTAL_INFO_MAP_EXHIBIT_DESCRIPTION",
+   "RENTAL_INFO_MAP_EXHIBIT_CAPTION",
+   "RENTAL_INFO_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-rental-info-land-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RENTAL_INFO_LAND_MAP_EXHIBIT_DESCRIPTION",
+   "RENTAL_INFO_LAND_MAP_EXHIBIT_CAPTION",
+   "RENTAL_INFO_LAND_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rental-info-exhibits-comps",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RENTAL_INFO_EXHIBIT_GUID_ID",
+   "RENTAL_INFO_EXHIBIT_REQUIRED_GUID_ID",
+   "RENTAL_INFO_EXHIBIT_COMP_CATEGORY",
+   "RENTAL_INFO_EXHIBIT_COMP_DESC",
+   "RENTAL_INFO_EXHIBIT_COMP_CAPTION",
+   "RENTAL_INFO_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rental-info-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/rental-information",
+  "fields": [
+   "RENTAL_INFO_EXHIBIT_CATEGORY",
+   "RENTAL_INFO_EXHIBIT_DESC",
+   "RENTAL_INFO_EXHIBIT_CAPTION",
+   "RENTAL_INFO_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "income-approach",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_GROSSRENTALINCOME-ROW_COUNT",
+   "HIDDEN_GROSSRENTALINCOME_COUNT",
+   "IA_DEV_BY_APPRAISER_YES",
+   "IA_DEV_BY_APPRAISER_NO",
+   "GRU_AD_ADDR1",
+   "GRU_PHOTO",
+   "GRU_UNITS_EXCL_ADU",
+   "GRU_ADU",
+   "GRU_GBFA",
+   "GRU_RENT_CONTROL",
+   "GRU_DESC_NAME",
+   "GRU_DESC_VALUE",
+   "GRU_MONTHLY_RENT",
+   "GRU_PU_MONTHLY_RENT",
+   "GRU_PU_RENT_ESTIMATED",
+   "GRU_LATITUDE",
+   "GRU_LONGITUDE",
+   "TOTAL_MO_MKT_RENT",
+   "GROSS_RENT_MULTIPLIER",
+   "IND_VALUE_BY_INCOME_APPROACH",
+   "INCOME_APPROACH_COMMENTARY",
+   "COMP_GRMCOMP_GRM_IN_SALESCOMP_MAP_YES",
+   "COMP_GRMCOMP_GRM_IN_SALESCOMP_MAP_NO"
+  ],
+  "groups": [
+   "grossrentalincome",
+   "flow-ia-grm-map-exhibits",
+   "ia-map-exhibits",
+   "flow-ia-exhibits-comps",
+   "ia-exhibits",
+   "flow-ia-exhibits-other"
+  ]
+ },
+ {
+  "group": "grossrentalincome",
+  "instance": 0,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "GR1_COMPNUM",
+   "GR1_HEADER_LABEL",
+   "GR1_COPY_COMP",
+   "GR1_AD_ADDR",
+   "GR1_AD_ADDR1",
+   "GR1_AD_ADDR2",
+   "GR1_DB_UNITNO",
+   "GR1_DB_CITY",
+   "GR1_DB_STATE",
+   "GR1_DB_ZIP",
+   "GR1_PHOTO",
+   "GR1_GUID_ID",
+   "GR1_SC_SOURCE1",
+   "GR1_PU_DATA_SOURCE",
+   "GR1_PU_DATA_SOURCE_OTHER",
+   "GR1_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GR1_PU_DATA_SOURCE_MLS_NUM",
+   "GR1_PROX1",
+   "GR1_PU_DISTANCE",
+   "GR1_PU_MILES",
+   "GR1_PU_KILOMETERS",
+   "GR1_PU_DIRECTION",
+   "GR1_UNITS_EXCL_ADU",
+   "GR1_ADU",
+   "GR1_GBFA",
+   "GR1_RENT_CONTROL",
+   "GR1_DESC_VALUE",
+   "GR1_SALE_PRICE",
+   "GR1_SALE_DATE",
+   "GR1_MONTHLY_RENT",
+   "GR1_PU_MONTHLY_RENT",
+   "GR1_PU_RENT_ESTIMATED",
+   "GR1_RENT_MULTIPLIER",
+   "GR1_WEIGHT",
+   "GR1_LATITUDE",
+   "GR1_LONGITUDE",
+   "GR1_GEOMATCH",
+   "GR1_ADDRESSVALIDATED"
+  ],
+  "groups": []
+ },
+ {
+  "group": "grossrentalincome",
+  "instance": 1,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "GR2_COMPNUM",
+   "GR2_HEADER_LABEL",
+   "GR2_COPY_COMP",
+   "GR2_AD_ADDR",
+   "GR2_AD_ADDR1",
+   "GR2_AD_ADDR2",
+   "GR2_DB_UNITNO",
+   "GR2_DB_CITY",
+   "GR2_DB_STATE",
+   "GR2_DB_ZIP",
+   "GR2_PHOTO",
+   "GR2_GUID_ID",
+   "GR2_SC_SOURCE1",
+   "GR2_PU_DATA_SOURCE",
+   "GR2_PU_DATA_SOURCE_OTHER",
+   "GR2_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GR2_PU_DATA_SOURCE_MLS_NUM",
+   "GR2_PROX1",
+   "GR2_PU_DISTANCE",
+   "GR2_PU_MILES",
+   "GR2_PU_KILOMETERS",
+   "GR2_PU_DIRECTION",
+   "GR2_UNITS_EXCL_ADU",
+   "GR2_ADU",
+   "GR2_GBFA",
+   "GR2_RENT_CONTROL",
+   "GR2_DESC_VALUE",
+   "GR2_SALE_PRICE",
+   "GR2_SALE_DATE",
+   "GR2_MONTHLY_RENT",
+   "GR2_PU_MONTHLY_RENT",
+   "GR2_PU_RENT_ESTIMATED",
+   "GR2_RENT_MULTIPLIER",
+   "GR2_WEIGHT",
+   "GR2_LATITUDE",
+   "GR2_LONGITUDE",
+   "GR2_GEOMATCH",
+   "GR2_ADDRESSVALIDATED"
+  ],
+  "groups": []
+ },
+ {
+  "group": "grossrentalincome",
+  "instance": 2,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "GR3_COMPNUM",
+   "GR3_HEADER_LABEL",
+   "GR3_COPY_COMP",
+   "GR3_AD_ADDR",
+   "GR3_AD_ADDR1",
+   "GR3_AD_ADDR2",
+   "GR3_DB_UNITNO",
+   "GR3_DB_CITY",
+   "GR3_DB_STATE",
+   "GR3_DB_ZIP",
+   "GR3_PHOTO",
+   "GR3_GUID_ID",
+   "GR3_SC_SOURCE1",
+   "GR3_PU_DATA_SOURCE",
+   "GR3_PU_DATA_SOURCE_OTHER",
+   "GR3_PU_DATA_SOURCE_ASSESSOR_ID",
+   "GR3_PU_DATA_SOURCE_MLS_NUM",
+   "GR3_PROX1",
+   "GR3_PU_DISTANCE",
+   "GR3_PU_MILES",
+   "GR3_PU_KILOMETERS",
+   "GR3_PU_DIRECTION",
+   "GR3_UNITS_EXCL_ADU",
+   "GR3_ADU",
+   "GR3_GBFA",
+   "GR3_RENT_CONTROL",
+   "GR3_DESC_VALUE",
+   "GR3_SALE_PRICE",
+   "GR3_SALE_DATE",
+   "GR3_MONTHLY_RENT",
+   "GR3_PU_MONTHLY_RENT",
+   "GR3_PU_RENT_ESTIMATED",
+   "GR3_RENT_MULTIPLIER",
+   "GR3_WEIGHT",
+   "GR3_LATITUDE",
+   "GR3_LONGITUDE",
+   "GR3_GEOMATCH",
+   "GR3_ADDRESSVALIDATED"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-ia-grm-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_GRM_MAP_EXHIBIT_DESCRIPTION",
+   "IA_GRM_MAP_EXHIBIT_CAPTION",
+   "IA_GRM_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ia-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_MAP_EXHIBIT_CATEGORY",
+   "IA_MAP_EXHIBIT_DESCRIPTION",
+   "IA_MAP_EXHIBIT_CAPTION",
+   "IA_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-ia-exhibits-comps",
+  "instance": 0,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_EXHIBIT_COMP_EXHIBIT_GUID_ID",
+   "IA_EXHIBIT_COMP_EXHIBIT_REQUIRED_GUID_ID",
+   "IA_EXHIBIT_COMP_CATEGORY",
+   "IA_EXHIBIT_COMP_DESC",
+   "IA_EXHIBIT_COMP_CAPTION",
+   "IA_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-ia-exhibits-comps",
+  "instance": 1,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_EXHIBIT_COMP_EXHIBIT_GUID_ID",
+   "IA_EXHIBIT_COMP_EXHIBIT_REQUIRED_GUID_ID",
+   "IA_EXHIBIT_COMP_CATEGORY",
+   "IA_EXHIBIT_COMP_DESC",
+   "IA_EXHIBIT_COMP_CAPTION",
+   "IA_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-ia-exhibits-comps",
+  "instance": 2,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_EXHIBIT_COMP_EXHIBIT_GUID_ID",
+   "IA_EXHIBIT_COMP_EXHIBIT_REQUIRED_GUID_ID",
+   "IA_EXHIBIT_COMP_CATEGORY",
+   "IA_EXHIBIT_COMP_DESC",
+   "IA_EXHIBIT_COMP_CAPTION",
+   "IA_EXHIBIT_COMP_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ia-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_EXHIBIT_CATEGORY",
+   "IA_EXHIBIT_DESCRIPTION",
+   "IA_EXHIBIT_CAPTION",
+   "IA_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-ia-exhibits-other",
+  "instance": 0,
+  "depth": 1,
+  "path": "/income-approach",
+  "fields": [
+   "IA_EXHIBIT_OTHER_DESC",
+   "IA_EXHIBIT_OTHER_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "cost-approach",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_CA-DWELLING-DEPRECIATION-COST-SECTION_COUNT",
+   "HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST-SECTION_COUNT",
+   "HIDDEN_CA-DEPRECIATED-COST-DWELLING_COUNT",
+   "HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST_COUNT",
+   "CHECK_COST_APPROACH_ENABLE",
+   "CHECK_COST_APPROACH_DISABLE",
+   "CA_INDICATED_VALUE",
+   "CA_DEPRECIATED_COST_OF_DWELLING",
+   "CA_DEPRECIATED_COST_OF_OUTBUILDINGS",
+   "CA_AS_IS_OF_SITE_IMPROVEMENTS",
+   "CA_OPINION_OF_SITE_VALUE",
+   "CA_AS_IS_OF_SIT_IMP_TOT",
+   "CA_PRIMARY_SITE_VAL_METHOD",
+   "CA_PRIMARY_SITE_VAL_METHOD_OTHER",
+   "CA_OPINION_SITE_VAL",
+   "CA_SITE_VALUE",
+   "CA_COST_TYPE",
+   "CA_COST_DATA_SOURCE",
+   "CA_COST_DATA_SOURCE_TYPE",
+   "CA_COST_DATA_SOURCE_TYPE_OTHER",
+   "CA_COST_SERVICE_SOURCE_TYPE",
+   "CA_COST_SERVICE_SOURCE_TYPE_OTHER",
+   "CA_COST_DATA_SOURCE_OTHER",
+   "CA_QUALITY_RATING",
+   "CA_EFFECTIVE_DATE",
+   "CA_COST_METHOD",
+   "CA_COST_METHOD_OTHER",
+   "CA_DEPRECIATION_METHOD",
+   "CA_DEPRECIATION_METHOD_OTHER",
+   "COST_APPROACH_COMMENTARY"
+  ],
+  "groups": [
+   "ca-sub-sections-depreciated-cost-parent",
+   "ca-as-is-site-improvement-section",
+   "ca-table-site-land-comparable",
+   "flow-ca-map-exhibits",
+   "ca-exhibit"
+  ]
+ },
+ {
+  "group": "ca-sub-sections-depreciated-cost-parent",
+  "instance": 0,
+  "depth": 1,
+  "path": "/cost-approach",
+  "fields": [],
+  "groups": [
+   "ca-de-depreciated-cost"
+  ]
+ },
+ {
+  "group": "ca-de-depreciated-cost",
+  "instance": 0,
+  "depth": 2,
+  "path": "/cost-approach/ca-sub-sections-depreciated-cost-parent",
+  "fields": [
+   "SSDE1_SECTION_KEY",
+   "SSDE1_HIDDEN_CA-DWELLING-DEPRECIATION-COST-SECTION_COUNT",
+   "SSDE1_CA_DWELL_OTHER_DEPRECIATION",
+   "SSDE1_CA_DWELL_TOT_DEPRECIATION",
+   "SSDE1_CA_DWELL_PHYSICAL_DEPRECIATION",
+   "SSDE1_CA_DWELL_PHYSICAL_COST_TYPE",
+   "SSDE1_CA_DWELL_FUNCTIONAL_DEPRECIATION",
+   "SSDE1_CA_DWELL_FUNCTIONAL_COST_TYPE",
+   "SSDE1_CA_DWELL_EXTERNAL_DEPRECIATION",
+   "SSDE1_CA_DWELL_EXTERNAL_COST_TYPE",
+   "SSDE1_CA_DWELL_TOTAL_DEPRECIATION",
+   "SSDE1_CA_DWELL_MANUFACTURED_SETUP_COST",
+   "SSDE1_CA_DWELL_DEPRECIATED_TOT",
+   "SSDE1_CA_REMAINING_ECONOMIC_LIFE_COMMENTARY",
+   "SSDE1_CA_REMAINING_ECONOMIC_LIFE",
+   "SSDE1_CA_EFFECTIVE_AGE_COMMENTARY",
+   "SSDE1_CA_EFFECTIVE_AGE",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_PRECISE",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_RANGE",
+   "SSDE1_CA_EFFECTIVE_AGE_PRECISE",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_RANGE_LOW",
+   "SSDE1_PU_CA_EFFECTIVE_AGE_RANGE_HIGH"
+  ],
+  "groups": [
+   "ssde1-ca-dwelling-depreciation-cost-section"
+  ]
+ },
+ {
+  "group": "ssde1-ca-dwelling-depreciation-cost-section",
+  "instance": 0,
+  "depth": 3,
+  "path": "/cost-approach/ca-sub-sections-depreciated-cost-parent/ca-de-depreciated-cost",
+  "fields": [
+   "SSDE1_CA_DWELL_AREA_TYPE",
+   "SSDE1_CA_DWELL_AREA_TYPE_OTHER",
+   "SSDE1_CA_DWELL_AREA_SIZE",
+   "SSDE1_CA_DWELL_PER_UNIT_MEASURE",
+   "SSDE1_CA_DWELL_AREA_COST_TYPE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ca-as-is-site-improvement-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/cost-approach",
+  "fields": [
+   "CA_AS_IS_OF_SIT_IMP_DESC",
+   "CA_AS_IS_OF_SIT_IMP_AMT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ca-table-site-land-comparable",
+  "instance": 0,
+  "depth": 1,
+  "path": "/cost-approach",
+  "fields": [
+   "CA_LC_NUM",
+   "CA_LC_ADDR",
+   "CA_LC_ADDRESS",
+   "CA_LC_UNITNO",
+   "CA_LC_CITY",
+   "CA_LC_ZIP",
+   "CA_LC_STATE",
+   "CA_LC_COUNTY",
+   "CA_LC_SOURCE",
+   "CA_LC_SOURCE_TYPE",
+   "CA_LC_SOURCE_TYPE_OTHER",
+   "CA_LC_SOURCE_RECORD_NUM",
+   "CA_LC_SOURCE_MLS_NUM",
+   "CA_LC_APN",
+   "CA_LC_SITSIZE",
+   "CA_LC_DT_SALTIM1",
+   "CA_LC_PRICE",
+   "CA_LC_LATITUDE",
+   "CA_LC_LONGITUDE",
+   "CA_LC_GEOMATCH",
+   "CA_LC_ADDRESSVALIDATED"
+  ],
+  "groups": []
+ },
+ {
+  "group": "flow-ca-map-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/cost-approach",
+  "fields": [
+   "CA_MAP_EXHIBIT_DESCRIPTION",
+   "CA_MAP_EXHIBIT_CAPTION",
+   "CA_MAP_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ca-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/cost-approach",
+  "fields": [
+   "CA_EXHIBIT_DESCRIPTION",
+   "CA_EXHIBIT_CAPTION",
+   "CA_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "reconciliation",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "REC_INDICATED_VALUE",
+   "REC_INCOME_APPROACH",
+   "REC_COST_APPROACH",
+   "REC_REASON_FOR_EXCLUSION_INDICATED_VALUE",
+   "REC_REASON_FOR_EXCLUSION_INCOME_APPROACH",
+   "REC_REASON_FOR_EXCLUSION_INCOME_APPROACH_OTHER",
+   "REC_REASON_FOR_EXCLUSION_COST_APPROACH",
+   "REC_REASON_FOR_EXCLUSION_COST_APPROACH_OTHER",
+   "REC_CONTRACT_PRICE",
+   "REC_OPINION_MKT_VAL",
+   "REC_COOP_INTEREST",
+   "REC_PRO_RATA_CALC_METHOD",
+   "REC_MKT_VAL_COND",
+   "HIDDEN_REC-MKT-VAL-COND-PRINT_COUNT",
+   "REC_REASONABLE_EXPOSURE_TIME",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_PRECISE",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE",
+   "REC_REASONABLE_EXPOSURE_TIME_PRECISE",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_LOW",
+   "PU_REC_REASONABLE_EXPOSURE_TIME_RANGE_HIGH",
+   "RECEFFECTDATE",
+   "REC_FHA_REO_INSURABILITY",
+   "REC_FINAL_VAL_STATEMENT",
+   "REC_LBL_DISCLAIMER",
+   "CHECK_REC_CLIENT_REQUESTED_CONDITIONS_ENABLE",
+   "CHECK_REC_CLIENT_REQUESTED_CONDITIONS_DISABLE",
+   "REC_CONDITION_COMMENTARY",
+   "REC_MARKET_VALUE",
+   "REC_DEFECTS",
+   "REC_DEFECT_ASIS_RATING",
+   "REC_DEFECT_TOTAL_COST"
+  ],
+  "groups": [
+   "rec-mkt-val-cond-print",
+   "rec-client-requested-conditions-table",
+   "rec-addd-site-section",
+   "rec-ss-defects-damages-deficiencies-parent",
+   "rec-addd-vehicle-storage-section",
+   "rec-addd-subject-property-amenities-section",
+   "NoKeyProvided",
+   "reconciliation-documents",
+   "reconciliation-graphs",
+   "reconciliation-exhibit"
+  ]
+ },
+ {
+  "group": "rec-mkt-val-cond-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "REC_MKT_VAL_COND_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rec-client-requested-conditions-table",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "REC_CLIENT_VALUE_CONDITION",
+   "REC_CLIENT_MARKETING_TIME",
+   "REC_CLIENT_DURATION",
+   "REC_CLIENT_DURATION_AGE_RANGE_ENABLE",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_PRECISE_ENABLE",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_LOW",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_RANGE_HIGH",
+   "REC_CLIENT_DURATION_EFFECTIVE_AGE_PRECISE",
+   "REC_CLIENT_ALT_OPINION"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rec-addd-site-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "REC_SIT_DEF_FEATURE",
+   "REC_SIT_DEF_LOCATION",
+   "REC_SIT_DEF_DESC",
+   "REC_SIT_DEF_STRUCTURAL",
+   "REC_SIT_DEF_ACTION",
+   "REC_SIT_DEF_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rec-ss-defects-damages-deficiencies-parent",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [],
+  "groups": [
+   "rec-addd-dwelling-exterior",
+   "rec-addd-de-interior"
+  ]
+ },
+ {
+  "group": "rec-addd-dwelling-exterior",
+  "instance": 0,
+  "depth": 2,
+  "path": "/reconciliation/rec-ss-defects-damages-deficiencies-parent",
+  "fields": [],
+  "groups": [
+   "ssde1-rec-addd-dwelling-exterior-table"
+  ]
+ },
+ {
+  "group": "ssde1-rec-addd-dwelling-exterior-table",
+  "instance": 0,
+  "depth": 3,
+  "path": "/reconciliation/rec-ss-defects-damages-deficiencies-parent/rec-addd-dwelling-exterior",
+  "fields": [
+   "SSDE1_REC_DEUI_DEF_FEATURE",
+   "SSDE1_REC_DEUI_DEF_LOCATION",
+   "SSDE1_REC_DEUI_DEF_DESC",
+   "SSDE1_REC_DEUI_DEF_STRUCTURAL",
+   "SSDE1_REC_DEUI_DEF_ACTION",
+   "SSDE1_REC_DEUI_DEF_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rec-addd-de-interior",
+  "instance": 0,
+  "depth": 2,
+  "path": "/reconciliation/rec-ss-defects-damages-deficiencies-parent",
+  "fields": [],
+  "groups": [
+   "ssui1-rec-addd-de-interior-table"
+  ]
+ },
+ {
+  "group": "ssui1-rec-addd-de-interior-table",
+  "instance": 0,
+  "depth": 3,
+  "path": "/reconciliation/rec-ss-defects-damages-deficiencies-parent/rec-addd-de-interior",
+  "fields": [
+   "SSUI1_REC_UIDE_DEF_FEATURE",
+   "SSUI1_REC_UIDE_DEF_LOCATION",
+   "SSUI1_REC_UIDE_DEF_DESC",
+   "SSUI1_REC_UIDE_DEF_STRUCTURAL",
+   "SSUI1_REC_UIDE_DEF_ACTION",
+   "SSUI1_REC_UIDE_DEF_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rec-addd-vehicle-storage-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "REC_VS_DEF_FEATURE",
+   "REC_VS_DEF_LOCATION",
+   "REC_VS_DEF_DESC",
+   "REC_VS_DEF_STRUCTURAL",
+   "REC_VS_DEF_ACTION",
+   "REC_VS_DEF_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "rec-addd-subject-property-amenities-section",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "REC_SPA_DEF_FEATURE",
+   "REC_SPA_DEF_LOCATION",
+   "REC_SPA_DEF_DESC",
+   "REC_SPA_DEF_STRUCTURAL",
+   "REC_SPA_DEF_ACTION",
+   "REC_SPA_DEF_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "NoKeyProvided",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "REC_TOTAL_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "reconciliation-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "RECONCILIATION_DOCUMENT_DESCRIPTION",
+   "RECONCILIATION_DOCUMENT_CAPTION",
+   "RECONCILIATION_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "reconciliation-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "RECONCILIATION_GRAPH_DESCRIPTION",
+   "RECONCILIATION_GRAPH_CAPTION",
+   "RECONCILIATION_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "reconciliation-exhibit",
+  "instance": 0,
+  "depth": 1,
+  "path": "/reconciliation",
+  "fields": [
+   "RECONCILIATION_EXHIBIT_DESCRIPTION",
+   "RECONCILIATION_EXHIBIT_CAPTION",
+   "RECONCILIATION_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "revision",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_REVISION_HISTORY_ENABLE",
+   "CHECK_REVISION_HISTORY_DISABLED",
+   "RN_REPORT_VERSION",
+   "CHECK_REVISION_HISTORY_REC_VAL_ENABLE",
+   "CHECK_REVISION_HISTORY_REC_VAL_DISABLED"
+  ],
+  "groups": [
+   "prior-sales-revision",
+   "reconsideration-of-value"
+  ]
+ },
+ {
+  "group": "prior-sales-revision",
+  "instance": 0,
+  "depth": 1,
+  "path": "/revision",
+  "fields": [
+   "RN_DATE",
+   "RN_URAR_SECTION",
+   "RN_DESCRIPTION"
+  ],
+  "groups": []
+ },
+ {
+  "group": "reconsideration-of-value",
+  "instance": 0,
+  "depth": 1,
+  "path": "/revision",
+  "fields": [
+   "HIDDEN_RECONSIDERATION-OF-VALUE_COUNT",
+   "RN_REC_VAL_TYPE",
+   "RN_REC_VAL_DATE",
+   "RN_REC_VAL_RESULT",
+   "RN_REC_VAL_COMMENTARY"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supplemental",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "CHECK_SUPPLEMENTAL_INFORMATION_ENABLE",
+   "CHECK_SUPPLEMENTAL_INFORMATION_DISABLED"
+  ],
+  "groups": [
+   "supplemental-documents",
+   "supplemental-graphs",
+   "supplemental-exhibits"
+  ]
+ },
+ {
+  "group": "supplemental-documents",
+  "instance": 0,
+  "depth": 1,
+  "path": "/supplemental",
+  "fields": [
+   "SUPPLEMENTAL_DOCUMENT_DESCRIPTION",
+   "SUPPLEMENTAL_DOCUMENT_CAPTION",
+   "SUPPLEMENTAL_DOCUMENT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supplemental-graphs",
+  "instance": 0,
+  "depth": 1,
+  "path": "/supplemental",
+  "fields": [
+   "SUPPLEMENTAL_GRAPH_DESCRIPTION",
+   "SUPPLEMENTAL_GRAPH_CAPTION",
+   "SUPPLEMENTAL_GRAPH_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "supplemental-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/supplemental",
+  "fields": [
+   "SUPPLEMENTAL_EXHIBIT_DESCRIPTION",
+   "SUPPLEMENTAL_EXHIBIT_CAPTION",
+   "SUPPLEMENTAL_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "certifications",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "HIDDEN_SCOPE_OF_WORK",
+   "HIDDEN_INTENDED_USE",
+   "HIDDEN_INTENDED_USERS",
+   "HIDDEN_PRIOR_SERVICES",
+   "ADDITIONAL_SCOPE",
+   "ADDITIONAL_INTENDED_USE",
+   "ADDITIONAL_INTENDED_USERS",
+   "APPRAISER_CERT_1",
+   "APPRAISER_CERT_2",
+   "APPRAISER_CERT_3",
+   "APPRAISER_CERT_4",
+   "APPRAISER_CERT_5",
+   "APPRAISER_CERT_6",
+   "APPRAISER_CERT_7",
+   "APPRAISER_CERT_8",
+   "APPRAISER_CERT_9",
+   "APPRAISER_CERT_10",
+   "APPRAISER_CERT_11",
+   "APPRAISER_CERT_12",
+   "APPRAISER_CERT_13",
+   "APPRAISER_CERT_14",
+   "APPRAISER_CERT_15",
+   "APPRAISER_CERT_16",
+   "APPRAISER_CERT_17",
+   "APPRAISER_CERT_18",
+   "APPRAISER_CERT_19",
+   "APPRAISER_CERT_20",
+   "APPRAISER_CERT_21",
+   "APPRAISER_CERT_22",
+   "APPRAISER_CERT_23",
+   "APPRAISER_CERT_24",
+   "APPRAISER_CERT_25",
+   "APPRAISER_CERT_26",
+   "APPRAISER_CERT_28",
+   "APPRAISER_CERT_29",
+   "DSCR_PRIOR_SERVICE",
+   "SUPERVISORY_APPRAISER_CERT_1",
+   "SUPERVISORY_APPRAISER_CERT_2",
+   "SUPERVISORY_APPRAISER_CERT_3",
+   "SUPERVISORY_APPRAISER_CERT_4",
+   "ADDITIONAL_SCOPE_WORK_YES",
+   "ADDITIONAL_SCOPE_WORK_NO",
+   "ADDITIONAL_INTENDED_USE_YES",
+   "ADDITIONAL_INTENDED_USE_NO",
+   "ADDITIONAL_INTENDED_USER_YES",
+   "ADDITIONAL_INTENDED_USER_NO",
+   "SIGNIFICANT_REAL_PROPERTY_APPRAISAL_ASSISTANCE",
+   "DESCRIPTION_OF_PRIOR_SERVICES_YES",
+   "DESCRIPTION_OF_PRIOR_SERVICES_NO",
+   "ADDITIONAL_APPRAISER_CERTIFICATIONS_YES",
+   "ADDITIONAL_APPRAISER_CERTIFICATIONS_NO"
+  ],
+  "groups": [
+   "additional-appraiser-certification-row",
+   "additional-sup-appraiser-certification-row",
+   "signature-block"
+  ]
+ },
+ {
+  "group": "additional-appraiser-certification-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/certifications",
+  "fields": [
+   "ADDITIONAL_APPRAISER_CERT0"
+  ],
+  "groups": []
+ },
+ {
+  "group": "additional-sup-appraiser-certification-row",
+  "instance": 0,
+  "depth": 1,
+  "path": "/certifications",
+  "fields": [
+   "ADDITIONAL_SUP_APPRAISER_CERT0"
+  ],
+  "groups": []
+ },
+ {
+  "group": "signature-block",
+  "instance": 0,
+  "depth": 1,
+  "path": "/certifications",
+  "fields": [
+   "SIGNER_ROLE",
+   "SIGNATURE",
+   "SEAL",
+   "SIGNER_NAME",
+   "SIGNED_DATE",
+   "SIGNER_LIC_CERT_LEVEL",
+   "SIGNER_LIC_CERT_ID",
+   "SIGNER_LIC_CERT_STATE",
+   "SIGNER_LIC_CERT_EXPIRATION"
+  ],
+  "groups": []
+ },
+ {
+  "group": "dwelling-exterior",
+  "instance": 0,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "DE1_HIDDEN_MOBILE_STATUS_SECTION_INSTANCE_DWELLING",
+   "DE1_SECTION_KEY",
+   "DE1_SECTION_GUID",
+   "DE1_IS_MANUFACTURED_HOME",
+   "DE1_HIDDEN_CONVERT-AREA-REST-OF-LIVING_COUNT",
+   "DE1_HIDDEN_EXTERIOR-FEATURES_COUNT",
+   "DE1_HIDDEN_DWELLING_EXTERIOR_CONVERTED_AREA_REST_OF_LIVING_VISIBLE",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_COMMENTARY",
+   "DE1_SECTION_DESCRIPTION",
+   "DE1_SECTION_CAPTION",
+   "DE1_SECTION_REPORT_SETUP_DROPDOWN",
+   "DE1_UNIT_NUMS",
+   "DE1_STRUCTURE_DESIGN_TYPE",
+   "DE1_STRUCTURE_DESIGN_TYPE_OTHER",
+   "DE1_FLOORS",
+   "DE1_STYLE",
+   "DE1_STYLE_OTHER",
+   "DE1_FRONT_DOOR_ELEV",
+   "DE1_TOWNHOUSE_END_UNIT",
+   "DE1_TOWNHOUSE_BACK2BACK",
+   "DE1_UNITS_ABOVE_OR_BELOW",
+   "DE1_TOWNHOUSE_LOC",
+   "DE1_PJIYRBUILT",
+   "DE1_HIDDEN_MOBILE_DWELL_ATTACHMENT_TYPE",
+   "DE1_HIDDEN_MOBILE_DWELL_HORESPMAINT",
+   "DE1_PUIYRBUILT",
+   "DE1_PUIYRBUILT_ESTIMATED",
+   "DE1_CONST_METHOD",
+   "DE1_CONST_METHOD_OTHER",
+   "DE1_HIDDEN_CONSTRUCTION-METHOD-PRINT_COUNT",
+   "DE1_CONVERTED_AREA",
+   "DE1_CONVERTED_AREA_REST_OF_LIVING_VISIBLE",
+   "DE1_FACTORY_BLT_CERT",
+   "DE1_STRUCTURE_VOL",
+   "DE1_WINDOW_SURFACE_AREA",
+   "DE1_GROSS_FINISHED_AREA_SF",
+   "DE1_ATTIC_PP",
+   "DE1_ATTIC_ACCESIBLE_FOR_OBSERVATION",
+   "DE1_ATTIC_VISUAL_OBSERVATION_COMPLETED",
+   "DE1_ATTIC",
+   "DE1_REMAINING_ECO_LIFE",
+   "DE1_EFFECTIVE_AGE",
+   "DE1_EFFECTIVE_AGE_PRECISE_ENABLE",
+   "DE1_EFFECTIVE_AGE_RANGE_ENABLE",
+   "DE1_HIDDEN_MOBILE_AGE_PRECISE_OR_RANGE",
+   "DE1_EFFECTIVE_AGE_PRECISE",
+   "DE1_EFFECTIVE_AGE_RANGE_LOW",
+   "DE1_EFFECTIVE_AGE_RANGE_HIGH",
+   "DE1_ECONOMIC_LIFE_COMMENTARY",
+   "DE1_ECONOMIC_AGE_COMMENTARY",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_FEATURES",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_WINDOWS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_ROOF",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_FOUNDATION",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_WALLS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QUALITY_AND_CONDTION",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QUALITY_AND_CONDTION_FIELDS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_GENERAL_INFORMATION",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_AGE_REM_ECONOMIC_LIFE",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_AGE_REM_ECONOMIC_LIFE_FIELDS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_CONVERTED_AREAS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_ADDITIONAL_PHOTOS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_FRONT_AND_REAR_PHOTOS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_LIFE_COMMENTARY",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_AGE_COMMENTARY",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_MECHANICAL_SYSTEM_DETAILS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_MECHANICAL_SYSTEM_DETAILS_FIELDS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_DEFECTS_DAMAGES_DEFICIENCIES",
+   "DE1_PHOTO1",
+   "DE1_EXT_QUAL_RATING",
+   "DE1_EXT_COND_RATING",
+   "DE1_RATINGS_TABLE",
+   "DE1_HIDDEN_EXTERIOR-FOUNDATION_COUNT",
+   "DE1_HIDDEN_EXTERIOR-FEATURE-OTHER_COUNT",
+   "DE1_LBL_NONCONT_FIN_AREA",
+   "DE1_CHECK_EXT_NONCONT_FIN_AREA_ENABLE",
+   "DE1_CHECK_EXT_NONCONT_FIN_AREA_DISABLE",
+   "DE1_FINISHED_AREA_TOTAL_AREA",
+   "DE1_FINISHED_AREA_TOTAL_AREA_VALUE",
+   "DE1_FINISHED_AREA_TOTAL_AREA_MEASURE",
+   "DE1_HIDDEN_NONCONT-FINISHED-AREA_COUNT",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_NONCONTINUOUS_FINISHED_AREA_FIELDS",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_NONCONTINUOUS_FINISHED_AREA",
+   "DE1_HIDDEN_DE-SYSTEM-MECHANICALS-HEAT_COUNT",
+   "DE1_HIDDEN_DE-SYSTEM-MECHANICALS-COOLING-PRINT_COUNT",
+   "DE1_HEAT_BELOW_GRADE_YES",
+   "DE1_HEAT_BELOW_GRADE_NO",
+   "DE1_HIDDEN_MOBILE_DWELL_HEAT_BELOW_GRADE",
+   "DE1_HIDDEN_DE-OTHER-MECH-PRINT_COUNT",
+   "DE1_HIDDEN_DE-OTHER-MECH_COUNT",
+   "DE1_HIDDEN_MOBILE_DWELLING_MECHANICAL_DEFECT_ENABLE",
+   "DE1_HIDDEN_MOBILE_DWELLING_MECHANICAL_DEFECT_DISABLE",
+   "DE1_8.054",
+   "DE1_DEFECT_STATEMENT",
+   "DE1_CHECK_DEFECT_DAMAGES_DEFICIENCIES_ENABLE",
+   "DE1_CHECK_DEFECT_DAMAGES_DEFICIENCIES_DISABLE",
+   "DE1_HIDDEN_DWELLING-DEFECTS_COUNT",
+   "DE1_EXTERIOR_COMMENTARY",
+   "DE1_HIDDEN_EXTERIOR-EXHIBITS_COUNT"
+  ],
+  "groups": [
+   "de1-construction-method-print",
+   "de1-convert-area-rest-of-living",
+   "de1-exterior-walls",
+   "de1-exterior-foundation",
+   "de1-exterior-surface",
+   "de1-exterior-windows",
+   "de1-exterior-feature-other",
+   "de1-noncont-finished-area",
+   "de1-de-system-mechanicals-heat",
+   "de1-de-system-mechanicals-cooling",
+   "de1-de-system-mechanicals-cooling-print",
+   "de1-de-other-mech",
+   "de1-de-other-mech-print",
+   "de1-dwelling-defects",
+   "de1-exterior-exhibits"
+  ]
+ },
+ {
+  "group": "de1-construction-method-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_CONST_METHOD_LABEL_PRINT",
+   "DE1_CONST_METHOD_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-convert-area-rest-of-living",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_CONVERTED_AREA_REST_OF_LIVING_AREA_LABEL",
+   "DE1_CONVERTED_AREA_REST_OF_LIVING_AREA",
+   "DE1_PU_CONVERTED_AREA_REST_OF_LIVING_AREA",
+   "DE1_PU_CONVERTED_AREA_REST_OF_LIVING_AREA_OTHER",
+   "DE1_PU_CONVERTED_AREA_REST_OF_LIVING_AREA_SIMILARITY",
+   "DE1_HIDDEN_MOBILE_STATUS_DWEL_CONVERT_AREA"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-exterior-walls",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_EXTEXTWALLS_MOBILE_DDD_LINK_ID",
+   "DE1_EXTEXTWALLS",
+   "DE1_EXTEXTWALLS_OTHER",
+   "DE1_EXT_FEAT_QUALITY_COMMENT",
+   "DE1_EXT_FEAT_COND_STATUS",
+   "DE1_EXT_FEAT_COND_COMMENT",
+   "DE1_HIDDEN_MOBILE_DWELLING_WALLS_DEFECT_ENABLE",
+   "DE1_HIDDEN_MOBILE_DWELLING_WALLS_DEFECT_DISABLE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-exterior-foundation",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_EXT_FOUNDATION_MOBILE_DDD_LINK_ID",
+   "DE1_LABEL_FOUNDATION_TEST",
+   "DE1_EXT_FOUNDATION_DETAIL",
+   "DE1_EXT_FUND_ACCESSIBLE_FOR_OBSERVATION",
+   "DE1_EXT_FUND_VISUAL_OBSERVATION_COMPLETED",
+   "DE1_EXT_FOUNDATION_QUALITY_COMMNENT",
+   "DE1_EXT_FOUNDATION_STATUS",
+   "DE1_EXT_FOUNDATION_COND_COMMENT",
+   "DE1_HIDDEN_MOBILE_STATUS_DWEL_FOUNDATION",
+   "DE1_HIDDEN_MOBILE_DWELLING_FOUND_DEFECT_ENABLE",
+   "DE1_HIDDEN_MOBILE_DWELLING_FOUND_DEFECT_DISABLE"
+  ],
+  "groups": [
+   "de1-ext-foundation-detail"
+  ]
+ },
+ {
+  "group": "de1-ext-foundation-detail",
+  "instance": 0,
+  "depth": 2,
+  "path": "/dwelling-exterior/de1-exterior-foundation",
+  "fields": [
+   "DE1_EXT_FOUNDATION_MATERIAL_DETAIL",
+   "DE1_EXT_FOUNDATION_MATERIAL_DETAIL_OTHER",
+   "DE1_EXT_FOUNDATION_TYPE_DETAIL",
+   "DE1_EXT_FOUNDATION_TYPE_DETAIL_OTHER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-exterior-surface",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_EXTRFSURFACE_MOBILE_DDD_LINK_ID",
+   "DE1_EXTRFSURFACE",
+   "DE1_EXTRFSURFACE_OBSERVABLE",
+   "DE1_EXTRFSURFACE_TYPE",
+   "DE1_EXTRFSURFACE_TYPE_OTHER",
+   "DE1_EXTRFSURFACE_AGE",
+   "DE1_EXT_ROOF_QUALITY_COMMNENT",
+   "DE1_EXT_ROOF_STATUS",
+   "DE1_EXT_ROOF_COND_COMMENT",
+   "DE1_HIDDEN_MOBILE_DWELLING_ROOF_DEFECT_ENABLE",
+   "DE1_HIDDEN_MOBILE_DWELLING_ROOF_DEFECT_DISABLE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-exterior-windows",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_EXT_WINDOW_MOBILE_DDD_LINK_ID",
+   "DE1_EXT_WINDOW_DETAIL",
+   "DE1_EXT_WINDOW_QUALITY_COMMNENT",
+   "DE1_EXT_WINDOW_STATUS",
+   "DE1_EXT_WINDOW_COND_COMMENT",
+   "DE1_HIDDEN_MOBILE_DWELLING_WINDOWS_DEFECT_ENABLE",
+   "DE1_HIDDEN_MOBILE_DWELLING_WINDOWS_DEFECT_DISABLE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-exterior-feature-other",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_EXT_OTHER_MOBILE_DDD_LINK_ID",
+   "DE1_EXT_OTHER",
+   "DE1_EXT_OTHER_DETAIL",
+   "DE1_EXT_OTHER_QUALITY_COMMNENT",
+   "DE1_EXT_OTHER_STATUS",
+   "DE1_EXT_OTHER_COND_COMMENT",
+   "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_OTHER_FEATURE",
+   "DE1_HIDDEN_MOBILE_DWELLING_OTHER_DEFECT_ENABLE",
+   "DE1_HIDDEN_MOBILE_DWELLING_OTHER_DEFECT_DISABLE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-noncont-finished-area",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_FINISHED_AREA_LABEL",
+   "DE1_FINISHED_AREA_ROOM_SUMMARY_ROW_ID",
+   "DE1_FINISHED_AREA_ROOM_SUMMARY",
+   "DE1_FINISHED_AREA_ROOM_SUMMARY_TOTAL_ROOM",
+   "DE1_FINISHED_AREA_ROOM_SUMMARY_ROOM_TYPE",
+   "DE1_FINISHED_AREA_ROOM_SUMMARY_OTHER",
+   "DE1_HIDDEN_MOBILE_STATUS_DWEL_ROOM_TYPE"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-de-system-mechanicals-heat",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_HEAT_SYSTEM_LABEL",
+   "DE1_HEAT_SYSTEM",
+   "DE1_HEAT_SYSTEM_OTHER",
+   "DE1_HEAT_DETAIL",
+   "DE1_HEAT_SYSTEM_DETAIL_OTHER",
+   "DE1_HEAT_SYSTEM_DETAIL_OTHER_DESCRIPTION",
+   "DE1_HIDDEN_MOBILE_DWELL_TYP_FOR_MARKET",
+   "DE1_HIDDEN_MOBILE_STATUS_DWEL_HEATING_SYSTEM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-de-system-mechanicals-cooling",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_COOL_SYSTEM_LABEL",
+   "DE1_COOL_SYSTEM_LABEL_PRINT",
+   "DE1_COOL_SYSTEM",
+   "DE1_COOL_SYSTEM_OTHER",
+   "DE1_HIDDEN_MOBILE_STATUS_DWEL_COOLING_SYSTEM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-de-system-mechanicals-cooling-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_COOL_SYSTEM_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-de-other-mech",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_OTHER_MECH_SYSTEM_LABEL",
+   "DE1_OTHER_MECH_SYSTEM",
+   "DE1_OTHER_MECH_SYSTEM_OTHER",
+   "DE1_HIDDEN_MOBILE_STATUS_DWEL_OTHER_SYSTEM"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-de-other-mech-print",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_OTHER_MECH_SYSTEM_LABEL_PRINT",
+   "DE1_OTHER_MECH_SYSTEM_PRINT"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-dwelling-defects",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_DEFECT_FEATURE",
+   "DE1_DEFECT_FEATURE_OTHER",
+   "DE1_DEFECT_LOCATION",
+   "DE1_DEFECT_DESC",
+   "DE1_DEFECT_INTEGRITY",
+   "DE1_DEFECT_RECOMMEND_ACTION",
+   "DE1_DEFECT_ROW_ID",
+   "DE1_DEFECT_MOBILE_FEATURE_LINK_ID",
+   "DE1_HIDDEN_MOBILE_DWELLING_DEFECT_STATUS",
+   "DE1_HIDDEN_DEFECT_REPAIR_COST"
+  ],
+  "groups": []
+ },
+ {
+  "group": "de1-exterior-exhibits",
+  "instance": 0,
+  "depth": 1,
+  "path": "/dwelling-exterior",
+  "fields": [
+   "DE1_EXTERIOR_EXHIBIT_GUID_ID",
+   "DE1_EXTERIOR_EXHIBIT_REQUIRED_GUID_ID",
+   "DE1_EXTERIOR_EXHIBIT_CATEGORY",
+   "DE1_EXTERIOR_EXHIBIT_DESCRIPTION",
+   "DE1_EXTERIOR_EXHIBIT_CAPTION",
+   "DE1_EXTERIOR_EXHIBIT_PHOTO"
+  ],
+  "groups": []
+ },
+ {
+  "group": "order",
+  "instance": -2,
+  "depth": 0,
+  "path": "",
+  "fields": [
+   "ORD_SECTION_KEY",
+   "ORD_SECTION_GUID",
+   "ORD_SECTION_DESCRIPTION",
+   "ORD_SECTION_CAPTION",
+   "ORD_SECTION_REPORT_SETUP_DROPDOWN",
+   "ORD_REPORT_DESC",
+   "ORD_SUBPROPADDRESS_FULL",
+   "ORD_COUNTY",
+   "ORD_NEIGHBORHOOD",
+   "ORD_LEGAL_DESCRIPTION",
+   "ORD_TAX_YEAR",
+   "ORD_TAXES",
+   "ORD_SPECIAL_TAX_ASSESSMENTS",
+   "ORD_YEAR_BUILT",
+   "ORD_TOTAL_FLOORS",
+   "ORD_TOTAL_ROOMS",
+   "ORD_TOTAL_BEDROOMS",
+   "ORD_TOTAL_BATHROOMS",
+   "ORD_SQUARE_FOOTAGE",
+   "ORD_TOTAL_SITE_SIZE",
+   "ORD_INTERNAL_ORDER_NUMBER",
+   "ORD_CLIENT_FILE_NUMBER",
+   "ORD_LENDER_CASE_NUMBER",
+   "ORD_FHA_VA_CASE_NUMBER",
+   "ORD_ORDER_DATE",
+   "ORD_PROJECT_TYPE",
+   "ORD_LOAN_AMOUNT",
+   "ORD_SALE_DATE",
+   "ORD_DUE_DATE",
+   "ORD_REPORT_TYPE",
+   "ORD_REFINANCE",
+   "ORD_OWNER_EST_VAL",
+   "ORD_PRIORITY",
+   "ORD_LOAN_TYPE",
+   "ORD_SALE_PRICE",
+   "ORD_PROP_RIGHTS",
+   "ORD_APPOINTMENT_DATE",
+   "ORD_APPOINTMENT_TIME",
+   "ORD_APPOINTMENT_DURATION",
+   "ORD_APPOINTMENT_SCHEDULED_BY",
+   "ORD_APPOINTMENT_ATTEMPTS",
+   "ORD_APPOINTMENT_CONTACT",
+   "ORD_OCCUPANCY",
+   "ORD_APPOINTMENT_NOTES",
+   "ORD_ACCESS_NOTES",
+   "ORD_CHECK_APPOINTMENT_REQUIRED",
+   "ORD_CHECK_CALL_OCCUPANT_FIRST",
+   "ORD_CHECK_HOSTILE_OCCUPANT",
+   "ORD_CHECK_KEY_WITH_AGENT",
+   "ORD_CHECK_LOCK_BOX",
+   "ORD_CHECK_NEW_CONSTRUCTION",
+   "ORD_CHECK_PETS_ON_PROPERTY",
+   "ORD_INSTRUCTIONS_FROM_CLIENT",
+   "ORD_EXCEPTIONS_RELEASES_ETC",
+   "ORD_GENERAL_NOTES",
+   "ORD_HIDDEN_APN_COUNT",
+   "ORD_HIDDEN_CONTACT_COUNT",
+   "ORD_HIDDEN_APPRAISER_COUNT",
+   "ORD_HIDDEN_SUPERVISOR_COUNT",
+   "ORD_HIDDEN_SRPA_COUNT",
+   "ORD_HIDDEN_BORROWER-CONTACT_COUNT",
+   "ORD_HIDDEN_SELLER-CONTACT_COUNT",
+   "ORD_HIDDEN_OWNER-CONTACT_COUNT",
+   "ORD_HIDDEN_OTHER-CONTACT_COUNT"
+  ],
+  "groups": [
+   "ord-dfe-property-address",
+   "ord-apn",
+   "ord-contact",
+   "ord-appraiser",
+   "ord-supervisor",
+   "ord-srpa",
+   "ord-borrower-contact",
+   "ord-seller-contact",
+   "ord-owner-contact",
+   "ord-occupant-contact",
+   "ord-agent-contact",
+   "ord-other-contact"
+  ]
+ },
+ {
+  "group": "ord-dfe-property-address",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_SUBPROPADDRESS",
+   "ORD_SUBUNITNO",
+   "ORD_SUBCITY",
+   "ORD_SUBSTATE",
+   "ORD_SUBZIP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-apn",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_APN"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_CONTACT_LABEL_HEADER",
+   "ORD_IS_CONTACT_CLIENT",
+   "ORD_CONTACT_CLIENT",
+   "ORD_CONTACT_DESC",
+   "ORD_CONTACT_FULL_NAME",
+   "ORD_CONTACT_BRANCH",
+   "ORD_CONTACT_ADDR",
+   "ORD_CONTACT_TYPE",
+   "ORD_CONTACT_PARTY_ROLE",
+   "ORD_CONTACT_CLIENT_REFERENCE_ID",
+   "ORD_CONTACT_AMC_REFERENCE_ID",
+   "ORD_CONTACT_CRED_ID",
+   "ORD_CONTACT_CRED_STATE",
+   "ORD_CONTACT_CRED_EXP"
+  ],
+  "groups": [
+   "ord-contact-address"
+  ]
+ },
+ {
+  "group": "ord-contact-address",
+  "instance": 0,
+  "depth": 2,
+  "path": "/order/ord-contact",
+  "fields": [
+   "ORD_PU_CONTACT_ADDRESS",
+   "ORD_PU_CONTACT_CITY",
+   "ORD_PU_CONTACT_STATE",
+   "ORD_PU_CONTACT_ZIP"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-appraiser",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_APPRAISER_CONTACT_TYPE",
+   "ORD_APPRAISER_PARTY_ROLE_TYPE",
+   "ORD_APPRAISER_NAME",
+   "ORD_PU_APPRAISER_FIRST_NAME",
+   "ORD_PU_APPRAISER_MIDDLE_NAME",
+   "ORD_PU_APPRAISER_LAST_NAME",
+   "ORD_PU_APPRAISER_SUFFIX_NAME",
+   "ORD_APPRAISER_DESIGNATION",
+   "ORD_APPRAISER_COMPANY_NAME",
+   "ORD_APPRAISER_COMPANY_ADDR",
+   "ORD_PU_APPRAISER_ADDRESS",
+   "ORD_PU_APPRAISER_CITY",
+   "ORD_PU_APPRAISER_STATE",
+   "ORD_PU_APPRAISER_ZIP",
+   "ORD_APPRAISER_REFERENCE_ID",
+   "ORD_APPRAISER_LEVEL",
+   "ORD_APPRAISER_CRED_ID",
+   "ORD_APPRAISER_CRED_STATE",
+   "ORD_APPRAISER_CRED_EXPIRES",
+   "ORD_APPRAISER_ASC_IDENTIFIER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-supervisor",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_SUPERVISOR_CONTACT_TYPE",
+   "ORD_SUPERVISOR_PARTY_ROLE_TYPE",
+   "ORD_SUPERVISOR_NAME",
+   "ORD_PU_SUPERVISOR_FIRST_NAME",
+   "ORD_PU_SUPERVISOR_MIDDLE_NAME",
+   "ORD_PU_SUPERVISOR_LAST_NAME",
+   "ORD_PU_SUPERVISOR_SUFFIX_NAME",
+   "ORD_SUPERVISOR_DESIGNATION",
+   "ORD_SUPERVISOR_COMPANY_NAME",
+   "ORD_SUPERVISOR_COMPANY_ADDR",
+   "ORD_PU_SUPERVISOR_ADDRESS",
+   "ORD_PU_SUPERVISOR_CITY",
+   "ORD_PU_SUPERVISOR_STATE",
+   "ORD_PU_SUPERVISOR_ZIP",
+   "ORD_SUPERVISOR_LEVEL",
+   "ORD_SUPERVISOR_CRED_ID",
+   "ORD_SUPERVISOR_CRED_STATE",
+   "ORD_SUPERVISOR_CRED_EXPIRES",
+   "ORD_SUPERVISOR_ASC_IDENTIFIER"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-srpa",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_SRPA_CONTACT_TYPE",
+   "ORD_SRPA_PARTY_ROLE_TYPE",
+   "ORD_SRPA_NAME",
+   "ORD_PU_SRPA_FIRST_NAME",
+   "ORD_PU_SRPA_MIDDLE_NAME",
+   "ORD_PU_SRPA_LAST_NAME",
+   "ORD_PU_SRPA_SUFFIX_NAME",
+   "ORD_SRPA_LEVEL",
+   "ORD_SRPA_CRED_ID",
+   "ORD_SRPA_CRED_STATE",
+   "ORD_SRPA_CRED_EXPIRES"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-borrower-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_BORROWER_NAME",
+   "ORD_PU_BORROWER_TYPE",
+   "ORD_PU_BORROWER_FIRST_NAME",
+   "ORD_PU_BORROWER_MIDDLE_NAME",
+   "ORD_PU_BORROWER_LAST_NAME",
+   "ORD_PU_BORROWER_SUFFIX_NAME",
+   "ORD_PU_BORROWER_ENTITY_NAME",
+   "ORD_BORROWER_WORK_PHONE",
+   "ORD_BORROWER_MOBILE_PHONE",
+   "ORD_BORROWER_EMAIL"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-seller-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_SELLER_NAME",
+   "ORD_PU_SELLER_TYPE",
+   "ORD_PU_SELLER_FIRST_NAME",
+   "ORD_PU_SELLER_MIDDLE_NAME",
+   "ORD_PU_SELLER_LAST_NAME",
+   "ORD_PU_SELLER_SUFFIX_NAME",
+   "ORD_PU_SELLER_ENTITY_NAME",
+   "ORD_SELLER_WORK_PHONE",
+   "ORD_SELLER_MOBILE_PHONE",
+   "ORD_SELLER_EMAIL"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-owner-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_OWNER_NAME",
+   "ORD_PU_OWNER_SAME_AS_BORROWER",
+   "ORD_PU_OWNER_SAME_AS_SELLER",
+   "ORD_PU_OWNER_TYPE",
+   "ORD_PU_OWNER_FIRST_NAME",
+   "ORD_PU_OWNER_MIDDLE_NAME",
+   "ORD_PU_OWNER_LAST_NAME",
+   "ORD_PU_OWNER_SUFFIX_NAME",
+   "ORD_PU_OWNER_ENTITY_NAME",
+   "ORD_OWNER_WORK_PHONE",
+   "ORD_OWNER_MOBILE_PHONE",
+   "ORD_OWNER_EMAIL"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-occupant-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_OCCUPANT_NAME",
+   "ORD_PU_OCCUPANT_FIRST_NAME",
+   "ORD_PU_OCCUPANT_MIDDLE_NAME",
+   "ORD_PU_OCCUPANT_LAST_NAME",
+   "ORD_PU_OCCUPANT_SUFFIX_NAME",
+   "ORD_OCCUPANT_WORK_PHONE",
+   "ORD_OCCUPANT_MOBILE_PHONE",
+   "ORD_OCCUPANT_EMAIL"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-agent-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_AGENT_NAME",
+   "ORD_PU_AGENT_FIRST_NAME",
+   "ORD_PU_AGENT_MIDDLE_NAME",
+   "ORD_PU_AGENT_LAST_NAME",
+   "ORD_PU_AGENT_SUFFIX_NAME",
+   "ORD_AGENT_WORK_PHONE",
+   "ORD_AGENT_MOBILE_PHONE",
+   "ORD_AGENT_EMAIL"
+  ],
+  "groups": []
+ },
+ {
+  "group": "ord-other-contact",
+  "instance": 0,
+  "depth": 1,
+  "path": "/order",
+  "fields": [
+   "ORD_OTHER_NAME",
+   "ORD_PU_OTHER_FIRST_NAME",
+   "ORD_PU_OTHER_MIDDLE_NAME",
+   "ORD_PU_OTHER_LAST_NAME",
+   "ORD_PU_OTHER_SUFFIX_NAME",
+   "ORD_OTHER_WORK_PHONE",
+   "ORD_OTHER_MOBILE_PHONE",
+   "ORD_OTHER_EMAIL"
+  ],
+  "groups": []
+ }
+]

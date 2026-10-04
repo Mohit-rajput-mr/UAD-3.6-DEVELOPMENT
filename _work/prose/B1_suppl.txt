@@ -1,0 +1,275 @@
+
+<<<PAGE 1 of 9>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the Federal 
+Housing Finance Agency. 
+© 2023 Freddie Mac and Fannie Mae. Trademarks of the respective owners.  
+Uniform Appraisal Dataset (UAD) Specification 
+ 
+
+<<<PAGE 2 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 2 
+Revision History 
+Date 
+Version 
+Revision Description 
+12/12/2023 
+1.0 
+Initial publication 
+ 
+ 
+ 
+
+<<<PAGE 3 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 3 
+Table of Contents 
+Revision History .............................................................................................................................................. 2 
+Table of Contents ............................................................................................................................................ 3 
+Introduction .................................................................................................................................................... 4 
+Usability and Implementation Guidance ......................................................................................................... 4 
+Enumerated Values ------------------------------------------------------------------------------------------------------------ 4 
+Calculations ---------------------------------------------------------------------------------------------------------------------- 4 
+Integration with Public Records and Other Industry Data Repositories --------------------------------------------- 5 
+Additional Data Entry Guidance --------------------------------------------------------------------------------------------- 5 
+Integration with UAD Compliance API ------------------------------------------------------------------------------------- 6 
+Single Source for Data Entry ------------------------------------------------------------------------------------------------- 6 
+Terminology --------------------------------------------------------------------------------------------------------------------- 6 
+Data Integrity -------------------------------------------------------------------------------------------------------------------- 7 
+Data Entry Aid ------------------------------------------------------------------------------------------------------------------- 9 
+ 
+ 
+ 
+ 
+
+<<<PAGE 4 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 4 
+Introduction 
+The Uniform Appraisal Dataset (UAD) URAR Implementation iGuide - Supplement - Usability and Implementation 
+document provides guidance for creating the user interface for the Uniform Residential Appraisal Report (URAR).  
+The information in this document should be used in conjunction with Appendix A-1 URAR Delivery Specification, 
+Appendix B-1 URAR Implementation Guide, and Appendix F-1 URAR Reference Guide. 
+Usability and Implementation Guidance  
+The UAD Redesign project focuses on capturing discrete data and minimizes the dependence on free-form text. 
+This shift helps to reduce subjectivity, enhance impartiality, and improve data consistency. Discrete, machine-
+readable data will allow stakeholders to implement more streamlined review processes across all property types. 
+Enumerated Values  
+The new UAD reduces the number of discretionary fields and relies more on fields with defined values to reduce 
+subjectivity. Each data point name that ends with the word “Type” has a set of defined enumerated values. 
+Appendix A-1 URAR Delivery Specification has approximately 180 unique data points that have defined 
+enumerations. The specification includes definitions for each data point and each enumerated value.  
+1. Indicate when more than one selection/enumeration is supported. 
+Purpose: Informing appraisers when a field permits multiple selections allows them to provide all defined 
+values pertinent to the property thereby reducing subjectivity. 
+For example, the DataSourceType has many valid values and multiple data sources may be indicated. 
+In addition to the defined enumerated values, many of these fields have “Other” and “None” as options. 
+ 
+When “Other” is selected… 
+o Prompt the user to provide a description. (Only the description displays on the report.)  
+o Indicate that the description may not overlap or duplicate a valid value.  
+ 
+Example: If “Other” is selected and either “PDR” or “Property Data Report” is 
+provided for the description, the appraiser should be prompted to use the 
+enumerated value of “Property Data Report.” 
+ 
+When “None” is Selected… 
+o Disable additional valid values from being selected. 
+Calculations 
+2. Perform calculations (subtotals and totals). Allow users to override system calculations.  
+Purpose: By having the calculations performed systematically, it helps to prevent simple math errors. 
+The following are examples of where system calculations can be implemented. 
+ 
+Price per Square Foot 
+ 
+Finished Area and Unfinished Area 
+ 
+Above Grade and Below Grade Area 
+ 
+ 
+
+<<<PAGE 5 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 5 
+Integration with Public Records and Other Industry Data Repositories  
+3. Integrate to industry data sources and present that information as a data entry aid.  
+Purpose: Ease data entry for appraiser; confirm information is entered accurately. 
+ 
+Allow user to select information and add to report and modify/override as needed.  
+ 
+Allow for the import of information from other sources, e.g., Multiple Listing Service (MLS). 
+An example of when an override may be necessary could occur with public record information. Public 
+records may show a property as having 1,326 sq. ft. of finished area, however measuring to ANSI standards 
+requires the finished area to display as 900 sq. ft. on the first floor, 200 sq. ft. on the second floor, and an 
+additional 226 sq. ft. of finished nonstandard area on the second floor. 
+Additional Data Entry Guidance 
+4. Provide the user with an integrated reference feature that provides additional guidance, information, 
+and/or definitions.  
+Purpose: To provide a consistent understanding of information and available options. The UAD artifacts may 
+be leveraged to provide this information. 
+Some examples are hover/mouseover, pop-ups or hyperlinks that allow users to access definitions and/or 
+additional information.  
+Appendix F-1 URAR Reference Guide contains the language that vendors should utilize in the development of 
+the user interface. Sections where a reference feature are recommended include but are not limited to:  
+ 
+Subject Property 
+o Provide definitions for Accessory Dwelling Unit, Community Land Trust (CLT), Subject Site 
+Owned in Common. 
+ 
+Site 
+o Provide definitions for Primary Site Valuation Methods “Allocation” and “Extraction”. 
+o Provide definitions for APN Description. 
+ 
+Disaster Mitigation 
+o Provide definitions for Disaster Mitigation Features. 
+ 
+Sketch 
+o Provide definitions for the distinction between Sketch and Floor Plan. 
+ 
+Dwelling Exterior 
+o Provide guidance for Front Door Elevation, specifically the “Notes” and “Examples” sections 
+in Appendix F URAR Reference Guide. 
+o Provide instructions for explanations regarding how Condition Status is to be filled out when 
+a Recommended Action has been assigned to the Apparent Defects, Damages, and 
+Deficiencies subsection. 
+o Provide definitions for Noncontinuous Finished Area. 
+ 
+Unit Interior 
+o Provide instructions for Levels in Unit and Level and Room Detail. 
+
+<<<PAGE 6 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 6 
+o Provide definitions for Overall Update Status for Bathrooms and Overall Update Status for 
+Flooring. 
+ 
+Sales Comparison Approach 
+o Provide guidance around Key Concepts in the Reference Guide.  
+ 
+Fields that are Not Applicable. 
+ 
+General Guidance on Dynamic Rows. 
+ 
+Adjustments (overall/rollup adjustments vs line-item adjustments). 
+5. Provide the user access to the Quality and Condition rating definitions provided by the GSEs in Appendix F-
+1 URAR Reference Guide on the Fannie Mae UAD and Freddie Mac UAD pages.  
+Purpose: Quality and Condition ratings describe the physical quality and condition of a property as of the 
+effective date of the appraisal on an absolute basis, not on a relative basis or how a property relates to other 
+properties. Linking to this information provides easy access to the reference guide for selecting the 
+appropriate quality and condition ratings based on the criteria defined. 
+6. Check that the section commentary and discrete data fields are used as intended. 
+Purpose: Direct appraisers to use section commentary only for text pertinent to the section and instruct 
+users to use discrete data fields rather than stating, “See attached addendum”, “See Addenda” or variations 
+of those terms.  
+Integration with UAD Compliance API 
+7. Integrate with the GSEs’ UAD Compliance API to check data early and often to verify the data complies 
+with the UAD specification for conditionality and completeness.   
+Purpose: Provides the ability to check and correct data early in the process to improve efficiency.  This API 
+will check to ensure the XML is well formed based on the UAD Subschema; follows conditionality, cardinality, 
+and completeness of the UAD Specification. 
+Single Source for Data Entry 
+8. Have a single source of data entry when data displays in multiple areas of the report. 
+Purpose: To minimize discrepancies and maximize data consistency throughout the report. 
+ 
+Data should flow to all appropriate areas.  
+ 
+Provide an alert or notice of the fields that are being pre-populated or changed.  
+For example, the subject property Quality and Condition ratings entered in the Overall Quality and 
+Condition section should repopulate to the Sales Comparison Approach. 
+Terminology 
+9. Leverage the GSEs’ Guides to communicate unacceptable appraisal practices and flag unsupported 
+assumptions, veiled language, or specific words for the appraiser.   
+Purpose: To raise awareness of potentially prohibited language and/or practices. 
+Focus on text fields where commentary, analysis, and descriptions are provided. For examples, reference the 
+Fannie Mae Selling Guide and Freddie Mac Single-Family Seller/Servicer Guide.  
+
+<<<PAGE 7 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 7 
+Data Integrity 
+10. Provide reasonableness checks for data integrity; confirm that information entered in one location doesn’t 
+conflict with another and adheres to conditionality. 
+Purpose: To alert the appraiser and confirm information is entered accurately. 
+Example 1 
+When Recommended Action is “Subject to Completion”, “Inspection”, or “Repair”, for any defect, damage, or 
+deficiency, the Market Value Condition cannot be “As Is”.  
+ 
+Example 2  
+When a dwelling is assigned a condition rating, the underlying data must conform to that rating. In this 
+example, the Condition rating is “C1”, which is defined as “100% newly constructed, completed within the 
+past 12 months, has never been occupied, and exhibits no signs of wear or use.”  
+ 
+ 
+ 
+In the Overall Quality and Condition section when Overall Condition (FID: 15.005) is “C1”, “C1” must also 
+display in the Sales Comparison Approach (FID: 22.11.02) and Summary sections (FID: 1.031), and the 
+following data must support a C1 rating: 
+ 
+Subject Property – NewConstructionIndicator (FID: 3.017) must be “true”, 
+ 
+Unit Interior –  
+o RoomConditionStatusType (FID: 10.041) for each Kitchen and Bathroom must be 
+“NewOrLikeNew”, 
+o RoomUpdateStatusType (FID: 10.038) for each Kitchen and Bathroom must be 
+“FullyUpdated”, and 
+o OverallBathroomsUpdateStatusType (FID: 10.043) must be “FullyUpdated”. 
+
+<<<PAGE 8 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 8 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 9 of 9>>>
+Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance v1.0 
+Page 9 
+Data Entry Aid 
+11. Integrate to trend data sources and supporting information as a data entry aid.  
+Purpose: Ease data entry; confirm information is entered accurately. 
+ 
+Allow user to select information (data, charts) and add to report.  
+ 
+Allow user to modify as needed. 
+ 
+12. Provide a custom solution and/or integrate with sketch software and calculate the area in the Sketch 
+section. Calculations should be allowed to be overwritten. 
+Purpose: Ease data entry; confirm information is entered accurately. 
+ 
+Calculations from Sketch section  
+ 
+ 
+Populate Unit Interior - Area Breakdown 
+o Area Breakdown 
+ 
+Finished Above Grade 
+ 
+Finished Above Grade (Nonstandard) 
+ 
+Unfinished Above Grade 
+ 
+Finished Below Grade 
+ 
+Finished Below Grade (Nonstandard) 
+ 
+Unfinished Below Grade 
+ 
+Populate Dwelling Exterior - Noncontinuous Finished Area 
+o Total Area 
+ 
+ 

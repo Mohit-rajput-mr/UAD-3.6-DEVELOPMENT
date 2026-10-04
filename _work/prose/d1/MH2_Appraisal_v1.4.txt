@@ -1,0 +1,1920 @@
+
+<<<PAGE 1 of 22>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: Manufactured Home Scenario 2 (MH2) 
+Document Version 1.4 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 22>>>
+ 
+ 
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.4 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/10/2025 
+1.3 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+9/17/2024 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+12/12/2023 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+3/29/2023 
+1.0 
+Initial Publication 
+ 
+Introduction 
+This report is for a 1,568 sq. ft. manufactured home with three bedrooms and two full baths. The 
+dwelling is attached to a poured concrete perimeter foundation with crawl space. The site is a 14,000 sq. 
+ft. lot within a neighborhood of similar manufactured, modular, and site-built single-level homes.  
+The improvements include an attached two-car garage, patio, and covered porch. 
+Key Characteristics 
+• 
+Refinance Transaction 
+• 
+Construction Method: Manufactured Home and Site Built 
+o Freddie Mac CHOICEHome® (for additional details refer to CHOICEHome - Freddie Mac 
+Single-Family) 
+o Fannie Mae MH Advantage (for additional details refer to Manufactured Housing 
+Financing | Fannie Mae) 
+o Features and characteristics that exceed minimum HUD code for manufactured homes 
+o Garage and front porch are site-built 
+• 
+Cost Approach 
+o Land Comparables 
+▪ 
+Subject’s prior land sale was used as a comparable  
+ 
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 3 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+123 ANYWHERE ST, SOMECITY, TN 12345
+SUMMARY
+Opinion of Market Value	
+$275,000
+Market Value Condition	
+As Is
+Effective Date of Appraisal	
+03/14/2022
+Assignment Reason	
+Refinance
+Borrower Name	
+John Doe
+	
+Jane Doe
+Current Owner of Public Record	
+John Doe
+	
+Jane Doe
+Listing Status	
+None
+Property Valuation Method	
+Traditional Appraisal
+Appraiser Name	
+Annie Appraiser
+Property Description
+Construction Method	
+Manufactured
+	
+Site Built
+Attachment Type	
+Detached
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Zoning Compliance	
+Legal
+HUD Data Plate Attached	
+Yes
+HUD Label Present for All Sections	 Yes
+Overall Quality	
+Q3
+Overall Condition	
+C2
+ 
+Apparent Defects, Damages, Deficiencies Requiring Action
+None
+
+<<<PAGE 4 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 2 of 20
+Assignment Information
+Assignment Reason	
+Refinance
+Borrower Name	
+John Doe
+	
+Jane Doe
+Current Owner of Public Record	
+John Doe
+	
+Jane Doe
+Property Valuation Method	
+Traditional Appraisal
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Appraiser Fee	
+$0
+Contact Information
+Client/Lender 
+Company Name	
+XYZ Lending Inc.
+Company Address	
+123 Tree Lined St
+	
+Anywhere, TN 12345
+Appraiser 
+Name	
+Annie Appraiser
+Company Name	
+General Appraisal Services
+Company Address	
+123 Willow St
+	
+Anywhere, TN 12345
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+Physical
+Interior	
+Physical
+Inspection Date	
+03/14/2022
+Credentials
+Level	
+Licensed Residential
+ID	
+T235719287434
+State	
+TN
+Expires	
+01/30/2024
+Assignment Information and Scope of Work Commentary
+Additional commentary can be added here, if needed by Appraiser.
+Subject Property
+Physical Address	
+123 Anywhere St
+	
+Somecity, TN 12345
+County	
+Alpine
+Neighborhood Name	
+Magic Hill
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Detached
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Special Tax Assessments	
+No
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+All Rights Included in Appraisal	
+Yes
+Legal Description
+Section 23 Township 3S Range 3E Tax Lot 00700 and 00700B
+
+<<<PAGE 5 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 3 of 20
+Site
+Total Site Size	
+14,000 Sq. Ft.
+Number of Parcels	
+1
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+ERW 14885329 - 23
+Land with Dwelling
+14,000 Sq. Ft.
+Zoning
+Compliance	
+Legal
+Classification Code	
+1-5 MH Residential
+Classification Code Description	
+Zoning allows one dwelling  
+	
+minimum per 12,000 sq. ft.  
+	
+including manufactured and  
+	
+modular housing.
+Property Use
+Non-Residential Use	
+None
+Property Access
+Primary Access	
+Public Street
+Street Type and Surface	
+Local Road | Asphalt
+Typical for Market	
+Yes
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Park
+Offsite
+Beneficial
+The subject is located within 
+1/2 mile of a regional park 
+with a lake, hiking and 
+horse back riding trails, 
+playgrounds, and picnic 
+areas.
+Residential
+Bordering
+Neutral
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Residential
+Full
+Neutral
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+No Hazard Zone Noted
+Site Characteristic
+Topography | Flat
+Neutral
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Gas
+
+Sanitary Sewer
+
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Exhibits
+Property Access (Street Scene) - Site Influence - View
+Site Influence - Park
+This is where the Park photo would display.
+
+<<<PAGE 6 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 4 of 20
+Sketch
+Measurement Standard	
+ANSI
+Floor Plan
+This is where the Floor Plan image would display.
+
+<<<PAGE 7 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 5 of 20
+Dwelling Exterior
+Subject Property Units in  
+Structure	
+1
+Dwelling Style	
+Ranch
+Front Door Elevation	
+2-3 Ft.
+Year Built	
+2020
+Construction Method	
+Manufactured
+	
+Site Built
+Converted Area	
+None
+Quality and Condition
+Exterior Quality Rating	
+Q3
+Exterior Condition Rating	
+C2
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Aluminum | Synthetic Stone
+New or Like New
+Foundation
+Poured Concrete | Crawl 
+Space
+The subject has a crawl space 
+set on a poured concrete 
+perimeter footer. 
+New or Like New
+Roof
+Asphalt
+Estimated Age: 1-10 years
+30+ year asphalt shingle roof. 
+New or Like New
+The roof was installed 
+at manufacturing and 
+installation/set-up 2 years 
+ago and is in like new 
+condition.
+Windows
+Low E thermal
+Upgraded meeting Energy 
+Star® requirements.
+New or Like New
+Mechanical System Details
+System
+Detail
+Heating
+Heat Pump
+Electric
+Cooling
+Centralized
+Yes No
+Core Heating System Below Grade
+
+Other Mechanical Systems	
+Water Heater
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior)
+None
+Dwelling Exterior Commentary
+Subject meets requirements for CHOICEHome® and MH Advantage and features a poured concrete perimeter foundation and skirting, Low E 
+thermal windows, a 30-year roof, aluminum siding and synthetic stone accents.
+Dwelling Exterior Exhibits
+Dwelling Rear
+This is where the Dwelling Rear photo would display.
+
+<<<PAGE 8 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 6 of 20
+Manufactured Home 
+Manufacturer Name	
+XYZ Homes
+Year Installed	
+2020
+Moved Since Original Installation	 No
+Attached to Permanent  
+Foundation	
+Yes
+Towing Hitch, Wheels, Axles  
+Removed	
+Yes
+Manufactured Home Width	
+Multi
+Skirting	
+Poured Concrete
+Yes No
+Have there been any modifications, attachments, or additions that rely on or have altered the original structure for support? 
+HUD Data Plate
+HUD Data Plate Attached	
+Yes
+Date of Manufacture	
+09/01/2020
+Serial Number	
+gaelw43232790-er293/ 
+	
+gbelw43232790-er293
+HUD Wind Zone	
+Zone I
+HUD Thermal Zone	
+Zone 1
+HUD Roof Load Zone	
+South
+HUD Certification Label
+Label Present for All Sections	
+Yes
+HUD Certification Number	
+ere32498213
+	
+ere32498214
+Manufactured Home Certification Program
+Certification
+Identifier
+Fannie Mae MH Advantage
+SAB032251MLAX
+Freddie Mac CHOICEHome
+CH1000001
+Manufactured Home Commentary
+The subject is a manufactured home that was built to HUD Code and structurally designed and constructed to accommodate site-built 
+features. Specifically, for the subject, the attached garage and front porch which were constructed at the time of installation.
+Manufactured Home Exhibits
+HUD Data Plate
+HUD Certification Label - Section 1
+This is where the HUD Data Plate photo would display.
+This is where the HUD Certification Label would display.
+HUD Certification Label - Section 2
+Manufactured Home Certification
+This is where the HUD Certification Label would display.
+
+<<<PAGE 9 of 22>>>
+Manufactured Home  (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 7 of 20
+Manufactured Home Certification
+Skirting
+This is where the Skirting photo would display.
+Unit Interior
+Area Breakdown
+Finished Above Grade	
+1,568 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Levels in Unit	
+1
+Occupancy	
+Owner
+Total Bedrooms	
+3
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+Above Grade
+Finished
+1,568 Sq. Ft.
+2 - Bath - Full
+3 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Laundry Room
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q3
+Interior Condition Rating	
+C2
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Fully Updated
+1-5 Years
+All appliances are 
+Energy Star® Rated, 
+countertops are solid 
+surface.
+New or Like New
+Bath - Full
+Level 1
+Fully Updated
+1-5 Years
+Metal plumbing 
+fixtures.
+New or Like New
+Bath - Full
+Level 1
+Fully Updated
+1-5 Years
+Metal plumbing 
+fixtures.
+New or Like New
+Overall Update Status for  
+Bathrooms	
+Fully Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Upgraded Carpet
+New or Like New
+Laminate
+New or Like New
+Walls and Ceiling
+8 Ft. | Flat | Vaulted
+New or Like New
+Overall Update Status for  
+Flooring	
+Fully Updated
+Apparent Defects, Damages, Deficiencies (Unit Interior)
+None
+
+<<<PAGE 10 of 22>>>
+Unit Interior (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 8 of 20
+Unit Interior Exhibits
+Level 1 - Bedroom - Primary Bedroom
+Level 1 - Bedroom - Bedroom 2
+This is where the Bedroom photo would display.
+This is where the Bedroom photo would display.
+Level 1 - Bedroom - Bedroom 3
+Level 1 - Bath - Full - Primary Bath
+This is where the Bedroom photo would display.
+This is where the Bath photo would display.
+Level 1 - Bath - Full - Bath 2
+Level 1 - Dining Room
+This is where the Bath photo would display.
+This is where the Dining Room photo would display.
+Level 1 - Kitchen - Living Room
+
+<<<PAGE 11 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 9 of 20
+Functional Obsolescence
+Functional Issues	
+None
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Driveway
+4
+Pavers
+Garage
+2
+Attached
+400 Sq. Ft.
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+Vehicle Storage Commentary
+The subject features an attached 2 car garage with electric garage door opener.
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Outdoor Living
+Patio
+Pavers
+120 Sq. Ft.
+Porch
+Composite
+120 Sq. Ft.
+Attached to Manufactured Home
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+None
+Subject Property Amenities Commentary
+The subject porch was site built at the time of installation and set-up. The dwelling was designed and constructed to accommodate the porch 
+and garage. The patio is free standing and not attached to the dwelling.
+Overall Quality and Condition
+Overall Quality	
+Q3
+Exterior Quality	
+Q3
+Interior Quality	
+Q3
+Overall Condition	
+C2
+Exterior Condition	
+C2
+Interior Condition	
+C2
+Reconciliation of Overall Quality and Condition
+The overall quality and condition ratings are reflective of the interior and exterior quality and condition ratings.
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+The subject is legally permissible and physically possible under the current zoning, 1-5 MH Residential, which allows for manufactured and 
+modular homes on a minimum 12,000 square foot lot. Analysis indicates that the subject is in a market area of similar sized lots that are 
+improved with comparable manufactured and modular homes demonstrating market acceptance. Sales prices of vacant and improved 
+properties support the conclusion that the subject represents the highest and best use as improved. The property is outside the city limits and 
+all types of single family homes are appropriate.
+Market
+Market Area Boundary  Main Road to the North, East Main Road to the East, West Main Road to the West, and Southern Highway to the 
+South.
+Search Criteria Description  Detached, 1 story, manufactured, modular, and site built dwellings with no basements located within Market 
+Boundaries and sold from 6/1/21 - 3/1/22.
+
+<<<PAGE 12 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 10 of 20
+Search Result Metrics
+Active Listings	
+15
+Median Days on Market	
+120
+Lowest List Price	
+$89,000
+Median List Price	
+$265,000
+Highest List Price	
+$400,000
+Pending Sales	
+1
+Sales in Past 24 Months	
+27
+Lowest Sale Price	
+$159,000
+Median Sale Price	
+$250,000
+Highest Sale Price	
+$375,000
+Distressed Market Competition	
+No
+Price Trend Source	
+Local MLS
+	
+Smokey Bear Gazette
+Price Trend Analysis Commentary  Market data reflects the manufactured and modular home market in the subject’s area. The data 
+indicates the market is stable to slightly increasing with sales activity of 1 to 2 sales per month which is typical for this rural area. The Smokey 
+Bear Gazette is a local print media that reports non-MLS home sales and listings. 2 active listings and 3 sales were reported for the 9 months 
+prior to the effective date of the appraisal and are included in the data reported above.
+Housing Trends
+Demand/Supply	
+In Balance
+Marketing Time	
+3 to 6 months
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Current or Relevant Listings	
+None
+Data Source	
+MLS
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Transfer Terms
+Date
+Amount
+Data Source
+Land Sale
+06/16/2019
+$38,500
+Assessor Record
+Previous Appraisal File
+Analysis of Prior Sale and Transfer History of Subject Property  The prior transfer of the subject was a land sale. Purchase of the 
+manufactured home was separate from this transaction. The manufactured home was installed after the purchase of the land.
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+1
+None
+MLS
+2
+None
+MLS
+3
+None
+MLS
+4
+None
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  There were no prior sales or transfers of the comparable sales within the 
+last 12 months.
+Market (continued)
+
+<<<PAGE 13 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 11 of 20
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+123 Anywhere St 
+Somecity, TN 12345
+42 Forest Ln 
+Somecity, TN 12345
+542 New East St 
+Somecity, TN 12345
+7525 New South Hwy 
+Somecity, TN 12345
+ 
+This is where the 
+Comparable 1 photo 
+would display.
+Data Source
+MLS 124523 | Assessor Record
+MLS 123453 | Assessor Record
+MLS 178643 | Assessor Record
+Proximity to Subject
+3 Miles SE
+4 Miles NW
+5 Miles S
+List Price
+—
+$340,000
+$229,999
+$265,000
+Listing Status
+—
+Settled Sale
+Settled Sale
+Settled Sale
+Contract Price
+—
+—
+—
+—
+Sale Price
+$325,000
+$219,950
+$247,000
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Sales Concessions
+—
+No
+No
+No
+Contract Date
+—
+09/15/2021
+$0
+12/05/2021
+$0
+11/15/2021
+$0
+Sale Date
+11/01/2021
+$0
+02/15/2022
+$0
+01/28/2022
+$0
+Days on Market
+—
+42
+86
+110
+Attached/Detached
+Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+Site
+Site Size
+14,000 Sq. Ft.
+22,216 Sq. Ft.
+$(20,540)
+13,939 Sq. Ft.
+$0
+20,037 Sq. Ft.
+$(12,075)
+Neighborhood Name
+Magic Hill
+New Forest Pond
+$0
+East Street 
+Estates
+$0
+South View
+$0
+Zoning Compliance
+Legal
+Legal
+Legal
+No Zoning
+$0
+Street Type | Surface
+Local Road | Asphalt
+Local Road 
+| Asphalt
+Local Road 
+| Asphalt
+Arterial Street 
+| Concrete
+$0
+Topography
+Flat
+Flat
+Rolling
+$0
+Flat
+Site Influence (Location)
+Park | Residential
+Pond | 
+Residential
+$0
+Residential
+$5,000
+Busy Roadway
+$20,000
+View | Range
+Residential | Full
+Pond | Full
+$(10,000)
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+2020
+2019
+$0
+2017
+$0
+2019
+$0
+Construction Method
+Manufactured | Site Built
+Manufactured 
+| Site Built
+Manufactured 
+| Site Built
+Manufactured 
+| Site Built
+Manufactured Home Width
+Multi
+Multi
+Multi
+Multi
+Heating
+Heat Pump | Electric
+Heat Pump 
+| Electric
+Heat Pump 
+| Electric
+Heat Pump 
+| Electric
+Cooling
+Centralized
+Centralized
+Centralized
+Centralized
+Unit(s)
+Bedrooms
+3
+3
+3
+3
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,568 Sq. Ft.
+1,700 Sq. Ft.
+$(8,580)
+1,352 Sq. Ft.
+$14,040
+1,580 Sq. Ft.
+$0
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q3
+Q3
+Q4
+Q3
+Exterior Walls and Trim
+Aluminum | Synthetic Stone
+Cedar Siding | Synthetic Stone
+Vinyl
+Cement Board
+Foundation
+Crawl Space
+Crawl Space
+Post and Pier
+Crawl Space
+Condition
+C2
+C2
+C3
+C2
+Exterior Walls and Trim
+New or Like New
+New or Like New
+Typical Wear and Tear
+New or Like New
+Roof
+New or Like New
+New or Like New
+Typical Wear and Tear
+New or Like New
+
+<<<PAGE 14 of 22>>>
+Sales Comparison Approach (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 12 of 20
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+123 Anywhere St 
+Somecity, TN 12345
+42 Forest Ln 
+Somecity, TN 12345
+542 New East St 
+Somecity, TN 12345
+7525 New South Hwy 
+Somecity, TN 12345
+Interior Quality and Condition
+Quality
+Q3
+Q3
+Q4
+Q3
+Kitchen
+Energy Star appliances 
+and wood cabinets
+Energy Star appliances 
+and wood cabinets
+Builder Grade Quality 
+Appliances and Cabinets
+Energy Star appliances 
+and wood cabinets
+Overall Bathrooms
+Metal plumbing fixtures
+Metal plumbing fixtures
+Builder Grade Finishes 
+and Fixtures
+Metal plumbing fixtures
+Condition
+C2
+C2
+C3
+C2
+Kitchen
+Fully Updated
+Fully Updated
+Not Updated
+Fully Updated
+Overall Bathrooms
+Fully Updated
+Fully Updated
+Not Updated
+Fully Updated
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q3
+Q3
+Q4
+$10,000
+Q3
+Condition
+C2
+C2
+C3
+$10,000
+C2
+Property Amenities
+Outdoor Living
+Patio | Porch
+Patio | Porch
+Patio
+$5,000
+Porch
+$2,500
+Vehicle Storage
+$0
+$10,000
+$10,000
+Type | Spaces | Detail
+Driveway | 4 | Pavers 
+Garage | 2 | Attached 
+400 Sq. Ft.
+Driveway | 2 | Asphalt 
+Garage | 2 | Attached 
+400 Sq. Ft.
+Driveway | 2 | Asphalt
+Driveway | 4 | Asphalt
+Summary
+List Price
+—
+$340,000
+$229,999
+$265,000
+Contract Price
+—
+—
+—
+—
+Sale Price
+$325,000
+$219,950
+$247,000
+Net Adjustment Total
+$(39,120)
+$54,040
+$20,425
+Price Per Finished Area 
+Above Grade
+$191
+$163
+$156
+Adjusted Price
+$285,880
+$273,990
+$267,425
+Comparable Weight
+Less
+Less
+Most
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$275,000
+
+<<<PAGE 15 of 22>>>
+Sales Comparison Approach (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 13 of 20
+Subject Property
+Comparable #4
+General Information
+Property Address
+123 Anywhere St 
+Somecity, TN 12435
+3026 Old West St 
+Somecity, TN 12435
+ 
+This is where the 
+Comparable 4 photo 
+would display.
+Data Source
+MLS 193032 | Assessor Record
+Proximity to Subject
+2 Miles SW
+List Price
+—
+$285,000
+Listing Status
+—
+Pending
+Contract Price
+—
+$275,000
+Sale Price
+—
+Transfer Terms
+—
+Sales Concessions
+—
+—
+Contract Date
+—
+03/08/2022
+$0
+Sale Date
+—
+Days on Market
+—
+92
+Attached/Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Site
+Site Size
+14,000 Sq. Ft.
+13,068 Sq. Ft.
+$0
+Neighborhood Name
+Magic Hill
+Southwest 
+Lake Gardens
+$0
+Zoning Compliance
+Legal
+Legal
+Street Type | Surface
+Local Road | Asphalt
+Local Road 
+| Asphalt
+Topography
+Flat
+Sloping
+$0
+Site Influence (Location)
+Park | Residential
+Lake | Residential
+$(15,000)
+View | Range
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+2020
+2020
+Construction Method
+Manufactured | Site Built
+Manufactured 
+| Site Built
+Manufactured Home Width
+Multi
+Multi
+Heating
+Heat Pump | Electric
+Heat Pump 
+| Electric
+Cooling
+Centralized
+Centralized
+Unit(s)
+Bedrooms
+3
+3
+Baths - Full | Half
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,568 Sq. Ft.
+1,410 Sq. Ft.
+$10,270
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q3
+Q3
+Exterior Walls and Trim
+Aluminum | Synthetic Stone
+Aluminum
+Foundation
+Crawl Space
+Crawl Space
+Condition
+C2
+C3
+Exterior Walls and Trim
+New or Like New
+Typical Wear and Tear
+Roof
+New or Like New
+Typical Wear and Tear
+
+<<<PAGE 16 of 22>>>
+Sales Comparison Approach (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 14 of 20
+Subject Property
+Comparable #4
+Property Address
+123 Anywhere St 
+Somecity, TN 12345
+3026 Old West St 
+Somecity, TN 12345
+Interior Quality and Condition
+Quality
+Q3
+Q3
+Kitchen
+Energy Star appliances 
+and wood cabinets
+Energy Star appliances 
+and wood cabinets
+Overall Bathrooms
+Metal plumbing fixtures
+Metal plumbing fixtures
+Condition
+C2
+C3
+Kitchen
+Fully Updated
+Partially Updated
+Overall Bathrooms
+Fully Updated
+Fully Updated
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q3
+Q3
+Condition
+C2
+C3
+$10,000
+Property Amenities
+Outdoor Living
+Patio | Porch
+Deck | Porch
+$(5,000)
+Vehicle Storage
+$0
+Type | Spaces | Detail
+Driveway | 4 | Pavers 
+Garage | 2 | Attached 
+400 Sq. Ft.
+Driveway | 2 | Concrete 
+Garage | 2 | Attached 
+400 Sq. Ft.
+Summary
+List Price
+—
+$285,000
+Contract Price
+—
+$275,000
+Sale Price
+—
+Net Adjustment Total
+$270
+Price Per Finished Area 
+Above Grade
+$195
+Adjusted Price
+$285,270
+Comparable Weight
+Most
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$275,000
+Reconciliation of Sales Comparison Approach
+The comparables selected represent the best available market activity in the prior 6 months. Comparables 1, 3, and 4 are CHOICEHomes or 
+MHAdvantage.
+Comparable #1 is similar to the subject in age, quality and condition. However, was given less weight due to the water view, superior lot size 
+and living area. The view is a full view of a non-navigable pond with access limited to the properties that have direct waterfront.
+Comparable #2 was given less weight as it does not have the finishes and upgrades that the subject and other comparables have, has not been 
+updated, and has less living area as compared to the subject.
+Comparable #3 was given most weight as it is similar to the subject in age, quality and condition and is the most comparable in living area. 
+Comparable #4 was also given most consideration as it represents the most recent market activity, is similar in living area and most similar 
+in quality, condition, features and amenities. Comp #4  receives a location adjustment as it is located within a mile of a large lake with public 
+access, boat ramp, and rentable dock space and boat storage.
+
+<<<PAGE 17 of 22>>>
+Sales Comparison Approach (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 15 of 20
+Sales Comparison Map
+This is where the Comparable Map photo would display.
+
+<<<PAGE 18 of 22>>>
+Sales Comparison Approach (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 16 of 20
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the Comparable 1 photo would display.
+Comparable #3
+Comparable #4
+This is where the Comparable 4 photo would display.
+Cost Approach
+Indicated Value by Cost Approach	
+$271,410
+Depreciated Cost of Dwellings	
+$201,410
+As Is Value of Site Improvements	
+$31,500
+Opinion of Site Value	
+$38,500
+Depreciated Cost - Dwelling
+Above Grade Finished Area
+1,568 Sq. Ft. @ $121.25
+$190,120
+Attached Garage
+400 Sq. Ft. @ $50.00
+$20,000
+Total Depreciation
+$(17,710)
+Manufactured Home Delivery, 
+Installation, and Set Up
+$9,000
+Total
+$201,410
+Remaining Economic Life	
+45 years
+Effective Age	
+1-5 years
+Commentary on Effective Age  The subject has an actual age of 2 years and was manufactured, and installed on site, in 2020. Effective age is 
+estimated at 1–5 years.
+As Is Value of Site Improvements
+Description
+Amount
+Utility Connections, Driveway, Patio, and Porch
+$31,500
+Total
+$31,500
+
+<<<PAGE 19 of 22>>>
+Cost Approach (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 17 of 20
+Site Value
+Primary Site Valuation Method  Sales Comparison
+Opinion of Site Value 
+$38,500
+Land Comparables
+#
+Address
+County
+Data Source
+Assessor Parcel 
+Number (APN)
+Site Size
+Sale Date
+Price
+1
+234183 Starmind Dr 
+Somecity, TN 12345
+Alpine
+MLS W12348
+ERW 10149852 - 12
+12,632 Sq. Ft.
+04/15/2021
+$32,000
+2
+105853 Gao St  
+Somecity, TN 12345
+Alpine
+MLS W19434
+ERW 13249582 - 12
+17,424 Sq. Ft.
+11/12/2021
+$49,900
+3
+124383 Whitecrest 
+Rd  
+Somecity, TN 12345
+Alpine
+MLS W58278
+ERW 12354823 - 13
+12,462 Sq. Ft.
+07/15/2021
+$25,500
+4
+235813 Anywhere 
+St  
+Somecity, TN 12345
+Alpine
+Subject Sale
+ERW 14885329 - 23
+14,000 Sq. Ft.
+06/16/2019
+$38,500
+Reconciliation of Site Value  The land sale comparables were selected from sales of unimproved sites suitable for manufactured homes 
+located within the subject’s market area. Comparables #1 ($2.53 per square foot) and #2 ($2.86 per square foot) received most weight 
+due to comparability in size and location within a mile of recreational areas that are similar to the park that is a half mile from the subject. 
+Comparable #3 ($2.00 per square foot) received least weight as it does not have access to public utilities and is located within a half of mile of 
+a landfill facility. The subject’s land sale in 2019 (comparable #4) was also taken into consideration. The subject’s site was valued at $2.70 per 
+square foot.
+General Description
+Cost Type	
+Replacement
+Cost Data Source	
+Marshall & Swift
+Quality Rating	
+Good
+Effective Date	
+06/01/2021
+Cost Method	
+Comparative Unit
+Depreciation Method	
+Economic Age-Life
+Cost Approach Commentary
+Cost of all structures are based off a lump sum estimate per square foot or per cubic foot of all components of the structure including their 
+foundations. The comparative unit method is used to derive a cost estimate in terms of dollars per unit of area, or volume, based on known 
+cost of similar structures that are adjusted for time, and physical differences. The cost estimate is then applied to the total building area.
+The total depreciation for the dwelling includes the attached garage. Depreciated costs were calculated on an economic age-life basis at 4% 
+per year for the dwelling and 6% per year for the garage. Depreciated site improvements include public utility hook-ups, driveway, sidewalks, 
+patio, and porch.
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$275,000
+$271,410
+Reason for Exclusion
+Not Necessary for Credible Results
+Appraisal Summary
+Opinion of Market Value	
+$275,000
+Market Value Condition	
+As Is
+Reasonable Exposure Time	
+110 days
+Effective Date of Appraisal	
+03/14/2022
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+Apparent Defects, Damages, Deficiencies
+None
+
+<<<PAGE 20 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 18 of 20
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+
+<<<PAGE 21 of 22>>>
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 19 of 20
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+
+<<<PAGE 22 of 22>>>
+Certifications (continued)
+	
+Appraiser Reference ID	
+SRO-123345
+	
+Client Reference ID	
+MBG 12344523
+Appraisal Version #1
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report	
+Page 20 of 20
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+Signature
+Appraiser
+Annie Appraiser	
+03/14/2022
+Annie Appraiser	
+Date of Signature and Report
+Level	
+Licensed Residential
+ID	
+T235719287434
+State	
+TN
+Expires	
+01/30/2024

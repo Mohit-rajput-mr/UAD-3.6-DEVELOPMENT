@@ -1,0 +1,16 @@
+# Vercel deploys only the web platform (api/index.py -> engine/app).  Everything
+# below is for the desktop MOD, the knowledge base or local work, and would only
+# slow the build.
+_work/
+total-bridge/
+knowledge/
+setup/
+profiles/
+MATERIALS/
+**/__pycache__/
+**/*.pdf
+**/*.zip
+**/*.jpg
+**/*.jpeg
+**/*.png
+!engine/app/ui/**

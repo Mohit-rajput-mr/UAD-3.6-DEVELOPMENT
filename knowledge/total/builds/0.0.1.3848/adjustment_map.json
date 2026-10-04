@@ -1,0 +1,268 @@
+{
+ "salesComparableAdjustmentMap": {
+  "AccessoryDwellingUnitLocation": {
+   "field": "LOC_ADU_ADJ",
+   "fmid": "22.07.19"
+  },
+  "ApparentEnvironmentalCondition": {
+   "field": "SITE_ENV_COND_ADJ",
+   "fmid": "22.03.45"
+  },
+  "AttachedOrDetached": {
+   "field": "ATT_DET_ADJ",
+   "fmid": "22.01.38"
+  },
+  "ConstructionMethod": {
+   "field": "DWELL_CONST_METHOD_ADJ",
+   "fmid": "22.05.36"
+  },
+  "ContractDate": {
+   "field": "CONT_DATE_ADJ",
+   "fmid": "22.01.31"
+  },
+  "CoolingSystem": {
+   "field": "DWELL_COOL_ADJ",
+   "fmid": "22.05.52"
+  },
+  "CornerUnit": {
+   "field": "CORNER_UNIT_ADJ",
+   "fmid": "22.07.23"
+  },
+  "DisasterMitigationFeatures": {
+   "field": "DWELL_DISASTER_MIT_ADJ",
+   "fmid": "22.05.48"
+  },
+  "DwellingStyle": {
+   "field": "DWELL_STYLE_ADJ",
+   "fmid": "22.05.40"
+  },
+  "Easement": {
+   "field": "SITE_EASEMENT_ADJ",
+   "fmid": "22.03.35"
+  },
+  "EnergyEfficientAndGreenFeatures": {
+   "field": "GREEN_ENERGY_OVERRALL_ADJ",
+   "fmid": "22.06.04"
+  },
+  "FinancingMethod": {
+   "field": "DP_FINTYP1_ADJ",
+   "fmid": "22.01.27"
+  },
+  "FunctionalIssues": {
+   "field": "DWELL_FUNC_ISSUES_ADJ",
+   "fmid": "22.05.46"
+  },
+  "GrossBuildingFinishedArea": {
+   "field": "SF_GLA_ADJ",
+   "fmid": "22.05.26"
+  },
+  "HazardZone": {
+   "field": "SITE_HAZARD_ZONE_ADJ",
+   "fmid": "22.03.27"
+  },
+  "HeatingSystem": {
+   "field": "DWELL_HEAT_ADJ",
+   "fmid": "22.05.50"
+  },
+  "LandOwnedInCommon": {
+   "field": "SITE_OWNED_IN_COMMON_ADJ",
+   "fmid": "22.03.19"
+  },
+  "LivingUnitBathroomCount": {
+   "field": "BATHS_ADJ",
+   "fmid": "22.07.29"
+  },
+  "LivingUnitBedroomCount": {
+   "field": "BEDS_ADJ",
+   "fmid": "22.07.27"
+  },
+  "LivingUnitFeaturesForIndividualsWithDisabilities": {
+   "field": "DISABILITY_FEATURES_ADJ",
+   "fmid": "22.07.43"
+  },
+  "LivingUnitFloorNumber": {
+   "field": "FLOOR_NUM_ADJ",
+   "fmid": "22.07.21"
+  },
+  "LivingUnitLevelCount": {
+   "field": "LEVELS_ADJ",
+   "fmid": "22.07.25"
+  },
+  "LivingUnitNonStandardFinishedAreaAboveGrade": {
+   "field": "UNITS_SF_GLA_NONSTD_ADJ",
+   "fmid": "22.07.33"
+  },
+  "LivingUnitNonStandardFinishedAreaBelowGrade": {
+   "field": "UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "fmid": "22.07.39"
+  },
+  "LivingUnitStandardFinishedAreaAboveGrade": {
+   "field": "UNITS_SF_GLA_ADJ",
+   "fmid": "22.07.31"
+  },
+  "LivingUnitStandardFinishedAreaBelowGrade": {
+   "field": "UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "fmid": "22.07.37"
+  },
+  "LivingUnitUnfinishedAreaAboveGrade": {
+   "field": "UNITS_SF_GLA_UNFIN_ADJ",
+   "fmid": "22.07.35"
+  },
+  "LivingUnitUnfinishedAreaBelowGrade": {
+   "field": "UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "fmid": "22.07.41"
+  },
+  "ManufacturedHomeWidth": {
+   "field": "DWELL_MANFCT_HOME_WIDTH_ADJ",
+   "fmid": "22.05.38"
+  },
+  "MiscellaneousAmenity": {
+   "field": "AMENITY_MISC_ADJ",
+   "fmid": "22.12.15"
+  },
+  "NativeAmericanLands": {
+   "field": "NATIVE_AM_LANDS_ADJ",
+   "fmid": "22.01.43"
+  },
+  "NeighborhoodName": {
+   "field": "MARKETAREA_ADJ",
+   "fmid": "22.03.23"
+  },
+  "NonContinuousFinishedArea": {
+   "field": "FINISHED_AREA_ADJ",
+   "fmid": "22.05.28"
+  },
+  "Outbuilding": {
+   "field": "OUTBUILDING_TYPE_ADJ",
+   "fmid": "22.14.15"
+  },
+  "OutdoorAccessoryAmenity": {
+   "field": "AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "fmid": "22.12.07"
+  },
+  "OutdoorLivingAmenity": {
+   "field": "AMENITY_OUTDOOR_LIVING_ADJ",
+   "fmid": "22.12.09"
+  },
+  "OverallConditionRating": {
+   "field": "CONDITION_ADJ",
+   "fmid": "22.11.06"
+  },
+  "OverallQualityRating": {
+   "field": "QUALITY_ADJ",
+   "fmid": "22.11.04"
+  },
+  "OwnershipRightsConveyed": {
+   "field": "ALL_RIGHTS_INCLUDED_ADJ",
+   "fmid": "22.01.45"
+  },
+  "ProjectInformation": {
+   "field": "PROJINFO_OVERALL_ADJ",
+   "fmid": "22.02.05"
+  },
+  "PropertyOwnershipTransferTerms": {
+   "field": "TRANSFER_TERMS_ADJ",
+   "fmid": "22.01.25"
+  },
+  "PropertyPrimaryAccess": {
+   "field": "SITE_PRIMARY_ACCESS_ADJ",
+   "fmid": "22.03.29"
+  },
+  "PropertyRestriction": {
+   "field": "SITE_PROP_RESTRICT_ADJ",
+   "fmid": "22.03.33"
+  },
+  "PropertyRightsAppraised": {
+   "field": "PROP_APPRAISER_RIGHTS_ADJ",
+   "fmid": "22.01.40"
+  },
+  "PropertyStreetAccessAndSurface": {
+   "field": "SITE_STREET_TYPE_ADJ",
+   "fmid": "22.03.31"
+  },
+  "RowhouseTownhouseBackToBack": {
+   "field": "DWELL_TH_BACKTOBACK_ADJ",
+   "fmid": "22.05.32"
+  },
+  "RowhouseTownhouseEndUnit": {
+   "field": "DWELL_TH_ENDUNIT_ADJ",
+   "fmid": "22.05.30"
+  },
+  "RowhouseTownhouseLocation": {
+   "field": "DWELL_TH_LOC_ADJ",
+   "fmid": "22.05.34"
+  },
+  "SaleDate": {
+   "field": "DT_SALTIM1_ADJ",
+   "fmid": "22.01.33"
+  },
+  "SalesConcessions": {
+   "field": "EX_CONCAMT_ADJ",
+   "fmid": "22.01.29"
+  },
+  "SaleToListPriceRatio": {
+   "field": "SP_TO_LP_RATIO_ADJ",
+   "fmid": "22.01.36"
+  },
+  "SiteCharacteristic": {
+   "field": "SITE_CHARACTERISTICS_ADJ",
+   "fmid": "22.03.41"
+  },
+  "SiteDrainage": {
+   "field": "SITE_DRAINAGE_ADJ",
+   "fmid": "22.03.39"
+  },
+  "SiteInfluence": {
+   "field": "SITE_INFLUENCE_ADJ",
+   "fmid": "22.03.43"
+  },
+  "SiteSize": {
+   "field": "ST_SITSIZE_ADJ",
+   "fmid": "22.03.21"
+  },
+  "StructureDesign": {
+   "field": "DWELL_DESIGN_ADJ",
+   "fmid": "22.05.24"
+  },
+  "Topography": {
+   "field": "SITE_TOPOGRAPHY_ADJ",
+   "fmid": "22.03.37"
+  },
+  "TotalDwellingVolume": {
+   "field": "DWELL_TOTAL_VOLUME_ADJ",
+   "fmid": "22.05.42"
+  },
+  "VehicleStorage": {
+   "field": "VEHICLE_STORAGE_ADJ",
+   "fmid": "22.13.04"
+  },
+  "View": {
+   "field": "ST_VIEW_ADJ",
+   "fmid": "22.03.47"
+  },
+  "WaterFeaturesAmenity": {
+   "field": "AMENITY_WATER_FEATURES_ADJ",
+   "fmid": "22.12.11"
+  },
+  "WaterFrontage": {
+   "field": "WATER_OVERALL_ADJ",
+   "fmid": "22.04.05"
+  },
+  "WholeHomeAmenity": {
+   "field": "AMENITY_WHOLE_HOME_ADJ",
+   "fmid": "22.12.13"
+  },
+  "WindowSurfaceArea": {
+   "field": "DWELL_WINDOW_AREA_ADJ",
+   "fmid": "22.05.44"
+  },
+  "YearBuilt": {
+   "field": "YR_BLT_ADJ",
+   "fmid": "22.05.22"
+  },
+  "ZoningCompliance": {
+   "field": "SITE_ZONE_COMPLIANCE_ADJ",
+   "fmid": "22.03.25"
+  }
+ }
+}

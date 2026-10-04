@@ -1,0 +1,508 @@
+<<<PAGE 1 of 5>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2025 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Condition and Quality Rating Definitions 
+Document Version 1.0 
+April 29, 2025 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 5>>>
+Revision History 
+Date 
+Version # 
+Description 
+4/29/2025 
+1.0 
+This document is a copy of the UAD 3.6 Condition and Quality Ratings, as 
+published in Appendix F-1: URAR Reference Guide on March 29, 2023. 
+ 
+ 
+ 
+
+<<<PAGE 3 of 5>>>
+Uniform Appraisal Dataset 
+ 
+ 
+ 
+Condition and Quality Rating Definitions 
+Page 3 of 5 
+Version 1.0  
+ 
+Condition and Quality Rating Definitions 
+Condition Rating Definitions 
+Condition Ratings describe the physical condition of a property as of the effective date of the appraisal on an 
+absolute basis, not on a relative basis or how a property relates to other properties. 
+Condition Rating definitions are used for Overall Condition, Exterior Condition, and Interior Condition. 
+Condition Rating Definitions 
+Rating 
+Condition Rating Definition 
+Criteria 
+C1 
+The dwelling is 100% newly constructed, 
+completed within the past 12 months, has never 
+been occupied, and exhibits no signs of wear or 
+use. 
+A dwelling in C1 condition: 
+ 
+Has a foundation that must be 100% original to the new construction. 
+ 
+May include non‐structural components composed of “like new” recycled materials (e.g., 
+reconditioned or refinished barn wood). 
+ 
+Is a 100% newly constructed dwelling that does not exhibit physical depreciation. 
+C2 
+The dwelling exhibits like‐new condition. It has 
+been recently constructed or entirely remodeled 
+within 36 months prior to the appraisal date, 
+while retaining portions of the pre‐existing 
+structure. The dwelling may have been occupied 
+but features no deferred maintenance and 
+requires no repair. 
+A dwelling in C2 condition: 
+ 
+Has been recently constructed (within the past 36 months), and otherwise exhibits 
+virtually no wear and tear, but is no longer new due to occupancy or use (e.g., model 
+home), or 
+ 
+Has been fully remodeled "to the studs" including new major components; a new 
+dwelling built utilizing the footprint or façade of a pre‐existing dwelling; or a newly 
+converted condo/co‐op in a pre‐existing building. 
+C3 
+The dwelling has been well‐maintained and 
+exhibits only minimal wear and tear. The 
+dwelling may exhibit only minor age‐related 
+physical depreciation; or, most components, but 
+not every major building component, has been 
+updated or renovated. 
+A dwelling in C3 condition will likely have: 
+ 
+Components or rooms that are older but have been very well maintained or experienced 
+minimal use, and show little or no physical depreciation, or 
+ 
+Major components or rooms that have been recently updated, but which do not 
+constitute a full‐home renovation/remodel. 
+ 
+Examples of major components include but are not limited to a combination of (one or more):  
+ 
+Newer roof 
+ 
+Some newer mechanicals 
+ 
+New / newer floor coverings 
+ 
+Remodeled kitchen or bathroom(s) 
+C4 
+The dwelling has been adequately maintained 
+and exhibits moderate wear and tear resulting 
+from occupancy and exposure to elements. The 
+dwelling may feature some updating, but 
+otherwise contains deferred maintenance items 
+that are generally minor or cosmetic in nature. 
+A dwelling in C4 condition may have experienced some periodic updating but most 
+components are near the middle of their life cycle. Common deferred maintenance resulting 
+from typical use is apparent but presents no immediate impact. 
+Examples include, but are not limited to: 
+ 
+Minor damage to walls or trim (interior or exterior) 
+ 
+Worn floor finishes or carpet that shows age 
+ 
+Kitchen or bathrooms that are dated but fully functional 
+C5 
+The dwelling exhibits significant wear and tear 
+resulting from inadequate maintenance, but the 
+soundness and structural integrity are sufficient 
+to support occupancy. Some components may 
+be missing or near the end of their useful life, 
+but major components are still functional. 
+A dwelling in C5 condition has items that will need to be repaired, rehabilitated, or replaced in 
+the near future for the dwelling to remain useable and functional. 
+ 
+Examples include, but are not limited to: 
+ 
+Roofing that is significantly worn, cupped, or curled but with no apparent active leaks 
+ 
+Severely worn, damaged, or missing floor coverings 
+ 
+Functional kitchen or bathroom that may be in disrepair (e.g., damaged or missing 
+cabinets or countertops). 
+C6 
+The dwelling features an extreme lack of 
+maintenance, resulting in severe damages, 
+deficiencies, or defects that impact the 
+soundness or structural integrity, and the 
+dwelling is not suitable for occupancy. There are 
+major components that may be missing, no 
+longer functional, or otherwise require 
+immediate correction. 
+A dwelling in C6 condition is not useable or functional in its current state, and will require 
+immediate repairs, rehabilitation, or replacement of key components. 
+ 
+Examples include, but are not limited to: 
+ 
+Active roof leaks 
+ 
+Damaged or missing exterior components that allow weather intrusion into the dwelling 
+with resultant structural impact or damage 
+ 
+Damaged or failing foundation 
+ 
+No functional kitchen or bathrooms 
+
+<<<PAGE 4 of 5>>>
+Uniform Appraisal Dataset 
+ 
+ 
+ 
+Condition and Quality Rating Definitions 
+Page 4 of 5 
+Version 1.0  
+ 
+Quality Rating Definitions 
+This chart shows the definitions for 
+ 
+Overall Quality rating 
+ 
+Interior Quality, including room size, ceilings, trim, floor material, kitchen, and bathrooms 
+ 
+Exterior Quality, including doorways, fenestration, architectural details, roof design, and exterior walls 
+ 
+Quality ratings describe the quality of a property as of the effective date of the appraisal on an absolute basis, 
+not on a relative basis or how a property relates to other properties. 
+Quality Rating Definitions 
+In each category, the property must meet the majority of the criteria listed but does not have to meet all criteria. 
+Rating 
+Overall Quality Rating 
+Interior Quality Rating 
+Exterior Quality Rating 
+Q1 
+The dwelling is an individually designed, 
+one‐of‐a‐kind structure built to exacting 
+standards. Q1 features exceptional 
+quality materials and luxury amenities, 
+and exhibits the highest quality of 
+workmanship and complexity in 
+architectural design. The dwelling 
+features a high degree of refinement 
+and ornamentation that requires 
+specialized construction or installation. 
+A Q1 dwelling is recognized as being 
+very rare or even non‐existent in some 
+communities. 
+ 
+Spacious rooms with high ceilings featuring 
+extensive use of treatments (e.g., coved, 
+barrel, cupola, coffered, beamed) and 
+exceptional grade trim and custom 
+millwork throughout. 
+ 
+Exceptional grade, often rare or imported 
+flooring materials, frequently featuring 
+inlay work or other customization. 
+ 
+Spacious kitchens featuring top‐grade 
+materials, extensive cabinetry, and 
+countertop surface area; appliances and 
+fixtures are frequently state of the art, 
+custom‐designed, built‐in, or commercial 
+grade. 
+ 
+Luxury bathrooms, often oversized and 
+featuring exceptional quality materials and 
+multiple ornate or state‐of‐the‐art fixtures 
+and features. 
+ 
+Custom fenestration and doorways using 
+exceptional grade materials and engineering; 
+featuring keystones or detailed mouldings 
+throughout. 
+ 
+Roof designs using premium materials 
+designed for longevity and resistance to 
+weather; often featuring large ornamental 
+overhangs, multiple hips and valleys, or 
+steep pitches. 
+ 
+Exterior walls constructed using exceptional 
+grade materials, often featuring multiple 
+corners, unique angles and shapes, and 
+extensive use of trim or decorative 
+adornments. 
+Q2 
+The dwelling is a high‐quality structure, 
+often using customized or complex, 
+commercially available plans. The 
+materials and amenities have extended 
+life expectancy, high energy efficiency, 
+and greater detail, ornamentation, or 
+custom finishes. A Q2 dwelling can 
+contain a mixture of upgraded, high‐end 
+and luxury materials, constructed with 
+high‐quality workmanship. 
+ 
+Spacious rooms with higher ceilings that 
+may have custom design elements (e.g., 
+coved, barrel, cupola, coffered, beamed), 
+high‐end built‐ins, mouldings and wall 
+treatments in communal areas and the 
+main bedroom.  
+ 
+High‐grade floor coverings designed for the 
+highest level of durability and occasionally 
+featuring inlays or other customization. 
+ 
+Large kitchens featuring high‐end 
+appliances, extensive cabinetry, and 
+countertops. 
+ 
+Large bathrooms specifically dedicated to 
+certain bedrooms as well as at least one 
+common bathroom; containing high‐end 
+countertops, cabinetry, and plumbing 
+fixtures. 
+ 
+Multiple windows and doorways constructed 
+with high‐end materials, featuring custom 
+design particularly at the front and rear 
+entry and often featuring keystones or other 
+decorative adornments. 
+ 
+Roof designs using high‐end roof materials; 
+typically featuring ornamental overhangs, 
+steep pitches, and multiple ridges, hips and 
+valleys, and gables. 
+ 
+Exterior walls constructed using high‐end 
+materials and featuring multiple corners 
+with angled walls, unique shapes, and 
+custom trim at focal points. 
+
+<<<PAGE 5 of 5>>>
+Uniform Appraisal Dataset 
+ 
+ 
+ 
+Condition and Quality Rating Definitions 
+Page 5 of 5 
+Version 1.0  
+ 
+Quality Rating Definitions 
+In each category, the property must meet the majority of the criteria listed but does not have to meet all criteria. 
+Rating 
+Overall Quality Rating 
+Interior Quality Rating 
+Exterior Quality Rating 
+Q3 
+The dwelling represents housing that 
+can be reproduced from standard plans, 
+featuring a higher than standard degree 
+of complexity and some customization 
+in the structural design, amenities, and 
+finishes. A Q3 dwelling can contain a 
+mixture of premium and standard level 
+materials or amenities. They are often 
+characterized as "semi‐custom" new 
+construction, or as pre‐existing 
+dwellings that are upgraded using some 
+premium materials or amenities. 
+ 
+Large general living areas or main bedroom 
+with all other rooms sufficiently sized. 
+ 
+Some rooms may have vaulted ceilings, and 
+custom design elements such as built‐ins, 
+upgraded trim, finishes, mouldings and wall 
+treatments. 
+ 
+Upgraded or high‐grade floor coverings 
+that exceed the quality and durability of 
+standard‐grade. 
+ 
+Moderately sized kitchens featuring 
+upgraded appliances, cabinetry and 
+countertops or a mix of upgraded and high‐
+grade elements. 
+ 
+Multiple bathrooms of moderate size with 
+some bathrooms specifically dedicated to 
+certain bedrooms as well as at least one 
+common bathroom; containing upgraded 
+cabinetry and plumbing fixtures or a 
+mixture of upgraded and high‐end 
+elements. 
+ 
+Multiple windows and doorways constructed 
+with upgraded materials and featuring 
+decorative design elements adorning at least 
+the front of the home. 
+ 
+Roof designs using upgraded roof materials; 
+may have steep pitches, could have more 
+than one ridge with hips and valleys, gables, 
+and overhangs. 
+ 
+Exterior walls constructed using upgraded 
+materials and featuring multiple corners 
+with some angled walls or unique shapes. 
+Q4 
+The dwelling is constructed using 
+standard building plans and designs that 
+can be reproduced multiple times with 
+minimal customization or style 
+variations. The materials and amenities 
+are widely available and can contain a 
+mixture of some standard and 
+economy‐level materials. 
+ 
+Sufficiently sized rooms typically with flat 
+ceilings and some vaulted ceilings in larger 
+rooms, some trim or finishes of basic 
+design. 
+ 
+Standard floor coverings that exceed the 
+quality and durability of economy grade. 
+ 
+Moderately sized kitchens featuring 
+standard‐grade appliances, cabinetry and 
+countertops or a mix of economy and 
+upgraded elements. 
+ 
+Usually featuring multiple bathrooms of 
+moderate size containing standard‐grade 
+cabinetry and plumbing fixtures or a 
+mixture of economy and upgraded 
+elements. 
+ 
+Windows and doorways constructed of 
+standard‐grade material. 
+ 
+Simple roof designs using standard‐grade 
+roof materials with moderate pitch and 
+could have more than one ridge; may 
+feature some simple decorative elements 
+such as gables or overhangs. 
+ 
+Exterior walls constructed using standard‐
+grade materials and featuring multiple 
+corners; but basically rectangular in shape or 
+footprint. 
+Q5 
+The dwelling is basic in design and 
+meets minimum building standards. 
+Dwellings rated Q5 are designed for 
+efficiency in installation and 
+construction representing basic housing. 
+Q5 dwellings have minimal refinements 
+or upgrades but are not considered 
+substandard. 
+ 
+Small rooms typically with flat ceilings, 
+minimal trim or finishes of basic design. 
+ 
+Economy floor coverings that meet 
+minimum standards. 
+ 
+Small kitchens featuring economy‐grade 
+appliances, cabinetry, and countertops or a 
+mix of standard and economy grade. 
+ 
+Bathrooms that are limited in size and 
+number, and feature economy‐grade 
+cabinetry and plumbing fixtures or a 
+mixture of economy and standard‐grade 
+elements. 
+ 
+Limited windows and doorways, constructed 
+of economy grade materials, simple in shape 
+and design, and featuring basic trim and 
+finish. 
+ 
+Basic roof design, usually low‐pitch and 
+single roofline; features economy or 
+standard‐grade roof materials. 
+ 
+Exterior walls constructed using economy or 
+standard‐grade materials and featuring 
+minimal corners; usually a basic rectangular 
+shape. 
+Q6 
+The dwelling is a structure constructed 
+in a manner reflecting a lack of basic 
+architectural designs and may not meet 
+local building standards. The materials 
+and amenities are low quality, alternate, 
+or non‐customary; or whose 
+construction or installation reflects 
+unskilled workmanship and may not be 
+adequately equipped to support year‐
+round occupancy. Q6 dwellings may be 
+rare or even non‐existent in many 
+communities. 
+ 
+Small rooms often with low ceilings, limited 
+closet or storage space, and little or no trim 
+or finishes. 
+ 
+Low grade or non‐existent floor coverings. 
+ 
+Small kitchens featuring only the minimum 
+requirements for function; with limited 
+cabinetry and countertop space; and low‐
+grade or non‐existent appliances. 
+ 
+Bathrooms that are limited in size and 
+number and feature only the minimum 
+requirements for function; limited or no 
+cabinetry; and low‐grade plumbing fixtures. 
+ 
+Limited windows and doorways, constructed 
+of lower‐grade materials and featuring 
+minimal or no trim and finish. 
+ 
+Basic roof design, usually low‐pitch and 
+single roofline; may possess inconsistent 
+rooflines if additions are present; features 
+low‐grade or alternate roof materials. 
+ 
+Exterior walls constructed using economy or 
+low‐grade materials and featuring minimal 
+corners; usually a basic rectangular shape. 
+ 

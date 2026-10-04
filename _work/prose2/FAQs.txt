@@ -1,0 +1,291 @@
+<<<PAGE 1 of 7>>>
+P a g e | 1 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) 3.6 Frequently Asked Questions  
+ 
+UAD 3.6 Overview and Key Dates 
+1. What is UAD and why is it being updated? 
+The UAD is a standardized industry dataset for appraisal property reporting that is communicated electronically 
+through the Uniform Collateral Data Portal® (UCDP®). Fannie Mae and Freddie Mac (GSEs) are updating the UAD 
+to create a data-driven, dynamic reporting structure to capture property and market information. One limitation 
+of the legacy forms is that additional required data is provided in a free-form commentary addendum. This 
+update allows for one reporting structure that accounts for all property and inspection types. As part of this 
+initiative, the GSEs are aligning to the latest version of the Mortgage Industry Standards Maintenance 
+Organization (MISMO®) Reference Model 3.6. 
+UAD 3.6 will be mandatory for all new appraisal reports submitted to UCDP on or after November 2, 2026. Refer 
+to the implementation timeline for details. 
+2. How will the UAD 3.6 mandate be enforced? 
+UAD 3.6 becomes mandatory for all new appraisal reports submitted to UCDP on or after November 2, 2026. The 
+November 2, 2026 mandate is based on the initial UCDP Submission Date of each report. If a UAD 2.6 appraisal 
+report is submitted to UCDP on or after November 2, 2026, UCDP will return a Fatal message resulting in a “Not 
+Successful” submission.  
+3. Can I still submit revisions in UAD 2.6 after November 2, 2026? 
+Yes. From the mandate date on November 2, 2026, through the retirement date on May 3, 2027, lenders may 
+continue submitting revisions to UAD 2.6 appraisal reports. If the appraisal report was submitted to UCDP in UAD 
+2.6 prior to November 2, 2026, any revisions submitted to the existing DocFile ID will remain in UAD 2.6. 
+4. How do I prepare for UAD 3.6? 
+Lenders, AMCs, and appraisers should prepare by ensuring systems, workflows, and all partners are ready for 
+UAD 3.6. Lenders should begin transitioning as soon as possible because the mandate is based on the UCDP 
+Submission Date, not the Loan Application or Effective Date. Ensure you are allowing enough time to order, 
+receive, and submit any UAD 2.6 appraisal reports prior to November 2, 2026.  
+ 
+Visit the Fannie Mae and Freddie Mac UAD webpages to access onboarding materials, particularly the Lender 
+Readiness Kit, industry training, and the joint GSE webinar from early 2025. 
+5. [New 8/18/2026] How does a lender process a loan that has been transferred from another lender with a UAD 
+2.6 appraisal report after the mandate? 
+UCDP does not allow a lender to reuse a Document File ID created from another lender's UCDP submission. If a 
+loan is transferred from one lender to another, the new lender can use the DocFile ID/Successful Submission 
+Summary Report (SSR) from the transferred lender when delivering the loan to the GSEs in Loan Delivery/Loan 
+Selling Advisor®.  
+
+<<<PAGE 2 of 7>>>
+P a g e | 2 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+6. [New 8/18/2026] If an appraisal report was successfully submitted to UCDP before the mandate under a 
+previous loan number, can the same appraisal report be resubmitted under a new loan number after the 
+mandate using the original Document File ID? 
+If the applicable GSE policy allows for the reuse of an appraisal report, the lender can change the loan number 
+within UCDP through the Portal or via Direct Integration (DI) after the mandate.  
+7. [New 8/18/2026] Can a loan with a UAD 2.6 appraisal report still be sold to the GSEs after UAD 2.6 retirement? 
+Yes. The retirement of UAD 2.6 is specific to the submission of the appraisal report in UCDP. It does not preclude 
+the sale of the loan to the GSEs. The standard appraisal report expiration requirements still apply; refer to the 
+GSE policy. 
+ 
+ 
+General 
+8. Are the appraisal report forms being replaced? 
+Yes., The appraisal report forms listed below are being retired and replaced with a single data-driven, flexible, 
+dynamic structure for appraisal reporting. The redesigned Uniform Residential Appraisal Report (URAR), 
+Restricted Appraisal Update Report, and Completion Report each have a similar look and feel to the Uniform 
+Residential Loan Application (URLA) and the Closing Disclosure (CD). 
+• 
+Uniform Residential Appraisal Report (1004 / 70) 
+• 
+Uniform Residential Appraisal Report (Desktop) (1004 Desktop / 70D)  
+• 
+Uniform Residential Appraisal Report (Hybrid) (1004 Hybrid / 70H) 
+• 
+Individual Condominium Unit Appraisal Report (1073 / 465) 
+• 
+Individual Condominium Unit Appraisal Report (Desktop) (1073 Desktop / 465D) 
+• 
+Individual Condominium Unit Appraisal Report (Hybrid) (1073 Hybrid / 465H) 
+• 
+Exterior-Only Inspection Individual Condominium Unit Appraisal Report (1075 / 466) 
+• 
+Exterior-Only Inspection Residential Appraisal Report (2055 / 2055)  
+• 
+Manufactured Home Appraisal Report (1004C / 70B) 
+• 
+Individual Cooperative Interest Appraisal Report (2090) 
+• 
+Exterior-Only Individual Cooperative Interest Appraisal Report (2095) 
+• 
+Small Residential Income Property Appraisal Report (1025 / 72) 
+• 
+Single Family Comparable Rent Schedule (1007 / 1000) * See FAQ # 12 for more information. 
+• 
+Appraisal Update and/or Completion Report (1004D / 442) 
+9. Are form numbers going away? 
+Yes. With the new URAR, the data that describes the subject property drives the appraisal report, not a form type 
+or number. Use the Functioning Without Form Numbers document to: 
+• 
+Learn how the URAR's dynamic structure along with discrete and repeatable data replaces the legacy 
+form numbers 
+• 
+Assist with transitioning to the redesigned report 
+
+<<<PAGE 3 of 7>>>
+P a g e | 3 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+10. What is the process for completing an appraisal update or completion report under UAD 3.6? 
+With the implementation of UAD 3.6, Restricted Appraisal Update Reports and Completion Reports are no longer 
+one report.  They will be two separate reports that, if applicable, must be submitted to UCDP as referenced in 
+Fannie Mae’s Selling Guide Supplement: UAD 3.6 Policy and Freddie Mac’s Single-Family Seller/Servicer Guide 
+(Guide) Bulletin 2025-7. 
+The Restricted Appraisal Update Report or Completion Report must be submitted in UAD 3.6 ZIP format and must 
+be associated with an existing UAD 3.6 URAR submission in UCDP. 
+For UAD 2.6 submissions, the process remains unchanged. If submitted to UCDP, the Appraisal Update and/or 
+Completion Report (1004D/442) must be in UAD 2.6 XML format and must be associated with a prior UAD 2.6 
+submission. 
+Important: UCDP does not accept mixed standards (UAD 2.6 and UAD 3.6) under the same Document File 
+Identifier (Doc File ID). The format of the Restricted Appraisal Update Report or Completion Report must match 
+the format of the original appraisal report file submission.  
+11. [New 8/18/2026] Is there any impact to appraisals for construction loans that began prior to the mandate and 
+are completed after the mandate/retirement?  
+Construction loans associated with “subject to completion” UAD 2.6 appraisal reports may be submitted to UCDP 
+prior to the mandate. When construction is completed, Form 442/1004D, the Appraisal Update and/or 
+Completion Report, or any accepted alternative must be retained in the loan file for the life of the loan.  
+12. When is it acceptable to use the legacy Single-Family Comparable Rent Schedule (1007 / 1000)? 
+In most situations, the legacy Single-Family Comparable Rent Schedule form will not be completed separately, as 
+estimating the monthly market rent will be part of the appraisal assignment and included in the new URAR under 
+the Rental Information section. 
+ 
+When the need arises to establish a monthly market rent after the URAR has been completed, then the original 
+appraiser must be engaged to amend the original URAR to include the Rental Information section.  
+ 
+In rare cases, the original appraiser will not be available to amend the appraisal report. In this situation, a 
+different appraiser may complete the Single-Family Comparable Rent Schedule to satisfy the requirement for the 
+loan.  
+ 
+Please note, this form was never designed to be a standalone appraisal report and the alternate appraiser 
+completing it must take the necessary steps to be compliant with the Uniform Standards of Appraisal Practice 
+(USPAP). 
+13. Can I use an operating income statement (216/998)? 
+There is no requirement by the GSEs to complete the Operating Income Statement. The GSEs have retired this 
+form and do not expect to receive it through UCDP. 
+14. Does UAD 3.6 support different scopes of work for different types of appraisal assignments? 
+Yes. UAD 3.6 supports traditional, hybrid, desktop, and exterior appraisal assignments. Refer to the GSE Selling 
+Guides for specific policies. 
+
+<<<PAGE 4 of 7>>>
+P a g e | 4 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+15. Does the new appraisal report still contain a General Addendum? 
+No. In place of the General Addendum, there are specific fields within each section of the URAR that allow 
+commentary to be added as necessary, offering the appraiser ample room to provide additional information. 
+16. Is the new URAR for mortgage purposes only? 
+Yes. The purpose of the URAR has not changed. The opinions, conclusions, and certifications in the appraisal 
+report are for the intended user to evaluate the property that is the subject of the appraisal for a mortgage 
+finance transaction or related activities. 
+17. Does UAD 3.6 support FHA, VA, and USDA requirements? 
+Yes. The GSEs have worked closely with the government agencies – Federal Housing Administration (FHA), United 
+States Department of Agriculture (USDA), and the Department of Veterans Affairs (VA) – to include their specific 
+requirements in UAD 3.6. Contact each agency for their implementation plans. 
+18. How are property characteristics described and identified? 
+UAD 3.6 provides standardized data fields and enumerations to define the property, helping lenders and other 
+end users better understand the property’s characteristics to verify property eligibility and determine overall 
+collateral risk. 
+19. Does UAD 3.6 support land-only appraisals? 
+No. These appraisals are not in scope of the UAD 3.6 and Forms Redesign project.  
+20. What is the UAD Compliance API? 
+The appraiser, through their appraisal software provider, has the ability to run the UAD compliance rules through 
+an API. Fannie Mae and Freddie Mac created UAD Compliance APIs to evaluate the XML for compliance with the 
+UAD Delivery Specification. The rules check for data completeness, validity (format and data type), and 
+reasonableness.  
+ 
+The UAD Compliance API does not include Loan Collateral Advisor® or Collateral Underwriter® (CU®) messages or 
+findings, such as eligibility, risk scores or appraisal quality. 
+  
+To see a full list of the rules that are run by the UAD Compliance API, download Appendices H-1, H-2, and H-3.  
+21. What are the Uniform Loan Delivery Dataset (ULDD) requirements that are related to UAD 3.6? 
+For lenders that deliver loans to the GSEs, the ULDD Phase 5 (v5.1.0) update includes enhancements to align 
+ULDD property data points with UAD 3.6. For more information, see ULDD Job Aid for Alignment with UAD 3.6.  
+22. As an appraiser, how can I prepare for UAD 3.6? 
+The GSEs have created an appraiser-specific training course, available through appraisal education providers, that 
+will allow appraisers to obtain continuing education (CE) credit. Appraisers should also work with their appraisal 
+software vendor to understand specific functionality, vendor-specific training, and testing timeframes.  
+Appraisers can also review published materials on the GSE websites: 
+• 
+Training: Industry’s Guide to the New URAR 
+
+<<<PAGE 5 of 7>>>
+P a g e | 5 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+• 
+Appendices F-1, F2, and F-3: Reference Guides 
+• 
+Sample Scenario PDFs (Combined)  
+23. As an appraiser, how will I know whether to perform an appraisal assignment using UAD 2.6 or UAD 3.6? 
+This information should be in the Engagement Letter. If not, work with your client to understand the assignment. 
+Lenders may implement a staged rollout of UAD 3.6 during the transition period, so requirements may vary from 
+assignment to assignment and from lender to lender. 
+URAR 
+24. Have the Condition and Quality Ratings been updated for UAD 3.6? 
+The Condition and Quality Rating scale has not changed, but definitions were rewritten to provide clarity and 
+make it easier to distinguish between the ratings. Interior and Exterior Condition and Quality Ratings have also 
+been added for a distinction when there are significant differences in the condition status between interior and 
+exterior. See Appendix 2 of the URAR Reference Guide or Condition and Quality Rating Definitions for details. 
+25. Can the UAD Condition and Quality Ratings be applied to manufactured housing? 
+Yes. The Condition and Quality Ratings apply to all residential property types, including manufactured homes. 
+This is a change from UAD 2.6. 
+26. Why is there a need for component-level Update Status and Condition Status? 
+The Update and Condition Status provide support to develop a credible opinion on the Condition and Quality 
+Ratings by providing more granular data on the various components of the property consistent with the updated 
+definitions.  
+27. Have the Update Statuses for the interior features changed? 
+Yes. See the Unit Interior Section of the URAR Reference Guide for details on reporting Update Status for: 
+• 
+Room Update Status (Kitchens and Baths) 
+• 
+Overall Update Status for Bathrooms 
+• 
+Overall Update Status for Flooring 
+Please note, new construction should now be reported as Fully Updated instead of Not Updated. 
+28. [New 8/18/2026] What does the term Site Owned in Common mean? 
+Site Owned in Common means there are undivided interests in the land for the subject property or comparable. This 
+occurs when the land supporting the dwelling is commonly owned, typically by an association. If the appraisal report 
+indicates that the site is owned in common, then there is no requirement to provide Total Site Size. Fee simple and 
+leasehold are not factors for evaluating site owned in common.  
+29. If a dwelling was built in two different years, how should “Year Built” be reported on the URAR? 
+This depends on whether it was original construction covering multiple years or additional construction done 
+years later. 
+ 
+
+<<<PAGE 6 of 7>>>
+P a g e | 6 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+Example 1: Dwelling was started in 2024 and completed in 2025. The year the structure was completed (2025) 
+would be reported. 
+ 
+Example 2: Dwelling was originally built in 1950, with an addition constructed in 2002. The year of the original 
+part of the structure (1950) would be reported. 
+30. What information is required for accessory dwelling units (ADUs) reported on the URAR? 
+The URAR includes more detailed information about ADUs, such as size, condition, rooms, and location. ADUs 
+display in a more consistent manner on the new URAR than on the legacy forms, which will make it easier for 
+reviewers to identify them. See the URAR Reference Guide for details. 
+31. How should appraisers handle adjustments for unit discrepancies in the Sales Comparison Approach? 
+When a comparable either has fewer units or has additional units compared to the subject, the appraiser should 
+use an <Additional Row> under the Dwelling(s) subsection of the Sales Comparison Approach and label it “Total 
+Units”. This row should display the number of units for the subject and each comparable. 
+Adjustments for differences in the total number of units should be made on the “Total Units” highlighted in 
+yellow line in the Dwelling(s) subsection. For variations at the feature level (such as a one-bedroom unit 
+compared with a two-bedroom unit) apply the appropriate adjustment to the corresponding line item within the 
+“Unit(s)” subsection of the Sales Comparison Approach.  
+However, the appraiser should be mindful to not also double-adjust unit characteristics when a unit-based 
+adjustment has already been applied (which is highlighted below with red X’s).  
+ 
+
+<<<PAGE 7 of 7>>>
+P a g e | 7 
+ 
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of U.S. 
+Federal Housing (FHFA). 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+ 
+32. If a ceiling isn’t completely flat or has minor slopes or varying pitches, how should it be measured, and what 
+ceiling style should be reported? 
+Measure the ceiling height at its highest point, consistent with standard measurement practice. For labeling, choose 
+the ceiling style that most accurately reflects its overall design using the options in the UAD Reference Guide. Select 
+the style that best aligns with the predominant ceiling shape. When none of the available types properly describe the 
+ceiling select “Other” and provide a description. 

@@ -1,0 +1,405 @@
+[
+ {
+  "name": "Parcel",
+  "section": "Site",
+  "columns": [
+   "Assessor Parcel Number (APN)",
+   "APN Description",
+   "Parcel Size"
+  ],
+  "width_picas": 45,
+  "equal_columns": 3
+ },
+ {
+  "name": "Site Influence",
+  "section": "Site",
+  "columns": [
+   "Influence",
+   "Proximity",
+   "Detail",
+   "Impact",
+   "Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": 5
+ },
+ {
+  "name": "Water Frontage",
+  "section": "Site",
+  "columns": [
+   "Frontage",
+   "Name",
+   "Waterfront Access Rights",
+   "Access Depth"
+  ],
+  "width_picas": 45,
+  "equal_columns": 4
+ },
+ {
+  "name": "View",
+  "section": "Site",
+  "columns": [
+   "View",
+   "Range of View",
+   "Impact"
+  ],
+  "width_picas": 45,
+  "equal_columns": 3
+ },
+ {
+  "name": "Site Features",
+  "section": "Site",
+  "columns": [
+   "Feature",
+   "Detail",
+   "Impact",
+   "Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Utilities",
+  "section": "Site",
+  "columns": [
+   "Public",
+   "Private",
+   "Detail",
+   "Private Utility Impact",
+   "Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Site DDD",
+  "section": "Site",
+  "columns": [
+   "Feature",
+   "Location",
+   "Description",
+   "Affects Soundness or Structural Integrity",
+   "Recommended Action"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Valuation Methodology",
+  "section": "Site",
+  "columns": [
+   "Address",
+   "County",
+   "Data Source",
+   "Assessor Parcel Number (APN), \u201cSite Size",
+   "Sale Date",
+   "Price"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Renewable Energy Components",
+  "section": "Energy Efficient and Green Features",
+  "columns": [
+   "Renewable Energy Component",
+   "Ownership",
+   "Financing Arrangement"
+  ],
+  "width_picas": 45,
+  "equal_columns": 3
+ },
+ {
+  "name": "Building Certifications",
+  "section": "Energy Efficient and Green Features",
+  "columns": [
+   "Building Certification Organization",
+   "Certification",
+   "Year",
+   "Version",
+   "Rating"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Green/Energy Efficiency Rating Organization",
+  "section": "Energy Efficient and Green Features",
+  "columns": [
+   "Green/Energy Efficiency Rating Organization",
+   "Rating",
+   "Score"
+  ],
+  "width_picas": 45,
+  "equal_columns": 3
+ },
+ {
+  "name": "Exterior Features",
+  "section": "Dwelling Exterior",
+  "columns": [
+   "Feature",
+   "Detail",
+   "Quality Comment",
+   "Condition Status",
+   "Condition Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": 5
+ },
+ {
+  "name": "Noncontinuous Finished Area",
+  "section": "Dwelling Exterior",
+  "columns": [
+   "Finish",
+   "Total Area",
+   "Room Summary"
+  ],
+  "width_picas": 22,
+  "equal_columns": 3
+ },
+ {
+  "name": "Mechanical Systems",
+  "section": "Dwelling Exterior",
+  "columns": [
+   "System",
+   "Detail"
+  ],
+  "width_picas": 22,
+  "equal_columns": null
+ },
+ {
+  "name": "Level and Room Detail",
+  "section": "Unit Interior",
+  "columns": [
+   "Level in Unit",
+   "Grade Level Detail",
+   "Finish",
+   "Area",
+   "Room Summary"
+  ],
+  "width_picas": 45,
+  "equal_columns": 5
+ },
+ {
+  "name": "Kitchen and Bathroom Detail",
+  "section": "Unit Interior",
+  "columns": [
+   "Room",
+   "Update Status",
+   "Time Frame",
+   "Quality Comment",
+   "Condition Status",
+   "Condition Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": 6
+ },
+ {
+  "name": "Interior Features",
+  "section": "Unit Interior",
+  "columns": [
+   "Feature",
+   "Detail",
+   "Quality Comment",
+   "Condition Status",
+   "Condition Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": 5
+ },
+ {
+  "name": "Accessibility Features",
+  "section": "Unit Interior",
+  "columns": [
+   "Feature",
+   "None"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Outbuilding Area",
+  "section": "Outbuilding",
+  "columns": [
+   "Finish",
+   "Total Area",
+   "Room Summary"
+  ],
+  "width_picas": 22,
+  "equal_columns": 3
+ },
+ {
+  "name": "Mechanical Systems",
+  "section": "Outbuilding",
+  "columns": [
+   "System",
+   "Detail"
+  ],
+  "width_picas": 22,
+  "equal_columns": null
+ },
+ {
+  "name": "Vehicle Storage",
+  "section": "Vehicle Storage",
+  "columns": [
+   "Storage",
+   "Number of Parking Spaces",
+   "Detail"
+  ],
+  "width_picas": 45,
+  "equal_columns": 3
+ },
+ {
+  "name": "Subject Property Amenities",
+  "section": "Subject Property Amenities",
+  "columns": [
+   "Amenity Category",
+   "Subject Property Amenity",
+   "Material",
+   "Detail"
+  ],
+  "width_picas": 45,
+  "equal_columns": 4
+ },
+ {
+  "name": "Project Blanket Financing",
+  "section": "Project Information",
+  "columns": [
+   "Lien Detail",
+   "First Lien",
+   "Second Lien, \u201cThird Lien",
+   "Fourth Lien"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Subject Listing Information",
+  "section": "Subject Listing Information",
+  "columns": [
+   "Listing Status",
+   "Listing Type",
+   "Listing ID",
+   "Start Date",
+   "End Date",
+   "DOM",
+   "Starting List Price",
+   "Current or Final Price"
+  ],
+  "width_picas": 45,
+  "equal_columns": 8
+ },
+ {
+  "name": "Subject Transfer History",
+  "section": "Prior Sale and Transfer History",
+  "columns": [
+   "Transfer Terms",
+   "Date",
+   "Amount",
+   "Data Source"
+  ],
+  "width_picas": 45,
+  "equal_columns": 4
+ },
+ {
+  "name": "Comparable Transfer History",
+  "section": "Prior Sale and Transfer History",
+  "columns": [
+   "Transfer Terms",
+   "Date",
+   "Amount",
+   "Data Source"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Additional Properties Analyzed",
+  "section": "Sales Comparison Approach",
+  "columns": [
+   "Property Address",
+   "Sale Date",
+   "Status",
+   "Reason Not Used",
+   "Comment"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ },
+ {
+  "name": "Subject Property Rental Information",
+  "section": "Sales Comparison Approach",
+  "columns": [
+   "Currently Rented",
+   "Occupancy",
+   "Monthly Rent",
+   "Month-to-Month",
+   "Lease Start",
+   "Rent Control",
+   "Rent Concessions",
+   "Utilities/Services Included",
+   "Furnished"
+  ],
+  "width_picas": 45,
+  "equal_columns": 10
+ },
+ {
+  "name": "Gross Rent Multiplier Comparables",
+  "section": "Income Approach",
+  "columns": [
+   "Data Source",
+   "Proximity to Subject",
+   "Sale Price",
+   "Sale Date",
+   "Gross Rent Multiplier"
+  ],
+  "width_picas": 45,
+  "equal_columns": 5
+ },
+ {
+  "name": "As Is Value of Site Improvements",
+  "section": "Cost Approach",
+  "columns": [
+   "Description",
+   "Amount"
+  ],
+  "width_picas": 28,
+  "equal_columns": null
+ },
+ {
+  "name": "Approaches to Value",
+  "section": "Reconciliation",
+  "columns": [
+   "Sales Comparison Approach",
+   "Income Approach",
+   "Cost Approach",
+   "Indicated Value"
+  ],
+  "width_picas": 45,
+  "equal_columns": 4
+ },
+ {
+  "name": "Client Requested Conditions",
+  "section": "Reconciliation",
+  "columns": [
+   "Value Condition",
+   "Marketing or Exposure Time",
+   "Duration",
+   "Alternate Opinion of Value"
+  ],
+  "width_picas": 45,
+  "equal_columns": 4
+ },
+ {
+  "name": "Revision History",
+  "section": "Revision History",
+  "columns": [
+   "Revision Date",
+   "URAR Section",
+   "Reconsideration of Value",
+   "Type"
+  ],
+  "width_picas": 45,
+  "equal_columns": null
+ }
+]

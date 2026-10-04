@@ -1,0 +1,1901 @@
+{
+ "22.01.01": {
+  "section": 22,
+  "label": "Property Address",
+  "controls": [
+   {
+    "fn": "GSU_AD_ADDR",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.17": {
+  "section": 22,
+  "label": "Property Address",
+  "controls": [
+   {
+    "fn": "GC1_AD_ADDR",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_AD_ADDR",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_AD_ADDR",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.18": {
+  "section": 22,
+  "label": "Data Source",
+  "controls": [
+   {
+    "fn": "GC1_SC_SOURCE1",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_SC_SOURCE1",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_SC_SOURCE1",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.19": {
+  "section": 22,
+  "label": "Proximity to Subject",
+  "controls": [
+   {
+    "fn": "GC1_PROX1",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_PROX1",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_PROX1",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.02": {
+  "section": 22,
+  "label": "List Price",
+  "controls": [
+   {
+    "fn": "GSU_LP_PRICE",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.20": {
+  "section": 22,
+  "label": "List Price",
+  "controls": [
+   {
+    "fn": "GC1_LP_PRICE",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_LP_PRICE",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_LP_PRICE",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.03": {
+  "section": 22,
+  "label": "Listing Status",
+  "controls": [
+   {
+    "fn": "GSU_LP_STATUS",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.21": {
+  "section": 22,
+  "label": "Listing Status",
+  "controls": [
+   {
+    "fn": "GC1_LP_STATUS",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_LP_STATUS",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_LP_STATUS",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.04": {
+  "section": 22,
+  "label": "Contract Price",
+  "controls": [
+   {
+    "fn": "GSU_CONT_PRICE",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.22": {
+  "section": 22,
+  "label": "Contract Price",
+  "controls": [
+   {
+    "fn": "GC1_CONT_PRICE",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_CONT_PRICE",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_CONT_PRICE",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.23": {
+  "section": 22,
+  "label": "Sale Price",
+  "controls": [
+   {
+    "fn": "GC1_PR_SALEPR1",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_PR_SALEPR1",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_PR_SALEPR1",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.24": {
+  "section": 22,
+  "label": "Transfer Terms",
+  "controls": [
+   {
+    "fn": "GC1_TRANSFER_TERMS",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_TRANSFER_TERMS",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_TRANSFER_TERMS",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.25": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_TRANSFER_TERMS_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_TRANSFER_TERMS_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_TRANSFER_TERMS_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.26": {
+  "section": 22,
+  "label": "Financing Type",
+  "controls": [
+   {
+    "fn": "GC1_DP_FINTYP1",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DP_FINTYP1",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DP_FINTYP1",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.27": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_DP_FINTYP1_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DP_FINTYP1_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DP_FINTYP1_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.05": {
+  "section": 22,
+  "label": "Sales Concessions",
+  "controls": [
+   {
+    "fn": "GSU_EX_CONCAMT",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.28": {
+  "section": 22,
+  "label": "Sales Concessions",
+  "controls": [
+   {
+    "fn": "GC1_EX_CONCAMT",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EX_CONCAMT",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EX_CONCAMT",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.29": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_EX_CONCAMT_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EX_CONCAMT_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EX_CONCAMT_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.06": {
+  "section": 22,
+  "label": "Contract Date",
+  "controls": [
+   {
+    "fn": "GSU_CONT_DATE",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.30": {
+  "section": 22,
+  "label": "Contract Date",
+  "controls": [
+   {
+    "fn": "GC1_CONT_DATE",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_CONT_DATE",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_CONT_DATE",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.31": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_CONT_DATE_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_CONT_DATE_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_CONT_DATE_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.32": {
+  "section": 22,
+  "label": "Sale Date",
+  "controls": [
+   {
+    "fn": "GC1_DT_SALTIM1",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DT_SALTIM1",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DT_SALTIM1",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.33": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_DT_SALTIM1_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DT_SALTIM1_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DT_SALTIM1_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.07": {
+  "section": 22,
+  "label": "Days on Market",
+  "controls": [
+   {
+    "fn": "GSU_EX_DOM",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.34": {
+  "section": 22,
+  "label": "Days on Market",
+  "controls": [
+   {
+    "fn": "GC1_EX_DOM",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EX_DOM",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EX_DOM",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.08": {
+  "section": 22,
+  "label": "Attached/Detached",
+  "controls": [
+   {
+    "fn": "GSU_ATT_DET",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.37": {
+  "section": 22,
+  "label": "Attached/Detached",
+  "controls": [
+   {
+    "fn": "GC1_ATT_DET",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_ATT_DET",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_ATT_DET",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.38": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_ATT_DET_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_ATT_DET_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_ATT_DET_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.09": {
+  "section": 22,
+  "label": "Property Rights Appraised",
+  "controls": [
+   {
+    "fn": "GSU_PROP_APPRAISER_RIGHTS",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.01.39": {
+  "section": 22,
+  "label": "Property Rights Appraised",
+  "controls": [
+   {
+    "fn": "GC1_PROP_APPRAISER_RIGHTS",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_PROP_APPRAISER_RIGHTS",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_PROP_APPRAISER_RIGHTS",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.40": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_PROP_APPRAISER_RIGHTS_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_PROP_APPRAISER_RIGHTS_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_PROP_APPRAISER_RIGHTS_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.01.49": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_GI_BLANK_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_GI_BLANK_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_GI_BLANK_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.02": {
+  "section": 22,
+  "label": "Site Size",
+  "controls": [
+   {
+    "fn": "GSU_ST_SITSIZE",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.03.20": {
+  "section": 22,
+  "label": "Site Size",
+  "controls": [
+   {
+    "fn": "GC1_ST_SITSIZE",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_ST_SITSIZE",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_ST_SITSIZE",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.21": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_ST_SITSIZE_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_ST_SITSIZE_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_ST_SITSIZE_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.13": {
+  "section": 22,
+  "label": "Site Influence (Location)",
+  "controls": [
+   {
+    "fn": "GSU_SITE_INFLUENCE",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.03.42": {
+  "section": 22,
+  "label": "Site Influence (Location)",
+  "controls": [
+   {
+    "fn": "GC1_SITE_INFLUENCE",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_SITE_INFLUENCE",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_SITE_INFLUENCE",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.43": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_SITE_INFLUENCE_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_SITE_INFLUENCE_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_SITE_INFLUENCE_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.15": {
+  "section": 22,
+  "label": "View | Range",
+  "controls": [
+   {
+    "fn": "GSU_ST_VIEW",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.03.46": {
+  "section": 22,
+  "label": "View | Range",
+  "controls": [
+   {
+    "fn": "GC1_ST_VIEW",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_ST_VIEW",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_ST_VIEW",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.47": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_ST_VIEW_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_ST_VIEW_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_ST_VIEW_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.03.49": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_SITE_BLANK_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_SITE_BLANK_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_SITE_BLANK_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.02": {
+  "section": 22,
+  "label": "Year Built",
+  "controls": [
+   {
+    "fn": "GSU_YR_BLT",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.05.21": {
+  "section": 22,
+  "label": "Year Built",
+  "controls": [
+   {
+    "fn": "GC1_YR_BLT",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_YR_BLT",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_YR_BLT",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.22": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_YR_BLT_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_YR_BLT_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_YR_BLT_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.09": {
+  "section": 22,
+  "label": "Construction Method",
+  "controls": [
+   {
+    "fn": "GSU_DWELL_CONST_METHOD",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.05.35": {
+  "section": 22,
+  "label": "Construction Method",
+  "controls": [
+   {
+    "fn": "GC1_DWELL_CONST_METHOD",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DWELL_CONST_METHOD",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DWELL_CONST_METHOD",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.36": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_DWELL_CONST_METHOD_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DWELL_CONST_METHOD_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DWELL_CONST_METHOD_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.16": {
+  "section": 22,
+  "label": "Heating",
+  "controls": [
+   {
+    "fn": "GSU_DWELL_HEAT",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.05.49": {
+  "section": 22,
+  "label": "Heating",
+  "controls": [
+   {
+    "fn": "GC1_DWELL_HEAT",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DWELL_HEAT",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DWELL_HEAT",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.50": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_DWELL_HEAT_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DWELL_HEAT_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DWELL_HEAT_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.05.54": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_DWELL_OTHR1_BLANK_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_DWELL_OTHR1_BLANK_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_DWELL_OTHR1_BLANK_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.06": {
+  "section": 22,
+  "label": "Bedrooms",
+  "controls": [
+   {
+    "fn": "GSU_BEDS",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.07.26": {
+  "section": 22,
+  "label": "Bedrooms",
+  "controls": [
+   {
+    "fn": "GC1_BEDS",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_BEDS",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_BEDS",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.27": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_BEDS_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_BEDS_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_BEDS_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.07": {
+  "section": 22,
+  "label": "Full | Half",
+  "controls": [
+   {
+    "fn": "GSU_BATHS",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.07.28": {
+  "section": 22,
+  "label": "Full | Half",
+  "controls": [
+   {
+    "fn": "GC1_BATHS",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_BATHS",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_BATHS",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.29": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_BATHS_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_BATHS_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_BATHS_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.08": {
+  "section": 22,
+  "label": "Finished Area Above Grade",
+  "controls": [
+   {
+    "fn": "GSU_UNITS_SF_GLA",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.07.30": {
+  "section": 22,
+  "label": "Finished Area Above Grade",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.31": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.11": {
+  "section": 22,
+  "label": "Finished Area Below Grade",
+  "controls": [
+   {
+    "fn": "GSU_UNITS_SF_GLA_BELOW_GRD",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.07.36": {
+  "section": 22,
+  "label": "Finished Area Below Grade",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_BELOW_GRD",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_BELOW_GRD",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_BELOW_GRD",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.37": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.12": {
+  "section": 22,
+  "label": "Finished Area Below Grade (Nonstandard)",
+  "controls": [
+   {
+    "fn": "GSU_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.07.38": {
+  "section": 22,
+  "label": "Finished Area Below Grade (Nonstandard)",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.39": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.13": {
+  "section": 22,
+  "label": "Unfinished Area Below Grade",
+  "controls": [
+   {
+    "fn": "GSU_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.07.40": {
+  "section": 22,
+  "label": "Unfinished Area Below Grade",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.41": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.07.45": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_UNITS_BLANK_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_UNITS_BLANK_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_UNITS_BLANK_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.08.02": {
+  "section": 22,
+  "label": "Quality",
+  "controls": [
+   {
+    "fn": "GSU_EXT_QUAL_QUALITY",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.08.17": {
+  "section": 22,
+  "label": "Quality",
+  "controls": [
+   {
+    "fn": "GC1_EXT_QUAL_QUALITY",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EXT_QUAL_QUALITY",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EXT_QUAL_QUALITY",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.08.07": {
+  "section": 22,
+  "label": "{Feature Type}",
+  "controls": [
+   {
+    "fn": "GSU_EXT_QUAL_BLANK_LABEL",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.08.08": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GSU_EXT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.08.22": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GC1_EXT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EXT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EXT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.08.09": {
+  "section": 22,
+  "label": "Condition",
+  "controls": [
+   {
+    "fn": "GSU_EXT_COND_CONDITION",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.08.23": {
+  "section": 22,
+  "label": "Condition",
+  "controls": [
+   {
+    "fn": "GC1_EXT_COND_CONDITION",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EXT_COND_CONDITION",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EXT_COND_CONDITION",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.08.14": {
+  "section": 22,
+  "label": "{Feature Type}",
+  "controls": [
+   {
+    "fn": "GSU_EXT_COND_BLANK_LABEL",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.08.15": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GSU_EXT_COND_BLANK",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.08.28": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GC1_EXT_COND_BLANK",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_EXT_COND_BLANK",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_EXT_COND_BLANK",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.09.03": {
+  "section": 22,
+  "label": "Quality",
+  "controls": [
+   {
+    "fn": "GSU_INT_QUAL_QUALITY",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.09.19": {
+  "section": 22,
+  "label": "Quality",
+  "controls": [
+   {
+    "fn": "GC1_INT_QUAL_QUALITY",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_INT_QUAL_QUALITY",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_INT_QUAL_QUALITY",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.09.08": {
+  "section": 22,
+  "label": "{Feature Type}",
+  "controls": [
+   {
+    "fn": "GSU_INT_QUAL_BLANK_LABEL",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.09.09": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GSU_INT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.09.24": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GC1_INT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_INT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_INT_QUAL_BLANK",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.09.10": {
+  "section": 22,
+  "label": "Condition",
+  "controls": [
+   {
+    "fn": "GSU_INT_COND_CONDITION",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.09.25": {
+  "section": 22,
+  "label": "Condition",
+  "controls": [
+   {
+    "fn": "GC1_INT_COND_CONDITION",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_INT_COND_CONDITION",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_INT_COND_CONDITION",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.09.15": {
+  "section": 22,
+  "label": "{Feature Type}",
+  "controls": [
+   {
+    "fn": "GSU_INT_COND_BLANK_LABEL",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.09.16": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GSU_INT_COND_BLANK",
+    "kind": "editable",
+    "column": 0
+   }
+  ]
+ },
+ "22.09.30": {
+  "section": 22,
+  "label": "Other (Describe)",
+  "controls": [
+   {
+    "fn": "GC1_INT_COND_BLANK",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_INT_COND_BLANK",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_INT_COND_BLANK",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.11.01": {
+  "section": 22,
+  "label": "Quality",
+  "controls": [
+   {
+    "fn": "GSU_QUALITY",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.11.03": {
+  "section": 22,
+  "label": "Quality",
+  "controls": [
+   {
+    "fn": "GC1_QUALITY",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_QUALITY",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_QUALITY",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.11.04": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_QUALITY_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_QUALITY_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_QUALITY_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.11.02": {
+  "section": 22,
+  "label": "Condition",
+  "controls": [
+   {
+    "fn": "GSU_CONDITION",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.11.05": {
+  "section": 22,
+  "label": "Condition",
+  "controls": [
+   {
+    "fn": "GC1_CONDITION",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_CONDITION",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_CONDITION",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.11.06": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_CONDITION_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_CONDITION_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_CONDITION_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.13.04": {
+  "section": 22,
+  "label": "(Adjustment column)",
+  "controls": [
+   {
+    "fn": "GC1_VEHICLE_STORAGE_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_VEHICLE_STORAGE_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_VEHICLE_STORAGE_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.13.01": {
+  "section": 22,
+  "label": "Type | Spaces | Detail",
+  "controls": [
+   {
+    "fn": "GSU_VEHICLE_STORAGE",
+    "kind": "readonly",
+    "column": 0
+   }
+  ]
+ },
+ "22.13.05": {
+  "section": 22,
+  "label": "Type | Spaces | Detail",
+  "controls": [
+   {
+    "fn": "GC1_VEHICLE_STORAGE",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_VEHICLE_STORAGE",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_VEHICLE_STORAGE",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.02": {
+  "section": 22,
+  "label": "List Price",
+  "controls": [
+   {
+    "fn": "GSU_LIST_PRICE",
+    "kind": "text",
+    "column": 0
+   }
+  ]
+ },
+ "22.15.05": {
+  "section": 22,
+  "label": "List Price",
+  "controls": [
+   {
+    "fn": "GC1_LIST_PRICE",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_LIST_PRICE",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_LIST_PRICE",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.03": {
+  "section": 22,
+  "label": "Contract Price",
+  "controls": [
+   {
+    "fn": "GSU_CONTRACT_PRICE",
+    "kind": "text",
+    "column": 0
+   }
+  ]
+ },
+ "22.15.06": {
+  "section": 22,
+  "label": "Contract Price",
+  "controls": [
+   {
+    "fn": "GC1_CONTRACT_PRICE",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_CONTRACT_PRICE",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_CONTRACT_PRICE",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.07": {
+  "section": 22,
+  "label": "Sale Price",
+  "controls": [
+   {
+    "fn": "GC1_SALE_PRICE",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_SALE_PRICE",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_SALE_PRICE",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.08": {
+  "section": 22,
+  "label": "Net Adjustment Total",
+  "controls": [
+   {
+    "fn": "GC1_NETADJ_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_NETADJ_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_NETADJ_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.13": {
+  "section": 22,
+  "label": "Adjusted Price",
+  "controls": [
+   {
+    "fn": "GC1_NETADJ_PRICE_ADJ",
+    "kind": "text",
+    "column": 1
+   },
+   {
+    "fn": "GC2_NETADJ_PRICE_ADJ",
+    "kind": "text",
+    "column": 2
+   },
+   {
+    "fn": "GC3_NETADJ_PRICE_ADJ",
+    "kind": "text",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.14": {
+  "section": 22,
+  "label": "Comparable Weight",
+  "controls": [
+   {
+    "fn": "GC1_NETADJ_COMP_WEIGHT_ADJ",
+    "kind": "editable",
+    "column": 1
+   },
+   {
+    "fn": "GC2_NETADJ_COMP_WEIGHT_ADJ",
+    "kind": "editable",
+    "column": 2
+   },
+   {
+    "fn": "GC3_NETADJ_COMP_WEIGHT_ADJ",
+    "kind": "editable",
+    "column": 3
+   }
+  ]
+ },
+ "22.15.15": {
+  "section": 22,
+  "label": "Indicated Value",
+  "controls": [
+   {
+    "fn": "GSU_SCMINDVALUE2",
+    "kind": "text",
+    "column": 0
+   }
+  ]
+ }
+}

@@ -1,0 +1,4564 @@
+{
+ "fields": {
+  "GC1_HEADER_LABEL": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_HEADER_LABEL": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_HEADER_LABEL": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_AD_ADDR": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.01",
+   "instances": 1
+  },
+  "GC1_AD_ADDR": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.17",
+   "instances": 1
+  },
+  "GC2_AD_ADDR": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.17",
+   "instances": 1
+  },
+  "GC3_AD_ADDR": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.17",
+   "instances": 1
+  },
+  "GSU_PHOTO": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_PHOTO": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_PHOTO": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_PHOTO": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_SC_SOURCE1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.18",
+   "instances": 1
+  },
+  "GC2_SC_SOURCE1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.18",
+   "instances": 1
+  },
+  "GC3_SC_SOURCE1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.18",
+   "instances": 1
+  },
+  "GC1_PROX1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.19",
+   "instances": 1
+  },
+  "GC2_PROX1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.19",
+   "instances": 1
+  },
+  "GC3_PROX1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.19",
+   "instances": 1
+  },
+  "GSU_LP_PRICE": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.02",
+   "instances": 1
+  },
+  "GC1_LP_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.20",
+   "instances": 1
+  },
+  "GC2_LP_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.20",
+   "instances": 1
+  },
+  "GC3_LP_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.20",
+   "instances": 1
+  },
+  "GSU_PRICE_PER_SQFT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_PRICE_PER_SQFT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_PRICE_PER_SQFT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_PRICE_PER_SQFT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_LP_STATUS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.03",
+   "instances": 1
+  },
+  "GC1_LP_STATUS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.21",
+   "instances": 1
+  },
+  "GC2_LP_STATUS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.21",
+   "instances": 1
+  },
+  "GC3_LP_STATUS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.21",
+   "instances": 1
+  },
+  "GSU_CONT_PRICE": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.04",
+   "instances": 1
+  },
+  "GC1_CONT_PRICE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.22",
+   "instances": 1
+  },
+  "GC2_CONT_PRICE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.22",
+   "instances": 1
+  },
+  "GC3_CONT_PRICE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.22",
+   "instances": 1
+  },
+  "GC1_PR_SALEPR1": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.23",
+   "instances": 1
+  },
+  "GC2_PR_SALEPR1": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.23",
+   "instances": 1
+  },
+  "GC3_PR_SALEPR1": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.23",
+   "instances": 1
+  },
+  "GC1_TRANSFER_TERMS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.24",
+   "instances": 1
+  },
+  "GC1_TRANSFER_TERMS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.25",
+   "instances": 1
+  },
+  "GC2_TRANSFER_TERMS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.24",
+   "instances": 1
+  },
+  "GC2_TRANSFER_TERMS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.25",
+   "instances": 1
+  },
+  "GC3_TRANSFER_TERMS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.24",
+   "instances": 1
+  },
+  "GC3_TRANSFER_TERMS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.25",
+   "instances": 1
+  },
+  "GC1_DP_FINTYP1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.26",
+   "instances": 1
+  },
+  "GC1_DP_FINTYP1_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.27",
+   "instances": 1
+  },
+  "GC2_DP_FINTYP1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.26",
+   "instances": 1
+  },
+  "GC2_DP_FINTYP1_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.27",
+   "instances": 1
+  },
+  "GC3_DP_FINTYP1": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.26",
+   "instances": 1
+  },
+  "GC3_DP_FINTYP1_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.27",
+   "instances": 1
+  },
+  "GSU_EX_CONCAMT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.05",
+   "instances": 1
+  },
+  "GC1_EX_CONCAMT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.28",
+   "instances": 1
+  },
+  "GC1_EX_CONCAMT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.29",
+   "instances": 1
+  },
+  "GC2_EX_CONCAMT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.28",
+   "instances": 1
+  },
+  "GC2_EX_CONCAMT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.29",
+   "instances": 1
+  },
+  "GC3_EX_CONCAMT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.28",
+   "instances": 1
+  },
+  "GC3_EX_CONCAMT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.29",
+   "instances": 1
+  },
+  "GSU_CONT_DATE": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.06",
+   "instances": 1
+  },
+  "GC1_CONT_DATE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.30",
+   "instances": 1
+  },
+  "GC1_CONT_DATE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.31",
+   "instances": 1
+  },
+  "GC2_CONT_DATE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.30",
+   "instances": 1
+  },
+  "GC2_CONT_DATE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.31",
+   "instances": 1
+  },
+  "GC3_CONT_DATE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.30",
+   "instances": 1
+  },
+  "GC3_CONT_DATE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.31",
+   "instances": 1
+  },
+  "GC1_DT_SALTIM1": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.32",
+   "instances": 1
+  },
+  "GC1_DT_SALTIM1_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.33",
+   "instances": 1
+  },
+  "GC2_DT_SALTIM1": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.32",
+   "instances": 1
+  },
+  "GC2_DT_SALTIM1_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.33",
+   "instances": 1
+  },
+  "GC3_DT_SALTIM1": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.32",
+   "instances": 1
+  },
+  "GC3_DT_SALTIM1_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.33",
+   "instances": 1
+  },
+  "GSU_EX_DOM": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.07",
+   "instances": 1
+  },
+  "GC1_EX_DOM": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.34",
+   "instances": 1
+  },
+  "GC2_EX_DOM": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.34",
+   "instances": 1
+  },
+  "GC3_EX_DOM": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.34",
+   "instances": 1
+  },
+  "GSU_ATT_DET": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.08",
+   "instances": 1
+  },
+  "GC1_ATT_DET": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.37",
+   "instances": 1
+  },
+  "GC1_ATT_DET_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.38",
+   "instances": 1
+  },
+  "GC2_ATT_DET": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.37",
+   "instances": 1
+  },
+  "GC2_ATT_DET_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.38",
+   "instances": 1
+  },
+  "GC3_ATT_DET": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.37",
+   "instances": 1
+  },
+  "GC3_ATT_DET_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.38",
+   "instances": 1
+  },
+  "GSU_PROP_APPRAISER_RIGHTS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.01.09",
+   "instances": 1
+  },
+  "GC1_PROP_APPRAISER_RIGHTS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.39",
+   "instances": 1
+  },
+  "GC1_PROP_APPRAISER_RIGHTS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.40",
+   "instances": 1
+  },
+  "GC2_PROP_APPRAISER_RIGHTS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.39",
+   "instances": 1
+  },
+  "GC2_PROP_APPRAISER_RIGHTS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.40",
+   "instances": 1
+  },
+  "GC3_PROP_APPRAISER_RIGHTS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.39",
+   "instances": 1
+  },
+  "GC3_PROP_APPRAISER_RIGHTS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.40",
+   "instances": 1
+  },
+  "GSU_GI_BLANK_DESC": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.14",
+   "instances": 1
+  },
+  "GSU_GI_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.15",
+   "instances": 1
+  },
+  "GC1_GI_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.48",
+   "instances": 1
+  },
+  "GC1_GI_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.49",
+   "instances": 1
+  },
+  "GC2_GI_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.48",
+   "instances": 1
+  },
+  "GC2_GI_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.49",
+   "instances": 1
+  },
+  "GC3_GI_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.01.48",
+   "instances": 1
+  },
+  "GC3_GI_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.01.49",
+   "instances": 1
+  },
+  "GSU_ST_SITSIZE": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.03.02",
+   "instances": 1
+  },
+  "GC1_ST_SITSIZE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.20",
+   "instances": 1
+  },
+  "GC1_ST_SITSIZE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.21",
+   "instances": 1
+  },
+  "GC2_ST_SITSIZE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.20",
+   "instances": 1
+  },
+  "GC2_ST_SITSIZE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.21",
+   "instances": 1
+  },
+  "GC3_ST_SITSIZE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.20",
+   "instances": 1
+  },
+  "GC3_ST_SITSIZE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.21",
+   "instances": 1
+  },
+  "GSU_SITE_INFLUENCE": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.03.13",
+   "instances": 1
+  },
+  "GC1_SITE_INFLUENCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.42",
+   "instances": 1
+  },
+  "GC1_SITE_INFLUENCE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.43",
+   "instances": 1
+  },
+  "GC2_SITE_INFLUENCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.42",
+   "instances": 1
+  },
+  "GC2_SITE_INFLUENCE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.43",
+   "instances": 1
+  },
+  "GC3_SITE_INFLUENCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.42",
+   "instances": 1
+  },
+  "GC3_SITE_INFLUENCE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.43",
+   "instances": 1
+  },
+  "GSU_ST_VIEW": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.03.15",
+   "instances": 1
+  },
+  "GC1_ST_VIEW": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.46",
+   "instances": 1
+  },
+  "GC1_ST_VIEW_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.47",
+   "instances": 1
+  },
+  "GC2_ST_VIEW": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.46",
+   "instances": 1
+  },
+  "GC2_ST_VIEW_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.47",
+   "instances": 1
+  },
+  "GC3_ST_VIEW": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.46",
+   "instances": 1
+  },
+  "GC3_ST_VIEW_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.47",
+   "instances": 1
+  },
+  "GSU_SITE_BLANK_DESC": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.16",
+   "instances": 1
+  },
+  "GSU_SITE_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.17",
+   "instances": 1
+  },
+  "GC1_SITE_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.48",
+   "instances": 1
+  },
+  "GC1_SITE_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.49",
+   "instances": 1
+  },
+  "GC2_SITE_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.48",
+   "instances": 1
+  },
+  "GC2_SITE_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.49",
+   "instances": 1
+  },
+  "GC3_SITE_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.03.48",
+   "instances": 1
+  },
+  "GC3_SITE_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.03.49",
+   "instances": 1
+  },
+  "GSU_YR_BLT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.05.02",
+   "instances": 1
+  },
+  "GC1_YR_BLT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.21",
+   "instances": 1
+  },
+  "GC1_YR_BLT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.22",
+   "instances": 1
+  },
+  "GC2_YR_BLT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.21",
+   "instances": 1
+  },
+  "GC2_YR_BLT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.22",
+   "instances": 1
+  },
+  "GC3_YR_BLT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.21",
+   "instances": 1
+  },
+  "GC3_YR_BLT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.22",
+   "instances": 1
+  },
+  "GSU_DWELL_CONST_METHOD": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.05.09",
+   "instances": 1
+  },
+  "GC1_DWELL_CONST_METHOD": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.35",
+   "instances": 1
+  },
+  "GC1_DWELL_CONST_METHOD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.36",
+   "instances": 1
+  },
+  "GC2_DWELL_CONST_METHOD": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.35",
+   "instances": 1
+  },
+  "GC2_DWELL_CONST_METHOD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.36",
+   "instances": 1
+  },
+  "GC3_DWELL_CONST_METHOD": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.35",
+   "instances": 1
+  },
+  "GC3_DWELL_CONST_METHOD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.36",
+   "instances": 1
+  },
+  "GSU_DWELL_HEAT": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.05.16",
+   "instances": 1
+  },
+  "GC1_DWELL_HEAT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.49",
+   "instances": 1
+  },
+  "GC1_DWELL_HEAT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.50",
+   "instances": 1
+  },
+  "GC2_DWELL_HEAT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.49",
+   "instances": 1
+  },
+  "GC2_DWELL_HEAT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.50",
+   "instances": 1
+  },
+  "GC3_DWELL_HEAT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.49",
+   "instances": 1
+  },
+  "GC3_DWELL_HEAT_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.50",
+   "instances": 1
+  },
+  "GSU_DWELL_OTHR1_TEXT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.18",
+   "instances": 1
+  },
+  "GSU_DWELL_OTHR1_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.19",
+   "instances": 1
+  },
+  "GC1_DWELL_OTHR1_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.53",
+   "instances": 1
+  },
+  "GC1_DWELL_OTHR1_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.54",
+   "instances": 1
+  },
+  "GC2_DWELL_OTHR1_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.53",
+   "instances": 1
+  },
+  "GC2_DWELL_OTHR1_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.54",
+   "instances": 1
+  },
+  "GC3_DWELL_OTHR1_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.05.53",
+   "instances": 1
+  },
+  "GC3_DWELL_OTHR1_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.05.54",
+   "instances": 1
+  },
+  "GSU_UNITS_IS_AN_ADU": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_UNITS_IS_AN_ADU": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.100.001",
+   "instances": 1
+  },
+  "GC2_UNITS_IS_AN_ADU": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.100.001",
+   "instances": 1
+  },
+  "GC3_UNITS_IS_AN_ADU": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.100.001",
+   "instances": 1
+  },
+  "GSU_BEDS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.07.06",
+   "instances": 1
+  },
+  "GC1_BEDS": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.26",
+   "instances": 1
+  },
+  "GC1_BEDS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.27",
+   "instances": 1
+  },
+  "GC2_BEDS": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.26",
+   "instances": 1
+  },
+  "GC2_BEDS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.27",
+   "instances": 1
+  },
+  "GC3_BEDS": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.26",
+   "instances": 1
+  },
+  "GC3_BEDS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.27",
+   "instances": 1
+  },
+  "GSU_BATHS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.07.07",
+   "instances": 1
+  },
+  "GC1_BATHS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.28",
+   "instances": 1
+  },
+  "GC1_BATHS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.29",
+   "instances": 1
+  },
+  "GC2_BATHS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.28",
+   "instances": 1
+  },
+  "GC2_BATHS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.29",
+   "instances": 1
+  },
+  "GC3_BATHS": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.28",
+   "instances": 1
+  },
+  "GC3_BATHS_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.29",
+   "instances": 1
+  },
+  "GSU_UNITS_SF_GLA": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.07.08",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.30",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.31",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.30",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.31",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.30",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.31",
+   "instances": 1
+  },
+  "GSU_UNITS_SF_GLA_BELOW_GRD": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.07.11",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_BELOW_GRD": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.36",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_BELOW_GRD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.37",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_BELOW_GRD": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.36",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_BELOW_GRD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.37",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_BELOW_GRD": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.36",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_BELOW_GRD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.37",
+   "instances": 1
+  },
+  "GSU_UNITS_SF_GLA_BELOW_GRD_NONSTD": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.07.12",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.38",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.39",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.38",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.39",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.38",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.39",
+   "instances": 1
+  },
+  "GSU_UNITS_SF_GLA_BELOW_GRD_UNFIN": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.07.13",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.40",
+   "instances": 1
+  },
+  "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.41",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.40",
+   "instances": 1
+  },
+  "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.41",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.40",
+   "instances": 1
+  },
+  "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.41",
+   "instances": 1
+  },
+  "GSU_UNITS_BLANK_DESC": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.15",
+   "instances": 1
+  },
+  "GSU_UNITS_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.16",
+   "instances": 1
+  },
+  "GC1_UNITS_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.44",
+   "instances": 1
+  },
+  "GC1_UNITS_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.45",
+   "instances": 1
+  },
+  "GC2_UNITS_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.44",
+   "instances": 1
+  },
+  "GC2_UNITS_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.45",
+   "instances": 1
+  },
+  "GC3_UNITS_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.07.44",
+   "instances": 1
+  },
+  "GC3_UNITS_BLANK_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.07.45",
+   "instances": 1
+  },
+  "GSU_EXT_QUAL_QUALITY": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.08.02",
+   "instances": 1
+  },
+  "GC1_EXT_QUAL_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.17",
+   "instances": 1
+  },
+  "GC2_EXT_QUAL_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.17",
+   "instances": 1
+  },
+  "GC3_EXT_QUAL_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.17",
+   "instances": 1
+  },
+  "GSU_EXT_QUAL_BLANK_LABEL": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.07",
+   "instances": 1
+  },
+  "GSU_EXT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.08",
+   "instances": 1
+  },
+  "GC1_EXT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.22",
+   "instances": 1
+  },
+  "GC2_EXT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.22",
+   "instances": 1
+  },
+  "GC3_EXT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.22",
+   "instances": 1
+  },
+  "GSU_EXT_COND_CONDITION": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.08.09",
+   "instances": 1
+  },
+  "GC1_EXT_COND_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.23",
+   "instances": 1
+  },
+  "GC2_EXT_COND_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.23",
+   "instances": 1
+  },
+  "GC3_EXT_COND_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.23",
+   "instances": 1
+  },
+  "GSU_EXT_COND_BLANK_LABEL": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.14",
+   "instances": 1
+  },
+  "GSU_EXT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.15",
+   "instances": 1
+  },
+  "GC1_EXT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.28",
+   "instances": 1
+  },
+  "GC2_EXT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.28",
+   "instances": 1
+  },
+  "GC3_EXT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.08.28",
+   "instances": 1
+  },
+  "GSU_INT_QUAL_QUALITY": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.09.03",
+   "instances": 1
+  },
+  "GC1_INT_QUAL_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.19",
+   "instances": 1
+  },
+  "GC2_INT_QUAL_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.19",
+   "instances": 1
+  },
+  "GC3_INT_QUAL_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.19",
+   "instances": 1
+  },
+  "GSU_INT_QUAL_BLANK_LABEL": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.08",
+   "instances": 1
+  },
+  "GSU_INT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.09",
+   "instances": 1
+  },
+  "GC1_INT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.24",
+   "instances": 1
+  },
+  "GC2_INT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.24",
+   "instances": 1
+  },
+  "GC3_INT_QUAL_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.24",
+   "instances": 1
+  },
+  "GSU_INT_COND_CONDITION": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.09.10",
+   "instances": 1
+  },
+  "GC1_INT_COND_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.25",
+   "instances": 1
+  },
+  "GC2_INT_COND_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.25",
+   "instances": 1
+  },
+  "GC3_INT_COND_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.25",
+   "instances": 1
+  },
+  "GSU_INT_COND_BLANK_LABEL": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.15",
+   "instances": 1
+  },
+  "GSU_INT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.16",
+   "instances": 1
+  },
+  "GC1_INT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.30",
+   "instances": 1
+  },
+  "GC2_INT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.30",
+   "instances": 1
+  },
+  "GC3_INT_COND_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.09.30",
+   "instances": 1
+  },
+  "GSU_QUALITY": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.11.01",
+   "instances": 1
+  },
+  "GC1_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.11.03",
+   "instances": 1
+  },
+  "GC1_QUALITY_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.11.04",
+   "instances": 1
+  },
+  "GC2_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.11.03",
+   "instances": 1
+  },
+  "GC2_QUALITY_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.11.04",
+   "instances": 1
+  },
+  "GC3_QUALITY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.11.03",
+   "instances": 1
+  },
+  "GC3_QUALITY_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.11.04",
+   "instances": 1
+  },
+  "GSU_CONDITION": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.11.02",
+   "instances": 1
+  },
+  "GC1_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.11.05",
+   "instances": 1
+  },
+  "GC1_CONDITION_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.11.06",
+   "instances": 1
+  },
+  "GC2_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.11.05",
+   "instances": 1
+  },
+  "GC2_CONDITION_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.11.06",
+   "instances": 1
+  },
+  "GC3_CONDITION": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.11.05",
+   "instances": 1
+  },
+  "GC3_CONDITION_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.11.06",
+   "instances": 1
+  },
+  "GC1_VEHICLE_STORAGE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.13.04",
+   "instances": 1
+  },
+  "GC2_VEHICLE_STORAGE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.13.04",
+   "instances": 1
+  },
+  "GC3_VEHICLE_STORAGE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.13.04",
+   "instances": 1
+  },
+  "GSU_VEHICLE_STORAGE": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "22.13.01",
+   "instances": 1
+  },
+  "GC1_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.05",
+   "instances": 1
+  },
+  "GC2_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.05",
+   "instances": 1
+  },
+  "GC3_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.05",
+   "instances": 1
+  },
+  "GSU_BL_VEHICLE_STORAGE_BLANK": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.02",
+   "instances": 1
+  },
+  "GSU_BL_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.03",
+   "instances": 1
+  },
+  "GC1_BL_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.06",
+   "instances": 1
+  },
+  "GC2_BL_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.06",
+   "instances": 1
+  },
+  "GC3_BL_VEHICLE_STORAGE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.13.06",
+   "instances": 1
+  },
+  "GSU_TRANSFER_HISTORY_PRESENT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_TRANSFER_HISTORY_PRESENT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_TRANSFER_HISTORY_PRESENT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_TRANSFER_HISTORY_PRESENT": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_TRANSFER_HISTORY_TERMS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_TRANSFER_HISTORY_TERMS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_TRANSFER_HISTORY_TERMS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_TRANSFER_HISTORY_TERMS": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_TRANSFER_HISTORY_DATE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_TRANSFER_HISTORY_DATE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_TRANSFER_HISTORY_DATE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_TRANSFER_HISTORY_DATE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_TRANSFER_HISTORY_AMOUNT": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_TRANSFER_HISTORY_AMOUNT": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_TRANSFER_HISTORY_AMOUNT": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_TRANSFER_HISTORY_AMOUNT": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_TRANSFER_HISTORY_SOURCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC1_TRANSFER_HISTORY_SOURCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC2_TRANSFER_HISTORY_SOURCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GC3_TRANSFER_HISTORY_SOURCE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_LIST_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.02",
+   "instances": 1
+  },
+  "GC1_LIST_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.05",
+   "instances": 1
+  },
+  "GC2_LIST_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.05",
+   "instances": 1
+  },
+  "GC3_LIST_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.05",
+   "instances": 1
+  },
+  "GSU_CONTRACT_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.03",
+   "instances": 1
+  },
+  "GC1_CONTRACT_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.06",
+   "instances": 1
+  },
+  "GC2_CONTRACT_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.06",
+   "instances": 1
+  },
+  "GC3_CONTRACT_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.06",
+   "instances": 1
+  },
+  "GC1_SALE_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.07",
+   "instances": 1
+  },
+  "GC2_SALE_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.07",
+   "instances": 1
+  },
+  "GC3_SALE_PRICE": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.07",
+   "instances": 1
+  },
+  "GC1_NETADJ_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.08",
+   "instances": 1
+  },
+  "GC2_NETADJ_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.08",
+   "instances": 1
+  },
+  "GC3_NETADJ_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.08",
+   "instances": 1
+  },
+  "GC1_NETADJ_PRICE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.13",
+   "instances": 1
+  },
+  "GC2_NETADJ_PRICE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.13",
+   "instances": 1
+  },
+  "GC3_NETADJ_PRICE_ADJ": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.13",
+   "instances": 1
+  },
+  "GC1_NETADJ_COMP_WEIGHT_ADJ": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.15.14",
+   "instances": 1
+  },
+  "GC2_NETADJ_COMP_WEIGHT_ADJ": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.15.14",
+   "instances": 1
+  },
+  "GC3_NETADJ_COMP_WEIGHT_ADJ": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.15.14",
+   "instances": 1
+  },
+  "GSU_SCMINDVALUE2": {
+   "kind": "text",
+   "label": "",
+   "fmid": "22.15.15",
+   "instances": 1
+  },
+  "SA_RECONCILE": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "22.16.01",
+   "instances": 1
+  },
+  "CHECK_COMP_ADD_PROP_ENABLE": {
+   "kind": "checkbox",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "CHECK_COMP_ADD_PROP_DISABLE": {
+   "kind": "checkbox",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "GSU_MAP": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "SALES_COMP_EXHIBIT_COMP_CATEGORY": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 3
+  },
+  "SALES_COMP_EXHIBIT_COMP_DESCRIPTION": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 3
+  },
+  "SALES_COMP_EXHIBIT_COMP_CAPTION": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 3
+  },
+  "SALES_COMP_EXHIBIT_COMP_PHOTO": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 3
+  },
+  "SALES_COMP_EXHIBIT_CATEGORY": {
+   "kind": "editable",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "SALES_COMP_EXHIBIT_DESCRIPTION": {
+   "kind": "text",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "SALES_COMP_EXHIBIT_CAPTION": {
+   "kind": "readonly",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  },
+  "SALES_COMP_EXHIBIT_PHOTO": {
+   "kind": "image",
+   "label": "",
+   "fmid": "",
+   "instances": 1
+  }
+ },
+ "raw": [
+  {
+   "fn": "GC1_HEADER_LABEL",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "Comparable #1",
+   "label": ""
+  },
+  {
+   "fn": "GC2_HEADER_LABEL",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "Comparable #2",
+   "label": ""
+  },
+  {
+   "fn": "GC3_HEADER_LABEL",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "Comparable #3",
+   "label": ""
+  },
+  {
+   "fn": "GSU_AD_ADDR",
+   "kind": "readonly",
+   "fmid": "22.01.01",
+   "instance": "0",
+   "value": "911 Harlane Cir North Bellmore, NY 11710",
+   "label": ""
+  },
+  {
+   "fn": "GC1_AD_ADDR",
+   "kind": "editable",
+   "fmid": "22.01.17",
+   "instance": "0",
+   "value": "952 Wenwood Dr North Bellmore, NY 11710",
+   "label": ""
+  },
+  {
+   "fn": "GC2_AD_ADDR",
+   "kind": "editable",
+   "fmid": "22.01.17",
+   "instance": "0",
+   "value": "953 Wenwood Dr North Bellmore, NY 11710",
+   "label": ""
+  },
+  {
+   "fn": "GC3_AD_ADDR",
+   "kind": "editable",
+   "fmid": "22.01.17",
+   "instance": "0",
+   "value": "954 Wenwood Dr North Bellmore, NY 11710",
+   "label": ""
+  },
+  {
+   "fn": "GSU_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_SC_SOURCE1",
+   "kind": "editable",
+   "fmid": "22.01.18",
+   "instance": "0",
+   "value": "MLS 882477",
+   "label": ""
+  },
+  {
+   "fn": "GC2_SC_SOURCE1",
+   "kind": "editable",
+   "fmid": "22.01.18",
+   "instance": "0",
+   "value": "MLS 282477",
+   "label": ""
+  },
+  {
+   "fn": "GC3_SC_SOURCE1",
+   "kind": "editable",
+   "fmid": "22.01.18",
+   "instance": "0",
+   "value": "MLS 882479",
+   "label": ""
+  },
+  {
+   "fn": "GC1_PROX1",
+   "kind": "editable",
+   "fmid": "22.01.19",
+   "instance": "0",
+   "value": "0.12 Miles N",
+   "label": ""
+  },
+  {
+   "fn": "GC2_PROX1",
+   "kind": "editable",
+   "fmid": "22.01.19",
+   "instance": "0",
+   "value": "0.13 Miles N",
+   "label": ""
+  },
+  {
+   "fn": "GC3_PROX1",
+   "kind": "editable",
+   "fmid": "22.01.19",
+   "instance": "0",
+   "value": "0.12 Miles N",
+   "label": ""
+  },
+  {
+   "fn": "GSU_LP_PRICE",
+   "kind": "readonly",
+   "fmid": "22.01.02",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_LP_PRICE",
+   "kind": "text",
+   "fmid": "22.01.20",
+   "instance": "0",
+   "value": "$955,000",
+   "label": ""
+  },
+  {
+   "fn": "GC2_LP_PRICE",
+   "kind": "text",
+   "fmid": "22.01.20",
+   "instance": "0",
+   "value": "$959,000",
+   "label": ""
+  },
+  {
+   "fn": "GC3_LP_PRICE",
+   "kind": "text",
+   "fmid": "22.01.20",
+   "instance": "0",
+   "value": "$500,000",
+   "label": ""
+  },
+  {
+   "fn": "GSU_PRICE_PER_SQFT",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_PRICE_PER_SQFT",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_PRICE_PER_SQFT",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_PRICE_PER_SQFT",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_LP_STATUS",
+   "kind": "readonly",
+   "fmid": "22.01.03",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_LP_STATUS",
+   "kind": "editable",
+   "fmid": "22.01.21",
+   "instance": "0",
+   "value": "Settled Sale",
+   "label": ""
+  },
+  {
+   "fn": "GC2_LP_STATUS",
+   "kind": "editable",
+   "fmid": "22.01.21",
+   "instance": "0",
+   "value": "Settled Sale",
+   "label": ""
+  },
+  {
+   "fn": "GC3_LP_STATUS",
+   "kind": "editable",
+   "fmid": "22.01.21",
+   "instance": "0",
+   "value": "Settled Sale",
+   "label": ""
+  },
+  {
+   "fn": "GSU_CONT_PRICE",
+   "kind": "readonly",
+   "fmid": "22.01.04",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_CONT_PRICE",
+   "kind": "editable",
+   "fmid": "22.01.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_CONT_PRICE",
+   "kind": "editable",
+   "fmid": "22.01.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_CONT_PRICE",
+   "kind": "editable",
+   "fmid": "22.01.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_PR_SALEPR1",
+   "kind": "text",
+   "fmid": "22.01.23",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC2_PR_SALEPR1",
+   "kind": "text",
+   "fmid": "22.01.23",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC3_PR_SALEPR1",
+   "kind": "text",
+   "fmid": "22.01.23",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_TERMS",
+   "kind": "editable",
+   "fmid": "22.01.24",
+   "instance": "0",
+   "value": "Typically Motivated",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_TERMS_ADJ",
+   "kind": "text",
+   "fmid": "22.01.25",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_TERMS",
+   "kind": "editable",
+   "fmid": "22.01.24",
+   "instance": "0",
+   "value": "Typically Motivated",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_TERMS_ADJ",
+   "kind": "text",
+   "fmid": "22.01.25",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_TERMS",
+   "kind": "editable",
+   "fmid": "22.01.24",
+   "instance": "0",
+   "value": "Typically Motivated",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_TERMS_ADJ",
+   "kind": "text",
+   "fmid": "22.01.25",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DP_FINTYP1",
+   "kind": "editable",
+   "fmid": "22.01.26",
+   "instance": "0",
+   "value": "Conventional",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DP_FINTYP1_ADJ",
+   "kind": "text",
+   "fmid": "22.01.27",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DP_FINTYP1",
+   "kind": "editable",
+   "fmid": "22.01.26",
+   "instance": "0",
+   "value": "Conventional",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DP_FINTYP1_ADJ",
+   "kind": "text",
+   "fmid": "22.01.27",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DP_FINTYP1",
+   "kind": "editable",
+   "fmid": "22.01.26",
+   "instance": "0",
+   "value": "Conventional",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DP_FINTYP1_ADJ",
+   "kind": "text",
+   "fmid": "22.01.27",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EX_CONCAMT",
+   "kind": "readonly",
+   "fmid": "22.01.05",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EX_CONCAMT",
+   "kind": "editable",
+   "fmid": "22.01.28",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EX_CONCAMT_ADJ",
+   "kind": "text",
+   "fmid": "22.01.29",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EX_CONCAMT",
+   "kind": "editable",
+   "fmid": "22.01.28",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EX_CONCAMT_ADJ",
+   "kind": "text",
+   "fmid": "22.01.29",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EX_CONCAMT",
+   "kind": "editable",
+   "fmid": "22.01.28",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EX_CONCAMT_ADJ",
+   "kind": "text",
+   "fmid": "22.01.29",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_CONT_DATE",
+   "kind": "readonly",
+   "fmid": "22.01.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_CONT_DATE",
+   "kind": "editable",
+   "fmid": "22.01.30",
+   "instance": "0",
+   "value": "Unknown",
+   "label": ""
+  },
+  {
+   "fn": "GC1_CONT_DATE_ADJ",
+   "kind": "text",
+   "fmid": "22.01.31",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_CONT_DATE",
+   "kind": "editable",
+   "fmid": "22.01.30",
+   "instance": "0",
+   "value": "Unknown",
+   "label": ""
+  },
+  {
+   "fn": "GC2_CONT_DATE_ADJ",
+   "kind": "text",
+   "fmid": "22.01.31",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_CONT_DATE",
+   "kind": "editable",
+   "fmid": "22.01.30",
+   "instance": "0",
+   "value": "Unknown",
+   "label": ""
+  },
+  {
+   "fn": "GC3_CONT_DATE_ADJ",
+   "kind": "text",
+   "fmid": "22.01.31",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DT_SALTIM1",
+   "kind": "text",
+   "fmid": "22.01.32",
+   "instance": "0",
+   "value": "03/22/2026",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DT_SALTIM1_ADJ",
+   "kind": "text",
+   "fmid": "22.01.33",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DT_SALTIM1",
+   "kind": "text",
+   "fmid": "22.01.32",
+   "instance": "0",
+   "value": "03/22/2026",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DT_SALTIM1_ADJ",
+   "kind": "text",
+   "fmid": "22.01.33",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DT_SALTIM1",
+   "kind": "text",
+   "fmid": "22.01.32",
+   "instance": "0",
+   "value": "03/22/2026",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DT_SALTIM1_ADJ",
+   "kind": "text",
+   "fmid": "22.01.33",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EX_DOM",
+   "kind": "readonly",
+   "fmid": "22.01.07",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EX_DOM",
+   "kind": "text",
+   "fmid": "22.01.34",
+   "instance": "0",
+   "value": "123",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EX_DOM",
+   "kind": "text",
+   "fmid": "22.01.34",
+   "instance": "0",
+   "value": "143",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EX_DOM",
+   "kind": "text",
+   "fmid": "22.01.34",
+   "instance": "0",
+   "value": "223",
+   "label": ""
+  },
+  {
+   "fn": "GSU_ATT_DET",
+   "kind": "readonly",
+   "fmid": "22.01.08",
+   "instance": "0",
+   "value": "Detached",
+   "label": ""
+  },
+  {
+   "fn": "GC1_ATT_DET",
+   "kind": "editable",
+   "fmid": "22.01.37",
+   "instance": "0",
+   "value": "Detached",
+   "label": ""
+  },
+  {
+   "fn": "GC1_ATT_DET_ADJ",
+   "kind": "text",
+   "fmid": "22.01.38",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_ATT_DET",
+   "kind": "editable",
+   "fmid": "22.01.37",
+   "instance": "0",
+   "value": "Detached",
+   "label": ""
+  },
+  {
+   "fn": "GC2_ATT_DET_ADJ",
+   "kind": "text",
+   "fmid": "22.01.38",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_ATT_DET",
+   "kind": "editable",
+   "fmid": "22.01.37",
+   "instance": "0",
+   "value": "Detached",
+   "label": ""
+  },
+  {
+   "fn": "GC3_ATT_DET_ADJ",
+   "kind": "text",
+   "fmid": "22.01.38",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_PROP_APPRAISER_RIGHTS",
+   "kind": "readonly",
+   "fmid": "22.01.09",
+   "instance": "0",
+   "value": "Fee Simple",
+   "label": ""
+  },
+  {
+   "fn": "GC1_PROP_APPRAISER_RIGHTS",
+   "kind": "editable",
+   "fmid": "22.01.39",
+   "instance": "0",
+   "value": "Fee Simple",
+   "label": ""
+  },
+  {
+   "fn": "GC1_PROP_APPRAISER_RIGHTS_ADJ",
+   "kind": "text",
+   "fmid": "22.01.40",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_PROP_APPRAISER_RIGHTS",
+   "kind": "editable",
+   "fmid": "22.01.39",
+   "instance": "0",
+   "value": "Fee Simple",
+   "label": ""
+  },
+  {
+   "fn": "GC2_PROP_APPRAISER_RIGHTS_ADJ",
+   "kind": "text",
+   "fmid": "22.01.40",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_PROP_APPRAISER_RIGHTS",
+   "kind": "editable",
+   "fmid": "22.01.39",
+   "instance": "0",
+   "value": "Fee Simple",
+   "label": ""
+  },
+  {
+   "fn": "GC3_PROP_APPRAISER_RIGHTS_ADJ",
+   "kind": "text",
+   "fmid": "22.01.40",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_GI_BLANK_DESC",
+   "kind": "editable",
+   "fmid": "22.01.14",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_GI_BLANK",
+   "kind": "editable",
+   "fmid": "22.01.15",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_GI_BLANK",
+   "kind": "editable",
+   "fmid": "22.01.48",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_GI_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.01.49",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_GI_BLANK",
+   "kind": "editable",
+   "fmid": "22.01.48",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_GI_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.01.49",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_GI_BLANK",
+   "kind": "editable",
+   "fmid": "22.01.48",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_GI_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.01.49",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_ST_SITSIZE",
+   "kind": "readonly",
+   "fmid": "22.03.02",
+   "instance": "0",
+   "value": "6,098 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_ST_SITSIZE",
+   "kind": "text",
+   "fmid": "22.03.20",
+   "instance": "0",
+   "value": "7,722 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_ST_SITSIZE_ADJ",
+   "kind": "text",
+   "fmid": "22.03.21",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_ST_SITSIZE",
+   "kind": "text",
+   "fmid": "22.03.20",
+   "instance": "0",
+   "value": "4,722 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC2_ST_SITSIZE_ADJ",
+   "kind": "text",
+   "fmid": "22.03.21",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_ST_SITSIZE",
+   "kind": "text",
+   "fmid": "22.03.20",
+   "instance": "0",
+   "value": "7,722 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC3_ST_SITSIZE_ADJ",
+   "kind": "text",
+   "fmid": "22.03.21",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_SITE_INFLUENCE",
+   "kind": "readonly",
+   "fmid": "22.03.13",
+   "instance": "0",
+   "value": "Residential",
+   "label": ""
+  },
+  {
+   "fn": "GC1_SITE_INFLUENCE",
+   "kind": "editable",
+   "fmid": "22.03.42",
+   "instance": "0",
+   "value": "Residential",
+   "label": ""
+  },
+  {
+   "fn": "GC1_SITE_INFLUENCE_ADJ",
+   "kind": "text",
+   "fmid": "22.03.43",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_SITE_INFLUENCE",
+   "kind": "editable",
+   "fmid": "22.03.42",
+   "instance": "0",
+   "value": "Residential",
+   "label": ""
+  },
+  {
+   "fn": "GC2_SITE_INFLUENCE_ADJ",
+   "kind": "text",
+   "fmid": "22.03.43",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_SITE_INFLUENCE",
+   "kind": "editable",
+   "fmid": "22.03.42",
+   "instance": "0",
+   "value": "Residential",
+   "label": ""
+  },
+  {
+   "fn": "GC3_SITE_INFLUENCE_ADJ",
+   "kind": "text",
+   "fmid": "22.03.43",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_ST_VIEW",
+   "kind": "readonly",
+   "fmid": "22.03.15",
+   "instance": "0",
+   "value": "Canal | Partial",
+   "label": ""
+  },
+  {
+   "fn": "GC1_ST_VIEW",
+   "kind": "editable",
+   "fmid": "22.03.46",
+   "instance": "0",
+   "value": "Canal | Partial",
+   "label": ""
+  },
+  {
+   "fn": "GC1_ST_VIEW_ADJ",
+   "kind": "text",
+   "fmid": "22.03.47",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_ST_VIEW",
+   "kind": "editable",
+   "fmid": "22.03.46",
+   "instance": "0",
+   "value": "Canal | Partial",
+   "label": ""
+  },
+  {
+   "fn": "GC2_ST_VIEW_ADJ",
+   "kind": "text",
+   "fmid": "22.03.47",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_ST_VIEW",
+   "kind": "editable",
+   "fmid": "22.03.46",
+   "instance": "0",
+   "value": "Canal | Partial",
+   "label": ""
+  },
+  {
+   "fn": "GC3_ST_VIEW_ADJ",
+   "kind": "text",
+   "fmid": "22.03.47",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_SITE_BLANK_DESC",
+   "kind": "editable",
+   "fmid": "22.03.16",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_SITE_BLANK",
+   "kind": "editable",
+   "fmid": "22.03.17",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_SITE_BLANK",
+   "kind": "editable",
+   "fmid": "22.03.48",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_SITE_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.03.49",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_SITE_BLANK",
+   "kind": "editable",
+   "fmid": "22.03.48",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_SITE_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.03.49",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_SITE_BLANK",
+   "kind": "editable",
+   "fmid": "22.03.48",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_SITE_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.03.49",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_YR_BLT",
+   "kind": "readonly",
+   "fmid": "22.05.02",
+   "instance": "0",
+   "value": "2001",
+   "label": ""
+  },
+  {
+   "fn": "GC1_YR_BLT",
+   "kind": "editable",
+   "fmid": "22.05.21",
+   "instance": "0",
+   "value": "2001",
+   "label": ""
+  },
+  {
+   "fn": "GC1_YR_BLT_ADJ",
+   "kind": "text",
+   "fmid": "22.05.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_YR_BLT",
+   "kind": "editable",
+   "fmid": "22.05.21",
+   "instance": "0",
+   "value": "2002",
+   "label": ""
+  },
+  {
+   "fn": "GC2_YR_BLT_ADJ",
+   "kind": "text",
+   "fmid": "22.05.22",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_YR_BLT",
+   "kind": "editable",
+   "fmid": "22.05.21",
+   "instance": "0",
+   "value": "2001",
+   "label": ""
+  },
+  {
+   "fn": "GC3_YR_BLT_ADJ",
+   "kind": "text",
+   "fmid": "22.05.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_DWELL_CONST_METHOD",
+   "kind": "readonly",
+   "fmid": "22.05.09",
+   "instance": "0",
+   "value": "Container",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DWELL_CONST_METHOD",
+   "kind": "editable",
+   "fmid": "22.05.35",
+   "instance": "0",
+   "value": "Container",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DWELL_CONST_METHOD_ADJ",
+   "kind": "text",
+   "fmid": "22.05.36",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DWELL_CONST_METHOD",
+   "kind": "editable",
+   "fmid": "22.05.35",
+   "instance": "0",
+   "value": "Container",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DWELL_CONST_METHOD_ADJ",
+   "kind": "text",
+   "fmid": "22.05.36",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DWELL_CONST_METHOD",
+   "kind": "editable",
+   "fmid": "22.05.35",
+   "instance": "0",
+   "value": "Container",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DWELL_CONST_METHOD_ADJ",
+   "kind": "text",
+   "fmid": "22.05.36",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_DWELL_HEAT",
+   "kind": "readonly",
+   "fmid": "22.05.16",
+   "instance": "0",
+   "value": "Baseboard | Electric",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DWELL_HEAT",
+   "kind": "editable",
+   "fmid": "22.05.49",
+   "instance": "0",
+   "value": "Baseboard | Electric",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DWELL_HEAT_ADJ",
+   "kind": "text",
+   "fmid": "22.05.50",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DWELL_HEAT",
+   "kind": "editable",
+   "fmid": "22.05.49",
+   "instance": "0",
+   "value": "Baseboard | Electric",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DWELL_HEAT_ADJ",
+   "kind": "text",
+   "fmid": "22.05.50",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DWELL_HEAT",
+   "kind": "editable",
+   "fmid": "22.05.49",
+   "instance": "0",
+   "value": "Baseboard | Electric",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DWELL_HEAT_ADJ",
+   "kind": "text",
+   "fmid": "22.05.50",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_DWELL_OTHR1_TEXT",
+   "kind": "editable",
+   "fmid": "22.05.18",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_DWELL_OTHR1_BLANK",
+   "kind": "editable",
+   "fmid": "22.05.19",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DWELL_OTHR1_BLANK",
+   "kind": "editable",
+   "fmid": "22.05.53",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_DWELL_OTHR1_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.05.54",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DWELL_OTHR1_BLANK",
+   "kind": "editable",
+   "fmid": "22.05.53",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_DWELL_OTHR1_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.05.54",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DWELL_OTHR1_BLANK",
+   "kind": "editable",
+   "fmid": "22.05.53",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_DWELL_OTHR1_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.05.54",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_IS_AN_ADU",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_IS_AN_ADU",
+   "kind": "readonly",
+   "fmid": "22.100.001",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_IS_AN_ADU",
+   "kind": "readonly",
+   "fmid": "22.100.001",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_IS_AN_ADU",
+   "kind": "readonly",
+   "fmid": "22.100.001",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GSU_BEDS",
+   "kind": "readonly",
+   "fmid": "22.07.06",
+   "instance": "0",
+   "value": "0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_BEDS",
+   "kind": "text",
+   "fmid": "22.07.26",
+   "instance": "0",
+   "value": "0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_BEDS_ADJ",
+   "kind": "text",
+   "fmid": "22.07.27",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_BEDS",
+   "kind": "text",
+   "fmid": "22.07.26",
+   "instance": "0",
+   "value": "1",
+   "label": ""
+  },
+  {
+   "fn": "GC2_BEDS_ADJ",
+   "kind": "text",
+   "fmid": "22.07.27",
+   "instance": "0",
+   "value": "$(10,000)",
+   "label": ""
+  },
+  {
+   "fn": "GC3_BEDS",
+   "kind": "text",
+   "fmid": "22.07.26",
+   "instance": "0",
+   "value": "0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_BEDS_ADJ",
+   "kind": "text",
+   "fmid": "22.07.27",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_BATHS",
+   "kind": "readonly",
+   "fmid": "22.07.07",
+   "instance": "0",
+   "value": "0 | 0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_BATHS",
+   "kind": "editable",
+   "fmid": "22.07.28",
+   "instance": "0",
+   "value": "1 | 0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_BATHS_ADJ",
+   "kind": "text",
+   "fmid": "22.07.29",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_BATHS",
+   "kind": "editable",
+   "fmid": "22.07.28",
+   "instance": "0",
+   "value": "1 | 0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_BATHS_ADJ",
+   "kind": "text",
+   "fmid": "22.07.29",
+   "instance": "0",
+   "value": "$(100,000)",
+   "label": ""
+  },
+  {
+   "fn": "GC3_BATHS",
+   "kind": "editable",
+   "fmid": "22.07.28",
+   "instance": "0",
+   "value": "1 | 0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_BATHS_ADJ",
+   "kind": "text",
+   "fmid": "22.07.29",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_SF_GLA",
+   "kind": "readonly",
+   "fmid": "22.07.08",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA",
+   "kind": "text",
+   "fmid": "22.07.30",
+   "instance": "0",
+   "value": "200 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_ADJ",
+   "kind": "text",
+   "fmid": "22.07.31",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA",
+   "kind": "text",
+   "fmid": "22.07.30",
+   "instance": "0",
+   "value": "200 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_ADJ",
+   "kind": "text",
+   "fmid": "22.07.31",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA",
+   "kind": "text",
+   "fmid": "22.07.30",
+   "instance": "0",
+   "value": "200 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_ADJ",
+   "kind": "text",
+   "fmid": "22.07.31",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_SF_GLA_BELOW_GRD",
+   "kind": "readonly",
+   "fmid": "22.07.11",
+   "instance": "0",
+   "value": "925 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_BELOW_GRD",
+   "kind": "text",
+   "fmid": "22.07.36",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "kind": "text",
+   "fmid": "22.07.37",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_BELOW_GRD",
+   "kind": "text",
+   "fmid": "22.07.36",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "kind": "text",
+   "fmid": "22.07.37",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_BELOW_GRD",
+   "kind": "text",
+   "fmid": "22.07.36",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "kind": "text",
+   "fmid": "22.07.37",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "kind": "readonly",
+   "fmid": "22.07.12",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "kind": "text",
+   "fmid": "22.07.38",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "kind": "text",
+   "fmid": "22.07.39",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "kind": "text",
+   "fmid": "22.07.38",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "kind": "text",
+   "fmid": "22.07.39",
+   "instance": "0",
+   "value": "$00",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "kind": "text",
+   "fmid": "22.07.38",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "kind": "text",
+   "fmid": "22.07.39",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "kind": "readonly",
+   "fmid": "22.07.13",
+   "instance": "0",
+   "value": "1,234 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "kind": "text",
+   "fmid": "22.07.40",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "kind": "text",
+   "fmid": "22.07.41",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "kind": "text",
+   "fmid": "22.07.40",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "kind": "text",
+   "fmid": "22.07.41",
+   "instance": "0",
+   "value": "$00",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN",
+   "kind": "text",
+   "fmid": "22.07.40",
+   "instance": "0",
+   "value": "0 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "kind": "text",
+   "fmid": "22.07.41",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_BLANK_DESC",
+   "kind": "editable",
+   "fmid": "22.07.15",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_UNITS_BLANK",
+   "kind": "editable",
+   "fmid": "22.07.16",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_BLANK",
+   "kind": "editable",
+   "fmid": "22.07.44",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_UNITS_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.07.45",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_BLANK",
+   "kind": "editable",
+   "fmid": "22.07.44",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_UNITS_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.07.45",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_BLANK",
+   "kind": "editable",
+   "fmid": "22.07.44",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_UNITS_BLANK_ADJ",
+   "kind": "text",
+   "fmid": "22.07.45",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EXT_QUAL_QUALITY",
+   "kind": "readonly",
+   "fmid": "22.08.02",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EXT_QUAL_QUALITY",
+   "kind": "editable",
+   "fmid": "22.08.17",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EXT_QUAL_QUALITY",
+   "kind": "editable",
+   "fmid": "22.08.17",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EXT_QUAL_QUALITY",
+   "kind": "editable",
+   "fmid": "22.08.17",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EXT_QUAL_BLANK_LABEL",
+   "kind": "editable",
+   "fmid": "22.08.07",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EXT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.08",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EXT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EXT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EXT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.22",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EXT_COND_CONDITION",
+   "kind": "readonly",
+   "fmid": "22.08.09",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EXT_COND_CONDITION",
+   "kind": "editable",
+   "fmid": "22.08.23",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EXT_COND_CONDITION",
+   "kind": "editable",
+   "fmid": "22.08.23",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EXT_COND_CONDITION",
+   "kind": "editable",
+   "fmid": "22.08.23",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EXT_COND_BLANK_LABEL",
+   "kind": "editable",
+   "fmid": "22.08.14",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_EXT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.15",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_EXT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.28",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_EXT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.28",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_EXT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.08.28",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_INT_QUAL_QUALITY",
+   "kind": "readonly",
+   "fmid": "22.09.03",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_INT_QUAL_QUALITY",
+   "kind": "editable",
+   "fmid": "22.09.19",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC2_INT_QUAL_QUALITY",
+   "kind": "editable",
+   "fmid": "22.09.19",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC3_INT_QUAL_QUALITY",
+   "kind": "editable",
+   "fmid": "22.09.19",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GSU_INT_QUAL_BLANK_LABEL",
+   "kind": "editable",
+   "fmid": "22.09.08",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_INT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.09",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_INT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.24",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_INT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.24",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_INT_QUAL_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.24",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_INT_COND_CONDITION",
+   "kind": "readonly",
+   "fmid": "22.09.10",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_INT_COND_CONDITION",
+   "kind": "editable",
+   "fmid": "22.09.25",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC2_INT_COND_CONDITION",
+   "kind": "editable",
+   "fmid": "22.09.25",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC3_INT_COND_CONDITION",
+   "kind": "editable",
+   "fmid": "22.09.25",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GSU_INT_COND_BLANK_LABEL",
+   "kind": "editable",
+   "fmid": "22.09.15",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_INT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.16",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_INT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.30",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_INT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.30",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_INT_COND_BLANK",
+   "kind": "editable",
+   "fmid": "22.09.30",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_QUALITY",
+   "kind": "readonly",
+   "fmid": "22.11.01",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_QUALITY",
+   "kind": "editable",
+   "fmid": "22.11.03",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_QUALITY_ADJ",
+   "kind": "text",
+   "fmid": "22.11.04",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_QUALITY",
+   "kind": "editable",
+   "fmid": "22.11.03",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC2_QUALITY_ADJ",
+   "kind": "text",
+   "fmid": "22.11.04",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_QUALITY",
+   "kind": "editable",
+   "fmid": "22.11.03",
+   "instance": "0",
+   "value": "Q3",
+   "label": ""
+  },
+  {
+   "fn": "GC3_QUALITY_ADJ",
+   "kind": "text",
+   "fmid": "22.11.04",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_CONDITION",
+   "kind": "readonly",
+   "fmid": "22.11.02",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_CONDITION",
+   "kind": "editable",
+   "fmid": "22.11.05",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC1_CONDITION_ADJ",
+   "kind": "text",
+   "fmid": "22.11.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_CONDITION",
+   "kind": "editable",
+   "fmid": "22.11.05",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC2_CONDITION_ADJ",
+   "kind": "text",
+   "fmid": "22.11.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_CONDITION",
+   "kind": "editable",
+   "fmid": "22.11.05",
+   "instance": "0",
+   "value": "C3",
+   "label": ""
+  },
+  {
+   "fn": "GC3_CONDITION_ADJ",
+   "kind": "text",
+   "fmid": "22.11.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_VEHICLE_STORAGE_ADJ",
+   "kind": "text",
+   "fmid": "22.13.04",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_VEHICLE_STORAGE_ADJ",
+   "kind": "text",
+   "fmid": "22.13.04",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC3_VEHICLE_STORAGE_ADJ",
+   "kind": "text",
+   "fmid": "22.13.04",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GSU_VEHICLE_STORAGE",
+   "kind": "readonly",
+   "fmid": "22.13.01",
+   "instance": "0",
+   "value": "Garage | 1 | Built-in150 Sq. Ft.",
+   "label": ""
+  },
+  {
+   "fn": "GC1_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.05",
+   "instance": "0",
+   "value": "Driveway | 2 | Concrete",
+   "label": ""
+  },
+  {
+   "fn": "GC2_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.05",
+   "instance": "0",
+   "value": "Driveway | 2 | Concrete",
+   "label": ""
+  },
+  {
+   "fn": "GC3_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.05",
+   "instance": "0",
+   "value": "Driveway | 2 | Concrete",
+   "label": ""
+  },
+  {
+   "fn": "GSU_BL_VEHICLE_STORAGE_BLANK",
+   "kind": "editable",
+   "fmid": "22.13.02",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_BL_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.03",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_BL_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_BL_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_BL_VEHICLE_STORAGE",
+   "kind": "editable",
+   "fmid": "22.13.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_TRANSFER_HISTORY_PRESENT",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_HISTORY_PRESENT",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_HISTORY_PRESENT",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_HISTORY_PRESENT",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "No",
+   "label": ""
+  },
+  {
+   "fn": "GSU_TRANSFER_HISTORY_TERMS",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "None",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_HISTORY_TERMS",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "None",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_HISTORY_TERMS",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "None",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_HISTORY_TERMS",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "None",
+   "label": ""
+  },
+  {
+   "fn": "GSU_TRANSFER_HISTORY_DATE",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_HISTORY_DATE",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_HISTORY_DATE",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_HISTORY_DATE",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_TRANSFER_HISTORY_AMOUNT",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_HISTORY_AMOUNT",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_HISTORY_AMOUNT",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_HISTORY_AMOUNT",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GSU_TRANSFER_HISTORY_SOURCE",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "Assessor Record",
+   "label": ""
+  },
+  {
+   "fn": "GC1_TRANSFER_HISTORY_SOURCE",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "Cooperative Board",
+   "label": ""
+  },
+  {
+   "fn": "GC2_TRANSFER_HISTORY_SOURCE",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "Cooperative Board",
+   "label": ""
+  },
+  {
+   "fn": "GC3_TRANSFER_HISTORY_SOURCE",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "Cooperative Board",
+   "label": ""
+  },
+  {
+   "fn": "GSU_LIST_PRICE",
+   "kind": "text",
+   "fmid": "22.15.02",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_LIST_PRICE",
+   "kind": "text",
+   "fmid": "22.15.05",
+   "instance": "0",
+   "value": "$955,000",
+   "label": ""
+  },
+  {
+   "fn": "GC2_LIST_PRICE",
+   "kind": "text",
+   "fmid": "22.15.05",
+   "instance": "0",
+   "value": "$959,000",
+   "label": ""
+  },
+  {
+   "fn": "GC3_LIST_PRICE",
+   "kind": "text",
+   "fmid": "22.15.05",
+   "instance": "0",
+   "value": "$500,000",
+   "label": ""
+  },
+  {
+   "fn": "GSU_CONTRACT_PRICE",
+   "kind": "text",
+   "fmid": "22.15.03",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_CONTRACT_PRICE",
+   "kind": "text",
+   "fmid": "22.15.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC2_CONTRACT_PRICE",
+   "kind": "text",
+   "fmid": "22.15.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC3_CONTRACT_PRICE",
+   "kind": "text",
+   "fmid": "22.15.06",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "GC1_SALE_PRICE",
+   "kind": "text",
+   "fmid": "22.15.07",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC2_SALE_PRICE",
+   "kind": "text",
+   "fmid": "22.15.07",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC3_SALE_PRICE",
+   "kind": "text",
+   "fmid": "22.15.07",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC1_NETADJ_ADJ",
+   "kind": "text",
+   "fmid": "22.15.08",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC2_NETADJ_ADJ",
+   "kind": "text",
+   "fmid": "22.15.08",
+   "instance": "0",
+   "value": "$(110,000)",
+   "label": ""
+  },
+  {
+   "fn": "GC3_NETADJ_ADJ",
+   "kind": "text",
+   "fmid": "22.15.08",
+   "instance": "0",
+   "value": "$0",
+   "label": ""
+  },
+  {
+   "fn": "GC1_NETADJ_PRICE_ADJ",
+   "kind": "text",
+   "fmid": "22.15.13",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC2_NETADJ_PRICE_ADJ",
+   "kind": "text",
+   "fmid": "22.15.13",
+   "instance": "0",
+   "value": "$889,000",
+   "label": ""
+  },
+  {
+   "fn": "GC3_NETADJ_PRICE_ADJ",
+   "kind": "text",
+   "fmid": "22.15.13",
+   "instance": "0",
+   "value": "$999,000",
+   "label": ""
+  },
+  {
+   "fn": "GC1_NETADJ_COMP_WEIGHT_ADJ",
+   "kind": "editable",
+   "fmid": "22.15.14",
+   "instance": "0",
+   "value": "Most",
+   "label": ""
+  },
+  {
+   "fn": "GC2_NETADJ_COMP_WEIGHT_ADJ",
+   "kind": "editable",
+   "fmid": "22.15.14",
+   "instance": "0",
+   "value": "Less",
+   "label": ""
+  },
+  {
+   "fn": "GC3_NETADJ_COMP_WEIGHT_ADJ",
+   "kind": "editable",
+   "fmid": "22.15.14",
+   "instance": "0",
+   "value": "Most",
+   "label": ""
+  },
+  {
+   "fn": "GSU_SCMINDVALUE2",
+   "kind": "text",
+   "fmid": "22.15.15",
+   "instance": "0",
+   "value": "$670,000",
+   "label": ""
+  },
+  {
+   "fn": "SA_RECONCILE",
+   "kind": "editable",
+   "fmid": "22.16.01",
+   "instance": "0",
+   "value": "Overall  market value appraiser has deci",
+   "label": ""
+  },
+  {
+   "fn": "CHECK_COMP_ADD_PROP_ENABLE",
+   "kind": "checkbox",
+   "fmid": "",
+   "instance": "0",
+   "value": "on",
+   "label": ""
+  },
+  {
+   "fn": "CHECK_COMP_ADD_PROP_DISABLE",
+   "kind": "checkbox",
+   "fmid": "",
+   "instance": "0",
+   "value": "on",
+   "label": ""
+  },
+  {
+   "fn": "GSU_MAP",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_CATEGORY",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "Comparable #1",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_DESCRIPTION",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_CAPTION",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "Comparable #1",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_CATEGORY",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "1",
+   "value": "Comparable #2",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_DESCRIPTION",
+   "kind": "text",
+   "fmid": "",
+   "instance": "1",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_CAPTION",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "1",
+   "value": "Comparable #2",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "1",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_CATEGORY",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "2",
+   "value": "Comparable #3",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_DESCRIPTION",
+   "kind": "text",
+   "fmid": "",
+   "instance": "2",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_CAPTION",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "2",
+   "value": "Comparable #3",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_COMP_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "2",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_CATEGORY",
+   "kind": "editable",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_DESCRIPTION",
+   "kind": "text",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_CAPTION",
+   "kind": "readonly",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  },
+  {
+   "fn": "SALES_COMP_EXHIBIT_PHOTO",
+   "kind": "image",
+   "fmid": "",
+   "instance": "0",
+   "value": "",
+   "label": ""
+  }
+ ]
+}

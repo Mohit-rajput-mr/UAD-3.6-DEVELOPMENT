@@ -1,0 +1,53 @@
+each repair, total repair cost, and the subject's As Repaired value. Reports made Subject-To are only allowed if
+property conditions represent a risk to the health and safety of the occupants or the structural soundness of the
+property as outlined in HUD Mortgagee Letter 2005 ML-48. C. The FHA Case # must be shown on ALL pages at the
+top of the appraisal report PDF. D. Explain whether or not the subject conforms to HUD minimum standards.
+USDA REPORTS: Do not require a Case Number, but do require direct verbiage indicating the property meets
+minimum property standards per HUD Handbook 4150.0 and 4905.1
+NON FHA REPORTS: The appraisal report must be made As-Is. If repairs are necessary then in the Addendum
+please provide an itemized list of repairs with an estimated cost to cure each repair, total repair cost, and the
+subject's As Repaired value.
+COST APPROACH: Must be completed for 1004, 1004C, and 1025 appraisals including the Remaining Economic
+Life. If you exclude it, please provide detailed comments as to why. Please note that “because Fannie Mae doesn’t
+require it” is not a valid reason for its exclusion. However, site value and remaining economic life are required at
+minimum. If the Opinion of Site Value is over 30% of the Opinion of Market Value, a comment should be added to the
+addendum explaining if this is Common for the area. PURCHASE TRANSACTIONS: The appraiser must review a
+copy of the Purchase Contract and all addenda so he or she can take into account any unusual or excessive sales
+contributions or concessions. Any amendments or adjustments after the appraisal is complete must be supplied to
+the appraiser for review.
+NEW PROJECTS/DEVELOPMENTS: The sales office must be contacted prior to inspection. The appraiser must
+use at least one current sale from the subject builder/developer in the project, and either: One current sale from a
+competing builder/developer or a resale from within the subject property’s development that has closed within the
+last 30 days. The appraiser may need to rely solely on the builder of the property they are appraising to provide
+comparable sales data, as this data may not yet be available USPAP, and include his license number.
+SUBJECT FEES: Real estate taxes reported must be from the current year. If the subject has SID/LID fees, they
+must be report in the Special Assessments section of the report. GATED COMMUNITIES: If the subject is located in
+a gated community, the “Private Road” box must be checked and a comment made as to whether or not the roads
+are maintained by the HOA. FINANCIAL DATA AND SALES CONCESSIONS: The appraiser must state the total dollar
+amount of the loan charges and/or concessions that will be paid. Appraiser should comment on any interested-party
+contributions, concessions, or builder incentives that are unusual or excessive and the impact, if any, to the sales
+price.
+LOCATION MAP: A street map that shows the location of the subject property and all comparables (including sale,
+rental, and listing comparables, as applicable)
+SITE MAP: A site/plat map of the subject must be included
+SKETCH: A sketch with room layout, exterior dimensions, and the appraiser’s calculations of the gross living area
+must be included with all interior appraisals. The bedroom and bathroom count on the sketch must match the
+appraisal report. For condominiums, the sketch must indicate interior perimeter unit dimensions rather than exterior.
+For 2-4 Unit Properties, the sketch must include each unit layout and entries, and indicate the square feet of living
+area per unit and gross living area of the building. If the subject has any outbuildings such as a shed, barn, etc.,
+exterior improvements such as a patio, covered patio, pool etc., they must be demonstrated on the sketch. If the
+subject has a basement, it mush be included on the sketch with any rooms in the area labeled and the sump pump
+location. If a property has well and/or septic, propane/oil tank, the approximate location of these items should also
+be shown on the sketch. A building sketch is not required for 1075, 2055, and 2095 reports.
+GROSS LIVING AREA: Only finished above-grade areas should be counted; garages and basements should not be
+included. A level is considered to be below-grade if any portion is below ground. Rooms that are not included in the
+above-grade count may add value to the property. Basements and other partially below-grade areas should be
+reported separately and make appropriate adjustments for them in the Sales Comparison Approach section.
+1004MC: Required for all appraisals on one-to-four unit properties. ATTIC/CRAWL SPACE: If the subject has an
+attic or crawl space, a head and shoulders inspection must be made with a photo taken of the area.
+ZONING: In addition to showing alpha or numeric indications (for example, single family for R-1), the zoning
+classification must be described. The appraiser must include specific information if the improvements do not
+represent a legal, conforming use of the land. In case of No Zoning, the appraisal must indicate the property is not
+zoned and that not being zoned is typical for the area and comment if the property is destroyed it can or cannot be
+rebuilt. In case of legal non-forming use, the appraiser must confirm the ability to rebuild in the event of full or partial
+‐

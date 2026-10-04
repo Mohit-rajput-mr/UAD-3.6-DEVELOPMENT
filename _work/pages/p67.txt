@@ -1,0 +1,213 @@
+Property Report on 11 HARBOR CT E, ROSLYN NY 11576
+Property Report
+Comparables
+Photo from Nassau County Dept. of Assessment
+Property Info
+Legal ID
+Section
+20
+Block
+M
+Lot
+284
+Building/Unit
+-315825140
+APN
+20  M  02840
+FIPS
+36059
+ATTOM ID
+169364338
+Municipality
+ROSLYN NY 11576
+Township
+North Hempstead
+Energy Standard
+New York State
+School District
+003-Roslyn
+Census Number
+360593020003014
+Census Tract
+302000
+Ownership
+MUSHTAQ YAHYA
+11 HARBOR CT E
+ROSLYN NY 11576
+This property is non-owner occupied.
+Flood
+Zone
+X
+Panel
+0117
+Panel Date
+2009-09-11
+Community
+AREA OF MINIMAL FLOOD
+HAZARD
+FEMA Flood Map
+2025-2026 Taxes and Assessment
+Assessed Value
+1,201
+Assessor’s Value
+$1,201,000
+Soundscore
+Pedestrian
+Active
+Vehicle
+Busy
+Airports
+Calm
+Overall Soundscore
+65 out of 100: Busy
+Soundscore powered by HowLoud
+Land Information
+Acres
+1.03
+Lot Dimensions
+Waterfront
+NO
+Location Information
+Street Type
+PAVED
+Traffic
+LIGHT
+Topography
+LEVEL
+Location Factor
+LONG ISLAND RAIL ROAD
+Fronting Factor
+Zoning
+R-A
+(Residence A District)
+Residential Building and Interior
+Building Class
+210
+1 FAMILY RESIDENTIAL
+Style
+CONTEMPORARY
+GLA
+3377
+Height (Stories)
+1.0
+Year Built
+1984
+Rooms
+9
+Full Baths
+3
+Baths Half
+1
+Rec Room Area
+Basement
+SLAB
+Fin Basement Area
+Attic
+FULL
+Fireplaces
+1
+Exterior Wall
+FRAME
+Heating Type
+CENTRAL W/AC
+Fuel Type
+OIL
+Garages
+Attached
+1
+Detached
+Basement
+0
+Condition
+AVERAGE
+Improvements
+Description
+Year Built
+Area
+Grade
+Condition
+POOL/PREFABRICATED VINYL
+1984
+860
+A
+G
+FRAME UTILITY SHED
+1990
+120
+A
+A
+Sales History
+Sale Date
+Rec Date
+Buyer
+Seller
+Sale Price
+Liber
+Page
+12/18/2025
+02/02/2026
+MUSHTAQ YAHYA RAJA
+TORREZ JOSE
+$1,854,000
+14716
+20
+04/01/2024
+04/18/2024
+TORREZ JOSE
+BATISTA FRANCISCO
+$1,300,000
+14488
+790
+11/28/2016
+01/13/2017
+BATISTA FRANCISCO
+BATISTA FRANCISCO
+$0
+13461
+867
+08/01/2014
+08/21/2014
+BATISTA FRANCISCO
+BATISTA LOURDES
+$0
+13111
+415
+09/27/2000
+10/06/2000
+BATISTA
+RAFAEL
+$710,000
+11261
+99
+11/28/1997
+12/05/1997
+RAFAEL
+$635,000
+10853
+503
+Sales highlighted in yellow are Potential Flips; green are Potential Distressed Sales.
+Active Mortgages and Equity Analysis
+Active mortgage data is estimated based on a 30-year term and may not reflect early payoffs or different schedules. This information is not a legal
+record.
+Date Recorded
+Position
+Original Amount
+Amortized Balance
+Loan Type
+Interest Rate
+Lender
+Lender Type
+02/02/2026
+First
+$1,205,100
+$1,196,725
+CONVENTIONAL
+MEADOWBROOK FINCL MTG BANKERS CORP
+MORTGAGE COMPANY
+© Mapbox © OpenStreetMap
+Total Estimated Debt:
+$1,196,725
+Estimated Value From ATTOM AVM:
+$1,865,219
+Available Equity:
+$668,494

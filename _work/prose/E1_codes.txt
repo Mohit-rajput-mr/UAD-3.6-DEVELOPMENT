@@ -1,0 +1,3367 @@
+
+<<<PAGE 1 of 43>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the Federal 
+Housing Finance Agency. 
+© 2025 Fannie Mae and Freddie Mac. Trademarks of the respective owners.  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification 
+Issued by Fannie Mae and Freddie Mac 
+Appendix E-1: Report Style Guide Supplement – URAR with Codes 
+Document Version 1.3 
+June 10, 2025 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 43>>>
+  
+Revision History 
+ 
+Date 
+Version # Report Section 
+Change # 
+Revision Description 
+6/10/2025 
+1.3 
+Outbuilding 
+2025-055 
+Updated display of Heating and Cooling checkboxes in 
+Outbuilding section to align with Style Guide 
+9/17/2024 
+1.2 
+Footer 
+2024-028 
+Updated date in Footer to September 2024 
+Market 
+2024-024 
+Deleted Property Value Trend 
+Revision History 
+2024-043 
+Added the Reconsideration of Value subsection 
+12/12/2023 
+1.1 
+Footer 
+2023-061 
+Updated date in Footer to December 2023 
+Market 
+2023-001 
+Removed the “Under Review” watermark 
+2023-031 
+Deleted Subject Conforms to Surrounding Area, Reason, and 
+Description fields 
+Changed report label to Market Area Boundary 
+Certifications and 
+Scope of Work 
+2023-003 
+Updated predefined text for Appraiser Certifications 18, 24, 
+and 25, and all Supervisory Appraiser Certifications 
+Clarified that Contact Name(s) displays for Appraiser 
+Certification 21 
+3/29/2023 
+1.0 
+ 
+ 
+Initial Publication 
+  
+Introduction 
+The Report Style Guide Supplements are a visual guide to the Report Style Guide. 
+Each section of the Uniform Residential Appraisal Report (URAR), Restricted Appraisal Update Report, and 
+Completion Report is provided with codes in the Report Style Guide. Codes are the specific type face, placement, 
+and visual treatment that must be applied for each component within the sections. 
+Appendix E Supplements are as follows: 
+• 
+Appendix E-1: URAR with Codes 
+• 
+Appendix E-2: Restricted Appraisal Update Report with Codes 
+• 
+Appendix E-3: Completion Report with Codes 
+
+<<<PAGE 3 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+[ADDRESS]
+SUMMARY
+Opinion of Market Value
+(Cooperative Interest)
+Market Value Condition
+Final Value Condition Statement
+Effective Date of Appraisal
+Assignment Reason
+Borrower Name
+Current Owner of Public Record
+Contract Price
+Listing Status
+Property Valuation Method
+Appraiser Name
+Property Description
+Construction Method
+Attachment Type
+Structure Design
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Observed Project Deficiencies
+
+Subject Site Owned in Common
+
+Units Excluding ADUs 
+Accessory Dwelling Units
+Property Rights Appraised
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Property Restriction
+Encroachment
+Zoning Compliance
+HUD Data Plate Attached
+HUD Label Present for All Sections
+Overall Quality
+Overall Condition
+TXR-B
+TXR-B
+TXR-B
+H1
+TXR-B
+SUM-HD
+TXR-B
+TXR-B
+TXC-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+CK1
+Y/N
+CK1
+CK1
+TXR-B
+TXR-B
+TITLE
+TITLE-ADD
+Y/N
+TXR-B
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+
+<<<PAGE 4 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies Requiring Action
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness 
+or Structural 
+Integrity
+Recommended 
+Action
+Estimated Cost 
+to Repair
+Site
+Dwelling Exterior - [Structure Identifier]
+Unit Interior - [Structure Identifier] - [Unit Identifier]
+Outbuilding - [Outbuilding Type]
+Unit Interior - [Outbuilding Type] - [Unit Identifier]
+Vehicle Storage
+Subject Property Amenities
+Total Cost
+As Is Overall Condition Rating
+Existing condition of the property as of the effective date of this 
+appraisal, excluding all required repairs, alterations, or inspections
+Total Estimated Cost of Items 
+Recommended for Repair	
+There are no apparent defects, damages, or deficiencies requiring action. For details, reference the ‘Reconciliation’ section.
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TCH
+TB_sub-H1
+TB
+TB
+TB_sub-H1
+TB
+TB_sub-H1
+TB
+TB_sub-H1
+TB
+TB_sub-H1
+TB
+TB_sub-H1
+TXR-B
+TB_sub-H1-R
+TXC-I1
+TXR-B
+TXC-I
+TB
+TB_sub-H1
+TXC-I
+
+<<<PAGE 5 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Assignment Information
+Assignment Reason
+Borrower Name
+Seller Name
+Current Owner of Public Record
+Property Valuation Method
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Appraiser Fee
+AMC Fee
+Government Agency
+Investor Requested Special Identification
+Contact Information
+[Role]/[Role] 
+Company Name
+Company Address
+Credentials
+ID
+State
+Expires
+Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Supervisory Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Supervisory Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Significant Real Property Appraisal Assistance
+Name
+Credentials
+Level
+ID
+State
+Expires
+Description  
+Property Data Report
+Name
+Occupation
+Company Name
+Company Address
+Reference ID
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Assignment Information and Scope of Work Commentary
+Assignment Information Exhibits
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+FTR-R
+FTR-L
+TXR-B
+TXR-B
+TXR-B
+H1
+H2
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+H2
+TX-B
+TAB
+H2
+TXR-I
+TXR-I
+TXR-B
+CK1
+Y/N
+TX-B
+TXR-I
+TXR-I
+TX-B
+TX-B
+H2
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-II
+TXR-II
+TXR-I
+TXR-II
+TXR-II
+TXC-B
+TXR-B
+TXR-I
+TXR-I
+TX-B
+TXR-B
+TXR-B
+TXR-I
+TXR-I
+TX-B
+TXR-B
+TXR-II
+TXR-II
+TXR-B
+TXR-I
+H2
+TXR-I
+TXR-I
+H1
+H1
+TXR-II
+TXR-II
+TXR-II
+TXC
+
+<<<PAGE 6 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Physical Address
+Alternate Physical Address
+County
+Neighborhood Name
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance 
+of Dwelling(s)
+
+New Construction
+
+Construction Stage
+Attachment Type
+Units Excluding ADUs
+Accessory Dwelling Units
+Dwellings Containing Units
+Special Tax Assessments
+Description of Special Tax Assessments and Impact to Value/
+Marketability  
+Ownership Rights
+Property Rights Appraised
+Community Land Trust
+Native American Lands
+Ground Rent Annual Amount
+Renewable
+Term
+Expires
+Description of Ground Rent and Impact to Value/Marketability
+All Rights Included in Appraisal
+Rights Not Included
+Mineral Rights Leased
+Description of Rights Not Included
+Legal Description
+Subject Property Commentary
+Subject Property Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TAB
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXC-B1
+TXR-B
+TXR-I
+TXR-B
+TXR-I
+TXC-B1
+TXR-I
+TXR-B
+TXC-B1
+TXR-I
+TXR-B
+H1
+H1
+H1
+H1
+CK1
+Y/N
+CK1
+TXR-I
+TXR-I
+TXR-B
+TXC
+TXC
+
+<<<PAGE 7 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Site
+Total Site Size
+Dimensions
+Number of Parcels
+Contiguous
+Elements Dividing Parcels
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+Zoning
+Compliance
+Classification Code
+Classification Code Description
+Reasons Illegal
+Impact
+Rebuildable to Current 
+Density/Use
+Description of Zoning Compliance
+Property Use
+Primarily Residential
+Residential Use
+Non-Residential Use
+Non-Residential Modification
+Description of Non-Residential Use/Modification  
+Property Access
+Primary Access
+Street Type and Surface
+Known Maintenance Agreement
+Typical for Market
+Description of Property Access 
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Site Influence Commentary  
+Water Frontage with Private Access
+Total Linear Measurement
+Permanent Waterfront Feature
+Right to Build 
+Frontage
+Name
+Waterfront Access Rights
+Access Depth
+Water Frontage Commentary  
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+View Commentary  
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Non-Residential Property Use
+Hazard Zone
+Property Restriction
+Easement
+Encroachment
+Site Characteristic
+Site Features Commentary  
+Utilities and Impact to Value/Marketability
+Broadband Internet Available
+Dwelling/Improvement within 
+Utility Easement
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+Gas
+Sanitary Sewer
+Water
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-I
+TXR-I
+TXR-I
+TXC-B1
+TXR-B
+TCH
+TB
+TXR-I
+TXR-I
+TXR-I
+TXC-B1
+H1
+H1
+TCH
+TB
+TCH
+TB
+TCH
+TB
+TXC-B
+TXC-B
+TXC-B
+H2
+TXR-I
+TXR-B
+TXR-B
+TAB
+H1
+TCH
+TB
+TXC-B
+H1
+TCH
+TB
+TXC-B1
+TXR-B
+TXR-I
+TXR-I
+TB
+TXR-B
+TB
+
+<<<PAGE 8 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies (Site)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Site Valuation Methodology
+Opinion of Site Value
+Primary Site Valuation Method
+#
+Address
+County
+Data Source
+Assessor Parcel 
+Number (APN)
+Site Size
+Sale Date 
+Price
+Reconciliation of Site Value  
+Site Commentary
+Site Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXC-B
+H1
+TCH
+TB
+H1
+TXR-B
+TXR-B
+TCH
+TB
+H1
+H1
+TXC-I
+TXC
+
+<<<PAGE 9 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Disaster Mitigation
+Mitigation Feature
+Disaster Mitigation Commentary
+Disaster Mitigation Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TAB
+TXR-B
+H1
+H1
+TXC
+
+<<<PAGE 10 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Energy Efficient and Green Features
+Known Renewable Energy Components
+Renewable Energy Component
+Ownership
+Financing Arrangement
+Known Building Certifications
+Building Certification Organization
+Certification
+Year
+Version
+Rating
+Known Efficiency Ratings
+Green/Energy Efficiency Rating 
+Organization
+Rating
+Score
+Energy Efficient and Green Features Impact to Value/Marketability
+Impact to Value/Marketability	
+Description  
+Energy Efficient and Green Features Commentary
+Energy Efficient and Green Features Exhibits
+Energy Efficient and Green Features
+Known Renewable Energy Components
+Renewable Energy Component
+Ownership
+Financing Arrangement
+Known Building Certifications
+Building Certification Organization
+Certification
+Year
+Version
+Rating
+Known Efficiency Ratings
+Green/Energy Efficiency Rating 
+Organization
+Rating
+Score
+Energy Efficient and Green Features Impact to Value/Marketability
+Impact to Value/Marketability	
+Description  
+Energy Efficient and Green Features Commentary
+Energy Efficient and Green Features Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TXR-B
+TCH
+TB
+TXC-B
+H1
+TXR-B
+TAB
+H1
+TXR-B
+TCH
+TB
+TXR-B
+TCH
+TB
+TXC
+
+<<<PAGE 11 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Sketch
+Sketch or Floor Plan Not Available
+Measurement Standard
+Sketch Commentary
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TAB
+H1
+TXR-B
+TXC-I
+TXC
+
+<<<PAGE 12 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Dwelling Exterior - [Structure Identifier]
+Subject Property Units in 
+Structure
+Structure Design
+Floors in Building
+Dwelling Style
+Front Door Elevation
+Townhouse End Unit
+Townhouse Back to Back
+Units Above or Below
+Townhouse Location
+Year Built 
+Construction Method
+Converted Area
+Converted Area and Similarity 
+to Rest of Living Area
+Factory Built Certification
+Structure Volume
+Window Surface Area
+Attic
+Remaining Economic Life
+Effective Age
+Commentary on Remaining Economic Life  
+Commentary on Effective Age
+Quality and Condition
+Exterior Quality Rating
+Exterior Condition Rating
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Foundation
+Roof
+Windows
+Noncontinuous Finished Area
+The table below depicts any finished area that is attached to the dwelling but separate and not directly accessible from any unit
+Finish
+Total Area
+Room Summary
+Finished
+Mechanical System Details
+System
+Detail
+Heating
+Cooling
+Yes No
+Core Heating System Below Grade
+
+Other Mechanical Systems
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior - [Structure Identifier])
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Dwelling Exterior Commentary
+Dwelling Exterior Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TXR-B
+TXR-B
+TXC-B
+TCH
+TB
+TAB
+TXR-B
+H2
+TCH
+TCH
+TB
+TB
+TB
+H1
+H1
+H1
+TB
+TXC-I
+TCH
+H1
+TXC-B
+TXR-B
+TXR-B
+H1
+TXC-I
+TB
+CK1
+Y/N
+TXC-I
+TXC
+
+<<<PAGE 13 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Manufactured Home 
+Manufacturer Name
+Year Installed
+Moved Since Original Installation
+Attached to Permanent 
+Foundation
+Towing Hitch, Wheels, Axles 
+Removed
+Manufactured Home Width
+Skirting
+Yes No
+Have there been any modifications, attachments, or additions that rely on or have altered the original structure for support? 
+Modification, Attachment, or Addition
+Description of Modification, Attachment, or Addition   
+HUD Data Plate
+HUD Data Plate Attached
+Date of Manufacture
+Serial Number
+HUD Wind Zone
+HUD Thermal Zone
+HUD Roof Load Zone
+HUD Certification Label
+Label Present for All Sections
+HUD Certification Number
+Manufactured Home Certification Program
+Certification
+Identifier
+Invoice Information
+Purchased from Retailer
+Retailer Name
+Retailer’s Invoice Reviewed
+Manufacturer’s Invoice Reviewed
+Invoice(s) Appear Reasonable
+Commentary on Why Invoice(s) Not Reasonable  
+Manufactured Home Commentary 
+Manufactured Home Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+H1
+TXR-B
+TXR-B
+CK
+Y/N
+TXR-B
+TXR-B
+TXC-B
+TCH
+TB
+TXR-B
+TXR-B
+H1
+H1
+TXR-B
+TXR-B
+TXC-B
+H1
+H1
+TAB
+H1
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXC
+
+<<<PAGE 14 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior - [Outbuilding Type] - [Structure Identifier] - [Unit Identifier]
+Area Breakdown
+Finished Above Grade
+Finished Above Grade (Nonstandard)
+Unfinished Above Grade
+Finished Below Grade
+Finished Below Grade (Nonstandard)
+Unfinished Below Grade
+Area Data Source
+Below Grade Finish Compared 
+to Above
+Yes No
+ADU
+
+Legally Rentable
+Data Source
+Typical for Market
+Ingress/Egress
+Separate Postal Address
+Levels in Unit
+Floor Number
+Corner Unit
+Occupancy
+Utilities Separately Metered
+Utilities Operating
+Total Bedrooms
+Total Bathrooms - Full
+Total Bathrooms - Half
+Non-Residential Use in Unit
+Live/Work Space
+Allowable Work Space
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Quality and Condition
+Interior Quality Rating	
+Interior Condition Rating	
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Overall Update Status for 
+Bathrooms
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Overall Update Status for 
+Flooring
+Accessibility Features for Individuals with Disabilities
+Feature
+Comment
+Apparent Defects, Damages, Deficiencies (Unit Interior - [Outbuilding Type] - [Structure Identifier] - [Unit Identifier])
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Unit Interior Commentary
+Unit Interior Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+H1
+TXR-B
+TXR-B
+TXR-I
+TXR-I
+TXR-B
+TCH
+TB
+TCH
+TB
+TCH
+TB
+TCH
+TB
+TCH
+TB
+TXR-B
+TXR-B
+TXR-B
+H1
+H1
+H1
+H1
+H2
+H2
+TXC-I
+TAB
+H2
+TXR-B
+TXR-I
+TXR-I
+TXR-I
+TXR-II
+TXR-I
+TXR-B
+TXC-I
+CK1
+Y/N
+TXC
+
+<<<PAGE 15 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Functional Obsolescence
+Functional Issues
+Functional Obsolescence Commentary
+Functional Obsolescence Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TAB
+H1
+TXR-B
+TXC
+
+<<<PAGE 16 of 43>>>
+	
+Appraiser Reference ID	
+	
+Agency Case File ID	
+	
+Client Reference ID	
+	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Outbuilding - [Outbuilding Type]
+Considered Real Property
+Units in Structure
+Attached to Permanent Foundation
+Structure Volume
+Gross Building Area
+Gross Building Area for the outbuilding includes area for vehicle storage, 
+ADU(s), and any other uses
+Detail
+Yes No
+Heating
+
+Cooling
+
+Utilities	
+The table below depicts the area of the outbuilding, excluding vehicle 
+storage and any ADU(s) 
+Finish
+Total Area
+Room Summary
+Finished
+Unfinished
+Mechanical System Details
+System
+Detail
+Heating
+Cooling
+Other Mechanical Systems
+Apparent Defects, Damages, Deficiencies ([Outbuilding Type])
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Outbuilding Commentary
+Outbuilding Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+TXR-B
+H1
+TXR-B
+CK1
+CK1
+TXR-B
+TCH
+Y/N
+TB
+TAB
+H1
+H1
+H1
+TCH
+TCH
+TB
+H1
+TB
+TB
+TXC-I1
+TB
+TXC-I1
+TXC-I
+TXC
+
+<<<PAGE 17 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Vehicle Storage Commentary
+Vehicle Storage Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TCH
+TB
+H1
+TAB
+H1
+TCH
+TB
+H1
+TXC-I
+TXC
+
+<<<PAGE 18 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Subject Property Amenities Commentary
+Subject Property Amenities Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TCH
+H1
+TB
+TCH
+TB
+TXC-I
+TAB
+H1
+H1
+TXC
+
+<<<PAGE 19 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Overall Quality and Condition
+Overall Quality
+Exterior Quality - [Structure Identifier]
+Interior Quality - [Unit Identifier]
+Overall Condition
+Exterior Condition - [Structure Identifier]
+Interior Condition - [Unit Identifier]
+Reconciliation of Overall Quality and Condition
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TAB
+TXR-B
+TXR-I
+TXR-I
+TXR-B
+TXR-I
+TXR-I
+TXC
+
+<<<PAGE 20 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible
+Physically Possible
+Financially Feasible
+Maximally Productive
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+Highest and Best Use Exhibits
+ 
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible
+Physically Possible
+Financially Feasible
+Maximally Productive
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+Highest and Best Use Exhibits
+ 
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+CK
+H1
+TAB
+H1
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TX-BI
+Y/N
+TXC
+
+<<<PAGE 21 of 43>>>
+	
+Appraiser Reference ID	
+	
+Agency Case File ID	
+	
+Client Reference ID	
+	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Market
+Market Area Boundary
+Search Criteria Description
+Search Result Metrics
+Active Listings
+Median Days on Market
+Lowest List Price
+Median List Price 
+Highest List Price
+Pending Sales
+Sales in Past 
+ Months
+Lowest Sale Price
+Median Sale Price
+Highest Sale Price
+Distressed Market Competition
+Graph
+Price Trend Source
+Price Trend Analysis Commentary  
+Housing Trends
+Demand/Supply
+Marketing Time
+Market Commentary
+Market Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+H1
+TXR-B
+TXC-B
+H1
+TXR-B
+H1
+TAB
+TXR-B
+TXC-B
+TXC-B
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXC
+
+<<<PAGE 22 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Project Information	
+Planned Unit Development (PUD)   
+   Condominium   
+   Cooperative   
+   Condop  
+Project Name
+Project Information Data Source
+Total Units
+Units Sold
+Units for Sale
+Units Rented
+Reason Units Rented is Estimated  
+Mandatory Fees (HOA, PUD, or Co-op)
+Monthly Amount
+Common Amenities/
+Services Included	
+Utilities Included
+Yes No
+Observed Deficiencies
+
+Description of Deficiencies  
+Project Completeness
+Yes No
+Are units, common areas, and amenities in project 
+complete?
+
+Subject Property Building Complete
+
+Converted in Past 3 Years
+
+Ground Rent
+
+Annual Amount
+Expires
+Description of Ground Rent  
+Cooperative Information
+Shares Issued and Outstanding
+Shares Attributable to Subject Property
+Proprietary Lease Expires
+Yes No
+Project Blanket Financing
+
+Pro Rata Share
+Lien Detail
+First Lien
+Second Lien
+Third Lien
+Fourth Lien
+Unpaid Principal Balance
+Line of Credit
+Balloon Mortgage
+Remaining Term
+Monthly Payment
+Interest Rate
+Amortization Type
+Pro Rata Share of Balance 
+Attributable to Unit
+Project Factors and Impact to Value/Marketability
+Project Factor
+Detail
+Impact
+Comment
+Developer/Sponsor in Control
+Incomplete Project
+Converted in Past 3 Years
+Single Entity Ownership of Multiple 
+Units
+Single Entity Ownership of Multiple 
+Shares
+Commercial Space
+Known Legal Actions
+Unit Transfer Fees
+Unit Special Assessments
+Unit Tax Abatements or Exemptions
+Project Factors Commentary  
+Project Information Commentary
+Project Information Exhibits
+TXR-B
+TXR-B
+TXR-B
+CK1
+TXR-I
+TXR-B
+TXR-B
+CK1
+TXC-B1
+TXR-B
+TCH
+TB
+TB
+TCH
+TB
+TB
+TXR-B
+H1
+TXC-B
+H1
+CK-H2
+TAB
+H1
+CK-1I
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-I
+TXR-B
+TXR-B
+H1
+TXR-I
+CK-1I
+Y/N
+CK-TAB
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+Y/N
+Y/N
+TXC-B1
+TXC-B1
+TXC
+
+<<<PAGE 23 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Current or Relevant Listings	
+Data Source
+Listing Status
+Listing Type
+Listing ID
+Start Date
+End Date
+DOM
+Starting 
+List Price
+Current or 
+Final List Price
+Total DOM
+Analysis of Subject Property Listing History  
+Subject Listing Information Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TCH
+TB
+TXC-B
+TAB
+H1
+TXR-B
+TB_sub-H1-R
+TAB-TX
+TXR-I
+
+<<<PAGE 24 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Contract
+Yes No
+Is there a sales contract?
+
+Was sales contract information analyzed?
+
+Does this appear to be an arm’s length transaction?
+
+Non-Arm’s Length Commentary
+Contract Price
+Contract Date
+Transfer Terms
+Personal Property Conveyed
+Personal property is not included in the appraiser’s final opinion of value
+Financial Sales Concessions	
+Financial assistance paid by or on behalf of the seller as an inducement to purchase the subject property
+Known Sales Concessions
+Total Sales Concessions
+Typical for Market
+Sales Contract Analysis
+Sales Contract Exhibits
+TAB
+TXR-B
+Y/N
+TXR-B
+TXR-B
+TXC-B1
+TXR-B
+TXR-I
+TXC-I1
+H1
+TXR-B
+H1
+H1
+H1-TX
+CK1
+CK1
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-B
+TXC
+
+<<<PAGE 25 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Prior Sales or Transfers
+Data Source
+Transfer Terms
+Date
+Amount
+Data Source
+Analysis of Prior Sale and Transfer History of Subject Property
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+Analysis of Prior Sale and Transfer History of Comparable Sales
+Prior Sale and Transfer History Exhibits
+TCH
+TB
+TCH
+TB
+H1
+H1
+TAB
+TXC-B
+TXC-B
+H1
+TXR-B
+TXC-I
+TXC-I
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXR-I
+
+<<<PAGE 26 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+General Information
+Property Address
+Data Source
+Proximity to Subject
+List Price
+Listing Status
+Contract Price
+Sale Price
+Transfer Terms
+$
+$
+$
+Financing Type
+$
+$
+$
+Sales Concessions
+$
+$
+$
+Contract Date
+$
+$
+$
+Sale Date
+$
+$
+$
+Days on Market
+Sale to List Price Ratio
+$
+$
+$
+Attached/Detached
+$
+$
+$
+Property Rights Appraised
+$
+$
+$
+Annual Ground Rent
+Native American Lands
+$
+$
+$
+All Rights Included
+$
+$
+$
+Rights Not Included
+Same Builder as Subject
+$
+$
+$
+Project Information
+$
+$
+$
+Project Name | Same 
+Project as Subject
+Monthly Fee
+Common Amenities/Services
+Special Assessments
+Site
+Site Owned in Common
+$
+$
+$
+Site Size
+$
+$
+$
+Neighborhood Name
+$
+$
+$
+Zoning Compliance
+$
+$
+$
+Hazard Zone
+$
+$
+$
+Primary Access
+$
+$
+$
+Street Type | Surface
+$
+$
+$
+Property Restriction
+$
+$
+$
+Easement
+$
+$
+$
+Topography
+$
+$
+$
+Drainage
+$
+$
+$
+Site Characteristics
+$
+$
+$
+Site Influence (Location)
+$
+$
+$
+Apparent Environmental 
+Conditions
+$
+$
+$
+View | Range
+$
+$
+$
+$
+$
+$
+Water Frontage with Private Access
+$
+$
+$
+Water Frontage
+Permanent Waterfront 
+Feature
+Right to Build
+Total Linear Measurement
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TB
+TB
+TAB
+TCH
+TB-SCA_sub-H1
+TB
+TB
+TB
+TB
+TB
+TB
+TB
+TB-SCA_sub-H1
+TB
+TB-I
+TB
+TB
+TB-I
+TB-SCA_sub-H1-ADJ
+TB-SCA_sub-H1-ADJ
+TB
+TB
+TB-I
+
+<<<PAGE 27 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+Property Address
+Dwelling(s)
+Year Built
+$
+$
+$
+Structure Design
+$
+$
+$
+Gross Building Finished Area
+$
+$
+$
+Noncontinuous 
+Finished Area
+$
+$
+$
+Townhouse End Unit
+$
+$
+$
+Townhouse Back to Back
+$
+$
+$
+Townhouse Location
+$
+$
+$
+Construction Method
+$
+$
+$
+Manufactured Home Width
+$
+$
+$
+Dwelling Style
+$
+$
+$
+Total Dwelling Volume
+$
+$
+$
+Window Surface Area
+$
+$
+$
+Functional Issues
+$
+$
+$
+Disaster Mitigation
+$
+$
+$
+Heating
+$
+$
+$
+Cooling
+$
+$
+$
+$
+$
+$
+Energy Efficient and Green Features
+$
+$
+$
+Renewable Energy 
+Component
+Building Certification
+Efficiency Rating
+Unit(s)
+Structure ID | Unit ID
+Location of ADU
+$
+$
+$
+Floor Number
+$
+$
+$
+Corner Unit
+$
+$
+$
+Levels in Unit
+$
+$
+$
+Bedrooms
+$
+$
+$
+Baths - Full | Half
+$
+$
+$
+Finished Area Above Grade
+$
+$
+$
+Finished Area Above 
+Grade (Nonstandard)
+$
+$
+$
+Unfinished Area Above 
+Grade
+$
+$
+$
+Finished Area Below Grade
+$
+$
+$
+Finished Area Below Grade 
+(Nonstandard)
+Unfinished Area 
+Below Grade
+$
+$
+$
+Features for Individuals 
+w/Disabilities
+$
+$
+$
+$
+$
+$
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Structure ID
+Quality
+Exterior Walls and Trim
+Foundation
+Roof
+Windows
+Condition
+Exterior Walls and Trim
+Foundation
+Roof
+Windows
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TB-SCA_H2
+TB
+TB
+TB
+TB
+TB-I
+TB
+TB
+TB-B
+TB-SCA_sub-H1
+TB-SCA_sub-H1
+TB-SCA_sub-H1
+TB
+TCH
+TB-B
+TB-I
+TB-I
+TB-B
+TB-I
+TB-SCA_sub-H1-ADJ
+TB-B
+TB-B
+
+<<<PAGE 28 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+Property Address
+Interior Quality and Condition
+Structure ID | Unit ID
+Quality
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+Condition
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+ADU Interior Quality and Condition
+Location of ADU
+Quality
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+Condition
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+$
+$
+$
+Condition
+$
+$
+$
+Property Amenities
+Outdoor Accessories
+$
+$
+$
+Outdoor Living
+$
+$
+$
+Water Features
+$
+$
+$
+Whole Home
+$
+$
+$
+Miscellaneous
+$
+$
+$
+Vehicle Storage
+$
+$
+$
+Type | Spaces | Detail
+Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)
+Outbuilding Type
+$
+$
+$
+Gross Building Area
+Finished Area
+Unfinished Area
+Structure Volume
+Baths - Full
+Baths - Half
+Kitchens
+Heating
+Cooling
+Utilities
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+Property Address
+Interior Quality and Condition
+Structure ID | Unit ID
+Quality
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+Condition
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+ADU Interior Quality and Condition
+Location of ADU
+Quality
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+Condition
+Kitchen
+Overall Bathrooms
+Overall Flooring
+Walls and Ceiling
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+$
+$
+$
+Condition
+$
+$
+$
+Property Amenities
+Outdoor Accessories
+$
+$
+$
+Outdoor Living
+$
+$
+$
+Water Features
+$
+$
+$
+Whole Home
+$
+$
+$
+Miscellaneous
+$
+$
+$
+Vehicle Storage
+$
+$
+$
+Type | Spaces | Detail
+Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)
+Outbuilding Type
+$
+$
+$
+Gross Building Area
+Finished Area
+Unfinished Area
+Structure Volume
+Baths - Full
+Baths - Half
+Kitchens
+Heating
+Cooling
+Utilities
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TB
+TCH
+TB-SCA_H2
+TB-SCA_H2
+TB-I
+TB-B
+TB-B
+TB-I
+TB-I
+TB-B
+TB-B
+TB-I
+TB-I
+TB-I
+TB-B
+TB-I
+TB-I
+TB-SCA_sub-H1
+TB
+TB
+TB-B
+TB-B
+TB-I
+TB-I
+TB-SCA_sub-H1
+TB-SCA_sub-H1
+TB-SCA_sub-H1-ADJ
+TB-B
+TB-B
+TB
+TB
+
+<<<PAGE 29 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+Property Address
+Summary
+List Price
+$
+$
+$
+$
+Contract Price
+$
+$
+$
+$
+Sale Price
+$
+$
+$
+Net Adjustment Total
+$
+$
+$
+Adjusted Price Per Unit
+$
+$
+$
+Adjusted Price Per Bedroom
+$
+$
+$
+Price Per Gross Building 
+Finished Area
+$
+$
+$
+Price Per Finished Area 
+Above Grade
+$
+$
+$
+Adjusted Price
+$
+$
+$
+Comparable Weight
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$
+Reconciliation of Sales Comparison Approach
+Additional Properties Analyzed Not Used
+#
+Property Address
+Sale Date
+Status
+Reason Not Used
+Comment
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TB-SCA_sub-H1
+TB-SCA_H2
+H1
+TB
+TCH
+TB
+TB
+TB
+H1
+TB
+TCH
+TXC
+
+<<<PAGE 30 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Map
+H1
+FTR-R
+FTR-L
+1 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+
+<<<PAGE 31 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach Exhibits
+Comparable #
+Comparable #
+Comparable #
+H1
+CAP
+CAP
+CAP
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+
+<<<PAGE 32 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Rental Information
+Rent Schedule
+Subject Property Rental Information
+Currently 
+Rented
+Occupancy
+Monthly 
+Rent
+Month-to-
+Month
+Lease Start
+Rent 
+Control
+Rent 
+Concessions
+Utilities/
+Services 
+Included 
+Furnished
+[Unit 
+Identifier]
+Description of Rent Control and Impact to Value/Marketability  
+Actual Income (Monthly)
+Rent
+[Unit Identifier]
+Subtotal
+Other Real Property Rental Income
+Subtotal
+Total
+Opinion of Market Income (Monthly)
+Rent
+[Unit Identifier]
+Subtotal
+Other Real Property Rental Income
+Subtotal
+Total
+Comparable Rental Properties
+Subject Property
+Comparable #
+Data Source: 
+Lease Start Date: 
+Actual Rent:
+Comparable #
+Data Source: 
+Lease Start Date: 
+Actual Rent:
+Comparable #
+Data Source: 
+Lease Start Date: 
+Actual Rent:
+Comparable #
+Data Source: 
+Lease Start Date: 
+Actual Rent:
+Comparable #
+Data Source: 
+Lease Start Date: 
+Actual Rent:
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H2-1
+H2-1
+TCH
+TB-I
+TCH
+TB-I
+TCH
+TCH
+TB-B
+TB-B
+TB-B
+TB-B
+TB-I
+TB-I
+TAB
+TCH
+TB
+H1
+TXC-B
+H2
+H1
+TB-B
+TB_sub-H1-R
+TB_sub-H1-R
+
+<<<PAGE 33 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Comparable Rental Analysis
+Subject 
+[Unit 
+Identifier]
+Comparables
+Subject 
+[Unit 
+Identifier]
+Comparables
+#
+#
+#
+#
+#
+#
+Proximity to Subject
+Neighborhood Name
+Project Name
+Project Common 
+Amenities/Services
+Site Influence
+View from Unit
+Floor Number
+Site Size 
+Grade Level
+Interior Condition
+Bedrooms
+Baths - Full | Half
+Finished Area
+Furnished
+Utilities/Services 
+Included
+Rent Control
+Rent Concessions
+Vehicle Storage | Spaces
+Summary
+Rent Per Finished Area
+Actual Rent
+Overall Comparison 
+to Subject
+Adjusted Rent
+Opinion of 
+Market Rent
+Comparable Weight
+Subject 
+[Unit 
+Identifier]
+Comparables
+Subject 
+[Unit 
+Identifier]
+Comparables
+#
+#
+#
+#
+#
+#
+Proximity to Subject
+Neighborhood Name
+Project Name
+Project Common 
+Amenities/Services
+Site Influence
+View from Unit
+Floor Number
+Site Size 
+Grade Level
+Interior Condition
+Bedrooms
+Baths - Full | Half
+Finished Area
+Furnished
+Utilities/Services 
+Included
+Rent Control
+Rent Concessions
+Vehicle Storage | Spaces
+Summary
+Rent Per Finished Area
+Actual Rent
+Overall Comparison 
+to Subject
+Adjusted Rent
+Opinion of 
+Market Rent
+Comparable Weight
+TCH
+TB
+TCH
+TB
+TB-B
+TB-B
+TB-B
+TB-SCA_H2
+H1
+TB-SCA_H2
+TB
+TB
+TB-B
+TCH
+TCH
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+
+<<<PAGE 34 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Rental Analysis Commentary
+Rental Information Exhibits
+Comparable #
+Comparable #
+Comparable #
+Comparable #
+Comparable #
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+H1
+CAP
+CAP
+CAP
+CAP
+CAP
+TXC
+
+<<<PAGE 35 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Income Approach
+Gross Rent Multiplier Comparables
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+Property Address
+Data Source
+Proximity to Subject
+Units Excluding ADUs
+Accessory Dwelling Units
+Gross Building Finished Area
+Rent Control
+Sale Price
+Sale Date
+Gross Monthly Rent
+Gross Rent Multiplier
+Comparable Weight
+Indicated Value by Income Approach
+	
+Total Monthly Market Rent	
+×	
+Gross Rent Multiplier	
+=	
+Indicated Value by Income Approach
+	
+	
+	
+	
+	
+Income Approach Commentary
+Income Approach Exhibits
+Comparable #
+Comparable #
+Comparable #
+TB
+TB
+H1
+TAB
+TB
+TCH
+H1
+H1
+H1
+TXR-B
+TB
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+CAP
+CAP
+CAP
+TXC
+
+<<<PAGE 36 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Cost Approach
+Indicated Value by Cost Approach	
+Depreciated Cost of Dwellings	
+Depreciated Cost of Outbuildings	
+As Is Value of Site Improvements	
+Opinion of Site Value	
+Depreciated Cost - Dwelling - [Structure Identifier]
+@
+Physical Depreciation
+Functional Depreciation
+External Depreciation
+Total Depreciation
+ 
+Manufactured Home Delivery, 
+Installation, and Set Up
+Total
+Remaining Economic Life	
+Effective Age	
+Commentary on Remaining Economic Life  
+Commentary on Effective Age  
+Depreciated Cost - Outbuilding - [Outbuilding Type]
+@
+Physical Depreciation
+Functional Depreciation
+External Depreciation
+Total Depreciation
+Manufactured Home Delivery, 
+Installation, and Set Up
+Total
+As Is Value of Site Improvements
+Description
+Amount
+Total
+Site Value
+Primary Site Valuation Method
+Opinion of Site Value 
+Land Comparables
+#
+Address
+County
+Data Source 
+Assessor Parcel 
+Number (APN)
+Site Size
+Sale Date
+Price
+Reconciliation of Site Value  
+General Description
+Cost Type	
+Cost Data Source	
+Quality Rating	
+Effective Date	
+Cost Method	
+Depreciation Method	
+Cost Approach Commentary
+Cost Approach Exhibits
+TXR-B
+H1
+TXC-B
+TAB
+TXR-B
+H1
+TXR-B
+TB
+TB
+TB_sub-H1-R
+TXC-B
+TXR-B
+H1
+TB
+TB
+TB_sub-H1-R
+TCH
+TB
+TB_sub-H1-R
+TB_sub-H1-R
+TCH
+H1
+H1
+H1
+H1
+H2
+TCH
+TB
+TXC-B
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+TXR-I
+TXR-I
+H1
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXC
+
+<<<PAGE 37 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+Reason for Exclusion
+Appraisal Summary
+Contract Price
+Opinion of Market Value
+(Cooperative Interest)
+Pro Rata Share Calculation Method
+Market Value Condition
+Reasonable Exposure Time
+Effective Date of Appraisal
+FHA REO Insurability Level
+Final Value Condition Statement
+The market value represents the cooperative interest. The cooperative interest is the equity portion that is over and above the pro rata share of the 
+blanket mortgage(s).
+Client Requested Conditions
+Value Condition
+Marketing or Exposure Time
+Duration
+Alternate Opinion of Value
+Requested Condition Commentary
+Reconciliation of Market Value
+Apparent Defects, Damages, Deficiencies
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness 
+or Structural 
+Integrity
+Recommended 
+Action
+Estimated Cost 
+to Repair
+Site
+Dwelling Exterior - [Structure Identifier]
+Unit Interior - [Structure Identifier] - [Unit Identifier]
+Outbuilding - [Outbuilding Type]
+Unit Interior - [Outbuilding Type] - [Unit Identifier]
+Vehicle Storage
+Subject Property Amenities
+Total Cost
+As Is Overall Condition Rating
+Existing condition of the property as of the effective date of this 
+appraisal, excluding all required repairs, alterations, or inspections
+Total Estimated Cost of Items 
+Recommended for Repair	
+Reconciliation Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TB
+TB
+TCH
+H1
+H1
+TXC-I
+TCH
+TB
+H1
+TXC-B
+TCH
+TB
+TB
+TAB
+H1
+TXR-B
+TXR-B
+TXR-B
+TXR-B
+H1
+TXR-B
+TXR-B
+TB_sub-H1
+TB_sub-H1
+TB_sub-H1
+TB_sub-H1
+TB_sub-H1
+TB_sub-H1
+TB
+TB
+TB
+TB
+TXC-B
+TXR-I
+TB
+TB_sub-H1
+TXC-I
+TXR-B
+TXR-B
+TXC-I1
+TB_sub-H1-R
+TXC
+
+<<<PAGE 38 of 43>>>
+	
+Appraiser Reference ID	
+	
+Agency Case File ID	
+	
+Client Reference ID	
+	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Revision History 
+Revision Date
+URAR Section
+Description
+Reconsideration of Value
+Type
+Date
+Result
+Reconsideration of Value Commentary
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TCH
+TB
+TAB
+H1
+TXR-B
+TXR-B
+TXC-B
+TXR-B
+
+<<<PAGE 39 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Supplemental Information
+Supplemental Information Exhibits
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TAB
+H1
+
+<<<PAGE 40 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Additional Scope of Work
+Additional Scope of Work cannot be contrary to the original Scope of Work.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+The intended use of the appraisal is solely to assist FHA in assessing the risk of the Property securing the FHA-insured Mortgage 
+(24 CFR § 200.145(b)).
+Additional Intended Use
+Additional Intended Use cannot be contrary to the original Intended Use.
+Intended User
+The intended user of this report is the lender/client.
+FHA and the Mortgagee are the intended users of this report.
+The USDA and any other identified lender/client are intended users of this report.
+The VA is also an intended user of this report.
+Additional Intended Users
+Additional Intended Users cannot be contrary to the original Intended User.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXC
+H1
+H1
+H1
+H1
+H1
+H2
+H2
+FN
+TXC
+TXC
+TXC
+TXC
+TXC
+TXC
+TXC-I
+TXC-I
+TXC-I
+TXC
+H2
+TXC
+TXC
+TXC
+TXC
+
+<<<PAGE 41 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+The FHA Appraiser does not guarantee that the Property is free from defects. The appraisal establishes the value of the Property for mortgage 
+insurance purposes only.
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+10. I personally performed an inspection of the exterior areas of the subject property from at least the street. I reported the readily observable 
+condition of the improvements in factual, specific terms. I reported any known physical deficiencies that could affect the soundness or 
+structural integrity of the property.
+10. I did not personally perform an onsite inspection of the subject property as part of this appraisal assignment. I reported the condition of 
+the improvements in factual, specific terms, relying on subject property information data sources I considered reliable. I reported any known 
+physical deficiencies that could affect the soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+TAB
+TXC-NP
+TXC
+TXC
+TXC-NP
+TXC
+
+<<<PAGE 42 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject neighborhood, subject property, and 
+the proximity of the subject property to adverse influences in the development of my opinion of market value. I have noted in this appraisal 
+report any adverse conditions (such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, 
+adverse environmental conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse 
+conditions in my analysis of the property value and have reported on the effect of the conditions on the value and marketability of the subject 
+property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+21. I personally prepared conclusions and opinions about the real estate that were set forth in this appraisal report. [Contact Name] provided 
+significant real property appraisal assistance in the development of this report. I certify that any individual so named is qualified to perform 
+the assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any person or entity who receives this appraisal report in accordance with the foregoing 
+may choose to store, copy, reproduce, analyze, use and distribute this appraisal report in whole or in part in any format for internal or external 
+purposes without having to obtain the appraiser’s or supervisory appraiser’s (if applicable) consent. A person or entity who receives a copy 
+of an appraisal report does not become an intended user, unless the appraiser identifies such person as an intended user. The appraiser and 
+supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to the mortgage finance transaction 
+and related activities for which this appraisal report was prepared.
+25. I am aware that any disclosure or distribution of this appraisal report by me or the lender/client may be subject to certain laws and 
+regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that pertain to disclosure or 
+distribution by me.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+29. I have performed services regarding the subject property within the three years preceding the agreement to perform this assignment.
+Description of Prior Services:  
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+TXC-NP
+TXC-NP
+TXC-NPI-B
+
+<<<PAGE 43 of 43>>>
+Appraiser Reference ID	
+Agency Case File ID	
+Client Reference ID	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Additional Appraiser Certifications
+Additional Appraiser Certifications cannot be contrary to the original Appraiser Certifications.
+1. 
+Supervisory Appraiser Certifications
+The Supervisory Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction.
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment.
+4. I directly supervised the appraiser for this appraisal assignment, have read the appraisal report, and agree with the appraiser’s analyses, 
+opinions, statements, conclusions, and the appraiser’s certification.
+5. The assignment information regarding the scope of inspection by the Supervisory Appraiser is correct.
+6. I accept full responsibility for the contents of this appraisal report including, but not limited to, the appraiser’s analyses, opinions, 
+statements, conclusions, and the appraiser’s certification.
+7. The appraiser identified in this appraisal report is either a subcontractor or an employee of the supervisory appraiser (or the appraisal firm), 
+is qualified to perform this appraisal, and is acceptable to perform this appraisal under the applicable law.
+8. This appraisal report complies with the Uniform Standards of Professional Appraisal Practice that were adopted and promulgated by the 
+Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal report was transmitted.
+9. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable federal 
+and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation of 
+my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+Additional Supervisory Appraiser Certifications
+Additional Supervisory Appraiser Certifications cannot be contrary to the original Supervisory Appraiser Certifications.
+1. 
+Signature
+[Role]
+[Contact Name]	
+Date of Signature and Report
+Level
+ID
+State
+Expires
+FTR-R
+FTR-L
+2 COLUMN PAGE FORMAT
+HDR-R
+HDR-L
+H1
+H2
+TXC-I
+TXC-NP
+TXC-NP
+TXR-B
+SIG-B
+TX-B
+TXR
+TXC-NP
+TXR-B
+H1
+H2
+TXC-I
+TXC-NP
+TXC

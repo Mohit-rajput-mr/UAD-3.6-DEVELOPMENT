@@ -1,0 +1,3062 @@
+{
+ "build": "0.0.1.3848",
+ "runs": [
+  "../knowledge/total/roundtrip/0.0.1.3848/d1"
+ ],
+ "rules": [
+  {
+   "kind": "data",
+   "role": "GrossRentMultiplierComparable",
+   "field": "GBFA",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+   ],
+   "core": [
+    "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+   ],
+   "messages": [
+    "Gross building finished area is required when an income approach comparable is entered"
+   ],
+   "flagged": 6,
+   "predicted": 6,
+   "tp": 6,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "GrossRentMultiplierComparable",
+   "field": "SC_SOURCE1",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "DataSourceIdentifier",
+    "DataSourceType",
+    "DataSourceTypeOtherDescription"
+   ],
+   "core": [
+    "DataSourceIdentifier",
+    "DataSourceType"
+   ],
+   "messages": [
+    "Data source is required when an income approach comparable source is entered"
+   ],
+   "flagged": 6,
+   "predicted": 6,
+   "tp": 6,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "BATHS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "FullBathroomCount",
+    "HalfBathroomCount"
+   ],
+   "core": [
+    "FullBathroomCount",
+    "HalfBathroomCount"
+   ],
+   "messages": [
+    "Please complete all required bathroom fields for rental comparable"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "BEDS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "BedroomCount"
+   ],
+   "core": [
+    "BedroomCount"
+   ],
+   "messages": [
+    "Number of bedrooms for rental comparable is required"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "FLOOR_NUM",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "FloorIdentifier"
+   ],
+   "core": [
+    "FloorIdentifier"
+   ],
+   "messages": [
+    "Floor number is required"
+   ],
+   "flagged": 8,
+   "predicted": 8,
+   "tp": 6,
+   "fp": 2,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:1776 WHITECREST RD",
+    "Condo2_Appraisal_v1.4:123423 STONEBACK DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "FURNISHED",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "UnitFurnishedIndicator"
+   ],
+   "core": [
+    "UnitFurnishedIndicator"
+   ],
+   "messages": [
+    "Furnished status is required"
+   ],
+   "flagged": 7,
+   "predicted": 7,
+   "tp": 5,
+   "fp": 2,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo2_Appraisal_v1.4:123423 STONEBACK DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "HEADER_LABEL",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "PropertyOrdinalNumber"
+   ],
+   "core": [
+    "PropertyOrdinalNumber"
+   ],
+   "messages": [
+    "This field is required based on related selections"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "INT_COND_CONDITION",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "InteriorConditionRatingCode"
+   ],
+   "core": [
+    "InteriorConditionRatingCode"
+   ],
+   "messages": [
+    "Interior condition is required for rental comparable"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "MARKETAREA",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "NeighborhoodName"
+   ],
+   "core": [
+    "NeighborhoodName"
+   ],
+   "messages": [
+    "Market area for rental comparable is required"
+   ],
+   "flagged": 7,
+   "predicted": 7,
+   "tp": 5,
+   "fp": 2,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo2_Appraisal_v1.4:123423 STONEBACK DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "PROJ_AMENITIES_COMP",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "AmenitiesComparisonType"
+   ],
+   "core": [
+    "AmenitiesComparisonType"
+   ],
+   "messages": [
+    "Project amenities comparison is required"
+   ],
+   "flagged": 2,
+   "predicted": 7,
+   "tp": 0,
+   "fp": 7,
+   "fn": 2,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:1776 WHITECREST RD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Appraisal_v1.4:8275 YOUNGISH ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST"
+   ],
+   "missed": [
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "PROJ_NAME",
+   "mode": "all",
+   "adjustment_type": null,
+   "data_points": [
+    "ProjectName",
+    "SameProjectAsSubjectIndicator"
+   ],
+   "core": [
+    "ProjectName",
+    "SameProjectAsSubjectIndicator"
+   ],
+   "messages": [
+    "This field is required based on related selections"
+   ],
+   "flagged": 2,
+   "predicted": 11,
+   "tp": 2,
+   "fp": 9,
+   "fn": 0,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:1776 WHITECREST RD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Appraisal_v1.4:8275 YOUNGISH ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "PROX1",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ComparableToSubjectDirectionType",
+    "ProximityToSubjectDistanceLinearMeasure"
+   ],
+   "core": [
+    "ComparableToSubjectDirectionType",
+    "ProximityToSubjectDistanceLinearMeasure"
+   ],
+   "messages": [
+    "Please complete all required proximity to subject fields for rental comparable"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "RENT_CONC",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "FinancialRentalConcessionIndicator"
+   ],
+   "core": [
+    "FinancialRentalConcessionIndicator"
+   ],
+   "messages": [
+    "Rent concessions information is required"
+   ],
+   "flagged": 7,
+   "predicted": 7,
+   "tp": 5,
+   "fp": 2,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo2_Appraisal_v1.4:123423 STONEBACK DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "RENT_CONTROL",
+   "mode": "all",
+   "adjustment_type": null,
+   "data_points": [
+    "PropertyRentControlStatusType",
+    "RentControlStatusType"
+   ],
+   "core": [
+    "PropertyRentControlStatusType",
+    "RentControlStatusType"
+   ],
+   "messages": [
+    "Rent control indicator is required"
+   ],
+   "flagged": 7,
+   "predicted": 11,
+   "tp": 7,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:1776 WHITECREST RD",
+    "2- to 4-unit_Appraisal_v1.4:8275 YOUNGISH ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo2_Appraisal_v1.4:123423 STONEBACK DR"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "SC_SOURCE1",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "DataSourceIdentifier",
+    "DataSourceType",
+    "DataSourceTypeOtherDescription"
+   ],
+   "core": [
+    "DataSourceIdentifier",
+    "DataSourceType"
+   ],
+   "messages": [
+    "Data source is required when a source entry is provided"
+   ],
+   "flagged": 11,
+   "predicted": 11,
+   "tp": 11,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "SF_GLA",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure",
+    "UnitTotalFinishedAreaMeasure"
+   ],
+   "core": [
+    "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure",
+    "UnitTotalFinishedAreaMeasure"
+   ],
+   "messages": [
+    "Gross living area for rental comparable is required"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "SITE_OWNED_IN_COMMON",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "LandOwnedInCommonIndicator"
+   ],
+   "core": [
+    "LandOwnedInCommonIndicator"
+   ],
+   "messages": [
+    "This field is required based on related selections"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "SMRY_ADJ_RENT",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "RentalUnitAdjustedRentAmount"
+   ],
+   "core": [
+    "RentalUnitAdjustedRentAmount"
+   ],
+   "messages": [
+    "Summary adjusted rent is required"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "SMRY_COMP_WEIGHT",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ComparableWeightType"
+   ],
+   "core": [
+    "ComparableWeightType"
+   ],
+   "messages": [
+    "Summary comparable weight is required"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "SMRY_OVRL_COMP_TO_SUB",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "RentalUnitToSubjectComparisonType"
+   ],
+   "core": [
+    "RentalUnitToSubjectComparisonType"
+   ],
+   "messages": [
+    "Summary overall comparison to subject is required"
+   ],
+   "flagged": 6,
+   "predicted": 3,
+   "tp": 2,
+   "fp": 1,
+   "fn": 4,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "UTILS_INCLUDED",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "UnitChargesIncludeUtilitiesIndicator"
+   ],
+   "core": [
+    "UnitChargesIncludeUtilitiesIndicator"
+   ],
+   "messages": [
+    "Utilities included indicator is required"
+   ],
+   "flagged": 7,
+   "predicted": 7,
+   "tp": 5,
+   "fp": 2,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo2_Appraisal_v1.4:123423 STONEBACK DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "RentalComparable",
+   "field": "VEHICLE_STORAGE_COMP",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "CarStoragesComparisonType"
+   ],
+   "core": [
+    "CarStoragesComparisonType"
+   ],
+   "messages": [
+    "Vehicle storage comparison is required"
+   ],
+   "flagged": 6,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:1337 STONE BACK BLVD",
+    "2- to 4-unit_Appraisal_v1.4:420 LONG EAR AVE",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "Condo2_Appraisal_v1.4:2345467 GOLDEN TAIL ST",
+    "Condo2_Appraisal_v1.4:234912 WHITECREST DR"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "ALL_RIGHTS_INCLUDED",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "AllPropertyRightsAppraisedIndicator"
+   ],
+   "core": [
+    "AllPropertyRightsAppraisedIndicator"
+   ],
+   "messages": [
+    "All rights included indicator is required for the selected property rights"
+   ],
+   "flagged": 4,
+   "predicted": 36,
+   "tp": 4,
+   "fp": 32,
+   "fn": 0,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "ALL_RIGHTS_INCLUDED_ADJ",
+   "mode": "differs",
+   "adjustment_type": "OwnershipRightsConveyed",
+   "data_points": [
+    "AllPropertyRightsAppraisedIndicator"
+   ],
+   "core": [
+    "AllPropertyRightsAppraisedIndicator"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 36,
+   "predicted": 30,
+   "tp": 30,
+   "fp": 0,
+   "fn": 6,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY",
+    "Coop1_Appraisal_v1.4:1350 RIVERSIDE AVE, NW",
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ]
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+   "mode": "differs",
+   "adjustment_type": "OutdoorAccessoryAmenity",
+   "data_points": [
+    "AmenityCount",
+    "AmenityType"
+   ],
+   "core": [
+    "AmenityCount",
+    "AmenityType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 6,
+   "predicted": 36,
+   "tp": 6,
+   "fp": 30,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "SF1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:13-222 N TRAIL LOOP",
+    "2- to 4-unit_Appraisal_v1.4:22-1713 BROAD AVE",
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL",
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "AMENITY_OUTDOOR_LIVING_ADJ",
+   "mode": "differs",
+   "adjustment_type": "OutdoorLivingAmenity",
+   "data_points": [
+    "AmenityCount",
+    "AmenityType"
+   ],
+   "core": [
+    "AmenityCount",
+    "AmenityType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 2,
+   "predicted": 15,
+   "tp": 2,
+   "fp": 13,
+   "fn": 0,
+   "samples": [
+    "Coop1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "AMENITY_WHOLE_HOME_ADJ",
+   "mode": "differs",
+   "adjustment_type": "WholeHomeAmenity",
+   "data_points": [
+    "AmenityCount",
+    "AmenityType"
+   ],
+   "core": [
+    "AmenityCount",
+    "AmenityType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 12,
+   "predicted": 31,
+   "tp": 12,
+   "fp": 19,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "SF1_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:13-222 N TRAIL LOOP",
+    "2- to 4-unit_Appraisal_v1.4:22-1713 BROAD AVE",
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL",
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo2_Appraisal_v1.4:23412 JOSEPHINE ST"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "CONT_DATE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "ContractDate",
+   "data_points": [
+    "ContractDateUnknownIndicator",
+    "SalesContractDate"
+   ],
+   "core": [
+    "ContractDateUnknownIndicator",
+    "SalesContractDate"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 1,
+   "predicted": 1,
+   "tp": 1,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "DP_FINTYP1",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "MortgageType",
+    "MortgageTypeOtherDescription",
+    "NoFinancingTransactionIndicator"
+   ],
+   "core": [
+    "MortgageType",
+    "NoFinancingTransactionIndicator"
+   ],
+   "messages": [
+    "Financing type is required when listing status is Settled Sale"
+   ],
+   "flagged": 28,
+   "predicted": 33,
+   "tp": 28,
+   "fp": 5,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY",
+    "Condo2_Appraisal_v1.4:23412 JOSEPHINE ST",
+    "MH2_Appraisal_v1.4:3026 OLD WEST ST",
+    "SF2_Appraisal_v1.4:2134 NOTHING HILL PL",
+    "SF2_Appraisal_v1.4:7890 SOME PL"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "DP_FINTYP1_ADJ",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "MortgageType",
+    "MortgageTypeOtherDescription",
+    "NoFinancingTransactionIndicator"
+   ],
+   "core": [
+    "MortgageType",
+    "NoFinancingTransactionIndicator"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 33,
+   "predicted": 33,
+   "tp": 33,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "DT_SALTIM1_ADJ",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "OwnershipTransferDate"
+   ],
+   "core": [
+    "OwnershipTransferDate"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 5,
+   "predicted": 4,
+   "tp": 4,
+   "fp": 0,
+   "fn": 1,
+   "samples": [
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": [
+    "SF2_Appraisal_v1.4:2134 NOTHING HILL PL"
+   ]
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "DWELL_CONST_METHOD_ADJ",
+   "mode": "differs",
+   "adjustment_type": "ConstructionMethod",
+   "data_points": [
+    "ConstructionMethodType",
+    "ConstructionMethodTypeOtherDescription"
+   ],
+   "core": [
+    "ConstructionMethodType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 3,
+   "predicted": 1,
+   "tp": 1,
+   "fp": 0,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "Coop1_Appraisal_v1.4:1350 RIVERSIDE AVE, NW",
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "DWELL_COOL",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "CoolingSystemExistsIndicator",
+    "CoolingSystemType",
+    "CoolingSystemTypeOtherDescription"
+   ],
+   "core": [
+    "CoolingSystemExistsIndicator",
+    "CoolingSystemType"
+   ],
+   "messages": [
+    "Please complete all required cooling system fields"
+   ],
+   "flagged": 31,
+   "predicted": 31,
+   "tp": 31,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "DWELL_COOL_ADJ",
+   "mode": "differs",
+   "adjustment_type": "CoolingSystem",
+   "data_points": [
+    "CoolingSystemExistsIndicator",
+    "CoolingSystemType",
+    "CoolingSystemTypeOtherDescription"
+   ],
+   "core": [
+    "CoolingSystemExistsIndicator",
+    "CoolingSystemType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 31,
+   "predicted": 31,
+   "tp": 31,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "DWELL_DISASTER_MIT_ADJ",
+   "mode": "differs",
+   "adjustment_type": "DisasterMitigationFeatures",
+   "data_points": [
+    "DisasterMitigationFeatureType",
+    "DisasterMitigationFeatureTypeOtherDescription"
+   ],
+   "core": [
+    "DisasterMitigationFeatureType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 3,
+   "predicted": 35,
+   "tp": 0,
+   "fp": 35,
+   "fn": 3,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR"
+   ],
+   "missed": [
+    "Condo2_Appraisal_v1.4:23412 JOSEPHINE ST",
+    "Condo2_Appraisal_v1.4:23454 SUE RD",
+    "Condo2_Appraisal_v1.4:44828 JANE LN"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "DWELL_FUNC_ISSUES",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "FunctionalIssueType",
+    "FunctionalIssueTypeOtherDescription"
+   ],
+   "core": [
+    "FunctionalIssueType"
+   ],
+   "messages": [
+    "Please complete all required functional issues fields"
+   ],
+   "flagged": 42,
+   "predicted": 42,
+   "tp": 42,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "DWELL_FUNC_ISSUES_ADJ",
+   "mode": "differs",
+   "adjustment_type": "FunctionalIssues",
+   "data_points": [
+    "FunctionalIssueType",
+    "FunctionalIssueTypeOtherDescription"
+   ],
+   "core": [
+    "FunctionalIssueType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 42,
+   "predicted": 42,
+   "tp": 42,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "DWELL_HEAT_ADJ",
+   "mode": "differs",
+   "adjustment_type": "HeatingSystem",
+   "data_points": [
+    "HeatingFuelType",
+    "HeatingFuelTypeOtherDescription",
+    "HeatingSystemType",
+    "HeatingSystemTypeOtherDescription"
+   ],
+   "core": [
+    "HeatingFuelType",
+    "HeatingSystemType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 21,
+   "predicted": 21,
+   "tp": 21,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "DWELL_STYLE",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ArchitecturalDesignCategoryType",
+    "ArchitecturalDesignCategoryTypeOtherDescription"
+   ],
+   "core": [
+    "ArchitecturalDesignCategoryType"
+   ],
+   "messages": [
+    "Dwelling Style is required for Detached comparables when the row is included."
+   ],
+   "flagged": 22,
+   "predicted": 33,
+   "tp": 22,
+   "fp": 11,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY",
+    "Coop1_Appraisal_v1.4:1350 RIVERSIDE AVE, NW",
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "DWELL_STYLE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "DwellingStyle",
+   "data_points": [
+    "ArchitecturalDesignCategoryType",
+    "ArchitecturalDesignCategoryTypeOtherDescription"
+   ],
+   "core": [
+    "ArchitecturalDesignCategoryType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   ],
+   "flagged": 22,
+   "predicted": 22,
+   "tp": 22,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "EXT_COND_CONDITION",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ExteriorConditionRatingCode"
+   ],
+   "core": [
+    "ExteriorConditionRatingCode"
+   ],
+   "messages": [
+    "Exterior overall condition is required"
+   ],
+   "flagged": 2,
+   "predicted": 6,
+   "tp": 2,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "Coop1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "EXT_QUAL_EXT_WALLS_TRIM",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "WallMaterialType",
+    "WallMaterialTypeOtherDescription"
+   ],
+   "core": [
+    "WallMaterialType"
+   ],
+   "messages": [
+    "Exterior walls/trim quality is required"
+   ],
+   "flagged": 14,
+   "predicted": 14,
+   "tp": 14,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "EXT_QUAL_QUALITY",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ExteriorQualityRatingCode"
+   ],
+   "core": [
+    "ExteriorQualityRatingCode"
+   ],
+   "messages": [
+    "Exterior overall quality rating is required"
+   ],
+   "flagged": 2,
+   "predicted": 6,
+   "tp": 2,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "Coop1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "EXT_QUAL_ROOF",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "RoofMaterialType",
+    "RoofMaterialTypeOtherDescription"
+   ],
+   "core": [
+    "RoofMaterialType"
+   ],
+   "messages": [
+    "Roof quality is required"
+   ],
+   "flagged": 23,
+   "predicted": 23,
+   "tp": 23,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "EX_CONCAMT_ADJ",
+   "mode": "differs",
+   "adjustment_type": "SalesConcessions",
+   "data_points": [
+    "SalesConcessionAmountKnownIndicator",
+    "SalesConcessionIndicator",
+    "TotalSalesConcessionAmount"
+   ],
+   "core": [
+    "SalesConcessionAmountKnownIndicator",
+    "SalesConcessionIndicator",
+    "TotalSalesConcessionAmount"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 7,
+   "predicted": 7,
+   "tp": 7,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "INT_COND_BATHS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "OverallBathroomsUpdateStatusType"
+   ],
+   "core": [
+    "OverallBathroomsUpdateStatusType"
+   ],
+   "messages": [
+    "Interior bathroom condition is required"
+   ],
+   "flagged": 4,
+   "predicted": 22,
+   "tp": 4,
+   "fp": 18,
+   "fn": 0,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Coop1_Appraisal_v1.4:1350 RIVERSIDE AVE, NW",
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW",
+    "SF1_Appraisal_v1.4:188 FALLEN OAK CT"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "INT_COND_FLOORS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "OverallFlooringUpdateStatusType"
+   ],
+   "core": [
+    "OverallFlooringUpdateStatusType"
+   ],
+   "messages": [
+    "Interior floor condition is required"
+   ],
+   "flagged": 26,
+   "predicted": 26,
+   "tp": 26,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "INT_COND_KITCHEN",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "RoomUpdateStatusType"
+   ],
+   "core": [
+    "RoomUpdateStatusType"
+   ],
+   "messages": [
+    "Interior kitchen condition is required"
+   ],
+   "flagged": 19,
+   "predicted": 19,
+   "tp": 19,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "LEVELS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "LevelCount"
+   ],
+   "core": [
+    "LevelCount"
+   ],
+   "messages": [
+    "Number of levels is required"
+   ],
+   "flagged": 34,
+   "predicted": 38,
+   "tp": 34,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "LEVELS_ADJ",
+   "mode": "differs",
+   "adjustment_type": "LivingUnitLevelCount",
+   "data_points": [
+    "LevelCount"
+   ],
+   "core": [
+    "LevelCount"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 34,
+   "predicted": 38,
+   "tp": 34,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "MARKETAREA_ADJ",
+   "mode": "differs",
+   "adjustment_type": "NeighborhoodName",
+   "data_points": [
+    "NeighborhoodName"
+   ],
+   "core": [
+    "NeighborhoodName"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 16,
+   "predicted": 16,
+   "tp": 16,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Coop1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "OUTBUILDING_TYPE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "Outbuilding",
+   "data_points": [
+    "OutbuildingType",
+    "OutbuildingTypeOtherDescription"
+   ],
+   "core": [
+    "OutbuildingType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 2,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "samples": [
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "SF3_Appraisal_v1.4:35422 PLACE RD",
+    "SF4_Appraisal_v1.4:35422 PEACE RD"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "PROJ_AMENITIES",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "AmenityType",
+    "AmenityTypeOtherDescription"
+   ],
+   "core": [
+    "AmenityType"
+   ],
+   "messages": [
+    "Common amenities/services is required when property is in a PUD or project"
+   ],
+   "flagged": 8,
+   "predicted": 3,
+   "tp": 0,
+   "fp": 3,
+   "fn": 8,
+   "samples": [
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL",
+    "MH1_Appraisal_v1.4:222 CANAL BLVD",
+    "SF5_Appraisal_v1.2:318 PINE CREST RD"
+   ],
+   "missed": [
+    "SF1_Appraisal_v1.4:188 FALLEN OAK CT",
+    "SF1_Appraisal_v1.4:210 CANNON BALL RD",
+    "SF1_Appraisal_v1.4:241 RAPID CREEK LN",
+    "SF2_Appraisal_v1.4:2134 NOTHING HILL PL",
+    "SF2_Appraisal_v1.4:3214 SOMEWHERE PL",
+    "SF2_Appraisal_v1.4:3245 NOWHERE PL"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SITE_CHARACTERISTICS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "SiteFeatureType",
+    "SiteFeatureTypeOtherDescription"
+   ],
+   "core": [
+    "SiteFeatureType"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 20,
+   "predicted": 32,
+   "tp": 20,
+   "fp": 12,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY",
+    "MH1_Appraisal_v1.4:222 CANAL BLVD",
+    "MH1_Appraisal_v1.4:345 SOMEWHERE AVE"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_CHARACTERISTICS_ADJ",
+   "mode": "differs",
+   "adjustment_type": "SiteCharacteristic",
+   "data_points": [
+    "SiteFeatureType",
+    "SiteFeatureTypeOtherDescription"
+   ],
+   "core": [
+    "SiteFeatureType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 2,
+   "predicted": 32,
+   "tp": 0,
+   "fp": 32,
+   "fn": 2,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR",
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR"
+   ],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:22-1713 BROAD AVE",
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL"
+   ]
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_INFLUENCE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "SiteInfluence",
+   "data_points": [
+    "BodyOfWaterType",
+    "BodyOfWaterTypeOtherDescription",
+    "SiteInfluenceType",
+    "SiteInfluenceTypeOtherDescription"
+   ],
+   "core": [
+    "BodyOfWaterType",
+    "SiteInfluenceType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 8,
+   "predicted": 5,
+   "tp": 5,
+   "fp": 0,
+   "fn": 3,
+   "samples": [
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": [
+    "Condo2_Appraisal_v1.4:23412 JOSEPHINE ST",
+    "Condo2_Appraisal_v1.4:23454 SUE RD",
+    "Condo2_Appraisal_v1.4:44828 JANE LN"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SITE_OWNED_IN_COMMON",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "LandOwnedInCommonIndicator"
+   ],
+   "core": [
+    "LandOwnedInCommonIndicator"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 3,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 3,
+   "samples": [
+    "MH1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "MH1_Appraisal_v1.4:222 CANAL BLVD",
+    "MH1_Appraisal_v1.4:345 SOMEWHERE AVE",
+    "MH1_Appraisal_v1.4:98761 STATE RD 3"
+   ]
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_OWNED_IN_COMMON_ADJ",
+   "mode": "differs",
+   "adjustment_type": "LandOwnedInCommon",
+   "data_points": [
+    "LandOwnedInCommonIndicator"
+   ],
+   "core": [
+    "LandOwnedInCommonIndicator"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 3,
+   "predicted": 1,
+   "tp": 0,
+   "fp": 1,
+   "fn": 3,
+   "samples": [
+    "MH1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ],
+   "missed": [
+    "MH1_Appraisal_v1.4:222 CANAL BLVD",
+    "MH1_Appraisal_v1.4:345 SOMEWHERE AVE",
+    "MH1_Appraisal_v1.4:98761 STATE RD 3"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SITE_PRIMARY_ACCESS",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "PropertyPrimaryEntryExitMethodType",
+    "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+   ],
+   "core": [
+    "PropertyPrimaryEntryExitMethodType"
+   ],
+   "messages": [
+    "Primary access type is required for the selected comparable"
+   ],
+   "flagged": 4,
+   "predicted": 42,
+   "tp": 4,
+   "fp": 38,
+   "fn": 0,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:13-222 N TRAIL LOOP",
+    "2- to 4-unit_Appraisal_v1.4:22-1713 BROAD AVE",
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:123 SOMETHING PL",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:181 CATTLEDRIVE ST",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:341 NOTHING DR"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_PRIMARY_ACCESS_ADJ",
+   "mode": "differs",
+   "adjustment_type": "PropertyPrimaryAccess",
+   "data_points": [
+    "PropertyPrimaryEntryExitMethodType",
+    "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+   ],
+   "core": [
+    "PropertyPrimaryEntryExitMethodType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 42,
+   "predicted": 42,
+   "tp": 42,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SITE_STREET_TYPE",
+   "mode": "all",
+   "adjustment_type": null,
+   "data_points": [
+    "ImprovedSurfaceMaterialType",
+    "ImprovedSurfaceMaterialTypeOtherDescription",
+    "StreetAccessType",
+    "StreetAccessTypeOtherDescription"
+   ],
+   "core": [
+    "ImprovedSurfaceMaterialType",
+    "StreetAccessType"
+   ],
+   "messages": [
+    "Please complete all required street type and surface fields"
+   ],
+   "flagged": 29,
+   "predicted": 29,
+   "tp": 29,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_STREET_TYPE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "PropertyStreetAccessAndSurface",
+   "data_points": [
+    "ImprovedSurfaceMaterialType",
+    "ImprovedSurfaceMaterialTypeOtherDescription",
+    "StreetAccessType",
+    "StreetAccessTypeOtherDescription"
+   ],
+   "core": [
+    "ImprovedSurfaceMaterialType",
+    "StreetAccessType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 29,
+   "predicted": 33,
+   "tp": 29,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "MH2_Appraisal_v1.4:3026 OLD WEST ST",
+    "MH2_Appraisal_v1.4:42 FOREST LN",
+    "MH2_Appraisal_v1.4:542 NEW EAST ST",
+    "SF3_Appraisal_v1.4:35361 PLACE RD"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SITE_TOPOGRAPHY",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "TopographyType",
+    "TopographyTypeOtherDescription"
+   ],
+   "core": [
+    "TopographyType"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 35,
+   "predicted": 35,
+   "tp": 35,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_TOPOGRAPHY_ADJ",
+   "mode": "differs",
+   "adjustment_type": "Topography",
+   "data_points": [
+    "TopographyType",
+    "TopographyTypeOtherDescription"
+   ],
+   "core": [
+    "TopographyType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 8,
+   "predicted": 8,
+   "tp": 8,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "MH1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SITE_ZONE_COMPLIANCE",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "SiteZoningComplianceType"
+   ],
+   "core": [
+    "SiteZoningComplianceType"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 31,
+   "predicted": 35,
+   "tp": 31,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "SITE_ZONE_COMPLIANCE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "ZoningCompliance",
+   "data_points": [
+    "SiteZoningComplianceType"
+   ],
+   "core": [
+    "SiteZoningComplianceType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 31,
+   "predicted": 35,
+   "tp": 31,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1633 HUNDRED AVE",
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "SP_TO_LP_RATIO_ADJ",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "SaleToListPriceRatioPercent"
+   ],
+   "core": [
+    "SaleToListPriceRatioPercent"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 42,
+   "predicted": 42,
+   "tp": 42,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "ST_VIEW_ADJ",
+   "mode": "differs",
+   "adjustment_type": "View",
+   "data_points": [
+    "ViewRangeType",
+    "ViewRangeTypeOtherDescription",
+    "ViewType",
+    "ViewTypeOtherDescription"
+   ],
+   "core": [
+    "ViewRangeType",
+    "ViewType"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 1,
+   "predicted": 6,
+   "tp": 1,
+   "fp": 5,
+   "fn": 0,
+   "samples": [
+    "Condo2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "2- to 4-unit_Appraisal_v1.4:13-222 N TRAIL LOOP",
+    "2- to 4-unit_Appraisal_v1.4:22-1713 BROAD AVE",
+    "2- to 4-unit_Appraisal_v1.4:25-1837 HIGHMOUNTAIN PL",
+    "Condo2_Appraisal_v1.4:23412 JOSEPHINE ST",
+    "Condo2_Appraisal_v1.4:23454 SUE RD"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "TRANSFER_TERMS_ADJ",
+   "mode": "differs",
+   "adjustment_type": "PropertyOwnershipTransferTerms",
+   "data_points": [
+    "SaleType",
+    "SaleTypeOtherDescription"
+   ],
+   "core": [
+    "SaleType"
+   ],
+   "messages": [
+    "Transfer terms adjustment is required"
+   ],
+   "flagged": 33,
+   "predicted": 27,
+   "tp": 22,
+   "fp": 5,
+   "fn": 11,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:33 FRANKS WAY",
+    "Condo2_Appraisal_v1.4:23412 JOSEPHINE ST",
+    "MH2_Appraisal_v1.4:3026 OLD WEST ST",
+    "SF2_Appraisal_v1.4:2134 NOTHING HILL PL",
+    "SF2_Appraisal_v1.4:7890 SOME PL"
+   ],
+   "missed": [
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Coop1_Appraisal_v1.4:1350 RIVERSIDE AVE, NW",
+    "SF1_Appraisal_v1.4:188 FALLEN OAK CT",
+    "SF1_Appraisal_v1.4:210 CANNON BALL RD",
+    "SF2_Appraisal_v1.4:6543 ANYWHERE PL",
+    "SF3_Appraisal_v1.4:35361 PLACE RD"
+   ]
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "UNITS_SF_GLA_BELOW_GRD_ADJ",
+   "mode": "differs",
+   "adjustment_type": "LivingUnitStandardFinishedAreaBelowGrade",
+   "data_points": [
+    "UnitStandardBelowGradeFinishedAreaMeasure"
+   ],
+   "core": [
+    "UnitStandardBelowGradeFinishedAreaMeasure"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 2,
+   "predicted": 1,
+   "tp": 0,
+   "fp": 1,
+   "fn": 2,
+   "samples": [
+    "SF3_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ],
+   "missed": [
+    "SF3_Appraisal_v1.4:35361 PLACE RD",
+    "SF3_Appraisal_v1.4:35422 PLACE RD"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SalesComparable",
+   "field": "UNITS_SF_GLA_BELOW_GRD_NONSTD",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "UnitNonStandardBelowGradeFinishedAreaMeasure"
+   ],
+   "core": [
+    "UnitNonStandardBelowGradeFinishedAreaMeasure"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 42,
+   "predicted": 42,
+   "tp": 42,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+   "mode": "differs",
+   "adjustment_type": "LivingUnitNonStandardFinishedAreaBelowGrade",
+   "data_points": [
+    "UnitNonStandardBelowGradeFinishedAreaMeasure"
+   ],
+   "core": [
+    "UnitNonStandardBelowGradeFinishedAreaMeasure"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 42,
+   "predicted": 42,
+   "tp": 42,
+   "fp": 0,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo1_Appraisal_v1.4",
+    "Condo2_Appraisal_v1.4",
+    "Coop1_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4",
+    "SF5_Appraisal_v1.2"
+   ],
+   "reliable": true,
+   "false_alarms": [],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "UNITS_SF_GLA_BELOW_GRD_UNFIN_ADJ",
+   "mode": "differs",
+   "adjustment_type": "LivingUnitUnfinishedAreaBelowGrade",
+   "data_points": [
+    "UnitBelowGradeUnfinishedAreaMeasure"
+   ],
+   "core": [
+    "UnitBelowGradeUnfinishedAreaMeasure"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 3,
+   "predicted": 1,
+   "tp": 0,
+   "fp": 1,
+   "fn": 3,
+   "samples": [
+    "SF3_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ],
+   "missed": [
+    "SF3_Appraisal_v1.4:35361 PLACE RD",
+    "SF3_Appraisal_v1.4:35422 PLACE RD",
+    "SF3_Appraisal_v1.4:38243 PLACE RD"
+   ]
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "VEHICLE_STORAGE_ADJ",
+   "mode": "differs",
+   "adjustment_type": "VehicleStorage",
+   "data_points": [
+    "CarStorageAreaMeasure",
+    "CarStorageAttachmentType",
+    "CarStorageType",
+    "CarStorageTypeOtherDescription",
+    "ImprovedSurfaceMaterialType",
+    "ImprovedSurfaceMaterialTypeOtherDescription",
+    "ParkingSpacesCount",
+    "ProjectParkingSpaceAssignmentType",
+    "TenOrMoreParkingSpacesIndicator"
+   ],
+   "core": [
+    "CarStorageAreaMeasure",
+    "CarStorageAttachmentType",
+    "CarStorageType",
+    "ImprovedSurfaceMaterialType",
+    "ParkingSpacesCount",
+    "ProjectParkingSpaceAssignmentType",
+    "TenOrMoreParkingSpacesIndicator"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 15,
+   "predicted": 21,
+   "tp": 15,
+   "fp": 6,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "SF1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:1639 TOWN ST",
+    "Condo1_Appraisal_v1.4:201 UNDERHILL DR",
+    "Coop1_Appraisal_v1.4:1350 RIVERSIDE AVE, NW",
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW",
+    "SF5_Appraisal_v1.2:231 BEECH TREE ST",
+    "SF5_Appraisal_v1.2:318 PINE CREST RD"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "adjustment",
+   "role": "SalesComparable",
+   "field": "YR_BLT_ADJ",
+   "mode": "differs",
+   "adjustment_type": "YearBuilt",
+   "data_points": [
+    "PropertyStructureBuiltYear",
+    "PropertyStructureBuiltYearEstimatedIndicator"
+   ],
+   "core": [
+    "PropertyStructureBuiltYear",
+    "PropertyStructureBuiltYearEstimatedIndicator"
+   ],
+   "messages": [
+    "An adjustment entry is required when subject and comparable data differ"
+   ],
+   "flagged": 1,
+   "predicted": 2,
+   "tp": 1,
+   "fp": 1,
+   "fn": 0,
+   "samples": [
+    "Condo1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Coop1_Appraisal_v1.4:700 1ST AVE, NW"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "CA_LC_SOURCE",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "DataSourceIdentifier",
+    "DataSourceType",
+    "DataSourceTypeOtherDescription"
+   ],
+   "core": [
+    "DataSourceIdentifier",
+    "DataSourceType"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 2,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "samples": [
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "MH1_Appraisal_v1.4:0",
+    "MH2_Appraisal_v1.4:0"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "COMP_NO",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "PropertyOrdinalNumber"
+   ],
+   "core": [
+    "PropertyOrdinalNumber"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 8,
+   "predicted": 12,
+   "tp": 8,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:0",
+    "Coop1_Appraisal_v1.4:0",
+    "SF1_Appraisal_v1.4:0",
+    "SF5_Appraisal_v1.2:0"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "COMP_NOT_USED_ADDR",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "AddressLineText",
+    "AddressUnitDesignatorType",
+    "AddressUnitIdentifier",
+    "CityName",
+    "PostalCode",
+    "StateCode"
+   ],
+   "core": [
+    "AddressLineText",
+    "AddressUnitDesignatorType",
+    "AddressUnitIdentifier",
+    "CityName",
+    "PostalCode",
+    "StateCode"
+   ],
+   "messages": [
+    "Please complete all required additional properties analyzed address fields"
+   ],
+   "flagged": 8,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 8,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "2- to 4-unit_Appraisal_v1.4:0",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2:0",
+    "Condo2_Appraisal_v1.4:0",
+    "MH1_Appraisal_v1.4:0",
+    "MH2_Appraisal_v1.4:0",
+    "SF2_Appraisal_v1.4:0"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "COMP_NOT_USED_COMMENT",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "AdditionalPropertyAnalyzedNotUsedText"
+   ],
+   "core": [
+    "AdditionalPropertyAnalyzedNotUsedText"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 8,
+   "predicted": 12,
+   "tp": 8,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:0",
+    "Coop1_Appraisal_v1.4:0",
+    "SF1_Appraisal_v1.4:0",
+    "SF5_Appraisal_v1.2:0"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "COMP_NOT_USED_REASON",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ReasonPropertyNotUsedType",
+    "ReasonPropertyNotUsedTypeOtherDescription"
+   ],
+   "core": [
+    "ReasonPropertyNotUsedType"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 8,
+   "predicted": 12,
+   "tp": 8,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:0",
+    "Coop1_Appraisal_v1.4:0",
+    "SF1_Appraisal_v1.4:0",
+    "SF5_Appraisal_v1.2:0"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "COMP_NOT_USED_RECONSIDER",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ConsiderationRequestedIndicator"
+   ],
+   "core": [
+    "ConsiderationRequestedIndicator"
+   ],
+   "messages": [
+    "Validation failed"
+   ],
+   "flagged": 8,
+   "predicted": 12,
+   "tp": 8,
+   "fp": 4,
+   "fn": 0,
+   "samples": [
+    "2- to 4-unit_Appraisal_v1.4",
+    "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+    "Condo2_Appraisal_v1.4",
+    "MH1_Appraisal_v1.4",
+    "MH2_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4",
+    "SF3_Appraisal_v1.4",
+    "SF4_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [
+    "Condo1_Appraisal_v1.4:0",
+    "Coop1_Appraisal_v1.4:0",
+    "SF1_Appraisal_v1.4:0",
+    "SF5_Appraisal_v1.2:0"
+   ],
+   "missed": []
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "PI_EXHIBIT_CATEGORY",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ImageCategoryType"
+   ],
+   "core": [
+    "ImageCategoryType"
+   ],
+   "messages": [
+    "Exhibit category is required when a photo is attached"
+   ],
+   "flagged": 2,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "samples": [
+    "Condo1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "Condo1_Appraisal_v1.4:0",
+    "SF2_Appraisal_v1.4:0"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "PI_EXHIBIT_DESCRIPTION",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ImageCaptionCommentDescription"
+   ],
+   "core": [
+    "ImageCaptionCommentDescription"
+   ],
+   "messages": [
+    "Exhibit description is required when a photo is attached"
+   ],
+   "flagged": 2,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 2,
+   "samples": [
+    "Condo1_Appraisal_v1.4",
+    "SF2_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "Condo1_Appraisal_v1.4:0",
+    "SF2_Appraisal_v1.4:0"
+   ]
+  },
+  {
+   "kind": "data",
+   "role": "SubjectProperty",
+   "field": "SPA_EXHIBIT_DESCRIPTION",
+   "mode": "any",
+   "adjustment_type": null,
+   "data_points": [
+    "ImageCaptionCommentDescription"
+   ],
+   "core": [
+    "ImageCaptionCommentDescription"
+   ],
+   "messages": [
+    "Exhibit description is required when an exhibit category is not provided or the category is Apparent Defects, Damages, D"
+   ],
+   "flagged": 1,
+   "predicted": 0,
+   "tp": 0,
+   "fp": 0,
+   "fn": 1,
+   "samples": [
+    "Condo1_Appraisal_v1.4"
+   ],
+   "reliable": false,
+   "false_alarms": [],
+   "missed": [
+    "Condo1_Appraisal_v1.4:0"
+   ]
+  }
+ ]
+}

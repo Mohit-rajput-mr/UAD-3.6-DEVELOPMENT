@@ -1,0 +1,28 @@
+{
+  "_note": "Read from the scanned Residential Contract of Sale, packet pages 14-36. Not text-searchable; transcribed from the page images.",
+  "_source_pages": [14, 15, 16],
+
+  "contract_date": "2026-08-20",
+  "purchase_price": 1637500,
+  "downpayment": 163750,
+  "balance_at_closing": 1473750,
+  "mortgage_commitment_amount": 818750,
+  "mortgage_term_years": 30,
+
+  "sellers": ["Eugene Rubach", "Deborah Rubach"],
+  "purchasers": ["Mohammad Mohsin Ali", "Farzana Faisal"],
+  "purchaser_address": "55 Wardwell Street B, Stamford, CT 06902",
+
+  "property_address": "15 Church Street, Roslyn, NY 11576",
+  "tax_map_designation": "S-20, B-M, L-19",
+
+  "personal_property_excluded": [
+    "Furniture and household furnishings",
+    "Lift in the garage",
+    "Home theater equipment"
+  ],
+
+  "seller_concessions": null,
+  "sale_type": "ArmsLength",
+  "form": "Residential Contract of Sale 11-2000 (NYSBA)"
+}

@@ -1,0 +1,19 @@
+[
+ "salescomp-rights-not-included|0",
+ "salescomp-site-hazard-zone|0",
+ "salescomp-site-env-cond|0",
+ "salescomp-ext-qual-foundation|0",
+ "salescomp-ext-cond-walls-trim|0",
+ "salescomp-ext-cond-roof|0",
+ "salescomp-int-qual-kitchen|0",
+ "salescomp-int-qual-baths|0",
+ "salescomp-int-cond-baths|0",
+ "salescomp-outbuilding-unfinished-area|0",
+ "salescomp-water-frontage-feat|0",
+ "salescomp-water-linear-measure|0",
+ "salescomp-water-right-bld|0",
+ "salescomp-outbuilding-finished-area|1",
+ "salescomp-outbuilding-baths-half|1",
+ "salescomp-outbuilding-heating|1",
+ "salescomp-outbuilding-utilities|1"
+]

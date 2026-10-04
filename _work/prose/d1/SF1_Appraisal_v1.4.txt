@@ -1,0 +1,1992 @@
+
+<<<PAGE 1 of 23>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: Single Family Scenario (SF1) 
+Document Version 1.4 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 23>>>
+ 
+ 
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.4 
+Sketch is generated using sketching software and embedded into the report. 
+A separate image is not required to be included in the Images folder of the 
+zip file.  
+6/10/2025 
+1.3 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+9/17/2024 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+12/12/2023 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+3/29/2023 
+1.0 
+Initial Publication 
+ 
+Introduction 
+This report is for a single-family detached home with three levels that is less than a half mile from the 
+town center. The property has two levels above grade and one level below grade, with a total finished 
+area of 4,302 sq. ft.; 3,002 sq. ft. finished above grade and 1,300 sq. ft. finished below grade.  
+The below grade area has a rear walk out and includes a recreation room, media room, custom wet bar, 
+half bath, and 230 sq. ft. of unfinished storage area. 
+ 
+ 
+The structure also includes a built-in two-car garage and a covered porch. 
+Key Characteristics 
+• 
+Parties associated with this transaction: 
+o Significant Real Property Appraisal Assistance was provided by appraiser trainee  
+o Appraiser 
+o AMC 
+• 
+Construction Method: Site Built 
+• 
+Property is in a Planned Unit Development (PUD) 
+• 
+Accessibility features for individuals with disabilities 
+• 
+RESNET HERS Index Rating 
+• 
+Defects, Damages, Deficiencies indicate an item that affects soundness or structural integrity 
+• 
+Appraisal is made Subject to Repair 
+• 
+There are two Overall Condition Ratings  
+o Condition subject to repair – C4 (after repairs are completed) 
+o Based on As Is – C5 (current state condition)  
+• 
+Sales contract was analyzed and included concessions, the transfer terms were considered 
+typically motivated, and it appears to be an arm’s length transaction 
+• 
+Two defects have been identified: one subject to repair, one with no recommended action 
+• 
+Below grade exterior access is included as an additional row in the sales grid 
+• 
+The Sales Comparison Approach section includes Additional Properties Analyzed Not Used 
+• 
+Sketch is generated using sketching software and embedded into the report. A separate image is 
+not required to be included in the Images folder of the zip file.  
+ 
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 3 of 23>>>
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Uniform Residential Appraisal Report
+123 FALLING TREE CT, TREEVILLE, VA 12345
+SUMMARY
+Opinion of Market Value	
+$491,000
+Market Value Condition	
+Subject to Repair
+Final Value Condition Statement  This appraisal is made subject to the itemized list of repairs recommended below on the basis of a 
+hypothetical condition that the repairs or alterations have been completed in a professional manner. This might have affected the assignment 
+results.
+Effective Date of Appraisal	
+09/20/2019
+Assignment Reason	
+Purchase
+Borrower Name	
+Betty Borrower
+	
+Bob Borrower
+Current Owner of Public Record	
+Jane Doe
+Contract Price	
+$489,000
+Listing Status	
+Pending
+Property Valuation Method	
+Traditional Appraisal
+Appraiser Name	
+Agatha Appraiser
+Property Description
+Construction Method	
+Site Built
+Attachment Type	
+Detached
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) 
+the present use?
+
+Zoning Compliance	
+Legal
+Overall Quality	
+Q4
+Overall Condition	
+C4
+This is where the Subject Property photo would display.
+Apparent Defects, Damages, Deficiencies Requiring Action
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness 
+or Structural 
+Integrity
+Recommended 
+Action
+Estimated Cost to 
+Repair
+Dwelling Exterior
+Roof
+Section of Roof
+Roof is significantly worn and has 
+damaged flashing, but no apparent 
+active leaks.
+Yes
+Repair
+$1,500
+Total Cost
+$1,500
+As Is Overall Condition Rating	
+C5
+Existing condition of the property as of the effective date of this 
+appraisal, excluding all required repairs, alterations, or inspections
+
+<<<PAGE 4 of 23>>>
+	
+Page 2 of 21
+Uniform Residential Appraisal Report	
+Page 2 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Assignment Information
+Assignment Reason	
+Purchase
+Borrower Name	
+Betty Borrower
+	
+Bob Borrower
+Seller Name	
+Jane Doe
+Current Owner of Public Record	
+Jane Doe
+Property Valuation Method	
+Traditional Appraisal
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+
+Contact Information
+Client/Lender
+Company Name	
+DEF Bank
+Company Address	
+200 Elm St
+	
+Anytown, VA 12346
+Appraisal Management Company 	
+Company Name	
+XYZ Appraisal Management  
+	
+Company
+Company Address	
+300 Maple Ave
+	
+Anytown, VA 12345
+Appraiser 
+Name	
+Agatha Appraiser
+Designation 	
+SRA
+Company Name	
+ABC Appraisal Co.
+Company Address	
+123 Main St
+	
+Anytown, VA 12345
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+Physical
+Interior	
+Physical
+Inspection Date	
+09/20/2019
+Credentials
+Level	
+Certified Residential
+ID	
+XYZ12345
+State	
+VA
+Expires	
+10/10/2020
+Significant Real Property Appraisal Assistance
+Name	
+Andrew Appraiser
+Credentials
+Level	
+None
+Description  Andrew Appraiser, a trainee appraiser, filled out the Market section, provided the Market Analysis, assisted in measuring 
+property, and did an exterior inspection of the comparables from the street.
+Subject Property
+Physical Address	
+123 Falling Tree Ct
+	
+Treeville, VA 12345
+County	
+Arboreal
+Neighborhood Name	
+Sunnyside
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Detached
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Special Tax Assessments	
+No
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+All Rights Included in Appraisal	
+Yes
+Legal Description
+Lot 53 Sunnyside Subdivision
+
+<<<PAGE 5 of 23>>>
+	
+Page 3 of 21
+Uniform Residential Appraisal Report	
+Page 3 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Site
+Total Site Size	
+14,950 Sq. Ft.
+Number of Parcels	
+1
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+1234-56-7891-000
+Land with Dwelling
+14,950 Sq. Ft.
+Zoning
+Compliance	
+Legal
+Classification Code	
+R10
+Classification Code Description	
+Residential - 10 Dwelling Units  
+	
+per Acre
+Property Use
+Non-Residential Use	
+None
+Property Access
+Primary Access	
+Public Street
+Street Type and Surface	
+Local Road | Asphalt
+Typical for Market	
+Yes
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+ Comment
+Residential
+Bordering
+Neutral
+Typical residential 
+subdivision
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Residential
+Full
+Neutral
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+No Hazard Zone Noted
+Site Characteristic
+Topography | Rolling
+Adverse
+Steep grade is less marketable.
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Gas
+
+Sanitary Sewer
+
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Exhibits
+Property Access (Street Scene)
+This is where the Property Access photo would display.
+
+<<<PAGE 6 of 23>>>
+Uniform Residential Appraisal Report	
+Page 4 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Energy Efficient and Green Features
+Known Renewable Energy Components	
+None
+Known Building Certifications	
+None
+Green/Energy Efficiency Rating 
+Organization
+Rating
+Score
+RESNET
+HERS
+62
+Energy Efficient and Green Features Impact to Value/Marketability
+Impact to Value/Marketability	
+Neutral
+Energy Efficient and Green Features Commentary
+On average, homes with a HERS Index rating of 62 are 38% more energy efficient than a standard new house.
+Energy Efficient and Green Features Exhibits
+RESNET HERS Score
+
+<<<PAGE 7 of 23>>>
+	
+Page 5 of 21
+Uniform Residential Appraisal Report	
+Page 5 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Sketch
+Measurement Standard	
+ANSI
+Sketch
+This is where the Sketch image would display.
+Dwelling Exterior
+Subject Property Units in  
+Structure	
+1
+Dwelling Style	
+Colonial
+Front Door Elevation	
+3-4 Ft.
+Year Built	
+2004
+Construction Method	
+Site Built
+Converted Area	
+None
+This is where the Subject Property photo would display.
+
+<<<PAGE 8 of 23>>>
+	
+Page 6 of 21
+Dwelling Exterior (continued)
+Uniform Residential Appraisal Report	
+Page 6 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Quality and Condition
+Exterior Quality Rating	
+Q4
+Exterior Condition Rating	
+C4
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Vinyl
+Typical Wear and Tear
+Minor cracks to vinyl typical 
+for age.
+Foundation
+Poured Concrete | Basement
+Typical Wear and Tear
+Roof
+Composition
+Estimated Age: 10-20 years
+Typical Wear and Tear
+Reported condition is subject 
+to repair; see defects table 
+and commentary below.
+Windows
+Vinyl Double Hung -  
+Thermal Pane
+Double Thermal Pane 
+contributes to Energy 
+Efficiency.
+Typical Wear and Tear
+Windows same age as house.
+Mechanical System Details
+System
+Detail
+Heating
+Forced Warm Air
+Natural Gas
+Cooling
+Centralized
+Yes No
+Core Heating System Below Grade
+
+Other Mechanical Systems	
+Sump Pump
+	
+Water Heater
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Roof
+Section of Roof
+Roof is significantly worn and has damaged 
+flashing, but no apparent active leaks.
+Yes
+Repair
+Dwelling Exterior Commentary
+Condition Status is reflective of noted repair having been completed.
+Dwelling Exterior Exhibits
+Dwelling Front
+Dwelling Rear
+This is where the Dwelling Front photo would display.
+This is where the Dwelling Rear photo would display.
+Apparent Defects, Damages, Deficiencies -  
+Roof - Damaged Flashing
+This is where the Roof Defect photo would display.
+
+<<<PAGE 9 of 23>>>
+	
+Page 7 of 21
+Uniform Residential Appraisal Report	
+Page 7 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Unit Interior
+Area Breakdown
+Finished Above Grade	
+3,002 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+1,300 Sq. Ft.
+Unfinished Below Grade	
+230 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Below Grade Finish Compared  
+to Above	
+Similar
+Levels in Unit	
+3
+Occupancy	
+Owner
+Total Bedrooms	
+5
+Total Bathrooms - Full	
+3
+Total Bathrooms - Half	
+1
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level B1
+Partially Below Grade
+Interior and Exterior Access
+Walk Out
+Finished
+1,300 Sq. Ft.
+1 - Bath - Half
+1 - Media Room
+1 - Recreation Room
+1 - Wet Bar
+Unfinished
+230 Sq. Ft.
+Level 1
+Above Grade
+Finished
+1,470 Sq. Ft.
+1 - Bath - Full
+1 - Bedroom
+1 - Dining Room
+1 - Family Room
+1 - Kitchen
+1 - Office
+Level 2
+Above Grade
+Finished
+1,532 Sq. Ft.
+2 - Bath - Full
+4 - Bedroom
+1 - Laundry Room
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C4
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen
+Level 1
+Not Updated
+Corian Countertops, 
+Double Oven, 
+Hardwood floors.
+Typical Wear and Tear
+Bath - Full
+Level 2
+Not Updated
+Double Sink with 
+separate shower and 
+extra-large tub, ceramic 
+flooring.
+Typical Wear and Tear
+Bath - Full
+Level 1
+Not Updated
+Ceramic flooring.
+Typical Wear and Tear
+Bath - Full
+Level 2
+Not Updated
+Ceramic flooring.
+Typical Wear and Tear
+Bath - Half
+Level B1
+Fully Updated
+5–10 years
+Ceramic flooring.
+Typical Wear and Tear
+Half bath newer than 
+rest of house.
+Overall Update Status for  
+Bathrooms	
+Moderately Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Throughout all bedrooms 
+and living areas.
+Damaged and Functional
+Original carpet, stained in 
+one corner in the Dining 
+Room.
+Ceramic Tile
+All baths.
+Typical Wear and Tear
+Engineered Wood
+Throughout finished below 
+grade area.
+Typical Wear and Tear
+Hardwood
+Kitchen and Hallways.
+Typical Wear and Tear
+Walls and Ceiling
+8 Ft. | 9 Ft. | 10 or more feet | 
+2 or more stories | Cathedral | 
+Coffered | Flat
+Cathedral ceiling in bedroom, 
+2 story family room, coffered 
+ceiling in media room. 9 foot 
+ceiling in 1st level.
+Typical Wear and Tear
+Overall Update Status for  
+Flooring	
+Not Updated
+Accessibility Features for Individuals with Disabilities
+Feature
+Comment
+Shower
+The shower has been modified.
+
+<<<PAGE 10 of 23>>>
+	
+Page 8 of 21
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 8 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies (Unit Interior)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Flooring
+Dining Room
+Carpet is stained in one corner of the Dining 
+Room.
+No
+None
+Unit Interior Commentary
+The below grade area has a custom finished wet bar including wood cabinets and countertops. Media room has custom cabinetry for speakers 
+and media devices.
+Unit Interior Exhibits
+Level B1 - Bath - Half
+Level B1 - Media Room
+This is where the Half Bathroom photo would display.
+This is where the Media Room photo would display.
+Level B1 - Recreation Room
+Level B1 - Wet Bar
+This is where the Recreation Room photo would display.
+This is where the Wet Bar photo would display.
+Level 1 - Bath - Full - Bath 3
+Level 1 - Family Room
+This is where the Full Bath photo would display.
+This is where the Family Room photo would display.
+
+<<<PAGE 11 of 23>>>
+	
+Page 9 of 21
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 9 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Level 1 - Kitchen
+Level 2 - Bath - Full - Bath 1
+This is where the Kitchen photo would display.
+This is where the Full Bath photo would display.
+Level 2 - Bath - Full - Bath 2
+Apparent Defects, Damages, Deficiencies -  
+Flooring - Damaged Flooring
+This is where the Full Bath photo would display.
+This is where the Damaged Flooring photo would display.
+Functional Obsolescence
+Functional Issues	
+None
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Driveway
+2
+Asphalt
+Garage
+2
+Built-in
+460 Sq. Ft.
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+Vehicle Storage Exhibits
+Driveway - Garage
+This is where the Driveway - Garage photo would display.
+
+<<<PAGE 12 of 23>>>
+	
+Page 10 of 21
+Uniform Residential Appraisal Report	
+Page 10 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Outdoor Accessories
+Fence
+Outdoor Living
+Deck
+Wood
+400 Sq. Ft.
+Porch
+Concrete
+351 Sq. Ft.
+Whole Home
+Indoor Fireplace
+Total Number - 1
+Miscellaneous
+Media Room
+Wet Bar
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+None
+Subject Property Amenities Exhibits
+Media Room
+This is where the Media Room photo would display.
+Overall Quality and Condition
+Overall Quality	
+Q4
+Exterior Quality	
+Q4
+Interior Quality	
+Q4
+Overall Condition	
+C4
+Exterior Condition	
+C4
+Interior Condition	
+C4
+Reconciliation of Overall Quality and Condition
+The Overall Quality and Condition matches the Interior Quality and Condition, as well as the Exterior Quality and Condition, since the exterior 
+and interior are both of the same age.
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use? 
+Highest and Best Use Commentary
+The highest and best use analysis as improved is physically possible and legally permissible based on its current zoning. Analysis of the market 
+shown below demonstrates that the existing structure as a single family residence is its financially feasible and maximally productive use.
+Market
+Market Area Boundary  North: E. Grant Highway, South: E. Temple Ave., East: Chicken Rd., West: 10 Main Ave.
+Search Criteria Description  Search Criteria limited by Detached units with a lot size of up to .6 acres and a Finished Area Above Grade 
+between 2700 and 3300 sq. ft. Additional factors include between 2-4 full bathrooms, 3-5 bedrooms, a basement and a 2 car garage. Searched 
+between closing dates of 9/30/2017 and 9/30/2019.
+
+<<<PAGE 13 of 23>>>
+	
+Page 11 of 21
+Market (continued)
+Uniform Residential Appraisal Report	
+Page 11 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Search Result Metrics
+Active Listings	
+2
+Median Days on Market	
+11
+Lowest List Price	
+$435,000
+Median List Price	
+$440,000
+Highest List Price	
+$445,000
+Pending Sales	
+1
+Sales in Past 24 Months	
+35
+Lowest Sale Price	
+$400,000
+Median Sale Price	
+$499,000
+Highest Sale Price	
+$597,000
+Distressed Market Competition	
+No
+Graph	
+Absorption Rate
+	
+Median Days on Market
+	
+Price Trend
+	
+Year Built of Sales
+Price Trend Source	
+MLS
+Housing Trends
+Demand/Supply	
+Shortage
+Marketing Time	
+Under 3 months
+Market Commentary
+Despite lack of supply, homes are not going up in value due to seasonality. This is typical for 3rd quarter, evidenced by the fact that there are 
+only 2 active listings, which have less finished area than the subject and not indicative of prices decreasing.
+Market Exhibits
+Absorption Rate
+Median Days on Market
+
+<<<PAGE 14 of 23>>>
+	
+Page 12 of 21
+Uniform Residential Appraisal Report	
+Page 12 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Market (continued)
+Price Trend
+Year Built of Sales
+Project Information	
+Planned Unit Development (PUD)   
+   Condominium   
+   Cooperative   
+   Condop  
+Project Information Data Source	
+Real Estate Agent
+Mandatory Fees (HOA, PUD, or Co-op)
+Monthly Amount	
+$34
+Common Amenities/ 
+Services Included	
+Trash Removal
+Utilities Included	
+None
+Project Factors and Impact to Value/Marketability
+Project Factor
+Detail
+Impact
+Comment
+Developer/Sponsor in Control
+No
+Known Legal Actions
+None
+Unit Special Assessments
+None
+Unit Tax Abatements or Exemptions
+None
+
+<<<PAGE 15 of 23>>>
+	
+Page 13 of 21
+Uniform Residential Appraisal Report	
+Page 13 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Listing Status
+Listing Type
+Listing ID
+Start Date
+End Date
+DOM
+Starting  
+List Price
+Current or 
+Final List Price
+Pending
+MLS
+FQ999999
+09/05/2019
+09/17/2019
+13
+$489,000
+$489,000
+ 
+Total DOM
+13
+Analysis of Subject Property Listing History  The only listing of the subject property in the past year has been for $489,000 for 13 days prior 
+to contract. The contract provided to the appraiser contains no atypical terms or conditions, see Sales Contract section for further analysis.
+Sales Contract
+Yes No
+Is there a sales contract?
+
+Was sales contract information analyzed?
+
+Does this appear to be an arm’s length transaction?
+
+Contract Price	
+$489,000
+Contract Date	
+09/17/2019
+Transfer Terms	
+Typically Motivated
+Personal Property Conveyed	
+Yes
+Personal property is not included in the appraiser’s final opinion of value
+Financial Sales Concessions	
+Financial assistance paid by or on behalf of the seller as an inducement to purchase the subject property
+Known Sales Concessions	
+Yes
+Total Sales Concessions	
+$5,000
+Typical for Market	
+Yes
+Sales Contract Analysis
+$5,000 concession towards repair of the carpet. Window treatments, washer and dryer, and media room projector conveyed per sales contract.
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Prior Sales or Transfers	
+None
+Data Source	
+MLS
+Analysis of Prior Sale and Transfer History of Subject Property  Only prior sale of the subject was when it was a new construction in 2004.
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+1
+Typically Motivated
+09/01/2018
+$430,000
+MLS
+2
+None
+MLS
+3
+None
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  Prior sale of comp 1 was a typically motivated arms-length transaction.
+
+<<<PAGE 16 of 23>>>
+	
+Page 14 of 21
+Uniform Residential Appraisal Report	
+Page 14 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+123 Falling Tree Ct 
+Treeville, VA 12345
+241 Rapid Creek Ln 
+Treeville, VA 12345
+188 Fallen Oak Ct 
+Treeville, VA 12345
+210 Cannon Ball Rd 
+Treeville, VA 12345
+ 
+This is where the 
+Subject Property photo 
+would display.
+ 
+This is where the 
+Comparable 1 photo 
+would display.
+ 
+This is where the 
+Comparable 2 photo 
+would display.
+ 
+This is where the 
+Comparable 3 photo 
+would display.
+Data Source
+Assessor Record | Exterior 
+Inspection | MLS 123456
+Assessor Record | Exterior 
+Inspection | MLS 33A245
+Assessor Record | Exterior 
+Inspection | MLS  678A12
+Proximity to Subject
+0.17 Miles N
+0.06 Miles N
+0.4 Miles NE
+List Price
+$489,000
+$460,000
+$449,900
+$525,000
+Listing Status
+Pending
+Settled Sale
+Settled Sale
+Settled Sale
+Contract Price
+$489,000
+—
+—
+—
+Sale Price
+$460,000
+$450,000
+$520,000
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Sales Concessions
+$5,000
+$8,500
+$0
+$11,000
+$0
+$10,400
+$0
+Contract Date
+09/17/2019
+07/22/2019
+$0
+08/05/2019
+$0
+07/02/2019
+$0
+Sale Date
+08/17/2019
+$0
+09/10/2019
+$0
+08/31/2019
+$0
+Days on Market
+13
+12
+6
+14
+Attached/Detached
+Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+Site
+Site Size
+14,950 Sq. Ft.
+17,886 Sq. Ft.
+$0
+13,038 Sq. Ft.
+$0
+16,039 Sq. Ft.
+$0
+Neighborhood Name
+Sunnyside
+Sunnyside
+Sunnyside
+Hilldale
+$0
+Topography
+Rolling
+Rolling
+Rolling
+Flat
+$(2,000)
+Site Influence (Location)
+Residential
+Residential 
+Busy Roadway
+$5,000
+Residential
+View | Range
+Residential | Full
+Residential | Full
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+2004
+2004
+2004
+2001
+$0
+Construction Method
+Site Built
+Site Built
+Site Built
+Site Built
+Dwelling Style
+Colonial
+Colonial
+Colonial
+Colonial
+Heating
+Forced Warm Air | Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Cooling
+Centralized
+Centralized
+Centralized
+Centralized
+Energy Efficient and Green Features
+$0
+$0
+$0
+Efficiency Rating
+HERS | 62
+None
+HERS | 61
+None
+Unit(s)
+Bedrooms
+5
+4
+$10,000
+4
+$10,000
+4
+$10,000
+Baths - Full | Half
+3 | 1
+2 | 1
+$10,000
+2 | 2
+$5,000
+3 | 1
+Finished Area Above Grade 
+3,002 Sq. Ft.
+3,260 Sq. Ft.
+$(10,300)
+2,804 Sq. Ft.
+$7,900
+2,816 Sq. Ft.
+$7,400
+Finished Area Below Grade
+1,300 Sq. Ft.
+0 Sq. Ft.
+$26,000
+1,200 Sq. Ft.
+$2,000
+1,328 Sq. Ft.
+$0
+Unfinished Area 
+Below Grade
+230 Sq. Ft.
+1,624 Sq. Ft.
+$(13,940)
+66 Sq. Ft.
+$1,640
+148 Sq. Ft.
+$0
+Below Grade Exterior Access
+Walk Out
+Walk Up
+$2,000
+Walk Up
+$2,000
+Walk Out
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Q4
+Exterior Walls and Trim
+Vinyl
+Vinyl
+Vinyl
+Vinyl
+Roof
+Composition
+Composition
+Composition
+Composition
+Condition
+C4
+C4
+C4
+C4
+Interior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C4
+C4
+C4
+C4
+Kitchen
+Not Updated
+Partially Updated
+Not Updated
+Not Updated
+Overall Flooring
+Not Updated
+Not Updated
+Not Updated
+Not Updated
+
+<<<PAGE 17 of 23>>>
+	
+Page 15 of 21
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 15 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+123 Falling Tree Ct 
+Treeville, VA 12345
+241 Rapid Creek Ln 
+Treeville, VA 12345
+188 Fallen Oak Ct 
+Treeville, VA 12345
+210 Cannon Ball Rd 
+Treeville, VA 12345
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C4
+C4
+$(5,000)
+C4
+$(1,000)
+C4
+$(1,000)
+Property Amenities
+Outdoor Living
+Deck | Porch
+Deck | Patio
+$6,000
+Patio | Porch
+$2,000
+Deck | Patio
+$6,000
+Water Features
+—
+—
+—
+Inground Pool
+$(12,000)
+Miscellaneous
+Media Room | Wet Bar
+—
+$6,000
+—
+$6,000
+—
+$6,000
+Vehicle Storage
+Type | Spaces | Detail
+Driveway | 2 | Asphalt 
+Garage | 2 | Built-in 460 Sq. Ft.
+Driveway | 2 | Asphalt 
+Garage | 2 | Built-in
+Driveway | 2 | Asphalt 
+Garage | 2 | Built-in
+Driveway | 2 | Asphalt 
+Garage | 2 | Built-in
+Summary
+List Price
+$489,000
+$460,000
+$449,900
+$525,000
+Contract Price
+$489,000
+—
+—
+—
+Sale Price
+$460,000
+$450,000
+$520,000
+Net Adjustment Total
+$30,760
+$40,540
+$14,400
+Price Per Finished Area  
+Above Grade
+$141
+$160
+$185
+Adjusted Price
+$490,760
+$490,540
+$534,400
+Comparable Weight
+Most
+Most
+Less
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$491,000
+Reconciliation of Sales Comparison Approach
+Comps 1 and 2 were from the same neighborhood as the Subject. Comp 3 not given as much weight because of different subdivision. 
+Condition Rating adjustments were made to all comps due to the subject’s flooring having stained carpets and no updates. Comp 1 also had 
+a partially updated kitchen which was accounted for in the Condition Rating adjustment. Sales with property characteristics of 5 bedrooms, 
+media room and wet bar were in the competitive market area, exhibited in #4 and 5 of the Additional Properties Analyzed Not Used, but were 
+not as comparable since they were larger, farther away, and superior quality.
+Additional Properties Analyzed Not Used
+#
+Property Address
+Sale Date
+Status
+Reason Not Used
+Comment
+1
+101 Somewhere Ln
+Treeville, VA 12345
+—
+Active
+Proximity
+Quality
+Inferior quality and non-similar location
+2
+955 Black Swan Rd 
+Treeville, VA 12345
+—
+Pending
+Proximity
+Quality
+Superior quality and located further from subject
+3
+325 Summit Ct 
+Treeville, VA 12345
+08/21/2019
+Settled Sale
+Proximity
+Located further from subject
+4
+7464 Blank Ln 
+Treeville, VA 12345
+06/02/2019
+Settled Sale
+Finished Area
+Proximity
+Had 5 bedrooms, but because it was larger 
+and farther away, it was not used.
+5
+8718 Mover Ln 
+Treeville, VA 12345
+07/13/2019
+Settled Sale
+Finished Area
+Quality
+Property has a media room and wet bar, 
+but is larger and of superior quality.
+
+<<<PAGE 18 of 23>>>
+	
+Page 16 of 21
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 16 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Map
+This is where the Comparable Sales Map photo would display.
+
+<<<PAGE 19 of 23>>>
+	
+Page 17 of 21
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 17 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the Comparable 1 photo would display.
+This is where the Comparable 2 photo would display.
+Comparable #3
+This is where the Comparable 3 photo would display.
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$491,000
+Reason for Exclusion
+Not Necessary for Credible Results
+Not Necessary for Credible Results
+Appraisal Summary
+Contract Price	
+$489,000
+Opinion of Market Value	
+$491,000
+Market Value Condition	
+Subject to Repair
+Reasonable Exposure Time	
+0–90 days
+Effective Date of Appraisal	
+09/20/2019
+Final Value Condition Statement  This appraisal is made subject to the itemized list of repairs recommended below on the basis of a 
+hypothetical condition that the repairs or alterations have been completed in a professional manner. This might have affected the assignment 
+results.
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+
+<<<PAGE 20 of 23>>>
+	
+Page 18 of 21
+Reconciliation (continued)
+Uniform Residential Appraisal Report	
+Page 18 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Apparent Defects, Damages, Deficiencies
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness 
+or Structural 
+Integrity
+Recommended 
+Action
+Estimated Cost to 
+Repair
+Dwelling Exterior
+Roof
+Section of Roof
+Roof is significantly worn and has 
+damaged flashing, but no apparent 
+active leaks.
+Yes
+Repair
+$1,500
+Unit Interior
+Flooring
+Dining Room
+Carpet is stained in one corner of the 
+Dining Room.
+No
+None
+Total Cost
+$1,500
+As Is Overall Condition Rating	
+C5
+Existing condition of the property as of the effective date of this 
+appraisal, excluding all required repairs, alterations, or inspections
+
+<<<PAGE 21 of 23>>>
+	
+Page 19 of 21
+Uniform Residential Appraisal Report	
+Page 19 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+
+<<<PAGE 22 of 23>>>
+	
+Page 20 of 21
+Uniform Residential Appraisal Report	
+Page 20 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared conclusions and opinions about the real estate that were set forth in this appraisal report. Andrew Appraiser 
+provided significant real property appraisal assistance in the development of this report. I certify that any individual so named is qualified to 
+perform the assistance.
+
+<<<PAGE 23 of 23>>>
+	
+Page 21 of 21
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 21 of 21
+	
+Appraiser Reference ID	
+AA12345
+	
+Client Reference ID	
+1234567
+	
+AMC Reference ID	
+543234
+Appraisal Version #4
+Fannie Mae | Freddie Mac 
+September 2024
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+Signature
+Appraiser
+Agatha Appraiser	
+09/20/2019
+Agatha Appraiser	
+Date of Signature and Report
+Level	
+Certified Residential
+ID	
+XYZ12345
+State	
+VA
+Expires	
+10/10/2020

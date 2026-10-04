@@ -1,0 +1,42 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 3,
+  "rentalprop": 1,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Attached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "..\\knowledge\\total\\e2e\\0.0.1.3848\\Coop1_Appraisal\\portable.xml",
+ "import_seconds": 324.1,
+ "import_error": ""
+}

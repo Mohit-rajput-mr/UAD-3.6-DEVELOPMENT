@@ -1,0 +1,25 @@
+{
+  "_about": "The signing appraiser's standing details, used by every case (total-bridge/bridge/casekit.py). On a NEW DEVICE the agent must ask the user whose credentials sign the reports there before the first case -- if it is a different appraiser, copy this file to profiles/<name>.json, fill it with THEIR details and documents, and point case.json's \"appraiser\" at it. Never put one appraiser's licence on another's report.",
+  "name": "Leonardo Jo",
+  "first": "Leonardo",
+  "last": "Jo",
+  "designation": "MAI",
+  "company": "E-Value Appraisals",
+  "address": "387 2nd Ave, Ste 234",
+  "city": "New York",
+  "state": "NY",
+  "zip": "10010",
+  "phone": "718-790-6388",
+  "email": "orders@evalueapp.com",
+  "level": "Certified General",
+  "credential_id": "46000046484",
+  "credential_state": "NY",
+  "credential_expires": "03/12/2028",
+  "employment": "Independent Fee Appraiser",
+  "assignment_exhibits": {
+    "_rule": "Assignment Information exhibits are ALWAYS the licence and the E&O declaration -- never the engagement letter (owner, 2026-09-29).",
+    "licence": "profiles/documents/licence.png",
+    "eo_insurance": "profiles/documents/eo_insurance.png",
+    "eo_policy": "Aspen Specialty Insurance via LIA Administrators, policy ASI005503-01, 04/07/2026 to 04/07/2027, named insured Excellent-Value Appraisals LLC"
+  }
+}

@@ -1,0 +1,54 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "Building 1",
+    "caption": "Building 1",
+    "description": "Building 1"
+   },
+   {
+    "instance": 2,
+    "identifier": "Building 2",
+    "caption": "Building 2",
+    "description": "Building 2"
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "Building 1 - Unit 1",
+    "caption": "Unit 1",
+    "description": "Unit 1"
+   },
+   {
+    "instance": 2,
+    "identifier": "Building 2 - Unit 2",
+    "caption": "Unit 2",
+    "description": "Unit 2"
+   }
+  ],
+  "outbuilding": [],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 3,
+  "rentalprop": 5,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "2",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "..\\knowledge\\total\\e2e\\0.0.1.3848\\2- to 4-unit_Appraisal\\portable.xml",
+ "import_seconds": 43.9,
+ "import_error": ""
+}

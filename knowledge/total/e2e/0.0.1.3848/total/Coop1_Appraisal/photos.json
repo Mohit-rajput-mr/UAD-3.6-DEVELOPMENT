@@ -1,0 +1,20 @@
+{
+ "in_file": 19,
+ "placed_by_file": 17,
+ "placed_by_category": 1,
+ "placed": 18,
+ "seconds": 174.3,
+ "slots_naming_a_file": 23,
+ "slots_still_empty": [],
+ "differs_from_import": [],
+ "total_owned": [
+  [
+   "PropertyPhoto",
+   "Coop_Dwelling_Front.PNG"
+  ]
+ ],
+ "failed": [],
+ "no_slot": [],
+ "no_section": [],
+ "unavailable": []
+}

@@ -1,0 +1,253 @@
+Class
+School
+Address
+GLA
+Lot
+Sale Date
+Style
+PPSFT
+Parties
+ 
+Garage Price
+#
+Built
+Rms 
+Baths
+Rec Date
+Legal ID
+Dist
+15 CHURCH ST  
+ROSLYN NY 11576  
+Roslyn Harbor Village
+210 003 ROSLYN
+3112
+COLONIA
+L
+0.22 Acr   
+95X100  
+8/3.1
+1 DET
+S
+2001
+S:20
+B:M  
+L:19  
+0
+65 SPRUCE DR   
+ROSLYN NY 11576  
+East Hills
+210
+4579
+2017 COLONIA
+L
+0.38 Acr  
+115X145  10/5.1
+1 Att
+$3,850,00
+0
+07/22/2026
+B: ANNA
+KEZERASHVILI RE  
+S: KATZ AARON N
+$841
+97
+07/31/2026
+S:7   
+B:261   
+L:3  
+1.30
+3 Roslyn
+37 THE OAKS   
+ROSLYN NY 11576  
+Roslyn Estates
+210
+3708
+1937 COLONIA
+L
+0.47 Acr  
+  
+7/6.1
+1 Att
+$3,463,02
+0
+09/15/2025
+B: REOAKS LLC  
+S: GERBER RONALD
+$934
+98
+09/19/2025
+S:7   
+B:18   
+L:60  
+1.30
+3 Roslyn
+28 JANE ST   
+ROSLYN HEIGHTS NY 11577  
+North Hempstead
+210
+1262
+1925 OLD
+STYLE
+0.11 Acr  
+50X100  
+7/1.0
+1 Det / 2
+Bsmt
+$890,000
+08/11/2026
+B: BABAYEVA DIANA  
+S: BAILEY PAULA
+$705
+99
+08/27/2026
+S:7   
+B:301   
+L:34  
+1.31
+3 Roslyn
+109 CRESCENT LN   
+ROSLYN HEIGHTS NY 11577  
+East Hills
+210
+2498
+1948 COLONIA
+L
+0.23 Acr  
+93X110  
+10/3.0
+2 Att
+$2,175,00
+0
+08/27/2026
+B: ABRAMOV
+ROZALINA  
+S: BONNICI JACLYN
+$871
+100
+09/03/2026
+S:7   
+B:133   
+L:6  
+1.32
+3 Roslyn
+38 HIGH ST   
+ROSLYN HEIGHTS NY 11577  
+North Hempstead
+210
+2240
+1923 OLD
+STYLE
+0.16 Acr  
+  
+9/2.0
+1 Det
+$999,990
+03/06/2026
+B: CHEN XI  
+S: DURRANT LIN
+$446
+101
+03/25/2026
+S:7   
+B:G   
+L:19  
+1.33
+3 Roslyn
+31 WOODWARD ST   
+ROSLYN HEIGHTS NY 11577  
+North Hempstead
+210
+2329
+1990 COLONIA
+L
+0.11 Acr  
+50X100  
+8/2.1
+1 Att
+$1,250,00
+0
+03/13/2026
+B: KSLV LLC  
+S: PATEL JAYHREE
+$537
+102
+03/25/2026
+S:7   
+B:12   
+L:757  
+1.33
+3 Roslyn
+11 ROCKHILL RD   
+ROSLYN HEIGHTS NY 11577  
+East Hills
+210
+1980
+1950 CAPE
+0.25 Acr  
+87X125  
+7/2.0
+1 Att
+$1,265,00
+0
+03/05/2026
+B: ZEN PROPERTY
+SOLUTIO  
+S: ADAM TEIN TRU
+$639
+103
+03/19/2026
+S:7   
+B:182   
+L:4  
+1.33
+3 Roslyn
+80 THE OAKS   
+ROSLYN NY 11576  
+Roslyn Estates
+210
+2505
+1951 RANCH
+0.41 Acr  
+150X120  7/3.0
+2 Bsmt
+$4,641,12
+0
+06/02/2026
+B: LI WEN BIAO  
+S: 80 THE OAK LLC
+$1,853
+104
+06/15/2026
+S:7   
+B:213   
+L:11  
+1.34
+3 Roslyn
+22 HIGH ST   
+ROSLYN HEIGHTS NY 11577  
+North Hempstead
+210
+1958
+1983
+RAISED/H
+IGH
+RANCH
+0.13 Acr  
+50X113  
+6/2.0
+2 Bsmt
+$943,630
+11/25/2025
+B: LI OLIVIA  
+S: ADELIPOUR HAHLA
+$482
+105
+12/08/2025
+S:7   
+B:G   
+L:27  
+1.35
+3 Roslyn
+Nassau CMA Report
+12 of 17
+Sunday, September 13, 2026

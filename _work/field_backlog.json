@@ -1,0 +1,2200 @@
+{
+ "Summary": [
+  {
+   "fid": "1.006",
+   "label": "Current Owner of Public Record",
+   "data_point": "FirstName",
+   "required": false
+  },
+  {
+   "fid": "1.008",
+   "label": "Listing Status",
+   "data_point": "ListedWithinPreviousYearIndicator",
+   "required": true
+  },
+  {
+   "fid": "1.010",
+   "label": "Property Valuation Method",
+   "data_point": "PropertyValuationMethodType",
+   "required": true
+  },
+  {
+   "fid": "1.012",
+   "label": "Construction Method",
+   "data_point": "ConstructionMethodType",
+   "required": false
+  },
+  {
+   "fid": "1.014",
+   "label": "Structure Design",
+   "data_point": "StructuralDesignType",
+   "required": false
+  },
+  {
+   "fid": "1.019",
+   "label": "Observed Project Deficiencies",
+   "data_point": "ProjectDeficiencyObservedIndicator",
+   "required": false
+  },
+  {
+   "fid": "1.020",
+   "label": "Subject Site Owned in Common",
+   "data_point": "LandOwnedInCommonIndicator",
+   "required": true
+  },
+  {
+   "fid": "1.023",
+   "label": "Property Rights Appraised",
+   "data_point": "PropertyEstateType",
+   "required": false
+  },
+  {
+   "fid": "1.024",
+   "label": "Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use?",
+   "data_point": "SiteHighestBestUseIndicator",
+   "required": true
+  },
+  {
+   "fid": "1.025",
+   "label": "Property Restriction",
+   "data_point": "RestrictionType",
+   "required": false
+  },
+  {
+   "fid": "1.026",
+   "label": "Encroachment",
+   "data_point": "EncroachmentType",
+   "required": false
+  },
+  {
+   "fid": "1.028",
+   "label": "HUD Data Plate Attached",
+   "data_point": "ManufacturedHomeHUDDataPlateAttachedIndicator",
+   "required": false
+  },
+  {
+   "fid": "1.029",
+   "label": "HUD Label Present for All Sections",
+   "data_point": "ManufacturedHomeHUDCertificateLabelIndicator",
+   "required": false
+  },
+  {
+   "fid": "1.033",
+   "label": "Feature",
+   "data_point": "DefectComponentLabelTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "1.034",
+   "label": "Location",
+   "data_point": "DefectItemLocationTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "1.035",
+   "label": "Description",
+   "data_point": "DefectItemDescription",
+   "required": false
+  },
+  {
+   "fid": "1.036",
+   "label": "Affects Soundness or Structural Integrity",
+   "data_point": "DefectItemAffectsSoundnessStructuralIntegrityIndicator",
+   "required": false
+  },
+  {
+   "fid": "1.037",
+   "label": "Recommended Action",
+   "data_point": "DefectItemRecommendedActionType",
+   "required": false
+  },
+  {
+   "fid": "1.038",
+   "label": "Estimated Cost to Repair",
+   "data_point": "DefectItemEstimatedCostToRepairAmount",
+   "required": false
+  },
+  {
+   "fid": "1.081",
+   "label": "Total Cost",
+   "data_point": "DefectCostToRepairTotalAmount",
+   "required": false
+  },
+  {
+   "fid": "1.083",
+   "label": "Total Estimated Cost of Items Recommended for Repair",
+   "data_point": "DefectCostToRepairTotalAmount",
+   "required": false
+  }
+ ],
+ "Assignment Information": [
+  {
+   "fid": "2.003",
+   "label": "Current Owner of Public Record",
+   "data_point": "FirstName",
+   "required": false
+  },
+  {
+   "fid": "2.004",
+   "label": "Property Valuation Method",
+   "data_point": "PropertyValuationMethodType",
+   "required": true
+  },
+  {
+   "fid": "2.006",
+   "label": "Appraiser Fee",
+   "data_point": "ProvidedServiceActualCostAmount",
+   "required": false
+  },
+  {
+   "fid": "2.007",
+   "label": "AMC Fee",
+   "data_point": "ProvidedServiceActualCostAmount",
+   "required": false
+  },
+  {
+   "fid": "2.008",
+   "label": "Government Agency",
+   "data_point": "GovernmentAgencyAppraisalType",
+   "required": false
+  },
+  {
+   "fid": "2.009",
+   "label": "Investor Requested Special Identification",
+   "data_point": "InvestorRequestedIdentificationCode",
+   "required": false
+  },
+  {
+   "fid": "2.013",
+   "label": "Client/[Party Role Type] - Company Address",
+   "data_point": "AddressLineText",
+   "required": true
+  },
+  {
+   "fid": "2.014",
+   "label": "Client/[Party Role Type] - ID",
+   "data_point": "LicenseIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.015",
+   "label": "Client/[Party Role Type] - State",
+   "data_point": "LicenseIssuingAuthorityStateCode",
+   "required": false
+  },
+  {
+   "fid": "2.016",
+   "label": "Client/[Party Role Type] - Expires",
+   "data_point": "LicenseExpirationDate",
+   "required": false
+  },
+  {
+   "fid": "2.018",
+   "label": "Appraiser - Designation",
+   "data_point": "AppraiserDesignationType",
+   "required": false
+  },
+  {
+   "fid": "2.023",
+   "label": "Inspection Date",
+   "data_point": "InspectionDate",
+   "required": false
+  },
+  {
+   "fid": "2.028",
+   "label": "Appraiser - ASC Identifier",
+   "data_point": "AppraisalSubCommitteeAppraiserIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.029",
+   "label": "Appraiser - VA Appraiser ID",
+   "data_point": "AgencyAppraiserIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.030",
+   "label": "Appraiser - FHA Appraiser ID",
+   "data_point": "AgencyAppraiserIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.031",
+   "label": "Appraiser - Employment Type",
+   "data_point": "AppraiserEmploymentType",
+   "required": false
+  },
+  {
+   "fid": "2.032",
+   "label": "Supervisory Appraiser - Name",
+   "data_point": "FirstName",
+   "required": false
+  },
+  {
+   "fid": "2.033",
+   "label": "Supervisory Appraiser - Designation",
+   "data_point": "AppraiserDesignationType",
+   "required": false
+  },
+  {
+   "fid": "2.034",
+   "label": "Supervisory Appraiser - Company Name",
+   "data_point": "AppraiserCompanyName",
+   "required": false
+  },
+  {
+   "fid": "2.035",
+   "label": "Supervisory Appraiser - Company Address",
+   "data_point": "AddressLineText",
+   "required": false
+  },
+  {
+   "fid": "2.039",
+   "label": "Supervisory Appraiser - Level",
+   "data_point": "AppraiserLicenseType",
+   "required": false
+  },
+  {
+   "fid": "2.040",
+   "label": "Supervisory Appraiser - ID",
+   "data_point": "LicenseIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.041",
+   "label": "Supervisory Appraiser - State",
+   "data_point": "LicenseIssuingAuthorityStateCode",
+   "required": false
+  },
+  {
+   "fid": "2.042",
+   "label": "Supervisory Appraiser - Expires",
+   "data_point": "LicenseExpirationDate",
+   "required": false
+  },
+  {
+   "fid": "2.043",
+   "label": "Supervisory Appraiser - ASC Identifier",
+   "data_point": "AppraisalSubCommitteeAppraiserIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.044",
+   "label": "Supervisory Appraiser - VA Appraiser ID",
+   "data_point": "AgencyAppraiserIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.045",
+   "label": "Supervisory Appraiser - FHA Appraiser ID",
+   "data_point": "AgencyAppraiserIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.046",
+   "label": "Supervisory Appraiser - Employment Type",
+   "data_point": "AppraiserEmploymentType",
+   "required": false
+  },
+  {
+   "fid": "2.047",
+   "label": "Significant Real Property Appraisal Assistance - Name",
+   "data_point": "FirstName",
+   "required": false
+  },
+  {
+   "fid": "2.048",
+   "label": "Significant Real Property Appraisal Assistance - Description",
+   "data_point": "PartyRoleTypeAdditionalDescription",
+   "required": false
+  },
+  {
+   "fid": "2.049",
+   "label": "Significant Real Property Appraisal Assistance - Level",
+   "data_point": "AppraiserLicenseType",
+   "required": false
+  },
+  {
+   "fid": "2.050",
+   "label": "Significant Real Property Appraisal Assistance - ID",
+   "data_point": "LicenseIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.051",
+   "label": "Significant Real Property Appraisal Assistance - State",
+   "data_point": "LicenseIssuingAuthorityStateCode",
+   "required": false
+  },
+  {
+   "fid": "2.052",
+   "label": "Significant Real Property Appraisal Assistance - Expires",
+   "data_point": "LicenseExpirationDate",
+   "required": false
+  },
+  {
+   "fid": "2.053",
+   "label": "Property Data Report - Name",
+   "data_point": "FirstName",
+   "required": false
+  },
+  {
+   "fid": "2.054",
+   "label": "Property Data Report - Occupation",
+   "data_point": "PrimaryOccupationType",
+   "required": false
+  },
+  {
+   "fid": "2.055",
+   "label": "Property Data Report - Company Name",
+   "data_point": "FullName",
+   "required": false
+  },
+  {
+   "fid": "2.056",
+   "label": "Property Data Report - Company Address",
+   "data_point": "AddressLineText",
+   "required": false
+  },
+  {
+   "fid": "2.057",
+   "label": "Property Data Report - Reference ID",
+   "data_point": "InspectorFileIdentifier",
+   "required": false
+  },
+  {
+   "fid": "2.060",
+   "label": "Property Data Report - Inspection Date",
+   "data_point": "InspectionDate",
+   "required": false
+  },
+  {
+   "fid": "2.061",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "2.062.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Subject Property": [
+  {
+   "fid": "3.001",
+   "label": "Alternate Physical Address",
+   "data_point": "AddressLineText",
+   "required": false
+  },
+  {
+   "fid": "3.003",
+   "label": "Neighborhood Name",
+   "data_point": "NeighborhoodName",
+   "required": false
+  },
+  {
+   "fid": "3.008",
+   "label": "Special Tax Assessments",
+   "data_point": "SpecialTaxAssessmentsIndicator",
+   "required": true
+  },
+  {
+   "fid": "3.009",
+   "label": "Description of Special Tax Assessments and Impact to Value / Marketability",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "3.015",
+   "label": "Subject Site Owned in Common",
+   "data_point": "LandOwnedInCommonIndicator",
+   "required": true
+  },
+  {
+   "fid": "3.018",
+   "label": "Construction Stage",
+   "data_point": "ConstructionStatusType",
+   "required": false
+  },
+  {
+   "fid": "3.021",
+   "label": "Native American Lands",
+   "data_point": "NativeAmericanLandsType",
+   "required": false
+  },
+  {
+   "fid": "3.019",
+   "label": "Property Rights Appraised",
+   "data_point": "PropertyEstateType",
+   "required": false
+  },
+  {
+   "fid": "3.020",
+   "label": "Community Land Trust",
+   "data_point": "CommunityLandTrustIndicator",
+   "required": false
+  },
+  {
+   "fid": "3.022",
+   "label": "Ground Rent Annual Amount",
+   "data_point": "PropertyGroundLeaseAnnualAmount",
+   "required": false
+  },
+  {
+   "fid": "3.023",
+   "label": "Renewable",
+   "data_point": "PropertyGroundLeaseRenewableIndicator",
+   "required": false
+  },
+  {
+   "fid": "3.024",
+   "label": "Term",
+   "data_point": "PropertyGroundLeaseTermYearsCount",
+   "required": false
+  },
+  {
+   "fid": "3.025",
+   "label": "Expires",
+   "data_point": "PropertyGroundLeaseExpirationDate",
+   "required": false
+  },
+  {
+   "fid": "3.026",
+   "label": "Description of Ground Rent and Impact to Value / Marketability",
+   "data_point": "PropertyGroundRentDescription",
+   "required": false
+  },
+  {
+   "fid": "3.028",
+   "label": "Rights Not Included",
+   "data_point": "PropertyPartialInterestType",
+   "required": false
+  },
+  {
+   "fid": "3.029",
+   "label": "Mineral Rights Leased",
+   "data_point": "MineralRightsLeasedIndicator",
+   "required": false
+  },
+  {
+   "fid": "3.030",
+   "label": "Description of Rights Not Included",
+   "data_point": "PropertyRightsNotAppraisedDescription",
+   "required": false
+  },
+  {
+   "fid": "3.031",
+   "label": "",
+   "data_point": "ParcelsLegalDescription",
+   "required": false
+  },
+  {
+   "fid": "3.032",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "3.033.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Site": [
+  {
+   "fid": "4.002",
+   "label": "Number of Parcels",
+   "data_point": "ParcelCount",
+   "required": false
+  },
+  {
+   "fid": "4.003",
+   "label": "Contiguous",
+   "data_point": "ParcelsContiguousIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.004",
+   "label": "Elements Dividing Parcels",
+   "data_point": "ParcelSeparatorType",
+   "required": false
+  },
+  {
+   "fid": "4.005",
+   "label": "Assessor Parcel Number (APN)",
+   "data_point": "ParcelIdentifier",
+   "required": false
+  },
+  {
+   "fid": "4.006",
+   "label": "APN Description",
+   "data_point": "ParcelDescriptionClassificationType",
+   "required": false
+  },
+  {
+   "fid": "4.007",
+   "label": "Parcel Size",
+   "data_point": "ParcelAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "4.011",
+   "label": "Reasons Illegal",
+   "data_point": "SiteZoningComplianceIllegalReasonType",
+   "required": false
+  },
+  {
+   "fid": "4.012",
+   "label": "Impact",
+   "data_point": "ValueMarketabilityImpactType",
+   "required": false
+  },
+  {
+   "fid": "4.013",
+   "label": "Rebuildable to Current Density/Use",
+   "data_point": "ZoningPermitRebuildToCurrentDensityIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.014",
+   "label": "Description of Zoning Compliance",
+   "data_point": "SiteZoningComplianceDescription",
+   "required": false
+  },
+  {
+   "fid": "4.015",
+   "label": "Primarily Residential",
+   "data_point": "PropertyPrimarilyResidentialUseIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.016",
+   "label": "Residential Use",
+   "data_point": "ResidentialUsePercent",
+   "required": false
+  },
+  {
+   "fid": "4.017",
+   "label": "Non-Residential Use",
+   "data_point": "PropertyMixedUsageIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.018",
+   "label": "Non-Residential Modification",
+   "data_point": "NonResidentialModificationIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.019",
+   "label": "Description of Non-Residential Use / Modification",
+   "data_point": "NonResidentialUseDescription",
+   "required": false
+  },
+  {
+   "fid": "4.020",
+   "label": "Primary Access",
+   "data_point": "PropertyPrimaryEntryExitMethodType",
+   "required": true
+  },
+  {
+   "fid": "4.021",
+   "label": "Street Access and Surface",
+   "data_point": "ImprovedSurfaceMaterialType",
+   "required": false
+  },
+  {
+   "fid": "4.021",
+   "label": "Street Type and Surface",
+   "data_point": "StreetAccessType",
+   "required": false
+  },
+  {
+   "fid": "4.022",
+   "label": "Known Maintenance Agreement",
+   "data_point": "PrivateStreetMaintenanceAgreementExistIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.023",
+   "label": "Typical for Market",
+   "data_point": "PropertyAccessTypicalToMarketIndicator",
+   "required": true
+  },
+  {
+   "fid": "4.024",
+   "label": "Description of Property Access",
+   "data_point": "PropertyAccessDescription",
+   "required": false
+  },
+  {
+   "fid": "4.017.1",
+   "label": "",
+   "data_point": "ImageCategoryType",
+   "required": false
+  },
+  {
+   "fid": "4.025",
+   "label": "Influence",
+   "data_point": "SiteInfluenceType",
+   "required": true
+  },
+  {
+   "fid": "4.026",
+   "label": "Proximity",
+   "data_point": "DistanceFromPropertyLinearMeasure",
+   "required": false
+  },
+  {
+   "fid": "4.028",
+   "label": "Impact",
+   "data_point": "ValueMarketabilityImpactType",
+   "required": false
+  },
+  {
+   "fid": "4.029",
+   "label": "Comment",
+   "data_point": "EnvironmentalConditionIdentifiedDescription",
+   "required": false
+  },
+  {
+   "fid": "4.030",
+   "label": "Site Influence Commentary",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "4.031",
+   "label": "Total Linear Measurement",
+   "data_point": "WaterFrontageTotalLengthLinearMeasure",
+   "required": false
+  },
+  {
+   "fid": "4.032",
+   "label": "Permanent Waterfront Feature",
+   "data_point": "WaterfrontFeatureType",
+   "required": false
+  },
+  {
+   "fid": "4.033",
+   "label": "Right to Build",
+   "data_point": "WaterfrontDevelopmentRightsIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.034",
+   "label": "Frontage",
+   "data_point": "BodyOfWaterType",
+   "required": false
+  },
+  {
+   "fid": "4.035",
+   "label": "Name",
+   "data_point": "BodyOfWaterName",
+   "required": false
+  },
+  {
+   "fid": "4.036",
+   "label": "Waterfront Access Rights",
+   "data_point": "WaterAccessRightType",
+   "required": false
+  },
+  {
+   "fid": "4.037",
+   "label": "Access Depth",
+   "data_point": "WaterAccessDepthType",
+   "required": false
+  },
+  {
+   "fid": "4.038",
+   "label": "Water Frontage Commentary",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "4.039",
+   "label": "(Primary)",
+   "data_point": "ViewPrimaryIndicator",
+   "required": true
+  },
+  {
+   "fid": "4.039",
+   "label": "View",
+   "data_point": "ViewType",
+   "required": true
+  },
+  {
+   "fid": "4.040",
+   "label": "Range of View",
+   "data_point": "ViewRangeType",
+   "required": true
+  },
+  {
+   "fid": "4.041",
+   "label": "Impact",
+   "data_point": "ValueMarketabilityImpactType",
+   "required": true
+  },
+  {
+   "fid": "4.042",
+   "label": "View Commentary",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "4.043",
+   "label": "Non-Residential Property Use",
+   "data_point": "PropertyMixedUsageIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.045",
+   "label": "Impact",
+   "data_point": "ValueMarketabilityImpactType",
+   "required": false
+  },
+  {
+   "fid": "4.046",
+   "label": "Comment",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "4.050",
+   "label": "Property Restriction",
+   "data_point": "EncumbranceType",
+   "required": false
+  },
+  {
+   "fid": "4.054",
+   "label": "Easement",
+   "data_point": "EncumbranceType",
+   "required": false
+  },
+  {
+   "fid": "4.058",
+   "label": "Encroachment",
+   "data_point": "EncumbranceType",
+   "required": false
+  },
+  {
+   "fid": "4.066",
+   "label": "Site Features Commentary",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "4.067",
+   "label": "Broadband Internet Available",
+   "data_point": "BroadbandInternetAvailableIndicator",
+   "required": true
+  },
+  {
+   "fid": "4.068",
+   "label": "Dwelling / Improvement within Utility Easement",
+   "data_point": "ImprovementInBoundaryOfEasementIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.069",
+   "label": "",
+   "data_point": "UtilityType",
+   "required": true
+  },
+  {
+   "fid": "4.070",
+   "label": "Public/Private",
+   "data_point": "SiteUtilityOwnershipType",
+   "required": true
+  },
+  {
+   "fid": "4.073",
+   "label": "Private Utility Impact",
+   "data_point": "ValueMarketabilityImpactType",
+   "required": false
+  },
+  {
+   "fid": "4.074",
+   "label": "Comment",
+   "data_point": "SiteUtilityDescription",
+   "required": false
+  },
+  {
+   "fid": "4.099",
+   "label": "",
+   "data_point": "SiteDefectsExistIndicator",
+   "required": true
+  },
+  {
+   "fid": "4.100",
+   "label": "Feature",
+   "data_point": "DefectComponentLabelTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "4.101",
+   "label": "Location",
+   "data_point": "DefectItemLocationTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "4.102",
+   "label": "Description",
+   "data_point": "DefectItemDescription",
+   "required": false
+  },
+  {
+   "fid": "4.103",
+   "label": "Affects Soundness or Structural Integrity",
+   "data_point": "DefectItemAffectsSoundnessStructuralIntegrityIndicator",
+   "required": false
+  },
+  {
+   "fid": "4.104",
+   "label": "Recommended Action",
+   "data_point": "DefectItemRecommendedActionType",
+   "required": false
+  },
+  {
+   "fid": "4.105",
+   "label": "Opinion of Site Value",
+   "data_point": "SiteEstimatedValueAmount",
+   "required": false
+  },
+  {
+   "fid": "4.106",
+   "label": "Primary Site Valuation Method",
+   "data_point": "SiteValuationMethodType",
+   "required": false
+  },
+  {
+   "fid": "4.107",
+   "label": "#",
+   "data_point": "PropertyOrdinalNumber",
+   "required": false
+  },
+  {
+   "fid": "4.110",
+   "label": "Data Source",
+   "data_point": "DataSourceIdentifier",
+   "required": false
+  },
+  {
+   "fid": "4.111",
+   "label": "Assessor Parcel Number (APN)",
+   "data_point": "ParcelIdentifier",
+   "required": false
+  },
+  {
+   "fid": "4.113",
+   "label": "Sale Date",
+   "data_point": "OwnershipTransferDate",
+   "required": false
+  },
+  {
+   "fid": "4.114",
+   "label": "Price",
+   "data_point": "OwnershipTransferTransactionAmount",
+   "required": false
+  },
+  {
+   "fid": "4.115",
+   "label": "Reconciliation of Site Value",
+   "data_point": "SiteEstimatedValueCommentDescription",
+   "required": false
+  },
+  {
+   "fid": "4.116",
+   "label": "Site Commentary",
+   "data_point": "ValuationCommentText",
+   "required": false
+  }
+ ],
+ "Energy Efficient and Green Features": [
+  {
+   "fid": "6.001",
+   "label": "Renewable Energy Component",
+   "data_point": "RenewableEnergyComponentType",
+   "required": false
+  },
+  {
+   "fid": "6.002",
+   "label": "Ownership",
+   "data_point": "RenewableEnergyComponentOwnershipType",
+   "required": false
+  },
+  {
+   "fid": "6.003",
+   "label": "Financing Arrangement",
+   "data_point": "RenewableEnergyComponentFinancedIndicator",
+   "required": false
+  },
+  {
+   "fid": "6.005",
+   "label": "Building Certification Organization",
+   "data_point": "GreenCertificationAssociationName",
+   "required": false
+  },
+  {
+   "fid": "6.006",
+   "label": "Certification",
+   "data_point": "GreenCertificationName",
+   "required": false
+  },
+  {
+   "fid": "6.007",
+   "label": "Year",
+   "data_point": "GreenCertificationLevelAwardedYear",
+   "required": false
+  },
+  {
+   "fid": "6.008",
+   "label": "Version",
+   "data_point": "GreenCertificationVersionIdentifier",
+   "required": false
+  },
+  {
+   "fid": "6.009",
+   "label": "Rating",
+   "data_point": "GreenCertificationLevelName",
+   "required": false
+  },
+  {
+   "fid": "6.011",
+   "label": "Green / Energy Efficiency Rating Organization",
+   "data_point": "EfficiencyRatingOrganizationName",
+   "required": false
+  },
+  {
+   "fid": "6.013",
+   "label": "Score",
+   "data_point": "EfficiencyRatingScoreValue",
+   "required": false
+  },
+  {
+   "fid": "6.014",
+   "label": "Impact to Value / Marketability",
+   "data_point": "ValueMarketabilityImpactType",
+   "required": false
+  },
+  {
+   "fid": "6.015",
+   "label": "Description",
+   "data_point": "EnergyEfficientAndGreenDescription",
+   "required": false
+  },
+  {
+   "fid": "6.016",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  }
+ ],
+ "Dwelling Exterior": [
+  {
+   "fid": "8.000",
+   "label": "{No Subsection} - {No Label}",
+   "data_point": "StructureIdentifier",
+   "required": false
+  },
+  {
+   "fid": "8.001",
+   "label": "Subject Property Units in Structure",
+   "data_point": "LivingUnitCount",
+   "required": false
+  },
+  {
+   "fid": "8.002",
+   "label": "Structure Design",
+   "data_point": "StructuralDesignType",
+   "required": false
+  },
+  {
+   "fid": "8.003",
+   "label": "Floors in Building",
+   "data_point": "StoriesCount",
+   "required": false
+  },
+  {
+   "fid": "8.005",
+   "label": "Front Door Elevation",
+   "data_point": "FrontDoorApproximateElevationRangeType",
+   "required": false
+  },
+  {
+   "fid": "8.006",
+   "label": "Townhouse End Unit",
+   "data_point": "RowhouseTownhouseEndUnitIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.007",
+   "label": "Townhouse Back to Back",
+   "data_point": "RowhouseTownhouseBackToBackIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.008",
+   "label": "Units Above or Below",
+   "data_point": "RowhouseTownhouseStackedIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.009",
+   "label": "Townhouse Location",
+   "data_point": "RowhouseTownhouseLocationType",
+   "required": false
+  },
+  {
+   "fid": "8.011",
+   "label": "Construction Method",
+   "data_point": "ConstructionMethodType",
+   "required": false
+  },
+  {
+   "fid": "8.012",
+   "label": "Converted Area and Similarity to Rest of Living Area",
+   "data_point": "ConvertedAreaOriginalUseType",
+   "required": false
+  },
+  {
+   "fid": "8.012",
+   "label": "Converted Area",
+   "data_point": "ConvertedAreaExistsIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.014",
+   "label": "Factory Built Certification",
+   "data_point": "FactoryBuiltCertificationExaminedIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.015",
+   "label": "Structure Volume",
+   "data_point": "StructureVolumeMeasure",
+   "required": false
+  },
+  {
+   "fid": "8.016",
+   "label": "Window Surface Area",
+   "data_point": "WindowSurfaceAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "8.017",
+   "label": "Attic",
+   "data_point": "AccessibleForObservationIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.018",
+   "label": "Remaining Economic Life",
+   "data_point": "EstimatedRemainingEconomicLifeYearsCount",
+   "required": false
+  },
+  {
+   "fid": "8.019",
+   "label": "Effective Age",
+   "data_point": "EffectiveAgeRangeHighYearsCount",
+   "required": false
+  },
+  {
+   "fid": "8.020",
+   "label": "Commentary on Remaining Economic Life",
+   "data_point": "EstimatedRemainingEconomicLifeDescription",
+   "required": false
+  },
+  {
+   "fid": "8.021",
+   "label": "Commentary on Effective Age",
+   "data_point": "EffectiveAgeDescription",
+   "required": false
+  },
+  {
+   "fid": "8.022",
+   "label": "Exterior Quality Rating",
+   "data_point": "ExteriorQualityRatingCode",
+   "required": false
+  },
+  {
+   "fid": "8.023",
+   "label": "Exterior Condition Rating",
+   "data_point": "ExteriorConditionRatingCode",
+   "required": false
+  },
+  {
+   "fid": "8.025",
+   "label": "Detail",
+   "data_point": "WallMaterialType",
+   "required": false
+  },
+  {
+   "fid": "8.026",
+   "label": "Quality Comment",
+   "data_point": "ImprovementComponentQualityDescription",
+   "required": false
+  },
+  {
+   "fid": "8.027",
+   "label": "Condition Status - Exterior Walls and Trim",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "required": false
+  },
+  {
+   "fid": "8.028",
+   "label": "Condition Comment",
+   "data_point": "ImprovementComponentConditionDescription",
+   "required": false
+  },
+  {
+   "fid": "8.031",
+   "label": "Condition Status - Foundation",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "required": false
+  },
+  {
+   "fid": "8.033",
+   "label": "Feature",
+   "data_point": "RoofObservableIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.035",
+   "label": "Condition Status - Roof",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "required": false
+  },
+  {
+   "fid": "8.039",
+   "label": "Condition Status - Windows",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "required": false
+  },
+  {
+   "fid": "8.044",
+   "label": "Condition Status - Other (Describe)",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "required": false
+  },
+  {
+   "fid": "8.047",
+   "label": "Total Area",
+   "data_point": "StructureNonContinuousFinishedAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "8.048",
+   "label": "Room Summary",
+   "data_point": "RoomType",
+   "required": false
+  },
+  {
+   "fid": "8.047.1",
+   "label": "",
+   "data_point": "ImageCategoryType",
+   "required": false
+  },
+  {
+   "fid": "8.049",
+   "label": "System",
+   "data_point": "HeatingSystemType",
+   "required": false
+  },
+  {
+   "fid": "8.050",
+   "label": "Detail",
+   "data_point": "LackOfHeatingSystemTypicalToMarketIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.052",
+   "label": "Core Heating System Below Grade",
+   "data_point": "CoreHeatingSystemBelowGradeIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.053",
+   "label": "Other Mechanical Systems",
+   "data_point": "MechanicalSystemType",
+   "required": false
+  },
+  {
+   "fid": "8.055",
+   "label": "",
+   "data_point": "DwellingExteriorDefectsExistIndicator",
+   "required": false
+  },
+  {
+   "fid": "8.061",
+   "label": "",
+   "data_point": "StructureValuationCommentText",
+   "required": false
+  }
+ ],
+ "Unit Interior": [
+  {
+   "fid": "10.004",
+   "label": "Finished Above Grade (Nonstandard)",
+   "data_point": "UnitNonStandardAboveGradeFinishedAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "10.005",
+   "label": "Unfinished Above Grade",
+   "data_point": "UnitAboveGradeUnfinishedAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "10.007",
+   "label": "Finished Below Grade (Nonstandard)",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "10.008",
+   "label": "Unfinished Below Grade",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "10.009",
+   "label": "Area Data Source",
+   "data_point": "DataSourceType",
+   "required": true
+  },
+  {
+   "fid": "10.010",
+   "label": "Below Grade Finish Compared to Above",
+   "data_point": "UnitBelowGradeFinishComparisonType",
+   "required": false
+  },
+  {
+   "fid": "10.011",
+   "label": "ADU",
+   "data_point": "AccessoryDwellingUnitIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.012",
+   "label": "Legally Rentable",
+   "data_point": "AccessoryDwellingUnitLegallyRentableIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.013",
+   "label": "Data Source",
+   "data_point": "DataSourceType",
+   "required": true
+  },
+  {
+   "fid": "10.014",
+   "label": "Typical for Market",
+   "data_point": "AccessoryDwellingUnitTypicalToMarketIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.015",
+   "label": "Ingress/Egress",
+   "data_point": "AccessType",
+   "required": false
+  },
+  {
+   "fid": "10.016",
+   "label": "Separate Postal Address",
+   "data_point": "SeparatePostalAddressIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.017",
+   "label": "Levels in Unit",
+   "data_point": "LevelCount",
+   "required": false
+  },
+  {
+   "fid": "10.018",
+   "label": "Floor Number",
+   "data_point": "FloorIdentifier",
+   "required": false
+  },
+  {
+   "fid": "10.019",
+   "label": "Corner Unit",
+   "data_point": "CornerUnitIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.020",
+   "label": "Occupancy",
+   "data_point": "UnitOccupancyType",
+   "required": false
+  },
+  {
+   "fid": "10.021",
+   "label": "Utilities Separately Metered",
+   "data_point": "UtilitiesMeteredSeparatelyIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.022",
+   "label": "Utilities Operating",
+   "data_point": "UnitUtilitiesOperatingIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.026",
+   "label": "Non-Residential Use in Unit",
+   "data_point": "UnitMixedUsageIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.027",
+   "label": "Live/Work Space",
+   "data_point": "AllowableLiveWorkSpaceIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.028",
+   "label": "Allowable Work Space",
+   "data_point": "AllowableWorkSpaceAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "10.029",
+   "label": "Level in Unit",
+   "data_point": "LevelType",
+   "required": false
+  },
+  {
+   "fid": "10.030",
+   "label": "Grade Level Detail",
+   "data_point": "AccessType",
+   "required": false
+  },
+  {
+   "fid": "10.032",
+   "label": "Area",
+   "data_point": "LevelFinishedAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "10.033",
+   "label": "Room Summary",
+   "data_point": "RoomType",
+   "required": false
+  },
+  {
+   "fid": "10.037",
+   "label": "Room",
+   "data_point": "LevelType",
+   "required": false
+  },
+  {
+   "fid": "10.033.1",
+   "label": "",
+   "data_point": "RoomType",
+   "required": false
+  },
+  {
+   "fid": "10.034",
+   "label": "Interior Quality Rating",
+   "data_point": "InteriorQualityRatingCode",
+   "required": false
+  },
+  {
+   "fid": "10.035",
+   "label": "Interior Condition Rating",
+   "data_point": "InteriorConditionRatingCode",
+   "required": false
+  },
+  {
+   "fid": "10.037",
+   "label": "Room",
+   "data_point": "RoomType",
+   "required": false
+  },
+  {
+   "fid": "10.038",
+   "label": "Update Status",
+   "data_point": "RoomUpdateStatusType",
+   "required": false
+  },
+  {
+   "fid": "10.039",
+   "label": "Time Frame",
+   "data_point": "RoomUpdatedTimeframeType",
+   "required": false
+  },
+  {
+   "fid": "10.040",
+   "label": "Quality Comment",
+   "data_point": "RoomQualityDescription",
+   "required": false
+  },
+  {
+   "fid": "10.041",
+   "label": "Condition Status",
+   "data_point": "RoomConditionStatusType",
+   "required": false
+  },
+  {
+   "fid": "10.042",
+   "label": "Condition Comment",
+   "data_point": "RoomConditionAdditionalDescription",
+   "required": false
+  },
+  {
+   "fid": "10.043",
+   "label": "Overall Update Status for Bathrooms",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "required": false
+  },
+  {
+   "fid": "10.044",
+   "label": "Feature",
+   "data_point": "ImprovementComponentType",
+   "required": false
+  },
+  {
+   "fid": "10.045",
+   "label": "Detail",
+   "data_point": "FlooringType",
+   "required": false
+  },
+  {
+   "fid": "10.049",
+   "label": "Overall Update Status for Flooring",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "required": false
+  },
+  {
+   "fid": "10.050",
+   "label": "Feature",
+   "data_point": "AccessibilityFeatureType",
+   "required": false
+  },
+  {
+   "fid": "10.051",
+   "label": "Comment",
+   "data_point": "AccessibilityModificationDescription",
+   "required": false
+  },
+  {
+   "fid": "10.055",
+   "label": "",
+   "data_point": "UnitInteriorDefectsExistIndicator",
+   "required": false
+  },
+  {
+   "fid": "10.061",
+   "label": "",
+   "data_point": "UnitValuationCommentText",
+   "required": false
+  }
+ ],
+ "Functional Obsolescence": [
+  {
+   "fid": "11.001",
+   "label": "",
+   "data_point": "FunctionalIssueDescription",
+   "required": false
+  },
+  {
+   "fid": "11.002.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Vehicle Storage": [
+  {
+   "fid": "13.000",
+   "label": "Storage",
+   "data_point": "CarStorageType",
+   "required": true
+  },
+  {
+   "fid": "13.002",
+   "label": "Number of Parking Spaces",
+   "data_point": "ParkingSpacesCount",
+   "required": false
+  },
+  {
+   "fid": "13.003",
+   "label": "Detail",
+   "data_point": "CarStorageAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "13.001.1",
+   "label": "",
+   "data_point": "CarStorageType",
+   "required": true
+  },
+  {
+   "fid": "13.004",
+   "label": "",
+   "data_point": "VehicleStorageDefectsExistIndicator",
+   "required": false
+  },
+  {
+   "fid": "13.005",
+   "label": "Feature",
+   "data_point": "CarStorageType",
+   "required": true
+  },
+  {
+   "fid": "13.006",
+   "label": "Location",
+   "data_point": "DefectItemLocationTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "13.007",
+   "label": "Description",
+   "data_point": "DefectItemDescription",
+   "required": false
+  },
+  {
+   "fid": "13.008",
+   "label": "Affects Soundness or Structural Integrity",
+   "data_point": "DefectItemAffectsSoundnessStructuralIntegrityIndicator",
+   "required": false
+  },
+  {
+   "fid": "13.009",
+   "label": "Recommended Action",
+   "data_point": "DefectItemRecommendedActionType",
+   "required": false
+  },
+  {
+   "fid": "13.010",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  }
+ ],
+ "Subject Property Amenities": [
+  {
+   "fid": "14.001",
+   "label": "Amenity Category",
+   "data_point": "AmenityCategoryType",
+   "required": false
+  },
+  {
+   "fid": "14.002",
+   "label": "Subject Property Amenity",
+   "data_point": "AmenityType",
+   "required": false
+  },
+  {
+   "fid": "14.003",
+   "label": "Material",
+   "data_point": "AmenityMaterialType",
+   "required": false
+  },
+  {
+   "fid": "14.004",
+   "label": "Detail",
+   "data_point": "AmenityAreaMeasure",
+   "required": false
+  },
+  {
+   "fid": "14.006",
+   "label": "Feature",
+   "data_point": "AmenityType",
+   "required": false
+  },
+  {
+   "fid": "14.007",
+   "label": "Location",
+   "data_point": "DefectItemLocationTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "14.008",
+   "label": "Description",
+   "data_point": "DefectItemDescription",
+   "required": false
+  },
+  {
+   "fid": "14.009",
+   "label": "Affects Soundness or Structural Integrity",
+   "data_point": "DefectItemAffectsSoundnessStructuralIntegrityIndicator",
+   "required": false
+  },
+  {
+   "fid": "14.010",
+   "label": "Recommended Action",
+   "data_point": "DefectItemRecommendedActionType",
+   "required": false
+  },
+  {
+   "fid": "14.011",
+   "label": "Amenities Commentary",
+   "data_point": "ValuationCommentText",
+   "required": false
+  }
+ ],
+ "Overall Quality and Condition": [
+  {
+   "fid": "15.001",
+   "label": "Exterior Quality - {Structure Identifier}",
+   "data_point": "StructureIdentifier",
+   "required": false
+  },
+  {
+   "fid": "15.003",
+   "label": "Interior Quality - {Unit Identifier}",
+   "data_point": "UnitIdentifier",
+   "required": false
+  },
+  {
+   "fid": "15.007",
+   "label": "Exterior Condition - {Structure Identifier}",
+   "data_point": "ExteriorConditionRatingCode",
+   "required": false
+  },
+  {
+   "fid": "15.009",
+   "label": "Interior Condition - {Unit Identifier}",
+   "data_point": "InteriorConditionRatingCode",
+   "required": false
+  },
+  {
+   "fid": "15.010",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": true
+  }
+ ],
+ "Highest and Best Use": [
+  {
+   "fid": "16.000",
+   "label": "Legally Permissible",
+   "data_point": "LegallyPermissibleIndicator",
+   "required": true
+  },
+  {
+   "fid": "16.001",
+   "label": "Physically Possible",
+   "data_point": "PhysicallyPossibleIndicator",
+   "required": true
+  },
+  {
+   "fid": "16.002",
+   "label": "Financially Feasible",
+   "data_point": "FinanciallyFeasibleIndicator",
+   "required": true
+  },
+  {
+   "fid": "16.003",
+   "label": "Maximally Productive",
+   "data_point": "MaximallyProductiveIndicator",
+   "required": true
+  },
+  {
+   "fid": "16.004",
+   "label": "Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use?",
+   "data_point": "SiteHighestBestUseIndicator",
+   "required": true
+  },
+  {
+   "fid": "16.005",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "16.006.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Market": [
+  {
+   "fid": "17.003",
+   "label": "Market Area Boundary",
+   "data_point": "MarketBoundariesDescription",
+   "required": true
+  },
+  {
+   "fid": "17.004",
+   "label": "Search Criteria Description",
+   "data_point": "MarketInventorySearchParameterDescription",
+   "required": true
+  },
+  {
+   "fid": "17.005",
+   "label": "Active Listings",
+   "data_point": "MarketInventoryCount",
+   "required": true
+  },
+  {
+   "fid": "17.006",
+   "label": "Median Days on Market",
+   "data_point": "MarketInventoryMedianDaysOnMarketCount",
+   "required": false
+  },
+  {
+   "fid": "17.007",
+   "label": "Lowest List Price",
+   "data_point": "MarketInventoryLowestPriceAmount",
+   "required": false
+  },
+  {
+   "fid": "17.008",
+   "label": "Median List Price",
+   "data_point": "MarketInventoryMedianPriceAmount",
+   "required": false
+  },
+  {
+   "fid": "17.009",
+   "label": "Highest List Price",
+   "data_point": "MarketInventoryHighestPriceAmount",
+   "required": false
+  },
+  {
+   "fid": "17.010",
+   "label": "Pending Sales",
+   "data_point": "MarketInventoryCount",
+   "required": true
+  },
+  {
+   "fid": "17.011",
+   "label": "Sales in Past ___  Months",
+   "data_point": "MarketInventoryLookbackMonthsCount",
+   "required": true
+  },
+  {
+   "fid": "17.013",
+   "label": "Lowest Sale Price",
+   "data_point": "MarketInventoryLowestPriceAmount",
+   "required": false
+  },
+  {
+   "fid": "17.014",
+   "label": "Median Sale Price",
+   "data_point": "MarketInventoryMedianPriceAmount",
+   "required": false
+  },
+  {
+   "fid": "17.015",
+   "label": "Highest Sale Price",
+   "data_point": "MarketInventoryHighestPriceAmount",
+   "required": false
+  },
+  {
+   "fid": "17.016",
+   "label": "Distressed Market Competition",
+   "data_point": "MarketTrendsForeclosureActivityIndicator",
+   "required": true
+  },
+  {
+   "fid": "17.017",
+   "label": "Graph",
+   "data_point": "ImageCategoryType",
+   "required": false
+  },
+  {
+   "fid": "17.018",
+   "label": "Price Trend Source",
+   "data_point": "DataSourceName",
+   "required": true
+  },
+  {
+   "fid": "17.019",
+   "label": "Price Trend Analysis Commentary",
+   "data_point": "PriceTrendsAnalysisDescription",
+   "required": false
+  },
+  {
+   "fid": "17.017.1",
+   "label": "",
+   "data_point": "ImageCategoryType",
+   "required": false
+  },
+  {
+   "fid": "17.021",
+   "label": "Demand/Supply",
+   "data_point": "MarketSupplyTrendType",
+   "required": true
+  },
+  {
+   "fid": "17.022",
+   "label": "Marketing Time",
+   "data_point": "MarketingTimeType",
+   "required": true
+  },
+  {
+   "fid": "17.023",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  }
+ ],
+ "Subject Listing Information": [
+  {
+   "fid": "19.000",
+   "label": "Current or Relevant Listings",
+   "data_point": "ListedWithinPreviousYearIndicator",
+   "required": true
+  },
+  {
+   "fid": "19.001",
+   "label": "Data Source",
+   "data_point": "DataSourceType",
+   "required": true
+  },
+  {
+   "fid": "19.002",
+   "label": "Listing Status",
+   "data_point": "ListingStatusType",
+   "required": false
+  },
+  {
+   "fid": "19.003",
+   "label": "Listing Type",
+   "data_point": "ListingType",
+   "required": false
+  },
+  {
+   "fid": "19.006",
+   "label": "End Date",
+   "data_point": "ListingEndDate",
+   "required": false
+  },
+  {
+   "fid": "19.010",
+   "label": "Total DOM",
+   "data_point": "CumulativeDaysOnMarketCount",
+   "required": false
+  },
+  {
+   "fid": "19.011",
+   "label": "Analysis of Subject Property Listing History",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "19.012.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Sales Contract": [
+  {
+   "fid": "20.001",
+   "label": "Was sales contract information analyzed?",
+   "data_point": "SalesContractReviewedIndicator",
+   "required": false
+  },
+  {
+   "fid": "20.003",
+   "label": "Non-Arm's Length Commentary",
+   "data_point": "NonArmsLengthCommentText",
+   "required": false
+  },
+  {
+   "fid": "20.006",
+   "label": "Transfer Terms",
+   "data_point": "SaleType",
+   "required": false
+  },
+  {
+   "fid": "20.010",
+   "label": "Typical for Market",
+   "data_point": "SalesConcessionsTypicalToMarketIndicator",
+   "required": false
+  },
+  {
+   "fid": "20.011",
+   "label": "",
+   "data_point": "ValuationCommentText",
+   "required": false
+  },
+  {
+   "fid": "20.012.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Prior Sale and Transfer History": [
+  {
+   "fid": "21.001",
+   "label": "Data Source",
+   "data_point": "DataSourceType",
+   "required": true
+  },
+  {
+   "fid": "21.003",
+   "label": "Date",
+   "data_point": "OwnershipTransferDate",
+   "required": false
+  },
+  {
+   "fid": "21.004",
+   "label": "Amount",
+   "data_point": "OwnershipTransferAmountNotAvailableReasonType",
+   "required": false
+  },
+  {
+   "fid": "21.006",
+   "label": "Analysis of Prior Sale and Transfer History of Subject Property",
+   "data_point": "ValuationCommentText",
+   "required": true
+  },
+  {
+   "fid": "21.007",
+   "label": "#",
+   "data_point": "PropertyOrdinalNumber",
+   "required": false
+  },
+  {
+   "fid": "21.009",
+   "label": "Date",
+   "data_point": "OwnershipTransferDate",
+   "required": false
+  },
+  {
+   "fid": "21.010",
+   "label": "Amount",
+   "data_point": "OwnershipTransferAmountNotAvailableReasonType",
+   "required": false
+  },
+  {
+   "fid": "21.011",
+   "label": "Data Source",
+   "data_point": "DataSourceType",
+   "required": true
+  },
+  {
+   "fid": "21.012",
+   "label": "Analysis of Prior Sale and Transfer History of Comparable Sales",
+   "data_point": "ValuationCommentText",
+   "required": true
+  },
+  {
+   "fid": "21.013.2",
+   "label": "",
+   "data_point": "ImageCaptionCommentDescription",
+   "required": false
+  }
+ ],
+ "Reconciliation": [
+  {
+   "fid": "26.000",
+   "label": "Indicated Value",
+   "data_point": "ValueIndicatedBySalesComparisonAmount",
+   "required": false
+  },
+  {
+   "fid": "26.001",
+   "label": "Reason for Exclusion",
+   "data_point": "ValuationApproachExclusionReasonTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "26.008",
+   "label": "Pro Rata Share Calculation Method",
+   "data_point": "LineOfCreditProRataShareSelectionMethodType",
+   "required": false
+  },
+  {
+   "fid": "26.010",
+   "label": "Reasonable Exposure Time",
+   "data_point": "MarketingOrExposureDaysCount",
+   "required": false
+  },
+  {
+   "fid": "26.012",
+   "label": "FHA REO Insurability Level",
+   "data_point": "FHA_REOInsurabilityLevelCode",
+   "required": false
+  },
+  {
+   "fid": "26.014",
+   "label": "Value Condition",
+   "data_point": "PropertyValuationConditionalConclusionType",
+   "required": false
+  },
+  {
+   "fid": "26.015",
+   "label": "Marketing or Exposure Time",
+   "data_point": "MarketingOrExposureTimeType",
+   "required": false
+  },
+  {
+   "fid": "26.016",
+   "label": "Duration",
+   "data_point": "MarketingOrExposureDaysCount",
+   "required": false
+  },
+  {
+   "fid": "26.017",
+   "label": "Alternate Opinion of Value",
+   "data_point": "AdditionalOpinionOfValueAmount",
+   "required": false
+  },
+  {
+   "fid": "26.018",
+   "label": "Requested Condition Commentary",
+   "data_point": "AdditionalClientRequestedConditionsCommentDescription",
+   "required": false
+  },
+  {
+   "fid": "26.021",
+   "label": "Feature",
+   "data_point": "DefectComponentLabelTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "26.022",
+   "label": "Location",
+   "data_point": "DefectItemLocationTypeOtherDescription",
+   "required": false
+  },
+  {
+   "fid": "26.023",
+   "label": "Description",
+   "data_point": "DefectItemDescription",
+   "required": false
+  },
+  {
+   "fid": "26.024",
+   "label": "Affects Soundness or Structural Integrity",
+   "data_point": "DefectItemAffectsSoundnessStructuralIntegrityIndicator",
+   "required": false
+  },
+  {
+   "fid": "26.025",
+   "label": "Recommended Action",
+   "data_point": "DefectItemRecommendedActionType",
+   "required": false
+  },
+  {
+   "fid": "26.026",
+   "label": "Estimated Cost to Repair",
+   "data_point": "DefectItemEstimatedCostToRepairAmount",
+   "required": false
+  },
+  {
+   "fid": "26.027",
+   "label": "Dwelling Exterior - [Structure Identifier]",
+   "data_point": "StructureIdentifier",
+   "required": false
+  },
+  {
+   "fid": "26.034",
+   "label": "Unit Interior - [Structure Identifier] - [Unit Identifier]",
+   "data_point": "StructureIdentifier",
+   "required": false
+  },
+  {
+   "fid": "26.042",
+   "label": "Outbuilding - [Outbuilding Type]",
+   "data_point": "OutbuildingType",
+   "required": false
+  },
+  {
+   "fid": "26.050",
+   "label": "Unit Interior - [Outbuilding Type] - [Unit Identifier]",
+   "data_point": "OutbuildingType",
+   "required": false
+  },
+  {
+   "fid": "26.070",
+   "label": "Total Cost",
+   "data_point": "DefectCostToRepairTotalAmount",
+   "required": false
+  },
+  {
+   "fid": "26.072",
+   "label": "Total Estimated Cost of Items Recommended for Repair",
+   "data_point": "DefectCostToRepairTotalAmount",
+   "required": false
+  }
+ ],
+ "Revision History": [
+  {
+   "fid": "27.000",
+   "label": "Revision Date",
+   "data_point": "RevisionDate",
+   "required": false
+  },
+  {
+   "fid": "27.001",
+   "label": "URAR Section",
+   "data_point": "RevisionCategoryType",
+   "required": false
+  },
+  {
+   "fid": "27.002",
+   "label": "Description",
+   "data_point": "RevisionText",
+   "required": false
+  },
+  {
+   "fid": "27.003",
+   "label": "Type",
+   "data_point": "ReconsiderationOfValueRequestedByType",
+   "required": false
+  },
+  {
+   "fid": "27.004",
+   "label": "Date",
+   "data_point": "ReconsiderationOfValueResultDate",
+   "required": false
+  },
+  {
+   "fid": "27.005",
+   "label": "Result",
+   "data_point": "ReconsiderationOfValueResultType",
+   "required": false
+  },
+  {
+   "fid": "27.006",
+   "label": "Reconsideration of Value Commentary",
+   "data_point": "ReconsiderationOfValueCommentDescription",
+   "required": false
+  }
+ ],
+ "Certifications": [
+  {
+   "fid": "29.051",
+   "label": "Description of Prior Services",
+   "data_point": "AppraiserPriorServicesPerformedDescription",
+   "required": false
+  },
+  {
+   "fid": "29.067",
+   "label": "Level",
+   "data_point": "AppraiserLicenseType",
+   "required": true
+  },
+  {
+   "fid": "29.068",
+   "label": "ID",
+   "data_point": "LicenseIdentifier",
+   "required": false
+  },
+  {
+   "fid": "29.069",
+   "label": "State",
+   "data_point": "LicenseIssuingAuthorityStateCode",
+   "required": false
+  },
+  {
+   "fid": "29.070",
+   "label": "Expires",
+   "data_point": "LicenseExpirationDate",
+   "required": false
+  }
+ ]
+}

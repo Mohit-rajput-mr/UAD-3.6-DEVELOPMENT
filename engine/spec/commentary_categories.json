@@ -1,0 +1,22 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide v1.4 (commentary category per field)",
+ "map": {
+  "2.061": "Assignment",
+  "3.032": "SubjectProperty",
+  "4.116": "Site",
+  "5.001": "DisasterMitigation",
+  "6.016": "EnergyEfficiencyAndGreenFeatures",
+  "13.010": "VehicleStorage",
+  "14.011": "SubjectPropertyAmenities",
+  "15.010": "OverallQualityAndCondition",
+  "16.005": "HighestAndBestUse",
+  "17.023": "Market",
+  "20.011": "SalesContract",
+  "21.006": "SubjectPriorSalesAndTransferHistory",
+  "21.012": "ComparablesPriorSalesAndTransferHistory",
+  "23.04.01": "ComparableRental",
+  "18.095": "Project",
+  "4.066": "SiteFeatures",
+  "Water Frontage Commentary": "WaterFrontages"
+ }
+}

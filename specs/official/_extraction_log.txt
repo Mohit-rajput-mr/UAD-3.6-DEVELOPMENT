@@ -1,0 +1,32 @@
+﻿OK   C:\3.6 uad zips\Appendix B-1 URAR Implementation Guide (1).zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix B-1 URAR Implementation Guide (1)
+OK   C:\3.6 uad zips\Appendix C-1_ URAR Layout (1).zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix C-1_ URAR Layout (1)
+OK   C:\3.6 uad zips\Appendix D-1 2- to 4-unit_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 2- to 4-unit_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 2- to 4-unit_Scenario_2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 2- to 4-unit_Scenario_2_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 Condo1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 Condo1_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 Condo2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 Condo2_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 Coop1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 Coop1_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 MH1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 MH1_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 MH2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 MH2_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 SF1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 SF1_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 SF2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 SF2_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 SF3_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 SF3_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 SF4_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 SF4_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 SF5_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 SF5_Appraisal
+OK   C:\3.6 uad zips\Appendix D-1 URAR Sample Use Cases and XML Files_0.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0
+OK   C:\3.6 uad zips\Appendix E Report Style Guide (2).zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix E Report Style Guide (2)
+OK   C:\3.6 uad zips\Appendix F-1 URAR Reference Guide.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix F-1 URAR Reference Guide
+OK   C:\3.6 uad zips\GSE_UAD_3.6.0_v1.3 (1).zip -> C:\3.6 uad zips\_UNZIPPED_ALL\GSE_UAD_3.6.0_v1.3 (1)
+OK   C:\3.6 uad zips\urar_2026-09-11 14.07.50.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\urar_2026-09-11 14.07.50
+OK   C:\3.6 uad zips\urar_2026-09-13 16.57.50.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\urar_2026-09-13 16.57.50
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 2- to 4-unit_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 2- to 4-unit_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 2- to 4-unit_Scenario_2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 2- to 4-unit_Scenario_2_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 Condo1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 Condo1_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 Condo2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 Condo2_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 Coop1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 Coop1_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 MH1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 MH1_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 MH2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 MH2_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF1_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF1_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF2_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF2_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF3_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF3_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF4_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF4_Appraisal
+OK   C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF5_Appraisal.zip -> C:\3.6 uad zips\_UNZIPPED_ALL\Appendix D-1 URAR Sample Use Cases and XML Files_0\Appendix D-1 SF5_Appraisal

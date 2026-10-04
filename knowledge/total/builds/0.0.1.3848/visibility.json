@@ -1,0 +1,7619 @@
+{
+ "master_keys": {
+  "salescomp-ad-addr": [
+   "salescomp-ad-addr|-1",
+   "salescomp-ad-addr|-1",
+   "salescomp-ad-addr|-1",
+   "salescomp-ad-addr|-1"
+  ],
+  "salescomp-photo": [
+   "salescomp-photo|-1",
+   "salescomp-photo|-1",
+   "salescomp-photo|-1",
+   "salescomp-photo|-1"
+  ],
+  "salescomp-sc-source1": [
+   "salescomp-sc-source1|-1",
+   "salescomp-sc-source1|-1",
+   "salescomp-sc-source1|-1",
+   "salescomp-sc-source1|-1"
+  ],
+  "salescomp-prox1": [
+   "salescomp-prox1|-1",
+   "salescomp-prox1|-1",
+   "salescomp-prox1|-1",
+   "salescomp-prox1|-1"
+  ],
+  "salescomp-lp-price": [
+   "salescomp-lp-price|-1",
+   "salescomp-lp-price|-1",
+   "salescomp-lp-price|-1",
+   "salescomp-lp-price|-1"
+  ],
+  "salescomp-price-per-sqft": [
+   "salescomp-price-per-sqft|-1",
+   "salescomp-price-per-sqft|-1",
+   "salescomp-price-per-sqft|-1",
+   "salescomp-price-per-sqft|-1"
+  ],
+  "salescomp-lp-status": [
+   "salescomp-lp-status|-1",
+   "salescomp-lp-status|-1",
+   "salescomp-lp-status|-1",
+   "salescomp-lp-status|-1"
+  ],
+  "salescomp-cont-price": [
+   "salescomp-cont-price|-1",
+   "salescomp-cont-price|0",
+   "salescomp-cont-price|-1",
+   "salescomp-cont-price|0",
+   "salescomp-cont-price|-1",
+   "salescomp-cont-price|0",
+   "salescomp-cont-price|-1"
+  ],
+  "salescomp-pr-salepr1": [
+   "salescomp-pr-salepr1|-1",
+   "salescomp-pr-salepr1|-1",
+   "salescomp-pr-salepr1|-1",
+   "salescomp-pr-salepr1|-1"
+  ],
+  "salescomp-transfer-terms": [
+   "salescomp-transfer-terms|-1",
+   "salescomp-transfer-terms|-1",
+   "salescomp-transfer-terms|-1",
+   "salescomp-transfer-terms|-1"
+  ],
+  "salescomp-dp-fintyp1": [
+   "salescomp-dp-fintyp1|-1",
+   "salescomp-dp-fintyp1|-1",
+   "salescomp-dp-fintyp1|-1",
+   "salescomp-dp-fintyp1|-1"
+  ],
+  "salescomp-ex-concamt": [
+   "salescomp-ex-concamt|-1",
+   "salescomp-ex-concamt|-1",
+   "salescomp-ex-concamt|-1",
+   "salescomp-ex-concamt|-1"
+  ],
+  "salescomp-cont-date": [
+   "salescomp-cont-date|-1",
+   "salescomp-cont-date|-1",
+   "salescomp-cont-date|-1",
+   "salescomp-cont-date|-1"
+  ],
+  "salescomp-dt-saltim1": [
+   "salescomp-dt-saltim1|-1",
+   "salescomp-dt-saltim1|-1",
+   "salescomp-dt-saltim1|-1",
+   "salescomp-dt-saltim1|-1"
+  ],
+  "salescomp-ex-dom": [
+   "salescomp-ex-dom|-1",
+   "salescomp-ex-dom|-1",
+   "salescomp-ex-dom|-1",
+   "salescomp-ex-dom|-1"
+  ],
+  "salescomp-sp-to-lp-ratio": [
+   "salescomp-sp-to-lp-ratio|-1",
+   "salescomp-sp-to-lp-ratio|-1",
+   "salescomp-sp-to-lp-ratio|-1",
+   "salescomp-sp-to-lp-ratio|-1"
+  ],
+  "salescomp-att-det": [
+   "salescomp-att-det|-1",
+   "salescomp-att-det|-1",
+   "salescomp-att-det|-1",
+   "salescomp-att-det|-1"
+  ],
+  "salescomp-prop-appraiser-rights": [
+   "salescomp-prop-appraiser-rights|-1",
+   "salescomp-prop-appraiser-rights|-1",
+   "salescomp-prop-appraiser-rights|-1",
+   "salescomp-prop-appraiser-rights|-1"
+  ],
+  "salescomp-annual-grnd-rent": [
+   "salescomp-annual-grnd-rent|-1",
+   "salescomp-annual-grnd-rent|-1",
+   "salescomp-annual-grnd-rent|-1",
+   "salescomp-annual-grnd-rent|-1"
+  ],
+  "salescomp-native-am-lands": [
+   "salescomp-native-am-lands|-1",
+   "salescomp-native-am-lands|-1",
+   "salescomp-native-am-lands|-1",
+   "salescomp-native-am-lands|-1"
+  ],
+  "salescomp-all-rights-included": [
+   "salescomp-all-rights-included|-1",
+   "salescomp-all-rights-included|-1",
+   "salescomp-all-rights-included|-1",
+   "salescomp-all-rights-included|-1"
+  ],
+  "salescomp-rights-not-included": [
+   "salescomp-rights-not-included|-1",
+   "salescomp-rights-not-included|-1",
+   "salescomp-rights-not-included|-1",
+   "salescomp-rights-not-included|-1"
+  ],
+  "salescomp-same-bldr-as-subject": [
+   "salescomp-same-bldr-as-subject|-1",
+   "salescomp-same-bldr-as-subject|-1",
+   "salescomp-same-bldr-as-subject|-1",
+   "salescomp-same-bldr-as-subject|-1"
+  ],
+  "salescomp-project-info-header": [
+   "salescomp-project-info-header|-1"
+  ],
+  "salescomp-project-info-bottom-spacer": [
+   "salescomp-project-info-bottom-spacer|-1"
+  ],
+  "salescomp-proj-name": [
+   "salescomp-proj-name|-1",
+   "salescomp-proj-name|-1",
+   "salescomp-proj-name|-1",
+   "salescomp-proj-name|-1"
+  ],
+  "salescomp-proj-monthly-fee": [
+   "salescomp-proj-monthly-fee|-1",
+   "salescomp-proj-monthly-fee|-1",
+   "salescomp-proj-monthly-fee|-1",
+   "salescomp-proj-monthly-fee|-1"
+  ],
+  "salescomp-proj-amenities": [
+   "salescomp-proj-amenities|-1",
+   "salescomp-proj-amenities|-1",
+   "salescomp-proj-amenities|-1",
+   "salescomp-proj-amenities|-1"
+  ],
+  "salescomp-proj-special-assessments": [
+   "salescomp-proj-special-assessments|-1",
+   "salescomp-proj-special-assessments|-1",
+   "salescomp-proj-special-assessments|-1",
+   "salescomp-proj-special-assessments|-1"
+  ],
+  "salescomp-site-project-type": [
+   "salescomp-site-project-type|-1",
+   "salescomp-site-project-type|-1",
+   "salescomp-site-project-type|-1",
+   "salescomp-site-project-type|-1"
+  ],
+  "salescomp-site-owned-in-common": [
+   "salescomp-site-owned-in-common|-1",
+   "salescomp-site-owned-in-common|-1",
+   "salescomp-site-owned-in-common|-1",
+   "salescomp-site-owned-in-common|-1"
+  ],
+  "salescomp-st-sitsize": [
+   "salescomp-st-sitsize|-1",
+   "salescomp-st-sitsize|-1",
+   "salescomp-st-sitsize|-1",
+   "salescomp-st-sitsize|-1"
+  ],
+  "salescomp-marketarea": [
+   "salescomp-marketarea|-1",
+   "salescomp-marketarea|-1",
+   "salescomp-marketarea|-1",
+   "salescomp-marketarea|-1"
+  ],
+  "salescomp-site-zone-compliance": [
+   "salescomp-site-zone-compliance|-1",
+   "salescomp-site-zone-compliance|-1",
+   "salescomp-site-zone-compliance|-1",
+   "salescomp-site-zone-compliance|-1"
+  ],
+  "salescomp-site-hazard-zone": [
+   "salescomp-site-hazard-zone|-1",
+   "salescomp-site-hazard-zone|-1",
+   "salescomp-site-hazard-zone|-1",
+   "salescomp-site-hazard-zone|-1"
+  ],
+  "salescomp-site-primary-access": [
+   "salescomp-site-primary-access|-1",
+   "salescomp-site-primary-access|-1",
+   "salescomp-site-primary-access|-1",
+   "salescomp-site-primary-access|-1"
+  ],
+  "salescomp-site-street-type": [
+   "salescomp-site-street-type|-1",
+   "salescomp-site-street-type|-1",
+   "salescomp-site-street-type|-1",
+   "salescomp-site-street-type|-1"
+  ],
+  "salescomp-site-prop-restrict": [
+   "salescomp-site-prop-restrict|-1",
+   "salescomp-site-prop-restrict|-1",
+   "salescomp-site-prop-restrict|-1",
+   "salescomp-site-prop-restrict|-1"
+  ],
+  "salescomp-site-easement": [
+   "salescomp-site-easement|-1",
+   "salescomp-site-easement|-1",
+   "salescomp-site-easement|-1",
+   "salescomp-site-easement|-1"
+  ],
+  "salescomp-site-topography": [
+   "salescomp-site-topography|-1",
+   "salescomp-site-topography|-1",
+   "salescomp-site-topography|-1",
+   "salescomp-site-topography|-1"
+  ],
+  "salescomp-site-drainage": [
+   "salescomp-site-drainage|-1",
+   "salescomp-site-drainage|-1",
+   "salescomp-site-drainage|-1",
+   "salescomp-site-drainage|-1"
+  ],
+  "salescomp-site-characteristics": [
+   "salescomp-site-characteristics|-1",
+   "salescomp-site-characteristics|-1",
+   "salescomp-site-characteristics|-1",
+   "salescomp-site-characteristics|-1"
+  ],
+  "salescomp-site-influence": [
+   "salescomp-site-influence|-1",
+   "salescomp-site-influence|-1",
+   "salescomp-site-influence|-1",
+   "salescomp-site-influence|-1"
+  ],
+  "salescomp-site-env-cond": [
+   "salescomp-site-env-cond|-1",
+   "salescomp-site-env-cond|-1",
+   "salescomp-site-env-cond|-1",
+   "salescomp-site-env-cond|-1"
+  ],
+  "salescomp-st-view": [
+   "salescomp-st-view|-1",
+   "salescomp-st-view|-1",
+   "salescomp-st-view|-1",
+   "salescomp-st-view|-1"
+  ],
+  "salescomp-water-frontage-header": [
+   "salescomp-water-frontage-header|-1"
+  ],
+  "salescomp-water-frontage-bottom-spacer": [
+   "salescomp-water-frontage-bottom-spacer|-1"
+  ],
+  "salescomp-water-frontage": [
+   "salescomp-water-frontage|-1",
+   "salescomp-water-frontage|-1",
+   "salescomp-water-frontage|-1",
+   "salescomp-water-frontage|-1"
+  ],
+  "salescomp-water-frontage-feat": [
+   "salescomp-water-frontage-feat|-1",
+   "salescomp-water-frontage-feat|-1",
+   "salescomp-water-frontage-feat|-1",
+   "salescomp-water-frontage-feat|-1"
+  ],
+  "salescomp-water-right-bld": [
+   "salescomp-water-right-bld|-1",
+   "salescomp-water-right-bld|-1",
+   "salescomp-water-right-bld|-1",
+   "salescomp-water-right-bld|-1"
+  ],
+  "salescomp-water-linear-measure": [
+   "salescomp-water-linear-measure|-1",
+   "salescomp-water-linear-measure|-1",
+   "salescomp-water-linear-measure|-1",
+   "salescomp-water-linear-measure|-1"
+  ],
+  "salescomp-yr-blt": [
+   "salescomp-yr-blt|-1",
+   "salescomp-yr-blt|-1",
+   "salescomp-yr-blt|-1",
+   "salescomp-yr-blt|-1"
+  ],
+  "salescomp-dwell-design": [
+   "salescomp-dwell-design|-1",
+   "salescomp-dwell-design|-1",
+   "salescomp-dwell-design|-1",
+   "salescomp-dwell-design|-1"
+  ],
+  "salescomp-sf-gla": [
+   "salescomp-sf-gla|-1",
+   "salescomp-sf-gla|-1",
+   "salescomp-sf-gla|-1",
+   "salescomp-sf-gla|-1"
+  ],
+  "salescomp-sf-finished-area": [
+   "salescomp-sf-finished-area|-1",
+   "salescomp-sf-finished-area|-1",
+   "salescomp-sf-finished-area|-1",
+   "salescomp-sf-finished-area|-1"
+  ],
+  "salescomp-dwell-th-endunit": [
+   "salescomp-dwell-th-endunit|-1",
+   "salescomp-dwell-th-endunit|-1",
+   "salescomp-dwell-th-endunit|-1",
+   "salescomp-dwell-th-endunit|-1"
+  ],
+  "salescomp-dwell-th-backtoback": [
+   "salescomp-dwell-th-backtoback|-1",
+   "salescomp-dwell-th-backtoback|-1",
+   "salescomp-dwell-th-backtoback|-1",
+   "salescomp-dwell-th-backtoback|-1"
+  ],
+  "salescomp-dwell-th-loc": [
+   "salescomp-dwell-th-loc|-1",
+   "salescomp-dwell-th-loc|-1",
+   "salescomp-dwell-th-loc|-1",
+   "salescomp-dwell-th-loc|-1"
+  ],
+  "salescomp-dwell-const-method": [
+   "salescomp-dwell-const-method|-1",
+   "salescomp-dwell-const-method|-1",
+   "salescomp-dwell-const-method|-1",
+   "salescomp-dwell-const-method|-1"
+  ],
+  "salescomp-dwell-manfct-home-width": [
+   "salescomp-dwell-manfct-home-width|-1",
+   "salescomp-dwell-manfct-home-width|-1",
+   "salescomp-dwell-manfct-home-width|-1",
+   "salescomp-dwell-manfct-home-width|-1"
+  ],
+  "salescomp-dwell-style": [
+   "salescomp-dwell-style|-1",
+   "salescomp-dwell-style|-1",
+   "salescomp-dwell-style|-1",
+   "salescomp-dwell-style|-1"
+  ],
+  "salescomp-dwell-total-volume": [
+   "salescomp-dwell-total-volume|-1",
+   "salescomp-dwell-total-volume|-1",
+   "salescomp-dwell-total-volume|-1",
+   "salescomp-dwell-total-volume|-1"
+  ],
+  "salescomp-dwell-window-area": [
+   "salescomp-dwell-window-area|-1",
+   "salescomp-dwell-window-area|-1",
+   "salescomp-dwell-window-area|-1",
+   "salescomp-dwell-window-area|-1"
+  ],
+  "salescomp-dwell-func-issues": [
+   "salescomp-dwell-func-issues|-1",
+   "salescomp-dwell-func-issues|-1",
+   "salescomp-dwell-func-issues|-1",
+   "salescomp-dwell-func-issues|-1"
+  ],
+  "salescomp-dwell-disaster-mit": [
+   "salescomp-dwell-disaster-mit|-1",
+   "salescomp-dwell-disaster-mit|-1",
+   "salescomp-dwell-disaster-mit|-1",
+   "salescomp-dwell-disaster-mit|-1"
+  ],
+  "salescomp-dwell-heat": [
+   "salescomp-dwell-heat|-1",
+   "salescomp-dwell-heat|-1",
+   "salescomp-dwell-heat|-1",
+   "salescomp-dwell-heat|-1"
+  ],
+  "salescomp-dwell-cool": [
+   "salescomp-dwell-cool|-1",
+   "salescomp-dwell-cool|-1",
+   "salescomp-dwell-cool|-1",
+   "salescomp-dwell-cool|-1"
+  ],
+  "salescomp-green-energy-header": [
+   "salescomp-green-energy-header|-1"
+  ],
+  "salescomp-green-energy-bottom-spacer": [
+   "salescomp-green-energy-bottom-spacer|-1"
+  ],
+  "salescomp-green-renew-energy-component": [
+   "salescomp-green-renew-energy-component|-1",
+   "salescomp-green-renew-energy-component|-1",
+   "salescomp-green-renew-energy-component|-1",
+   "salescomp-green-renew-energy-component|-1"
+  ],
+  "salescomp-green-build-cert": [
+   "salescomp-green-build-cert|-1",
+   "salescomp-green-build-cert|-1",
+   "salescomp-green-build-cert|-1",
+   "salescomp-green-build-cert|-1"
+  ],
+  "salescomp-green-eff-rating": [
+   "salescomp-green-eff-rating|-1",
+   "salescomp-green-eff-rating|-1",
+   "salescomp-green-eff-rating|-1",
+   "salescomp-green-eff-rating|-1"
+  ],
+  "salescomp-unit-id": [
+   "salescomp-unit-id|-1",
+   "salescomp-unit-id|-1",
+   "salescomp-unit-id|-1",
+   "salescomp-unit-id|-1"
+  ],
+  "salescomp-units-is-an-adu": [
+   "salescomp-units-is-an-adu|-1",
+   "salescomp-units-is-an-adu|-1",
+   "salescomp-units-is-an-adu|-1",
+   "salescomp-units-is-an-adu|-1"
+  ],
+  "salescomp-loc-adu": [
+   "salescomp-loc-adu|-1",
+   "salescomp-loc-adu|-1",
+   "salescomp-loc-adu|-1",
+   "salescomp-loc-adu|-1"
+  ],
+  "salescomp-floor-num": [
+   "salescomp-floor-num|-1",
+   "salescomp-floor-num|-1",
+   "salescomp-floor-num|-1",
+   "salescomp-floor-num|-1"
+  ],
+  "salescomp-corner-unit": [
+   "salescomp-corner-unit|-1",
+   "salescomp-corner-unit|-1",
+   "salescomp-corner-unit|-1",
+   "salescomp-corner-unit|-1"
+  ],
+  "salescomp-levels": [
+   "salescomp-levels|-1",
+   "salescomp-levels|-1",
+   "salescomp-levels|-1",
+   "salescomp-levels|-1"
+  ],
+  "salescomp-beds": [
+   "salescomp-beds|-1",
+   "salescomp-beds|-1",
+   "salescomp-beds|-1",
+   "salescomp-beds|-1"
+  ],
+  "salescomp-baths": [
+   "salescomp-baths|-1",
+   "salescomp-baths|-1",
+   "salescomp-baths|-1",
+   "salescomp-baths|-1"
+  ],
+  "salescomp-units-sf-gla": [
+   "salescomp-units-sf-gla|-1",
+   "salescomp-units-sf-gla|-1",
+   "salescomp-units-sf-gla|-1",
+   "salescomp-units-sf-gla|-1"
+  ],
+  "salescomp-units-sf-gla-nonstd": [
+   "salescomp-units-sf-gla-nonstd|-1",
+   "salescomp-units-sf-gla-nonstd|-1",
+   "salescomp-units-sf-gla-nonstd|-1",
+   "salescomp-units-sf-gla-nonstd|-1"
+  ],
+  "salescomp-units-sf-gla-unfin": [
+   "salescomp-units-sf-gla-unfin|-1",
+   "salescomp-units-sf-gla-unfin|-1",
+   "salescomp-units-sf-gla-unfin|-1",
+   "salescomp-units-sf-gla-unfin|-1"
+  ],
+  "salescomp-units-sf-gla-below-grd": [
+   "salescomp-units-sf-gla-below-grd|-1",
+   "salescomp-units-sf-gla-below-grd|-1",
+   "salescomp-units-sf-gla-below-grd|-1",
+   "salescomp-units-sf-gla-below-grd|-1"
+  ],
+  "salescomp-units-sf-gla-below-grd-nonstd": [
+   "salescomp-units-sf-gla-below-grd-nonstd|-1",
+   "salescomp-units-sf-gla-below-grd-nonstd|-1",
+   "salescomp-units-sf-gla-below-grd-nonstd|-1",
+   "salescomp-units-sf-gla-below-grd-nonstd|-1"
+  ],
+  "salescomp-units-sf-gla-below-grd-unfin": [
+   "salescomp-units-sf-gla-below-grd-unfin|-1",
+   "salescomp-units-sf-gla-below-grd-unfin|-1",
+   "salescomp-units-sf-gla-below-grd-unfin|-1",
+   "salescomp-units-sf-gla-below-grd-unfin|-1"
+  ],
+  "salescomp-disability-features": [
+   "salescomp-disability-features|-1",
+   "salescomp-disability-features|-1",
+   "salescomp-disability-features|-1",
+   "salescomp-disability-features|-1"
+  ],
+  "salescomp-ext-qual-blank-row": [
+   "salescomp-ext-qual-blank-row|-1"
+  ],
+  "salescomp-ext-qual-structure-id": [
+   "salescomp-ext-qual-structure-id|-1",
+   "salescomp-ext-qual-structure-id|-1",
+   "salescomp-ext-qual-structure-id|-1",
+   "salescomp-ext-qual-structure-id|-1"
+  ],
+  "salescomp-ext-qual-quality": [
+   "salescomp-ext-qual-quality|-1",
+   "salescomp-ext-qual-quality|-1",
+   "salescomp-ext-qual-quality|-1",
+   "salescomp-ext-qual-quality|-1"
+  ],
+  "salescomp-ext-qual-ext-walls-trim": [
+   "salescomp-ext-qual-ext-walls-trim|-1",
+   "salescomp-ext-qual-ext-walls-trim|-1",
+   "salescomp-ext-qual-ext-walls-trim|-1",
+   "salescomp-ext-qual-ext-walls-trim|-1"
+  ],
+  "salescomp-ext-qual-foundation": [
+   "salescomp-ext-qual-foundation|-1",
+   "salescomp-ext-qual-foundation|-1",
+   "salescomp-ext-qual-foundation|-1",
+   "salescomp-ext-qual-foundation|-1"
+  ],
+  "salescomp-ext-qual-roof": [
+   "salescomp-ext-qual-roof|-1",
+   "salescomp-ext-qual-roof|-1",
+   "salescomp-ext-qual-roof|-1",
+   "salescomp-ext-qual-roof|-1"
+  ],
+  "salescomp-ext-qual-windows": [
+   "salescomp-ext-qual-windows|-1",
+   "salescomp-ext-qual-windows|-1",
+   "salescomp-ext-qual-windows|-1",
+   "salescomp-ext-qual-windows|-1"
+  ],
+  "salescomp-ext-cond-blank-row": [
+   "salescomp-ext-cond-blank-row|-1"
+  ],
+  "salescomp-ext-cond-condition": [
+   "salescomp-ext-cond-condition|-1",
+   "salescomp-ext-cond-condition|-1",
+   "salescomp-ext-cond-condition|-1",
+   "salescomp-ext-cond-condition|-1"
+  ],
+  "salescomp-ext-cond-walls-trim": [
+   "salescomp-ext-cond-walls-trim|-1",
+   "salescomp-ext-cond-walls-trim|-1",
+   "salescomp-ext-cond-walls-trim|-1",
+   "salescomp-ext-cond-walls-trim|-1"
+  ],
+  "salescomp-ext-cond-foundation": [
+   "salescomp-ext-cond-foundation|-1",
+   "salescomp-ext-cond-foundation|-1",
+   "salescomp-ext-cond-foundation|-1",
+   "salescomp-ext-cond-foundation|-1"
+  ],
+  "salescomp-ext-cond-roof": [
+   "salescomp-ext-cond-roof|-1",
+   "salescomp-ext-cond-roof|-1",
+   "salescomp-ext-cond-roof|-1",
+   "salescomp-ext-cond-roof|-1"
+  ],
+  "salescomp-ext-cond-windows": [
+   "salescomp-ext-cond-windows|-1",
+   "salescomp-ext-cond-windows|-1",
+   "salescomp-ext-cond-windows|-1",
+   "salescomp-ext-cond-windows|-1"
+  ],
+  "salescomp-int-qual-structure-id": [
+   "salescomp-int-qual-structure-id|-1",
+   "salescomp-int-qual-structure-id|-1",
+   "salescomp-int-qual-structure-id|-1",
+   "salescomp-int-qual-structure-id|-1"
+  ],
+  "salescomp-int-qual-quality": [
+   "salescomp-int-qual-quality|-1",
+   "salescomp-int-qual-quality|-1",
+   "salescomp-int-qual-quality|-1",
+   "salescomp-int-qual-quality|-1"
+  ],
+  "salescomp-int-qual-kitchen": [
+   "salescomp-int-qual-kitchen|-1",
+   "salescomp-int-qual-kitchen|-1",
+   "salescomp-int-qual-kitchen|-1",
+   "salescomp-int-qual-kitchen|-1"
+  ],
+  "salescomp-int-qual-baths": [
+   "salescomp-int-qual-baths|-1",
+   "salescomp-int-qual-baths|-1",
+   "salescomp-int-qual-baths|-1",
+   "salescomp-int-qual-baths|-1"
+  ],
+  "salescomp-int-qual-floors": [
+   "salescomp-int-qual-floors|-1",
+   "salescomp-int-qual-floors|-1",
+   "salescomp-int-qual-floors|-1",
+   "salescomp-int-qual-floors|-1"
+  ],
+  "salescomp-int-qual-walls-ceilings": [
+   "salescomp-int-qual-walls-ceilings|-1",
+   "salescomp-int-qual-walls-ceilings|-1",
+   "salescomp-int-qual-walls-ceilings|-1",
+   "salescomp-int-qual-walls-ceilings|-1"
+  ],
+  "salescomp-int-cond-condition": [
+   "salescomp-int-cond-condition|-1",
+   "salescomp-int-cond-condition|-1",
+   "salescomp-int-cond-condition|-1",
+   "salescomp-int-cond-condition|-1"
+  ],
+  "salescomp-int-cond-kitchen": [
+   "salescomp-int-cond-kitchen|-1",
+   "salescomp-int-cond-kitchen|-1",
+   "salescomp-int-cond-kitchen|-1",
+   "salescomp-int-cond-kitchen|-1"
+  ],
+  "salescomp-int-cond-baths": [
+   "salescomp-int-cond-baths|-1",
+   "salescomp-int-cond-baths|-1",
+   "salescomp-int-cond-baths|-1",
+   "salescomp-int-cond-baths|-1"
+  ],
+  "salescomp-int-cond-floors": [
+   "salescomp-int-cond-floors|-1",
+   "salescomp-int-cond-floors|-1",
+   "salescomp-int-cond-floors|-1",
+   "salescomp-int-cond-floors|-1"
+  ],
+  "salescomp-int-cond-walls-ceilings": [
+   "salescomp-int-cond-walls-ceilings|-1",
+   "salescomp-int-cond-walls-ceilings|-1",
+   "salescomp-int-cond-walls-ceilings|-1",
+   "salescomp-int-cond-walls-ceilings|-1"
+  ],
+  "salescomp-adu-qual-blank-row": [
+   "salescomp-adu-qual-blank-row|-1"
+  ],
+  "salescomp-adu-location": [
+   "salescomp-adu-location|-1",
+   "salescomp-adu-location|-1",
+   "salescomp-adu-location|-1",
+   "salescomp-adu-location|-1"
+  ],
+  "salescomp-adu-qual-quality": [
+   "salescomp-adu-qual-quality|-1",
+   "salescomp-adu-qual-quality|-1",
+   "salescomp-adu-qual-quality|-1",
+   "salescomp-adu-qual-quality|-1"
+  ],
+  "salescomp-adu-qual-kitchen": [
+   "salescomp-adu-qual-kitchen|-1",
+   "salescomp-adu-qual-kitchen|-1",
+   "salescomp-adu-qual-kitchen|-1",
+   "salescomp-adu-qual-kitchen|-1"
+  ],
+  "salescomp-int-adu-cond-baths": [
+   "salescomp-int-adu-cond-baths|-1",
+   "salescomp-int-adu-cond-baths|-1",
+   "salescomp-int-adu-cond-baths|-1",
+   "salescomp-int-adu-cond-baths|-1"
+  ],
+  "salescomp-adu-qual-floors": [
+   "salescomp-adu-qual-floors|-1",
+   "salescomp-adu-qual-floors|-1",
+   "salescomp-adu-qual-floors|-1",
+   "salescomp-adu-qual-floors|-1"
+  ],
+  "salescomp-adu-qual-walls-ceilings": [
+   "salescomp-adu-qual-walls-ceilings|-1",
+   "salescomp-adu-qual-walls-ceilings|-1",
+   "salescomp-adu-qual-walls-ceilings|-1",
+   "salescomp-adu-qual-walls-ceilings|-1"
+  ],
+  "salescomp-adu-cond-blank-row": [
+   "salescomp-adu-cond-blank-row|-1"
+  ],
+  "salescomp-adu-cond-condition": [
+   "salescomp-adu-cond-condition|-1",
+   "salescomp-adu-cond-condition|-1",
+   "salescomp-adu-cond-condition|-1",
+   "salescomp-adu-cond-condition|-1"
+  ],
+  "salescomp-adu-cond-kitchen": [
+   "salescomp-adu-cond-kitchen|-1",
+   "salescomp-adu-cond-kitchen|-1",
+   "salescomp-adu-cond-kitchen|-1",
+   "salescomp-adu-cond-kitchen|-1"
+  ],
+  "salescomp-adu-cond-baths": [
+   "salescomp-adu-cond-baths|-1",
+   "salescomp-adu-cond-baths|-1",
+   "salescomp-adu-cond-baths|-1",
+   "salescomp-adu-cond-baths|-1"
+  ],
+  "salescomp-adu-cond-floors": [
+   "salescomp-adu-cond-floors|-1",
+   "salescomp-adu-cond-floors|-1",
+   "salescomp-adu-cond-floors|-1",
+   "salescomp-adu-cond-floors|-1"
+  ],
+  "salescomp-adu-cond-walls-ceilings": [
+   "salescomp-adu-cond-walls-ceilings|-1",
+   "salescomp-adu-cond-walls-ceilings|-1",
+   "salescomp-adu-cond-walls-ceilings|-1",
+   "salescomp-adu-cond-walls-ceilings|-1"
+  ],
+  "salescomp-quality": [
+   "salescomp-quality|-1",
+   "salescomp-quality|-1",
+   "salescomp-quality|-1",
+   "salescomp-quality|-1"
+  ],
+  "salescomp-condition": [
+   "salescomp-condition|-1",
+   "salescomp-condition|-1",
+   "salescomp-condition|-1",
+   "salescomp-condition|-1"
+  ],
+  "salescomp-amenities-header": [
+   "salescomp-amenities-header|-1"
+  ],
+  "salescomp-amenities-bottom-spacer": [
+   "salescomp-amenities-bottom-spacer|-1"
+  ],
+  "salescomp-amenity-outdoor-accessories": [
+   "salescomp-amenity-outdoor-accessories|-1",
+   "salescomp-amenity-outdoor-accessories|-1",
+   "salescomp-amenity-outdoor-accessories|-1",
+   "salescomp-amenity-outdoor-accessories|-1"
+  ],
+  "salescomp-amenity-outdoor-living": [
+   "salescomp-amenity-outdoor-living|-1",
+   "salescomp-amenity-outdoor-living|-1",
+   "salescomp-amenity-outdoor-living|-1",
+   "salescomp-amenity-outdoor-living|-1"
+  ],
+  "salescomp-amenity-water-features": [
+   "salescomp-amenity-water-features|-1",
+   "salescomp-amenity-water-features|-1",
+   "salescomp-amenity-water-features|-1",
+   "salescomp-amenity-water-features|-1"
+  ],
+  "salescomp-amenity-whole-home": [
+   "salescomp-amenity-whole-home|-1",
+   "salescomp-amenity-whole-home|-1",
+   "salescomp-amenity-whole-home|-1",
+   "salescomp-amenity-whole-home|-1"
+  ],
+  "salescomp-amenity-misc": [
+   "salescomp-amenity-misc|-1",
+   "salescomp-amenity-misc|-1",
+   "salescomp-amenity-misc|-1",
+   "salescomp-amenity-misc|-1"
+  ],
+  "salescomp-vehicle-storage": [
+   "salescomp-vehicle-storage|-1",
+   "salescomp-vehicle-storage|-1",
+   "salescomp-vehicle-storage|-1",
+   "salescomp-vehicle-storage|-1"
+  ],
+  "salescomp-outbuilding-header": [
+   "salescomp-outbuilding-header|-1"
+  ],
+  "salescomp-outbuilding-blank-row": [
+   "salescomp-outbuilding-blank-row|-1"
+  ],
+  "salescomp-outbuilding-bottom-spacer": [
+   "salescomp-outbuilding-bottom-spacer|-1"
+  ],
+  "salescomp-outbuilding-type": [
+   "salescomp-outbuilding-type|-1",
+   "salescomp-outbuilding-type|-1",
+   "salescomp-outbuilding-type|-1",
+   "salescomp-outbuilding-type|-1"
+  ],
+  "salescomp-outbuilding-real-property": [
+   "salescomp-outbuilding-real-property|-1",
+   "salescomp-outbuilding-real-property|-1",
+   "salescomp-outbuilding-real-property|-1",
+   "salescomp-outbuilding-real-property|-1"
+  ],
+  "salescomp-outbuilding-building-area": [
+   "salescomp-outbuilding-building-area|-1",
+   "salescomp-outbuilding-building-area|-1",
+   "salescomp-outbuilding-building-area|-1",
+   "salescomp-outbuilding-building-area|-1"
+  ],
+  "salescomp-outbuilding-finished-area": [
+   "salescomp-outbuilding-finished-area|-1",
+   "salescomp-outbuilding-finished-area|-1",
+   "salescomp-outbuilding-finished-area|-1",
+   "salescomp-outbuilding-finished-area|-1"
+  ],
+  "salescomp-outbuilding-unfinished-area": [
+   "salescomp-outbuilding-unfinished-area|-1",
+   "salescomp-outbuilding-unfinished-area|-1",
+   "salescomp-outbuilding-unfinished-area|-1",
+   "salescomp-outbuilding-unfinished-area|-1"
+  ],
+  "salescomp-outbuilding-structure-volume": [
+   "salescomp-outbuilding-structure-volume|-1",
+   "salescomp-outbuilding-structure-volume|-1",
+   "salescomp-outbuilding-structure-volume|-1",
+   "salescomp-outbuilding-structure-volume|-1"
+  ],
+  "salescomp-outbuilding-baths-full": [
+   "salescomp-outbuilding-baths-full|-1",
+   "salescomp-outbuilding-baths-full|-1",
+   "salescomp-outbuilding-baths-full|-1",
+   "salescomp-outbuilding-baths-full|-1"
+  ],
+  "salescomp-outbuilding-baths-half": [
+   "salescomp-outbuilding-baths-half|-1",
+   "salescomp-outbuilding-baths-half|-1",
+   "salescomp-outbuilding-baths-half|-1",
+   "salescomp-outbuilding-baths-half|-1"
+  ],
+  "salescomp-outbuilding-kitchens": [
+   "salescomp-outbuilding-kitchens|-1",
+   "salescomp-outbuilding-kitchens|-1",
+   "salescomp-outbuilding-kitchens|-1",
+   "salescomp-outbuilding-kitchens|-1"
+  ],
+  "salescomp-outbuilding-heating": [
+   "salescomp-outbuilding-heating|-1",
+   "salescomp-outbuilding-heating|-1",
+   "salescomp-outbuilding-heating|-1",
+   "salescomp-outbuilding-heating|-1"
+  ],
+  "salescomp-outbuilding-cooling": [
+   "salescomp-outbuilding-cooling|-1",
+   "salescomp-outbuilding-cooling|-1",
+   "salescomp-outbuilding-cooling|-1",
+   "salescomp-outbuilding-cooling|-1"
+  ],
+  "salescomp-outbuilding-utilities": [
+   "salescomp-outbuilding-utilities|-1",
+   "salescomp-outbuilding-utilities|-1",
+   "salescomp-outbuilding-utilities|-1",
+   "salescomp-outbuilding-utilities|-1"
+  ],
+  "salescomp-list-price": [
+   "salescomp-list-price|-1",
+   "salescomp-list-price|-1",
+   "salescomp-list-price|-1",
+   "salescomp-list-price|-1"
+  ],
+  "salescomp-contract-price": [
+   "salescomp-contract-price|-1",
+   "salescomp-contract-price|-1",
+   "salescomp-contract-price|-1",
+   "salescomp-contract-price|-1"
+  ],
+  "salescomp-sale-price": [
+   "salescomp-sale-price|-1",
+   "salescomp-sale-price|-1",
+   "salescomp-sale-price|-1",
+   "salescomp-sale-price|-1"
+  ],
+  "salescomp-netadj-adj": [
+   "salescomp-netadj-adj|-1",
+   "salescomp-netadj-adj|-1",
+   "salescomp-netadj-adj|-1",
+   "salescomp-netadj-adj|-1"
+  ],
+  "salescomp-netadj-per-unit-adj": [
+   "salescomp-netadj-per-unit-adj|-1",
+   "salescomp-netadj-per-unit-adj|-1",
+   "salescomp-netadj-per-unit-adj|-1",
+   "salescomp-netadj-per-unit-adj|-1"
+  ],
+  "salescomp-netadj-price-per-bed-adj": [
+   "salescomp-netadj-price-per-bed-adj|-1",
+   "salescomp-netadj-price-per-bed-adj|-1",
+   "salescomp-netadj-price-per-bed-adj|-1",
+   "salescomp-netadj-price-per-bed-adj|-1"
+  ],
+  "salescomp-netadj-price-grs-bld-fin-area-adj": [
+   "salescomp-netadj-price-grs-bld-fin-area-adj|-1",
+   "salescomp-netadj-price-grs-bld-fin-area-adj|-1",
+   "salescomp-netadj-price-grs-bld-fin-area-adj|-1",
+   "salescomp-netadj-price-grs-bld-fin-area-adj|-1"
+  ],
+  "salescomp-netadj-price-per-fin-abv-grd-adj": [
+   "salescomp-netadj-price-per-fin-abv-grd-adj|-1",
+   "salescomp-netadj-price-per-fin-abv-grd-adj|-1",
+   "salescomp-netadj-price-per-fin-abv-grd-adj|-1",
+   "salescomp-netadj-price-per-fin-abv-grd-adj|-1"
+  ],
+  "salescomp-netadj-price-adj": [
+   "salescomp-netadj-price-adj|-1",
+   "salescomp-netadj-price-adj|-1",
+   "salescomp-netadj-price-adj|-1",
+   "salescomp-netadj-price-adj|-1"
+  ],
+  "salescomp-netadj-comp-weight-adj": [
+   "salescomp-netadj-comp-weight-adj|-1",
+   "salescomp-netadj-comp-weight-adj|-1",
+   "salescomp-netadj-comp-weight-adj|-1",
+   "salescomp-netadj-comp-weight-adj|-1"
+  ],
+  "salescomp-ext-qual-cond-header": [
+   "salescomp-ext-qual-cond-header|-1"
+  ],
+  "salescomp-adu-qual-cond-header": [
+   "salescomp-adu-qual-cond-header|-1"
+  ],
+  "rentalunitcomp-prox1": [
+   "rentalunitcomp-prox1|-1",
+   "rentalunitcomp-prox1|-1",
+   "rentalunitcomp-prox1|-1"
+  ],
+  "rentalunitcomp-marketarea": [
+   "rentalunitcomp-marketarea|-1",
+   "rentalunitcomp-marketarea|-1",
+   "rentalunitcomp-marketarea|-1"
+  ],
+  "rentalunitcomp-proj-name": [
+   "rentalunitcomp-proj-name|-1",
+   "rentalunitcomp-proj-name|-1",
+   "rentalunitcomp-proj-name|-1"
+  ],
+  "rentalunitcomp-proj-amenities": [
+   "rentalunitcomp-proj-amenities|-1",
+   "rentalunitcomp-proj-amenities|-1",
+   "rentalunitcomp-proj-amenities|-1"
+  ],
+  "rentalunitcomp-site-influence": [
+   "rentalunitcomp-site-influence|-1",
+   "rentalunitcomp-site-influence|-1",
+   "rentalunitcomp-site-influence|-1"
+  ],
+  "rentalunitcomp-unit-view": [
+   "rentalunitcomp-unit-view|-1",
+   "rentalunitcomp-unit-view|-1",
+   "rentalunitcomp-unit-view|-1"
+  ],
+  "rentalunitcomp-floor-num": [
+   "rentalunitcomp-floor-num|-1",
+   "rentalunitcomp-floor-num|-1",
+   "rentalunitcomp-floor-num|-1"
+  ],
+  "rentalunitcomp-st-sitsize": [
+   "rentalunitcomp-st-sitsize|-1",
+   "rentalunitcomp-st-sitsize|-1",
+   "rentalunitcomp-st-sitsize|-1"
+  ],
+  "rentalunitcomp-grade-level": [
+   "rentalunitcomp-grade-level|-1",
+   "rentalunitcomp-grade-level|-1",
+   "rentalunitcomp-grade-level|-1"
+  ],
+  "rentalunitcomp-int-cond-condition": [
+   "rentalunitcomp-int-cond-condition|-1",
+   "rentalunitcomp-int-cond-condition|-1",
+   "rentalunitcomp-int-cond-condition|-1"
+  ],
+  "rentalunitcomp-beds": [
+   "rentalunitcomp-beds|-1",
+   "rentalunitcomp-beds|-1",
+   "rentalunitcomp-beds|-1"
+  ],
+  "rentalunitcomp-baths": [
+   "rentalunitcomp-baths|-1",
+   "rentalunitcomp-baths|-1",
+   "rentalunitcomp-baths|-1"
+  ],
+  "rentalunitcomp-sf-gla": [
+   "rentalunitcomp-sf-gla|-1",
+   "rentalunitcomp-sf-gla|-1",
+   "rentalunitcomp-sf-gla|-1"
+  ],
+  "rentalunitcomp-furnished": [
+   "rentalunitcomp-furnished|-1",
+   "rentalunitcomp-furnished|-1",
+   "rentalunitcomp-furnished|-1"
+  ],
+  "rentalunitcomp-site-owned-in-common": [
+   "rentalunitcomp-site-owned-in-common|-1",
+   "rentalunitcomp-site-owned-in-common|-1",
+   "rentalunitcomp-site-owned-in-common|-1"
+  ],
+  "rentalunitcomp-utils-included": [
+   "rentalunitcomp-utils-included|-1",
+   "rentalunitcomp-utils-included|-1",
+   "rentalunitcomp-utils-included|-1"
+  ],
+  "rentalunitcomp-rent-control": [
+   "rentalunitcomp-rent-control|-1",
+   "rentalunitcomp-rent-control|-1",
+   "rentalunitcomp-rent-control|-1"
+  ],
+  "rentalunitcomp-rent-conc": [
+   "rentalunitcomp-rent-conc|-1",
+   "rentalunitcomp-rent-conc|-1",
+   "rentalunitcomp-rent-conc|-1"
+  ],
+  "rentalunitcomp-vehicle-storage": [
+   "rentalunitcomp-vehicle-storage|-1",
+   "rentalunitcomp-vehicle-storage|-1",
+   "rentalunitcomp-vehicle-storage|-1"
+  ],
+  "rentalunitcomp-smry-rent-per-fin-area": [
+   "rentalunitcomp-smry-rent-per-fin-area|-1",
+   "rentalunitcomp-smry-rent-per-fin-area|-1",
+   "rentalunitcomp-smry-rent-per-fin-area|-1"
+  ],
+  "rentalunitcomp-smry-act-rent": [
+   "rentalunitcomp-smry-act-rent|-1",
+   "rentalunitcomp-smry-act-rent|-1",
+   "rentalunitcomp-smry-act-rent|-1"
+  ],
+  "rentalunitcomp-smry-ovrl-comp-to-sub": [
+   "rentalunitcomp-smry-ovrl-comp-to-sub|-1",
+   "rentalunitcomp-smry-ovrl-comp-to-sub|-1",
+   "rentalunitcomp-smry-ovrl-comp-to-sub|-1"
+  ],
+  "rentalunitcomp-smry-adj-rent": [
+   "rentalunitcomp-smry-adj-rent|-1",
+   "rentalunitcomp-smry-adj-rent|-1",
+   "rentalunitcomp-smry-adj-rent|-1"
+  ],
+  "rentalunitcomp-smry-opn-mkt-rent": [
+   "rentalunitcomp-smry-opn-mkt-rent|-1",
+   "rentalunitcomp-smry-opn-mkt-rent|-1",
+   "rentalunitcomp-smry-opn-mkt-rent|-1"
+  ],
+  "rentalunitcomp-smry-comp-weight": [
+   "rentalunitcomp-smry-comp-weight|-1",
+   "rentalunitcomp-smry-comp-weight|-1",
+   "rentalunitcomp-smry-comp-weight|-1"
+  ],
+  "sales-comparison-add-properties-boxheader": [
+   "sales-comparison-add-properties-boxheader|0",
+   "sales-comparison-add-properties-boxheader|0",
+   "sales-comparison-add-properties-boxheader|0"
+  ],
+  "sales-comparison-add-property-hidden": [
+   "sales-comparison-add-property-hidden|0",
+   "sales-comparison-add-property-hidden|0",
+   "sales-comparison-add-property-hidden|0"
+  ],
+  "sales-comp-add-prop-table": [
+   "sales-comp-add-prop-table|0",
+   "sales-comp-add-prop-table|0",
+   "sales-comp-add-prop-table|0"
+  ],
+  "GC1-label-data-source-assessor-id": [
+   "GC1-label-data-source-assessor-id|0",
+   "GC1-label-data-source-assessor-id|0",
+   "GC1-label-data-source-assessor-id|0"
+  ],
+  "GC1-input-data-source-assessor-id": [
+   "GC1-input-data-source-assessor-id|0",
+   "GC1-input-data-source-assessor-id|0",
+   "GC1-input-data-source-assessor-id|0"
+  ],
+  "GC1-label-data-source-mls-id": [
+   "GC1-label-data-source-mls-id|0",
+   "GC1-label-data-source-mls-id|0",
+   "GC1-label-data-source-mls-id|0"
+  ],
+  "GC1-input-data-source-mls-id": [
+   "GC1-input-data-source-mls-id|0",
+   "GC1-input-data-source-mls-id|0",
+   "GC1-input-data-source-mls-id|0"
+  ],
+  "GC2-label-data-source-assessor-id": [
+   "GC2-label-data-source-assessor-id|0",
+   "GC2-label-data-source-assessor-id|0",
+   "GC2-label-data-source-assessor-id|0"
+  ],
+  "GC2-input-data-source-assessor-id": [
+   "GC2-input-data-source-assessor-id|0",
+   "GC2-input-data-source-assessor-id|0",
+   "GC2-input-data-source-assessor-id|0"
+  ],
+  "GC2-label-data-source-mls-id": [
+   "GC2-label-data-source-mls-id|0",
+   "GC2-label-data-source-mls-id|0",
+   "GC2-label-data-source-mls-id|0"
+  ],
+  "GC2-input-data-source-mls-id": [
+   "GC2-input-data-source-mls-id|0",
+   "GC2-input-data-source-mls-id|0",
+   "GC2-input-data-source-mls-id|0"
+  ],
+  "GC3-label-data-source-assessor-id": [
+   "GC3-label-data-source-assessor-id|0",
+   "GC3-label-data-source-assessor-id|0",
+   "GC3-label-data-source-assessor-id|0"
+  ],
+  "GC3-input-data-source-assessor-id": [
+   "GC3-input-data-source-assessor-id|0",
+   "GC3-input-data-source-assessor-id|0",
+   "GC3-input-data-source-assessor-id|0"
+  ],
+  "GC3-label-data-source-mls-id": [
+   "GC3-label-data-source-mls-id|0",
+   "GC3-label-data-source-mls-id|0",
+   "GC3-label-data-source-mls-id|0"
+  ],
+  "GC3-input-data-source-mls-id": [
+   "GC3-input-data-source-mls-id|0",
+   "GC3-input-data-source-mls-id|0",
+   "GC3-input-data-source-mls-id|0"
+  ],
+  "GC1-label-contract-price": [
+   "GC1-label-contract-price|0",
+   "GC1-label-contract-price|0",
+   "GC1-label-contract-price|0"
+  ],
+  "GC1-input-contract-price": [
+   "GC1-input-contract-price|0",
+   "GC1-input-contract-price|0",
+   "GC1-input-contract-price|0"
+  ],
+  "GC2-label-contract-price": [
+   "GC2-label-contract-price|0",
+   "GC2-label-contract-price|0",
+   "GC2-label-contract-price|0"
+  ],
+  "GC2-input-contract-price": [
+   "GC2-input-contract-price|0",
+   "GC2-input-contract-price|0",
+   "GC2-input-contract-price|0"
+  ],
+  "GC3-label-contract-price": [
+   "GC3-label-contract-price|0",
+   "GC3-label-contract-price|0",
+   "GC3-label-contract-price|0"
+  ],
+  "GC3-input-contract-price": [
+   "GC3-input-contract-price|0",
+   "GC3-input-contract-price|0",
+   "GC3-input-contract-price|0"
+  ],
+  "GSU-label-concession-amount": [
+   "GSU-label-concession-amount|0",
+   "GSU-label-concession-amount|0",
+   "GSU-label-concession-amount|0"
+  ],
+  "GSU-input-concession-amount": [
+   "GSU-input-concession-amount|0",
+   "GSU-input-concession-amount|0",
+   "GSU-input-concession-amount|0"
+  ],
+  "GC1-label-concession-amount": [
+   "GC1-label-concession-amount|0",
+   "GC1-label-concession-amount|0",
+   "GC1-label-concession-amount|0"
+  ],
+  "GC1-input-concession-amount": [
+   "GC1-input-concession-amount|0",
+   "GC1-input-concession-amount|0",
+   "GC1-input-concession-amount|0"
+  ],
+  "GC2-label-concession-amount": [
+   "GC2-label-concession-amount|0",
+   "GC2-label-concession-amount|0",
+   "GC2-label-concession-amount|0"
+  ],
+  "GC2-input-concession-amount": [
+   "GC2-input-concession-amount|0",
+   "GC2-input-concession-amount|0",
+   "GC2-input-concession-amount|0"
+  ],
+  "GC3-label-concession-amount": [
+   "GC3-label-concession-amount|0",
+   "GC3-label-concession-amount|0",
+   "GC3-label-concession-amount|0"
+  ],
+  "GC3-input-concession-amount": [
+   "GC3-input-concession-amount|0",
+   "GC3-input-concession-amount|0",
+   "GC3-input-concession-amount|0"
+  ],
+  "GC1-label-contract-date": [
+   "GC1-label-contract-date|0",
+   "GC1-label-contract-date|0",
+   "GC1-label-contract-date|0"
+  ],
+  "GC1-input-contract-date": [
+   "GC1-input-contract-date|0",
+   "GC1-input-contract-date|0",
+   "GC1-input-contract-date|0"
+  ],
+  "GC2-label-contract-date": [
+   "GC2-label-contract-date|0",
+   "GC2-label-contract-date|0",
+   "GC2-label-contract-date|0"
+  ],
+  "GC2-input-contract-date": [
+   "GC2-input-contract-date|0",
+   "GC2-input-contract-date|0",
+   "GC2-input-contract-date|0"
+  ],
+  "GC3-label-contract-date": [
+   "GC3-label-contract-date|0",
+   "GC3-label-contract-date|0",
+   "GC3-label-contract-date|0"
+  ],
+  "GC3-input-contract-date": [
+   "GC3-input-contract-date|0",
+   "GC3-input-contract-date|0",
+   "GC3-input-contract-date|0"
+  ],
+  "GSU-label-native-am-lands-type": [
+   "GSU-label-native-am-lands-type|0",
+   "GSU-label-native-am-lands-type|0",
+   "GSU-label-native-am-lands-type|0"
+  ],
+  "GSU-input-native-am-lands-type": [
+   "GSU-input-native-am-lands-type|0",
+   "GSU-input-native-am-lands-type|0",
+   "GSU-input-native-am-lands-type|0"
+  ],
+  "GC1-label-native-am-lands-type": [
+   "GC1-label-native-am-lands-type|0",
+   "GC1-label-native-am-lands-type|0",
+   "GC1-label-native-am-lands-type|0"
+  ],
+  "GC1-input-native-am-lands-type": [
+   "GC1-input-native-am-lands-type|0",
+   "GC1-input-native-am-lands-type|0",
+   "GC1-input-native-am-lands-type|0"
+  ],
+  "GC2-label-native-am-lands-type": [
+   "GC2-label-native-am-lands-type|0",
+   "GC2-label-native-am-lands-type|0",
+   "GC2-label-native-am-lands-type|0"
+  ],
+  "GC2-input-native-am-lands-type": [
+   "GC2-input-native-am-lands-type|0",
+   "GC2-input-native-am-lands-type|0",
+   "GC2-input-native-am-lands-type|0"
+  ],
+  "GC3-label-native-am-lands-type": [
+   "GC3-label-native-am-lands-type|0",
+   "GC3-label-native-am-lands-type|0",
+   "GC3-label-native-am-lands-type|0"
+  ],
+  "GC3-input-native-am-lands-type": [
+   "GC3-input-native-am-lands-type|0",
+   "GC3-input-native-am-lands-type|0",
+   "GC3-input-native-am-lands-type|0"
+  ],
+  "salescomp-gsu-proj-name": [
+   "salescomp-gsu-proj-name|0",
+   "salescomp-gsu-proj-name|0",
+   "salescomp-gsu-proj-name|0"
+  ],
+  "GC1-roof-condition-label": [
+   "GC1-roof-condition-label|0",
+   "GC1-roof-condition-label|0",
+   "GC1-roof-condition-label|0"
+  ],
+  "GC1-roof-condition-input": [
+   "GC1-roof-condition-input|0",
+   "GC1-roof-condition-input|0",
+   "GC1-roof-condition-input|0"
+  ],
+  "GC2-roof-condition-label": [
+   "GC2-roof-condition-label|0",
+   "GC2-roof-condition-label|0",
+   "GC2-roof-condition-label|0"
+  ],
+  "GC2-roof-condition-input": [
+   "GC2-roof-condition-input|0",
+   "GC2-roof-condition-input|0",
+   "GC2-roof-condition-input|0"
+  ],
+  "GC3-roof-condition-label": [
+   "GC3-roof-condition-label|0",
+   "GC3-roof-condition-label|0",
+   "GC3-roof-condition-label|0"
+  ],
+  "GC3-roof-condition-input": [
+   "GC3-roof-condition-input|0",
+   "GC3-roof-condition-input|0",
+   "GC3-roof-condition-input|0"
+  ],
+  "GC1-label-influence-water-type": [
+   "GC1-label-influence-water-type|0",
+   "GC1-label-influence-water-type|0",
+   "GC1-label-influence-water-type|0"
+  ],
+  "GC1-input-influence-water-type": [
+   "GC1-input-influence-water-type|0",
+   "GC1-input-influence-water-type|0",
+   "GC1-input-influence-water-type|0"
+  ],
+  "GC1-label-influence-private-access": [
+   "GC1-label-influence-private-access|0",
+   "GC1-label-influence-private-access|0",
+   "GC1-label-influence-private-access|0"
+  ],
+  "GC1-input-influence-private-access": [
+   "GC1-input-influence-private-access|0",
+   "GC1-input-influence-private-access|0",
+   "GC1-input-influence-private-access|0"
+  ],
+  "GC2-label-influence-water-type": [
+   "GC2-label-influence-water-type|0",
+   "GC2-label-influence-water-type|0",
+   "GC2-label-influence-water-type|0"
+  ],
+  "GC2-input-influence-water-type": [
+   "GC2-input-influence-water-type|0",
+   "GC2-input-influence-water-type|0",
+   "GC2-input-influence-water-type|0"
+  ],
+  "GC2-label-influence-private-access": [
+   "GC2-label-influence-private-access|0",
+   "GC2-label-influence-private-access|0",
+   "GC2-label-influence-private-access|0"
+  ],
+  "GC2-input-influence-private-access": [
+   "GC2-input-influence-private-access|0",
+   "GC2-input-influence-private-access|0",
+   "GC2-input-influence-private-access|0"
+  ],
+  "GC3-label-influence-water-type": [
+   "GC3-label-influence-water-type|0",
+   "GC3-label-influence-water-type|0",
+   "GC3-label-influence-water-type|0"
+  ],
+  "GC3-input-influence-water-type": [
+   "GC3-input-influence-water-type|0",
+   "GC3-input-influence-water-type|0",
+   "GC3-input-influence-water-type|0"
+  ],
+  "GC3-label-influence-private-access": [
+   "GC3-label-influence-private-access|0",
+   "GC3-label-influence-private-access|0",
+   "GC3-label-influence-private-access|0"
+  ],
+  "GC3-input-influence-private-access": [
+   "GC3-input-influence-private-access|0",
+   "GC3-input-influence-private-access|0",
+   "GC3-input-influence-private-access|0"
+  ],
+  "GSU-label-adu-desc": [
+   "GSU-label-adu-desc|0",
+   "GSU-label-adu-desc|0",
+   "GSU-label-adu-desc|0"
+  ],
+  "GSU-input-adu-desc": [
+   "GSU-input-adu-desc|0",
+   "GSU-input-adu-desc|0",
+   "GSU-input-adu-desc|0"
+  ],
+  "GC1-label-adu-desc": [
+   "GC1-label-adu-desc|0",
+   "GC1-label-adu-desc|0",
+   "GC1-label-adu-desc|0"
+  ],
+  "GC1-input-adu-desc": [
+   "GC1-input-adu-desc|0",
+   "GC1-input-adu-desc|0",
+   "GC1-input-adu-desc|0"
+  ],
+  "GC2-label-adu-desc": [
+   "GC2-label-adu-desc|0",
+   "GC2-label-adu-desc|0",
+   "GC2-label-adu-desc|0"
+  ],
+  "GC2-input-adu-desc": [
+   "GC2-input-adu-desc|0",
+   "GC2-input-adu-desc|0",
+   "GC2-input-adu-desc|0"
+  ],
+  "GC3-label-adu-desc": [
+   "GC3-label-adu-desc|0",
+   "GC3-label-adu-desc|0",
+   "GC3-label-adu-desc|0"
+  ],
+  "GC3-input-adu-desc": [
+   "GC3-input-adu-desc|0",
+   "GC3-input-adu-desc|0",
+   "GC3-input-adu-desc|0"
+  ],
+  "sales-comp-map-exhibit-section": [
+   "sales-comp-map-exhibit-section|0",
+   "sales-comp-map-exhibit-section|0",
+   "sales-comp-map-exhibit-section|0"
+  ],
+  "flow-ri-developed-yes": [
+   "flow-ri-developed-yes|0",
+   "flow-ri-developed-yes|0"
+  ],
+  "flow-ri-developed-no": [
+   "flow-ri-developed-no|0",
+   "flow-ri-developed-no|0"
+  ],
+  "map-yes-no-labels": [
+   "map-yes-no-labels|0",
+   "map-yes-no-labels|0",
+   "map-yes-no-labels|0",
+   "map-yes-no-labels|0"
+  ],
+  "map-rentcomp-in-map": [
+   "map-rentcomp-in-map|0",
+   "map-rentcomp-in-map|0"
+  ],
+  "rental-info-map-exhibits": [
+   "rental-info-map-exhibits|0"
+  ],
+  "flow-ia-developed-yes": [
+   "flow-ia-developed-yes|0",
+   "flow-ia-developed-yes|0"
+  ],
+  "flow-ia-developed-no": [
+   "flow-ia-developed-no|0",
+   "flow-ia-developed-no|0"
+  ],
+  "map-grmcomp-in-map": [
+   "map-grmcomp-in-map|0",
+   "map-grmcomp-in-map|0"
+  ],
+  "flow-ia-rent-schedule-dev-by-appraiser-show": [
+   "flow-ia-rent-schedule-dev-by-appraiser-show|0",
+   "flow-ia-rent-schedule-dev-by-appraiser-show|0"
+  ],
+  "flow-ia-rent-schedule-dev-by-appraiser-hide": [
+   "flow-ia-rent-schedule-dev-by-appraiser-hide|0",
+   "flow-ia-rent-schedule-dev-by-appraiser-hide|0"
+  ],
+  "flow-ia-rent-schedule-not-dev-by-appraiser": [
+   "flow-ia-rent-schedule-not-dev-by-appraiser|0",
+   "flow-ia-rent-schedule-not-dev-by-appraiser|0"
+  ],
+  "GR1-label-data-source-assessor-id": [
+   "GR1-label-data-source-assessor-id|0",
+   "GR1-label-data-source-assessor-id|0"
+  ],
+  "GR1-input-data-source-assessor-id": [
+   "GR1-input-data-source-assessor-id|0",
+   "GR1-input-data-source-assessor-id|0"
+  ],
+  "GR1-label-data-source-mls-id": [
+   "GR1-label-data-source-mls-id|0",
+   "GR1-label-data-source-mls-id|0"
+  ],
+  "GR1-input-data-source-mls-id": [
+   "GR1-input-data-source-mls-id|0",
+   "GR1-input-data-source-mls-id|0"
+  ],
+  "GR2-label-data-source-assessor-id": [
+   "GR2-label-data-source-assessor-id|0",
+   "GR2-label-data-source-assessor-id|0"
+  ],
+  "GR2-input-data-source-assessor-id": [
+   "GR2-input-data-source-assessor-id|0",
+   "GR2-input-data-source-assessor-id|0"
+  ],
+  "GR2-label-data-source-mls-id": [
+   "GR2-label-data-source-mls-id|0",
+   "GR2-label-data-source-mls-id|0"
+  ],
+  "GR2-input-data-source-mls-id": [
+   "GR2-input-data-source-mls-id|0",
+   "GR2-input-data-source-mls-id|0"
+  ],
+  "GR3-label-data-source-assessor-id": [
+   "GR3-label-data-source-assessor-id|0",
+   "GR3-label-data-source-assessor-id|0"
+  ],
+  "GR3-input-data-source-assessor-id": [
+   "GR3-input-data-source-assessor-id|0",
+   "GR3-input-data-source-assessor-id|0"
+  ],
+  "GR3-label-data-source-mls-id": [
+   "GR3-label-data-source-mls-id|0",
+   "GR3-label-data-source-mls-id|0"
+  ],
+  "GR3-input-data-source-mls-id": [
+   "GR3-input-data-source-mls-id|0",
+   "GR3-input-data-source-mls-id|0"
+  ],
+  "GRU_GBFA_ROW": [
+   "GRU_GBFA_ROW|0"
+  ],
+  "GRU_ADU_ROW": [
+   "GRU_ADU_ROW|0"
+  ],
+  "GRU_RENT_CONTROL_ROW": [
+   "GRU_RENT_CONTROL_ROW|0"
+  ],
+  "ia-map-exhibits": [
+   "ia-map-exhibits|0"
+  ],
+  "ob1-utility": [
+   "ob1-utility|0"
+  ],
+  "ob1-utility-print-flow": [
+   "ob1-utility-print-flow|0"
+  ],
+  "ob1-outbuilding-details-section": [
+   "ob1-outbuilding-details-section|0"
+  ],
+  "ob1-outbuilding-mechanical-section": [
+   "ob1-outbuilding-mechanical-section|0"
+  ],
+  "ob1-addd-section": [
+   "ob1-addd-section|0"
+  ],
+  "ob1-unit-in-structure": [
+   "ob1-unit-in-structure|0"
+  ],
+  "ob1-structure-volume": [
+   "ob1-structure-volume|0"
+  ],
+  "ob1-gross-building-area": [
+   "ob1-gross-building-area|0"
+  ],
+  "ob1-outbuilding-gross-label-value": [
+   "ob1-outbuilding-gross-label-value|0"
+  ],
+  "ob1-outbuilding-heating-yesno": [
+   "ob1-outbuilding-heating-yesno|0"
+  ],
+  "ob1-outbuilding-heating-checkbox": [
+   "ob1-outbuilding-heating-checkbox|0"
+  ],
+  "ob1-outbuilding-cooling-checkbox": [
+   "ob1-outbuilding-cooling-checkbox|0"
+  ],
+  "ob1-att-to-perm-found": [
+   "ob1-att-to-perm-found|0"
+  ],
+  "ob1-outbuilding-other-mechanical": [
+   "ob1-outbuilding-other-mechanical|0"
+  ],
+  "ob1-outbuilding-commentary-section": [
+   "ob1-outbuilding-commentary-section|0"
+  ],
+  "ob1-outbuilding-defects-subsection": [
+   "ob1-outbuilding-defects-subsection|0"
+  ],
+  "ob1-flow-outbuilding-apparent-defects-none": [
+   "ob1-flow-outbuilding-apparent-defects-none|0"
+  ],
+  "sum-final-cond-statement-section": [
+   "sum-final-cond-statement-section|0"
+  ],
+  "summary-borrower": [
+   "summary-borrower|0"
+  ],
+  "summary-contract-price": [
+   "summary-contract-price|0"
+  ],
+  "summary-as-is-condition-section": [
+   "summary-as-is-condition-section|0"
+  ],
+  "construction_section_row": [
+   "construction_section_row|0",
+   "construction_section_row|0"
+  ],
+  "construction_section_row-print-flow": [
+   "construction_section_row-print-flow|0"
+  ],
+  "structure_design_row": [
+   "structure_design_row|0"
+  ],
+  "project_deficiencies_row": [
+   "project_deficiencies_row|0"
+  ],
+  "property_rights_appraised": [
+   "property_rights_appraised|0"
+  ],
+  "property_restrict": [
+   "property_restrict|0"
+  ],
+  "property_encroachment": [
+   "property_encroachment|0"
+  ],
+  "hud_data_plate": [
+   "hud_data_plate|0"
+  ],
+  "hud_label_present": [
+   "hud_label_present|0"
+  ],
+  "sum-addd-as-is-overall-condition": [
+   "sum-addd-as-is-overall-condition|0"
+  ],
+  "sum-addd-site-section-box": [
+   "sum-addd-site-section-box|0"
+  ],
+  "sum-addd-vehicle-storage-section-box": [
+   "sum-addd-vehicle-storage-section-box|0"
+  ],
+  "sum-addd-subject-property-amenities-section-box": [
+   "sum-addd-subject-property-amenities-section-box|0"
+  ],
+  "sum-addd-dw-exterior-1": [
+   "sum-addd-dw-exterior-1|0"
+  ],
+  "sum-addd-ui-interior-1": [
+   "sum-addd-ui-interior-1|0"
+  ],
+  "flow-sum-apparent-defects": [
+   "flow-sum-apparent-defects|0"
+  ],
+  "flow-sum-apparent-defects-none": [
+   "flow-sum-apparent-defects-none|0"
+  ],
+  "flow-sum-apparent-defects-requiring-action-none": [
+   "flow-sum-apparent-defects-requiring-action-none|0"
+  ],
+  "sum-addd-itemized-total-cost": [
+   "sum-addd-itemized-total-cost|0"
+  ],
+  "sum-addd-estimated-total-cost": [
+   "sum-addd-estimated-total-cost|0"
+  ],
+  "contact-addr": [
+   "contact-addr|0",
+   "contact-addr|0"
+  ],
+  "contact-address-print-flow": [
+   "contact-address-print-flow|0",
+   "contact-address-print-flow|0"
+  ],
+  "appraiser-address": [
+   "appraiser-address|0",
+   "appraiser-address|0"
+  ],
+  "appraiser-address-print-flow": [
+   "appraiser-address-print-flow|0",
+   "appraiser-address-print-flow|0"
+  ],
+  "supervisor-company-address": [
+   "supervisor-company-address|0",
+   "supervisor-company-address|0"
+  ],
+  "supervisor-company-address-print-flow": [
+   "supervisor-company-address-print-flow|0",
+   "supervisor-company-address-print-flow|0"
+  ],
+  "ord-contact": [
+   "ord-contact|0"
+  ],
+  "contact": [
+   "contact|0"
+  ],
+  "ord-contact-client-ref-id": [
+   "ord-contact-client-ref-id|0",
+   "ord-contact-client-ref-id|0",
+   "ord-contact-client-ref-id|0",
+   "ord-contact-client-ref-id|0",
+   "ord-contact-client-ref-id|0"
+  ],
+  "amc-fee": [
+   "amc-fee|0",
+   "amc-fee|0"
+  ],
+  "government-agency-appraisal-indicator": [
+   "government-agency-appraisal-indicator|0",
+   "government-agency-appraisal-indicator|0"
+  ],
+  "investor-requested-identification-code": [
+   "investor-requested-identification-code|0",
+   "investor-requested-identification-code|0"
+  ],
+  "borrower-individual": [
+   "borrower-individual|0",
+   "borrower-individual|0"
+  ],
+  "borrower-legal-entity": [
+   "borrower-legal-entity|0",
+   "borrower-legal-entity|0"
+  ],
+  "seller-individual": [
+   "seller-individual|0",
+   "seller-individual|0"
+  ],
+  "seller-legal-entity": [
+   "seller-legal-entity|0",
+   "seller-legal-entity|0"
+  ],
+  "seller": [
+   "seller|0",
+   "seller|0"
+  ],
+  "subcurowner-individual": [
+   "subcurowner-individual|0",
+   "subcurowner-individual|0"
+  ],
+  "subcurowner-legal-entity": [
+   "subcurowner-legal-entity|0",
+   "subcurowner-legal-entity|0"
+  ],
+  "pdr": [
+   "pdr|0",
+   "pdr|0"
+  ],
+  "ord-contact-creds": [
+   "ord-contact-creds|0",
+   "ord-contact-creds|0",
+   "ord-contact-creds|0"
+  ],
+  "ord-contact-amc-ref-id": [
+   "ord-contact-amc-ref-id|0",
+   "ord-contact-amc-ref-id|0",
+   "ord-contact-amc-ref-id|0"
+  ],
+  "ord-label-client-prefix": [
+   "ord-label-client-prefix|0",
+   "ord-label-client-prefix|0",
+   "ord-label-client-prefix|0"
+  ],
+  "appraiser-creds": [
+   "appraiser-creds|0",
+   "appraiser-creds|0"
+  ],
+  "supervisor-creds": [
+   "supervisor-creds|0",
+   "supervisor-creds|0"
+  ],
+  "supervisor-va-id": [
+   "supervisor-va-id|0",
+   "supervisor-va-id|0"
+  ],
+  "supervisor-employee-type": [
+   "supervisor-employee-type|0",
+   "supervisor-employee-type|0"
+  ],
+  "supervisor-fha-id": [
+   "supervisor-fha-id|0",
+   "supervisor-fha-id|0"
+  ],
+  "srpa-creds": [
+   "srpa-creds|0",
+   "srpa-creds|0"
+  ],
+  "agency-case-ref-id": [
+   "agency-case-ref-id|0"
+  ],
+  "appraiser-fee": [
+   "appraiser-fee|0",
+   "appraiser-fee|0"
+  ],
+  "assignment-documents": [
+   "assignment-documents|0"
+  ],
+  "assignment-graphs": [
+   "assignment-graphs|0"
+  ],
+  "sub-prop-address": [
+   "sub-prop-address|0"
+  ],
+  "sub-prop-address-print-flow": [
+   "sub-prop-address-print-flow|0"
+  ],
+  "alt-subpropaddress": [
+   "alt-subpropaddress|0"
+  ],
+  "sub-prop-alt-address-print-flow": [
+   "sub-prop-alt-address-print-flow|0"
+  ],
+  "special-tax-assessments-desc": [
+   "special-tax-assessments-desc|0"
+  ],
+  "construction-stage": [
+   "construction-stage|0"
+  ],
+  "legal-text": [
+   "legal-text|0"
+  ],
+  "legal-photo": [
+   "legal-photo|0"
+  ],
+  "ground-rent-annual-amount": [
+   "ground-rent-annual-amount|0"
+  ],
+  "graa-renewable": [
+   "graa-renewable|0"
+  ],
+  "ground-rent-marketability": [
+   "ground-rent-marketability|0"
+  ],
+  "dwellings-containing-units": [
+   "dwellings-containing-units|0"
+  ],
+  "graa-terms": [
+   "graa-terms|0"
+  ],
+  "graa-expires": [
+   "graa-expires|0"
+  ],
+  "community-land-trust": [
+   "community-land-trust|0"
+  ],
+  "native-american-land": [
+   "native-american-land|0"
+  ],
+  "mineral-rights-leased": [
+   "mineral-rights-leased|0"
+  ],
+  "description-of-rights-not-included": [
+   "description-of-rights-not-included|0"
+  ],
+  "rights-not-included": [
+   "rights-not-included|0"
+  ],
+  "subject-documents": [
+   "subject-documents|0"
+  ],
+  "subject-graphs": [
+   "subject-graphs|0"
+  ],
+  "table-site-dimensions": [
+   "table-site-dimensions|0"
+  ],
+  "table-site-contiguous": [
+   "table-site-contiguous|0"
+  ],
+  "table-site-elem-div-parcels": [
+   "table-site-elem-div-parcels|0"
+  ],
+  "table-site-class-code": [
+   "table-site-class-code|0"
+  ],
+  "table-site-reasons-illegal": [
+   "table-site-reasons-illegal|0"
+  ],
+  "table-site-impact": [
+   "table-site-impact|0"
+  ],
+  "table-site-rbldbl-crnt-density": [
+   "table-site-rbldbl-crnt-density|0"
+  ],
+  "table-site-zoning-compliance-desc": [
+   "table-site-zoning-compliance-desc|0"
+  ],
+  "table-site-access-street-type-surface": [
+   "table-site-access-street-type-surface|0"
+  ],
+  "table-site-known-maint-agreement": [
+   "table-site-known-maint-agreement|0"
+  ],
+  "table-site-desc-property-access": [
+   "table-site-desc-property-access|0"
+  ],
+  "flow-site-property-use": [
+   "flow-site-property-use|0"
+  ],
+  "table-site-property-use-with-nonres-use": [
+   "table-site-property-use-with-nonres-use|0"
+  ],
+  "table-site-property-use-with-nonres-use-desc": [
+   "table-site-property-use-with-nonres-use-desc|0"
+  ],
+  "label-site-prop-use-res-use": [
+   "label-site-prop-use-res-use|0"
+  ],
+  "input-site-prop-use-res-use": [
+   "input-site-prop-use-res-use|0"
+  ],
+  "table-site-property-use-without-nonres-use": [
+   "table-site-property-use-without-nonres-use|0"
+  ],
+  "flow-site-total-size": [
+   "flow-site-total-size|0"
+  ],
+  "flow-site-num-parcels": [
+   "flow-site-num-parcels|0"
+  ],
+  "input-parcel-size": [
+   "input-parcel-size|-1"
+  ],
+  "flow-prop-access-desc": [
+   "flow-prop-access-desc|0"
+  ],
+  "apn-table": [
+   "apn-table|0"
+  ],
+  "apn-table-spacer": [
+   "apn-table-spacer|0"
+  ],
+  "label-site-influence-prox-blank": [
+   "label-site-influence-prox-blank|0"
+  ],
+  "input-site-influence-prox-default": [
+   "input-site-influence-prox-default|0"
+  ],
+  "input-site-influence-prox-env-cond": [
+   "input-site-influence-prox-env-cond|0"
+  ],
+  "label-site-influence-dtl-blank": [
+   "label-site-influence-dtl-blank|0"
+  ],
+  "ms-site-influence-dtl-airport": [
+   "ms-site-influence-dtl-airport|0"
+  ],
+  "ms-site-influence-dtl-enc-cond": [
+   "ms-site-influence-dtl-enc-cond|0"
+  ],
+  "ms-site-influence-dtl-util": [
+   "ms-site-influence-dtl-util|0"
+  ],
+  "input-site-influence-dtl-water": [
+   "input-site-influence-dtl-water|0"
+  ],
+  "label-site-influence-imp-blank": [
+   "label-site-influence-imp-blank|0"
+  ],
+  "input-site-influence-imp-default": [
+   "input-site-influence-imp-default|0"
+  ],
+  "label-site-influence-cmt-blank": [
+   "label-site-influence-cmt-blank|0"
+  ],
+  "input-site-influence-cmt-default": [
+   "input-site-influence-cmt-default|0"
+  ],
+  "labelheader-site-influence-water-frontage": [
+   "labelheader-site-influence-water-frontage|0"
+  ],
+  "table-site-feat-nonres-use": [
+   "table-site-feat-nonres-use|0"
+  ],
+  "label-site-feature-encroach-other": [
+   "label-site-feature-encroach-other|0"
+  ],
+  "input-site-feature-encroach-other": [
+   "input-site-feature-encroach-other|0"
+  ],
+  "table-site-util-imp-gas": [
+   "table-site-util-imp-gas|0"
+  ],
+  "table-site-util-imp-dwelling-improvements": [
+   "table-site-util-imp-dwelling-improvements|0"
+  ],
+  "table-site-util-imp-electric-details": [
+   "table-site-util-imp-electric-details|0"
+  ],
+  "label-site-util-imp-electric-impact-blank": [
+   "label-site-util-imp-electric-impact-blank|0"
+  ],
+  "input-site-util-imp-electric-impact": [
+   "input-site-util-imp-electric-impact|0"
+  ],
+  "label-site-util-imp-electric-other-shared": [
+   "label-site-util-imp-electric-other-shared|0"
+  ],
+  "input-site-util-imp-electric-other-shared": [
+   "input-site-util-imp-electric-other-shared|0"
+  ],
+  "table-site-util-imp-gas-details": [
+   "table-site-util-imp-gas-details|0"
+  ],
+  "label-site-util-imp-gas-impact-blank": [
+   "label-site-util-imp-gas-impact-blank|0"
+  ],
+  "input-site-util-imp-gas-impact": [
+   "input-site-util-imp-gas-impact|0"
+  ],
+  "table-site-util-imp-sewer-public-availability": [
+   "table-site-util-imp-sewer-public-availability|0"
+  ],
+  "table-site-util-imp-sewer-private": [
+   "table-site-util-imp-sewer-private|0"
+  ],
+  "label-site-util-imp-sewer-impact-blank": [
+   "label-site-util-imp-sewer-impact-blank|0"
+  ],
+  "input-site-util-imp-sewer-impact": [
+   "input-site-util-imp-sewer-impact|0"
+  ],
+  "label-site-util-imp-sewer-other-shared": [
+   "label-site-util-imp-sewer-other-shared|0"
+  ],
+  "input-site-util-imp-sewer-other-shared": [
+   "input-site-util-imp-sewer-other-shared|0"
+  ],
+  "table-site-util-imp-water-public-availability": [
+   "table-site-util-imp-water-public-availability|0"
+  ],
+  "table-site-util-imp-water-private": [
+   "table-site-util-imp-water-private|0"
+  ],
+  "label-site-util-imp-water-impact-blank": [
+   "label-site-util-imp-water-impact-blank|0"
+  ],
+  "input-site-util-imp-water-impact": [
+   "input-site-util-imp-water-impact|0"
+  ],
+  "table-site-util-imp-other-details": [
+   "table-site-util-imp-other-details|0"
+  ],
+  "input-site-util-imp-other-impact": [
+   "input-site-util-imp-other-impact|0"
+  ],
+  "label-site-util-imp-water-other-shared": [
+   "label-site-util-imp-water-other-shared|0"
+  ],
+  "input-site-util-imp-water-other-shared": [
+   "input-site-util-imp-water-other-shared|0"
+  ],
+  "label-site-util-imp-water-well": [
+   "label-site-util-imp-water-well|0"
+  ],
+  "input-site-util-imp-water-well": [
+   "input-site-util-imp-water-well|0"
+  ],
+  "table-site-util-imp-water-well-meets-requirements": [
+   "table-site-util-imp-water-well-meets-requirements|0"
+  ],
+  "label-site-util-imp-water-well-other": [
+   "label-site-util-imp-water-well-other|0"
+  ],
+  "input-site-util-imp-water-well-other": [
+   "input-site-util-imp-water-well-other|0"
+  ],
+  "flow-site-valuation-method-ca-enabled": [
+   "flow-site-valuation-method-ca-enabled|0"
+  ],
+  "ca-site-val-show-hide-checkbox": [
+   "ca-site-val-show-hide-checkbox|0"
+  ],
+  "flow-site-valuation-comparisons": [
+   "flow-site-valuation-comparisons|0"
+  ],
+  "flow-site-valuation-method-none": [
+   "flow-site-valuation-method-none|0"
+  ],
+  "flow-site-valuation-method": [
+   "flow-site-valuation-method|0"
+  ],
+  "flow-site-valuation-reconciliation": [
+   "flow-site-valuation-reconciliation|0"
+  ],
+  "site-non-res-use-exhibits": [
+   "site-non-res-use-exhibits|0"
+  ],
+  "flow-site-apparent-defects": [
+   "flow-site-apparent-defects|0"
+  ],
+  "flow-site-apparent-defects-none": [
+   "flow-site-apparent-defects-none|0"
+  ],
+  "flow-site-map-exhibits": [
+   "flow-site-map-exhibits|0"
+  ],
+  "permanent-waterfront-feature": [
+   "permanent-waterfront-feature|0"
+  ],
+  "permanent-waterfront-feature-print-flow": [
+   "permanent-waterfront-feature-print-flow|0"
+  ],
+  "disaster-mitigation-feature": [
+   "disaster-mitigation-feature|0"
+  ],
+  "disaster-mitigation-feature-print-flow": [
+   "disaster-mitigation-feature-print-flow|0"
+  ],
+  "disaster-mitigation-hide-show": [
+   "disaster-mitigation-hide-show|0",
+   "disaster-mitigation-hide-show|1"
+  ],
+  "disaster-mitigation-section-hidden": [
+   "disaster-mitigation-section-hidden|0"
+  ],
+  "disaster-mitigation-feature-section": [
+   "disaster-mitigation-feature-section|0"
+  ],
+  "ee-section": [
+   "ee-section|0"
+  ],
+  "ee-section-hidden": [
+   "ee-section-hidden|0"
+  ],
+  "green-energy": [],
+  "sketch-section": [
+   "sketch-section|0"
+  ],
+  "sketch-none-message": [
+   "sketch-none-message|0"
+  ],
+  "de1-de-commentary-section": [
+   "de1-de-commentary-section|0"
+  ],
+  "de1-de-system-mechanicals-cooling": [
+   "de1-de-system-mechanicals-cooling|0"
+  ],
+  "de1-de-system-mechanicals-cooling-print-flow": [
+   "de1-de-system-mechanicals-cooling-print-flow|0"
+  ],
+  "de1-de-other-mech": [
+   "de1-de-other-mech|0"
+  ],
+  "de1-de-other-mech-print-flow": [
+   "de1-de-other-mech-print-flow|0"
+  ],
+  "de1-structure-design-type": [
+   "de1-structure-design-type|0"
+  ],
+  "de1-floors-in-building": [
+   "de1-floors-in-building|0"
+  ],
+  "de1-style": [
+   "de1-style|0"
+  ],
+  "de1-townhouse-end-unit": [
+   "de1-townhouse-end-unit|0"
+  ],
+  "de1-townhouse-back-to-back": [
+   "de1-townhouse-back-to-back|0"
+  ],
+  "de1-units-above-or-below": [
+   "de1-units-above-or-below|0"
+  ],
+  "de1-townhouse-location": [
+   "de1-townhouse-location|0"
+  ],
+  "de1-construction-method": [
+   "de1-construction-method|0",
+   "de1-construction-method|0"
+  ],
+  "de1-construction-method-print-flow": [
+   "de1-construction-method-print-flow|0"
+  ],
+  "de1-factory-built-certification": [
+   "de1-factory-built-certification|0"
+  ],
+  "de1-attic": [
+   "de1-attic|0"
+  ],
+  "de1-attic-accessible-for-observation": [
+   "de1-attic-accessible-for-observation|0"
+  ],
+  "de1-attic-visual-observation-completed": [
+   "de1-attic-visual-observation-completed|0"
+  ],
+  "de1-attic-pp": [
+   "de1-attic-pp|0"
+  ],
+  "de1-remaining-economic-life": [
+   "de1-remaining-economic-life|0"
+  ],
+  "de1-effective-age": [
+   "de1-effective-age|0"
+  ],
+  "de1-economic-left-commentary": [
+   "de1-economic-left-commentary|0"
+  ],
+  "de1-economic-age-commentary": [
+   "de1-economic-age-commentary|0"
+  ],
+  "de1-de-quality-and-condition-section": [
+   "de1-de-quality-and-condition-section|0"
+  ],
+  "crawl-accessible-observation-lbl": [
+   "crawl-accessible-observation-lbl|0"
+  ],
+  "crawl-accessible-observation-inp": [
+   "crawl-accessible-observation-inp|0"
+  ],
+  "crawl-observation-completed-lbl": [
+   "crawl-observation-completed-lbl|0"
+  ],
+  "crawl-observation-completed-inp": [
+   "crawl-observation-completed-inp|0"
+  ],
+  "de1-de-roof-surface-type": [
+   "de1-de-roof-surface-type|0"
+  ],
+  "de1-de-roof-surface-age-section": [
+   "de1-de-roof-surface-age-section|0"
+  ],
+  "de1-core-heating-container": [
+   "de1-core-heating-container|0"
+  ],
+  "de1-flow-de-noncont-finished-area-none": [
+   "de1-flow-de-noncont-finished-area-none|0"
+  ],
+  "de1-flow-de-noncont-finished-area": [
+   "de1-flow-de-noncont-finished-area|0"
+  ],
+  "de1-flow-de-defects-damages-deficiencies-none": [
+   "de1-flow-de-defects-damages-deficiencies-none|0"
+  ],
+  "de1-flow-de-defects-damages-deficiencies": [
+   "de1-flow-de-defects-damages-deficiencies|0"
+  ],
+  "ui1-area-data-source": [
+   "ui1-area-data-source|0"
+  ],
+  "ui1-area-data-source-print-flow": [
+   "ui1-area-data-source-print-flow|0"
+  ],
+  "ui1-corner-unit-tbl": [
+   "ui1-corner-unit-tbl|0"
+  ],
+  "ui1-floor-number-tbl": [
+   "ui1-floor-number-tbl|0"
+  ],
+  "ui1-non-residential-use-in-unit-tbl": [
+   "ui1-non-residential-use-in-unit-tbl|0"
+  ],
+  "ui1-access-features": [
+   "ui1-access-features|0"
+  ],
+  "ui1-access-features-none": [
+   "ui1-access-features-none|0"
+  ],
+  "ui1-access-features-defects": [
+   "ui1-access-features-defects|0"
+  ],
+  "ui1-access-features-defects-none": [
+   "ui1-access-features-defects-none|0"
+  ],
+  "ui1-level-and-room-details-print-preview-table": [
+   "ui1-level-and-room-details-print-preview-table|0"
+  ],
+  "ui1-kitchen-and-bathroom-details-print-preview-table": [
+   "ui1-kitchen-and-bathroom-details-print-preview-table|0"
+  ],
+  "ui1-adu-data-entry": [
+   "ui1-adu-data-entry|0"
+  ],
+  "ui1-unit-adu-yes-no": [
+   "ui1-unit-adu-yes-no|0"
+  ],
+  "ui1-unit-interior-commentary": [
+   "ui1-unit-interior-commentary|0"
+  ],
+  "ui1-access-features-print-preview": [
+   "ui1-access-features-print-preview|0"
+  ],
+  "ui1-finished-above-grade-print-preview": [
+   "ui1-finished-above-grade-print-preview|0"
+  ],
+  "ui1-finished-above-grade-nonstandard-print-preview": [
+   "ui1-finished-above-grade-nonstandard-print-preview|0"
+  ],
+  "ui1-unfinished-above-grade-print-preview": [
+   "ui1-unfinished-above-grade-print-preview|0"
+  ],
+  "ui1-finished-below-grade-print-preview": [
+   "ui1-finished-below-grade-print-preview|0"
+  ],
+  "ui1-finished-below-grade-nonstandard-print-preview": [
+   "ui1-finished-below-grade-nonstandard-print-preview|0"
+  ],
+  "ui1-unfinished-below-grade-print-preview": [
+   "ui1-unfinished-below-grade-print-preview|0"
+  ],
+  "ui1-below-grade-finished-compared-to-above-print-preview": [
+   "ui1-below-grade-finished-compared-to-above-print-preview|0"
+  ],
+  "ui1-occupancy-print-preview": [
+   "ui1-occupancy-print-preview|0"
+  ],
+  "ui1-utilities-operating-print-preview": [
+   "ui1-utilities-operating-print-preview|0"
+  ],
+  "ui1-utilities-separate-metered-print-preview": [
+   "ui1-utilities-separate-metered-print-preview|0"
+  ],
+  "ui1-live-work-space-print-preview": [
+   "ui1-live-work-space-print-preview|0"
+  ],
+  "ui1-allow-work-space-print-preview": [
+   "ui1-allow-work-space-print-preview|0"
+  ],
+  "ui1-int-features": [
+   "ui1-int-features|0"
+  ],
+  "vehicle-storage-section-none": [
+   "vehicle-storage-section-none|0"
+  ],
+  "vehicle-storage-section": [
+   "vehicle-storage-section|0"
+  ],
+  "vehicle-storage-apparent-ddd-subsection": [
+   "vehicle-storage-apparent-ddd-subsection|0"
+  ],
+  "vehicle-commentary": [
+   "vehicle-commentary|0"
+  ],
+  "vehicle-storage-exhibits-section": [
+   "vehicle-storage-exhibits-section|0"
+  ],
+  "parking-space-assignment-section": [
+   "parking-space-assignment-section|0"
+  ],
+  "vehicle-storage-type-section": [
+   "vehicle-storage-type-section|0"
+  ],
+  "storage-space-square-feet-section": [
+   "storage-space-square-feet-section|0"
+  ],
+  "other_storage_type": [
+   "other_storage_type|0"
+  ],
+  "STORAGE_POPUP": [
+   "STORAGE_POPUP|0"
+  ],
+  "number-of-spaces-section": [
+   "number-of-spaces-section|0"
+  ],
+  "ten-or-more-spaces-section": [
+   "ten-or-more-spaces-section|0"
+  ],
+  "driveway-surface-material-section": [
+   "driveway-surface-material-section|0"
+  ],
+  "other-section": [
+   "other-section|0"
+  ],
+  "car-storage-defects-header": [
+   "car-storage-defects-header|0"
+  ],
+  "vehicle-storage-defects-subsection": [
+   "vehicle-storage-defects-subsection|0"
+  ],
+  "vehicle-storage-apparent-defects-none": [
+   "vehicle-storage-apparent-defects-none|0"
+  ],
+  "subject-property-amenities": [
+   "subject-property-amenities|0"
+  ],
+  "subject-amenity-exhibits-section": [
+   "subject-amenity-exhibits-section|0"
+  ],
+  "subject-amenity-defects": [
+   "subject-amenity-defects|0"
+  ],
+  "subject-amenity-commentary": [
+   "subject-amenity-commentary|0"
+  ],
+  "subject-property-amenities-none": [
+   "subject-property-amenities-none|0"
+  ],
+  "amentity-detail-area": [
+   "amentity-detail-area|0"
+  ],
+  "amentity-detail-feature": [
+   "amentity-detail-feature|0"
+  ],
+  "amentity-detail-attached-mh": [
+   "amentity-detail-attached-mh|0"
+  ],
+  "subject-amenity-defects-table": [
+   "subject-amenity-defects-table|0"
+  ],
+  "subject-amenity-defects-none": [
+   "subject-amenity-defects-none|0"
+  ],
+  "market-median-dom": [
+   "market-median-dom|0"
+  ],
+  "market-inventory-count": [
+   "market-inventory-count|0"
+  ],
+  "mkt-map-exhibits": [
+   "mkt-map-exhibits|0"
+  ],
+  "mkt-graph-exhibits": [
+   "mkt-graph-exhibits|0"
+  ],
+  "graph": [
+   "graph|0"
+  ],
+  "graph-container-print": [
+   "graph-container-print|0"
+  ],
+  "proj-info-amenities-services": [
+   "proj-info-amenities-services|0",
+   "proj-info-amenities-services|0"
+  ],
+  "proj-info-amenities-services-print-flow": [
+   "proj-info-amenities-services-print-flow|0"
+  ],
+  "proj-info-utilities-included": [
+   "proj-info-utilities-included|0"
+  ],
+  "proj-info-utilities-included-print-flow": [
+   "proj-info-utilities-included-print-flow|0"
+  ],
+  "gen-info-pi-data-source": [
+   "gen-info-pi-data-source|0"
+  ],
+  "gen-info-pi-data-source-print-flow": [
+   "gen-info-pi-data-source-print-flow|0"
+  ],
+  "project-info": [],
+  "prj-info-observed-deficiency": [
+   "prj-info-observed-deficiency|0"
+  ],
+  "prj-info-project-completeness": [
+   "prj-info-project-completeness|0"
+  ],
+  "gen-info-pi-proj-name": [
+   "gen-info-pi-proj-name|0"
+  ],
+  "gen-info-pi-total-units": [
+   "gen-info-pi-total-units|0"
+  ],
+  "gen-info-pi-units-sold": [
+   "gen-info-pi-units-sold|0"
+  ],
+  "gen-info-pi-units-for-sale": [
+   "gen-info-pi-units-for-sale|0"
+  ],
+  "gen-info-pi-units-rented": [
+   "gen-info-pi-units-rented|0"
+  ],
+  "gen-info-pi-reason-units-rented": [
+   "gen-info-pi-reason-units-rented|0"
+  ],
+  "gen-info-pi-bsao-lbl": [
+   "gen-info-pi-bsao-lbl|0"
+  ],
+  "gen-info-pi-bsao-val": [
+   "gen-info-pi-bsao-val|0"
+  ],
+  "gen-info-pi-usao-lbl": [
+   "gen-info-pi-usao-lbl|0"
+  ],
+  "gen-info-pi-usao-val": [
+   "gen-info-pi-usao-val|0"
+  ],
+  "gen-info-pi-deficiency-desc": [
+   "gen-info-pi-deficiency-desc|0"
+  ],
+  "pi-subj-prop-complete-item": [
+   "pi-subj-prop-complete-item|0"
+  ],
+  "pi-ground-rent-item": [
+   "pi-ground-rent-item|0"
+  ],
+  "pi-ground-rent-amnnt-item": [
+   "pi-ground-rent-amnnt-item|0"
+  ],
+  "pi-ground-expires-item": [
+   "pi-ground-expires-item|0"
+  ],
+  "pi-sharedissues-otstanding": [
+   "pi-sharedissues-otstanding|0"
+  ],
+  "pi-sharredattr-subj-property": [
+   "pi-sharredattr-subj-property|0"
+  ],
+  "pi-property-lease-expires": [
+   "pi-property-lease-expires|0"
+  ],
+  "gen-info-pi-monthly-amount": [
+   "gen-info-pi-monthly-amount|0"
+  ],
+  "cooperative-information": [
+   "cooperative-information|0"
+  ],
+  "project-blanket-financing": [
+   "project-blanket-financing|0"
+  ],
+  "lien-table-prs": [
+   "lien-table-prs|0"
+  ],
+  "lien-table-title": [
+   "lien-table-title|0"
+  ],
+  "lien-table-bm": [
+   "lien-table-bm|0"
+  ],
+  "lien-table-rt": [
+   "lien-table-rt|0"
+  ],
+  "lien-table-mp": [
+   "lien-table-mp|0"
+  ],
+  "lien-table-ir": [
+   "lien-table-ir|0"
+  ],
+  "lien-table-at": [
+   "lien-table-at|0"
+  ],
+  "lien-table-llc": [
+   "lien-table-llc|0"
+  ],
+  "lien-table-upb": [
+   "lien-table-upb|0"
+  ],
+  "lien-table-lcl": [
+   "lien-table-lcl|0"
+  ],
+  "lien-table-prsb": [
+   "lien-table-prsb|0"
+  ],
+  "lien-flow": [
+   "lien-flow|0"
+  ],
+  "incomplete-project-item": [
+   "incomplete-project-item|0"
+  ],
+  "incomplete-project-detail": [
+   "incomplete-project-detail|0"
+  ],
+  "incomplete-project-impact": [
+   "incomplete-project-impact|0"
+  ],
+  "incomplete-project-comment": [
+   "incomplete-project-comment|0"
+  ],
+  "converted-past-years-item": [
+   "converted-past-years-item|0"
+  ],
+  "converted-past-3-years-detail": [
+   "converted-past-3-years-detail|0"
+  ],
+  "converted-past-3-years-impact": [
+   "converted-past-3-years-impact|0"
+  ],
+  "converted-past-3-years-comment": [
+   "converted-past-3-years-comment|0"
+  ],
+  "se-ownership-of-multiple-units-item": [
+   "se-ownership-of-multiple-units-item|0"
+  ],
+  "single-entity-ownership-units-detail": [
+   "single-entity-ownership-units-detail|0"
+  ],
+  "single-entity-ownership-units-impact": [
+   "single-entity-ownership-units-impact|0"
+  ],
+  "single-entity-ownership-units-comment": [
+   "single-entity-ownership-units-comment|0"
+  ],
+  "se-ownership-of-multiple-shares-item": [
+   "se-ownership-of-multiple-shares-item|0"
+  ],
+  "single-entity-ownership-shares-detail": [
+   "single-entity-ownership-shares-detail|0"
+  ],
+  "single-entity-ownership-shares-impact": [
+   "single-entity-ownership-shares-impact|0"
+  ],
+  "single-entity-ownership-shares-comment": [
+   "single-entity-ownership-shares-comment|0"
+  ],
+  "commercial-space-item": [
+   "commercial-space-item|0"
+  ],
+  "commercial-space-detail": [
+   "commercial-space-detail|0"
+  ],
+  "commercial-space-impact": [
+   "commercial-space-impact|0"
+  ],
+  "commercial-space-comment": [
+   "commercial-space-comment|0"
+  ],
+  "known-legal-actions-item": [
+   "known-legal-actions-item|0"
+  ],
+  "known-legal-actions-detail": [
+   "known-legal-actions-detail|0"
+  ],
+  "known-legal-actions-impact": [
+   "known-legal-actions-impact|0"
+  ],
+  "known-legal-actions-comment": [
+   "known-legal-actions-comment|0"
+  ],
+  "unit-transfer-fees-item": [
+   "unit-transfer-fees-item|0"
+  ],
+  "unit-transfer-fees-detail": [
+   "unit-transfer-fees-detail|0"
+  ],
+  "unit-transfer-fees-impact": [
+   "unit-transfer-fees-impact|0"
+  ],
+  "unit-transfer-fees-comment": [
+   "unit-transfer-fees-comment|0"
+  ],
+  "unit-special-assessments-item": [
+   "unit-special-assessments-item|0"
+  ],
+  "unit-special-assessments-detail": [
+   "unit-special-assessments-detail|0"
+  ],
+  "unit-special-assessments-detail-charge": [
+   "unit-special-assessments-detail-charge|0"
+  ],
+  "unit-special-assessments-impact": [
+   "unit-special-assessments-impact|0"
+  ],
+  "unit-special-assessments-comment": [
+   "unit-special-assessments-comment|0"
+  ],
+  "unit-tax-abatements-item": [
+   "unit-tax-abatements-item|0"
+  ],
+  "unit-tax-abatements-detail-amount": [
+   "unit-tax-abatements-detail-amount|0"
+  ],
+  "unit-tax-abatements-detail-expiration": [
+   "unit-tax-abatements-detail-expiration|0"
+  ],
+  "unit-tax-abatements-impact": [
+   "unit-tax-abatements-impact|0"
+  ],
+  "unit-tax-abatements-comment": [
+   "unit-tax-abatements-comment|0"
+  ],
+  "project-factors-commentary": [
+   "project-factors-commentary|0"
+  ],
+  "valuation-comment-text": [
+   "valuation-comment-text|0"
+  ],
+  "project-info-documents": [
+   "project-info-documents|0"
+  ],
+  "project-info-graphs": [
+   "project-info-graphs|0"
+  ],
+  "ListedWithinPreviousYearIndicator": [
+   "ListedWithinPreviousYearIndicator|0"
+  ],
+  "subject-listing-info-documents": [
+   "subject-listing-info-documents|0"
+  ],
+  "subject-listing-info-graphs": [
+   "subject-listing-info-graphs|0"
+  ],
+  "sc-section": [
+   "sc-section|0"
+  ],
+  "sales-contract-exhibits-section": [
+   "sales-contract-exhibits-section|0"
+  ],
+  "sc-section-hidden": [
+   "sc-section-hidden|0"
+  ],
+  "sc-analyzed-group": [
+   "sc-analyzed-group|0"
+  ],
+  "sc-arms-length-group": [
+   "sc-arms-length-group|0"
+  ],
+  "sc-non-arms-length-commentary": [
+   "sc-non-arms-length-commentary|0"
+  ],
+  "sc-contract-sales-price-group": [
+   "sc-contract-sales-price-group|0"
+  ],
+  "sc-contract-date-group": [
+   "sc-contract-date-group|0"
+  ],
+  "sc-transfer-terms-group": [
+   "sc-transfer-terms-group|0"
+  ],
+  "sc-personal-property-inc-indicator-group": [
+   "sc-personal-property-inc-indicator-group|0"
+  ],
+  "sc-personal-property-inc-indicator-lbl": [
+   "sc-personal-property-inc-indicator-lbl|0"
+  ],
+  "sc-financial-sales-concessions-box": [
+   "sc-financial-sales-concessions-box|0"
+  ],
+  "sc-kwn-concession": [
+   "sc-kwn-concession|0"
+  ],
+  "sc-total-concession": [
+   "sc-total-concession|0"
+  ],
+  "sc-concession-typical": [
+   "sc-concession-typical|0"
+  ],
+  "sc-analysis-box": [
+   "sc-analysis-box|0"
+  ],
+  "sales-contract-exhibits-box": [
+   "sales-contract-exhibits-box|0"
+  ],
+  "sales-contract-exhibits": [
+   "sales-contract-exhibits|0"
+  ],
+  "sales-contract-documents": [
+   "sales-contract-documents|0"
+  ],
+  "sales-contract-graphs": [
+   "sales-contract-graphs|0"
+  ],
+  "prior-sales": [
+   "prior-sales|0"
+  ],
+  "transfer-terms-table-section": [
+   "transfer-terms-table-section|0"
+  ],
+  "prior-sale-or-transfer-section": [
+   "prior-sale-or-transfer-section|0"
+  ],
+  "prior-sales-documents": [
+   "prior-sales-documents|0"
+  ],
+  "prior-sales-graphs": [
+   "prior-sales-graphs|0"
+  ],
+  "sales-comp-exhibits-comps": [
+   "sales-comp-exhibits-comps|0"
+  ],
+  "flow-ia-exhibits-comps": [
+   "flow-ia-exhibits-comps|0"
+  ],
+  "cost-approach-section-hidden": [
+   "cost-approach-section-hidden|0"
+  ],
+  "cost-approach-section": [
+   "cost-approach-section|0"
+  ],
+  "ssde1-ca-dwell-physical-depreciation": [
+   "ssde1-ca-dwell-physical-depreciation|0"
+  ],
+  "ssde1-ca-dwell-functional-depreciation": [
+   "ssde1-ca-dwell-functional-depreciation|0"
+  ],
+  "ssde1-ca-dwell-external-depreciation": [
+   "ssde1-ca-dwell-external-depreciation|0"
+  ],
+  "ssde1-ca-dwell-total-depreciation": [
+   "ssde1-ca-dwell-total-depreciation|0"
+  ],
+  "ca-land-comparable-table-header": [
+   "ca-land-comparable-table-header|0"
+  ],
+  "ssde1-ca-dwell-manufactured-home": [
+   "ssde1-ca-dwell-manufactured-home|0"
+  ],
+  "ssde1-ca-remaining-economic-life": [
+   "ssde1-ca-remaining-economic-life|0"
+  ],
+  "ssde1-ca-remaining-economic-life-commentary-container": [
+   "ssde1-ca-remaining-economic-life-commentary-container|0"
+  ],
+  "ssde1-ca_effective_age-age": [
+   "ssde1-ca_effective_age-age|0"
+  ],
+  "ssde1-ca-effective-age-commentary": [
+   "ssde1-ca-effective-age-commentary|0"
+  ],
+  "ca-cost-service": [
+   "ca-cost-service|0"
+  ],
+  "ssde1-ca-remaining-economic-life-commentary": [
+   "ssde1-ca-remaining-economic-life-commentary|0"
+  ],
+  "ca-depreciated-cost-of-outbuildings-label": [
+   "ca-depreciated-cost-of-outbuildings-label|0"
+  ],
+  "ca-depreciated-cost-of-outbuildings-input": [
+   "ca-depreciated-cost-of-outbuildings-input|0"
+  ],
+  "rec-mkt-val-cond": [
+   "rec-mkt-val-cond|0"
+  ],
+  "rec-mkt-val-cond-print-flow": [
+   "rec-mkt-val-cond-print-flow|0"
+  ],
+  "ap-sum-contract-price": [
+   "ap-sum-contract-price|0"
+  ],
+  "ap-sum-pro-rata-share-calc-method": [
+   "ap-sum-pro-rata-share-calc-method|0"
+  ],
+  "ap-sum-fha-reo-insurability-level": [
+   "ap-sum-fha-reo-insurability-level|0"
+  ],
+  "ap-sum-rec-lbl-disclaimer": [
+   "ap-sum-rec-lbl-disclaimer|0"
+  ],
+  "val-with-coop-section": [
+   "val-with-coop-section|0"
+  ],
+  "input-reason-for-exclusion-indicate-value": [
+   "input-reason-for-exclusion-indicate-value|0"
+  ],
+  "input-reason-for-exclusion-income-approach": [
+   "input-reason-for-exclusion-income-approach|0"
+  ],
+  "input-reason-for-exclusion-cost-approach": [
+   "input-reason-for-exclusion-cost-approach|0"
+  ],
+  "rec-client-requested-conditions-section": [
+   "rec-client-requested-conditions-section|0"
+  ],
+  "rec-client-requested-conditions-hidden-section": [
+   "rec-client-requested-conditions-hidden-section|0"
+  ],
+  "rec-addd-site-section-box": [
+   "rec-addd-site-section-box|0"
+  ],
+  "rec-addd-vehicle-storage-section-box": [
+   "rec-addd-vehicle-storage-section-box|0"
+  ],
+  "rec-addd-subject-property-amenities-section-box": [
+   "rec-addd-subject-property-amenities-section-box|0"
+  ],
+  "rec-addd-dwelling-exterior-1": [
+   "rec-addd-dwelling-exterior-1|0"
+  ],
+  "rec-addd-de-interior-1": [
+   "rec-addd-de-interior-1|0"
+  ],
+  "flow-rec-cost-to-repair": [
+   "flow-rec-cost-to-repair|0"
+  ],
+  "flow-rec-apparent-defects": [
+   "flow-rec-apparent-defects|0"
+  ],
+  "flow-rec-apparent-defects-none": [
+   "flow-rec-apparent-defects-none|0"
+  ],
+  "rec-addd-itemized-total-cost": [
+   "rec-addd-itemized-total-cost|0"
+  ],
+  "rec-addd-estimated-total-cost": [
+   "rec-addd-estimated-total-cost|0"
+  ],
+  "rec-addd-as-is-overall-condition": [
+   "rec-addd-as-is-overall-condition|0"
+  ],
+  "reconciliation-documents": [
+   "reconciliation-documents|0"
+  ],
+  "reconciliation-graphs": [
+   "reconciliation-graphs|0"
+  ],
+  "revision-history-section-hidden": [
+   "revision-history-section-hidden|0"
+  ],
+  "revision-history-section": [
+   "revision-history-section|0"
+  ],
+  "reconsideration-of-value": [
+   "reconsideration-of-value|0"
+  ],
+  "prior-sales-revision": [
+   "prior-sales-revision|0"
+  ],
+  "revision-history": [
+   "revision-history|0"
+  ],
+  "revision": [],
+  "reconsideration-of-value-section": [
+   "reconsideration-of-value-section|0"
+  ],
+  "supplemental-exhibits-section": [
+   "supplemental-exhibits-section|0"
+  ],
+  "supplemental-section-hidden": [
+   "supplemental-section-hidden|0"
+  ],
+  "supplemental": [],
+  "supplemental-documents": [
+   "supplemental-documents|0"
+  ],
+  "supplemental-graphs": [
+   "supplemental-graphs|0"
+  ],
+  "IntendedUseFHA": [
+   "IntendedUseFHA|0"
+  ],
+  "limitingCondFHA": [
+   "limitingCondFHA|0"
+  ],
+  "AddIntendedFHAUser": [
+   "AddIntendedFHAUser|0"
+  ],
+  "AddIntendedUSDAUser": [
+   "AddIntendedUSDAUser|0"
+  ],
+  "AddIntendedVAUser": [
+   "AddIntendedVAUser|0"
+  ],
+  "NotPerformedAnyService": [
+   "NotPerformedAnyService|0"
+  ],
+  "NotProvidedRealEstateService": [
+   "NotProvidedRealEstateService|0"
+  ],
+  "AddScopeOfWork": [
+   "AddScopeOfWork|0"
+  ],
+  "DescriptionOfPriorServices": [
+   "DescriptionOfPriorServices|0"
+  ],
+  "AddIntendedUse": [
+   "AddIntendedUse|0"
+  ],
+  "AddIntendedUser": [
+   "AddIntendedUser|0"
+  ],
+  "AppraiserCertificationsInteriorExterior": [
+   "AppraiserCertificationsInteriorExterior|0"
+  ],
+  "AppraiserCertificationsExterior": [
+   "AppraiserCertificationsExterior|0"
+  ],
+  "AppraiserCertificationsNoPhysicalInspection": [
+   "AppraiserCertificationsNoPhysicalInspection|0"
+  ],
+  "SUP_APPR_CERT": [
+   "SUP_APPR_CERT|0"
+  ],
+  "ADD_SUP_APPR_CERT": [
+   "ADD_SUP_APPR_CERT|0"
+  ],
+  "additional-appraiser-certifications": [
+   "additional-appraiser-certifications|0"
+  ],
+  "ord-dfe-individual-borrower-name": [
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0",
+   "ord-dfe-individual-borrower-name|0"
+  ],
+  "ord-dfe-entity-borrower-name": [
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0",
+   "ord-dfe-entity-borrower-name|0"
+  ],
+  "ord-dfe-individual-seller-name": [
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0",
+   "ord-dfe-individual-seller-name|0"
+  ],
+  "ord-dfe-entity-seller-name": [
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0",
+   "ord-dfe-entity-seller-name|0"
+  ],
+  "ord-dfe-individual-owner-name": [
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0",
+   "ord-dfe-individual-owner-name|0"
+  ],
+  "ord-dfe-entity-owner-name": [
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0",
+   "ord-dfe-entity-owner-name|0"
+  ],
+  "salescomp-grid": [
+   "salescomp-grid|0",
+   "salescomp-grid|0",
+   "salescomp-grid|0"
+  ],
+  "contact-creds": [
+   "contact-creds|0"
+  ],
+  "contact-client-ref-id": [
+   "contact-client-ref-id|0"
+  ],
+  "contact-amc-ref-id": [
+   "contact-amc-ref-id|0"
+  ],
+  "label-client-prefix": [
+   "label-client-prefix|0"
+  ]
+ },
+ "rules": {
+  "salescomp-ad-addr|-1": [
+   "salescomp-ad-addr",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-photo|-1": [
+   "salescomp-photo",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-sc-source1|-1": [
+   "salescomp-sc-source1",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-prox1|-1": [
+   "salescomp-prox1",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-lp-price|-1": [
+   "salescomp-lp-price",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-price-per-sqft|-1": [
+   "salescomp-price-per-sqft",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-lp-status|-1": [
+   "salescomp-lp-status",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-cont-price|-1": [
+   "salescomp-cont-price",
+   -1,
+   false,
+   1
+  ],
+  "salescomp-pr-salepr1|-1": [
+   "salescomp-pr-salepr1",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-transfer-terms|-1": [
+   "salescomp-transfer-terms",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-dp-fintyp1|-1": [
+   "salescomp-dp-fintyp1",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ex-concamt|-1": [
+   "salescomp-ex-concamt",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-cont-date|-1": [
+   "salescomp-cont-date",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-dt-saltim1|-1": [
+   "salescomp-dt-saltim1",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-ex-dom|-1": [
+   "salescomp-ex-dom",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-sp-to-lp-ratio|-1": [
+   "salescomp-sp-to-lp-ratio",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-att-det|-1": [
+   "salescomp-att-det",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-prop-appraiser-rights|-1": [
+   "salescomp-prop-appraiser-rights",
+   -1,
+   true,
+   1
+  ],
+  "salescomp-annual-grnd-rent|-1": [
+   "salescomp-annual-grnd-rent",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-native-am-lands|-1": [
+   "salescomp-native-am-lands",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-all-rights-included|-1": [
+   "salescomp-all-rights-included",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-rights-not-included|-1": [
+   "salescomp-rights-not-included",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-same-bldr-as-subject|-1": [
+   "salescomp-same-bldr-as-subject",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-project-info-header|-1": [
+   "salescomp-project-info-header",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-project-info-bottom-spacer|-1": [
+   "salescomp-project-info-bottom-spacer",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-proj-name|-1": [
+   "salescomp-proj-name",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-proj-monthly-fee|-1": [
+   "salescomp-proj-monthly-fee",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-proj-amenities|-1": [
+   "salescomp-proj-amenities",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-proj-special-assessments|-1": [
+   "salescomp-proj-special-assessments",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-project-type|-1": [
+   "salescomp-site-project-type",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-owned-in-common|-1": [
+   "salescomp-site-owned-in-common",
+   -1,
+   false,
+   1
+  ],
+  "salescomp-st-sitsize|-1": [
+   "salescomp-st-sitsize",
+   -1,
+   true,
+   1
+  ],
+  "salescomp-marketarea|-1": [
+   "salescomp-marketarea",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-zone-compliance|-1": [
+   "salescomp-site-zone-compliance",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-hazard-zone|-1": [
+   "salescomp-site-hazard-zone",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-primary-access|-1": [
+   "salescomp-site-primary-access",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-street-type|-1": [
+   "salescomp-site-street-type",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-prop-restrict|-1": [
+   "salescomp-site-prop-restrict",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-easement|-1": [
+   "salescomp-site-easement",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-topography|-1": [
+   "salescomp-site-topography",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-drainage|-1": [
+   "salescomp-site-drainage",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-characteristics|-1": [
+   "salescomp-site-characteristics",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-site-influence|-1": [
+   "salescomp-site-influence",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-site-env-cond|-1": [
+   "salescomp-site-env-cond",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-st-view|-1": [
+   "salescomp-st-view",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-water-frontage-header|-1": [
+   "salescomp-water-frontage-header",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-water-frontage-bottom-spacer|-1": [
+   "salescomp-water-frontage-bottom-spacer",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-water-frontage|-1": [
+   "salescomp-water-frontage",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-water-frontage-feat|-1": [
+   "salescomp-water-frontage-feat",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-water-right-bld|-1": [
+   "salescomp-water-right-bld",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-water-linear-measure|-1": [
+   "salescomp-water-linear-measure",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-yr-blt|-1": [
+   "salescomp-yr-blt",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-dwell-design|-1": [
+   "salescomp-dwell-design",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-sf-gla|-1": [
+   "salescomp-sf-gla",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-sf-finished-area|-1": [
+   "salescomp-sf-finished-area",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-th-endunit|-1": [
+   "salescomp-dwell-th-endunit",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-th-backtoback|-1": [
+   "salescomp-dwell-th-backtoback",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-th-loc|-1": [
+   "salescomp-dwell-th-loc",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-const-method|-1": [
+   "salescomp-dwell-const-method",
+   -1,
+   true,
+   1
+  ],
+  "salescomp-dwell-manfct-home-width|-1": [
+   "salescomp-dwell-manfct-home-width",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-style|-1": [
+   "salescomp-dwell-style",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-total-volume|-1": [
+   "salescomp-dwell-total-volume",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-window-area|-1": [
+   "salescomp-dwell-window-area",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-func-issues|-1": [
+   "salescomp-dwell-func-issues",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-disaster-mit|-1": [
+   "salescomp-dwell-disaster-mit",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-dwell-heat|-1": [
+   "salescomp-dwell-heat",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-dwell-cool|-1": [
+   "salescomp-dwell-cool",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-green-energy-header|-1": [
+   "salescomp-green-energy-header",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-green-energy-bottom-spacer|-1": [
+   "salescomp-green-energy-bottom-spacer",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-green-renew-energy-component|-1": [
+   "salescomp-green-renew-energy-component",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-green-build-cert|-1": [
+   "salescomp-green-build-cert",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-green-eff-rating|-1": [
+   "salescomp-green-eff-rating",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-unit-id|-1": [
+   "salescomp-unit-id",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-units-is-an-adu|-1": [
+   "salescomp-units-is-an-adu",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-loc-adu|-1": [
+   "salescomp-loc-adu",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-floor-num|-1": [
+   "salescomp-floor-num",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-corner-unit|-1": [
+   "salescomp-corner-unit",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-levels|-1": [
+   "salescomp-levels",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-beds|-1": [
+   "salescomp-beds",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-baths|-1": [
+   "salescomp-baths",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-units-sf-gla|-1": [
+   "salescomp-units-sf-gla",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-units-sf-gla-nonstd|-1": [
+   "salescomp-units-sf-gla-nonstd",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-units-sf-gla-unfin|-1": [
+   "salescomp-units-sf-gla-unfin",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-units-sf-gla-below-grd|-1": [
+   "salescomp-units-sf-gla-below-grd",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-units-sf-gla-below-grd-nonstd|-1": [
+   "salescomp-units-sf-gla-below-grd-nonstd",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-units-sf-gla-below-grd-unfin|-1": [
+   "salescomp-units-sf-gla-below-grd-unfin",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-disability-features|-1": [
+   "salescomp-disability-features",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-blank-row|-1": [
+   "salescomp-ext-qual-blank-row",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-structure-id|-1": [
+   "salescomp-ext-qual-structure-id",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-quality|-1": [
+   "salescomp-ext-qual-quality",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-ext-walls-trim|-1": [
+   "salescomp-ext-qual-ext-walls-trim",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-foundation|-1": [
+   "salescomp-ext-qual-foundation",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-roof|-1": [
+   "salescomp-ext-qual-roof",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-qual-windows|-1": [
+   "salescomp-ext-qual-windows",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-cond-blank-row|-1": [
+   "salescomp-ext-cond-blank-row",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-cond-condition|-1": [
+   "salescomp-ext-cond-condition",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-cond-walls-trim|-1": [
+   "salescomp-ext-cond-walls-trim",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-cond-foundation|-1": [
+   "salescomp-ext-cond-foundation",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-cond-roof|-1": [
+   "salescomp-ext-cond-roof",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-ext-cond-windows|-1": [
+   "salescomp-ext-cond-windows",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-qual-structure-id|-1": [
+   "salescomp-int-qual-structure-id",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-qual-quality|-1": [
+   "salescomp-int-qual-quality",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-int-qual-kitchen|-1": [
+   "salescomp-int-qual-kitchen",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-qual-baths|-1": [
+   "salescomp-int-qual-baths",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-qual-floors|-1": [
+   "salescomp-int-qual-floors",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-qual-walls-ceilings|-1": [
+   "salescomp-int-qual-walls-ceilings",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-cond-condition|-1": [
+   "salescomp-int-cond-condition",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-int-cond-kitchen|-1": [
+   "salescomp-int-cond-kitchen",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-cond-baths|-1": [
+   "salescomp-int-cond-baths",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-cond-floors|-1": [
+   "salescomp-int-cond-floors",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-cond-walls-ceilings|-1": [
+   "salescomp-int-cond-walls-ceilings",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-qual-blank-row|-1": [
+   "salescomp-adu-qual-blank-row",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-location|-1": [
+   "salescomp-adu-location",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-qual-quality|-1": [
+   "salescomp-adu-qual-quality",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-qual-kitchen|-1": [
+   "salescomp-adu-qual-kitchen",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-int-adu-cond-baths|-1": [
+   "salescomp-int-adu-cond-baths",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-qual-floors|-1": [
+   "salescomp-adu-qual-floors",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-qual-walls-ceilings|-1": [
+   "salescomp-adu-qual-walls-ceilings",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-cond-blank-row|-1": [
+   "salescomp-adu-cond-blank-row",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-cond-condition|-1": [
+   "salescomp-adu-cond-condition",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-cond-kitchen|-1": [
+   "salescomp-adu-cond-kitchen",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-cond-baths|-1": [
+   "salescomp-adu-cond-baths",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-cond-floors|-1": [
+   "salescomp-adu-cond-floors",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-cond-walls-ceilings|-1": [
+   "salescomp-adu-cond-walls-ceilings",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-quality|-1": [
+   "salescomp-quality",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-condition|-1": [
+   "salescomp-condition",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-amenities-header|-1": [
+   "salescomp-amenities-header",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-amenities-bottom-spacer|-1": [
+   "salescomp-amenities-bottom-spacer",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-amenity-outdoor-accessories|-1": [
+   "salescomp-amenity-outdoor-accessories",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-amenity-outdoor-living|-1": [
+   "salescomp-amenity-outdoor-living",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-amenity-water-features|-1": [
+   "salescomp-amenity-water-features",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-amenity-whole-home|-1": [
+   "salescomp-amenity-whole-home",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-amenity-misc|-1": [
+   "salescomp-amenity-misc",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-vehicle-storage|-1": [
+   "salescomp-vehicle-storage",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-outbuilding-header|-1": [
+   "salescomp-outbuilding-header",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-blank-row|-1": [
+   "salescomp-outbuilding-blank-row",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-bottom-spacer|-1": [
+   "salescomp-outbuilding-bottom-spacer",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-type|-1": [
+   "salescomp-outbuilding-type",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-real-property|-1": [
+   "salescomp-outbuilding-real-property",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-building-area|-1": [
+   "salescomp-outbuilding-building-area",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-finished-area|-1": [
+   "salescomp-outbuilding-finished-area",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-unfinished-area|-1": [
+   "salescomp-outbuilding-unfinished-area",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-structure-volume|-1": [
+   "salescomp-outbuilding-structure-volume",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-baths-full|-1": [
+   "salescomp-outbuilding-baths-full",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-baths-half|-1": [
+   "salescomp-outbuilding-baths-half",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-kitchens|-1": [
+   "salescomp-outbuilding-kitchens",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-heating|-1": [
+   "salescomp-outbuilding-heating",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-cooling|-1": [
+   "salescomp-outbuilding-cooling",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-outbuilding-utilities|-1": [
+   "salescomp-outbuilding-utilities",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-list-price|-1": [
+   "salescomp-list-price",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-contract-price|-1": [
+   "salescomp-contract-price",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-sale-price|-1": [
+   "salescomp-sale-price",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-netadj-adj|-1": [
+   "salescomp-netadj-adj",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-netadj-per-unit-adj|-1": [
+   "salescomp-netadj-per-unit-adj",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-netadj-price-per-bed-adj|-1": [
+   "salescomp-netadj-price-per-bed-adj",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-netadj-price-grs-bld-fin-area-adj|-1": [
+   "salescomp-netadj-price-grs-bld-fin-area-adj",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-netadj-price-per-fin-abv-grd-adj|-1": [
+   "salescomp-netadj-price-per-fin-abv-grd-adj",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-netadj-price-adj|-1": [
+   "salescomp-netadj-price-adj",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-netadj-comp-weight-adj|-1": [
+   "salescomp-netadj-comp-weight-adj",
+   -1,
+   true,
+   3
+  ],
+  "salescomp-ext-qual-cond-header|-1": [
+   "salescomp-ext-qual-cond-header",
+   -1,
+   false,
+   3
+  ],
+  "salescomp-adu-qual-cond-header|-1": [
+   "salescomp-adu-qual-cond-header",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-prox1|-1": [
+   "rentalunitcomp-prox1",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-marketarea|-1": [
+   "rentalunitcomp-marketarea",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-proj-name|-1": [
+   "rentalunitcomp-proj-name",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-proj-amenities|-1": [
+   "rentalunitcomp-proj-amenities",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-site-influence|-1": [
+   "rentalunitcomp-site-influence",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-unit-view|-1": [
+   "rentalunitcomp-unit-view",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-floor-num|-1": [
+   "rentalunitcomp-floor-num",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-st-sitsize|-1": [
+   "rentalunitcomp-st-sitsize",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-grade-level|-1": [
+   "rentalunitcomp-grade-level",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-int-cond-condition|-1": [
+   "rentalunitcomp-int-cond-condition",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-beds|-1": [
+   "rentalunitcomp-beds",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-baths|-1": [
+   "rentalunitcomp-baths",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-sf-gla|-1": [
+   "rentalunitcomp-sf-gla",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-furnished|-1": [
+   "rentalunitcomp-furnished",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-site-owned-in-common|-1": [
+   "rentalunitcomp-site-owned-in-common",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-utils-included|-1": [
+   "rentalunitcomp-utils-included",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-rent-control|-1": [
+   "rentalunitcomp-rent-control",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-rent-conc|-1": [
+   "rentalunitcomp-rent-conc",
+   -1,
+   false,
+   3
+  ],
+  "rentalunitcomp-vehicle-storage|-1": [
+   "rentalunitcomp-vehicle-storage",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-smry-rent-per-fin-area|-1": [
+   "rentalunitcomp-smry-rent-per-fin-area",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-smry-act-rent|-1": [
+   "rentalunitcomp-smry-act-rent",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-smry-ovrl-comp-to-sub|-1": [
+   "rentalunitcomp-smry-ovrl-comp-to-sub",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-smry-adj-rent|-1": [
+   "rentalunitcomp-smry-adj-rent",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-smry-opn-mkt-rent|-1": [
+   "rentalunitcomp-smry-opn-mkt-rent",
+   -1,
+   true,
+   3
+  ],
+  "rentalunitcomp-smry-comp-weight|-1": [
+   "rentalunitcomp-smry-comp-weight",
+   -1,
+   true,
+   3
+  ],
+  "sales-comparison-add-properties-boxheader|0": [
+   "sales-comparison-add-properties-boxheader",
+   0,
+   true,
+   1
+  ],
+  "sales-comparison-add-property-hidden|0": [
+   "sales-comparison-add-property-hidden",
+   0,
+   true,
+   1
+  ],
+  "sales-comp-add-prop-table|0": [
+   "sales-comp-add-prop-table",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-data-source-assessor-id|0": [
+   "GC1-label-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-data-source-assessor-id|0": [
+   "GC1-input-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-data-source-mls-id|0": [
+   "GC1-label-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-data-source-mls-id|0": [
+   "GC1-input-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-data-source-assessor-id|0": [
+   "GC2-label-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-data-source-assessor-id|0": [
+   "GC2-input-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-data-source-mls-id|0": [
+   "GC2-label-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-data-source-mls-id|0": [
+   "GC2-input-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-data-source-assessor-id|0": [
+   "GC3-label-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-data-source-assessor-id|0": [
+   "GC3-input-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-data-source-mls-id|0": [
+   "GC3-label-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-data-source-mls-id|0": [
+   "GC3-input-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "salescomp-cont-price|0": [
+   "salescomp-cont-price",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-contract-price|0": [
+   "GC1-label-contract-price",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-contract-price|0": [
+   "GC1-input-contract-price",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-contract-price|0": [
+   "GC2-label-contract-price",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-contract-price|0": [
+   "GC2-input-contract-price",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-contract-price|0": [
+   "GC3-label-contract-price",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-contract-price|0": [
+   "GC3-input-contract-price",
+   0,
+   false,
+   1
+  ],
+  "GSU-label-concession-amount|0": [
+   "GSU-label-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GSU-input-concession-amount|0": [
+   "GSU-input-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-concession-amount|0": [
+   "GC1-label-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-concession-amount|0": [
+   "GC1-input-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-concession-amount|0": [
+   "GC2-label-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-concession-amount|0": [
+   "GC2-input-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-concession-amount|0": [
+   "GC3-label-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-concession-amount|0": [
+   "GC3-input-concession-amount",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-contract-date|0": [
+   "GC1-label-contract-date",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-contract-date|0": [
+   "GC1-input-contract-date",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-contract-date|0": [
+   "GC2-label-contract-date",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-contract-date|0": [
+   "GC2-input-contract-date",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-contract-date|0": [
+   "GC3-label-contract-date",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-contract-date|0": [
+   "GC3-input-contract-date",
+   0,
+   false,
+   1
+  ],
+  "GSU-label-native-am-lands-type|0": [
+   "GSU-label-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GSU-input-native-am-lands-type|0": [
+   "GSU-input-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-native-am-lands-type|0": [
+   "GC1-label-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-native-am-lands-type|0": [
+   "GC1-input-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-native-am-lands-type|0": [
+   "GC2-label-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-native-am-lands-type|0": [
+   "GC2-input-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-native-am-lands-type|0": [
+   "GC3-label-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-native-am-lands-type|0": [
+   "GC3-input-native-am-lands-type",
+   0,
+   false,
+   1
+  ],
+  "salescomp-gsu-proj-name|0": [
+   "salescomp-gsu-proj-name",
+   0,
+   false,
+   1
+  ],
+  "GC1-roof-condition-label|0": [
+   "GC1-roof-condition-label",
+   0,
+   false,
+   1
+  ],
+  "GC1-roof-condition-input|0": [
+   "GC1-roof-condition-input",
+   0,
+   false,
+   1
+  ],
+  "GC2-roof-condition-label|0": [
+   "GC2-roof-condition-label",
+   0,
+   false,
+   1
+  ],
+  "GC2-roof-condition-input|0": [
+   "GC2-roof-condition-input",
+   0,
+   false,
+   1
+  ],
+  "GC3-roof-condition-label|0": [
+   "GC3-roof-condition-label",
+   0,
+   false,
+   1
+  ],
+  "GC3-roof-condition-input|0": [
+   "GC3-roof-condition-input",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-influence-water-type|0": [
+   "GC1-label-influence-water-type",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-influence-water-type|0": [
+   "GC1-input-influence-water-type",
+   0,
+   false,
+   1
+  ],
+  "GC1-label-influence-private-access|0": [
+   "GC1-label-influence-private-access",
+   0,
+   false,
+   1
+  ],
+  "GC1-input-influence-private-access|0": [
+   "GC1-input-influence-private-access",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-influence-water-type|0": [
+   "GC2-label-influence-water-type",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-influence-water-type|0": [
+   "GC2-input-influence-water-type",
+   0,
+   false,
+   1
+  ],
+  "GC2-label-influence-private-access|0": [
+   "GC2-label-influence-private-access",
+   0,
+   false,
+   1
+  ],
+  "GC2-input-influence-private-access|0": [
+   "GC2-input-influence-private-access",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-influence-water-type|0": [
+   "GC3-label-influence-water-type",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-influence-water-type|0": [
+   "GC3-input-influence-water-type",
+   0,
+   false,
+   1
+  ],
+  "GC3-label-influence-private-access|0": [
+   "GC3-label-influence-private-access",
+   0,
+   false,
+   1
+  ],
+  "GC3-input-influence-private-access|0": [
+   "GC3-input-influence-private-access",
+   0,
+   false,
+   1
+  ],
+  "GSU-label-adu-desc|0": [
+   "GSU-label-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GSU-input-adu-desc|0": [
+   "GSU-input-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GC1-label-adu-desc|0": [
+   "GC1-label-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GC1-input-adu-desc|0": [
+   "GC1-input-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GC2-label-adu-desc|0": [
+   "GC2-label-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GC2-input-adu-desc|0": [
+   "GC2-input-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GC3-label-adu-desc|0": [
+   "GC3-label-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "GC3-input-adu-desc|0": [
+   "GC3-input-adu-desc",
+   0,
+   "",
+   1
+  ],
+  "sales-comp-map-exhibit-section|0": [
+   "sales-comp-map-exhibit-section",
+   0,
+   true,
+   1
+  ],
+  "flow-ri-developed-yes|0": [
+   "flow-ri-developed-yes",
+   0,
+   false,
+   1
+  ],
+  "flow-ri-developed-no|0": [
+   "flow-ri-developed-no",
+   0,
+   true,
+   1
+  ],
+  "map-yes-no-labels|0": [
+   "map-yes-no-labels",
+   0,
+   false,
+   1
+  ],
+  "map-rentcomp-in-map|0": [
+   "map-rentcomp-in-map",
+   0,
+   false,
+   1
+  ],
+  "rental-info-map-exhibits|0": [
+   "rental-info-map-exhibits",
+   0,
+   false,
+   1
+  ],
+  "flow-ia-developed-yes|0": [
+   "flow-ia-developed-yes",
+   0,
+   false,
+   1
+  ],
+  "flow-ia-developed-no|0": [
+   "flow-ia-developed-no",
+   0,
+   false,
+   1
+  ],
+  "map-grmcomp-in-map|0": [
+   "map-grmcomp-in-map",
+   0,
+   false,
+   1
+  ],
+  "flow-ia-rent-schedule-dev-by-appraiser-show|0": [
+   "flow-ia-rent-schedule-dev-by-appraiser-show",
+   0,
+   false,
+   1
+  ],
+  "flow-ia-rent-schedule-dev-by-appraiser-hide|0": [
+   "flow-ia-rent-schedule-dev-by-appraiser-hide",
+   0,
+   false,
+   1
+  ],
+  "flow-ia-rent-schedule-not-dev-by-appraiser|0": [
+   "flow-ia-rent-schedule-not-dev-by-appraiser",
+   0,
+   true,
+   1
+  ],
+  "GR1-label-data-source-assessor-id|0": [
+   "GR1-label-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GR1-input-data-source-assessor-id|0": [
+   "GR1-input-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GR1-label-data-source-mls-id|0": [
+   "GR1-label-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GR1-input-data-source-mls-id|0": [
+   "GR1-input-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GR2-label-data-source-assessor-id|0": [
+   "GR2-label-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GR2-input-data-source-assessor-id|0": [
+   "GR2-input-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GR2-label-data-source-mls-id|0": [
+   "GR2-label-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GR2-input-data-source-mls-id|0": [
+   "GR2-input-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GR3-label-data-source-assessor-id|0": [
+   "GR3-label-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GR3-input-data-source-assessor-id|0": [
+   "GR3-input-data-source-assessor-id",
+   0,
+   false,
+   1
+  ],
+  "GR3-label-data-source-mls-id|0": [
+   "GR3-label-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GR3-input-data-source-mls-id|0": [
+   "GR3-input-data-source-mls-id",
+   0,
+   false,
+   1
+  ],
+  "GRU_GBFA_ROW|0": [
+   "GRU_GBFA_ROW",
+   0,
+   true,
+   1
+  ],
+  "GRU_ADU_ROW|0": [
+   "GRU_ADU_ROW",
+   0,
+   true,
+   1
+  ],
+  "GRU_RENT_CONTROL_ROW|0": [
+   "GRU_RENT_CONTROL_ROW",
+   0,
+   true,
+   1
+  ],
+  "ia-map-exhibits|0": [
+   "ia-map-exhibits",
+   0,
+   false,
+   1
+  ],
+  "ob1-utility|0": [
+   "ob1-utility",
+   0,
+   true,
+   1
+  ],
+  "ob1-utility-print-flow|0": [
+   "ob1-utility-print-flow",
+   0,
+   false,
+   1
+  ],
+  "ob1-outbuilding-details-section|0": [
+   "ob1-outbuilding-details-section",
+   0,
+   false,
+   1
+  ],
+  "ob1-outbuilding-mechanical-section|0": [
+   "ob1-outbuilding-mechanical-section",
+   0,
+   false,
+   1
+  ],
+  "ob1-addd-section|0": [
+   "ob1-addd-section",
+   0,
+   false,
+   1
+  ],
+  "ob1-unit-in-structure|0": [
+   "ob1-unit-in-structure",
+   0,
+   false,
+   1
+  ],
+  "ob1-structure-volume|0": [
+   "ob1-structure-volume",
+   0,
+   false,
+   1
+  ],
+  "ob1-gross-building-area|0": [
+   "ob1-gross-building-area",
+   0,
+   false,
+   1
+  ],
+  "ob1-outbuilding-gross-label-value|0": [
+   "ob1-outbuilding-gross-label-value",
+   0,
+   false,
+   1
+  ],
+  "ob1-outbuilding-heating-yesno|0": [
+   "ob1-outbuilding-heating-yesno",
+   0,
+   true,
+   1
+  ],
+  "ob1-outbuilding-heating-checkbox|0": [
+   "ob1-outbuilding-heating-checkbox",
+   0,
+   true,
+   1
+  ],
+  "ob1-outbuilding-cooling-checkbox|0": [
+   "ob1-outbuilding-cooling-checkbox",
+   0,
+   true,
+   1
+  ],
+  "ob1-att-to-perm-found|0": [
+   "ob1-att-to-perm-found",
+   0,
+   false,
+   1
+  ],
+  "ob1-outbuilding-other-mechanical|0": [
+   "ob1-outbuilding-other-mechanical",
+   0,
+   true,
+   1
+  ],
+  "ob1-outbuilding-commentary-section|0": [
+   "ob1-outbuilding-commentary-section",
+   0,
+   true,
+   1
+  ],
+  "ob1-outbuilding-defects-subsection|0": [
+   "ob1-outbuilding-defects-subsection",
+   0,
+   false,
+   1
+  ],
+  "ob1-flow-outbuilding-apparent-defects-none|0": [
+   "ob1-flow-outbuilding-apparent-defects-none",
+   0,
+   true,
+   1
+  ],
+  "sum-final-cond-statement-section|0": [
+   "sum-final-cond-statement-section",
+   0,
+   true,
+   1
+  ],
+  "summary-borrower|0": [
+   "summary-borrower",
+   0,
+   false,
+   1
+  ],
+  "summary-contract-price|0": [
+   "summary-contract-price",
+   0,
+   false,
+   1
+  ],
+  "summary-as-is-condition-section|0": [
+   "summary-as-is-condition-section",
+   0,
+   false,
+   1
+  ],
+  "construction_section_row|0": [
+   "construction_section_row",
+   0,
+   false,
+   1
+  ],
+  "construction_section_row-print-flow|0": [
+   "construction_section_row-print-flow",
+   0,
+   false,
+   1
+  ],
+  "structure_design_row|0": [
+   "structure_design_row",
+   0,
+   false,
+   1
+  ],
+  "project_deficiencies_row|0": [
+   "project_deficiencies_row",
+   0,
+   false,
+   1
+  ],
+  "property_rights_appraised|0": [
+   "property_rights_appraised",
+   0,
+   true,
+   1
+  ],
+  "property_restrict|0": [
+   "property_restrict",
+   0,
+   false,
+   1
+  ],
+  "property_encroachment|0": [
+   "property_encroachment",
+   0,
+   false,
+   1
+  ],
+  "hud_data_plate|0": [
+   "hud_data_plate",
+   0,
+   false,
+   1
+  ],
+  "hud_label_present|0": [
+   "hud_label_present",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-as-is-overall-condition|0": [
+   "sum-addd-as-is-overall-condition",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-site-section-box|0": [
+   "sum-addd-site-section-box",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-vehicle-storage-section-box|0": [
+   "sum-addd-vehicle-storage-section-box",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-subject-property-amenities-section-box|0": [
+   "sum-addd-subject-property-amenities-section-box",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-dw-exterior-1|0": [
+   "sum-addd-dw-exterior-1",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-ui-interior-1|0": [
+   "sum-addd-ui-interior-1",
+   0,
+   false,
+   1
+  ],
+  "flow-sum-apparent-defects|0": [
+   "flow-sum-apparent-defects",
+   0,
+   false,
+   1
+  ],
+  "flow-sum-apparent-defects-none|0": [
+   "flow-sum-apparent-defects-none",
+   0,
+   true,
+   1
+  ],
+  "flow-sum-apparent-defects-requiring-action-none|0": [
+   "flow-sum-apparent-defects-requiring-action-none",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-itemized-total-cost|0": [
+   "sum-addd-itemized-total-cost",
+   0,
+   false,
+   1
+  ],
+  "sum-addd-estimated-total-cost|0": [
+   "sum-addd-estimated-total-cost",
+   0,
+   false,
+   1
+  ],
+  "contact-addr|0": [
+   "contact-addr",
+   0,
+   true,
+   1
+  ],
+  "contact-address-print-flow|0": [
+   "contact-address-print-flow",
+   0,
+   false,
+   1
+  ],
+  "appraiser-address|0": [
+   "appraiser-address",
+   0,
+   true,
+   1
+  ],
+  "appraiser-address-print-flow|0": [
+   "appraiser-address-print-flow",
+   0,
+   false,
+   1
+  ],
+  "supervisor-company-address|0": [
+   "supervisor-company-address",
+   0,
+   false,
+   1
+  ],
+  "supervisor-company-address-print-flow|0": [
+   "supervisor-company-address-print-flow",
+   0,
+   false,
+   1
+  ],
+  "ord-contact|0": [
+   "ord-contact",
+   0,
+   true,
+   1
+  ],
+  "contact|0": [
+   "contact",
+   0,
+   true,
+   1
+  ],
+  "ord-contact-client-ref-id|0": [
+   "ord-contact-client-ref-id",
+   0,
+   true,
+   1
+  ],
+  "amc-fee|0": [
+   "amc-fee",
+   0,
+   false,
+   1
+  ],
+  "government-agency-appraisal-indicator|0": [
+   "government-agency-appraisal-indicator",
+   0,
+   false,
+   1
+  ],
+  "investor-requested-identification-code|0": [
+   "investor-requested-identification-code",
+   0,
+   false,
+   1
+  ],
+  "borrower-individual|0": [
+   "borrower-individual",
+   0,
+   true,
+   1
+  ],
+  "borrower-legal-entity|0": [
+   "borrower-legal-entity",
+   0,
+   false,
+   1
+  ],
+  "seller-individual|0": [
+   "seller-individual",
+   0,
+   true,
+   1
+  ],
+  "seller-legal-entity|0": [
+   "seller-legal-entity",
+   0,
+   false,
+   1
+  ],
+  "seller|0": [
+   "seller",
+   0,
+   true,
+   1
+  ],
+  "subcurowner-individual|0": [
+   "subcurowner-individual",
+   0,
+   true,
+   1
+  ],
+  "subcurowner-legal-entity|0": [
+   "subcurowner-legal-entity",
+   0,
+   false,
+   1
+  ],
+  "pdr|0": [
+   "pdr",
+   0,
+   false,
+   1
+  ],
+  "ord-contact-creds|0": [
+   "ord-contact-creds",
+   0,
+   false,
+   1
+  ],
+  "ord-contact-amc-ref-id|0": [
+   "ord-contact-amc-ref-id",
+   0,
+   false,
+   1
+  ],
+  "ord-label-client-prefix|0": [
+   "ord-label-client-prefix",
+   0,
+   true,
+   1
+  ],
+  "appraiser-creds|0": [
+   "appraiser-creds",
+   0,
+   false,
+   1
+  ],
+  "supervisor-creds|0": [
+   "supervisor-creds",
+   0,
+   false,
+   1
+  ],
+  "supervisor-va-id|0": [
+   "supervisor-va-id",
+   0,
+   false,
+   1
+  ],
+  "supervisor-employee-type|0": [
+   "supervisor-employee-type",
+   0,
+   false,
+   1
+  ],
+  "supervisor-fha-id|0": [
+   "supervisor-fha-id",
+   0,
+   false,
+   1
+  ],
+  "srpa-creds|0": [
+   "srpa-creds",
+   0,
+   false,
+   1
+  ],
+  "agency-case-ref-id|0": [
+   "agency-case-ref-id",
+   0,
+   false,
+   1
+  ],
+  "appraiser-fee|0": [
+   "appraiser-fee",
+   0,
+   false,
+   1
+  ],
+  "assignment-documents|0": [
+   "assignment-documents",
+   0,
+   false,
+   1
+  ],
+  "assignment-graphs|0": [
+   "assignment-graphs",
+   0,
+   false,
+   1
+  ],
+  "sub-prop-address|0": [
+   "sub-prop-address",
+   0,
+   true,
+   1
+  ],
+  "sub-prop-address-print-flow|0": [
+   "sub-prop-address-print-flow",
+   0,
+   false,
+   1
+  ],
+  "alt-subpropaddress|0": [
+   "alt-subpropaddress",
+   0,
+   false,
+   1
+  ],
+  "sub-prop-alt-address-print-flow|0": [
+   "sub-prop-alt-address-print-flow",
+   0,
+   false,
+   1
+  ],
+  "special-tax-assessments-desc|0": [
+   "special-tax-assessments-desc",
+   0,
+   false,
+   1
+  ],
+  "construction-stage|0": [
+   "construction-stage",
+   0,
+   false,
+   1
+  ],
+  "legal-text|0": [
+   "legal-text",
+   0,
+   true,
+   1
+  ],
+  "legal-photo|0": [
+   "legal-photo",
+   0,
+   false,
+   1
+  ],
+  "ground-rent-annual-amount|0": [
+   "ground-rent-annual-amount",
+   0,
+   false,
+   1
+  ],
+  "graa-renewable|0": [
+   "graa-renewable",
+   0,
+   false,
+   1
+  ],
+  "ground-rent-marketability|0": [
+   "ground-rent-marketability",
+   0,
+   false,
+   1
+  ],
+  "dwellings-containing-units|0": [
+   "dwellings-containing-units",
+   0,
+   false,
+   1
+  ],
+  "graa-terms|0": [
+   "graa-terms",
+   0,
+   false,
+   1
+  ],
+  "graa-expires|0": [
+   "graa-expires",
+   0,
+   false,
+   1
+  ],
+  "community-land-trust|0": [
+   "community-land-trust",
+   0,
+   false,
+   1
+  ],
+  "native-american-land|0": [
+   "native-american-land",
+   0,
+   false,
+   1
+  ],
+  "mineral-rights-leased|0": [
+   "mineral-rights-leased",
+   0,
+   false,
+   1
+  ],
+  "description-of-rights-not-included|0": [
+   "description-of-rights-not-included",
+   0,
+   false,
+   1
+  ],
+  "rights-not-included|0": [
+   "rights-not-included",
+   0,
+   false,
+   1
+  ],
+  "subject-documents|0": [
+   "subject-documents",
+   0,
+   false,
+   1
+  ],
+  "subject-graphs|0": [
+   "subject-graphs",
+   0,
+   false,
+   1
+  ],
+  "table-site-dimensions|0": [
+   "table-site-dimensions",
+   0,
+   false,
+   1
+  ],
+  "table-site-contiguous|0": [
+   "table-site-contiguous",
+   0,
+   false,
+   1
+  ],
+  "table-site-elem-div-parcels|0": [
+   "table-site-elem-div-parcels",
+   0,
+   false,
+   1
+  ],
+  "table-site-class-code|0": [
+   "table-site-class-code",
+   0,
+   false,
+   1
+  ],
+  "table-site-reasons-illegal|0": [
+   "table-site-reasons-illegal",
+   0,
+   false,
+   1
+  ],
+  "table-site-impact|0": [
+   "table-site-impact",
+   0,
+   false,
+   1
+  ],
+  "table-site-rbldbl-crnt-density|0": [
+   "table-site-rbldbl-crnt-density",
+   0,
+   false,
+   1
+  ],
+  "table-site-zoning-compliance-desc|0": [
+   "table-site-zoning-compliance-desc",
+   0,
+   false,
+   1
+  ],
+  "table-site-access-street-type-surface|0": [
+   "table-site-access-street-type-surface",
+   0,
+   false,
+   1
+  ],
+  "table-site-known-maint-agreement|0": [
+   "table-site-known-maint-agreement",
+   0,
+   false,
+   1
+  ],
+  "table-site-desc-property-access|0": [
+   "table-site-desc-property-access",
+   0,
+   false,
+   1
+  ],
+  "flow-site-property-use|0": [
+   "flow-site-property-use",
+   0,
+   true,
+   1
+  ],
+  "table-site-property-use-with-nonres-use|0": [
+   "table-site-property-use-with-nonres-use",
+   0,
+   false,
+   1
+  ],
+  "table-site-property-use-with-nonres-use-desc|0": [
+   "table-site-property-use-with-nonres-use-desc",
+   0,
+   false,
+   1
+  ],
+  "label-site-prop-use-res-use|0": [
+   "label-site-prop-use-res-use",
+   0,
+   false,
+   1
+  ],
+  "input-site-prop-use-res-use|0": [
+   "input-site-prop-use-res-use",
+   0,
+   false,
+   1
+  ],
+  "table-site-property-use-without-nonres-use|0": [
+   "table-site-property-use-without-nonres-use",
+   0,
+   true,
+   1
+  ],
+  "flow-site-total-size|0": [
+   "flow-site-total-size",
+   0,
+   true,
+   1
+  ],
+  "flow-site-num-parcels|0": [
+   "flow-site-num-parcels",
+   0,
+   true,
+   1
+  ],
+  "input-parcel-size|-1": [
+   "input-parcel-size",
+   -1,
+   true,
+   1
+  ],
+  "flow-prop-access-desc|0": [
+   "flow-prop-access-desc",
+   0,
+   true,
+   1
+  ],
+  "apn-table|0": [
+   "apn-table",
+   0,
+   true,
+   1
+  ],
+  "apn-table-spacer|0": [
+   "apn-table-spacer",
+   0,
+   true,
+   1
+  ],
+  "label-site-influence-prox-blank|0": [
+   "label-site-influence-prox-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-influence-prox-default|0": [
+   "input-site-influence-prox-default",
+   0,
+   false,
+   1
+  ],
+  "input-site-influence-prox-env-cond|0": [
+   "input-site-influence-prox-env-cond",
+   0,
+   false,
+   1
+  ],
+  "label-site-influence-dtl-blank|0": [
+   "label-site-influence-dtl-blank",
+   0,
+   true,
+   1
+  ],
+  "ms-site-influence-dtl-airport|0": [
+   "ms-site-influence-dtl-airport",
+   0,
+   false,
+   1
+  ],
+  "ms-site-influence-dtl-enc-cond|0": [
+   "ms-site-influence-dtl-enc-cond",
+   0,
+   false,
+   1
+  ],
+  "ms-site-influence-dtl-util|0": [
+   "ms-site-influence-dtl-util",
+   0,
+   false,
+   1
+  ],
+  "input-site-influence-dtl-water|0": [
+   "input-site-influence-dtl-water",
+   0,
+   false,
+   1
+  ],
+  "label-site-influence-imp-blank|0": [
+   "label-site-influence-imp-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-influence-imp-default|0": [
+   "input-site-influence-imp-default",
+   0,
+   false,
+   1
+  ],
+  "label-site-influence-cmt-blank|0": [
+   "label-site-influence-cmt-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-influence-cmt-default|0": [
+   "input-site-influence-cmt-default",
+   0,
+   false,
+   1
+  ],
+  "labelheader-site-influence-water-frontage|0": [
+   "labelheader-site-influence-water-frontage",
+   0,
+   false,
+   1
+  ],
+  "table-site-feat-nonres-use|0": [
+   "table-site-feat-nonres-use",
+   0,
+   false,
+   1
+  ],
+  "label-site-feature-encroach-other|0": [
+   "label-site-feature-encroach-other",
+   0,
+   false,
+   1
+  ],
+  "input-site-feature-encroach-other|0": [
+   "input-site-feature-encroach-other",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-gas|0": [
+   "table-site-util-imp-gas",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-dwelling-improvements|0": [
+   "table-site-util-imp-dwelling-improvements",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-electric-details|0": [
+   "table-site-util-imp-electric-details",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-electric-impact-blank|0": [
+   "label-site-util-imp-electric-impact-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-util-imp-electric-impact|0": [
+   "input-site-util-imp-electric-impact",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-electric-other-shared|0": [
+   "label-site-util-imp-electric-other-shared",
+   0,
+   false,
+   1
+  ],
+  "input-site-util-imp-electric-other-shared|0": [
+   "input-site-util-imp-electric-other-shared",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-gas-details|0": [
+   "table-site-util-imp-gas-details",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-gas-impact-blank|0": [
+   "label-site-util-imp-gas-impact-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-util-imp-gas-impact|0": [
+   "input-site-util-imp-gas-impact",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-sewer-public-availability|0": [
+   "table-site-util-imp-sewer-public-availability",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-sewer-private|0": [
+   "table-site-util-imp-sewer-private",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-sewer-impact-blank|0": [
+   "label-site-util-imp-sewer-impact-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-util-imp-sewer-impact|0": [
+   "input-site-util-imp-sewer-impact",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-sewer-other-shared|0": [
+   "label-site-util-imp-sewer-other-shared",
+   0,
+   false,
+   1
+  ],
+  "input-site-util-imp-sewer-other-shared|0": [
+   "input-site-util-imp-sewer-other-shared",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-water-public-availability|0": [
+   "table-site-util-imp-water-public-availability",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-water-private|0": [
+   "table-site-util-imp-water-private",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-water-impact-blank|0": [
+   "label-site-util-imp-water-impact-blank",
+   0,
+   true,
+   1
+  ],
+  "input-site-util-imp-water-impact|0": [
+   "input-site-util-imp-water-impact",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-other-details|0": [
+   "table-site-util-imp-other-details",
+   0,
+   false,
+   1
+  ],
+  "input-site-util-imp-other-impact|0": [
+   "input-site-util-imp-other-impact",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-water-other-shared|0": [
+   "label-site-util-imp-water-other-shared",
+   0,
+   false,
+   1
+  ],
+  "input-site-util-imp-water-other-shared|0": [
+   "input-site-util-imp-water-other-shared",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-water-well|0": [
+   "label-site-util-imp-water-well",
+   0,
+   false,
+   1
+  ],
+  "input-site-util-imp-water-well|0": [
+   "input-site-util-imp-water-well",
+   0,
+   false,
+   1
+  ],
+  "table-site-util-imp-water-well-meets-requirements|0": [
+   "table-site-util-imp-water-well-meets-requirements",
+   0,
+   false,
+   1
+  ],
+  "label-site-util-imp-water-well-other|0": [
+   "label-site-util-imp-water-well-other",
+   0,
+   false,
+   1
+  ],
+  "input-site-util-imp-water-well-other|0": [
+   "input-site-util-imp-water-well-other",
+   0,
+   false,
+   1
+  ],
+  "flow-site-valuation-method-ca-enabled|0": [
+   "flow-site-valuation-method-ca-enabled",
+   0,
+   false,
+   1
+  ],
+  "ca-site-val-show-hide-checkbox|0": [
+   "ca-site-val-show-hide-checkbox",
+   0,
+   true,
+   1
+  ],
+  "flow-site-valuation-comparisons|0": [
+   "flow-site-valuation-comparisons",
+   0,
+   false,
+   1
+  ],
+  "flow-site-valuation-method-none|0": [
+   "flow-site-valuation-method-none",
+   0,
+   false,
+   1
+  ],
+  "flow-site-valuation-method|0": [
+   "flow-site-valuation-method",
+   0,
+   true,
+   1
+  ],
+  "flow-site-valuation-reconciliation|0": [
+   "flow-site-valuation-reconciliation",
+   0,
+   true,
+   1
+  ],
+  "site-non-res-use-exhibits|0": [
+   "site-non-res-use-exhibits",
+   0,
+   false,
+   1
+  ],
+  "flow-site-apparent-defects|0": [
+   "flow-site-apparent-defects",
+   0,
+   false,
+   1
+  ],
+  "flow-site-apparent-defects-none|0": [
+   "flow-site-apparent-defects-none",
+   0,
+   true,
+   1
+  ],
+  "flow-site-map-exhibits|0": [
+   "flow-site-map-exhibits",
+   0,
+   false,
+   1
+  ],
+  "permanent-waterfront-feature|0": [
+   "permanent-waterfront-feature",
+   0,
+   true,
+   1
+  ],
+  "permanent-waterfront-feature-print-flow|0": [
+   "permanent-waterfront-feature-print-flow",
+   0,
+   false,
+   1
+  ],
+  "disaster-mitigation-feature|0": [
+   "disaster-mitigation-feature",
+   0,
+   true,
+   1
+  ],
+  "disaster-mitigation-feature-print-flow|0": [
+   "disaster-mitigation-feature-print-flow",
+   0,
+   false,
+   1
+  ],
+  "disaster-mitigation-hide-show|0": [
+   "disaster-mitigation-hide-show",
+   0,
+   true,
+   1
+  ],
+  "disaster-mitigation-hide-show|1": [
+   "disaster-mitigation-hide-show",
+   1,
+   true,
+   1
+  ],
+  "disaster-mitigation-section-hidden|0": [
+   "disaster-mitigation-section-hidden",
+   0,
+   true,
+   1
+  ],
+  "disaster-mitigation-feature-section|0": [
+   "disaster-mitigation-feature-section",
+   0,
+   false,
+   1
+  ],
+  "ee-section|0": [
+   "ee-section",
+   0,
+   false,
+   1
+  ],
+  "ee-section-hidden|0": [
+   "ee-section-hidden",
+   0,
+   true,
+   1
+  ],
+  "sketch-section|0": [
+   "sketch-section",
+   0,
+   true,
+   1
+  ],
+  "sketch-none-message|0": [
+   "sketch-none-message",
+   0,
+   false,
+   1
+  ],
+  "de1-de-commentary-section|0": [
+   "de1-de-commentary-section",
+   0,
+   true,
+   1
+  ],
+  "de1-de-system-mechanicals-cooling|0": [
+   "de1-de-system-mechanicals-cooling",
+   0,
+   true,
+   1
+  ],
+  "de1-de-system-mechanicals-cooling-print-flow|0": [
+   "de1-de-system-mechanicals-cooling-print-flow",
+   0,
+   false,
+   1
+  ],
+  "de1-de-other-mech|0": [
+   "de1-de-other-mech",
+   0,
+   true,
+   1
+  ],
+  "de1-de-other-mech-print-flow|0": [
+   "de1-de-other-mech-print-flow",
+   0,
+   false,
+   1
+  ],
+  "de1-structure-design-type|0": [
+   "de1-structure-design-type",
+   0,
+   false,
+   1
+  ],
+  "de1-floors-in-building|0": [
+   "de1-floors-in-building",
+   0,
+   false,
+   1
+  ],
+  "de1-style|0": [
+   "de1-style",
+   0,
+   true,
+   1
+  ],
+  "de1-townhouse-end-unit|0": [
+   "de1-townhouse-end-unit",
+   0,
+   false,
+   1
+  ],
+  "de1-townhouse-back-to-back|0": [
+   "de1-townhouse-back-to-back",
+   0,
+   false,
+   1
+  ],
+  "de1-units-above-or-below|0": [
+   "de1-units-above-or-below",
+   0,
+   false,
+   1
+  ],
+  "de1-townhouse-location|0": [
+   "de1-townhouse-location",
+   0,
+   false,
+   1
+  ],
+  "de1-construction-method|0": [
+   "de1-construction-method",
+   0,
+   true,
+   1
+  ],
+  "de1-construction-method-print-flow|0": [
+   "de1-construction-method-print-flow",
+   0,
+   false,
+   1
+  ],
+  "de1-factory-built-certification|0": [
+   "de1-factory-built-certification",
+   0,
+   false,
+   1
+  ],
+  "de1-attic|0": [
+   "de1-attic",
+   0,
+   false,
+   1
+  ],
+  "de1-attic-accessible-for-observation|0": [
+   "de1-attic-accessible-for-observation",
+   0,
+   false,
+   1
+  ],
+  "de1-attic-visual-observation-completed|0": [
+   "de1-attic-visual-observation-completed",
+   0,
+   false,
+   1
+  ],
+  "de1-attic-pp|0": [
+   "de1-attic-pp",
+   0,
+   false,
+   1
+  ],
+  "de1-remaining-economic-life|0": [
+   "de1-remaining-economic-life",
+   0,
+   false,
+   1
+  ],
+  "de1-effective-age|0": [
+   "de1-effective-age",
+   0,
+   false,
+   1
+  ],
+  "de1-economic-left-commentary|0": [
+   "de1-economic-left-commentary",
+   0,
+   false,
+   1
+  ],
+  "de1-economic-age-commentary|0": [
+   "de1-economic-age-commentary",
+   0,
+   false,
+   1
+  ],
+  "de1-de-quality-and-condition-section|0": [
+   "de1-de-quality-and-condition-section",
+   0,
+   false,
+   1
+  ],
+  "crawl-accessible-observation-lbl|0": [
+   "crawl-accessible-observation-lbl",
+   0,
+   false,
+   1
+  ],
+  "crawl-accessible-observation-inp|0": [
+   "crawl-accessible-observation-inp",
+   0,
+   false,
+   1
+  ],
+  "crawl-observation-completed-lbl|0": [
+   "crawl-observation-completed-lbl",
+   0,
+   false,
+   1
+  ],
+  "crawl-observation-completed-inp|0": [
+   "crawl-observation-completed-inp",
+   0,
+   false,
+   1
+  ],
+  "de1-de-roof-surface-type|0": [
+   "de1-de-roof-surface-type",
+   0,
+   true,
+   1
+  ],
+  "de1-de-roof-surface-age-section|0": [
+   "de1-de-roof-surface-age-section",
+   0,
+   true,
+   1
+  ],
+  "de1-core-heating-container|0": [
+   "de1-core-heating-container",
+   0,
+   true,
+   1
+  ],
+  "de1-flow-de-noncont-finished-area-none|0": [
+   "de1-flow-de-noncont-finished-area-none",
+   0,
+   true,
+   1
+  ],
+  "de1-flow-de-noncont-finished-area|0": [
+   "de1-flow-de-noncont-finished-area",
+   0,
+   false,
+   1
+  ],
+  "de1-flow-de-defects-damages-deficiencies-none|0": [
+   "de1-flow-de-defects-damages-deficiencies-none",
+   0,
+   true,
+   1
+  ],
+  "de1-flow-de-defects-damages-deficiencies|0": [
+   "de1-flow-de-defects-damages-deficiencies",
+   0,
+   false,
+   1
+  ],
+  "ui1-area-data-source|0": [
+   "ui1-area-data-source",
+   0,
+   true,
+   1
+  ],
+  "ui1-area-data-source-print-flow|0": [
+   "ui1-area-data-source-print-flow",
+   0,
+   false,
+   1
+  ],
+  "ui1-corner-unit-tbl|0": [
+   "ui1-corner-unit-tbl",
+   0,
+   false,
+   1
+  ],
+  "ui1-floor-number-tbl|0": [
+   "ui1-floor-number-tbl",
+   0,
+   false,
+   1
+  ],
+  "ui1-non-residential-use-in-unit-tbl|0": [
+   "ui1-non-residential-use-in-unit-tbl",
+   0,
+   false,
+   1
+  ],
+  "ui1-access-features|0": [
+   "ui1-access-features",
+   0,
+   false,
+   1
+  ],
+  "ui1-access-features-none|0": [
+   "ui1-access-features-none",
+   0,
+   true,
+   1
+  ],
+  "ui1-access-features-defects|0": [
+   "ui1-access-features-defects",
+   0,
+   false,
+   1
+  ],
+  "ui1-access-features-defects-none|0": [
+   "ui1-access-features-defects-none",
+   0,
+   true,
+   1
+  ],
+  "ui1-level-and-room-details-print-preview-table|0": [
+   "ui1-level-and-room-details-print-preview-table",
+   0,
+   false,
+   1
+  ],
+  "ui1-kitchen-and-bathroom-details-print-preview-table|0": [
+   "ui1-kitchen-and-bathroom-details-print-preview-table",
+   0,
+   false,
+   1
+  ],
+  "ui1-adu-data-entry|0": [
+   "ui1-adu-data-entry",
+   0,
+   false,
+   1
+  ],
+  "ui1-unit-adu-yes-no|0": [
+   "ui1-unit-adu-yes-no",
+   0,
+   false,
+   1
+  ],
+  "ui1-unit-interior-commentary|0": [
+   "ui1-unit-interior-commentary",
+   0,
+   true,
+   1
+  ],
+  "ui1-access-features-print-preview|0": [
+   "ui1-access-features-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-finished-above-grade-print-preview|0": [
+   "ui1-finished-above-grade-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-finished-above-grade-nonstandard-print-preview|0": [
+   "ui1-finished-above-grade-nonstandard-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-unfinished-above-grade-print-preview|0": [
+   "ui1-unfinished-above-grade-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-finished-below-grade-print-preview|0": [
+   "ui1-finished-below-grade-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-finished-below-grade-nonstandard-print-preview|0": [
+   "ui1-finished-below-grade-nonstandard-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-unfinished-below-grade-print-preview|0": [
+   "ui1-unfinished-below-grade-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-below-grade-finished-compared-to-above-print-preview|0": [
+   "ui1-below-grade-finished-compared-to-above-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-occupancy-print-preview|0": [
+   "ui1-occupancy-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-utilities-operating-print-preview|0": [
+   "ui1-utilities-operating-print-preview",
+   0,
+   true,
+   1
+  ],
+  "ui1-utilities-separate-metered-print-preview|0": [
+   "ui1-utilities-separate-metered-print-preview",
+   0,
+   false,
+   1
+  ],
+  "ui1-live-work-space-print-preview|0": [
+   "ui1-live-work-space-print-preview",
+   0,
+   false,
+   1
+  ],
+  "ui1-allow-work-space-print-preview|0": [
+   "ui1-allow-work-space-print-preview",
+   0,
+   false,
+   1
+  ],
+  "ui1-int-features|0": [
+   "ui1-int-features",
+   0,
+   true,
+   1
+  ],
+  "vehicle-storage-section-none|0": [
+   "vehicle-storage-section-none",
+   0,
+   false,
+   1
+  ],
+  "vehicle-storage-section|0": [
+   "vehicle-storage-section",
+   0,
+   true,
+   1
+  ],
+  "vehicle-storage-apparent-ddd-subsection|0": [
+   "vehicle-storage-apparent-ddd-subsection",
+   0,
+   true,
+   1
+  ],
+  "vehicle-commentary|0": [
+   "vehicle-commentary",
+   0,
+   true,
+   1
+  ],
+  "vehicle-storage-exhibits-section|0": [
+   "vehicle-storage-exhibits-section",
+   0,
+   true,
+   1
+  ],
+  "parking-space-assignment-section|0": [
+   "parking-space-assignment-section",
+   0,
+   false,
+   1
+  ],
+  "vehicle-storage-type-section|0": [
+   "vehicle-storage-type-section",
+   0,
+   false,
+   1
+  ],
+  "storage-space-square-feet-section|0": [
+   "storage-space-square-feet-section",
+   0,
+   false,
+   1
+  ],
+  "other_storage_type|0": [
+   "other_storage_type",
+   0,
+   false,
+   1
+  ],
+  "STORAGE_POPUP|0": [
+   "STORAGE_POPUP",
+   0,
+   false,
+   1
+  ],
+  "number-of-spaces-section|0": [
+   "number-of-spaces-section",
+   0,
+   false,
+   1
+  ],
+  "ten-or-more-spaces-section|0": [
+   "ten-or-more-spaces-section",
+   0,
+   false,
+   1
+  ],
+  "driveway-surface-material-section|0": [
+   "driveway-surface-material-section",
+   0,
+   false,
+   1
+  ],
+  "other-section|0": [
+   "other-section",
+   0,
+   false,
+   1
+  ],
+  "car-storage-defects-header|0": [
+   "car-storage-defects-header",
+   0,
+   false,
+   1
+  ],
+  "vehicle-storage-defects-subsection|0": [
+   "vehicle-storage-defects-subsection",
+   0,
+   false,
+   1
+  ],
+  "vehicle-storage-apparent-defects-none|0": [
+   "vehicle-storage-apparent-defects-none",
+   0,
+   true,
+   1
+  ],
+  "subject-property-amenities|0": [
+   "subject-property-amenities",
+   0,
+   true,
+   1
+  ],
+  "subject-amenity-exhibits-section|0": [
+   "subject-amenity-exhibits-section",
+   0,
+   true,
+   1
+  ],
+  "subject-amenity-defects|0": [
+   "subject-amenity-defects",
+   0,
+   true,
+   1
+  ],
+  "subject-amenity-commentary|0": [
+   "subject-amenity-commentary",
+   0,
+   true,
+   1
+  ],
+  "subject-property-amenities-none|0": [
+   "subject-property-amenities-none",
+   0,
+   false,
+   1
+  ],
+  "amentity-detail-area|0": [
+   "amentity-detail-area",
+   0,
+   false,
+   1
+  ],
+  "amentity-detail-feature|0": [
+   "amentity-detail-feature",
+   0,
+   false,
+   1
+  ],
+  "amentity-detail-attached-mh|0": [
+   "amentity-detail-attached-mh",
+   0,
+   false,
+   1
+  ],
+  "subject-amenity-defects-table|0": [
+   "subject-amenity-defects-table",
+   0,
+   false,
+   1
+  ],
+  "subject-amenity-defects-none|0": [
+   "subject-amenity-defects-none",
+   0,
+   true,
+   1
+  ],
+  "market-median-dom|0": [
+   "market-median-dom",
+   0,
+   false,
+   1
+  ],
+  "market-inventory-count|0": [
+   "market-inventory-count",
+   0,
+   false,
+   1
+  ],
+  "mkt-map-exhibits|0": [
+   "mkt-map-exhibits",
+   0,
+   false,
+   1
+  ],
+  "mkt-graph-exhibits|0": [
+   "mkt-graph-exhibits",
+   0,
+   false,
+   1
+  ],
+  "graph|0": [
+   "graph",
+   0,
+   true,
+   1
+  ],
+  "graph-container-print|0": [
+   "graph-container-print",
+   0,
+   false,
+   1
+  ],
+  "proj-info-amenities-services|0": [
+   "proj-info-amenities-services",
+   0,
+   false,
+   1
+  ],
+  "proj-info-amenities-services-print-flow|0": [
+   "proj-info-amenities-services-print-flow",
+   0,
+   false,
+   1
+  ],
+  "proj-info-utilities-included|0": [
+   "proj-info-utilities-included",
+   0,
+   true,
+   1
+  ],
+  "proj-info-utilities-included-print-flow|0": [
+   "proj-info-utilities-included-print-flow",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-data-source|0": [
+   "gen-info-pi-data-source",
+   0,
+   true,
+   1
+  ],
+  "gen-info-pi-data-source-print-flow|0": [
+   "gen-info-pi-data-source-print-flow",
+   0,
+   false,
+   1
+  ],
+  "prj-info-observed-deficiency|0": [
+   "prj-info-observed-deficiency",
+   0,
+   false,
+   1
+  ],
+  "prj-info-project-completeness|0": [
+   "prj-info-project-completeness",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-proj-name|0": [
+   "gen-info-pi-proj-name",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-total-units|0": [
+   "gen-info-pi-total-units",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-units-sold|0": [
+   "gen-info-pi-units-sold",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-units-for-sale|0": [
+   "gen-info-pi-units-for-sale",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-units-rented|0": [
+   "gen-info-pi-units-rented",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-reason-units-rented|0": [
+   "gen-info-pi-reason-units-rented",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-bsao-lbl|0": [
+   "gen-info-pi-bsao-lbl",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-bsao-val|0": [
+   "gen-info-pi-bsao-val",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-usao-lbl|0": [
+   "gen-info-pi-usao-lbl",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-usao-val|0": [
+   "gen-info-pi-usao-val",
+   0,
+   false,
+   1
+  ],
+  "gen-info-pi-deficiency-desc|0": [
+   "gen-info-pi-deficiency-desc",
+   0,
+   true,
+   1
+  ],
+  "pi-subj-prop-complete-item|0": [
+   "pi-subj-prop-complete-item",
+   0,
+   true,
+   1
+  ],
+  "pi-ground-rent-item|0": [
+   "pi-ground-rent-item",
+   0,
+   false,
+   1
+  ],
+  "pi-ground-rent-amnnt-item|0": [
+   "pi-ground-rent-amnnt-item",
+   0,
+   false,
+   1
+  ],
+  "pi-ground-expires-item|0": [
+   "pi-ground-expires-item",
+   0,
+   false,
+   1
+  ],
+  "pi-sharedissues-otstanding|0": [
+   "pi-sharedissues-otstanding",
+   0,
+   true,
+   1
+  ],
+  "pi-sharredattr-subj-property|0": [
+   "pi-sharredattr-subj-property",
+   0,
+   true,
+   1
+  ],
+  "pi-property-lease-expires|0": [
+   "pi-property-lease-expires",
+   0,
+   true,
+   1
+  ],
+  "gen-info-pi-monthly-amount|0": [
+   "gen-info-pi-monthly-amount",
+   0,
+   true,
+   1
+  ],
+  "cooperative-information|0": [
+   "cooperative-information",
+   0,
+   true,
+   1
+  ],
+  "project-blanket-financing|0": [
+   "project-blanket-financing",
+   0,
+   true,
+   1
+  ],
+  "lien-table-prs|0": [
+   "lien-table-prs",
+   0,
+   true,
+   1
+  ],
+  "lien-table-title|0": [
+   "lien-table-title",
+   0,
+   true,
+   1
+  ],
+  "lien-table-bm|0": [
+   "lien-table-bm",
+   0,
+   true,
+   1
+  ],
+  "lien-table-rt|0": [
+   "lien-table-rt",
+   0,
+   true,
+   1
+  ],
+  "lien-table-mp|0": [
+   "lien-table-mp",
+   0,
+   true,
+   1
+  ],
+  "lien-table-ir|0": [
+   "lien-table-ir",
+   0,
+   true,
+   1
+  ],
+  "lien-table-at|0": [
+   "lien-table-at",
+   0,
+   true,
+   1
+  ],
+  "lien-table-llc|0": [
+   "lien-table-llc",
+   0,
+   true,
+   1
+  ],
+  "lien-table-upb|0": [
+   "lien-table-upb",
+   0,
+   true,
+   1
+  ],
+  "lien-table-lcl|0": [
+   "lien-table-lcl",
+   0,
+   true,
+   1
+  ],
+  "lien-table-prsb|0": [
+   "lien-table-prsb",
+   0,
+   true,
+   1
+  ],
+  "lien-flow|0": [
+   "lien-flow",
+   0,
+   true,
+   1
+  ],
+  "incomplete-project-item|0": [
+   "incomplete-project-item",
+   0,
+   false,
+   1
+  ],
+  "incomplete-project-detail|0": [
+   "incomplete-project-detail",
+   0,
+   false,
+   1
+  ],
+  "incomplete-project-impact|0": [
+   "incomplete-project-impact",
+   0,
+   true,
+   1
+  ],
+  "incomplete-project-comment|0": [
+   "incomplete-project-comment",
+   0,
+   false,
+   1
+  ],
+  "converted-past-years-item|0": [
+   "converted-past-years-item",
+   0,
+   false,
+   1
+  ],
+  "converted-past-3-years-detail|0": [
+   "converted-past-3-years-detail",
+   0,
+   false,
+   1
+  ],
+  "converted-past-3-years-impact|0": [
+   "converted-past-3-years-impact",
+   0,
+   false,
+   1
+  ],
+  "converted-past-3-years-comment|0": [
+   "converted-past-3-years-comment",
+   0,
+   false,
+   1
+  ],
+  "se-ownership-of-multiple-units-item|0": [
+   "se-ownership-of-multiple-units-item",
+   0,
+   true,
+   1
+  ],
+  "single-entity-ownership-units-detail|0": [
+   "single-entity-ownership-units-detail",
+   0,
+   true,
+   1
+  ],
+  "single-entity-ownership-units-impact|0": [
+   "single-entity-ownership-units-impact",
+   0,
+   true,
+   1
+  ],
+  "single-entity-ownership-units-comment|0": [
+   "single-entity-ownership-units-comment",
+   0,
+   true,
+   1
+  ],
+  "se-ownership-of-multiple-shares-item|0": [
+   "se-ownership-of-multiple-shares-item",
+   0,
+   true,
+   1
+  ],
+  "single-entity-ownership-shares-detail|0": [
+   "single-entity-ownership-shares-detail",
+   0,
+   true,
+   1
+  ],
+  "single-entity-ownership-shares-impact|0": [
+   "single-entity-ownership-shares-impact",
+   0,
+   true,
+   1
+  ],
+  "single-entity-ownership-shares-comment|0": [
+   "single-entity-ownership-shares-comment",
+   0,
+   true,
+   1
+  ],
+  "commercial-space-item|0": [
+   "commercial-space-item",
+   0,
+   false,
+   1
+  ],
+  "commercial-space-detail|0": [
+   "commercial-space-detail",
+   0,
+   false,
+   1
+  ],
+  "commercial-space-impact|0": [
+   "commercial-space-impact",
+   0,
+   false,
+   1
+  ],
+  "commercial-space-comment|0": [
+   "commercial-space-comment",
+   0,
+   false,
+   1
+  ],
+  "known-legal-actions-item|0": [
+   "known-legal-actions-item",
+   0,
+   false,
+   1
+  ],
+  "known-legal-actions-detail|0": [
+   "known-legal-actions-detail",
+   0,
+   false,
+   1
+  ],
+  "known-legal-actions-impact|0": [
+   "known-legal-actions-impact",
+   0,
+   false,
+   1
+  ],
+  "known-legal-actions-comment|0": [
+   "known-legal-actions-comment",
+   0,
+   false,
+   1
+  ],
+  "unit-transfer-fees-item|0": [
+   "unit-transfer-fees-item",
+   0,
+   false,
+   1
+  ],
+  "unit-transfer-fees-detail|0": [
+   "unit-transfer-fees-detail",
+   0,
+   false,
+   1
+  ],
+  "unit-transfer-fees-impact|0": [
+   "unit-transfer-fees-impact",
+   0,
+   false,
+   1
+  ],
+  "unit-transfer-fees-comment|0": [
+   "unit-transfer-fees-comment",
+   0,
+   false,
+   1
+  ],
+  "unit-special-assessments-item|0": [
+   "unit-special-assessments-item",
+   0,
+   false,
+   1
+  ],
+  "unit-special-assessments-detail|0": [
+   "unit-special-assessments-detail",
+   0,
+   false,
+   1
+  ],
+  "unit-special-assessments-detail-charge|0": [
+   "unit-special-assessments-detail-charge",
+   0,
+   false,
+   1
+  ],
+  "unit-special-assessments-impact|0": [
+   "unit-special-assessments-impact",
+   0,
+   false,
+   1
+  ],
+  "unit-special-assessments-comment|0": [
+   "unit-special-assessments-comment",
+   0,
+   false,
+   1
+  ],
+  "unit-tax-abatements-item|0": [
+   "unit-tax-abatements-item",
+   0,
+   false,
+   1
+  ],
+  "unit-tax-abatements-detail-amount|0": [
+   "unit-tax-abatements-detail-amount",
+   0,
+   false,
+   1
+  ],
+  "unit-tax-abatements-detail-expiration|0": [
+   "unit-tax-abatements-detail-expiration",
+   0,
+   false,
+   1
+  ],
+  "unit-tax-abatements-impact|0": [
+   "unit-tax-abatements-impact",
+   0,
+   false,
+   1
+  ],
+  "unit-tax-abatements-comment|0": [
+   "unit-tax-abatements-comment",
+   0,
+   false,
+   1
+  ],
+  "project-factors-commentary|0": [
+   "project-factors-commentary",
+   0,
+   true,
+   1
+  ],
+  "valuation-comment-text|0": [
+   "valuation-comment-text",
+   0,
+   true,
+   1
+  ],
+  "project-info-documents|0": [
+   "project-info-documents",
+   0,
+   false,
+   1
+  ],
+  "project-info-graphs|0": [
+   "project-info-graphs",
+   0,
+   false,
+   1
+  ],
+  "ListedWithinPreviousYearIndicator|0": [
+   "ListedWithinPreviousYearIndicator",
+   0,
+   true,
+   1
+  ],
+  "subject-listing-info-documents|0": [
+   "subject-listing-info-documents",
+   0,
+   false,
+   1
+  ],
+  "subject-listing-info-graphs|0": [
+   "subject-listing-info-graphs",
+   0,
+   false,
+   1
+  ],
+  "sc-section|0": [
+   "sc-section",
+   0,
+   false,
+   1
+  ],
+  "sales-contract-exhibits-section|0": [
+   "sales-contract-exhibits-section",
+   0,
+   false,
+   1
+  ],
+  "sc-section-hidden|0": [
+   "sc-section-hidden",
+   0,
+   true,
+   1
+  ],
+  "sc-analyzed-group|0": [
+   "sc-analyzed-group",
+   0,
+   false,
+   1
+  ],
+  "sc-arms-length-group|0": [
+   "sc-arms-length-group",
+   0,
+   false,
+   1
+  ],
+  "sc-non-arms-length-commentary|0": [
+   "sc-non-arms-length-commentary",
+   0,
+   false,
+   1
+  ],
+  "sc-contract-sales-price-group|0": [
+   "sc-contract-sales-price-group",
+   0,
+   false,
+   1
+  ],
+  "sc-contract-date-group|0": [
+   "sc-contract-date-group",
+   0,
+   false,
+   1
+  ],
+  "sc-transfer-terms-group|0": [
+   "sc-transfer-terms-group",
+   0,
+   false,
+   1
+  ],
+  "sc-personal-property-inc-indicator-group|0": [
+   "sc-personal-property-inc-indicator-group",
+   0,
+   false,
+   1
+  ],
+  "sc-personal-property-inc-indicator-lbl|0": [
+   "sc-personal-property-inc-indicator-lbl",
+   0,
+   false,
+   1
+  ],
+  "sc-financial-sales-concessions-box|0": [
+   "sc-financial-sales-concessions-box",
+   0,
+   false,
+   1
+  ],
+  "sc-kwn-concession|0": [
+   "sc-kwn-concession",
+   0,
+   false,
+   1
+  ],
+  "sc-total-concession|0": [
+   "sc-total-concession",
+   0,
+   false,
+   1
+  ],
+  "sc-concession-typical|0": [
+   "sc-concession-typical",
+   0,
+   false,
+   1
+  ],
+  "sc-analysis-box|0": [
+   "sc-analysis-box",
+   0,
+   false,
+   1
+  ],
+  "sales-contract-exhibits-box|0": [
+   "sales-contract-exhibits-box",
+   0,
+   false,
+   1
+  ],
+  "sales-contract-exhibits|0": [
+   "sales-contract-exhibits",
+   0,
+   false,
+   1
+  ],
+  "sales-contract-documents|0": [
+   "sales-contract-documents",
+   0,
+   false,
+   1
+  ],
+  "sales-contract-graphs|0": [
+   "sales-contract-graphs",
+   0,
+   false,
+   1
+  ],
+  "prior-sales|0": [
+   "prior-sales",
+   0,
+   true,
+   1
+  ],
+  "transfer-terms-table-section|0": [
+   "transfer-terms-table-section",
+   0,
+   false,
+   1
+  ],
+  "prior-sale-or-transfer-section|0": [
+   "prior-sale-or-transfer-section",
+   0,
+   true,
+   1
+  ],
+  "prior-sales-documents|0": [
+   "prior-sales-documents",
+   0,
+   false,
+   1
+  ],
+  "prior-sales-graphs|0": [
+   "prior-sales-graphs",
+   0,
+   false,
+   1
+  ],
+  "sales-comp-exhibits-comps|0": [
+   "sales-comp-exhibits-comps",
+   0,
+   true,
+   1
+  ],
+  "flow-ia-exhibits-comps|0": [
+   "flow-ia-exhibits-comps",
+   0,
+   true,
+   1
+  ],
+  "cost-approach-section-hidden|0": [
+   "cost-approach-section-hidden",
+   0,
+   true,
+   1
+  ],
+  "cost-approach-section|0": [
+   "cost-approach-section",
+   0,
+   false,
+   1
+  ],
+  "ssde1-ca-dwell-physical-depreciation|0": [
+   "ssde1-ca-dwell-physical-depreciation",
+   0,
+   true,
+   1
+  ],
+  "ssde1-ca-dwell-functional-depreciation|0": [
+   "ssde1-ca-dwell-functional-depreciation",
+   0,
+   true,
+   1
+  ],
+  "ssde1-ca-dwell-external-depreciation|0": [
+   "ssde1-ca-dwell-external-depreciation",
+   0,
+   true,
+   1
+  ],
+  "ssde1-ca-dwell-total-depreciation|0": [
+   "ssde1-ca-dwell-total-depreciation",
+   0,
+   false,
+   1
+  ],
+  "ca-land-comparable-table-header|0": [
+   "ca-land-comparable-table-header",
+   0,
+   "",
+   1
+  ],
+  "ssde1-ca-dwell-manufactured-home|0": [
+   "ssde1-ca-dwell-manufactured-home",
+   0,
+   false,
+   1
+  ],
+  "ssde1-ca-remaining-economic-life|0": [
+   "ssde1-ca-remaining-economic-life",
+   0,
+   true,
+   1
+  ],
+  "ssde1-ca-remaining-economic-life-commentary-container|0": [
+   "ssde1-ca-remaining-economic-life-commentary-container",
+   0,
+   true,
+   1
+  ],
+  "ssde1-ca_effective_age-age|0": [
+   "ssde1-ca_effective_age-age",
+   0,
+   true,
+   1
+  ],
+  "ssde1-ca-effective-age-commentary|0": [
+   "ssde1-ca-effective-age-commentary",
+   0,
+   true,
+   1
+  ],
+  "ca-cost-service|0": [
+   "ca-cost-service",
+   0,
+   false,
+   1
+  ],
+  "ssde1-ca-remaining-economic-life-commentary|0": [
+   "ssde1-ca-remaining-economic-life-commentary",
+   0,
+   true,
+   1
+  ],
+  "ca-depreciated-cost-of-outbuildings-label|0": [
+   "ca-depreciated-cost-of-outbuildings-label",
+   0,
+   true,
+   1
+  ],
+  "ca-depreciated-cost-of-outbuildings-input|0": [
+   "ca-depreciated-cost-of-outbuildings-input",
+   0,
+   true,
+   1
+  ],
+  "rec-mkt-val-cond|0": [
+   "rec-mkt-val-cond",
+   0,
+   true,
+   1
+  ],
+  "rec-mkt-val-cond-print-flow|0": [
+   "rec-mkt-val-cond-print-flow",
+   0,
+   false,
+   1
+  ],
+  "ap-sum-contract-price|0": [
+   "ap-sum-contract-price",
+   0,
+   false,
+   1
+  ],
+  "ap-sum-pro-rata-share-calc-method|0": [
+   "ap-sum-pro-rata-share-calc-method",
+   0,
+   false,
+   1
+  ],
+  "ap-sum-fha-reo-insurability-level|0": [
+   "ap-sum-fha-reo-insurability-level",
+   0,
+   false,
+   1
+  ],
+  "ap-sum-rec-lbl-disclaimer|0": [
+   "ap-sum-rec-lbl-disclaimer",
+   0,
+   false,
+   1
+  ],
+  "val-with-coop-section|0": [
+   "val-with-coop-section",
+   0,
+   false,
+   1
+  ],
+  "input-reason-for-exclusion-indicate-value|0": [
+   "input-reason-for-exclusion-indicate-value",
+   0,
+   true,
+   1
+  ],
+  "input-reason-for-exclusion-income-approach|0": [
+   "input-reason-for-exclusion-income-approach",
+   0,
+   true,
+   1
+  ],
+  "input-reason-for-exclusion-cost-approach|0": [
+   "input-reason-for-exclusion-cost-approach",
+   0,
+   true,
+   1
+  ],
+  "rec-client-requested-conditions-section|0": [
+   "rec-client-requested-conditions-section",
+   0,
+   false,
+   1
+  ],
+  "rec-client-requested-conditions-hidden-section|0": [
+   "rec-client-requested-conditions-hidden-section",
+   0,
+   true,
+   1
+  ],
+  "rec-addd-site-section-box|0": [
+   "rec-addd-site-section-box",
+   0,
+   false,
+   1
+  ],
+  "rec-addd-vehicle-storage-section-box|0": [
+   "rec-addd-vehicle-storage-section-box",
+   0,
+   false,
+   1
+  ],
+  "rec-addd-subject-property-amenities-section-box|0": [
+   "rec-addd-subject-property-amenities-section-box",
+   0,
+   false,
+   1
+  ],
+  "rec-addd-dwelling-exterior-1|0": [
+   "rec-addd-dwelling-exterior-1",
+   0,
+   false,
+   1
+  ],
+  "rec-addd-de-interior-1|0": [
+   "rec-addd-de-interior-1",
+   0,
+   false,
+   1
+  ],
+  "flow-rec-cost-to-repair|0": [
+   "flow-rec-cost-to-repair",
+   0,
+   false,
+   1
+  ],
+  "flow-rec-apparent-defects|0": [
+   "flow-rec-apparent-defects",
+   0,
+   false,
+   1
+  ],
+  "flow-rec-apparent-defects-none|0": [
+   "flow-rec-apparent-defects-none",
+   0,
+   true,
+   1
+  ],
+  "rec-addd-itemized-total-cost|0": [
+   "rec-addd-itemized-total-cost",
+   0,
+   false,
+   1
+  ],
+  "rec-addd-estimated-total-cost|0": [
+   "rec-addd-estimated-total-cost",
+   0,
+   false,
+   1
+  ],
+  "rec-addd-as-is-overall-condition|0": [
+   "rec-addd-as-is-overall-condition",
+   0,
+   false,
+   1
+  ],
+  "reconciliation-documents|0": [
+   "reconciliation-documents",
+   0,
+   false,
+   1
+  ],
+  "reconciliation-graphs|0": [
+   "reconciliation-graphs",
+   0,
+   false,
+   1
+  ],
+  "revision-history-section-hidden|0": [
+   "revision-history-section-hidden",
+   0,
+   true,
+   1
+  ],
+  "revision-history-section|0": [
+   "revision-history-section",
+   0,
+   false,
+   1
+  ],
+  "reconsideration-of-value|0": [
+   "reconsideration-of-value",
+   0,
+   false,
+   1
+  ],
+  "prior-sales-revision|0": [
+   "prior-sales-revision",
+   0,
+   true,
+   1
+  ],
+  "revision-history|0": [
+   "revision-history",
+   0,
+   true,
+   1
+  ],
+  "reconsideration-of-value-section|0": [
+   "reconsideration-of-value-section",
+   0,
+   true,
+   1
+  ],
+  "supplemental-exhibits-section|0": [
+   "supplemental-exhibits-section",
+   0,
+   false,
+   1
+  ],
+  "supplemental-section-hidden|0": [
+   "supplemental-section-hidden",
+   0,
+   true,
+   1
+  ],
+  "supplemental-documents|0": [
+   "supplemental-documents",
+   0,
+   false,
+   1
+  ],
+  "supplemental-graphs|0": [
+   "supplemental-graphs",
+   0,
+   false,
+   1
+  ],
+  "IntendedUseFHA|0": [
+   "IntendedUseFHA",
+   0,
+   false,
+   1
+  ],
+  "limitingCondFHA|0": [
+   "limitingCondFHA",
+   0,
+   false,
+   1
+  ],
+  "AddIntendedFHAUser|0": [
+   "AddIntendedFHAUser",
+   0,
+   false,
+   1
+  ],
+  "AddIntendedUSDAUser|0": [
+   "AddIntendedUSDAUser",
+   0,
+   false,
+   1
+  ],
+  "AddIntendedVAUser|0": [
+   "AddIntendedVAUser",
+   0,
+   false,
+   1
+  ],
+  "NotPerformedAnyService|0": [
+   "NotPerformedAnyService",
+   0,
+   true,
+   1
+  ],
+  "NotProvidedRealEstateService|0": [
+   "NotProvidedRealEstateService",
+   0,
+   false,
+   1
+  ],
+  "AddScopeOfWork|0": [
+   "AddScopeOfWork",
+   0,
+   false,
+   1
+  ],
+  "DescriptionOfPriorServices|0": [
+   "DescriptionOfPriorServices",
+   0,
+   false,
+   1
+  ],
+  "AddIntendedUse|0": [
+   "AddIntendedUse",
+   0,
+   false,
+   1
+  ],
+  "AddIntendedUser|0": [
+   "AddIntendedUser",
+   0,
+   false,
+   1
+  ],
+  "AppraiserCertificationsInteriorExterior|0": [
+   "AppraiserCertificationsInteriorExterior",
+   0,
+   false,
+   1
+  ],
+  "AppraiserCertificationsExterior|0": [
+   "AppraiserCertificationsExterior",
+   0,
+   false,
+   1
+  ],
+  "AppraiserCertificationsNoPhysicalInspection|0": [
+   "AppraiserCertificationsNoPhysicalInspection",
+   0,
+   true,
+   1
+  ],
+  "SUP_APPR_CERT|0": [
+   "SUP_APPR_CERT",
+   0,
+   false,
+   1
+  ],
+  "ADD_SUP_APPR_CERT|0": [
+   "ADD_SUP_APPR_CERT",
+   0,
+   false,
+   1
+  ],
+  "additional-appraiser-certifications|0": [
+   "additional-appraiser-certifications",
+   0,
+   true,
+   1
+  ],
+  "ord-dfe-individual-borrower-name|0": [
+   "ord-dfe-individual-borrower-name",
+   0,
+   true,
+   1
+  ],
+  "ord-dfe-entity-borrower-name|0": [
+   "ord-dfe-entity-borrower-name",
+   0,
+   false,
+   1
+  ],
+  "ord-dfe-individual-seller-name|0": [
+   "ord-dfe-individual-seller-name",
+   0,
+   true,
+   1
+  ],
+  "ord-dfe-entity-seller-name|0": [
+   "ord-dfe-entity-seller-name",
+   0,
+   false,
+   1
+  ],
+  "ord-dfe-individual-owner-name|0": [
+   "ord-dfe-individual-owner-name",
+   0,
+   true,
+   1
+  ],
+  "ord-dfe-entity-owner-name|0": [
+   "ord-dfe-entity-owner-name",
+   0,
+   false,
+   1
+  ],
+  "salescomp-grid|0": [
+   "salescomp-grid",
+   0,
+   true,
+   1
+  ],
+  "contact-creds|0": [
+   "contact-creds",
+   0,
+   false,
+   1
+  ],
+  "contact-client-ref-id|0": [
+   "contact-client-ref-id",
+   0,
+   true,
+   1
+  ],
+  "contact-amc-ref-id|0": [
+   "contact-amc-ref-id",
+   0,
+   false,
+   1
+  ],
+  "label-client-prefix|0": [
+   "label-client-prefix",
+   0,
+   true,
+   1
+  ]
+ }
+}

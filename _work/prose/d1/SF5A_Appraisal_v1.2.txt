@@ -1,0 +1,1676 @@
+
+<<<PAGE 1 of 21>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of the 
+Federal Housing Finance Agency. 
+© 2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix D-1: Single Family Scenario 5 Alternate Font (SF5-A) 
+Document Version 1.2 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 21>>>
+ 
+ 
+Revision History 
+Date 
+Version # 
+Revision Description 
+3/10/2026 
+1.2 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+6/10/2025 
+1.1 
+See Appendix D-1: URAR Sample Scenario Matrix for complete list of 
+updates. 
+4/03/2025 
+1.0 
+Copy of the Single Family 5 (SF5) Scenario, originally published on 
+9/17/2024, using alternate fonts: 
+• 
+Calibri for text 
+• 
+Wingdings for checkboxes 
+ 
+Introduction 
+Sample Scenario SF5-A has the same content as SF5 but uses alternate fonts (Calibri and Wingdings 
+instead of Myriad Pro and Wingdings2). 
+This report is for a single-family detached ranch-style home with 1,260 square feet on one level. There is 
+a driveway and a deck. 
+Key Characteristics 
+• 
+Parties associated with this transaction: 
+o Client/Lender 
+o Appraiser 
+• 
+Assignment Reason: Refinance 
+• 
+Property Valuation Method: Traditional Appraisal 
+• 
+Construction Method: Site Built 
+• 
+Appraisal is made As Is, with no Defects, Damages, or Deficiencies 
+• 
+Sales Comparison Approach section includes Additional Properties Analyzed Not Used 
+• 
+Revision History including Borrower-Initiated Reconsideration of Value 
+ 
+Disclaimer: This content is for illustrative purposes only. Photos (including “blank” photos) are used for 
+examples only and do not necessarily correlate to information in the URAR. While efforts have been 
+made to align the images and floor plan with the sample data, some inconsistencies may be present. 
+ 
+The URAR sample scenario begins on the next page.  
+This cover section, including Introduction and Key Characteristics,       
+is not part of the URAR. 
+
+<<<PAGE 3 of 21>>>
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Uniform Residential Appraisal Report
+213 TREE STAND RD, ANYTOWN, MD 09992
+SUMMARY
+Opinion of Market Value	
+$350,000
+Effective Date of Appraisal	
+01/12/2026
+Assignment Reason	
+Refinance
+Borrower Name	
+Jane Doe
+Current Owner of Public Record	
+Jane Doe
+Listing Status	
+None
+Market Value Condition	
+As Is
+Property Valuation Method	
+Traditional Appraisal
+Appraiser Name	
+John Appraiser
+Property Description
+Construction Method	
+Site Built
+Attachment Type	
+Detached
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Subject Site Owned in Common
+
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Property Rights Appraised	
+Fee Simple
+Yes No
+Is the highest and best use of the subject property as 
+improved (or as proposed per plans and specifications) the 
+present use?
+
+Zoning Compliance	
+Legal
+Overall Quality	
+Q4
+Overall Condition	
+C3
+ 
+This is where the Dwelling Front photo would display.
+Apparent Defects, Damages, Deficiencies Requiring Action
+None
+
+<<<PAGE 4 of 21>>>
+	
+Page 2 of 19
+Uniform Residential Appraisal Report	
+Page 2 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Assignment Information
+Assignment Reason	
+Refinance
+Borrower Name	
+Jane Doe
+Current Owner of Public Record	
+Jane Doe
+Property Valuation Method	
+Traditional Appraisal
+Yes No
+Was a Property Data Report used in lieu of an Inspection?
+
+Appraiser Fee	
+$0
+Contact Information
+Client/Lender
+Company Name	
+Bank of Maryland
+Company Address	
+81 Cedar Rd
+	
+Nowhere, MD 09991
+Appraiser 
+Name	
+John Appraiser
+Company Name	
+John Appraiser Appraisal  
+Company
+Company Address	
+381 Pine St
+	
+Anytown, MD 09992
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior	
+Physical
+Interior	
+Physical
+Inspection Date	
+01/12/2026
+Credentials
+Level	
+Certified Residential
+ID	
+03-XXXXXX
+State	
+MD
+Expires	
+12/31/2027
+Subject Property
+Physical Address	
+213 Tree Stand Rd
+	
+Anytown, MD 09992
+County	
+Hill
+Neighborhood Name	
+Hilltop Hills
+Yes No
+Planned Unit Development (PUD)
+
+Condominium
+
+Cooperative
+
+Condop
+
+Property on Native American Lands
+
+Subject Site Owned in Common
+
+Homeowner Responsible for all Exterior Maintenance  
+of Dwelling(s)
+
+New Construction
+
+Attachment Type	
+Detached
+Units Excluding ADUs	
+1
+Accessory Dwelling Units	
+0
+Special Tax Assessments	
+No
+Ownership Rights
+Property Rights Appraised	
+Fee Simple
+All Rights Included in Appraisal	
+Yes
+Legal Description
+Lot 3 Block 8 Section 2 of Hilltop Hills
+Site
+Total Site Size	
+15,000 Sq. Ft.
+Number of Parcels	
+1
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+KLWMDFMW
+Land with Dwelling
+15,000 Sq. Ft.
+Zoning
+Compliance	
+Legal
+Classification Code	
+R-3
+Classification Code Description	
+3 Residential Building Lots  
+per Acre
+Property Use
+Non-Residential Use	
+None
+Property Access
+Primary Access	
+Public Street
+Street Type and Surface	
+Local Road | Asphalt
+Typical for Market	
+Yes
+
+<<<PAGE 5 of 21>>>
+	
+Page 3 of 19
+Site (continued)
+Uniform Residential Appraisal Report	
+Page 3 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Residential
+Bordering
+Neutral
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+Residential
+Full
+Neutral
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Hazard Zone
+No Hazard Zone Noted
+Utilities and Impact to Value/Marketability
+Broadband Internet Available	
+Yes
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+
+Gas
+
+Sanitary Sewer
+
+Water
+
+Apparent Defects, Damages, Deficiencies (Site)
+None
+Site Exhibits
+Property Access (Street Scene)
+View - Residential
+This is where the Property Access photo would display.
+This is where the View photo would display.
+
+<<<PAGE 6 of 21>>>
+	
+Page 4 of 19
+Uniform Residential Appraisal Report	
+Page 4 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Sketch
+Measurement Standard	
+ANSI
+Sketch
+This is where the Sketch image would display.
+Dwelling Exterior
+Subject Property Units in  
+Structure	
+1
+Dwelling Style	
+Ranch
+Front Door Elevation	
+Ground Level
+Year Built	
+2018
+Construction Method	
+Site Built
+Converted Area	
+None
+This is where the Dwelling Front photo would display.
+
+<<<PAGE 7 of 21>>>
+	
+Page 5 of 19
+Dwelling Exterior (continued)
+Uniform Residential Appraisal Report	
+Page 5 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Quality and Condition
+Exterior Quality Rating	
+Q4
+Exterior Condition Rating	
+C3
+The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report
+Exterior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Exterior Walls and Trim
+Brick | Wood
+Typical Wear and Tear
+Foundation
+Poured Concrete | Slab
+Typical Wear and Tear
+Roof
+Asphalt
+Estimated Age: 1-10 years
+New or Like New
+Windows
+Vinyl thermal pane - double 
+hung
+Standard grade 
+materials used
+Typical Wear and Tear
+Mechanical System Details
+System
+Detail
+Heating
+Forced Warm Air
+Natural Gas
+Cooling
+Centralized
+Yes No
+Core Heating System Below Grade
+
+Other Mechanical Systems	
+Water Heater
+Apparent Defects, Damages, Deficiencies (Dwelling Exterior)
+None
+Unit Interior
+Area Breakdown
+Finished Above Grade	
+1,260 Sq. Ft.
+Unfinished Above Grade	
+0 Sq. Ft.
+Finished Below Grade	
+0 Sq. Ft.
+Unfinished Below Grade	
+0 Sq. Ft.
+Area Data Source	
+Physical Measurement
+Levels in Unit	
+1
+Occupancy	
+Owner
+Total Bedrooms	
+3
+Total Bathrooms - Full	
+2
+Total Bathrooms - Half	
+0
+Level and Room Detail
+Level in Unit
+Grade Level Detail
+Finish
+Area
+Room Summary
+Level 1
+Above Grade
+Finished
+1,260 Sq. Ft.
+2 - Bath - Full
+3 - Bedroom
+1 - Dining Room
+1 - Kitchen
+1 - Living Room
+Quality and Condition
+Interior Quality Rating	
+Q4
+Interior Condition Rating	
+C3
+The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report
+Kitchen and Bathroom Details
+Room
+Update Status
+Time Frame
+Quality Comment
+Condition Status
+Condition Comment
+Kitchen 
+Level 1
+Not Updated
+Upgraded cabinetry, 
+ceramic tile flooring, 
+and upgraded 
+appliances
+Typical Wear and Tear
+Bath – Full 
+Level 1
+Not Updated
+Standard grade 
+cabinetry and 
+plumbing fixtures
+Typical Wear and Tear
+Bath – Full
+Level 1
+Not Updated
+Standard grade 
+cabinetry and 
+plumbing fixtures
+Typical Wear and Tear
+Overall Update Status for  
+Bathrooms	
+Not Updated
+Interior Features
+Feature
+Detail
+Quality Comment
+Condition Status
+Condition Comment
+Flooring
+Carpet
+Typical Wear and Tear
+Ceramic Tile
+Typical Wear and Tear
+Walls and Ceiling
+8 Ft. | Flat
+Typical Wear and Tear
+Overall Update Status for  
+Flooring	
+Not Updated
+
+<<<PAGE 8 of 21>>>
+	
+Page 6 of 19
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 6 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Apparent Defects, Damages, Deficiencies (Unit Interior)
+None
+Unit Interior Commentary
+The dwelling has been well-maintained and exhibits only minimal wear and tear.
+Unit Interior Exhibits
+Level 1 - Kitchen
+Level 1 - Bath - Full - Primary Bath
+This is where the Kitchen photo would display.
+This is where the Bath 1 photo would display.
+Level 1 - Bath - Full - Bath 2
+Level 1 - Bedroom - Primary Bedroom
+This is where the Bath 2 photo would display.
+This is where the 1st Bedroom photo would display.
+Level 1 - Bedroom - Second Bedroom
+Level 1 - Bedroom - Third Bedroom
+This is where the 2nd Bedroom photo would display.
+This is where the 3rd Bedroom photo would display.
+
+<<<PAGE 9 of 21>>>
+	
+Page 7 of 19
+Unit Interior (continued)
+Uniform Residential Appraisal Report	
+Page 7 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Level 1 - Dining Room
+Level 1 - Living Room
+This is where the Dining Room photo would display.
+This is where the Living Room photo would display.
+Functional Obsolescence
+Functional Issues	
+None
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Driveway
+3
+Concrete
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+None
+Vehicle Storage Exhibits
+Driveway
+This is where the Driveway photo would display.
+
+<<<PAGE 10 of 21>>>
+	
+Page 8 of 19
+Uniform Residential Appraisal Report	
+Page 8 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Outdoor Living
+Deck
+Wood
+168 Sq. Ft.
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+None
+Subject Property Amenities Exhibits
+Deck
+This is where the Deck photo would display.
+Overall Quality and Condition
+Overall Quality	
+Q4
+Exterior Quality	
+Q4
+Interior Quality	
+Q4
+Overall Condition	
+C3
+Exterior Condition	
+C3
+Interior Condition	
+C3
+Reconciliation of Overall Quality and Condition
+The property has been well maintained and shows little sign of wear and tear.
+Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible	
+Yes
+Physically Possible	
+Yes
+Financially Feasible	
+Yes
+Maximally Productive	
+Yes
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and specifications) the present use?
+
+Market
+Market Area Boundary  The subject’s market area is framed to the North by I-70, to the East by Main Street, to the South and West by George 
+Washington Park.
+Search Criteria Description  The pool of potential comparable sales was arrived at by applying the following filters: 3 bedroom, 2 bath built 
+within the past 10 years, located within the subject’s market area (east of Washington Park) during the past 12 months.
+Search Result Metrics
+Active Listings	
+7
+Median Days on Market	
+52
+Lowest List Price	
+$325,000
+Median List Price	
+$349,000
+Highest List Price	
+$369,000
+Pending Sales	
+2
+Sales in Past 12 Months	
+43
+Lowest Sale Price	
+$325,000
+Median Sale Price	
+$340,000
+Highest Sale Price	
+$370,000
+Distressed Market Competition	
+No
+Graph	
+Price Trend
+Price Trend Source	
+ABC MLS
+Housing Trends
+Demand/Supply	
+In Balance
+Marketing Time	
+Under 3 months
+Market Commentary
+The Price Trend graph indicates no measurable change in prices during the identified lookback period.
+
+<<<PAGE 11 of 21>>>
+	
+Page 9 of 19
+Market (continued)
+Uniform Residential Appraisal Report	
+Page 9 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Market Exhibits
+Price Trend
+This is where the Price Trend graph would display.
+Subject Listing Information	
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+Current or Relevant Listings	
+None
+Data Source	
+MLS
+Prior Sale and Transfer History
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Transfer Terms
+Date
+Amount
+Data Source
+Typically Motivated
+10/30/2022
+$250,000
+MLS
+Analysis of Prior Sale and Transfer History of Subject Property  This was a builder sale.
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+1
+None
+MLS
+2
+Typically Motivated
+07/17/2024
+$300,000
+MLS
+3
+None
+MLS
+4
+None
+MLS
+5
+Typically Motivated
+04/15/2023
+$275,000
+MLS
+Analysis of Prior Sale and Transfer History of Comparable Sales  The prior transfers of comps 2 and 5 represent resales at market value.
+
+<<<PAGE 12 of 21>>>
+	
+Page 10 of 19
+Uniform Residential Appraisal Report	
+Page 10 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Sales Comparison Approach
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+General Information
+Property Address
+213 Tree Stand Rd 
+Anytown, MD 09992
+318 Pine Crest Rd 
+Anytown, MD 09992
+231 Beech Tree St 
+Anytown, MD 09992
+431 Holly Ave 
+Anytown, MD 09992
+ 
+This is where the 
+Dwelling Front photo 
+would display.
+ 
+This is where the 
+Comparable 1 photo 
+would display.
+ 
+This is where the 
+Comparable 2 photo 
+would display.
+ 
+This is where the 
+Comparable 3 photo 
+would display.
+Data Source
+MLS HC3148234 | 
+Assessor Record
+MLS HC3183023 | 
+Assessor Record
+MLS HC1234823 | 
+Assessor Record
+Proximity to Subject
+0.24 Miles N
+0.16 Miles W
+0.40 Miles E
+List Price
+—
+$339,900
+$350,000
+$364,900
+Listing Status
+—
+Settled Sale
+Settled Sale
+Settled Sale
+Sale Price
+$335,000
+$350,000
+$364,900
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Sales Concessions
+—
+$1,500
+$0
+$2,500
+$0
+$3,000
+$0
+Contract Date
+—
+11/17/2025
+$0
+11/15/2025
+$0
+11/01/2025
+$0
+Sale Date
+12/26/2025
+$0
+01/02/2026
+$0
+01/05/2026
+$0
+Days on Market
+—
+39
+50
+72
+Attached/Detached
+Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Fee Simple
+Site
+Site Size
+15,000 Sq. Ft.
+13,500 Sq. Ft.
+$0
+15,000 Sq. Ft.
+15,000 Sq. Ft.
+Neighborhood Name
+Hilltop Hills
+Hilltop Hills
+Hilltop Hills
+Hilltop Hills
+Site Influence (Location)
+Residential
+Residential
+Residential
+Residential
+View | Range
+Residential | Full
+High Density 
+Residential | Full
+$6,500
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+2018
+2017
+$0
+2018
+2019
+$0
+Construction Method
+Site Built
+Site Built
+Site Built
+Site Built
+Heating
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Unit(s)
+Bedrooms
+3
+3
+3
+3
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 0
+2 | 0
+Finished Area Above Grade
+1,260 Sq. Ft.
+1,200 Sq. Ft.
+$4,500
+1,260 Sq. Ft.
+1,312 Sq. Ft.
+$(3,900)
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+C3
+Interior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+C3
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q4
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+C3
+Property Amenities
+Outdoor Living
+Deck
+—
+$2,000
+Deck
+Deck | Portico
+$(2,500)
+Vehicle Storage
+$(5,000)
+Type | Spaces | Detail
+Driveway | 3 | Concrete
+Driveway | 3 | Concrete
+Driveway | 3 | Concrete
+Driveway | 3 | Concrete 
+Garage | 1 | Detached
+
+<<<PAGE 13 of 21>>>
+	
+Page 11 of 19
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 11 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Subject Property
+Comparable #1
+Comparable #2
+Comparable #3
+Property Address
+213 Tree Stand Rd 
+Anytown, MD 09992
+318 Pine Crest Rd 
+Anytown, MD 09992
+231 Beech Tree St 
+Anytown, MD 09992
+431 Holly Ave 
+Anytown, MD 09992
+Summary
+List Price
+—
+$339,900
+$350,000
+$364,900
+Sale Price
+$335,000
+$350,000
+$364,900
+Net Adjustment Total
+$13,000
+$0
+$(11,400)
+Price Per Finished Area 
+Above Grade
+$279
+$278
+$278
+Adjusted Price
+$348,000
+$350,000
+$353,500
+Comparable Weight
+Less
+Less
+Less
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$350,000
+
+<<<PAGE 14 of 21>>>
+	
+Page 12 of 19
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 12 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Subject Property
+Comparable #4
+Comparable #5
+General Information
+Property Address
+213 Tree Stand Rd 
+Anytown, MD 09992
+849 Jolly Ave 
+Anytown, MD 09992
+342 Trail Dr 
+Anytown, MD 09992
+ 
+This is where the 
+Dwelling Front photo 
+would display.
+ 
+This is where the 
+Comparable 4 photo 
+would display.
+ 
+This is where the 
+Comparable 5 photo 
+would display.
+Data Source
+MLS HC9652147 | 
+Assessor Record
+MLS HC74563455 | 
+Assessor Record
+Proximity to Subject
+0.71 Miles E
+0.67 Miles E
+List Price
+—
+$362,500
+$369,900 
+Listing Status
+—
+Settled Sale
+Settled Sale
+Sale Price
+$360,000
+$365,000
+Transfer Terms
+Typically 
+Motivated
+$0
+Typically 
+Motivated
+$0
+Sales Concessions
+—
+No
+$0
+$1,900
+$0
+Contract Date
+—
+11/23/2025
+$0
+11/30/2025
+$0
+Sale Date
+12/22/2025
+$0
+12/30/2025
+$0
+Days on Market
+—
+44
+52
+Attached/Detached
+Detached
+Detached
+Detached
+Property Rights Appraised
+Fee Simple
+Fee Simple
+Fee Simple
+Site
+Site Size
+15,000 Sq. Ft.
+14,500 Sq. Ft.
+$0
+14,750 Sq. Ft.
+$0
+Neighborhood Name
+Hilltop Hills
+Woodland Hills
+$0
+Woodland Hills
+$0
+Site Influence (Location)
+Residential
+Residential
+Residential
+View | Range
+Residential | Full
+Residential | Full
+Residential | Full
+Dwelling(s)
+Year Built
+2018
+2018
+2018
+Construction Method
+Site Built
+Site Built
+Site Built
+Heating
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Forced Warm Air 
+| Natural Gas
+Unit(s)
+Bedrooms
+3
+3
+3
+Baths - Full | Half
+2 | 0
+2 | 0
+2 | 1
+$(3,000)
+Finished Area Above Grade
+1,260 Sq. Ft.
+1,240 Sq. Ft.
+$0
+1,278 Sq. Ft.
+$0
+Finished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Unfinished Area Below Grade
+0 Sq. Ft.
+0 Sq. Ft.
+0 Sq. Ft.
+Quality and Condition (Ratings: 1-6, 1 is highest)
+Exterior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+Interior Quality and Condition
+Quality
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+Overall Quality and Condition (Ratings: 1-6, 1 is highest)
+Quality
+Q4
+Q4
+Q4
+Condition
+C3
+C3
+C3
+Property Amenities
+Outdoor Living
+Deck
+Deck
+ 
+Deck | Portico
+$(2,500)
+Vehicle Storage
+$0
+$0
+Type | Spaces | Detail
+Driveway | 3 | Concrete
+Driveway | 4 | Concrete
+Driveway | 2 | Concrete
+
+<<<PAGE 15 of 21>>>
+	
+Page 13 of 19
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 13 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Subject Property
+Comparable #4
+Comparable #5
+Property Address
+213 Tree Stand Rd 
+Anytown, MD 09992
+849 Jolly Ave 
+Anytown, MD 09992
+342 Trail Dr 
+Anytown, MD 09992
+Summary
+List Price
+—
+$362,500
+$369,900
+Sale Price
+$360,000
+$365,000
+Net Adjustment Total
+$0
+$(5,500)
+Price Per Finished Area 
+Above Grade
+$290
+$286
+Adjusted Price
+$360,000
+$359,500
+Comparable Weight
+Most
+Most
+Indicated Value by Sales Comparison Approach
+Indicated Value
+$350,000
+Reconciliation of Sales Comparison Approach
+The comparables contain 3 bedrooms and were built in approximately the same time period, offering similar overall utility. No time adjustments 
+were warranted as there has been no recent measurable change in market prices. Most emphasis is placed on comparables 4 and 5, which 
+although located further away are still within the subject’s market area.
+Additional Properties Analyzed Not Used
+#
+Property Address
+Sale Date
+Status
+Reason Not Used
+Comment
+1
+442 Jolly Ave  
+Anytown, MD 09992
+11/19/2025
+Settled Sale
+Sale or Transfer Type
+Private sale
+
+<<<PAGE 16 of 21>>>
+	
+Page 14 of 19
+Sales Comparison Approach (continued)
+Uniform Residential Appraisal Report	
+Page 14 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Sales Comparison Map
+This is where the Map of Sales Comparables would display.
+
+<<<PAGE 17 of 21>>>
+	
+Page 15 of 19
+Uniform Residential Appraisal Report	
+Page 15 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Sales Comparison Approach Exhibits
+Comparable #1
+Comparable #2
+This is where the Comparable 1 photo would display.
+This is where the Comparable 2 photo would display.
+Comparable #3
+Comparable #4
+This is where the Comparable 3 photo would display.
+This is where the Comparable 4 photo would display.
+Comparable #5
+This is where the Comparable 5 photo would display.
+Reconciliation
+Approaches to Value
+Sales Comparison Approach
+Income Approach
+Cost Approach
+Indicated Value
+$350,000
+Reason for Exclusion
+Not Necessary for Credible Results
+Not Necessary for Credible Results
+Appraisal Summary
+Opinion of Market Value	
+$350,000
+Market Value Condition	
+As Is
+Reasonable Exposure Time	
+30-60 days
+Effective Date of Appraisal	
+01/12/2026
+Reconciliation of Market Value
+Utilize this subsection for additional commentary as required by USPAP.
+Sales Comparison Approach (continued)
+
+<<<PAGE 18 of 21>>>
+	
+Page 16 of 19
+Uniform Residential Appraisal Report	
+Page 16 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Apparent Defects, Damages, Deficiencies
+None
+Revision History
+Revision Date
+URAR Section
+Description
+01/16/2026
+Sales Comparison Approach
+The comparables provided from the borrower-initiated ROV were reviewed 
+and considered. Two sales were deemed reliable and put in the sales grid, 
+which increased the Indicated Value by Sales Comparison Approach. One was 
+deemed less reliable and added to Additional Properties Analyzed Not Used.
+01/16/2026
+Reconciliation
+Due to the increase in Indicated Value by Sales Comparison 
+Approach, the Opinion of Value changed.
+Reconsideration of Value
+Type	
+Borrower-Initiated
+Date	
+01/16/2026
+Result	
+Value Change
+Reconsideration of Value Commentary  The borrower provided 3 sales which were not in Hilltop Hills but were within the market area. After 
+analyzing the sales provided and adding comps 4 and 5 to the sales grid, there was support for a change in value.
+Reconciliation (continued)
+
+<<<PAGE 19 of 21>>>
+	
+Page 17 of 19
+Uniform Residential Appraisal Report	
+Page 17 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of assumptions 
+and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions and limiting 
+conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis necessary based on the 
+complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the certifications are also not permitted. 
+However, additional Intended Use, Intended User, and certifications that do not constitute material alterations to this appraisal report, such as 
+those required by law or those related to the appraiser’s continuing education or membership in an appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+Intended User
+The intended user of this report is the lender/client.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition is 
+the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller are 
+typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best interest; 
+(3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of financial 
+arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special or creative 
+financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are normally 
+paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on the 
+appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist the 
+reader in visualizing the property and understanding the appraiser’s determination of its size.
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, unless 
+specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property (such 
+as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental conditions, 
+etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or warranties, express 
+or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that might be required to 
+discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this appraisal report must 
+not be considered as an environmental assessment of the property.
+
+<<<PAGE 20 of 21>>>
+	
+Page 18 of 19
+Uniform Residential Appraisal Report	
+Page 18 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that apply 
+to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present or 
+prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis prohibited 
+by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in appraising 
+this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal report 
+was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+
+<<<PAGE 21 of 21>>>
+	
+Page 19 of 19
+Certifications (continued)
+Uniform Residential Appraisal Report	
+Page 19 of 19
+Appraisal Version #2
+Fannie Mae | Freddie Mac 
+September 2024
+	
+Appraiser Reference ID	
+4321123H
+	
+Client Reference ID	
+231495234K
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject to 
+certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that pertain 
+to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as an 
+intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to the 
+mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become an 
+intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) shall have 
+no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this appraisal 
+report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this assignment.
+Signature
+Appraiser
+John Appraiser	
+01/16/2026
+John Appraiser	
+Date of Signature and Report
+Level	
+Certified Residential
+ID	
+03-XXXXXX
+State	
+MD
+Expires	
+12/31/2027

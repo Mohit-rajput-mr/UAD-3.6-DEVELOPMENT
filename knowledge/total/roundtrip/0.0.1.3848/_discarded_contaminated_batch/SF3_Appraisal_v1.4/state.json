@@ -1,0 +1,61 @@
+{
+ "sections": {
+  "dwelling-exterior": [
+   {
+    "instance": 1,
+    "identifier": "",
+    "caption": "",
+    "description": ""
+   }
+  ],
+  "interior": [
+   {
+    "instance": 1,
+    "identifier": "Building 2 - Unit 2",
+    "caption": "Unit 2",
+    "description": "Unit 2"
+   },
+   {
+    "instance": 2,
+    "identifier": "Primary Dwelling",
+    "caption": "Primary Dwelling",
+    "description": "Primary Dwelling"
+   },
+   {
+    "instance": 3,
+    "identifier": "Standalone ADU - Cottage",
+    "caption": "Cottage",
+    "description": "Cottage"
+   }
+  ],
+  "outbuilding": [
+   {
+    "instance": 1,
+    "identifier": "Standalone ADU",
+    "caption": "Standalone ADU",
+    "description": "Cottage"
+   }
+  ],
+  "manufactured": []
+ },
+ "grids": {
+  "sales": 5,
+  "rentalprop": 6,
+  "rentalunit": 1,
+  "grossrental": 3
+ },
+ "nav": [],
+ "drivers": {
+  "APPRAISER_SPI_EXTERIOR": "Physical",
+  "APPRAISER_SPI_INTERIOR": "Physical",
+  "ATTACHMENT_TYPE": "Detached",
+  "UNIT_EXCL_ADU": "1",
+  "PUD_YES": "",
+  "PROPRIGHTSAPPR": "Fee Simple",
+  "GOV_AGENCY": "",
+  "HAS_SUPERVISOR": "false"
+ },
+ "file": "C:\\3.6 uad zips\\_UNZIPPED_ALL\\Appendix D-1 SF3_Appraisal\\SF3_Appraisal_v1.4.xml",
+ "import_seconds": 60.6,
+ "import_error": ""
+}

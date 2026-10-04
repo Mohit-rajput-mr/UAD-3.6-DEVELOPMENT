@@ -1,0 +1,217 @@
+Property Report on 18 WELLINGTON RD, GREENVALE NY 11548
+Property Report
+Comparables
+Photo from Nassau County Dept. of Assessment
+Property Info
+Legal ID
+Section
+20
+Block
+68
+Lot
+77
+Building/Unit
+-1035154472
+APN
+20068  00770
+FIPS
+36059
+ATTOM ID
+1712712
+Municipality
+GREENVALE NY 11548
+Township
+North Hempstead
+Energy Standard
+HERS/Energy Star/NYS
+School District
+003-Roslyn
+Census Number
+360593021013010
+Census Tract
+302101
+Ownership
+NASER NY LLC
+18 WELLINGTON RD
+GREENVALE NY 11548
+This property is non-owner occupied.
+Flood
+Zone
+X
+Panel
+0117
+Panel Date
+2009-09-11
+Community
+AREA OF MINIMAL FLOOD
+HAZARD
+FEMA Flood Map
+2025-2026 Taxes and Assessment
+Assessed Value
+854
+Assessor’s Value
+$854,000
+Soundscore
+Pedestrian
+Active
+Vehicle
+Busy
+Airports
+Calm
+Overall Soundscore
+74 out of 100: Active
+Soundscore powered by HowLoud
+Land Information
+Acres
+0.16
+Lot Dimensions
+68X100
+Waterfront
+NO
+Location Information
+Street Type
+PAVED
+Traffic
+LIGHT
+Topography
+LEVEL
+Location Factor
+NO LOCATIONAL INFLUENCE
+Fronting Factor
+Zoning
+R-B
+(Residence B)
+Residential Building and Interior
+Building Class
+210
+1 FAMILY RESIDENTIAL
+Style
+COLONIAL
+GLA
+2718
+Height (Stories)
+2.0
+Year Built
+2004
+Rooms
+9
+Full Baths
+3
+Baths Half
+NA
+Rec Room Area
+Basement
+FULL
+Fin Basement Area
+Attic
+NONE
+Fireplaces
+NA
+Exterior Wall
+ALUMINUM/VINYL
+Heating Type
+CENTRAL W/AC
+Fuel Type
+GAS
+Garages
+Attached
+1
+Detached
+Basement
+0
+Condition
+GOOD
+Sales History
+Sale Date
+Rec Date
+Buyer
+Seller
+Sale Price
+Liber
+Page
+07/29/2026
+08/05/2026
+FANG LIN
+NASER NY LLC
+$1,600,000
+14780
+667
+01/27/2026
+02/24/2026
+NASER NY LLC
+FAFO 1 LLC
+$1,140,000
+14722
+955
+01/31/2024
+03/18/2024
+FAFO1 LLC
+STOS SERVICING LLC
+$0
+14477
+415
+05/01/2023
+07/14/2023
+STOS SERVICING LLC
+18 WELLINGTON ROAD LLC
+$0
+14396
+315
+12/09/2020
+12/31/2020
+18 WELLINGTON ROAD LLC
+VASWANI JETHMAL
+$0
+14021
+359
+12/29/2004
+01/03/2005
+VASWANI
+SANDJABY
+$882,500
+11895
+628B
+12/28/2004
+01/03/2005
+VASWANI
+SANDJABY
+$882,500
+11895
+628A
+06/27/2003
+07/10/2003
+NAHAMOO
+KIM
+$370,000
+11638
+659
+11/12/1985
+MAN
+$193,500
+9680
+739
+05/06/1985
+$185,000
+9637
+267
+Sales highlighted in yellow are Potential Flips; green are Potential Distressed Sales.
+Mortgages
+Date
+Position
+Original Amount
+Loan Type
+Lender
+01/31/2024
+First
+$805,000
+Commercial
+BPL MORTGAGE TRUST LLC
+12/28/2004
+First
+$650,000
+HSBC MORTGAGE CORP
+12/28/2004
+Second
+$50,000
+HSBC MORTGAGE CORP
+© Mapbox © OpenStreetMap

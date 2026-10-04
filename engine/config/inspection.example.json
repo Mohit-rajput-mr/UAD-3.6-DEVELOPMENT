@@ -1,0 +1,9 @@
+{
+  "_note": "The appraiser's own measurements and observations for one assignment.  These OVERRIDE MLS and public record for every field they cover: Fannie Mae Selling Guide B4-1.3-05 requires ANSI Z765-2021 measured GLA.  Copy to inspection.json; the real file is git-ignored because it describes a real property.",
+  "subject_address": "",
+  "measurement_standard": "ANSI Z765-2021",
+  "measurement_source": "",
+  "levels": [
+    { "name": "Level 1", "finished_area": 0, "unfinished_area": 0 }
+  ]
+}

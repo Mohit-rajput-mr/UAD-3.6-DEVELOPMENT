@@ -1,0 +1,88 @@
+## General Information |  | 
+   Comparable # |  | 1 ; 2 ; 3
+   Property Address | 123 Anywhere St Some City 20 | 345 Somewhere Ave  ; 222 Canal Blvd Any ; 98761 State Rd 3 A
+   Data Source |  |  ;  ; 
+   Proximity to Subject |  | SE 3.71 ; NE 6.32 ; SE 9.09
+   List Price |  | $440,000 ; $510,000 ; $345,000
+   Listing Status |  | Settled Sale ; Settled Sale ; Settled Sale
+   Sale Price |  | $435,000 ; $499,900 | $332,00 ; $345,000
+   Transfer Terms |  | Typically Motivate ; Typically Motivate ; Short Sale
+   Sales Concessions |  | $12,000 ; No ; No
+   Contract Date |  | 06/01/2019 ; 06/05/2019 ; 03/30/2018
+   Sale Date |  | 08/05/2019 ; 07/04/2019 ; 05/10/2019
+   Days on Market |  | 65 ; 29 ; 406
+   Attached/Detached | Detached | Detached ; Detached ; Detached
+   Property Rights Appraised | Fee Simple | Fee Simple ; Fee Simple ; Fee Simple
+   Rights Not Included | Mineral Rights | Mineral Rights ; Mineral Rights ; Mineral Rights
+## Site |  | 
+   Site Size | 5 Acres | 4.93 Acres ; 5 Acres ; 1 Acres
+   Neighborhood Name | Magic Hill | Magic Hill ; Diagonal Alley ; Magic Hill
+   Hazard Zone | No Hazard Zone Noted | No Hazard Zone Not ; No Hazard Zone Not ; FEMA Special Flood
+   Street Type | Surface | Gravel Rural Road | Gravel Rural Road ; Concrete Cul-de-sa ; Gravel Rural Road
+   Site Influence (Location) | Lake | Park ; Canal | Gated Comm ; Park
+   Apparent Environmental Conditions | Landfill | Landfill ; Underground Storag ; Radon
+   View | Range | Full Lake | High Voltage Pow | Full Woods ; Full Valley ; Full Woods
+## Water Frontage with Private Access |  | 
+   Permanent Waterfront Feature | Dock | None ; Dock ; 
+   Total Linear Measurement | 40 |  ; 10 ; 
+## Dwelling(s) |  | 
+   Year Built | 2019 | 1989 ; 2001 ; 1981
+   Construction Method | Manufactured | Manufactured ; Manufactured ; Manufactured
+   Manufactured Home Width | Multi | Multi ; Multi ; Multi
+   Heating | Electric Forced Warm Air | Propane Forced War ; Electric Forced Wa ; Propane Forced War
+## Unit(s) |  | 
+   Location of ADU | Dwelling | Rec Room/Garage | Dwelling ; Dwelling ; Dwelling
+   Bedrooms | 3 | 3 ; 3 ; 3
+   Baths – Full | Half | 2 0 | 2 0 ; 2 0 ; 2 0
+   Finished Area Above Grade | 1,568 Sq. Ft. | 1,800 Sq. Ft. ; 1,248 Sq. Ft. ; 2,250 Sq. Ft.
+   Finished Area Above Grade (Nonstandard) | 0 Sq. Ft. |  ;  ; 
+   Unfinished Area Above Grade | 0 Sq. Ft. |  ;  ; 
+   Finished Area Below Grade | 0 Sq. Ft. | 0 Sq. Ft. ; 0 Sq. Ft. ; 0 Sq. Ft.
+   Finished Area Below Grade (Nonstandard) | 0 Sq. Ft. |  ;  ; 
+   Unfinished Area Below Grade | 0 Sq. Ft. | 0 Sq. Ft. ; 0 Sq. Ft. ; 0 Sq. Ft.
+## Exterior Quality and Condition |  | 
+   Quality | Q4 | Q4 ; Q4 ; Q4
+   Exterior Walls and Trim | Vinyl | Engineered Wood ; Vinyl ; Engineered Wood
+   Foundation | Crawl Space | Pier with Tie  | Crawl Space | Pier ; Crawl Space | Pier ; Crawl Space | Pier
+   Roof | Composition | Composition ; Composition ; Composition
+   Condition | C1 | C4 ; C3 ; C5
+   Exterior Walls and Trim | New or Like New | Damaged and Functi ; Typical Wear and T ; Damaged and Functi
+   Foundation | New or Like New | Damaged and Functi ; Typical Wear and T ; Damaged and Functi
+   Roof | New or Like New | Damaged and Functi ; Typical Wear and T ; Damaged and Functi
+   Windows | New or Like New | Damaged and Functi ; Typical Wear and T ; Damaged and Functi
+## Interior Quality and Condition |  | 
+   Quality | Q4 | Q4 ; Q3 ; Q4
+   Kitchen |  | Formica Countertop ; Granite Countertop ; Formica Countertop
+   Overall Bathrooms | Solid Surface Countertops |  | Formica Countertop ; Granite Countertop ; Formica Countertop
+   Condition | C1 | C4 ; C4 ; C4
+   Kitchen |  | Not Updated ; Not Updated ; Not Updated
+   Overall Bathrooms | Fully Updated | Not Updated ; Not Updated ; Not Updated
+## ADU Interior Quality and Condition |  | 
+   Location of ADU | Dwelling | Rec Room/Garage | Dwelling ; Dwelling ; Dwelling
+   Quality | Q4 | Q4 ; Q3 ; Q4
+   Kitchen |  | Formica Countertop ; Granite Countertop ; Formica Countertop
+   Overall Bathrooms | Solid Surface Countertops |  | Formica Countertop ; Granite Countertop ; Formica Countertop
+   Condition | C1 | C4 ; C4 ; C4
+   Kitchen |  | Not Updated ; Not Updated ; Not Updated
+   Overall Bathrooms | Fully Updated | Not Updated ; Not Updated ; Not Updated
+## Overall Quality and Condition (Ratings: 1-6, 1 is highest) |  | 
+   Quality | Q4 | Q4 ; Q4 ; Q4
+   Condition | C1 | C3 ; C3 ; C3
+## Property Amenities |  | 
+   Outdoor Living | Deck | Deck | Deck | Deck ;  ; 
+   Whole Home | 1 Indoor Fireplace | 1 Indoor Fireplace ;  ; 1 Indoor Fireplace
+## Vehicle Storage |  | 
+   Type| Spaces | Detail | 700 Sq. Ft. Detached Garage  | Driveway Gravel 5 ; Driveway Gravel 5 ; Driveway Gravel 5
+## Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts) |  | 
+   Outbuilding Type | Rec Room/Garage |  ;  ; 
+   Baths - Full | Recreation Room 1 | Bath - Half 1 ;  ; 
+   Baths - Half | Recreation Room 1 | Bath - Half 1 ;  ; 
+   Kitchens | Recreation Room 1 | Bath - Half 1 ;  ; 
+   Utilities | Electricity | Electricity ;  ; 
+## Summary |  | 
+   List Price |  | $440,000 ; $510,000 ; $345,000
+   Sale Price |  | $435,000 ; $499,900 | $332,00 ; $345,000
+   Net Adjustment Total |  | -$20,000 ; -$3,700 ; $88,700
+   Price Per Finished Area Above Grade |  | $242 ; $401 ; $153
+   Adjusted Price |  | $415,000 ; $496,200 ; $433,700
+   Comparable Weight |  | Most ; Most ; Less

@@ -1,0 +1,945 @@
+{
+ "source": {
+  "file": "Functioning without Form Numbers - Mapping Legacy Forms to URAR v1.1.pdf",
+  "url": "https://sf.freddiemac.com/docs/pdf/functioning-without-form-numbers-mapping-legacy-forms-to-URAR.pdf",
+  "version": "1.1",
+  "date": "June 10, 2025"
+ },
+ "drivers": [
+  {
+   "label": "Property Valuation Method",
+   "uid": "1000.0158",
+   "fids": [
+    "1.010"
+   ],
+   "note": "",
+   "enumerations": {
+    "Desktop": "DesktopAppraisal",
+    "Exterior": "ExteriorAppraisal",
+    "Hybrid": "HybridAppraisal",
+    "Traditional": "TraditionalAppraisal"
+   },
+   "not_applicable_when": null
+  },
+  {
+   "label": "Construction Method",
+   "uid": "0300.0034",
+   "fids": [
+    "1.012"
+   ],
+   "note": "Does not apply for High-rise, Mid-rise, or Low-rise structures.",
+   "enumerations": {
+    "3D Technology": "ThreeDimensionalPrintingTechnology",
+    "Container": "Container",
+    "Manufactured": "Manufactured",
+    "Modular": "Modular",
+    "On-Frame Modular": "OnFrameModular",
+    "Site Built": "SiteBuilt"
+   },
+   "not_applicable_when": {
+    "uid": "0300.0032",
+    "data_point": "StructuralDesignType",
+    "values": [
+     "Highrise",
+     "Lowrise",
+     "Midrise"
+    ],
+    "text": "Does not apply for High-rise, Mid-rise, or Low-rise structures"
+   }
+  },
+  {
+   "label": "Subject Site Owned in Common",
+   "uid": "0100.0047",
+   "fids": [
+    "1.020"
+   ],
+   "note": "",
+   "enumerations": {
+    "No": "false",
+    "Yes": "true"
+   },
+   "not_applicable_when": null
+  },
+  {
+   "label": "Project Legal Structure",
+   "uid": "2500.0168",
+   "fids": [
+    "1.016",
+    "1.017",
+    "1.018"
+   ],
+   "note": "",
+   "enumerations": {
+    "Condominium": "Condominium",
+    "Cooperative": "Cooperative"
+   },
+   "not_applicable_when": null
+  },
+  {
+   "label": "Units Excluding ADUs",
+   "uid": "0100.0022",
+   "fids": [
+    "1.021"
+   ],
+   "note": "",
+   "enumerations": {},
+   "not_applicable_when": null
+  },
+  {
+   "label": "Accessory Dwelling Units",
+   "uid": "0100.0019",
+   "fids": [
+    "1.022"
+   ],
+   "note": "",
+   "enumerations": {},
+   "not_applicable_when": null
+  }
+ ],
+ "forms": [
+  {
+   "fannie_mae": "1004",
+   "freddie_mac": "70",
+   "family": "Uniform Residential Appraisal Report",
+   "characteristics": "1 unit property, including: • In a Planned Unit Development (PUD) • With or without an ADU • Detached Condo",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Traditional",
+     "values": [
+      "Traditional"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes or No",
+     "values": [
+      "Yes",
+      "No"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "__",
+     "values": []
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1004 Desktop",
+   "freddie_mac": "70D",
+   "family": "Uniform Residential Appraisal Report",
+   "characteristics": "1 unit property, including: • In a Planned Unit Development (PUD) • With or without an ADU • Detached Condo",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Desktop",
+     "values": [
+      "Desktop"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes or No",
+     "values": [
+      "Yes",
+      "No"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "__",
+     "values": []
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1004 Hybrid",
+   "freddie_mac": "70H",
+   "family": "Uniform Residential Appraisal Report",
+   "characteristics": "1 unit property, including: • In a Planned Unit Development (PUD) • With or without an ADU • Detached Condo",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Hybrid",
+     "values": [
+      "Hybrid"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes or No",
+     "values": [
+      "Yes",
+      "No"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "__",
+     "values": []
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "2055 Exterior",
+   "freddie_mac": "2055",
+   "family": "Uniform Residential Appraisal Report",
+   "characteristics": "1 unit property, including: • In a Planned Unit Development (PUD) • With or without an ADU • Detached Condo",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Exterior",
+     "values": [
+      "Exterior"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes or No",
+     "values": [
+      "Yes",
+      "No"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "__",
+     "values": []
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1073",
+   "freddie_mac": "465",
+   "family": "Individual Condominium Unit Appraisal Report",
+   "characteristics": "Condominium Unit, including: • Attached units • Detached units",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Traditional",
+     "values": [
+      "Traditional"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes",
+     "values": [
+      "Yes"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Condominium",
+     "values": [
+      "Condominium"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1073 Desktop",
+   "freddie_mac": "465D",
+   "family": "Individual Condominium Unit Appraisal Report",
+   "characteristics": "Condominium Unit, including: • Attached units • Detached units",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Desktop",
+     "values": [
+      "Desktop"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes",
+     "values": [
+      "Yes"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Condominium",
+     "values": [
+      "Condominium"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1073 Hybrid",
+   "freddie_mac": "465H",
+   "family": "Individual Condominium Unit Appraisal Report",
+   "characteristics": "Condominium Unit, including: • Attached units • Detached units",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Hybrid",
+     "values": [
+      "Hybrid"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes",
+     "values": [
+      "Yes"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Condominium",
+     "values": [
+      "Condominium"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1075 Exterior",
+   "freddie_mac": "466",
+   "family": "Individual Condominium Unit Appraisal Report",
+   "characteristics": "Condominium Unit, including: • Attached units • Detached units",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Exterior",
+     "values": [
+      "Exterior"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes",
+     "values": [
+      "Yes"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Condominium",
+     "values": [
+      "Condominium"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "2090",
+   "freddie_mac": "-",
+   "family": "Individual Cooperative Interest Appraisal Report",
+   "characteristics": "Cooperative Unit, including: • Attached units • Detached units",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Traditional",
+     "values": [
+      "Traditional"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes",
+     "values": [
+      "Yes"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Cooperative",
+     "values": [
+      "Cooperative"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "2095 Exterior",
+   "freddie_mac": "-",
+   "family": "Individual Cooperative Interest Appraisal Report",
+   "characteristics": "Cooperative Unit, including: • Attached units • Detached units",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Exterior",
+     "values": [
+      "Exterior"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes",
+     "values": [
+      "Yes"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Cooperative",
+     "values": [
+      "Cooperative"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1004C",
+   "freddie_mac": "70B",
+   "family": "Manufactured Home Appraisal Report",
+   "characteristics": "Manufactured Home, including: • In a PUD • Condominium Project • Cooperative",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Traditional",
+     "values": [
+      "Traditional"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Manufactured",
+     "values": [
+      "Manufactured"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes or No",
+     "values": [
+      "Yes",
+      "No"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Condominium or Cooperative",
+     "values": [
+      "Condominium",
+      "Cooperative"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "1",
+     "values": [
+      "1"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  },
+  {
+   "fannie_mae": "1025",
+   "freddie_mac": "72",
+   "family": "Small Residential Income Property Appraisal Report",
+   "characteristics": "2- to 4-unit property including: • 2- or 3-unit with an ADU",
+   "drivers": {
+    "Property Valuation Method": {
+     "cell": "Traditional",
+     "values": [
+      "Traditional"
+     ]
+    },
+    "Construction Method": {
+     "cell": "Container | Modular | On-Frame Modular |Site Built | 3D Technology",
+     "values": [
+      "Container",
+      "Modular",
+      "On-Frame Modular",
+      "Site Built",
+      "3D Technology"
+     ]
+    },
+    "Subject Site Owned in Common": {
+     "cell": "Yes or No",
+     "values": [
+      "Yes",
+      "No"
+     ]
+    },
+    "Project Legal Structure": {
+     "cell": "Condominium or Cooperative",
+     "values": [
+      "Condominium",
+      "Cooperative"
+     ]
+    },
+    "Units Excluding ADUs": {
+     "cell": "2, 3, or 4",
+     "values": [
+      "2",
+      "3",
+      "4"
+     ]
+    },
+    "Accessory Dwelling Units": {
+     "cell": "0 or 1",
+     "values": [
+      "0",
+      "1"
+     ]
+    }
+   }
+  }
+ ],
+ "atypical": {
+  "listed": [
+   "Properties with more than 1 accessory dwelling unit (ADU)",
+   "Site condominium",
+   "Manufactured Home with more than 1 unit",
+   "Manufactured Home with an additional construction method",
+   "Manufactured Home - condominium or cooperative",
+   "Hybrid (independent of property type)",
+   "Desktop (independent of property type)",
+   "Condops"
+  ],
+  "examples": [
+   {
+    "name": "Site Condominium",
+    "drivers": {
+     "Property Valuation Method": {
+      "cell": "Traditional",
+      "values": [
+       "Traditional"
+      ]
+     },
+     "Construction Method": {
+      "cell": "Site Built",
+      "values": [
+       "Site Built"
+      ]
+     },
+     "Subject Site Owned in Common": {
+      "cell": "No",
+      "values": [
+       "No"
+      ]
+     },
+     "Project Legal Structure": {
+      "cell": "Condominium",
+      "values": [
+       "Condominium"
+      ]
+     },
+     "Units Excluding ADUs": {
+      "cell": "1",
+      "values": [
+       "1"
+      ]
+     },
+     "Accessory Dwelling Units": {
+      "cell": "0 or 1",
+      "values": [
+       "0",
+       "1"
+      ]
+     }
+    }
+   },
+   {
+    "name": "Manufactured Home with more than 1 unit",
+    "drivers": {
+     "Property Valuation Method": {
+      "cell": "Traditional",
+      "values": [
+       "Traditional"
+      ]
+     },
+     "Construction Method": {
+      "cell": "Manufactured",
+      "values": [
+       "Manufactured"
+      ]
+     },
+     "Subject Site Owned in Common": {
+      "cell": "No",
+      "values": [
+       "No"
+      ]
+     },
+     "Project Legal Structure": {
+      "cell": "__",
+      "values": []
+     },
+     "Units Excluding ADUs": {
+      "cell": "2, 3, or 4",
+      "values": [
+       "2",
+       "3",
+       "4"
+      ]
+     },
+     "Accessory Dwelling Units": {
+      "cell": "0 or 1",
+      "values": [
+       "0",
+       "1"
+      ]
+     }
+    }
+   },
+   {
+    "name": "Manufactured Home Condominium",
+    "drivers": {
+     "Property Valuation Method": {
+      "cell": "Traditional",
+      "values": [
+       "Traditional"
+      ]
+     },
+     "Construction Method": {
+      "cell": "Manufactured",
+      "values": [
+       "Manufactured"
+      ]
+     },
+     "Subject Site Owned in Common": {
+      "cell": "",
+      "values": []
+     },
+     "Project Legal Structure": {
+      "cell": "Condominium",
+      "values": [
+       "Condominium"
+      ]
+     },
+     "Units Excluding ADUs": {
+      "cell": "1",
+      "values": [
+       "1"
+      ]
+     },
+     "Accessory Dwelling Units": {
+      "cell": "0 or 1",
+      "values": [
+       "0",
+       "1"
+      ]
+     }
+    }
+   },
+   {
+    "name": "Manufactured Home Cooperative",
+    "drivers": {
+     "Property Valuation Method": {
+      "cell": "Traditional",
+      "values": [
+       "Traditional"
+      ]
+     },
+     "Construction Method": {
+      "cell": "Manufactured",
+      "values": [
+       "Manufactured"
+      ]
+     },
+     "Subject Site Owned in Common": {
+      "cell": "",
+      "values": []
+     },
+     "Project Legal Structure": {
+      "cell": "Cooperative",
+      "values": [
+       "Cooperative"
+      ]
+     },
+     "Units Excluding ADUs": {
+      "cell": "1",
+      "values": [
+       "1"
+      ]
+     },
+     "Accessory Dwelling Units": {
+      "cell": "0 or 1",
+      "values": [
+       "0",
+       "1"
+      ]
+     }
+    }
+   },
+   {
+    "name": "Cooperative (Hybrid)",
+    "drivers": {
+     "Property Valuation Method": {
+      "cell": "Hybrid",
+      "values": [
+       "Hybrid"
+      ]
+     },
+     "Construction Method": {
+      "cell": "Site Built",
+      "values": [
+       "Site Built"
+      ]
+     },
+     "Subject Site Owned in Common": {
+      "cell": "",
+      "values": []
+     },
+     "Project Legal Structure": {
+      "cell": "Cooperative",
+      "values": [
+       "Cooperative"
+      ]
+     },
+     "Units Excluding ADUs": {
+      "cell": "1",
+      "values": [
+       "1"
+      ]
+     },
+     "Accessory Dwelling Units": {
+      "cell": "0 or 1",
+      "values": [
+       "0",
+       "1"
+      ]
+     }
+    }
+   },
+   {
+    "name": "Cooperative (Desktop)",
+    "drivers": {
+     "Property Valuation Method": {
+      "cell": "Desktop",
+      "values": [
+       "Desktop"
+      ]
+     },
+     "Construction Method": {
+      "cell": "Site Built",
+      "values": [
+       "Site Built"
+      ]
+     },
+     "Subject Site Owned in Common": {
+      "cell": "",
+      "values": []
+     },
+     "Project Legal Structure": {
+      "cell": "Cooperative",
+      "values": [
+       "Cooperative"
+      ]
+     },
+     "Units Excluding ADUs": {
+      "cell": "1",
+      "values": [
+       "1"
+      ]
+     },
+     "Accessory Dwelling Units": {
+      "cell": "0 or 1",
+      "values": [
+       "0",
+       "1"
+      ]
+     }
+    }
+   }
+  ]
+ }
+}

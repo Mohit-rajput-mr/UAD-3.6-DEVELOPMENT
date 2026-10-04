@@ -1,0 +1,2874 @@
+
+<<<PAGE 1 of 43>>>
+This document relates to the Uniform Mortgage Data Program®, an effort undertaken jointly by Freddie Mac and Fannie Mae at the direction of 
+the Federal Housing Finance Agency. 
+©2026 Fannie Mae and Freddie Mac. Trademarks of the respective owners. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Uniform Appraisal Dataset (UAD) Specification  
+Issued by Fannie Mae and Freddie Mac 
+Appendix C-1: URAR with Report Field IDs 
+Document Version 1.3 
+March 10, 2026 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+<<<PAGE 2 of 43>>>
+ 
+ 
+Revision History 
+Date 
+Version 
+Report 
+Section 
+Change # 
+Revision Description  
+3/10/2026 
+1.3 
+Outbuilding 
+2026-002 
+Corrected display of checkboxes for Heating and 
+Cooling. 
+9/17/2024 
+1.2 
+Footer 
+2024-028 
+Updated date in Footer (HF.004) to September 
+2024. 
+Market 
+2024-024 
+Deleted Property Value Trend (17.020). 
+Income 
+Approach 
+2024-051 
+Corrected Report Field IDs for GRM Comp photos 
+and captions (added 24.009.2). 
+Revision 
+History 
+2024-043 
+Added the Reconsideration of Value subsection 
+(27.003-27.006). 
+12/12/2023 
+1.1 
+Footer 
+2023-061 
+Updated date in Footer (HF.004) to December 
+2023. 
+Market 
+2023-001 
+Removed the “Under Review” watermark. 
+2023-031 
+Deleted Subject Conforms to Surrounding Area 
+(17.000), Reason (17.001), and Description 
+(17.002).  
+Changed Report Label to Market Area Boundary 
+(17.003). 
+Certifications 
+and Scope of 
+Work 
+2023-003 
+Updated predefined text for Appraiser 
+Certifications 18 (29.038), 24 (29.045), and 25 (29-
+046), and all Supervisory Appraiser Certifications 
+(29.056-060, 29.071-074). 
+Clarified that Contact Name(s) (29.042) display for 
+Appraiser Certification 21. 
+3/29/2023 
+1.0 
+ 
+ 
+Initial publication 
+ 
+Introduction 
+The purpose of this document is to show all possible Report Labels that may display on the URAR, 
+regardless of conditionality. This is not intended to represent a realistic report as an appraisal will never 
+contain all of the available fields in one report. The red superimposed number is the Report Field ID. 
+ 
+Term 
+Definition 
+Report Label 
+The name of the field as shown on the URAR. 
+Report Field ID 
+(FID) 
+A red number identifying the specific location of the field on the URAR. Report Field ID 
+(FID) is also referenced in: 
+• 
+Appendix A-1: UAD URAR Delivery Specification 
+• 
+Appendix B-1: URAR Implementation Guide 
+• 
+Appendix F-1: URAR Reference Guide 
+ 
+
+<<<PAGE 3 of 43>>>
+1.000
+1.008
+1.001
+1.002
+1.003
+1.004
+1.005
+1.006
+1.007
+1.009
+1.031
+1.010
+1.011
+1.030
+1.012
+1.023
+1.013
+1.014
+1.021
+1.022
+1.016
+1.020
+1.017
+1.018
+1.019
+1.015
+1.024
+1.026
+1.029
+1.028
+1.027
+1.025
+1.000.1
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+1.085
+
+<<<PAGE 4 of 43>>>
+1.032
+1.036
+1.033
+1.034
+1.035
+1.037
+1.041
+1.045
+1.042
+1.043
+1.044
+1.040
+1.039
+1.038
+1.046 - 1.047
+1.048
+1.052
+1.049
+1.050
+1.051
+1.053
+1.054
+1.055
+1.060
+1.059
+1.056
+1.057
+1.058
+1.061
+1.063
+1.067
+1.064
+1.065
+1.066
+1.068
+1.069
+1.073
+1.070
+1.071
+1.072
+1.074
+1.075
+1.079
+1.076
+1.077
+1.078
+1.081
+1.082
+1.083
+1.084
+- 1.062
+1.080
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 5 of 43>>>
+Appraiser Reference ID
+Agency Case File ID
+Client Reference ID
+AMC Reference ID
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report
+Page [Page] of [Pages]
+Assignment Information
+Assignment Reason
+Borrower Name
+Seller Name
+Current Owner of Public Record
+Property Valuation Method
+Yes No
+Was a Property Data Report used in lieu of an 
+Inspection?
+ 
+Appraiser Fee
+AMC Fee
+Government Agency
+Investor Requested Special Identification
+Contact Information
+[Role]/[Role] 
+Company Name
+Company Address
+Credentials
+ID
+State
+Expires
+Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Supervisory Appraiser 
+Name
+Designation
+Company Name
+Company Address
+Scope of Inspection by Supervisory Appraiser
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Credentials
+Level
+ID
+State
+Expires
+ASC Identifier
+VA Appraiser ID
+FHA Appraiser ID
+Employment Type
+Significant Real Property Appraisal Assistance
+Name
+Credentials
+Level
+ID
+State
+Expires
+Description  
+Property Data Report
+Name
+Occupation
+Company Name
+Company Address
+Reference ID
+Subject Property Inspection
+Exterior
+Interior
+Inspection Date
+Assignment Information and Scope of Work Commentary
+Assignment Information Exhibits
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 6 of 43>>>
+Appraiser Reference ID
+Agency Case File ID
+Client Reference ID
+AMC Reference ID
+Appraisal Version #
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report
+Page [Page] of [Pages]
+Subject Property
+Physical Address
+Alternate Physical Address
+County
+Neighborhood Name
+Yes No
+Planned Unit Development (PUD)
+ 
+Condominium
+ 
+Cooperative
+ 
+Condop
+ 
+Property on Native American Lands
+ 
+Subject Site Owned in Common
+ 
+Homeowner Responsible for all Exterior Maintenance 
+of Dwelling(s)
+ 
+New Construction
+ 
+Construction Stage
+Attachment Type
+Units Excluding ADUs
+Accessory Dwelling Units
+Dwellings Containing Units
+Special Tax Assessments
+Description of Special Tax Assessments and Impact to Value/
+Marketability  
+Ownership Rights
+Property Rights Appraised
+Community Land Trust
+Native American Lands
+Ground Rent Annual Amount
+Renewable
+Term
+Expires
+Description of Ground Rent and Impact to Value/Marketability
+All Rights Included in Appraisal
+Rights Not Included
+Mineral Rights Leased
+Description of Rights Not Included
+Legal Description
+Subject Property Commentary
+Subject Property Exhibits
+3.000
+3.003
+3.001
+3.002
+3.004
+3.010
+3.007
+3.006
+3.005
+3.009
+3.008
+3.011
+3.012
+3.015
+3.014
+3.013
+3.016
+3.017
+3.018
+3.019
+3.023
+3.020
+3.021
+3.022
+3.024
+3.025
+3.026
+3.028
+3.027
+3.029
+3.030
+3.031.1 | 3.031.2
+3.031
+3.032
+3.033.1 | 3.033.2
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 7 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Site
+Total Site Size
+Dimensions
+Number of Parcels
+Contiguous
+Elements Dividing Parcels
+Assessor Parcel Number (APN)
+APN Description
+Parcel Size
+Zoning
+Compliance
+Classification Code
+Classification Code Description
+Reasons Illegal
+Impact
+Rebuildable to Current  
+Density/Use
+Description of Zoning Compliance
+Property Use
+Primarily Residential
+Residential Use
+Non-Residential Use
+Non-Residential Modification
+Description of Non-Residential Use/Modification  
+Property Access
+Primary Access
+Street Type and Surface
+Known Maintenance Agreement
+Typical for Market
+Description of Property Access 
+Site Influence
+Influence
+Proximity
+Detail
+Impact
+Comment
+Site Influence Commentary  
+Water Frontage with Private Access
+Total Linear Measurement
+Permanent Waterfront Feature
+Right to Build 
+Frontage
+Name
+Waterfront Access Rights
+Access Depth
+Water Frontage Commentary  
+View and Impact to Value/Marketability
+View
+Range of View
+Impact
+View Commentary  
+Site Features and Impact to Value/Marketability
+Feature
+Detail
+Impact
+Comment
+Non-Residential Property Use
+Hazard Zone
+Property Restriction
+Easement
+Encroachment
+Site Characteristic
+Site Features Commentary  
+Utilities and Impact to Value/Marketability
+Broadband Internet Available
+Dwelling/Improvement within  
+Utility Easement
+Public
+Private
+Detail
+Private Utility 
+Impact
+Comment
+Electricity
+Gas
+Sanitary Sewer
+Water
+4.000
+4.00
+4.00
+4.00
+4.00
+4.00
+4.00
+4.00
+4.00
+4.00
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.030
+4.0
+  4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
+4.0
++)
++)
++)
++)
++)
++)
++)
++)
+4.019
+
+<<<PAGE 8 of 43>>>
+Appraiser Reference ID
+Agency Case File ID
+Client Reference ID
+AMC Reference ID
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report
+Page [Page] of [Pages]
+Apparent Defects, Damages, Deficiencies (Site)
+5IFJUFNTMJTUFECFMPXSFQSFTFOUUIF"T*TDPOEJUJPOBTPGUIFFGGFDUJWFEBUFPGUIJTSFQPSU
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Site Valuation Methodology
+Opinion of Site Value
+Primary Site Valuation Method
+#
+Address
+County
+Data Source
+Assessor Parcel 
+Number (APN)
+Site Size
+Sale Date 
+Price
+Reconciliation of Site Value  
+Site Commentary
+Site Exhibits
+4.0
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4.
+4._
+4.0 _ 
+4.0 _ 
+4.0 _ 
+4.0 _ 
+4.0 _ 
+4.0 _ 
+4.0 _ 
+4. _ 
+4. _ 
+4.0 _ 
+_
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 9 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Page [Page] of [Pages]
+Appraisal Version # 
+&ANNIE -AE \ &REDDIE -AC 3EPTEMBER  Disaster Mitigation
+Mitigation Feature
+
+Disaster Mitigation Commentary
+
+Disaster Mitigation Exhibits
+_
++)
++)
++)
++)
++)
++)
++)
++)
+6OJGPSN3FTJEFOUJBM"QQSBJTBM3FQPSU
+
+<<<PAGE 10 of 43>>>
+Appraiser Reference ID
+Agency Case File ID
+Client Reference ID
+AMC Reference ID
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report
+Page [Page] of [Pages]
+Energy Efficient and Green Features
+Known Renewable Energy Components
+Renewable Energy Component
+Ownership
+Financing Arrangement
+Known Building Certifications
+Building Certification Organization
+Certification
+Year
+Version
+Rating
+Known Efficiency Ratings
+Green/Energy Efficiency Rating 
+Organization
+Rating
+Score
+Energy Efficient and Green Features Impact to Value/Marketability
+Impact to Value/Marketability
+Description  
+Energy Efficient and Green Features Commentary
+Energy Efficient and Green Features Exhibits
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 11 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Master Report Sketch_@mv0
+Sketch
+Sketch or Floor Plan Not Available
+Measurement Standard
+Sketch Commentary
++)
++)
++)
++)
++)
++)
++)
++)
+
+
+_
+
+
+<<<PAGE 12 of 43>>>
+8.000
+8.022
+8.001
+8.002
+8.003
+8.004
+8.006
+8.005
+8.007
+8.008
+8.009
+8.010
+8.011
+8.012
+8.013
+8.014
+8.015
+8.016
+8.017
+8.018
+8.019
+8.020
+8.021
+8.000.1
+8.023
+8.024
+8.041
+8.041
+8.041
+8.041
+8.041
+8.042
+8.025
+8.029
+8.033
+8.037
+8.043
+8.026
+8.030
+8.034
+8.038
+8.044
+8.027
+8.031
+8.035
+8.039
+8.045
+8.028
+8.032
+8.036
+8.040
+8.046
+8.047
+8.048
+8.049
+8.050
+8.051
+8.052
+8.053
+8.054
+8.055
+8.056
+8.060
+8.057
+8.058
+8.059
+8.061
+8.056.1 | 8.056.2 
+8.062.1 | 8.062.2
+8.047.1 | 8.047.2
+8.000.1 | 8.000.2
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 13 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Manufactured Home 
+Manufacturer Name
+Year Installed
+Attached to Permanent  
+Foundation
+Towing Hitch, Wheels, Axles  
+Removed
+Manufactured Home Width
+Skirting
+   
+Date of Manufacture
+Serial Number
+HUD Thermal Zone
+HUD Roof Load Zone
+Manufactured Home Certification Program
+Certification
+Identifier
+Invoice Information
+Purchased from Retailer
+Retailer Name
+Retailer’s Invoice Reviewed
+Manufacturer’s Invoice Reviewed
+
+
+Moved Since Original Installation
+
+
+
+
+
+Yes No
+Have there been any modifications, attachments, or additions that rely on or have altered the original structure for support?  
+
+Modification, Attachment, or Addition  
+Description of Modification, Attachment, or Addition 
+HUD Data Plate
+HUD Data Plate Attached
+
+HUD Wind Zone
+
+
+
+
+
+HUD Certification Label
+Label Present for All Sections
+
+HUD Certification Number
+
+
+
+
+
+Invoice(s) Appear Reasonable
+
+
+
+Commentary on Why Invoice(s) Not Reasonable  
+Manufactured Home Commentary 
+
+Manufactured Home Exhibits
+_
+_
+_
+_
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 14 of 43>>>
+10.003
+10.016
+10.004
+10.006
+10.005
+10.007
+10.008
+10.009
+10.010
+10.011
+10.012
+10.013
+10.014
+10.015
+10.000
+10.002
+10.001
+10.017
+10.028
+10.019
+10.018
+10.020
+10.026
+10.021
+10.023
+10.022
+10.024
+10.025
+10.027
+10.029
+10.033
+10.030
+10.031
+10.032
+10.034
+10.036
+10.035
+10.037
+10.042
+10.041
+10.038
+10.039
+10.040
+10.043
+10.044
+10.048
+10.045
+10.046
+10.047
+10.049
+10.050
+10.051
+10.054
+10.052
+10.053
+10.055
+10.060
+10.059
+10.056
+10.057
+10.058
+10.061
+10.056.1 | 10.056.2
+10.033.1 | 10.033.2
+10.044.1 | 10.044.2
+10.062.1 | 10.062.2
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 15 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+&ANNIE -AE \ &REDDIE -AC 3EPTEMBER  Page [Page] of [Pages]
+Functional Obsolescence
+Functional Issues
+
+Functional Obsolescence Commentary
+
+Functional Obsolescence Exhibits
+_
++)
++)
++)
++)
++)
++)
++)
++)
+6OJGPSN3FTJEFOUJBM"QQSBJTBM3FQPSU
+
+<<<PAGE 16 of 43>>>
+	
+Appraiser Reference ID	
+	
+Agency Case File ID	
+	
+Client Reference ID	
+	
+AMC Reference ID	
+Uniform Residential Appraisal Report	
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Outbuilding - [Outbuilding Type]
+Considered Real Property
+Units in Structure
+Attached to Permanent Foundation
+Structure Volume
+Gross Building Area
+Gross Building Area for the outbuilding includes area for vehicle storage, 
+ADU(s), and any other uses
+Detail
+Yes No
+Heating
+
+Cooling
+
+Utilities	
+The table below depicts the area of the outbuilding, excluding vehicle 
+storage and any ADU(s) 
+Finish
+Total Area
+Room Summary
+Finished
+Unfinished
+Mechanical System Details
+System
+Detail
+Heating
+Cooling
+Other Mechanical Systems
+Apparent Defects, Damages, Deficiencies ([Outbuilding Type])
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+Outbuilding Commentary
+Outbuilding Exhibits
+HF.001
+12.001
+12.007.1 | 12.007.2
+12.008
+12.009
+12.011
+12.013
+12.012
+12.014
+12.017
+12.016
+12.002
+12.003
+12.004
+12.005
+12.006
+12.010
+12.015
+12.018
+12.019
+12.020
+12.021
+12.024
+12.023
+12.022
+12.025
+12.026.1 | 12.026.2
+HF.005
+HF.006
+HF.007
+HF.008
+HF.002
+          HF.003
+          HF.004
+
+<<<PAGE 17 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Vehicle Storage
+Storage
+Number of Parking Spaces
+Detail
+Apparent Defects, Damages, Deficiencies (Vehicle Storage)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+13.001
+13.003
+13.002
+13.004
+13.000
+13.005
+13.009
+13.006
+13.007
+13.008
+Vehicle Storage Commentary
+13.010
+Vehicle Storage Exhibits
+13.011.1 | 13.011.2
+13.001.1 | 13.001.2
+13.005.1 | 13.005.2
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 18 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Subject Property Amenities
+Amenity Category
+Subject Property Amenity
+Material
+Detail
+Apparent Defects, Damages, Deficiencies (Subject Property Amenities)
+The items listed below represent the As Is condition as of the effective date of this report
+Feature
+Location
+Description
+Affects Soundness or 
+Structural Integrity
+Recommended 
+Action
+
+
+
+
+
+
+
+
+
+
+
+Subject Property Amenities Commentary
+
+Subject Property Amenities Exhibits
+_
+_
+_
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 19 of 43>>>
+15.010
+15.000
+15.001 15.002
+15.003 15.004
+15.005
+15.006 15.007
+15.008 15.009
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 20 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Page [Page] of [Pages]
+Appraisal Version # 
+&ANNIE -AE \ &REDDIE -AC 3EPTEMBER  Highest and Best Use
+Is the present use of the subject property …
+Legally Permissible
+Physically Possible
+Financially Feasible
+Maximally Productive
+Yes No
+Is the highest and best use of the subject property as improved (or as proposed per plans and speciﬁcations) the present use?  
+
+
+
+
+
+
+Highest and Best Use Commentary
+Highest and Best Use Exhibits
+_
++)
++)
++)
++)
++)
++)
++)
++)
+6OJGPSN3FTJEFOUJBM"QQSBJTBM3FQPSU
+
+<<<PAGE 21 of 43>>>
+ 
+Appraiser Reference ID 
+ 
+Agency Case File ID 
+ 
+Client Reference ID 
+ 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Market
+Market Area Boundary
+Search Criteria Description
+Search Result Metrics
+Active Listings
+Median Days on Market
+Lowest List Price
+Median List Price 
+Highest List Price
+Pending Sales
+Sales in Past 
+ Months
+Lowest Sale Price
+Median Sale Price
+Highest Sale Price
+Distressed Market Competition
+Graph
+Price Trend Source
+Price Trend Analysis Commentary  
+Housing Trends
+Demand/Supply
+Marketing Time
+Market Commentary
+Market Exhibits
+HF.005
+HF.006
+HF.007
+HF.008
+HF.001
+HF.003
+HF.004
+HF.002
+17.003
+17.004
+17.005
+17.006
+17.007
+17.008
+17.009
+17.010
+17.012
+17.013
+17.014
+17.015
+17.016
+17.017
+17.018
+17.011
+17.019
+17.021
+17.022
+17.023 
+17.024.1 | 17.024.2
+17.017.1 | 17.017.2
+
+<<<PAGE 22 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Project Information 
+Planned Unit Development (PUD)  
+  Condominium  
+ Cooperative  
+ Condop 
+Project Name
+Project Information Data Source
+Total Units
+Units Sold
+Units for Sale
+Units Rented
+Reason Units Rented is Estimated  
+Mandatory Fees (HOA, PUD, or Co-op)
+Monthly Amount
+Common Amenities/ 
+Services Included 
+Utilities Included
+Yes No
+Observed Deficiencies
+ 
+Description of Deficiencies  
+Project Completeness
+Yes No
+Are units, common areas, and amenities in project 
+complete?
+ 
+Subject Property Building Complete
+ 
+Converted in Past 3 Years
+ 
+Ground Rent
+ 
+Annual Amount
+Expires
+Description of Ground Rent  
+Cooperative Information
+Shares Issued and Outstanding
+Shares Attributable to Subject Property
+Proprietary Lease Expires
+Yes No
+Project Blanket Financing
+ 
+Pro Rata Share
+Lien Detail
+First Lien
+Second Lien
+Third Lien
+Fourth Lien
+Unpaid Principal Balance
+Line of Credit
+Balloon Mortgage
+Remaining Term
+Monthly Payment
+Interest Rate
+Amortization Type
+Pro Rata Share of Balance 
+Attributable to Unit
+Project Factors and Impact to Value/Marketability
+Project Factor
+Detail
+Impact
+Comment
+Developer/Sponsor in Control
+Incomplete Project
+Converted in Past 3 Years
+Single Entity Ownership of Multiple 
+Units
+Single Entity Ownership of Multiple 
+Shares
+Commercial Space
+Known Legal Actions
+Unit Transfer Fees
+Unit Special Assessments
+Unit Tax Abatements or Exemptions
+Project Factors Commentary  
+Project Information Commentary
+Project Information Exhibits
+18.000
+18.003
+18.001
+18.002
+18.004
+18.015
+18.014
+18.005
+18.006
+18.007
+18.008
+18.009
+18.010
+18.011
+18.012
+18.013
+18.016
+18.018
+18.017
+18.019
+18.020
+18.021
+18.022
+18.023
+18.024
+18.025
+18.026
+18.027
+18.028
+18.063
+18.036
+18.029
+18.030
+18.031
+18.032
+18.034
+18.035
+18.033
+18.044
+18.037
+18.038
+18.039
+18.040
+18.041
+18.042
+18.046
+18.054
+18.047
+18.048
+18.049
+18.050
+18.051
+18.052
+18.055
+18.056
+18.057
+18.059
+18.060
+18.061
+18.062
+18.058
+18.043
+18.045
+18.053
+18.064
+18.093
+18.065
+18.066
+18.067
+18.068
+18.069
+18.070
+18.071
+18.072
+18.074
+18.083
+18.075
+18.076
+18.077
+18.078
+18.079
+18.080
+18.081
+18.082
+18.084
+18.092
+18.090
+18.089
+18.088
+18.086
+18.085
+18.091
+18.087
+18.073
+18.094
+18.095
+18.096.1 | 18.096.2
+  
+18.012.1 | 18.012.2
+18.014.1 | 18.014.2
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 23 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+Subject Listing Information 
+Current and/or relevant listings of the subject property (minimum 1 year look back)
+ 
+Listing Status
+Listing Type
+Listing ID
+Start Date
+End Date
+DOM
+Starting  
+List Price
+Current or 
+Final List Price
+Total DOM
+Analysis of Subject Property Listing History  
+Subject Listing Information Exhibits
+Current or Relevant Listings 19.000
+Data Source
+19.001
+19.002
+19.003
+19.004
+19.005
+19.006
+19.007
+19.008
+19.009
+19.011
+19.012.1 | 19.012.2
+19.010
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 24 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Sales Contract
+Yes No
+Is there a sales contract?
+ 
+Was sales contract information analyzed?
+ 
+Does this appear to be an arm’s length transaction?
+ 
+Non-Arm’s Length Commentary
+Contract Price
+Contract Date
+Transfer Terms
+Personal Property Conveyed
+Personal property is not included in the appraiser’s final opinion of value
+Financial Sales Concessions 
+Financial assistance paid by or on behalf of the seller as an inducement to purchase the subject property
+Known Sales Concessions
+Total Sales Concessions
+Typical for Market
+20.000
+20.001
+20.004
+20.00
+20.00
+20.00
+20.00
+20.00
+20.00
+20.0
+Sales Contract Analysis
+20.0
+Sales Contract Exhibits
+20.0_
+20.002
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 25 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Appraisal Version # 
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Prior Sale and Transfer History
+Transfer Terms
+Date
+Amount
+Data Source
+# 
+Transfer Terms 
+Date 
+Amount 
+Data Source 
+Analysis of Prior Sale and Transfer History of Comparable Sales
+Prior Sale and Transfer History Exhibits
+21.008
+21.009
+21.011
+21.007
+21.010
+21.012
+21.013.1 | 21.013.2 
+Subject Transfer History
+Prior sales and/or transfers of the subject property (minimum 3 year look back)
+Prior Sales or Transfers
+21.000
+Data Source
+21.001
+21.002
+21.003
+21.004
+21.005
+Analysis of Prior Sale and Transfer History of Subject Property
+21.006
+Comparable Transfer History
+Prior sales and/or transfers of the comparable properties from the ‘Sales Comparison Approach’ section (minimum 1 year look back)
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 26 of 43>>>
+22.01.14
+22.01.01
+22.01.04
+22.01.05
+22.01.06
+22.01.09
+22.01.10
+22.01.12
+22.01.13
+22.01.11
+22.01.03
+22.01.02
+22.01.01.1
+22.01.15
+22.01.48
+22.01.49
+22.01.17
+22.01.17.1
+22.01.18
+22.01.19
+22.
+.20
+22.01.21
+22.01.22
+22.01.23
+22.01.24
+22.01.26
+22.01.25
+22.0 .28
+22.01.30
+22.01.32
+22.01.31
+22.01.29
+22.01.27
+22.01.33
+22.01.39
+22.01.38
+22.01.37
+22.01.36
+22.01.35
+22.01.34
+22.01.40
+22.01.41
+22.01.42
+22.01.43
+22.01.44
+22.01.45
+22.01.46
+22.01.47
+22.02.01
+22.02.02
+22.02.03
+22.02.04
+22.02.06
+22.02.05
+22.02.07
+22.02.08
+22.02.09
+22.03.01
+22.03.02
+22.0 .04
+22.03.05
+22.03.03
+22.03.06
+22.0 .08
+22.03.10
+22.03.12
+22.03.14
+22.03.16
+22.03.17
+22.03.07
+22.03.09
+22.03.11
+22.0 .13
+22.03.15
+22.03.18
+22.03.19
+22.03.20
+22.03.21
+22.03.22
+22.03.23
+22.03.24
+22.03.25
+22.03.26
+22.03.27
+22.03.28
+22.03.29
+22.03.30
+22.03.31
+22.03.32
+22.03.33
+22.03.34
+22.03.35
+22.03.36
+22.
+.38
+22.03.39
+22.03.40
+22.0 .41
+22.03.42
+22.03.43
+22.03.44
+22.03.46
+22.03.45
+22.03.48
+22.03.47
+22.03.49
+22.04.01
+22.04.03
+22.04.02
+22.04.04
+22.04.05
+22.04.06
+22.04.07
+22.04.08
+22.04.09
+22.03.37
+22.01.07
+2
+1.16
+2.0
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 27 of 43>>>
+6.04
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 28 of 43>>>
+22.09.08
+22.09.15
+ 22.10.07
+22.10.14
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 29 of 43>>>
+!#&0(!*0%%&(0%#&*0 
+,/+0	'$0 '+0
+ #	#
+
+
+
+  #	#
+
+
+
+
+#	#
+ #!  # #
+! #	#	# #
+! #	#	##
+	#	##!#
+##
+	#	###
+"##
+! #	#
+# #
+      
+ #!#
+ 
+
+#!*#!0#0(0#%&(#!0%%&#0
+
+*#!0
+&#%&*(0!-.0#*0(0
+
+	'$0 '+0 '))0
+0+0
+
+
+
+
+	
+++,)0
+	
+$ 0 '0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+)$"0$+0)0
+
+
+
+
+	
+$ 0 '0
+$ 0 '0
+
+
+
+
+
+
+
+
+
+$  "+0
+
+ 
+  
+
+    
+ 
+  
+	 
+  
+
+
+
+
+
+
+
+
+
+  
+
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 30 of 43>>>
+Appraiser Reference ID
+Agency Case File ID
+Client Reference ID
+AMC Reference ID
+Uniform Residential Appraisal Report
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+Sales Comparison Map
++)
++)
++)
++)
++)
++)
++)
++)
+
+
+<<<PAGE 31 of 43>>>
+ ;30=C8L,F3*,;H3"5L@@C"3F"5L,@=CHL L
+"5,FL=8@"C3F=;L@@C="(2LJ23%3HFL
+L
+LLLLL
+
+>9A#D#&6-L
+
+
+L
+L
+>9A#D#&6-L
+
+
+
+	
+
+BBE$4G.EL./.E.<).LL L
+1.<)KL$G.L47.LL L
+74.<IL./.E.<).LL L
+L./.E.<).LL L
+>9A#D#&6-L
+BBE$4G$7L!.EG4?<L L
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 32 of 43>>>
+23.01.01
+23.01.10
+23.01.02
+23.01.03
+23.01.04
+23.01.05
+23.01.06
+23.01.07
+23.01.08
+23.01.09
+23.01.11
+23.01.12
+23.01.13
+23.01.14
+23.01.19
+23.01.20
+23.01.21
+23.01.15
+23.01.16
+23.01.17
+23.01.22
+23.01.23
+23.01.24
+23.01.18
+23.01.25
+23.02.01
+23.02.02
+23.02.03
+23.02.04
+23.02.05
+23.02.06
+23.02.01.1
+23.02.03.1
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 33 of 43>>>
+23.03.01
+23.03.24
+23.03.02
+23.03.03
+23.03.04
+23.03.05
+23.03.06
+23.03.07
+23.03.08
+23.03.09
+23.03.15
+23.03.10
+23.03.11
+23.03.12
+23.03.13
+23.03.14
+23.03.16
+23.03.22
+23.03.17
+23.03.18
+23.03.19
+23.03.20
+23.03.21
+23.03.25
+23.03.44
+23.03.26
+23.03.27
+23.03.28
+23.03.29
+23.03.30
+23.03.31
+23.03.32
+23.03.38
+23.03.33
+23.03.34
+23.03.35
+23.03.36
+23.03.37
+23.03.39
+23.03.40
+23.03.41
+23.03.42
+23.03.43
+23.03.23
+23.03.45
+23.03.46
+23.03.47
+23.03.48
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 34 of 43>>>
+23.04.01
+23.02.03.1 | 23.02.03.2
+23.05.01.1 | 23.05.01.2
+23.05.02.1 | 23.05.02.2
+23.05.03
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 35 of 43>>>
+Appraiser Reference ID
+Agency Case File ID
+Client Reference ID
+AMC Reference ID
+Uniform Residential Appraisal Report
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac
+September 2024
+Income Approach
+Gross Rent Multiplier Comparables
+Subject Property
+Comparable #
+Comparable #
+Comparable #
+Property Address
+Data Source
+Proximity to Subject
+Units Excluding ADUs
+Accessory Dwelling Units
+Gross Building Finished Area
+Rent Control
+Sale Price
+Sale Date
+Gross Monthly Rent
+Gross Rent Multiplier
+Comparable Weight
+Indicated Value by Income Approach
+Total Monthly Market Rent
+×
+Gross Rent Multiplier
+=
+Indicated Value by Income Approach
+Income Approach Commentary
+Income Approach Exhibits
+Comparable #
+Comparable #
+Comparable #
+HF.002
+HF.003
+HF.004
+HF.005
+HF.006
+HF.007
+HF.008
+HF.001
+24.008
+24.000                                        24.009
+24.000.1                                      24.009.1
+24.010
+24.011
+24.012
+24.013
+24.014
+24.015
+24.016
+24.017
+24.018
+24.019
+24.020
+24.021
+24.001
+24.002
+24.003
+24.004
+24.006
+24.007
+24.022                                                                   24.023                                                                         24.024
+24.025
+24.008
+24.009.1 | 24.009.2
+24.026.1 | 24.026.2
+24.027.1 | 24.027.2
+24.005
+
+<<<PAGE 36 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Cost Approach
+Indicated Value by Cost Approach 
+Depreciated Cost of Dwellings 
+Depreciated Cost of Outbuildings 
+As Is Value of Site Improvements 
+Opinion of Site Value 
+Depreciated Cost - Dwelling - [Structure Identifier]
+@
+Physical Depreciation
+Functional Depreciation
+External Depreciation
+Total Depreciation
+Manufactured Home Delivery, 
+Installation, and Set Up
+Total
+Remaining Economic Life 
+Effective Age 
+Commentary on Remaining Economic Life  
+Commentary on Effective Age
+  
+Depreciated Cost - Outbuilding - [Outbuilding Type]
+@
+Physical Depreciation
+Functional Depreciation
+External Depreciation
+Total Depreciation
+Manufactured Home Delivery, 
+Installation, and Set Up
+Total
+As Is Value of Site Improvements
+Description
+Amount
+Total
+Site Value
+Primary Site Valuation Method
+Opinion of Site Value 
+Land Comparables
+#
+Address
+County
+Data Source 
+Assessor Parcel 
+Number (APN)
+Site Size
+Sale Date
+Price
+Reconciliation of Site Value  
+General Description
+Cost Type 
+Cost Data Source 
+Quality Rating 
+Effective Date 
+Cost Method 
+Depreciation Method 
+Cost Approach Commentary
+Cost Approach Exhibits
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+_
+
++)
++)
++)
++)
++)
++)
++)
++)
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 37 of 43>>>
+26.000
+26.005
+26.002
+26.001
+26.003
+26.004
+26.006
+26.013
+26.007
+26.008
+26.009
+26.010
+26.011
+26.012
+26.014
+26.017
+26.015
+26.016
+26.018
+26.019
+26.020
+26.021
+26.026
+26.022
+26.023
+26.024
+26.025
+26.027
+26.028
+26.033
+26.029
+26.030
+26.031
+26.032 
+26.034 - 26.035
+26.041
+26.038
+26.039
+26.040
+26.036
+26.037
+26.042 
+26.044
+26.049
+26.045
+26.046
+26.047
+26.048
+26.050 - 26.051
+26.052
+26.053
+26.054
+26.055
+26.057
+26.056
+26.063
+26.058
+26.059
+26.060
+26.061
+26.062
+26.069
+26.064
+26.065
+26.066
+26.067
+26.068
+26.070
+26.071
+26.072
+26.073.1 | 26.073.2 
+26.074
+26.075
+'BOOJF.BF]'SFEEJF.BD
+4FQUFNCFS
+
+<<<PAGE 38 of 43>>>
+ 
+Appraiser Reference ID 
+ 
+Agency Case File ID 
+ 
+Client Reference ID 
+ 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+September 2024
+Revision History 
+Revision Date
+URAR Section
+Description
+Reconsideration of Value
+Type
+Date
+Result
+Reconsideration of Value Commentary
+HF.005
+HF.006
+HF.007
+HF.008
+HF.001
+HF.003
+HF.004
+HF.002
+27.005
+27.003
+27.004
+27.006
+27.000
+27.001
+27.002
+
+<<<PAGE 39 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+Supplemental Information
+Supplemental Information Exhibits
+_
++)
++)
++)
++)
++)
++)
++)
++)
+
+<<<PAGE 40 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+This appraisal report is subject to the following scope of work, intended use, intended user, definition of market value, statement of 
+assumptions and limiting conditions, and certifications. Modifications, additions, or deletions to the definition of market value or assumptions 
+and limiting conditions are not permitted. The appraiser may expand the scope of work to include any additional research or analysis 
+necessary based on the complexity of this appraisal assignment. Modifications or deletions to Intended Use, Intended User, and the 
+certifications are also not permitted. However, additional Intended Use, Intended User, and certifications that do not constitute material 
+alterations to this appraisal report, such as those required by law or those related to the appraiser’s continuing education or membership in an 
+appraisal organization, are permitted.
+Scope of Work
+The scope of work for this assignment is based on the applicable assignment elements, including: the client and any other intended users, 
+the intended use, the definition of market value that follows, the effective date, the subject property and its relevant characteristics, and the 
+applicable assignment conditions. The appraiser must, at a minimum: (1) obtain and review adequate and reliable information for the subject 
+property; (2) research, verify, and analyze adequate and reliable data for the subject market area including data for each comparable property 
+reported; and (3) report his or her analyses, opinions, and conclusions in this appraisal report.
+Additional Scope of Work
+Additional Scope of Work cannot be contrary to the original Scope of Work.
+Intended Use
+The intended use of the opinions and conclusions contained in this appraisal report is for the intended user to evaluate the property that is the 
+subject of this appraisal for a mortgage finance transaction or related activities.
+The intended use of the appraisal is solely to assist FHA in assessing the risk of the Property securing the FHA-insured Mortgage 
+(24 CFR § 200.145(b)).
+Additional Intended Use
+Additional Intended Use cannot be contrary to the original Intended Use.
+Intended User
+The intended user of this report is the lender/client.
+FHA and the Mortgagee are the intended users of this report.
+The USDA and any other identified lender/client are intended users of this report.
+The VA is also an intended user of this report.
+Additional Intended Users
+Additional Intended Users cannot be contrary to the original Intended User.
+Definition of Market Value
+The most probable price that a property should bring in a competitive and open market under all conditions requisite to a fair sale with the 
+buyer and seller each acting prudently and knowledgeably, and assuming the price is not affected by undue stimulus. Implicit in this definition 
+is the consummation of a sale as of a specified date and the passing of title from seller to buyer under conditions whereby: (1) buyer and seller 
+are typically motivated; (2) both parties are well informed or well advised, and each acting in what he or she considers his or her own best 
+interest; (3) a reasonable time is allowed for exposure in the open market; (4) payment is made in terms of cash in U.S. dollars or in terms of 
+financial arrangements comparable thereto; and (5) the price represents the normal consideration for the property sold unaffected by special 
+or creative financing or sales concessions* granted by anyone associated with the sale.
+*Adjustments to the comparables must be made for special or creative financing or sales concessions. No adjustments are necessary for costs that are 
+normally paid by sellers as a result of tradition or law in a market area; these costs are readily identifiable because the seller pays these costs in virtually all sales 
+transactions. Special or creative financing adjustments can be made to the comparable property by comparisons to financing terms offered by a third-party 
+institutional lender that is not already involved in the property or transaction. Any adjustment should not be calculated on a mechanical dollar-for-dollar cost 
+of the financing or concession, but the dollar amount of any adjustment should approximate the market’s reaction to the financing or concessions based on 
+the appraiser’s judgment.
+Statement of Assumptions and Limiting Conditions
+The appraiser assumes that the title is good and marketable unless he or she becomes aware of information to the contrary.
+If the appraiser has included a sketch or floor plan in this appraisal report, it shows the approximate dimensions and is included only to assist 
+the reader in visualizing the property and understanding the appraiser’s determination of its size.
+HF.001
+29.000
+29.001
+29.002
+29.003
+29.004
+29.005
+29.006
+29.007
+29.008
+29.009
+29.010
+29.011
+29.012
+29.013
+29.014
+29.015
+HF.002
+HF.008
+HF.003
+HF.004
+HF.005
+HF.007
+HF.006
+
+<<<PAGE 41 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+The appraiser has relied on data provided by third parties in this appraisal report. Such data may include, but is not limited to, floor plans, 
+flood maps, multiple listing real estate services, tax assessment records, public land records, satellite imagery, virtual street views, property 
+data services, surveys, engineering reports, and property data aggregations. After examination of the data and data sources, the appraiser has 
+used only the data he or she considers reliable. The appraiser assumes there are no material omissions in the data relied upon and makes no 
+guarantees, express or implied, regarding their accuracy. If the source date is prior to the effective date of the appraisal, the appraiser assumes 
+the property characteristics and supporting information have not changed in the interim.
+The appraiser will not be required to give testimony or appear in court because he or she made an appraisal of the property in question, 
+unless specific arrangements to do so have been made beforehand, or as otherwise required by law.
+The appraiser has noted in this appraisal report any adverse conditions (such as needed repairs, deterioration, the presence of hazardous 
+wastes, toxic substances, etc.) that the appraiser became aware of during the development of this appraisal. Unless otherwise stated in this 
+appraisal report, the appraiser has no knowledge of any hidden or unapparent physical deficiencies or adverse conditions of the property 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that would make the property less valuable, and assumes that there are no such conditions and makes no guarantees or 
+warranties, express or implied. The appraiser will not be responsible for any such conditions that do exist or for any engineering or testing that 
+might be required to discover whether such conditions exist. Because the appraiser is not an expert in the field of environmental hazards, this 
+appraisal report must not be considered as an environmental assessment of the property.
+The FHA Appraiser does not guarantee that the Property is free from defects. The appraisal establishes the value of the Property for mortgage 
+insurance purposes only.
+Certifications
+Appraiser Certifications
+The Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction. 
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment. 
+4. I did not base any part of my appraisal on the actual or perceived race, color, religion, sex (including sexual orientation or gender identity), 
+age (other than as applicable for legally age-restricted communities), marital status, disability, familial status, or national origin of the present 
+or prospective owners or occupants of either the subject property or properties in the area of the subject property or on any other basis 
+prohibited by the Fair Housing Act or the Equal Credit Opportunity Act, or any other basis prohibited by law.
+5. I stated in this appraisal report my own personal, unbiased, and professional analyses, opinions, and conclusions, which are subject only to 
+the assumptions and limiting conditions in this appraisal report.
+6. I have, at a minimum, developed and reported this appraisal in accordance with the scope of work requirements stated in this appraisal 
+report.
+7. I meet the credential requirements for this assignment as of the date of this appraisal report and have knowledge and experience in 
+appraising this type of property in this market area.
+8. I am aware of, and have access to, the necessary and appropriate public and private data sources, such as multiple listing services, tax 
+assessment records, public land records, and other such data sources for the area in which the property is located.
+9. I obtained the information, estimates, and opinions furnished by other parties and expressed in this appraisal report from reliable sources 
+that I believe to be true and correct.
+10. I personally performed an onsite inspection of the interior and exterior areas of the subject property. I reported the readily observable 
+condition of the improvements in factual, specific terms. I identified and reported any known physical deficiencies that could affect the 
+soundness or structural integrity of the property.
+10. I personally performed an inspection of the exterior areas of the subject property from at least the street. I reported the readily observable 
+condition of the improvements in factual, specific terms. I reported any known physical deficiencies that could affect the soundness or 
+structural integrity of the property.
+10. I did not personally perform an onsite inspection of the subject property as part of this appraisal assignment. I reported the condition of 
+the improvements in factual, specific terms, relying on subject property information data sources I considered reliable. I reported any known 
+physical deficiencies that could affect the soundness or structural integrity of the property.
+11. I performed this appraisal in accordance with the requirements of the Uniform Standards of Professional Appraisal Practice that were 
+adopted and promulgated by the Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal 
+report was transmitted.
+12. Using information available in the normal course of business, I researched, verified, analyzed, and reported on any current agreement for 
+sale for the subject property, any offering for sale of the subject property in the twelve months prior to the effective date of this appraisal, and 
+the prior sales of the subject property for a minimum of three years prior to the effective date of this appraisal.
+HF.002
+HF.008
+HF.003
+HF.004
+HF.005
+HF.007
+HF.006
+29.016
+29.017
+29.018
+29.019
+29.020
+29.021
+29.022
+29.023
+29.024
+29.027
+29.025
+29.026
+29.028
+29.031
+29.029
+29.030
+29.032
+HF.001
+
+<<<PAGE 42 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+13. Using information available in the normal course of business, I researched, verified, analyzed, and reported on the prior sales of the 
+comparable sales for a minimum of one year prior to the date of sale of the comparable sale.
+14. I based my valuation on the available properties that are most similar to the subject property.
+15. I have not used comparable sales that were the result of combining a land sale with the contract purchase price of a home that has been 
+built or will be built on the land.
+16. I have identified the differences between the subject and comparable properties, analyzed the market reaction to those differences, and 
+reflected those differences in the analysis.
+17. To the extent possible, I verified, from a disinterested source, all information in this report that was provided by parties who have a financial 
+interest in the sale or financing of the subject property.
+18. I have taken into consideration the factors that have an impact on value with respect to the subject property, and its location, including its 
+proximity to adverse influences in the development of my opinion of market value. I have noted in this appraisal report any adverse conditions 
+(such as, but not limited to, needed repairs, deterioration, the presence of hazardous wastes, toxic substances, adverse environmental 
+conditions, etc.) that I became aware of during the development of this appraisal. I have considered these adverse conditions in my analysis of 
+the property value and have reported on the effect of the conditions on the value and marketability of the subject property.
+19. I have not knowingly withheld any significant information from this appraisal report and, to the best of my knowledge, all statements and 
+information in this appraisal report are true and correct.
+20. My employment and/or compensation for performing this appraisal or any future or anticipated appraisals was not conditioned on any 
+agreement or understanding, written or otherwise, that I would report (or present analyses supporting) a predetermined specific value, a 
+predetermined minimum value, a range or direction in value, a value that favors the cause of any party, or the attainment of a specific result or 
+occurrence of a specific subsequent event (such as approval of a pending mortgage loan application).
+21. I personally prepared all conclusions and opinions about the real estate that were set forth in this appraisal report. No one provided 
+significant real property appraisal assistance.
+21. I personally prepared conclusions and opinions about the real estate that were set forth in this appraisal report. [Contact Name(s)] 
+provided significant real property appraisal assistance in the development of this report. I certify that any individual so named is qualified to 
+perform the assistance.
+22. I have not authorized anyone to make a change to any item in this appraisal report; therefore, any change made to this appraisal is 
+unauthorized and I will take no responsibility for it.
+23. I identified the lender/client in this appraisal report who is the individual, organization, or agent for the organization that ordered and will 
+receive this appraisal report.
+24. I am aware that any disclosure or distribution of this appraisal report or any of its contents by me or by the lender/client may be subject 
+to certain laws and regulations. Further, I am also subject to the provisions of the Uniform Standards of Professional Appraisal Practice that 
+pertain to disclosure or distribution by me.
+25. The lender/client may disclose or distribute this appraisal report to: the borrower; another lender at the request of the borrower; the 
+mortgagee or its successors and assigns; mortgage insurers; government sponsored enterprises; other secondary market participants; data 
+collection or reporting services; professional appraisal organizations; any department, agency, or instrumentality of the United States; and any 
+state, the District of Columbia, or other jurisdictions. Any of the foregoing persons or entities who receive this appraisal report may choose to 
+store, copy, reproduce, analyze, use and distribute the data in the appraisal report for internal or external purposes without having to obtain 
+the appraiser’s or supervisory appraiser’s (if applicable) consent. Consent must be obtained before this appraisal report may be disclosed or 
+distributed to any other party (including, but not limited to, the public through advertising, public relations, news, sales, or other media). A 
+person or entity who receives a copy of an appraisal report does not become an intended user, unless the appraiser identifies such person as 
+an intended user. The appraiser and supervisory appraiser (if applicable) shall have no liability for any use of this appraisal report not related to 
+the mortgage finance transaction and related activities for which this appraisal report was prepared.
+26. The borrower, another lender at the request of the borrower, the mortgagee or its successors and assigns, mortgage insurers, government 
+sponsored enterprises, and other secondary market participants may choose to rely on this appraisal report as part of any mortgage finance 
+transaction that involves any one or more of these parties. A person or entity who receives a copy of an appraisal report does not become 
+an intended user, unless the appraiser identifies such person as an intended user. The appraiser and supervisory appraiser (if applicable) 
+shall have no liability for any use of this appraisal report not related to the mortgage finance transaction and related activities for which this 
+appraisal report was prepared.
+27. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable 
+federal and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation 
+of my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+28. Any intentional or negligent misrepresentation(s) contained in this appraisal report may result in civil liability and/or criminal penalties 
+including, but not limited to, fine or imprisonment or both under the provisions of Title 18, United States Code, Section 1001, et seq., or similar 
+state laws.
+29. I have not performed any service regarding the subject property within the three years preceding the agreement to perform this 
+assignment.
+HF.002
+HF.008
+HF.003
+HF.004
+HF.005
+HF.007
+HF.006
+HF.001
+29.033
+29.034
+29.035
+29.036
+29.037
+29.038
+29.039
+29.040
+29.041
+29.043
+29.044
+29.042
+29.045
+29.046
+29.047
+29.048
+29.049
+29.050
+
+<<<PAGE 43 of 43>>>
+Appraiser Reference ID 
+Agency Case File ID 
+Client Reference ID 
+AMC Reference ID 
+Uniform Residential Appraisal Report 
+Page [Page] of [Pages]
+Appraisal Version #
+Fannie Mae | Freddie Mac 
+4FQUFNCFS
+29. I have performed services regarding the subject property within the three years preceding the agreement to perform this assignment.
+Description of Prior Services:
+Additional Appraiser Certifications
+Additional Appraiser Certifications cannot be contrary to the original Appraiser Certifications.
+1. 
+Supervisory Appraiser Certifications
+The Supervisory Appraiser certifies and agrees that:
+1. I have no present or prospective interest in the property that is the subject of this report, or relationship with the present or prospective 
+owners or occupants of the subject property, or other parties involved in this transaction.
+2. I performed this assignment without bias with respect to the parties involved in this transaction, the property that is the subject of this 
+report, or the demographics of the area where the property is located.
+3. I am aware of and have complied with all applicable laws and regulations including antidiscrimination laws, rules, and requirements that 
+apply to the appraiser and to the assignment.
+4. I directly supervised the appraiser for this appraisal assignment, have read the appraisal report, and agree with the appraiser’s analyses, 
+opinions, statements, conclusions, and the appraiser’s certification.
+5. The assignment information regarding the scope of inspection by the Supervisory Appraiser is correct.
+6. I accept full responsibility for the contents of this appraisal report including, but not limited to, the appraiser’s analyses, opinions, 
+statements, conclusions, and the appraiser’s certification.
+7. The appraiser identified in this appraisal report is either a subcontractor or an employee of the supervisory appraiser (or the appraisal firm), 
+is qualified to perform this appraisal, and is acceptable to perform this appraisal under the applicable law.
+8. This appraisal report complies with the Uniform Standards of Professional Appraisal Practice that were adopted and promulgated by the 
+Appraisal Standards Board of The Appraisal Foundation and that were in place at the time this appraisal report was transmitted.
+9. If this report was transmitted as an “electronic record” containing my “electronic signature,” as those terms are defined in applicable federal 
+and/or state laws (excluding audio and video recordings), or a facsimile transmission of this report containing a copy or representation of 
+my signature, I agree that my electronic signature has the same force and effect as my manual handwritten signature, and that the report is 
+enforceable and valid as a paper version of this report would be if delivered containing my manual handwritten signature.
+Additional Supervisory Appraiser Certifications
+Additional Supervisory Appraiser Certifications cannot be contrary to the original Supervisory Appraiser Certifications.
+1. 
+Signature
+[Role]
+[Contact Name] 
+Date of Signature and Report
+Level
+ID
+State
+Expires
+HF.002
+HF.008
+HF.003
+HF.004
+HF.005
+HF.007
+HF.006
+HF.001
+29.051
+29.052
+29.053
+29.054
+29.055
+29.056
+29.057
+29.059
+29.058
+29.060
+29.071
+29.072
+29.073
+29.061
+29.062
+29.063
+29.064
+29.065
+29.066
+29.067
+29.068
+29.069
+29.070
+29.074

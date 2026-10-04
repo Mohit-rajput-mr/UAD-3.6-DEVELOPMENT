@@ -1,0 +1,11 @@
+# The web platform (engine/app) -- what Vercel installs for api/index.py.
+# Playwright/Chromium are deliberately absent: a serverless function cannot run
+# a browser, so page layout and PDF answer 503 there (engine/uad/report/browser.py).
+# Locally, for PDF:  pip install playwright && playwright install chromium
+# The WinTOTAL MOD (total-bridge) has its own list: setup/requirements.txt.
+fastapi>=0.110
+python-multipart>=0.0.9
+lxml>=5.0
+Pillow>=10.0
+fontTools>=4.50
+pymupdf>=1.24

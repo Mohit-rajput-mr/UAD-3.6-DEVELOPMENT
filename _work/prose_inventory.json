@@ -1,0 +1,127 @@
+[
+ {
+  "path": "_ref\\impl\\Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance.pdf",
+  "pages": 9,
+  "chars": 13040
+ },
+ {
+  "path": "_ref\\impl\\Appendix B-1 URAR Implementation Guide v1.4.pdf",
+  "pages": 401,
+  "chars": 501288
+ },
+ {
+  "path": "_ref\\layout\\Appendix C-1 URAR with Report Field IDs v1.3.pdf",
+  "pages": 43,
+  "chars": 54408
+ },
+ {
+  "path": "_ref\\layout\\Appendix C-1 URAR without Report Field IDs v1.3.pdf",
+  "pages": 43,
+  "chars": 56620
+ },
+ {
+  "path": "_ref\\refguide\\Appendix F-1 URAR Reference Guide v1.4.pdf",
+  "pages": 378,
+  "chars": 837852
+ },
+ {
+  "path": "_ref\\sample_A\\appraisal.pdf",
+  "pages": 21,
+  "chars": 43875
+ },
+ {
+  "path": "_ref\\sample_B\\appraisal.pdf",
+  "pages": 20,
+  "chars": 41129
+ },
+ {
+  "path": "_ref\\style\\Appendix E Report Style Guide.pdf",
+  "pages": 92,
+  "chars": 152832
+ },
+ {
+  "path": "_ref\\style\\Appendix E-1 URAR with Codes.pdf",
+  "pages": 43,
+  "chars": 64104
+ },
+ {
+  "path": "_ref\\style\\Appendix E-2 Restricted Appraisal Update Report with Codes.pdf",
+  "pages": 6,
+  "chars": 14200
+ },
+ {
+  "path": "_ref\\style\\Appendix E-3 Completion Report with Codes.pdf",
+  "pages": 6,
+  "chars": 9410
+ },
+ {
+  "path": "_ref\\usecases\\2- to 4-unit_Appraisal\\2-to4-unit_Appraisal_v1.4.pdf",
+  "pages": 31,
+  "chars": 64660
+ },
+ {
+  "path": "_ref\\usecases\\2- to 4-unit_Scenario_2_Appraisal\\2-to4-unit_Scenario_2_Appraisal_v1.2.pdf",
+  "pages": 28,
+  "chars": 55475
+ },
+ {
+  "path": "_ref\\usecases\\Condo1_Appraisal\\Condo1_Appraisal_v1.4.pdf",
+  "pages": 24,
+  "chars": 48498
+ },
+ {
+  "path": "_ref\\usecases\\Condo2_Appraisal\\Condo2_Appraisal_v1.4.pdf",
+  "pages": 27,
+  "chars": 56966
+ },
+ {
+  "path": "_ref\\usecases\\Coop1_Appraisal\\Coop1_Appraisal_v1.4.pdf",
+  "pages": 20,
+  "chars": 43803
+ },
+ {
+  "path": "_ref\\usecases\\MH1_Appraisal\\MH1_Appraisal_v1.4.pdf",
+  "pages": 32,
+  "chars": 56845
+ },
+ {
+  "path": "_ref\\usecases\\MH2_Appraisal\\MH2_Appraisal_v1.4.pdf",
+  "pages": 22,
+  "chars": 47892
+ },
+ {
+  "path": "_ref\\usecases\\SF1\\SF1_Appraisal_v1.4.pdf",
+  "pages": 23,
+  "chars": 48607
+ },
+ {
+  "path": "_ref\\usecases\\SF1_Appraisal\\SF1_Appraisal_v1.4.pdf",
+  "pages": 23,
+  "chars": 48607
+ },
+ {
+  "path": "_ref\\usecases\\SF2_Appraisal\\SF2_Appraisal_v1.4.pdf",
+  "pages": 24,
+  "chars": 49023
+ },
+ {
+  "path": "_ref\\usecases\\SF3_Appraisal\\SF3_Appraisal_v1.4.pdf",
+  "pages": 25,
+  "chars": 53919
+ },
+ {
+  "path": "_ref\\usecases\\SF4_Appraisal\\SF4_Appraisal_v1.4.pdf",
+  "pages": 24,
+  "chars": 51869
+ },
+ {
+  "path": "_ref\\usecases\\SF5A_Appraisal_v1.2.pdf",
+  "pages": 21,
+  "chars": 40332
+ },
+ {
+  "path": "_ref\\usecases\\SF5_Appraisal\\SF5_Appraisal_v1.2.pdf",
+  "pages": 21,
+  "chars": 40295
+ }
+]

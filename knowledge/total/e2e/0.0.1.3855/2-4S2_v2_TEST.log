@@ -1,0 +1,32 @@
+reset: {'structure': ['dwelling-exterior#1>1']}
+  importing with TOTAL's own importer ...
+  placing the pictures ...
+Traceback (most recent call last):
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\tools\run_test_package.py", line 52, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\tools\run_test_package.py", line 36, in main
+    result = deliver.run(report, pkg, progress=lambda t: print(" ", t, flush=True))
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\deliver.py", line 163, in run
+    out["photos"] = pictures(report, xml_path)
+                    ~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\deliver.py", line 95, in pictures
+    done = placer.place(report, case, rest, known=found)
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\place.py", line 252, in place
+    by_name = sections_by_name(report, case)
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\place.py", line 196, in sections_by_name
+    for key, controls, _values in report.walk():
+                                  ~~~~~~~~~~~^^
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\total.py", line 355, in walk
+    """Bring one section into the page.
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\total.py", line 337, in goto
+    
+    if chosen["signed"] and not allow_signed:
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\cdp.py", line 114, in evaluate
+    result = self.send("Runtime.evaluate", expression=expression,
+                       returnByValue=True, awaitPromise=await_promise)
+  File "C:\UAD 3.6 DEVELOPMENT\total-bridge\bridge\cdp.py", line 99, in send
+    raise PageGone(f"{method}: TOTAL's report page is gone (its browser process ended) -- "
+                   "reopen the report in TOTAL") from None
+bridge.cdp.PageGone: Runtime.evaluate: TOTAL's report page is gone (its browser process ended) -- reopen the report in TOTAL

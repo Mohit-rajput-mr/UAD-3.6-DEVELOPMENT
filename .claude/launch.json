@@ -1,0 +1,55 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "uad-app",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "engine/app/main.py"
+      ],
+      "port": 8766,
+      "env": {
+        "URAR_PORT": "8766"
+      }
+    },
+    {
+      "name": "uad-dev-open",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "engine/app/main.py"
+      ],
+      "port": 8767,
+      "env": {
+        "URAR_PORT": "8767",
+        "URAR_OPEN": "1"
+      }
+    },
+    {
+      "name": "uad-import-test",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "engine/app/main.py"
+      ],
+      "port": 8768,
+      "env": {
+        "URAR_PORT": "8768",
+        "URAR_OPEN": "1",
+        "URAR_WORK": "C:\\UAD 3.6 DEVELOPMENT\\_work\\cases-test"
+      }
+    },
+    {
+      "name": "uad-network",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "engine/app/main.py"
+      ],
+      "port": 8769,
+      "env": {
+        "URAR_PORT": "8769",
+        "URAR_HOST": "0.0.0.0",
+        "URAR_WORK": "C:\\UAD 3.6 DEVELOPMENT\\_work\\cases-test",
+        "URAR_ACCESS_CODE": "kech"
+      }
+    }
+  ]
+}

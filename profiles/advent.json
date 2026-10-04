@@ -1,0 +1,24 @@
+{
+  "_about": "Second appraiser profile, read on 2026-09-30 from MATERIALS/APPRASER INFO AND MATERIALS (his signature block image (5), NY licence image (1), ACORD insurance certificate image (2)). Use it by setting a case's \"appraiser\" to \"profiles/advent.json\". Designation is NOT stated in those documents -- ask the owner (the 'always MAI' instruction was given with Leonardo Jo's credentials).",
+  "name": "Howard F. Jackson Jr.",
+  "first": "Howard",
+  "last": "Jackson",
+  "designation": "",
+  "company": "Advent Appraisers",
+  "address": "213-37 39th Ave, #213",
+  "city": "Bayside",
+  "state": "NY",
+  "zip": "11361",
+  "phone": "212-488-0004",
+  "email": "jobs@adventappraisers.com",
+  "level": "Certified General",
+  "credential_id": "46000004840",
+  "credential_state": "NY",
+  "credential_expires": "09/11/2027",
+  "employment": "Independent Fee Appraiser",
+  "assignment_exhibits": {
+    "_rule": "Assignment Information exhibits are ALWAYS the licence and the E&O declaration -- never the engagement letter.",
+    "licence": "profiles/documents/advent/licence.png",
+    "eo_insurance": "profiles/documents/advent/eo_insurance.png"
+  }
+}

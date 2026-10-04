@@ -1,0 +1,355 @@
+{
+ "case": {
+  "case_id": "417a161f7a07",
+  "name": "E2E 2- to 4-unit_Appraisal",
+  "template": "2_to_4_unit_appraisal_v1_4",
+  "property_type": "two_to_four_unit",
+  "state": "draft",
+  "created": "2026-09-28T13:17:45+00:00",
+  "updated": "2026-09-28T13:17:45+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "2- to 4-unit_Appraisal_v1.4.xml",
+  "property_type": "two_to_four_unit",
+  "values": 1455,
+  "on_report": 1160,
+  "not_displayed": 295,
+  "comparables": {
+   "SalesComparable": 3,
+   "RentalComparable": 5,
+   "GrossRentMultiplierComparable": 3
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "2-to4-unit_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "2-4_Dwelling1Bedroom1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1Bedroom2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1Bathroom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1Kitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1LivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2Bedroom1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2Bedroom2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2Bathroom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2Kitchen.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2LivingRoom.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_SubjectProperty.png",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_PropertyAccessEast.png",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_PropertyAccessWest.png",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_CompMap.png",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_RentCompMap.png",
+    "category": "RentalComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_GRMMap.png",
+    "category": "GrossRentMultiplierComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Floorplan.png",
+    "category": "FloorPlan",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1Front.png",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2Front.png",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_USGSLavaFlowMap.png",
+    "category": "SiteExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1Rear.png",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2Rear.png",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Supplemental.png",
+    "category": "SupplementalExhibit",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling1RoofDefect.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Dwelling2RoofDefect.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_AppliancesDefect.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_KitchenCabinet1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_BathroomCabinet1.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_BathroomDoor.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_BathroomWalls.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_KitchenCabinet2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_BathroomCabinet2.png",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Comp1.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Comp2.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_Comp3.png",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_RC1.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_RC2.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_RC3.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_RC4.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 4,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_RC5.png",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 5,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_GRMComp1.png",
+    "category": "PropertyPhoto",
+    "owner": "GrossRentMultiplierComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_GRMComp2.png",
+    "category": "PropertyPhoto",
+    "owner": "GrossRentMultiplierComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "2-4_GRMComp3.png",
+    "category": "PropertyPhoto",
+    "owner": "GrossRentMultiplierComparable",
+    "comparable": 3,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 1.91,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

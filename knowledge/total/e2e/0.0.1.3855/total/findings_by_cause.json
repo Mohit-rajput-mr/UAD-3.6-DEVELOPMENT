@@ -1,0 +1,5144 @@
+{
+ "2- to 4-unit_Appraisal": {
+  "counts": {
+   "untraced": 2,
+   "adjustment-rule": 10,
+   "data-gap": 57
+  },
+  "rows": [
+   {
+    "field": "DE1_EXTERIOR_EXHIBIT_DESCRIPTION",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "untraced",
+    "data_points": [],
+    "message": "Exterior exhibit description is required when an exterior exhibit category is not provided or the category is Apparent D"
+   },
+   {
+    "field": "DE2_EXTERIOR_EXHIBIT_DESCRIPTION",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "untraced",
+    "data_points": [],
+    "message": "Exterior exhibit description is required when an exterior exhibit category is not provided or the category is Apparent D"
+   },
+   {
+    "field": "GC1_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC2_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC3_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC1_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SITE_CHARACTERISTICS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SiteFeatureType",
+     "SiteFeatureTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_CHARACTERISTICS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SiteFeatureType",
+     "SiteFeatureTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_CONST_METHOD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ConstructionMethodType",
+     "ConstructionMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC1_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC2_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC2_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC3_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC3_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC1_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC2_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC3_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GR1_GBFA",
+    "role": "GrossRentMultiplierComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+    ],
+    "message": "Gross building finished area is required when an income approach comparable is entered"
+   },
+   {
+    "field": "GR2_GBFA",
+    "role": "GrossRentMultiplierComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+    ],
+    "message": "Gross building finished area is required when an income approach comparable is entered"
+   },
+   {
+    "field": "GR3_GBFA",
+    "role": "GrossRentMultiplierComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+    ],
+    "message": "Gross building finished area is required when an income approach comparable is entered"
+   }
+  ]
+ },
+ "2- to 4-unit_Scenario_2_Appraisal": {
+  "counts": {
+   "adjustment-rule": 30,
+   "data-gap": 195
+  },
+  "rows": [
+   {
+    "field": "GC1_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC2_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC3_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC1_DP_FINTYP1",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Financing type is required when listing status is Settled Sale"
+   },
+   {
+    "field": "GC1_DP_FINTYP1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_DP_FINTYP1",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Financing type is required when listing status is Settled Sale"
+   },
+   {
+    "field": "GC2_DP_FINTYP1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_DP_FINTYP1",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Financing type is required when listing status is Settled Sale"
+   },
+   {
+    "field": "GC3_DP_FINTYP1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_MARKETAREA_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_MARKETAREA_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_MARKETAREA_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC1_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC2_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC2_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC3_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC3_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC1_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC2_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC3_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_FLOOR_NUM_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC2_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC3_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC1_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   },
+   {
+    "field": "GC2_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   },
+   {
+    "field": "GC3_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   },
+   {
+    "field": "GC1_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC1_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "AmenityCount",
+     "AmenityType"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "AmenityCount",
+     "AmenityType"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_AMENITY_OUTDOOR_ACCESSORIES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "AmenityCount",
+     "AmenityType"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_AMENITY_WHOLE_HOME_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "AmenityCount",
+     "AmenityType"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_AMENITY_WHOLE_HOME_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "AmenityCount",
+     "AmenityType"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_AMENITY_WHOLE_HOME_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "AmenityCount",
+     "AmenityType"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_VEHICLE_STORAGE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "CarStorageAreaMeasure",
+     "CarStorageAttachmentType",
+     "CarStorageType",
+     "CarStorageTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_VEHICLE_STORAGE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "CarStorageAreaMeasure",
+     "CarStorageAttachmentType",
+     "CarStorageType",
+     "CarStorageTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_VEHICLE_STORAGE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "CarStorageAreaMeasure",
+     "CarStorageAttachmentType",
+     "CarStorageType",
+     "CarStorageTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "RC1.1_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.2_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.3_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.1_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.2_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.3_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.1_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.2_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.3_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.1_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.2_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.3_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.1_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC1.2_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC1.3_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC1.1_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC1.2_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC1.3_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC2.1_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC2.2_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC2.3_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC2.1_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC2.2_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC2.3_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC2.1_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC2.2_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC2.3_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC2.1_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC2.2_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC2.3_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC2.1_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC2.2_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC2.3_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC2.1_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC2.2_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC2.3_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC3.1_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC3.2_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC3.3_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC3.1_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC3.2_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC3.3_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC3.1_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC3.2_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC3.3_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC3.1_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC3.2_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC3.3_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC3.1_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC3.2_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC3.3_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC3.1_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC3.2_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC3.3_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC4.1_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC4.2_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC4.3_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC4.1_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC4.2_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC4.3_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC4.1_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC4.2_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC4.3_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC4.1_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC4.2_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC4.3_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC4.1_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC4.2_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC4.3_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC4.1_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC4.2_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "RC4.3_SMRY_OVRL_COMP_TO_SUB",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RentalUnitToSubjectComparisonType"
+    ],
+    "message": "Summary overall comparison to subject is required"
+   },
+   {
+    "field": "GR1_GBFA",
+    "role": "GrossRentMultiplierComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+    ],
+    "message": "Gross building finished area is required when an income approach comparable is entered"
+   },
+   {
+    "field": "GR2_GBFA",
+    "role": "GrossRentMultiplierComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+    ],
+    "message": "Gross building finished area is required when an income approach comparable is entered"
+   },
+   {
+    "field": "GR3_GBFA",
+    "role": "GrossRentMultiplierComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"
+    ],
+    "message": "Gross building finished area is required when an income approach comparable is entered"
+   }
+  ]
+ },
+ "Condo1_Appraisal": {
+  "counts": {
+   "untraced": 1,
+   "data-gap": 63,
+   "adjustment-rule": 10
+  },
+  "rows": [
+   {
+    "field": "SPA_EXHIBIT_CATEGORY",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "untraced",
+    "data_points": [],
+    "message": "Exhibit category is required when an exhibit description is not provided"
+   },
+   {
+    "field": "SPA_EXHIBIT_DESCRIPTION",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "data-gap",
+    "data_points": [
+     "ImageCaptionCommentDescription"
+    ],
+    "message": "Exhibit description is required when an exhibit category is not provided or the category is Apparent Defects, Damages, D"
+   },
+   {
+    "field": "PI_EXHIBIT_CATEGORY",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "data-gap",
+    "data_points": [
+     "ImageCategoryType"
+    ],
+    "message": "Exhibit category is required when a photo is attached"
+   },
+   {
+    "field": "PI_EXHIBIT_DESCRIPTION",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "data-gap",
+    "data_points": [
+     "ImageCaptionCommentDescription"
+    ],
+    "message": "Exhibit description is required when a photo is attached"
+   },
+   {
+    "field": "PI_EXHIBIT_CATEGORY",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "data-gap",
+    "data_points": [
+     "ImageCategoryType"
+    ],
+    "message": "Exhibit category is required when a photo is attached"
+   },
+   {
+    "field": "PI_EXHIBIT_DESCRIPTION",
+    "role": "SubjectProperty",
+    "ordinal": 0,
+    "kind": "data-gap",
+    "data_points": [
+     "ImageCaptionCommentDescription"
+    ],
+    "message": "Exhibit description is required when a photo is attached"
+   },
+   {
+    "field": "GC1_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC2_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC3_TRANSFER_TERMS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SaleType",
+     "SaleTypeOtherDescription"
+    ],
+    "message": "Transfer terms adjustment is required"
+   },
+   {
+    "field": "GC1_EX_CONCAMT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "SalesConcessionAmountKnownIndicator",
+     "SalesConcessionIndicator",
+     "TotalSalesConcessionAmount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_PROJINFO_OVERALL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [],
+    "message": "An adjustment entry is required when subject and comparable Project Information differ"
+   },
+   {
+    "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC1_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC2_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC3_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC2_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC3_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC1_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   },
+   {
+    "field": "GC2_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   },
+   {
+    "field": "GC3_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   },
+   {
+    "field": "GC4_DP_FINTYP1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_DT_SALTIM1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "OwnershipTransferDate"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC4_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_YR_BLT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "PropertyStructureBuiltYear",
+     "PropertyStructureBuiltYearEstimatedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC4_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_DWELL_HEAT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "HeatingFuelType",
+     "HeatingFuelTypeOtherDescription",
+     "HeatingSystemType",
+     "HeatingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_LEVELS",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "Number of levels is required"
+   },
+   {
+    "field": "GC4_LEVELS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "LevelCount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_EXT_QUAL_EXT_WALLS_TRIM",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "WallMaterialType",
+     "WallMaterialTypeOtherDescription"
+    ],
+    "message": "Exterior walls/trim quality is required"
+   },
+   {
+    "field": "GC4_EXT_QUAL_ROOF",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "RoofMaterialType",
+     "RoofMaterialTypeOtherDescription"
+    ],
+    "message": "Roof quality is required"
+   }
+  ]
+ },
+ "Condo2_Appraisal": {
+  "counts": {
+   "data-gap": 96,
+   "adjustment-rule": 15
+  },
+  "rows": [
+   {
+    "field": "GC1_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_ALL_RIGHTS_INCLUDED",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "All rights included indicator is required for the selected property rights"
+   },
+   {
+    "field": "GC1_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_ALL_RIGHTS_INCLUDED",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "All rights included indicator is required for the selected property rights"
+   },
+   {
+    "field": "GC2_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_ALL_RIGHTS_INCLUDED",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "All rights included indicator is required for the selected property rights"
+   },
+   {
+    "field": "GC3_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_PROJINFO_OVERALL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [],
+    "message": "An adjustment entry is required when subject and comparable Project Information differ"
+   },
+   {
+    "field": "GC1_SITE_PRIMARY_ACCESS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "Primary access type is required for the selected comparable"
+   },
+   {
+    "field": "GC1_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_PRIMARY_ACCESS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "Primary access type is required for the selected comparable"
+   },
+   {
+    "field": "GC2_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_PRIMARY_ACCESS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "Primary access type is required for the selected comparable"
+   },
+   {
+    "field": "GC3_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC1_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC2_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC3_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_SITE_INFLUENCE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "BodyOfWaterType",
+     "BodyOfWaterTypeOtherDescription",
+     "SiteInfluenceType",
+     "SiteInfluenceTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_SITE_INFLUENCE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "BodyOfWaterType",
+     "BodyOfWaterTypeOtherDescription",
+     "SiteInfluenceType",
+     "SiteInfluenceTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_ST_VIEW_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ViewRangeType",
+     "ViewRangeTypeOtherDescription",
+     "ViewType",
+     "ViewTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC1_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC2_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC2_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC3_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC3_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC1_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC2_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC3_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_DISASTER_MIT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "DisasterMitigationFeatureType",
+     "DisasterMitigationFeatureTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_DISASTER_MIT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "DisasterMitigationFeatureType",
+     "DisasterMitigationFeatureTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC1_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC2_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC3_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC1_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC2_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC3_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC1_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC1_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC2_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC3_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC1_VEHICLE_STORAGE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 1,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "CarStorageAreaMeasure",
+     "CarStorageAttachmentType",
+     "CarStorageType",
+     "CarStorageTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC3_VEHICLE_STORAGE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 3,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "CarStorageAreaMeasure",
+     "CarStorageAttachmentType",
+     "CarStorageType",
+     "CarStorageTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_DP_FINTYP1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "MortgageType",
+     "MortgageTypeOtherDescription",
+     "NoFinancingTransactionIndicator"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_EX_CONCAMT_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "SalesConcessionAmountKnownIndicator",
+     "SalesConcessionIndicator",
+     "TotalSalesConcessionAmount"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_CONT_DATE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "ContractDateUnknownIndicator",
+     "SalesContractDate"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_DT_SALTIM1_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "OwnershipTransferDate"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_SP_TO_LP_RATIO_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "SaleToListPriceRatioPercent"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_ALL_RIGHTS_INCLUDED",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "All rights included indicator is required for the selected property rights"
+   },
+   {
+    "field": "GC4_ALL_RIGHTS_INCLUDED_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "AllPropertyRightsAppraisedIndicator"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_PROJINFO_OVERALL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "adjustment-rule",
+    "data_points": [],
+    "message": "An adjustment entry is required when subject and comparable Project Information differ"
+   },
+   {
+    "field": "GC4_SITE_PRIMARY_ACCESS",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "Primary access type is required for the selected comparable"
+   },
+   {
+    "field": "GC4_SITE_PRIMARY_ACCESS_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyPrimaryEntryExitMethodType",
+     "PropertyPrimaryEntryExitMethodTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_SITE_STREET_TYPE",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "Please complete all required street type and surface fields"
+   },
+   {
+    "field": "GC4_SITE_STREET_TYPE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "ImprovedSurfaceMaterialType",
+     "ImprovedSurfaceMaterialTypeOtherDescription",
+     "StreetAccessType",
+     "StreetAccessTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_SITE_TOPOGRAPHY",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "TopographyType",
+     "TopographyTypeOtherDescription"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_SITE_INFLUENCE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "BodyOfWaterType",
+     "BodyOfWaterTypeOtherDescription",
+     "SiteInfluenceType",
+     "SiteInfluenceTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_DWELL_STYLE",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "Dwelling Style is required for Detached comparables when the row is included."
+   },
+   {
+    "field": "GC4_DWELL_STYLE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "ArchitecturalDesignCategoryType",
+     "ArchitecturalDesignCategoryTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ; enter $0 if no adjustment is warranted."
+   },
+   {
+    "field": "GC4_DWELL_FUNC_ISSUES",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "Please complete all required functional issues fields"
+   },
+   {
+    "field": "GC4_DWELL_FUNC_ISSUES_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "FunctionalIssueType",
+     "FunctionalIssueTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_DWELL_COOL",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "Please complete all required cooling system fields"
+   },
+   {
+    "field": "GC4_DWELL_COOL_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "CoolingSystemExistsIndicator",
+     "CoolingSystemType",
+     "CoolingSystemTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_UNITS_SF_GLA_BELOW_GRD_NONSTD",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "Validation failed"
+   },
+   {
+    "field": "GC4_UNITS_SF_GLA_BELOW_GRD_NONSTD_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitNonStandardBelowGradeFinishedAreaMeasure"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "GC4_INT_COND_KITCHEN",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "RoomUpdateStatusType"
+    ],
+    "message": "Interior kitchen condition is required"
+   },
+   {
+    "field": "GC4_INT_COND_FLOORS",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "OverallFlooringUpdateStatusType"
+    ],
+    "message": "Interior floor condition is required"
+   },
+   {
+    "field": "GC4_VEHICLE_STORAGE_ADJ",
+    "role": "SalesComparable",
+    "ordinal": 4,
+    "kind": "adjustment-rule",
+    "data_points": [
+     "CarStorageAreaMeasure",
+     "CarStorageAttachmentType",
+     "CarStorageType",
+     "CarStorageTypeOtherDescription"
+    ],
+    "message": "An adjustment entry is required when subject and comparable data differ"
+   },
+   {
+    "field": "RC1.1_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.2_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.3_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.4_MARKETAREA",
+    "role": "RentalComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "NeighborhoodName"
+    ],
+    "message": "Market area for rental comparable is required"
+   },
+   {
+    "field": "RC1.1_FLOOR_NUM",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "Floor number is required"
+   },
+   {
+    "field": "RC1.2_FLOOR_NUM",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "Floor number is required"
+   },
+   {
+    "field": "RC1.3_FLOOR_NUM",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "Floor number is required"
+   },
+   {
+    "field": "RC1.4_FLOOR_NUM",
+    "role": "RentalComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "FloorIdentifier"
+    ],
+    "message": "Floor number is required"
+   },
+   {
+    "field": "RC1.1_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.2_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.3_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.4_FURNISHED",
+    "role": "RentalComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitFurnishedIndicator"
+    ],
+    "message": "Furnished status is required"
+   },
+   {
+    "field": "RC1.1_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.2_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.3_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.4_UTILS_INCLUDED",
+    "role": "RentalComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "UnitChargesIncludeUtilitiesIndicator"
+    ],
+    "message": "Utilities included indicator is required"
+   },
+   {
+    "field": "RC1.1_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.2_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.3_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.4_RENT_CONTROL",
+    "role": "RentalComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "PropertyRentControlStatusType",
+     "RentControlStatusType"
+    ],
+    "message": "Rent control indicator is required"
+   },
+   {
+    "field": "RC1.1_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 1,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC1.2_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 2,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC1.3_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 3,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   },
+   {
+    "field": "RC1.4_RENT_CONC",
+    "role": "RentalComparable",
+    "ordinal": 4,
+    "kind": "data-gap",
+    "data_points": [
+     "FinancialRentalConcessionIndicator"
+    ],
+    "message": "Rent concessions information is required"
+   }
+  ]
+ }
+}

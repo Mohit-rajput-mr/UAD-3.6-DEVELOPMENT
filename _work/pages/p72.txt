@@ -1,0 +1,189 @@
+Property Report on 155 BIRCH DR, ROSLYN NY 11576
+Property Report
+Comparables
+Photo from Nassau County Dept. of Assessment
+Property Info
+Legal ID
+Section
+7
+Block
+276
+Lot
+7
+Building/Unit
+-483605257
+APN
+07276  00070
+FIPS
+36059
+ATTOM ID
+50351532
+Municipality
+ROSLYN NY 11576
+Township
+North Hempstead
+Energy Standard
+New York State
+School District
+003-Roslyn
+Census Number
+360593021011015
+Census Tract
+302101
+Ownership
+GEBAIDE ERIC & GEBAIDE ELIZABETH
+155 BIRCH DRIVE
+ROSLYN NY 11576
+This property is non-owner occupied.
+Flood
+Zone
+X
+Panel
+0117
+Panel Date
+2009-09-11
+Community
+AREA OF MINIMAL FLOOD
+HAZARD
+FEMA Flood Map
+2025-2026 Taxes and Assessment
+Assessed Value
+1,004
+Assessor’s Value
+$1,004,000
+Soundscore
+Pedestrian
+Calm
+Vehicle
+Busy
+Airports
+Calm
+Overall Soundscore
+80 out of 100: Active
+Soundscore powered by HowLoud
+Land Information
+Acres
+0.37
+Lot Dimensions
+126X137
+Waterfront
+NO
+Location Information
+Street Type
+PAVED
+Traffic
+LIGHT
+Topography
+LEVEL
+Location Factor
+NO LOCATIONAL INFLUENCE
+Fronting Factor
+RESIDENTIAL STREET
+Zoning
+R-1
+(Residence - One of many types)
+Residential Building and Interior
+Building Class
+210
+1 FAMILY RESIDENTIAL
+Style
+RANCH
+GLA
+2410
+Height (Stories)
+1.0
+Year Built
+1958
+Rooms
+6
+Full Baths
+3
+Baths Half
+1
+Rec Room Area
+1226
+Basement
+FULL
+Fin Basement Area
+Attic
+NONE
+Fireplaces
+1
+Exterior Wall
+ALUMINUM/VINYL
+Heating Type
+CENTRAL W/AC
+Fuel Type
+OIL
+Garages
+Attached
+Detached
+Basement
+2
+Condition
+AVERAGE
+Sales History
+Sale Date
+Rec Date
+Buyer
+Seller
+Sale Price
+Liber
+Page
+08/21/2026
+08/26/2026
+GENNA H TOBIAS LIVING TRUST
+GEBAIDE ELIZABETH FRIEDFELD
+$1,800,000
+14789
+194
+03/01/1999
+03/31/1999
+FRIEDFELDGEBAIDE
+GREENSTEIN
+$608,000
+11036
+830
+01/28/1991
+GREENSTEIN
+$450,000
+10114
+33
+Sales highlighted in yellow are Potential Flips; green are Potential Distressed Sales.
+Mortgages
+Date
+Position
+Original Amount
+Loan Type
+Lender
+First
+$486,400
+MELROSE CU
+Recently Sold Comparables
+Address
+Distance
+Sqft
+Sale Date
+Price
+$/Sqft
+85 WEBSTER AVE
+3.72 mi
+1,963
+03/19/2026
+$975,000
+$497
+47 CARLTON AVE
+3.89 mi
+2,380
+03/19/2026
+$1,400,000
+$588
+222 SHOREWARD DR
+4.25 mi
+1,910
+03/20/2026
+$1,520,000
+$796
+These are nearby recently sold properties that are similar to this property, based on available data.
+Automated Valuation Models
+© Mapbox © OpenStreetMap

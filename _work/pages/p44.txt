@@ -1,0 +1,201 @@
+Comparables: 148
+Search Criteria:
+Statistics:
+ High Sale Price
+$4,641,120
+ Median Sale Price
+$1,564,000
+ Low Sale Price
+$362,500
+ Average Sale Price
+$1,635,346
+ Location
+2 Mile Radius| Same School District (ROSLYN) | All Streets
+ Sale Date
+9/14/2025 - 9/13/2026
+ Class
+Same Class (210)
+ Sale Price
+$300,000 +
+Class
+School
+Address
+GLA
+Lot
+Sale Date
+Style
+PPSFT
+Parties
+ 
+Garage Price
+#
+Built
+Rms 
+Baths
+Rec Date
+Legal ID
+Dist
+15 CHURCH ST  
+ROSLYN NY 11576  
+Roslyn Harbor Village
+210 003 ROSLYN
+3112
+COLONIA
+L
+0.22 Acr   
+95X100  
+8/3.1
+1 DET
+S
+2001
+S:20
+B:M  
+L:19  
+0
+64 BRYANT AVE   
+ROSLYN NY 11576  
+Roslyn Harbor
+210
+1916
+1888 OLD
+STYLE
+0.23 Acr  
+100X100  6/2.0
+1 Det
+$950,000
+06/10/2026
+B: 64 BRYANT
+HOLDINGS L  
+S: GEE VICTORIA
+$496
+1
+07/02/2026
+S:20   
+B:28   
+L:1  
+0.05
+3 Roslyn
+1613 NORTHERN BLVD   
+ROSLYN NY 11576  
+Roslyn
+210
+1146
+1932 OLD
+STYLE
+0.29 Acr  
+55X245  
+5/1.0
+1 Att
+$720,000
+07/01/2026
+B: KELTY ANDREW  
+S: LOT JOB
+PROPERTIE
+$628
+2
+07/16/2026
+S:20   
+B:M   
+L:240  
+0.11
+3 Roslyn
+15 SINCLAIR MARTIN DR   
+ROSLYN NY 11576  
+Roslyn
+210
+1614
+1938 OLD
+STYLE
+0.18 Acr  
+79X100  
+8/2.1
+1 Att
+$1,350,00
+0
+06/11/2026
+B: PAPATAROS ANN  
+S: FOTOU ANATAIA
+$836
+3
+06/24/2026
+S:7   
+B:106   
+L:108  
+0.14
+3 Roslyn
+2 HARBOR CT W   
+ROSLYN NY 11576  
+Roslyn Harbor
+210
+4284
+1984 COLONIA
+L
+1.00 Acr  
+  
+9/3.2
+1 Att
+$2,150,00
+0
+04/27/2026
+B: DACHA NITIN  
+S: KAUR MANMEET
+$502
+4
+05/05/2026
+S:20   
+B:M   
+L:295  
+0.20
+3 Roslyn
+16 MACKAY WAY   
+ROSLYN NY 11576  
+Roslyn
+210
+3631
+2000 COLONIA
+L
+0.32 Acr  
+87X128  
+11/4.1
+1 Att
+$2,335,00
+0
+08/17/2026
+B: FUZAYLOVA ELINA  
+S: WANG MINGZHI
+$643
+5
+09/02/2026
+S:7   
+B:106   
+L:1208  
+0.20
+3 Roslyn
+24 HILLCREST AVE   
+ROSLYN NY 11576  
+Roslyn
+210
+1956
+1980 COLONIA
+L
+0.32 Acr  
+90X150  
+7/2.1
+1 Att / 1
+Bsmt
+$1,488,00
+0
+06/26/2026
+B: GAO ZHIYING  
+S: WARD CHARLE IV
+$761
+6
+07/16/2026
+S:7   
+B:106   
+L:215  
+0.31
+3 Roslyn
+Nassau CMA Report
+1 of 17
+Sunday, September 13, 2026

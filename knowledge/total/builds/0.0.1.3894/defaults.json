@@ -1,0 +1,2787 @@
+[
+ {
+  "field": "HEADER",
+  "instance": 0,
+  "default": "Uniform Residential Appraisal Report"
+ },
+ {
+  "field": "SOFTWARE_VENDOR_NAME",
+  "instance": 0,
+  "default": "Cotality | a la mode"
+ },
+ {
+  "field": "HIDDEN_CONSTRUCTION_SECTION_ROW-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "SUMMARY_ADDD_NONE",
+  "instance": 0,
+  "default": "There are no apparent defects, damages, or deficiencies requiring action. For details, reference the ‘Reconciliation’ section."
+ },
+ {
+  "field": "ASSIGN_PROPVALMETHOD",
+  "instance": 0,
+  "default": "Traditional Appraisal"
+ },
+ {
+  "field": "PDR_USED_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_APPRAISER-COMPANY-ADDRESS-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HAS_SUPERVISOR",
+  "instance": 0,
+  "default": "false"
+ },
+ {
+  "field": "HIDDEN_SUPERVISOR-COMPANY-ADDRESS-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_GENERAL",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_BORR_SELL",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_LEN_CLI_AMC",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APP_SUP",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_ASSIGN",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "BORROWER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_BSO_BORROWER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "LABEL_ASSIGN_BORROWER",
+  "instance": 0,
+  "default": "Borrower Name"
+ },
+ {
+  "field": "SELLER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_BSO_SELLER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SUBCUROWNER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_BSO_OWNER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_LENDER_CLIENT_AMC",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CONTACT_TYPE",
+  "instance": 0,
+  "default": "Legal Entity"
+ },
+ {
+  "field": "CONTACT_LABEL_HEADER",
+  "instance": 0,
+  "default": "Lender"
+ },
+ {
+  "field": "CONTACT_CLIENT",
+  "instance": 0,
+  "default": "Client"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPRAISER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPRAISER_CREDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPRAISER_SCOPE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "APPRAISER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_SUPAPPRAISER_CREDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_SUPAPPRAISER_SCOPE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_SUPER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SUPERVISOR_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_ASSIGN_APSUP_APPASSISTANT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SRPA_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "PDR_TYPE",
+  "instance": 0,
+  "default": "Legal Entity"
+ },
+ {
+  "field": "COST_TO_REPAIR_TYPE",
+  "instance": 0,
+  "default": "Itemized"
+ },
+ {
+  "field": "HIDDEN_SUBPROPADDRESS-FULL-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_ALT-SUBPROPADDRESS-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_PHYSICAL_ADDRESS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_ALTERNATE_PHYSICAL_ADDRESS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_PROPERTY_CHARACTERISTICS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_SPECIAL_TAX_ASSESSMENTS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_ATTACHMENTS_UNITS_DWELLINGS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_PROPERTY_RIGHTS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_OWNERSHIP_RIGHTS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_GROUND_RENT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_LEGAL_DESCRIPTION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBJECT_EXHIBITS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_SUB_PROP",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UNIT_EXCL_ADU",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "PUD_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "CONDO_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "COOP_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "CONDOP_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "NATAMLAND_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "SITOWNEDCOMMON_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "ALL_RIGHTS_INCLUDED",
+  "instance": 0,
+  "default": "Yes"
+ },
+ {
+  "field": "LEGAL_IS_TEXT",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_ALT_ADDRESS_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_SITE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_ADDITIONAL_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "NUMPARCELS",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_GENERAL_INFORMATION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_ZONING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_ACCESS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CHECK_SIT_PROP_USE_NONRES_USE_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_USE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_INFLUENCE_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_SITE_INFLUENCES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PERMANENT-WATERFRONT-FEATURE-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_WATER_FRONTAGE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_WATER_FRONTAGE_FIELDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_PERM_WATER_FRONTAGE_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_WTR_FRONT_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_PRIMARY_VIEW",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_TO_VALUE_MARKET",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_HAZARDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_FEATURES_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_SITE_FEATURES_AND_IMPACT_TO_VALUE_MARKET",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_AND_IMPACT_TO_VALUE_MARKET",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CHECK_SITE_APPARENT_DEFECTS_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_DEFECTS_DAMAGES_DEFICIENCIES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CHECK_SITE_VAL_METHOD_ENABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_GENERAL_PARCELS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_ACCESS_STREET",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_PROPERTY_ACCESS_FIELDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_SITE_INFLUENCE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_PRIVATE_ACCESS_WATER_INFLU",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_SITE_INFLUENCES_FRONTAGE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_VIEW_AND_IMPACT_VIEWS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SIT_FEAT_NONRES_USE_FEAT",
+  "instance": 0,
+  "default": "Non-Residential Property Use"
+ },
+ {
+  "field": "SIT_FEAT_HZRD_ZONE_FEAT",
+  "instance": 0,
+  "default": "Hazard Zone"
+ },
+ {
+  "field": "SIT_FEAT_RSTRCTN",
+  "instance": 0,
+  "default": "Property Restriction"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_FEATURES_RESTRICTION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SIT_FEAT_EASEMENT",
+  "instance": 0,
+  "default": "Easement"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_FEATURES_EASEMENT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SIT_FEAT_ENCROACH",
+  "instance": 0,
+  "default": "Encroachment"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_FEATURES_ENCROACHMENT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SIT_FEAT_SITCHAR",
+  "instance": 0,
+  "default": "Site Characteristic"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_FEATURES_CHARACTERISTIC",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "LABEL_SIT_UTLIMP_ELEC",
+  "instance": 0,
+  "default": "Electricity"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_ELECTRIC",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "LABEL_SIT_UTLIMP_GAS",
+  "instance": 0,
+  "default": "Gas"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_GAS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "LABEL_SIT_UTLIMP_SNTSWR",
+  "instance": 0,
+  "default": "Sanitary Sewer"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_SEWER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "LABEL_SIT_UTLIMP_WTR",
+  "instance": 0,
+  "default": "Water"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_WATER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SITE_UTILITIES_OTHER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_SITE_DEFECT_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SIT_VM_NO",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "SIT_MAP_EXHIBIT_CATEGORY",
+  "instance": 0,
+  "default": "Property Boundaries"
+ },
+ {
+  "field": "CHECK_DISASTER_MITIGATION_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_DISA_MITI_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_DISA_MITI_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_DIS_MIT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_DISASTER-MITIGATION-FEATURE-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_DISA_MITI_FEATURE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CHECK_EE_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_EE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_GREEN_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_GREEN_IMPACT_TO_VALUE_MARKETABILITY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_GREEN_ADDITIONAL_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_GREEN_COMPONENT_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_GREEN_CERT_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_GREEN_RATING_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SKETCH_OR_PLAN_YES",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_SKETCH_TYPE_SKETCH_VISIBLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SKETCH_INFO_FLOOR_PLAN",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SKETCH_INFO_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_SKETCH_INFO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SKT_COMMENTARY_LBL",
+  "instance": 0,
+  "default": "Sketch or Floor Plan Not Available"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_SECTION_INSTANCE_DWELLING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_CONVERT-AREA-REST-OF-LIVING_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_EXTERIOR-FEATURES_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_DWELLING_EXTERIOR_CONVERTED_AREA_REST_OF_LIVING_VISIBLE",
+  "instance": 0,
+  "default": "false"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_CONSTRUCTION-METHOD-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_CONVERTED_AREA",
+  "instance": 0,
+  "default": "None"
+ },
+ {
+  "field": "DE1_CONVERTED_AREA_REST_OF_LIVING_VISIBLE",
+  "instance": 0,
+  "default": "false"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_FEATURES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_WINDOWS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_ROOF",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_FOUNDATION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_WALLS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QUALITY_AND_CONDTION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QUALITY_AND_CONDTION_FIELDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_GENERAL_INFORMATION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_AGE_REM_ECONOMIC_LIFE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_AGE_REM_ECONOMIC_LIFE_FIELDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_CONVERTED_AREAS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_ADDITIONAL_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_FRONT_AND_REAR_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_LIFE_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_AGE_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_MECHANICAL_SYSTEM_DETAILS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_MECHANICAL_SYSTEM_DETAILS_FIELDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_DEFECTS_DAMAGES_DEFICIENCIES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_RATINGS_TABLE",
+  "instance": 0,
+  "default": "The table below supports the Exterior Quality and Condition ratings and reflects the market value condition of this report"
+ },
+ {
+  "field": "DE1_HIDDEN_EXTERIOR-FOUNDATION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_EXTERIOR-FEATURE-OTHER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_LBL_NONCONT_FIN_AREA",
+  "instance": 0,
+  "default": "The table below depicts any finished area that is attached to the dwelling but separate and not directly accessible from any unit"
+ },
+ {
+  "field": "DE1_CHECK_EXT_NONCONT_FIN_AREA_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "DE1_FINISHED_AREA_TOTAL_AREA_MEASURE",
+  "instance": 0,
+  "default": "Sq. Ft."
+ },
+ {
+  "field": "DE1_HIDDEN_NONCONT-FINISHED-AREA_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_NONCONTINUOUS_FINISHED_AREA_FIELDS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_NONCONTINUOUS_FINISHED_AREA",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HIDDEN_DE-SYSTEM-MECHANICALS-HEAT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_DE-SYSTEM-MECHANICALS-COOLING-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_DE-OTHER-MECH-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_DE-OTHER-MECH_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_8.054",
+  "instance": 0,
+  "default": "ADU"
+ },
+ {
+  "field": "DE1_DEFECT_STATEMENT",
+  "instance": 0,
+  "default": "The items listed below represent the As Is condition as of the effective date of this report"
+ },
+ {
+  "field": "DE1_CHECK_DEFECT_DAMAGES_DEFICIENCIES_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "DE1_HIDDEN_DWELLING-DEFECTS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_HIDDEN_EXTERIOR-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "DE1_CONST_METHOD_LABEL_PRINT",
+  "instance": 0,
+  "default": "Construction Method"
+ },
+ {
+  "field": "DE1_CONVERTED_AREA_REST_OF_LIVING_AREA_LABEL",
+  "instance": 0,
+  "default": "Converted Area and Similarity to Rest of Living Area"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWEL_CONVERT_AREA",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_EXTEXTWALLS_MOBILE_DDD_LINK_ID",
+  "instance": 0,
+  "default": "0b903e49-f504-46a3-970f-7760a0d97055"
+ },
+ {
+  "field": "DE1_EXT_FOUNDATION_MOBILE_DDD_LINK_ID",
+  "instance": 0,
+  "default": "0ac7de4e-d9cc-4872-bf9f-f26fdf990145"
+ },
+ {
+  "field": "DE1_LABEL_FOUNDATION_TEST",
+  "instance": 0,
+  "default": "Foundation"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWEL_FOUNDATION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_EXTRFSURFACE_MOBILE_DDD_LINK_ID",
+  "instance": 0,
+  "default": "90a0fcc2-2585-4f3e-9904-f58da971a232"
+ },
+ {
+  "field": "DE1_EXT_WINDOW_MOBILE_DDD_LINK_ID",
+  "instance": 0,
+  "default": "0a564074-d33a-4f24-811d-73ed5262cc76"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWELLING_QC_OTHER_FEATURE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_FINISHED_AREA_LABEL",
+  "instance": 0,
+  "default": "Finished"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWEL_ROOM_TYPE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_HEAT_SYSTEM_LABEL",
+  "instance": 0,
+  "default": "Heating"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWEL_HEATING_SYSTEM",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_COOL_SYSTEM_LABEL",
+  "instance": 0,
+  "default": "Cooling"
+ },
+ {
+  "field": "DE1_COOL_SYSTEM_LABEL_PRINT",
+  "instance": 0,
+  "default": "Cooling"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWEL_COOLING_SYSTEM",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_OTHER_MECH_SYSTEM_LABEL",
+  "instance": 0,
+  "default": "Other Mechanical Systems"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_STATUS_DWEL_OTHER_SYSTEM",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "DE1_OTHER_MECH_SYSTEM_LABEL_PRINT",
+  "instance": 0,
+  "default": "Other Mechanical Systems"
+ },
+ {
+  "field": "DE1_HIDDEN_MOBILE_DWELLING_DEFECT_STATUS",
+  "instance": 0,
+  "default": "3"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_SECTION_INSTANCE_MANHOME",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MANHOME-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "MH1_HIDDEN_HUD-CERTIFICATION-NUMBER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "MH1_HIDDEN_CERTIFICATION-PROGRAM_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "MH1_MODS_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_HUD_CERTIFICATIONS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_HUD_DATA_PLATE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_GENERAL_INFORMATION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_MANU_HOME_CERTIFICATIONS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_INVOICE_INFORMATION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_FOUNDATION_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_SKIRTING_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_INVOICE_RETAIL_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_INVOICE_MANU_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MANUFACTURED-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "MH1_HIDDEN_MANUFACTURED-DOCUMENT-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_EXHIBITS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_LABEL_HUD_CERT_NUMBER",
+  "instance": 0,
+  "default": "HUD Certification Number"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_HUD_CERT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MH1_HIDDEN_MOBILE_STATUS_MANU_MANU_HOME_CERT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_LEVEL-DETAILS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_LEVEL-DETAILS-PRINT-PREVIEW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_ROOM-DETAILS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_KITCHEN-AND-BATHROOM-DETAILS-PRINT-PREVIEW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_SECTION_INSTANCE_UNIT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_ACCESSIBILITY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_EXHIBITS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_KITCHEN-DETAILS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_INTERIOR-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_INT-FEATURES_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_ACCESSIBILITY-FEATURES_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_INT-FEATURES-FLOORING_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_DEFECTS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_CHECK_ACCESSFEAT_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_FLOORING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_WALLS_CEILING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_QUALITY_CONDITION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_DETAIL",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_INT_FEATURES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_DEFECTS_DAMAGES_DEFICIENCIES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_FINISHED_ABOVE_GRADE_NONSTD",
+  "instance": 0,
+  "default": "0 Sq. Ft."
+ },
+ {
+  "field": "UI1_FINISHED_BELOW_GRADE_NONSTD",
+  "instance": 0,
+  "default": "0 Sq. Ft."
+ },
+ {
+  "field": "UI1_HIDDEN_AREA-DATA-SOURCE-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_AREA_FINISH",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_ADU",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_OCCUPANCY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_QC_TABLES",
+  "instance": 0,
+  "default": "The tables below support the Interior Quality and Condition ratings and reflect the market value condition of this report"
+ },
+ {
+  "field": "UI1_CHECK_ACCESSFEAT_DEFECT_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "UI1_ACCESSFEAT_ITEMS",
+  "instance": 0,
+  "default": "The items listed below represent the As Is condition as of the effective date of this report"
+ },
+ {
+  "field": "UI1_AREA_DATA_SOURCE_TYPE_LABEL_PRINT",
+  "instance": 0,
+  "default": "Area Data Source"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_LEVEL",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_LEVEL_UNFIN_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_LEVEL_SKETCH_AREA",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_LEVEL_ROOM_LEVEL_ROOM",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_INTFEAT_FLOORING_LABEL",
+  "instance": 0,
+  "default": "Flooring"
+ },
+ {
+  "field": "UI1_INTFEAT_FLOORING_MOBILE_DDD_LINK_ID",
+  "instance": 0,
+  "default": "e91bc2b3-2ea5-4e2b-b655-62640cd1eba5"
+ },
+ {
+  "field": "UI1_INTFEAT_FLOORING_ROW_ID",
+  "instance": 0,
+  "default": "435b2ff6-0468-4055-8c0d-a5cb243e9bd7"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_UNIT_ADDITIONAL_FLOOR_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_INTFEAT_WALL_CEIL_MOBILE_DDD_LINK_ID",
+  "instance": 0,
+  "default": "691611f7-f005-4a03-ac2b-659c8df6d695"
+ },
+ {
+  "field": "UI1_INTFEAT_WALL_CEIL_ROW_ID",
+  "instance": 0,
+  "default": "64af6fea-ed92-4f86-a8ef-b4e72742294d"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_QC_INTERIOR_FEATURE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_STATUS_UNIT_ACCESSIBILITIES_ACCESSIBILITY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "UI1_HIDDEN_MOBILE_UNIT_DEFECT_STATUS",
+  "instance": 0,
+  "default": "3"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_FUNC_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_FUNC_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_FUNC_OBSOL",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "FO_FUNCTIONAL_ISSUE_TYPE",
+  "instance": 0,
+  "default": "None"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_SECTION_INSTANCE_OUTBUILDING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_NESTED-FINISHED-ROOM-SUMMARY_NESTEDCOUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "OB1_CHECK_OUTBUILDING_DEFECT_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "OB1_HIDDEN_OUTBUILDING-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "OB1_HIDDEN_OUTBUILDING-MECHANICAL-SYSTEM-HEAT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "OB1_HIDDEN_OUTBUILDING-MECHANICAL-SYSTEM-COOLING_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "OB1_HIDDEN_DEFECTS-OUTBUILDING_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_MECHANICAL_SYSTEMS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_GENERAL_INFO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_FRONT_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_FOUNDATION_PHOTO",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_UTILITY-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_ROOMS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_AS_IS_DISCLAIMER",
+  "instance": 0,
+  "default": "The items listed below represent the As Is condition as of the effective date of this report"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_DAMAGES_DEFECTS_AND_DEFICIENCIES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_EXHIBITS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_UTILITIES_LABEL_PRINT",
+  "instance": 0,
+  "default": "Utilities"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_ROOMS_ROOM",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_MECH_HEAT_LABEL",
+  "instance": 0,
+  "default": "Heating"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_STATUS_OUT_HEATING_SYSTEM",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "OB1_MECH_COOL_LABEL",
+  "instance": 0,
+  "default": "Cooling"
+ },
+ {
+  "field": "OB1_HIDDEN_MOBILE_OUT_DEFECT_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CHECK_STORAGE_ENABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "CHECK_STORAGE_DEFECT_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "VS_AS_IS_DISCLAIMER",
+  "instance": 0,
+  "default": "The items listed below represent the As Is condition as of the effective date of this report"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_VEHC_STORE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_VEHICLE_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_VEHICLE_ADDITIONAL_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_VEHC_STORAGE_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_VEH_STR_SKETCH_AREA",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_VEHC_STORE_DEFECT_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "CHECK_SUB_PROP_AMENITY_ENABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "CHECK_SUB_PROP_DEFECT_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "PU_SPA_AMENITY_MATERIAL_LABEL",
+  "instance": 0,
+  "default": "Material"
+ },
+ {
+  "field": "PU_SPA_AMENITY_DETAIL_AREA_UNIT",
+  "instance": 0,
+  "default": "Sq. Ft."
+ },
+ {
+  "field": "HIDDEN_MOBILE_AMENITY_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_AMENITY_DEFECT_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_QUALITY_OVERALL_QUALITY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_QUALITY_OVERALL_CONDITION",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_QUALITY_EXTERIOR",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_QUALITY_INTERIOR",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_QUALITY_REC_COMMENTS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_QUALITY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "SSDE1_OQC_EXT_QUALITY_LBL",
+  "instance": 0,
+  "default": "Exterior Quality"
+ },
+ {
+  "field": "SSUI1_OQC_INT_QUALITY_LBL",
+  "instance": 0,
+  "default": "Interior Quality"
+ },
+ {
+  "field": "SSDE1_OQC_EXT_CONDITION_LBL",
+  "instance": 0,
+  "default": "Exterior Condition"
+ },
+ {
+  "field": "SSUI1_OQC_INT_CONDITION_LBL",
+  "instance": 0,
+  "default": "Interior Condition"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_BESTUSE_FOUR_TESTS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_BESTUSE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_BESTUSE_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "MKT_PAST_SALES_MONTHS_NUM",
+  "instance": 0,
+  "default": "12"
+ },
+ {
+  "field": "HIDDEN_GRAPH-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "MKT_PRICE_TREND_SOURCE_LABEL",
+  "instance": 0,
+  "default": "Price Trend Source"
+ },
+ {
+  "field": "MKT_GRAPH_LABEL_PRINT",
+  "instance": 0,
+  "default": "Graph"
+ },
+ {
+  "field": "HIDDEN_GEN-INFO-PI-DATA-SOURCE-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PROJ-INFO-AMENITIES-SERVICES-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "PI_UTILS_INCLUDED",
+  "instance": 0,
+  "default": "None"
+ },
+ {
+  "field": "HIDDEN_PROJ-INFO-UTILITIES-INCLUDED-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_LIEN_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "PI_LIEN_LABEL",
+  "instance": 0,
+  "default": "First Lien"
+ },
+ {
+  "field": "SLI_LISTINGS",
+  "instance": 0,
+  "default": "Yes"
+ },
+ {
+  "field": "CHECK_SC_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "PSH_PRIOR_SALES",
+  "instance": 0,
+  "default": "None"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_SALES_COMP",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-GENERAL-INFO-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-SITE-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-DWELLING-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-UNITS-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-EXT-QUAL-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-EXT-COND-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-INT-QUAL-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-INT-COND-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-ADU-QUAL-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-ADU-COND-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-VEHICLE-STORAGE-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-OUTBUILDING-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALES-COMP-EXHIBITS-COMPS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SALES-COMP-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-UNITS-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-TRANSFER-HISTORY-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-QUALITY-CONDITION-EXTERIOR-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-QUALITY-CONDITION-INTERIOR-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-QUALITY-CONDITION-ADU-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALESCOMP-OUTBUILDING-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "CHECK_COMP_ADD_PROP_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "COMP_RENTCOMP_IN_SALESCOMP_MAP_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "COMP_GRMCOMP_IN_SALESCOMP_MAP_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "GC1_MOBILE_SALES_COMP_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "GC1_MOBILE_STATUS_SALES_COMP_ADDRESS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "GC1_PU_MILES",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_RENTALUNITCOMP-BLANK-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_RENTALPROPCOMP_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_RENTALUNIT-COMP-TEMPLATE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_RENTAL-INFO-EXHIBITS-COMPS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_RENTAL-INFO-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_RENT_COMP",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_RENTAL-INFO-MAP-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "RI_OPN_INC_SUBTOTAL",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RI_OPN_INC_OTHER_SUBTOTAL",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RI_OPN_INC_TOTAL",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "COMP_RENTCOMP_RI_IN_SALESCOMP_MAP_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "RENT_SCH_MONTHLY_RENT",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RI_ACT_INC_MONTHLY_RENT",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RI_ACT_INC_OTHER_MONTHLY_RENT",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RI_OPN_INC_MONTHLY_RENT",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RI_OPN_INC_OTHER_MONTHLY_RENT",
+  "instance": 0,
+  "default": "$0"
+ },
+ {
+  "field": "RP1_MOBILE_RENTAL_COMP_STATUS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "RP1_MOBILE_STATUS_RENTAL_COMP_ADDRESS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "RENTAL_INFO_LAND_MAP_EXHIBIT_CAPTION",
+  "instance": 0,
+  "default": "Map of Rental Comparables"
+ },
+ {
+  "field": "HIDDEN_GROSSRENTALINCOME-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_GROSSRENTALINCOME_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "IA_DEV_BY_APPRAISER_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "COMP_GRMCOMP_GRM_IN_SALESCOMP_MAP_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "IA_GRM_MAP_EXHIBIT_CAPTION",
+  "instance": 0,
+  "default": "Map of GRM Comparables"
+ },
+ {
+  "field": "HIDDEN_CA-DWELLING-DEPRECIATION-COST-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CA-DEPRECIATED-COST-DWELLING_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "CHECK_COST_APPROACH_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "SSDE1_HIDDEN_CA-DWELLING-DEPRECIATION-COST-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "SSDE1_CA_DWELL_OTHER_DEPRECIATION",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "SSOB1_HIDDEN_CA-OUTBUILDING-DEPRECIATION-COST-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "SSOB1_CA_OUT_OTHER_DEPRECIATION",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "CA_LC_NUM",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "CA_MAP_EXHIBIT_CAPTION",
+  "instance": 0,
+  "default": "Map of Land Comparables"
+ },
+ {
+  "field": "REC_COOP_INTEREST",
+  "instance": 0,
+  "default": "(Cooperative Interest)"
+ },
+ {
+  "field": "HIDDEN_REC-MKT-VAL-COND-PRINT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "REC_LBL_DISCLAIMER",
+  "instance": 0,
+  "default": "The market value represents the cooperative interest. The cooperative interest is the equity portion that is over and above the pro rata share of the blanket mortgage(s)."
+ },
+ {
+  "field": "CHECK_REC_CLIENT_REQUESTED_CONDITIONS_DISABLE",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "REC_DEFECTS",
+  "instance": 0,
+  "default": "The items listed below represent the As Is condition as of the effective date of this report"
+ },
+ {
+  "field": "CHECK_REVISION_HISTORY_DISABLED",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "RN_REPORT_VERSION",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "CHECK_REVISION_HISTORY_REC_VAL_DISABLED",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "HIDDEN_RECONSIDERATION-OF-VALUE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "RN_REC_VAL_TYPE",
+  "instance": 0,
+  "default": "Borrower-Initiated"
+ },
+ {
+  "field": "CHECK_SUPPLEMENTAL_INFORMATION_DISABLED",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "ADDITIONAL_SCOPE_WORK_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "ADDITIONAL_INTENDED_USE_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "ADDITIONAL_INTENDED_USER_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "DESCRIPTION_OF_PRIOR_SERVICES_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "ADDITIONAL_APPRAISER_CERTIFICATIONS_NO",
+  "instance": 0,
+  "default": "X"
+ },
+ {
+  "field": "SIGNER_ROLE",
+  "instance": 0,
+  "default": "Appraiser"
+ },
+ {
+  "field": "SIGNER_NAME",
+  "instance": 0,
+  "default": "&nbsp;"
+ },
+ {
+  "field": "SIGNED_DATE",
+  "instance": 0,
+  "default": "&nbsp;"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SECTION_ASSIGNMENT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_GENERAL",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_PARTIES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_CLIENT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_APPRAISER",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_ASSISTANCE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_SCOPE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOB_STATUS_SUBSECTION_EXHIBITS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_AMENITIES",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBAMENITIES_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SUBAMENITIES_PHOTOS",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_BESTUSE_COMMENTARY",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_OTHER_DESCRIBE",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PROJECT-INFO-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PROJECT-INFO-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PROJECT-INFO-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SALES-CONTRACT-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SALES-CONTRACT-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SALES-CONTRACT-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_BORROWER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_ASSIGNMENT-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_ASSIGNMENT-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_ASSIGNMENT-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SELLER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUBCUROWNER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CONTACT_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_APPRAISER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUPERVISOR_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SRPA_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUBJ-AMENITY-TABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUBJ-AMENITY-DEFECT-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUBJ-AMENITY-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_ALT-SUBPROPADDRESS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUBJECT-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUBJECT-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUBJECT-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_RIGHTS-NOT-INCLUDED_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SITE-UTIL-ADD-ROW_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-ACCESS-STREET-TYPE-SURFACE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_COMP_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_FUNCTIONAL-OBS-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_DISASTER-MITIGATION-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_EE-COMPONENTS-TABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_EE-GREEN-CERTIFICATION-EXISTS-TABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_EE-KNOWN-EFFICIENCY-TABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_EE-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_ADDITIONAL-APPRAISER-CERTIFICATION-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_ADDITIONAL-SUP-APPRAISER-CERTIFICATION-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SKETCH-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALES-REVISION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALES-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALES-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALES-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALES-DATA-SOURCE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALES_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PRIOR-SALE-COMPS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_VEHICLE-STORAGE-TABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_VEHICLE-STORAGE-DEFECTS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_VEHICLE-STORAGE-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUPPLEMENTAL-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUPPLEMENTAL-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUPPLEMENTAL-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUM-MARKET-VALUE-CONDITION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUMMARY-BORROWER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PROPERTY_RESTRICT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_PROPERTY_ENCROACHMENT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUMMARY-OWNER-PUBLIC-RECORDS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_HIGHEST-BEST-USE-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-INFLUENCE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-INFL-WTR-FRNTG-DETAILS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-VIEW-IMPACT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_FLOW-SITE-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_FLOW-SITE-MAP-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SITE-NON-RES-USE-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-DEFECT-ADD-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-VALUATION-METHODOLOGY_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-FEATURE-RESTRICT_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-FEATURE-EASEMENT_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-FEATURE-ENCROACH_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-FEATURE-SITCHAR_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-UTIL-IMP-OTHER_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_TABLE-SITE-APN_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MKT-MAP-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MKT-GRAPH-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MKT-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MARKET-PRICE-TREND-SOURCE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_RECONCILIATION-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_RECONCILIATION-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_RECONCILIATION-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CA-AS-IS-SITE-IMPROVEMENT-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CA-EXHIBIT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_CA-TABLE-SITE-LAND-COMPARABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-CLIENT-REQUESTED-CONDITIONS-TABLE_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-ADDD-SITE-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-ADDD-DWELLING-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-ADDD-UNIT-INTERIOR-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-ADDD-OUTBUILDING_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-ADDD-VEHICLE-STORAGE-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_REC-ADDD-SUBJECT-PROPERTY-AMENITIES-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_FINISHED-ROOM-SUMMARY_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SUB-PROP-RENTAL-INFO_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SUB-PROP-ACTUAL-INCOME_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SUB-PROP-ACTUAL-INCOME-OTHER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SUB-PROP-OPINION-INCOME_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_TABLE-SUB-PROP-OPINION-INCOME-OTHER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_IA-MAP-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_FLOW-IA-EXHIBITS-COMPS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_IA-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_FLOW-IA-EXHIBITS-OTHER_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_PROPERTIES-NOT-USED_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_IACOMP-2_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUBJ-LISTING-HISTORY-ROW_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUBJECT-LISTING-INFO-DOCUMENTS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUBJECT-LISTING-INFO-GRAPHS_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SUBJECT-LISTING-INFO-EXHIBITS_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_DWELLING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_MANHOME",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_UNIT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_MOBILE_STATUS_SECTION_OUTBUILDING",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "HIDDEN_SIGNATURE-BLOCK_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUM-ADDD-SITE-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUM-ADDD-VEHICLE-STORAGE-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_SUM-ADDD-SUBJECT-PROPERTY-AMENITIES-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_OVERALL-QUAL-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "HIDDEN_OVERALL-COND-SECTION_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_APN_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_CONTACT_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "ORD_HIDDEN_APPRAISER_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_SUPERVISOR_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_SRPA_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_BORROWER-CONTACT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_SELLER-CONTACT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_OWNER-CONTACT_COUNT",
+  "instance": 0,
+  "default": "1"
+ },
+ {
+  "field": "ORD_HIDDEN_OTHER-CONTACT_COUNT",
+  "instance": 0,
+  "default": "0"
+ },
+ {
+  "field": "ORD_CONTACT_CLIENT",
+  "instance": 0,
+  "default": "Client"
+ },
+ {
+  "field": "ORD_SRPA_CONTACT_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "ORD_PU_BORROWER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "ORD_PU_SELLER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ },
+ {
+  "field": "ORD_PU_OWNER_TYPE",
+  "instance": 0,
+  "default": "Individual"
+ }
+]

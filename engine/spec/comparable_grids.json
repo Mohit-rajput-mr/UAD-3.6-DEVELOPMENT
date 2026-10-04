@@ -1,0 +1,3030 @@
+{
+ "Sales Comp Grid ": [
+  {
+   "kind": "group",
+   "label": "General Information",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Comparable #",
+   "data_point": "PropertyOrdinalNumber",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Property Address",
+   "data_point": "AddressLineText",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Data Source",
+   "data_point": "DataSourceType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Proximity to Subject",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "List Price",
+   "data_point": "FinalListPriceAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Listing Status",
+   "data_point": "ListingStatusType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Contract Price",
+   "data_point": "ContractAmountUnknownIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Sale Price",
+   "data_point": "OwnershipTransferTransactionAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Transfer Terms",
+   "data_point": "SaleType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Financing Type",
+   "data_point": "NoFinancingTransactionIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Sales Concessions",
+   "data_point": "SalesConcessionIndicator",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Contract Date",
+   "data_point": "ContractDateUnknownIndicator",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Sale Date",
+   "data_point": "OwnershipTransferDate",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Days on Market",
+   "data_point": "DaysOnMarketCount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Sale to List Price Ratio",
+   "data_point": "SaleToListPriceRatioPercent",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Attached/Detached",
+   "data_point": "AttachmentType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Property Rights Appraised",
+   "data_point": "PropertyEstateType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Annual Ground Rent",
+   "data_point": "PropertyGroundLeaseAnnualAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Native American Lands",
+   "data_point": "NativeAmericanLandsIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "All Rights Included",
+   "data_point": "AllPropertyRightsAppraisedIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Rights Not Included",
+   "data_point": "PropertyPartialInterestType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "Same Builder as Subject",
+   "data_point": "SameBuilderAsSubjectIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "General Information",
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Project Information",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Project Information",
+   "label": "Project Name | Same Project as Subject",
+   "data_point": "ProjectName",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Project Information",
+   "label": "Monthly Fee",
+   "data_point": "AssociationChargeAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Project Information",
+   "label": "Common Amenities/Services",
+   "data_point": "AmenityType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Project Information",
+   "label": "Special Assessments",
+   "data_point": "AssociationSpecialAssessmentStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Site",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Site Owned in Common",
+   "data_point": "LandOwnedInCommonIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Site Size",
+   "data_point": "LotSizeAreaMeasure",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Neighborhood Name",
+   "data_point": "NeighborhoodName",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Zoning Compliance",
+   "data_point": "SiteZoningComplianceType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Hazard Zone",
+   "data_point": "HazardZoneType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Primary Access",
+   "data_point": "PropertyPrimaryEntryExitMethodType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Street Type | Surface",
+   "data_point": "StreetAccessType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Property Restriction",
+   "data_point": "RestrictionType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Easement",
+   "data_point": "EasementType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Topography",
+   "data_point": "TopographyType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Drainage",
+   "data_point": "SiteDrainageReasonType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Site Characteristics",
+   "data_point": "SiteFeatureType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Site Influence (Location)",
+   "data_point": "SiteInfluenceType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "Apparent Environmental Conditions",
+   "data_point": "EnvironmentalConditionType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "View | Range",
+   "data_point": "ViewType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Site",
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Water Frontage with Private Access",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Water Frontage with Private Access",
+   "label": "Water Frontage",
+   "data_point": "PrivateAccessIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Water Frontage with Private Access",
+   "label": "Permanent Waterfront Feature",
+   "data_point": "WaterfrontFeatureType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Water Frontage with Private Access",
+   "label": "Right to Build",
+   "data_point": "WaterfrontDevelopmentRightsIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Water Frontage with Private Access",
+   "label": "Total Linear Measurement",
+   "data_point": "WaterFrontageTotalLengthLinearMeasure (attribute) '@ LinearUnitOfMeasureType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Dwelling(s)",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Year Built",
+   "data_point": "PropertyStructureBuiltYear",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Structure Design",
+   "data_point": "StructuralDesignType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Gross Building Finished Area",
+   "data_point": "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Noncontinuous Finished Area",
+   "data_point": "NonContinuousFinishedAreaIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Townhouse End Unit",
+   "data_point": "RowhouseTownhouseEndUnitIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Townhouse Back to Back",
+   "data_point": "RowhouseTownhouseBackToBackIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Townhouse Location",
+   "data_point": "RowhouseTownhouseLocationType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Construction Method",
+   "data_point": "ConstructionMethodType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Manufactured Home Width",
+   "data_point": "ManufacturedHomeWidthType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Dwelling Style",
+   "data_point": "ArchitecturalDesignCategoryType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Total Dwelling Volume",
+   "data_point": "TotalOfAllDwellingsVolumeMeasure '@VolumeUnitOfMeasureType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Window Surface Area",
+   "data_point": "TotalWindowSurfaceAreaOfAllDwellingsAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Functional Issues",
+   "data_point": "FunctionalIssueType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Disaster Mitigation",
+   "data_point": "DisasterMitigationFeatureType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Heating",
+   "data_point": "HeatingSystemType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "Cooling",
+   "data_point": "CoolingSystemExistsIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Dwelling(s)",
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Energy Efficient and Green Features",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Energy Efficient and Green Features",
+   "label": "Renewable Energy Component",
+   "data_point": "RenewableEnergyComponentExistsIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Energy Efficient and Green Features",
+   "label": "Building Certification",
+   "data_point": "GreenCertificationExistsIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Energy Efficient and Green Features",
+   "label": "Efficiency Rating",
+   "data_point": "EfficiencyRatingExistsIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Unit(s)",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Structure ID | Unit ID",
+   "data_point": "StructureIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Location of ADU",
+   "data_point": "ImprovementType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Floor Number",
+   "data_point": "FloorIdentifier",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Corner Unit",
+   "data_point": "CornerUnitIndicator",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Levels in Unit",
+   "data_point": "LevelCount",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Bedrooms",
+   "data_point": "BedroomCount",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Baths \u2013 Full | Half",
+   "data_point": "FullBathroomCount",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Finished Area Above Grade",
+   "data_point": "UnitStandardAboveGradeFinishedAreaMeasure '@AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Finished Area Above Grade (Nonstandard)",
+   "data_point": "UnitNonStandardAboveGradeFinishedAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Unfinished Area Above Grade",
+   "data_point": "UnitAboveGradeUnfinishedAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Finished Area Below Grade",
+   "data_point": "UnitStandardBelowGradeFinishedAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Finished Area Below Grade (Nonstandard)",
+   "data_point": "UnitNonStandardBelowGradeFinishedAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Unfinished Area Below Grade",
+   "data_point": "UnitBelowGradeUnfinishedAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "Features for Individuals w/ Disabilities",
+   "data_point": "AccessibilityFeatureType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Unit(s)",
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Quality and Condition (Ratings: 1-6, 1 is highest)",
+   "adjustable": false
+  },
+  {
+   "kind": "group",
+   "label": "Exterior Quality and Condition",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Structure ID",
+   "data_point": "StructureIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Quality",
+   "data_point": "ExteriorQualityRatingCode",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Exterior Walls and Trim",
+   "data_point": "WallMaterialType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Foundation",
+   "data_point": "FoundationType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Roof",
+   "data_point": "RoofMaterialType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Windows",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "[Other Exterior Feature]",
+   "data_point": "ImprovementComponentTypeOtherDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Condition",
+   "data_point": "ExteriorConditionRatingCode",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Exterior Walls and Trim",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Foundation",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Roof",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "Windows",
+   "data_point": "ImprovementComponentConditionStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Exterior Quality and Condition",
+   "label": "[Other Exterior Feature]",
+   "data_point": "ImprovementComponentTypeOtherDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Interior Quality and Condition",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Structure ID | Unit ID",
+   "data_point": "StructureIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Quality",
+   "data_point": "InteriorQualityRatingCode",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Kitchen",
+   "data_point": "RoomQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Overall Bathrooms",
+   "data_point": "OverallBathroomsQualityDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Overall Flooring",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Walls and Ceiling",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "[Other Interior Feature]",
+   "data_point": "ImprovementComponentTypeOtherDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Condition",
+   "data_point": "InteriorConditionRatingCode",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Kitchen",
+   "data_point": "RoomUpdateStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Overall Bathrooms",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Overall Flooring",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "Walls and Ceiling",
+   "data_point": "ImprovementComponentConditionSummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Interior Quality and Condition",
+   "label": "[Other Interior Feature]",
+   "data_point": "ImprovementComponentTypeOtherDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "ADU Interior Quality and Condition",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Location of ADU",
+   "data_point": "ImprovementType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Quality",
+   "data_point": "InteriorQualityRatingCode",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Kitchen",
+   "data_point": "RoomQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Overall Bathrooms",
+   "data_point": "OverallBathroomsQualityDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Overall Flooring",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Walls and Ceiling",
+   "data_point": "ImprovementComponentQualitySummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "[Other Interior Feature]",
+   "data_point": "ImprovementComponentTypeOtherDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Condition",
+   "data_point": "InteriorConditionRatingCode",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Kitchen",
+   "data_point": "RoomUpdateStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Overall Bathrooms",
+   "data_point": "OverallBathroomsUpdateStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Overall Flooring",
+   "data_point": "OverallFlooringUpdateStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "Walls and Ceiling",
+   "data_point": "ImprovementComponentConditionSummaryDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "ADU Interior Quality and Condition",
+   "label": "[Other Interior Feature]",
+   "data_point": "ImprovementComponentTypeOtherDescription",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Overall Quality and Condition (Ratings: 1-6, 1 is highest)",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Overall Quality and Condition (Ratings: 1-6, 1 is highest)",
+   "label": "Quality",
+   "data_point": "OverallQualityRatingCode",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Overall Quality and Condition (Ratings: 1-6, 1 is highest)",
+   "label": "Condition",
+   "data_point": "OverallConditionRatingCode",
+   "adjustable": true,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "group",
+   "label": "Property Amenities",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Property Amenities",
+   "label": "Outdoor Accessories",
+   "data_point": "AmenityType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Property Amenities",
+   "label": "Outdoor Living",
+   "data_point": "AmenityType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Property Amenities",
+   "label": "Water Features",
+   "data_point": "AmenityType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Property Amenities",
+   "label": "Whole Home",
+   "data_point": "AmenityType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Property Amenities",
+   "label": "Miscellaneous",
+   "data_point": "AmenityType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Vehicle Storage",
+   "adjustable": true
+  },
+  {
+   "kind": "row",
+   "group": "Vehicle Storage",
+   "label": "Type| Spaces | Detail",
+   "data_point": "CarStorageType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Vehicle Storage",
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Outbuilding Type",
+   "data_point": "OutbuildingType",
+   "adjustable": true,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Gross Building Area",
+   "data_point": "StructureAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Finished Area",
+   "data_point": "StructureExcludingVehicleStorageAndADUFinishedAreaMeasure @AreaUnitOfMeasureType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Unfinished Area",
+   "data_point": "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure '@AreaUnitOfMeasureType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Structure Volume",
+   "data_point": "StructureVolumeMeasure '@VolumeUnitOfMeasureType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Baths - Full",
+   "data_point": "RoomType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Baths - Half",
+   "data_point": "RoomType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Kitchens",
+   "data_point": "RoomType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Heating",
+   "data_point": "HeatingSystemExistsIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Cooling",
+   "data_point": "CoolingSystemExistsIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "Utilities",
+   "data_point": "UtilityType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Summary",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "List Price",
+   "data_point": "FinalListPriceAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Contract Price",
+   "data_point": "ContractAmountUnknownIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Sale Price",
+   "data_point": "OwnershipTransferTransactionAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Net Adjustment Total",
+   "data_point": "SalePriceNetTotalAdjustmentAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Adjusted Price Per Unit",
+   "data_point": "AdjustedSalesPricePerUnitAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Adjusted Price Per Bedroom",
+   "data_point": "AdjustedSalesPricePerBedroomAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Price Per Gross Building Finished Area",
+   "data_point": "PricePerUnitOfMeasureTypeForTotalFinishedAreaOfAllLivingUnitsIncludingADUAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Price Per Finished Area Above Grade",
+   "data_point": "PricePerTotalStandardAboveGradeFinishedAreaAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Adjusted Price",
+   "data_point": "AdjustedSalesPriceAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Comparable Weight",
+   "data_point": "ComparableWeightType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "group",
+   "label": "Indicated Value by Sales Comparison Approach",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "Indicated Value by Sales Comparison Approach",
+   "label": "Indicated Value",
+   "data_point": "ValueIndicatedBySalesComparisonAmount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": false
+  }
+ ],
+ "Rental Comp Grid": [
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Proximity to Subject",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Neighborhood Name",
+   "data_point": "NeighborhoodName",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Project Name",
+   "data_point": "ProjectName",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Project Common Amenities/Services",
+   "data_point": "AmenityType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Site Influence",
+   "data_point": "SiteInfluenceType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "View from Unit",
+   "data_point": "ViewType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Floor Number",
+   "data_point": "FloorIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Site Size",
+   "data_point": "LotSizeAreaMeasure",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Grade Level",
+   "data_point": "GradeLevelType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Interior Condition",
+   "data_point": "InteriorConditionRatingCode",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Bedrooms",
+   "data_point": "BedroomCount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Baths - Full |Half",
+   "data_point": "FullBathroomCount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Finished Area",
+   "data_point": "UnitTotalFinishedAreaMeasure",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Furnished",
+   "data_point": "UnitFurnishedIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Utilities/Services Included",
+   "data_point": "UnitChargesIncludeUtilitiesIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Rent Control",
+   "data_point": "RentControlStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Rent Concessions",
+   "data_point": "FinancialRentalConcessionIndicator",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Vehicle Storage | Spaces",
+   "data_point": "CarStorageType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "group",
+   "label": "Summary",
+   "adjustable": false
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Rent Per Finished Area",
+   "data_point": "ActualRentPerUnitFinishedAreaAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Actual Rent",
+   "data_point": "UnitMonthlyActualRentAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Overall Comparison to Subject",
+   "data_point": "RentalUnitToSubjectComparisonType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Adjusted Rent",
+   "data_point": "RentalUnitAdjustedRentAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Opinion of Market Rent",
+   "data_point": "UnitMonthlyMarketRentAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": "Summary",
+   "label": "Comparable Weight",
+   "data_point": "ComparableWeightType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": true
+  }
+ ],
+ "GRM Comp Grid ": [
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Comparable #",
+   "data_point": "PropertyOrdinalNumber",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Property Address",
+   "data_point": "AddressLineText",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Data Source",
+   "data_point": "DataSourceType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Proximity to Subject",
+   "data_point": "ProximityToSubjectDistanceLinearMeasure",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Units Excluding ADUs",
+   "data_point": "LivingUnitExcludingADUCount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Accessory Dwelling Units",
+   "data_point": "AccessoryDwellingUnitTotalCount",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": true,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Gross Building Finished Area",
+   "data_point": "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Rent Control",
+   "data_point": "PropertyRentControlStatusType",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "[Additional Row]",
+   "data_point": "AdditionalComparisonLineItemIdentifier",
+   "adjustable": false,
+   "always": false,
+   "if_applicable": false,
+   "if_relevant": true
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Sale Price",
+   "data_point": "OwnershipTransferTransactionType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Sale Date",
+   "data_point": "OwnershipTransferTransactionType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Gross Monthly Rent",
+   "data_point": "TotalMonthlyActualRentAmount",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Gross Rent Multiplier",
+   "data_point": "GrossMonthlyRentMultiplierNumber",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  },
+  {
+   "kind": "row",
+   "group": null,
+   "label": "Comparable Weight",
+   "data_point": "ComparableWeightType",
+   "adjustable": false,
+   "always": true,
+   "if_applicable": false,
+   "if_relevant": false
+  }
+ ],
+ "em_dashes": [
+  {
+   "label": "Sales Comparison Approach",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "General Information",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Property Address",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Data Source",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Proximity to Subject",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "List Price",
+   "note": "ListedWithinPreviousYearIndicator (UID: 0900.0004, FID: 19.000) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Listing Status",
+   "note": "ListedWithinPreviousYearIndicator (UID: 0900.0004, FID: 19.000) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Contract Price",
+   "note": "SalesContractExistsIndicator (UID: 0600.0016, FID: 20.000) = \"false\" OR SalesContractReviewedIndicator (UID: 0600.0010, FID: 20.001) = \"false\"",
+   "detail": "ListingStatusType (UID: 1800.0075, FID: 22.01.21) <> \"Pending\""
+  },
+  {
+   "label": "Sale Price",
+   "note": "",
+   "detail": "OwnershipTransferTransactionType (UID: 1800.0273, FID: Not on report) <> \"Sale\""
+  },
+  {
+   "label": "Transfer Terms",
+   "note": "",
+   "detail": "OwnershipTransferTransactionType (UID: 1800.0273, FID: Not on report) <> \"Sale\""
+  },
+  {
+   "label": "Financing Type",
+   "note": "",
+   "detail": "OwnershipTransferTransactionType (UID: 1800.0273, FID: Not on report) <> \"Sale\""
+  },
+  {
+   "label": "Sales Concessions",
+   "note": "SalesContractExistsIndicator (UID: 0600.0016, FID: 20.000) = \"false\" OR SalesContractReviewedIndicator (UID: 0600.0010, FID: 20.001) = \"false\"",
+   "detail": "OwnershipTransferTransactionType (UID: 1800.0273, FID: Not on report) <> \"Sale\""
+  },
+  {
+   "label": "Contract Date",
+   "note": "SalesContractExistsIndicator (UID: 0600.0016, FID: 20.000) = \"false\" OR SalesContractReviewedIndicator (UID: 0600.0010, FID: 20.001) = \"false\"",
+   "detail": "ListingStatusType (UID: 1800.0075, FID: 22.01.21) = \"Active\" or \"OffMarket\""
+  },
+  {
+   "label": "Sale Date",
+   "note": "",
+   "detail": "ListingStatusType (UID: 1800.0075, FID: 22.01.21) <> \"SettledSale\""
+  },
+  {
+   "label": "Days on Market",
+   "note": "ListedWithinPreviousYearIndicator (UID: 0900.0004, FID: 19.000) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Sale to List Price Ratio",
+   "note": "",
+   "detail": "ListingStatusType (UID: 1800.0075, FID: 22.01.21) = \"SettledSale\""
+  },
+  {
+   "label": "Attached / Detached",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Property Rights Appraised",
+   "note": "ProjectLegalStructureType (UID: 2500.0168, FID: 3.012) = \"Cooperative\"",
+   "detail": "ProjectLegalStructureType (UID: 1800.0377, FID: Not on report) = \"Cooperative\""
+  },
+  {
+   "label": "Annual Ground Rent",
+   "note": "ProjectLegalStructureType (UID: 2500.0168, FID: 3.012) = \"Cooperative\" OR PropertyEstateType (UID: 1000.0024, FID: 3.019) <> \"Leasehold\"",
+   "detail": "ProjectLegalStructureType (UID: 1800.0377, FID: Not on report) = \"Cooperative\" or PropertyEstateType (UID: 1800.0337, FID: 22.01.39) <> \"Leasehold\""
+  },
+  {
+   "label": "Native American Lands",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "All Rights Included",
+   "note": "LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.009) = \"true\"",
+   "detail": "LandOwnedInCommonIndicator (UID: 1800.0277, FID: 22.03.18) = \"true\""
+  },
+  {
+   "label": "Rights Not Included",
+   "note": "LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.009) = \"true\" OR AllPropertyRightsAppraisedIndicator (UID: 0100.0034, FID: 3.027) = \"true\"",
+   "detail": "LandOwnedInCommonIndicator (UID: 1800.0277, FID: 22.03.18)= \"true\" or AllPropertyRightsAppraisedIndicator (UID: 1800.0201, FID: 22.01.44) = \"true\""
+  },
+  {
+   "label": "Same Builder as Subject",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Project Information",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Project Name | Same Project as Subject",
+   "note": "PropertyInProjectIndicator (UID: 0100.0065, FID: 3.011, 3.012, 3.013) = \"false\"",
+   "detail": "PropertyInProjectIndicator (UID: 1800.0378, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Monthly Fee",
+   "note": "PropertyInProjectIndicator (UID: 0100.0065, FID: 3.011, 3.012, 3.013) = \"false\"",
+   "detail": "PropertyInProjectIndicator (UID: 1800.0378, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Common Amenities/Services",
+   "note": "PropertyInProjectIndicator (UID: 0100.0065, FID: 3.011, 3.012, 3.013) = \"false\"",
+   "detail": "PropertyInProjectIndicator (UID: 1800.0378, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Special Assessments",
+   "note": "PropertyInProjectIndicator (UID: 0100.0065, FID: 3.011, 3.012, 3.013) = \"false\"",
+   "detail": "PropertyInProjectIndicator (UID: 1800.0378, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Site",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Site Owned in Common",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Site Size",
+   "note": "LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.009) = \"true\"",
+   "detail": "LandOwnedInCommonIndicator (UID: 1800.0277, FID: 22.03.18) = \"true\""
+  },
+  {
+   "label": "Neighborhood Name",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Zoning Compliance",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Hazard Zone",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Primary Access",
+   "note": "LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.009) = \"true\"",
+   "detail": "LandOwnedInCommonIndicator (UID: 1800.0277, FID: 22.03.18) = \"true\""
+  },
+  {
+   "label": "Street Type | Surface",
+   "note": "LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.009) = \"true\" OR PropertyPrimaryEntryExitMethodType (UID: 1500.0055, FID: 4.020) <> \"Public Street\" or \"Private Street\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Property Restriction",
+   "note": "an instance of EncumbranceType (UID: 1500.0012, FID: 4.050) = \"ConditionsCovenantsRestrictions\" is not provided",
+   "detail": "an instance of EncumbranceType (UID: 1800.0072, FID: Not on report) = \"ConditionsCovenantsRestrictions\" is not provided"
+  },
+  {
+   "label": "Easement",
+   "note": "an instance of EncumbranceType = \"Easement\" (UID: 1500.0012, FID: 4.054) is not provided",
+   "detail": "an instance of EncumbranceType (UID: 1800.0072, FID: Not on report) = \"Easement\" is not provided"
+  },
+  {
+   "label": "Topography",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Drainage",
+   "note": "an instance of SiteFeatureType (UID: 1500.0062, FID: 4.062) = \"Drainage\" is not provided",
+   "detail": "an instance of SiteFeatureType (UID: 1800.0222, FID: 22.03.40) = \"Drainage\" is not provided"
+  },
+  {
+   "label": "Site Characteristics",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Site Influence (Location)",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Apparent Environmental Conditions",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "View | Range",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Water Frontage with Private Access",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Water Frontage",
+   "note": "an instance of SiteInfluenceType (UID: 1500.0087, FID: 4.025) = \"BodyOfWater\" is not provided OR PrivateAccessIndicator (UID: 1500.0075, FID: Not on report) = \"false\" for all instances of SiteInfluenceType = \"BodyOfWater\"",
+   "detail": "an instance of SiteInfluenceType (UID: 1800.0233, FID: 22.03.42) = \"BodyOfWater\" is not provided OR PrivateAccessIndicator (UID: 1800.0279, FID: Not on report) = \"false\" for all instances of SiteInfluenceType = \"BodyOfWater\""
+  },
+  {
+   "label": "Permanent Waterfront Feature",
+   "note": "an instance of SiteInfluenceType (UID: 1500.0087, FID: 4.025) = \"BodyOfWater\" is not provided OR PrivateAccessIndicator (UID: 1500.0075, FID: Not on report) = \"false\" for all instances of SiteInfluenceType = \"BodyOfWater\"",
+   "detail": "an instance of SiteInfluenceType (UID: 1800.0233, FID: 22.03.42) = \"BodyOfWater\" is not provided OR PrivateAccessIndicator (UID: 1800.0279, FID: Not on report) = \"false\" for all instances of SiteInfluenceType = \"BodyOfWater\""
+  },
+  {
+   "label": "Right to Build",
+   "note": "an instance of SiteInfluenceType (UID: 1500.0087, FID: 4.025) = \"BodyOfWater\" is not provided OR WaterfrontFeatureType (UID: 1500.0082, FID: 4.032) <> \"None\"",
+   "detail": "an instance of SiteInfluenceType (UID: 1800.0233, FID: 22.03.42) = \"BodyOfWater\" is not provided OR WaterfrontFeatureType (UID: 1800.0230, FID: 22.04.08) <> \"None\""
+  },
+  {
+   "label": "Total Linear Measurement",
+   "note": "an instance of SiteInfluenceType (UID: 1500.0087, FID: 4.025) = \"BodyOfWater\" is not provided OR PrivateAccessIndicator (UID: 1500.0075, FID: Not on report) = \"false\" for all instances of SiteInfluenceType = \"BodyOfWater\"",
+   "detail": "an instance of SiteInfluenceType (UID: 1800.0233, FID: 22.03.42) = \"BodyOfWater\" is not provided OR PrivateAccessIndicator (UID: 1800.0279, FID: Not on report) = \"false\" for all instances of SiteInfluenceType = \"BodyOfWater\""
+  },
+  {
+   "label": "Dwelling(s)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Year Built",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Structure Design",
+   "note": "AttachmentType (UID: 0100.0020, FID: 3.004) = \"Detached\"",
+   "detail": "AttachmentType (UID: 1800.0195, FID: 22.01.37) = \"Detached\""
+  },
+  {
+   "label": "Gross Building Finished Area",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Noncontinuous Finished Area",
+   "note": "LivingUnitExcludingADUCount (UID: 0100.0022, FID: 3.005) > 1",
+   "detail": "LivingUnitExcludingADUCount (UID: 1800.0365, FID: Not on report) > 1"
+  },
+  {
+   "label": "Townhouse End Unit",
+   "note": "StructuralDesignType (UID: 0300.0032, FID: 8.002) <> \"RowhouseTownhouse\"",
+   "detail": "StructuralDesignType (UID: 1800.0169, FID: 22.05.23) <> \"RowhouseTownhouse\""
+  },
+  {
+   "label": "Townhouse Back to Back",
+   "note": "StructuralDesignType (UID: 0300.0032, FID: 8.002) <> \"RowhouseTownhouse\"",
+   "detail": "StructuralDesignType (UID: 1800.0169, FID: 22.05.23) <> \"RowhouseTownhouse\""
+  },
+  {
+   "label": "Townhouse Location",
+   "note": "StructuralDesignType (UID: 0300.0032, FID: 8.002) <> \"RowhouseTownhouse\"",
+   "detail": "StructuralDesignType (UID: 1800.0169, FID: 22.05.23) <> \"RowhouseTownhouse\""
+  },
+  {
+   "label": "Construction Method",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Manufactured Home Width",
+   "note": "ConstructionMethodType (UID: 0300.0034, FID: 8.011) <> \"ManufacturedHome\"",
+   "detail": "ConstructionMethodType (UID: 1800.0171, FID: 22.05.35) <> \"ManufacturedHome\""
+  },
+  {
+   "label": "Dwelling Style",
+   "note": "AttachmentType (UID: 0100.0020, FID: 3.004) = \"Detached\"",
+   "detail": "AttachmentType (UID: 1800.0195, FID: 22.01.37) = \"Detached\""
+  },
+  {
+   "label": "Total Dwelling Volume",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Window Surface Area",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Functional Issues",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Disaster Mitigation",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Heating",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Cooling",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Energy Efficient And Green Features",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Renewable Energy Component",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Building Certification",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Efficiency Rating",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Unit(s)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Structure ID | Unit ID",
+   "note": "AccessoryDwellingUnitIndicator (UID: 0700.0089, FID: 10.011) = \"true\"",
+   "detail": "AccessoryDwellingUnitIndicator (UID: 1800.0287, FID: Not on report) = \"true\""
+  },
+  {
+   "label": "Location of ADU",
+   "note": "AccessoryDwellingUnitIndicator (UID: 0700.0089, FID: 10.011) = \"false\"",
+   "detail": "AccessoryDwellingUnitIndicator (UID: 1800.0287, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Floor Number",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Corner Unit",
+   "note": "StructuralDesignType (UID: 0300.0032, FID: 8.002) <> \"HighRise\", \"Lowrise\", or \"Midrise\"",
+   "detail": "StructuralDesignType (UID: 1800.0169, FID: 22.05.23) <> \"HighRise\", \"Lowrise\", or \"Midrise\""
+  },
+  {
+   "label": "Levels in Unit",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Bedrooms",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Baths - Full | Half",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Finished Area Above Grade",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Finished Area Above Grade (Nonstandard)",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Unfinished Area Above Grade",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Finished Area Below Grade",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Finished Area Below Grade (Nonstandard)",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Unfinished Area Below Grade",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Features for Individuals w/Disabilities",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Quality and Condition (Ratings: 1-6, 1 is highest)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Exterior Quality and Condition",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Structure ID",
+   "note": "Subject does not have Dwelling on the row and one or more Comps does.",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Quality",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Exterior Walls and Trim",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Foundation",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Roof",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Windows",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "[Other Exterior Feature]",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Condition",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Exterior Walls and Trim",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Foundation",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Roof",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Windows",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "[Other Exterior Feature]",
+   "note": "Never display dash",
+   "detail": "Comp does not have Dwelling on the row and Subject or another Comp does OR HomeownerResponsibleForExteriorMaintenanceIndicator (UID: 1800.0364, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Interior Quality and Condition",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Structure ID | Unit ID",
+   "note": "Subject does not have Unit on the row and one or more Comps does.",
+   "detail": "Comp does not have Unit on the row and Subject or another Comp does."
+  },
+  {
+   "label": "ADU Interior Quality and Condition",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Location of ADU",
+   "note": "AccessoryDwellingUnitIndicator (UID: 0700.0089, FID: 10.011) = \"false\"",
+   "detail": "AccessoryDwellingUnitIndicator (UID: 1800.0287, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Quality",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Kitchen",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Overall Bathrooms",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Overall Flooring",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Walls and Ceiling",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Other Interior Feature]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Condition",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Kitchen",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Overall Bathrooms",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Overall Flooring",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Walls and Ceiling",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Other Interior Feature]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Overall Quality and Condition (Ratings: 1-6, 1 is highest)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Quality",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Condition",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Property Amenities",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Outdoor Accessories",
+   "note": "PropertyAmenityExistsIndicator (UID: 0200.0015, FID: 14.000) = \"false\" OR an instance of AmenityCategoryType (UID: 0200.0016, FID: 14.001) = \"OutdoorAccessories\" is not provided",
+   "detail": "PropertyAmenityExistsIndicator (UID: 1800.0199, FID: Not on report) = \"false\" or an instance of AmenityCategoryType (UID: 1800.0253, FID: Not on report) = \"OutdoorAccessories\" is not provided"
+  },
+  {
+   "label": "Outdoor Living",
+   "note": "PropertyAmenityExistsIndicator (UID: 0200.0015, FID: 14.000) = \"false\" OR an instance of AmenityCategoryType (UID: 0200.0017, FID: 14.001) = \"OutdoorLiving\" is not provided",
+   "detail": "PropertyAmenityExistsIndicator (UID: 1800.0199, FID: Not on report) = \"false\" or an instance of AmenityCategoryType = \"OutdoorLiving\" (UID: 1800.0256, FID: Not on report) is not provided"
+  },
+  {
+   "label": "Water Features",
+   "note": "PropertyAmenityExistsIndicator (UID: 0200.0015, FID: 14.000) = \"false\" OR an instance of AmenityCategoryType (UID: 0200.0027, FID: 14.001) = \"WaterFeatures\" is not provided",
+   "detail": "PropertyAmenityExistsIndicator (UID: 1800.0199, FID: Not on report) = \"false\" or an instance of AmenityCategoryType (UID: 1800.0259, FID: Not on report) = \"WaterFeatures\" is not provided"
+  },
+  {
+   "label": "Whole Home",
+   "note": "PropertyAmenityExistsIndicator (UID: 0200.0015, FID: 14.000) = \"false\" OR an instance of AmenityCategoryType (UID: 0200.0034, FID: 14.001) = \"WholeHome\" is not provided",
+   "detail": "PropertyAmenityExistsIndicator (UID: 1800.0199, FID: Not on report) = \"false\" or an instance of AmenityCategoryType (UID: 1800.0262, FID: Not on report) = \"WholeHome\" is not provided"
+  },
+  {
+   "label": "Miscellaneous",
+   "note": "PropertyAmenityExistsIndicator (UID: 0200.0015, FID: 14.000) = \"false\" OR an instance of AmenityCategoryType (UID: 0200.0041, FID: 14.001) = \"Miscellaneous\" is not provided",
+   "detail": "PropertyAmenityExistsIndicator (UID: 1800.0199, FID: Not on report) = \"false\" or an instance of AmenityCategoryType (UID: 1800.0265, FID: Not on report) = \"Miscellaneous\" is not provided"
+  },
+  {
+   "label": "Vehicle Storage",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Type | Spaces | Detail",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Outbuilding (ADU and vehicle storage are not included in Finished Area, Unfinished Area, or room counts)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Outbuilding Type",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Gross Building Area",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Finished Area",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Unfinished Area",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Structure Volume",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Baths - Full",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Baths - Half",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Kitchens",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Heating",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Cooling",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Utilities",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Subject does not have outbuilding on the row and one or more Comps does.",
+   "detail": "Comp does not have outbuilding on row, and Subject or another Comp does."
+  },
+  {
+   "label": "Summary",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "List Price",
+   "note": "ListedWithinPreviousYearIndicator (UID: 0900.0004, FID: 19.000) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Contract Price",
+   "note": "SalesContractExistsIndicator (UID: 0600.0016, FID: 20.000) = \"false\" OR SalesContractReviewedIndicator (UID: 0600.0010, FID: 20.001) = \"false\"",
+   "detail": "ListingStatusType (UID: 1800.0075, FID: 22.01.21) <> \"Pending\""
+  },
+  {
+   "label": "Sale Price",
+   "note": "",
+   "detail": "OwnershipTransferTransactionType (UID: 1800.0273, FID: Not on report) <> \"Sale\""
+  },
+  {
+   "label": "Net Adjustment Total",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Adjusted Price Per Unit",
+   "note": "",
+   "detail": "LivingUnitExcludingADUCount (UID: 1800.0365, FID: Not on report) = 1"
+  },
+  {
+   "label": "Adjusted Price Per Bedroom",
+   "note": "",
+   "detail": "LivingUnitExcludingADUCount (UID: 1800.0365, FID: Not on report) = 1"
+  },
+  {
+   "label": "Price Per Gross Building Finished Area",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Price Per Finished Area Above Grade",
+   "note": "",
+   "detail": "LivingUnitExcludingADUCount (UID: 1800.0365, FID: Not on report) = 1 OR (UnitStandardAboveGradeFinishedAreaMeasure (UID: 1800.0390, FID: 22.07.30) = 0 AND UnitNonStandardAboveGradeFinishedAreaMeasure (UID: 1800.0391, FID: 22.07.32) = 0)"
+  },
+  {
+   "label": "Adjusted Price",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Comparable Weight",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Additional Properties Analyzed Not Used",
+   "note": "",
+   "detail": "Display em-dash for Additional Property Analyzed Not Used when \u2026"
+  },
+  {
+   "label": "Property Address",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Sale Date",
+   "note": "",
+   "detail": "ListingStatusType (UID: 1900.0007, FID: 22.17.04) <> \"SettledSale\""
+  },
+  {
+   "label": "Status",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Reason Not Used",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Comment",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Income Approach (GRM Comps)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Data Source",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Proximity to Subject",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Units Excluding ADUs",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Accessory Dwelling Units",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Gross Building Finished Area",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Rent Control",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Sale Price",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Sale Date",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Gross Monthly Rent",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Gross Rent Multiplier",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Comparable Weight",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Rental Information (Rental Comps)",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Proximity to Subject",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Neighborhood Name",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Project Name",
+   "note": "\"PropertyInProjectIndicator (UID: 0100.0065, FID: 3.011, 3.012, 3.013) = \"false\"",
+   "detail": "PropertyInProjectIndicator (UID: 2000.0113, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Project Common Amenities/Services",
+   "note": "PropertyInProjectIndicator (UID: 0100.0065, FID: 3.011, 3.012, 3.013) = \"false\" AND PUDIndicator (UID: 0100.0026, FID: 3.010) = \"false\"",
+   "detail": "PropertyInProjectIndicator (UID: 2000.0113, FID: Not on report) = \"false\" AND PUDIndicator (UID: 2000.0015, FID: Not on report) = \"false\""
+  },
+  {
+   "label": "Site Influence",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "View from Unit",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Floor Number",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Site Size",
+   "note": "LandOwnedInCommonIndicator (UID: 0100.0047, FID: 3.015) = \"true\"",
+   "detail": "LandOwnedinCommonIndicator (UID: 2000.0016, FID: Not on report) = \"true\""
+  },
+  {
+   "label": "Grade Level",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Interior Condition",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Bedrooms",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Baths - Full | Half",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Finished Area",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Furnished",
+   "note": "UnitRentedIndicator (UID: 2000.0093, FID: 23.01.02) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Utilities / Services Included",
+   "note": "UnitRentedIndicator (UID: 2000.0093, FID: 23.01.02) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Rent Control",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Rent Concessions",
+   "note": "UnitRentedIndicator (UID: 2000.0093, FID: 23.01.02) = \"false\"",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Vehicle Storage | Spaces",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "[Additional Row]",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Summary",
+   "note": "",
+   "detail": ""
+  },
+  {
+   "label": "Rent Per Finished Area",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Actual Rent",
+   "note": "Never display dash",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Overall Comparison to Subject",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Adjusted Rent",
+   "note": "",
+   "detail": "Never display dash"
+  },
+  {
+   "label": "Opinion of Market Rent",
+   "note": "Never display dash",
+   "detail": ""
+  },
+  {
+   "label": "Comparable Weight",
+   "note": "",
+   "detail": "Never display dash"
+  }
+ ]
+}

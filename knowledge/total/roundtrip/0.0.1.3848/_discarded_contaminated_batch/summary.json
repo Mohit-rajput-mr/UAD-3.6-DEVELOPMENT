@@ -1,0 +1,410 @@
+[
+ {
+  "file": "2- to 4-unit_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 31.6,
+  "structure": {
+   "dwelling-exterior": 2,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 3,
+   "rentalprop": 5,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "2",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1535,
+   "kept": 1386,
+   "changed": 27,
+   "dropped": 122,
+   "added": 233
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 167,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "2- to 4-unit_Scenario_2_Appraisal_v1.2",
+  "import_error": "",
+  "import_seconds": 62.8,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 5,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 3,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "4",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1536,
+   "kept": 1361,
+   "changed": 36,
+   "dropped": 139,
+   "added": 482
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 389,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "Condo1_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 62.4,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 4,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "No Inspection",
+   "APPRAISER_SPI_INTERIOR": "No Inspection",
+   "ATTACHMENT_TYPE": "Attached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1029,
+   "kept": 908,
+   "changed": 34,
+   "dropped": 87,
+   "added": 641
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 220,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "Condo2_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 58.1,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 4,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "No Inspection",
+   "APPRAISER_SPI_INTERIOR": "No Inspection",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1315,
+   "kept": 1114,
+   "changed": 45,
+   "dropped": 156,
+   "added": 654
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 204,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "Coop1_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 48.3,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 4,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Attached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 850,
+   "kept": 764,
+   "changed": 32,
+   "dropped": 54,
+   "added": 892
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 218,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "MH1_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 57.6,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 2,
+   "manufactured": 1
+  },
+  "grids": {
+   "sales": 4,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1194,
+   "kept": 989,
+   "changed": 107,
+   "dropped": 98,
+   "added": 995
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 179,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "MH2_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 55.1,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 1
+  },
+  "grids": {
+   "sales": 4,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1039,
+   "kept": 918,
+   "changed": 42,
+   "dropped": 79,
+   "added": 987
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 167,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "SF1_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 46.6,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 4,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "X",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 985,
+   "kept": 817,
+   "changed": 41,
+   "dropped": 127,
+   "added": 1006
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 196,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "SF2_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 50.7,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 2,
+   "outbuilding": 0,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 5,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Attached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "X",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1054,
+   "kept": 889,
+   "changed": 50,
+   "dropped": 115,
+   "added": 1064
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 216,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "SF3_Appraisal_v1.4",
+  "import_error": "",
+  "import_seconds": 60.6,
+  "structure": {
+   "dwelling-exterior": 1,
+   "interior": 3,
+   "outbuilding": 1,
+   "manufactured": 0
+  },
+  "grids": {
+   "sales": 5,
+   "rentalprop": 6,
+   "rentalunit": 1,
+   "grossrental": 3
+  },
+  "drivers": {
+   "APPRAISER_SPI_EXTERIOR": "Physical",
+   "APPRAISER_SPI_INTERIOR": "Physical",
+   "ATTACHMENT_TYPE": "Detached",
+   "UNIT_EXCL_ADU": "1",
+   "PUD_YES": "",
+   "PROPRIGHTSAPPR": "Fee Simple",
+   "GOV_AGENCY": "",
+   "HAS_SUPERVISOR": "false"
+  },
+  "values": {
+   "source_values": 1232,
+   "kept": 1067,
+   "changed": 45,
+   "dropped": 120,
+   "added": 1127
+  },
+  "eando": {
+   "stage": "field-validation",
+   "field_validation": 230,
+   "uad_rules": {},
+   "panel_uad_errors": null
+  }
+ },
+ {
+  "file": "SF4_Appraisal_v1.4",
+  "failed": "RuntimeError(\"page error: TypeError: Cannot read properties of undefined (reading 'compManagers')\\n    at <anonymous>:7:23\\n    at <anonymous>:16:3\")"
+ },
+ {
+  "file": "SF5_Appraisal_v1.2",
+  "failed": "RuntimeError(\"page error: TypeError: Cannot read properties of undefined (reading 'compManagers')\\n    at <anonymous>:7:23\\n    at <anonymous>:16:3\")"
+ }
+]

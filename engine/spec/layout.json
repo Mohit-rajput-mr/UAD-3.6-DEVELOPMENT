@@ -1,0 +1,659 @@
+{
+ "Assignment Information": {
+  "columns": {
+   "Assignment Reason": "left",
+   "Borrower Name": "left",
+   "Seller Name": "left",
+   "Property Valuation Method": "right",
+   "Was a Property Data Report used in lieu of an Inspection?": "right",
+   "Appraiser Fee": "right",
+   "AMC Fee": "right",
+   "Government Agency": "right",
+   "Company Name": "left",
+   "Company Address": "left",
+   "Credentials": "right",
+   "State": "right",
+   "Expires": "right",
+   "Name": "left",
+   "Designation": "left",
+   "Scope of Inspection by [Role]": "left",
+   "Subject Property Inspection": "left",
+   "Exterior": "left",
+   "Inspection Date": "left",
+   "Level": "right",
+   "ASC Identifier": "right",
+   "VA Appraiser ID": "right",
+   "FHA Appraiser ID": "right",
+   "Employment Type": "right",
+   "Occupation": "left",
+   "Reference ID": "left",
+   "Interior": "left"
+  },
+  "subsections": [
+   "Contact Information",
+   "Significant Real Property Appraisal Assistance",
+   "Property Data Report",
+   "Assignment Information and Scope of Work Commentary",
+   "Assignment Information Exhibits"
+  ]
+ },
+ "Subject Property": {
+  "columns": {
+   "Physical Address": "left",
+   "Alternate Physical Address": "left",
+   "County": "left",
+   "Planned Unit Development (PUD)": "left",
+   "Condominium": "left",
+   "Cooperative": "left",
+   "Condop": "left",
+   "Property on Native American Lands": "left",
+   "Homeowner Responsible for all Exterior Maintenance of Dwelling(s)": "left",
+   "Construction Stage": "left",
+   "Attachment Type": "right",
+   "Units Excluding ADUs": "right",
+   "Accessory Dwelling Units": "right",
+   "Special Tax Assessments": "right",
+   "Property Rights Appraised": "left",
+   "Community Land Trust": "left",
+   "Ground Rent Annual Amount": "left",
+   "Renewable": "left",
+   "Term": "left",
+   "Expires": "left",
+   "Description of Ground Rent and Impact to Value/Marketability": "left",
+   "All Rights Included in Appraisal": "right",
+   "Rights Not Included": "right",
+   "Mineral Rights Leased": "right",
+   "Description of Rights Not Included": "right"
+  },
+  "subsections": [
+   "Ownership Rights",
+   "Legal Description",
+   "Subject Property Commentary",
+   "Subject Property Exhibits"
+  ]
+ },
+ "Site": {
+  "columns": {
+   "Total Site Size": "left",
+   "Dimensions": "left",
+   "Number of Parcels": "right",
+   "Contiguous": "right",
+   "Elements Dividing Parcels": "right",
+   "Assessor Parcel Number (APN)": "right",
+   "APN Description": "right",
+   "Parcel Size": "right",
+   "Zoning": "left",
+   "Compliance": "left",
+   "Classification Code": "left",
+   "Classification Code Description": "left",
+   "Impact": "left",
+   "Rebuildable to Current Density/Use": "left",
+   "Description of Zoning Compliance": "left",
+   "Property Use": "left",
+   "Primarily Residential": "left",
+   "Residential Use": "left",
+   "Non-Residential Use": "left",
+   "Description of Non-Residential Use/Modification": "left",
+   "Property Access": "right",
+   "Primary Access": "right",
+   "Street Type and Surface": "right",
+   "Known Maintenance Agreement": "right",
+   "Typical for Market": "right",
+   "Description of Property Access": "right",
+   "Total Linear Measurement": "left",
+   "Permanent Waterfront Feature": "right",
+   "Right to Build": "right",
+   "Frontage": "right",
+   "Name": "right",
+   "Waterfront Access Rights": "right",
+   "Access Depth": "right",
+   "Water Frontage Commentary": "right",
+   "Broadband Internet Available": "left",
+   "Dwelling/Improvement within Utility Easement": "right",
+   "Public": "right",
+   "Private": "right",
+   "Detail": "right",
+   "Private Utility Impact": "right",
+   "Comment": "right",
+   "Opinion of Site Value": "left",
+   "Primary Site Valuation Method": "right",
+   "Address": "right",
+   "County": "right",
+   "Data Source": "right",
+   "Site Size": "right",
+   "Sale Date": "right",
+   "Price": "right",
+   "Reconciliation of Site Value": "right"
+  },
+  "subsections": [
+   "Site Influence",
+   "Water Frontage with Private Access",
+   "View and Impact to Value/Marketability",
+   "Site Features and Impact to Value/Marketability",
+   "Utilities and Impact to Value/Marketability",
+   "Apparent Defects, Damages, Deficiencies (Site)",
+   "Site Valuation Methodology",
+   "Site Commentary",
+   "Site Exhibits"
+  ]
+ },
+ "Disaster Mitigation": {
+  "columns": {
+   "Mitigation Feature": "left"
+  },
+  "subsections": [
+   "Disaster Mitigation Commentary",
+   "Disaster Mitigation Exhibits"
+  ]
+ },
+ "Energy Efficient and Green Features": {
+  "columns": {
+   "Renewable Energy Component": "left",
+   "Ownership": "left",
+   "Financing Arrangement": "left",
+   "Building Certification Organization": "left",
+   "Certification": "left",
+   "Year": "left",
+   "Version": "left",
+   "Rating": "left",
+   "Green/Energy Efficiency Rating Organization": "left",
+   "Score": "left",
+   "Impact to Value/Marketability": "left",
+   "Description": "left"
+  },
+  "subsections": [
+   "Energy Efficient & Green Features Impact to Value/Marketability",
+   "Energy Efficient & Green Features Commentary",
+   "Energy Efficient & Green Features Exhibits"
+  ]
+ },
+ "Sketch": {
+  "columns": {
+   "Measurement Standard": "left"
+  },
+  "subsections": [
+   "Sketch Commentary"
+  ]
+ },
+ "Dwelling Exterior": {
+  "columns": {
+   "Subject Property Units in Structure": "left",
+   "Structure Design": "left",
+   "Floors in Building": "left",
+   "Front Door Elevation": "left",
+   "Townhouse End Unit": "left",
+   "Townhouse Back to Back": "left",
+   "Townhouse Location": "left",
+   "Year Built": "left",
+   "Construction Method": "left",
+   "Converted Area and Similarity to Rest of Living Area": "left",
+   "Factory Built Certification": "left",
+   "Structure Volume": "left",
+   "Window Surface Area": "left",
+   "Attic": "left",
+   "Remaining Economic Life": "left",
+   "Exterior Quality Rating": "left",
+   "Exterior Condition Rating": "right",
+   "Finish": "left",
+   "Total Area": "left",
+   "Room Summary": "left",
+   "Finished": "left",
+   "System": "left",
+   "Detail": "left",
+   "Heating": "left",
+   "Cooling": "left",
+   "Core Heating System Below Grade": "right",
+   "Other Mechanical Systems": "right",
+   "None": "right",
+   "Feature": "right",
+   "Location": "right",
+   "Description": "right",
+   "Recommended Action": "right"
+  },
+  "subsections": [
+   "Quality and Condition",
+   "Exterior Features",
+   "Noncontinuous Finished Area",
+   "Mechanical System Details",
+   "Dwelling Exterior Commentary (Dwelling Exterior \u2013 [Structure Identifier])",
+   "Dwelling Exterior Exhibits (Dwelling Exterior \u2013 [Structure Identifier])"
+  ]
+ },
+ "Manufactured Home": {
+  "columns": {
+   "Manufacturer Name": "left",
+   "Year Installed": "left",
+   "Moved Since Original Installation": "left",
+   "Attached to Permanent Foundation": "right",
+   "Towing Hitch, Wheels, Axles Removed": "right",
+   "Manufactured Home Width": "right",
+   "Skirting": "right",
+   "Modification, Attachment, or Addition": "left",
+   "HUD Data Plate Attached": "left",
+   "Date of Manufacture": "left",
+   "Serial Number": "left",
+   "HUD Wind Zone": "right",
+   "HUD Thermal Zone": "right",
+   "HUD Roof Load Zone": "right",
+   "Label Present for All Sections": "left",
+   "HUD Certification Number": "right",
+   "Certification": "left",
+   "Identifier": "left",
+   "Purchased from Retailer": "left",
+   "Retailer Name": "left",
+   "Retailer\u2019s Invoice Reviewed": "right",
+   "Manufacturer\u2019s Invoice Reviewed": "right"
+  },
+  "subsections": [
+   "HUD Data Plate",
+   "HUD Certification Label",
+   "Manufactured Home Certification Program",
+   "Invoice Information",
+   "Manufactured Home Commentary",
+   "Manufactured Home Exhibits"
+  ]
+ },
+ "Unit Interior": {
+  "columns": {
+   "Finished Above Grade": "left",
+   "Finished Above Grade (Nonstandard)": "left",
+   "Unfinished Above Grade": "left",
+   "Finished Below Grade": "left",
+   "Finished Below Grade (Nonstandard)": "left",
+   "Unfinished Below Grade": "left",
+   "Area Data Source": "left",
+   "Below Grade Finish Compared to Above": "left",
+   "Levels in Unit": "right",
+   "Floor Number": "right",
+   "Corner Unit": "right",
+   "Occupancy": "right",
+   "Utilities Separately Metered": "right",
+   "Utilities Operating": "right",
+   "Total Bedrooms": "right",
+   "Total Bathrooms - Full": "right",
+   "Total Bathrooms - Half": "right",
+   "Non-Residential Use in Unit": "right",
+   "Live/Work Space": "right",
+   "Allowable Work Space": "right",
+   "Legally Rentable": "left",
+   "Data Source": "left",
+   "Typical for Market": "left",
+   "Ingress/Egress": "left",
+   "Separate Postal Address": "left",
+   "Interior Quality Rating": "left",
+   "Interior Condition Rating": "right",
+   "Overall Update Status for Bathrooms": "left",
+   "Overall Update Status for Flooring": "left"
+  },
+  "subsections": [
+   "Level and Room Detail",
+   "Quality and Condition",
+   "Kitchen and Bathroom Details",
+   "Interior Features",
+   "Accessibility Features for Individuals with Disabilities",
+   "Identifier])",
+   "Unit Interior Commentary",
+   "Unit Interior Exhibits"
+  ]
+ },
+ "Functional Obsolescence": {
+  "columns": {
+   "Functional Issues": "left"
+  },
+  "subsections": [
+   "Functional Obsolescence Commentary",
+   "Functional Obsolescence Exhibits"
+  ]
+ },
+ "Outbuilding": {
+  "columns": {
+   "Considered Real Property": "left",
+   "Units in Structure": "left",
+   "Attached to Permanent Foundation": "left",
+   "Structure Volume": "left",
+   "Gross Building Area": "left",
+   "Heating": "left",
+   "Cooling": "left",
+   "Utilities": "left",
+   "Finish": "right",
+   "Total Area": "right",
+   "Room Summary": "right",
+   "Finished": "right",
+   "Unfinished": "right",
+   "System": "left",
+   "Detail": "left",
+   "Other Mechanical Systems": "right"
+  },
+  "subsections": [
+   "Detail",
+   "Mechanical System Details",
+   "Apparent Defects, Damages, Deficiencies ([Outbuilding Type])",
+   "Outbuilding Commentary",
+   "Outbuilding Exhibits"
+  ]
+ },
+ "Vehicle Storage": {
+  "columns": {},
+  "subsections": [
+   "Apparent Defects, Damages, Deficiencies (Vehicle Storage)",
+   "Vehicle Storage Commentary",
+   "Vehicle Storage Exhibits"
+  ]
+ },
+ "Subject Property Amenities": {
+  "columns": {},
+  "subsections": [
+   "Apparent Defects, Damages, Deficiencies (Subject Property Amenities)",
+   "Subject Property Amenities Commentary",
+   "Subject Property Amenities Exhibits"
+  ]
+ },
+ "Overall Quality and Condition": {
+  "columns": {
+   "Exterior Quality \u2013 [Structure Identifier]": "left",
+   "Interior Quality \u2013 [Unit Identifier]": "left"
+  },
+  "subsections": [
+   "Reconciliation of Overall Quality and Condition"
+  ]
+ },
+ "Highest and Best Use": {
+  "columns": {
+   "Legally Permissible": "left",
+   "Physically Possible": "left",
+   "Financially Feasible": "right",
+   "Maximally Productive": "right"
+  },
+  "subsections": [
+   "Highest and Best Use Commentary",
+   "Highest and Best Use Exhibits"
+  ]
+ },
+ "Market": {
+  "columns": {
+   "Active Listings": "left",
+   "Median Days on Market": "left",
+   "Lowest List Price": "left",
+   "Median List Price": "left",
+   "Highest List Price": "left",
+   "Pending Sales": "left",
+   "Sales in Past [fill in] Months": "right",
+   "Lowest Sale Price": "right",
+   "Median Sale Price": "right",
+   "Highest Sale Price": "right",
+   "Distressed Market Competition": "right",
+   "Graph": "right",
+   "Price Trend Source": "right",
+   "Demand/Supply": "left",
+   "Marketing Time": "right"
+  },
+  "subsections": [
+   "Search Result Metrics",
+   "Housing Trends",
+   "Market Commentary",
+   "Market Exhibits"
+  ]
+ },
+ "Project Information": {
+  "columns": {
+   "Project Name": "left",
+   "Project Information Data Source": "left",
+   "Total Units": "left",
+   "Units Sold": "left",
+   "Units for Sale": "left",
+   "Units Rented": "left",
+   "Reason Units Rented is Estimated": "left",
+   "Mandatory Fees (HOA, PUD, or Co-op)": "left",
+   "Monthly Amount": "left",
+   "Common Amenities/Services Included": "left",
+   "Utilities Included": "left",
+   "Observed Deficiencies": "left",
+   "Description of Deficiencies": "left",
+   "Project Completeness": "right",
+   "Are units, common areas, and amenities in project complete?": "right",
+   "Subject Property Building Complete": "right",
+   "Converted in Past 3 Years": "right",
+   "Ground Rent": "right",
+   "Annual Amount": "right",
+   "Expires": "right",
+   "Description of Ground Rent": "right",
+   "Shares Issued and Outstanding": "left",
+   "Shares Attributable to Subject Property": "left",
+   "Proprietary Lease Expires": "right",
+   "Pro Rata Share": "left",
+   "Lien Detail": "left",
+   "First Lien": "left",
+   "Second Lien, \u201cThird Lien": "left",
+   "Fourth Lien": "left",
+   "Unpaid Principal Balance": "left",
+   "Line of Credit": "left",
+   "Balloon Mortgage": "left",
+   "Remaining Term": "left",
+   "Monthly Payment": "left",
+   "Interest Rate": "left",
+   "Pro Rata Share of Balance Attributable to Unit": "left"
+  },
+  "subsections": [
+   "Cooperative Information",
+   "Project Blanket Financing",
+   "Project Factors and Impact to Value/Marketability",
+   "Project Information Commentary",
+   "Project Information Exhibits"
+  ]
+ },
+ "Subject Listing Information": {
+  "columns": {
+   "Current or Relevant Listings": "left",
+   "Data Source": "left",
+   "Listing Status": "left",
+   "Listing Type": "left",
+   "Start Date": "left",
+   "End Date": "left",
+   "Starting List Price": "left",
+   "Current or Final Price": "left",
+   "Total DOM": "left",
+   "Analysis of Subject Property Listing History": "left"
+  },
+  "subsections": [
+   "Subject Listing Information Exhibits"
+  ]
+ },
+ "Sales Contract": {
+  "columns": {
+   "Is there a sales contract?": "left",
+   "Was sales contract information analyzed?": "left",
+   "Non-Arm\u2019s Length Commentary": "left",
+   "Contract Price": "right",
+   "Contract Date": "right",
+   "Transfer Terms": "right",
+   "Personal Property Conveyed": "right",
+   "Known Sales Concessions": "left",
+   "Total Sales Concessions": "left",
+   "Typical for Market": "left"
+  },
+  "subsections": [
+   "Financial Sales Concessions",
+   "Sales Contract Analysis",
+   "Sales Contract Exhibits"
+  ]
+ },
+ "Prior Sale and Transfer History": {
+  "columns": {
+   "Prior Sales or Transfers": "left",
+   "Data Source": "left",
+   "Transfer Terms": "left",
+   "Date": "left",
+   "Amount": "left"
+  },
+  "subsections": [
+   "Subject Transfer History",
+   "Comparable Transfer History",
+   "Prior Sale and Transfer History Exhibits"
+  ]
+ },
+ "Sales Comparison Approach": {
+  "columns": {
+   "Actual Income (Monthly)": "left",
+   "Rent": "left",
+   "Other Real Property Rental Income": "left",
+   "Subtotal": "left",
+   "Total": "left",
+   "Opinion of Market Income (Monthly)": "right"
+  },
+  "subsections": [
+   "Reconciliation of Sales Comparison Approach",
+   "Additional Properties Analyzed Not Used",
+   "Sales Comparison Map",
+   "Sales Comparison Approach Exhibits",
+   "Rent Schedule",
+   "Subject Property Rental Information",
+   "Actual Income (Monthly)",
+   "Opinion of Market Income (Monthly)",
+   "Comparable Rental Properties",
+   "Comparable Rental Analysis",
+   "Rental Analysis Commentary",
+   "Rental Information Exhibits"
+  ]
+ },
+ "Income Approach": {
+  "columns": {},
+  "subsections": [
+   "Gross Rent Multiplier Comparables",
+   "Indicated Value by Income Approach",
+   "Income Approach Commentary",
+   "Income Approach Exhibits"
+  ]
+ },
+ "Cost Approach": {
+  "columns": {
+   "Depreciated Cost of Dwellings": "right",
+   "Depreciated Cost of Outbuildings": "right",
+   "Opinion of Site Value": "right",
+   "Remaining Economic Life": "left",
+   "Effective Age": "left",
+   "Commentary on Remaining Economic Life": "left",
+   "Commentary on Effective Age": "left",
+   "Cost Type": "left",
+   "Cost Data Source": "left",
+   "Quality Rating": "left",
+   "Effective Date": "left",
+   "Cost Method": "right",
+   "Depreciation Method": "right"
+  },
+  "subsections": [
+   "Indicated Value by Cost Approach",
+   "Depreciated Cost \u2013 Dwelling \u2013 [Structure Identifier]",
+   "Depreciated Cost \u2013 Outbuilding \u2013 [Outbuilding Type]",
+   "As Is Value of Site Improvements",
+   "Site Value",
+   "Land Comparables",
+   "General Description",
+   "Cost Approach Commentary",
+   "Cost Approach Exhibits"
+  ]
+ },
+ "Reconciliation": {
+  "columns": {
+   "Contract Price": "left",
+   "Opinion of Market Value": "left",
+   "(Cooperative Interest)": "left",
+   "Pro Rata Share Calculation Method": "left",
+   "Market Value Condition": "left",
+   "Final Value Condition Statement": "left",
+   "Reasonable Exposure Time": "right",
+   "Effective Date of Appraisal": "right",
+   "FHA REO Insurability Level": "right",
+   "As Is Overall Condition Rating": "left",
+   "Total Estimated Cost of Items Recommended for Repair": "right"
+  },
+  "subsections": [
+   "Approaches to Value",
+   "Appraisal Summary",
+   "Client Requested Conditions",
+   "Reconciliation of Market Value",
+   "Apparent Defects, Damages, Deficiencies",
+   "Reconciliation Exhibits"
+  ]
+ },
+ "Revision History": {
+  "columns": {
+   "Type": "left",
+   "Date": "left",
+   "Result": "right",
+   "Reconsideration of Value Commentary": "right"
+  },
+  "subsections": [
+   "Reconsideration of Value",
+   "Supplemental Information Exhibits"
+  ]
+ },
+ "Supplemental Information": {
+  "columns": {},
+  "subsections": [
+   "Scope of Work",
+   "Additional Scope of Work",
+   "Intended Use",
+   "Additional Intended Use",
+   "Intended User",
+   "Additional Intended Users",
+   "Definition of Market Value",
+   "Statement of Assumptions and Limiting Conditions"
+  ]
+ },
+ "Certifications": {
+  "columns": {
+   "[Role]": "left",
+   "[Contact Name]": "left",
+   "Date of Signature and Report": "left",
+   "Level": "right",
+   "State": "right",
+   "Expires": "right"
+  },
+  "subsections": [
+   "Appraiser Certifications",
+   "Additional Appraiser Certifications",
+   "Supervisory Appraiser Certifications",
+   "Additional Supervisory Appraiser Certifications",
+   "Signature"
+  ]
+ },
+ "Summary": {
+  "columns": {
+   "Opinion of Market Value": "left",
+   "Effective Date of Appraisal": "left",
+   "Assignment Reason": "left",
+   "Borrower Name": "left",
+   "Current Owner of Public Record": "left",
+   "Contract Price": "left",
+   "Listing Status": "left",
+   "Market Value Condition": "right",
+   "Property Valuation Method": "right",
+   "Appraiser Name": "right",
+   "Construction Method": "left",
+   "Attachment Type": "left",
+   "Structure Design": "left",
+   "Planned Unit Development (PUD)": "left",
+   "Condominium": "left",
+   "Cooperative": "left",
+   "Condop": "left",
+   "Observed Project Deficiencies": "left",
+   "Subject Site Owned in Common": "left",
+   "Units Excluding ADUs": "left",
+   "Accessory Dwelling Units": "left",
+   "Property Rights Appraised": "left",
+   "Property Restriction": "left",
+   "Encroachment": "left",
+   "Zoning Compliance": "left",
+   "HUD Data Plate Attached": "left",
+   "HUD Label Present for All Sections": "left",
+   "Overall Quality": "right",
+   "Overall Condition": "right",
+   "As Is Overall Condition Rating": "left",
+   "Total Estimated Cost of Items Recommended for Repair": "right"
+  },
+  "subsections": [
+   "Property Description",
+   "Apparent Defects, Damages, Deficiencies Requiring Action"
+  ]
+ }
+}

@@ -1,0 +1,51 @@
+{
+ "form": "UAD-3.6-AR-1.000",
+ "title": "Uniform Residential Appraisal Report",
+ "form_version": "1.000",
+ "form_build": "1.00",
+ "web_engine_build": "0.0.1.3848",
+ "bundle_sha256": "6e606f315ec5b440f8a6fbf541f99d9371caa558f6465b03e19b8ce38c97a91b",
+ "extracted": "2026-09-28",
+ "from_report": "sample blank",
+ "counts": {
+  "controls": 4482,
+  "distinct_field_names": 2848,
+  "controls_with_fmid": 2419,
+  "distinct_fmids": 1227,
+  "controls_in_templates": 1139,
+  "controls_in_popups": 568,
+  "controls_hidden_by_default": 103,
+  "controls_with_display_rules": 0,
+  "templates": 32,
+  "popups": 191,
+  "repeatable_groups": 196,
+  "shared_lists": 54,
+  "validators": 759,
+  "validators_by_trigger": {
+   "SelectClosed": 320,
+   "LeaveField": 411,
+   "HidePopup": 25,
+   "ValueChanged": 3
+  },
+  "mismo_data_points": 642,
+  "mismo_field_placements": 2002,
+  "wintotal_actions": 42
+ },
+ "files": [
+  "connector.json",
+  "datafields.json",
+  "datamodel.json",
+  "defaults.json",
+  "fields.json",
+  "grids.json",
+  "popups.json",
+  "repeatables.json",
+  "rtv_messages.json",
+  "section_tree.json",
+  "shared_items.json",
+  "templates.json",
+  "uid_map.json",
+  "validators.json",
+  "visibility.json"
+ ]
+}

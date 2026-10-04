@@ -1,0 +1,26 @@
+{
+  "_about": "Mickaelle V. Petit -- the appraiser the Opteon order for 1965 20th Dr names (order: 'not transferable'). Licence and insurance images viewed 2026-10-01 from the case folder's 'MAI documents images'. Phone, e-mail and professional designation are NOT in any document: confirm with the owner before signing.",
+  "name": "Mickaelle V. Petit",
+  "first": "Mickaelle",
+  "last": "Petit",
+  "designation": "",
+  "_designation_note": "Owner's standing rule 'designation always MAI' was given with Leonardo Jo's credentials. 'MAI' here is the firm's name (MAI Appraisal LLC); whether Petit holds the Appraisal Institute MAI designation is unverified -- left empty, on the handback.",
+  "company": "MAI Appraisal LLC",
+  "address": "2605 Francis Lewis Blvd, Suite 102",
+  "city": "Flushing",
+  "state": "NY",
+  "zip": "11358",
+  "phone": "",
+  "email": "",
+  "level": "Certified General",
+  "credential_id": "46000042282",
+  "credential_state": "NY",
+  "credential_expires": "01/30/2027",
+  "employment": "Independent Fee Appraiser",
+  "assignment_exhibits": {
+    "_rule": "Assignment Information exhibits are ALWAYS the licence and the E&O declaration -- never the engagement letter (owner, 2026-09-29).",
+    "licence": "profiles/documents/petit/licence.png",
+    "eo_insurance": "profiles/documents/petit/insurance_certificate.png",
+    "eo_policy": "ACORD 25 certificate dated 02/19/2026: Hartford Underwriters Insurance Co, policy 76 SBU BR6G3C, 04/01/2026 to 04/01/2027, insured MAIAppraisal LLC -- this is COMMERCIAL GENERAL LIABILITY, not professional E&O; ask the owner for the E&O declaration."
+  }
+}

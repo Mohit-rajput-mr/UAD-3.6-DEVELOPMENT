@@ -1,0 +1,270 @@
+T   36.0   32.6  205.9   45.0 10.0 MyriadPro-Bold       #231f20 'Uniform Residential Appraisal Report\t'
+T  493.3   33.9  576.0   44.8  9.0 MyriadPro-Regular    #231f20 'Page [Page] of [Pages]'
+D s     36.0   48.8  576.0   48.8 fill=None col=#939598 w=0.5 n=1
+D f     36.0   62.4  180.0   77.2 fill=#231f20 col=None w=None n=6
+T   42.0   64.1   57.9   75.2  9.0 MyriadPro-Bold       #ffffff 'Site'
+D s     36.0   77.2  576.0   77.2 fill=None col=#231f20 w=0.5 n=1
+T   40.0   88.4   96.2   99.5  9.0 MyriadPro-Bold       #231f20 'Total Site Size'
+T  316.0   88.4  390.3   99.5  9.0 MyriadPro-Bold       #231f20 'Number of Parcels'
+D s     36.0   99.5  300.0   99.5 fill=None col=#939598 w=0.5 n=1
+D s    312.0   99.5  576.0   99.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  101.4   88.1  112.5  9.0 MyriadPro-Bold       #231f20 'Dimensions'
+T  324.0  101.7  367.8  112.5  9.0 MyriadPro-Regular    #231f20 'Contiguous'
+D s     36.0  112.5  300.0  112.5 fill=None col=#939598 w=0.5 n=1
+D s    312.0  112.5  576.0  112.5 fill=None col=#939598 w=0.5 n=1
+T  324.0  114.7  421.1  125.5  9.0 MyriadPro-Regular    #231f20 'Elements Dividing Parcels'
+D s    312.0  125.5  576.0  125.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  133.4  162.2  144.6  9.0 MyriadPro-Bold       #231f20 'Assessor Parcel Number (APN)'
+T  220.0  133.4  286.6  144.6  9.0 MyriadPro-Bold       #231f20 'APN Description'
+T  400.0  133.4  443.4  144.6  9.0 MyriadPro-Bold       #231f20 'Parcel Size'
+D s     36.0  144.6  216.0  144.6 fill=None col=#939598 w=0.5 n=1
+D s    216.0  144.6  396.0  144.6 fill=None col=#939598 w=0.5 n=1
+D s    396.0  144.6  576.0  144.6 fill=None col=#939598 w=0.5 n=1
+D s    216.0  144.8  216.0  157.3 fill=None col=#939598 w=0.5 n=1
+D s    396.0  144.8  396.0  157.3 fill=None col=#939598 w=0.5 n=1
+D s     36.0  157.6  216.0  157.6 fill=None col=#939598 w=0.5 n=1
+D s    216.0  157.6  396.0  157.6 fill=None col=#939598 w=0.5 n=1
+D s    396.0  157.6  576.0  157.6 fill=None col=#939598 w=0.5 n=1
+T   40.0  161.4   69.0  172.6  9.0 MyriadPro-Bold       #231f20 'Zoning'
+T  316.0  161.4  381.0  172.6  9.0 MyriadPro-Bold       #231f20 'Property Access'
+D s     36.0  172.6  300.0  172.6 fill=None col=#939598 w=0.5 n=1
+D s    312.0  172.6  576.0  172.6 fill=None col=#939598 w=0.5 n=1
+T   48.0  174.8   93.0  185.6  9.0 MyriadPro-Regular    #231f20 'Compliance'
+T  324.0  174.8  380.2  185.6  9.0 MyriadPro-Regular    #231f20 'Primary Access'
+D s     36.0  185.6  300.0  185.6 fill=None col=#939598 w=0.5 n=1
+D s    312.0  185.6  576.0  185.6 fill=None col=#939598 w=0.5 n=1
+T   48.0  187.8  119.0  198.6  9.0 MyriadPro-Regular    #231f20 'Classification Code'
+T  324.0  187.8  413.0  198.6  9.0 MyriadPro-Regular    #231f20 'Street Type and Surface'
+D s     36.0  198.6  300.0  198.6 fill=None col=#939598 w=0.5 n=1
+D s    312.0  198.6  576.0  198.6 fill=None col=#939598 w=0.5 n=1
+T   48.0  200.7  164.6  211.6  9.0 MyriadPro-Regular    #231f20 'Classification Code Description'
+T  324.0  200.7  446.4  211.6  9.0 MyriadPro-Regular    #231f20 'Known Maintenance Agreement'
+D s     36.0  211.6  300.0  211.6 fill=None col=#939598 w=0.5 n=1
+D s    312.0  211.6  576.0  211.6 fill=None col=#939598 w=0.5 n=1
+T   48.0  213.7  103.5  224.6  9.0 MyriadPro-Regular    #231f20 'Reasons Illegal'
+T  324.0  213.7  391.0  224.6  9.0 MyriadPro-Regular    #231f20 'Typical for Market'
+D s     36.0  224.6  300.0  224.6 fill=None col=#939598 w=0.5 n=1
+D s    312.0  224.6  576.0  224.6 fill=None col=#939598 w=0.5 n=1
+T   48.0  226.7   74.5  237.6  9.0 MyriadPro-Regular    #231f20 'Impact'
+T  316.0  229.9  440.4  241.1  9.0 MyriadPro-Bold       #231f20 'Description of Property Access'
+D s     36.0  237.6  300.0  237.6 fill=None col=#939598 w=0.5 n=1
+T   48.0  239.7  137.3  250.6  9.0 MyriadPro-Regular    #231f20 'Rebuildable to Current  '
+T   48.0  252.7   93.7  263.6  9.0 MyriadPro-Regular    #231f20 'Density/Use'
+D s     36.0  263.6  300.0  263.6 fill=None col=#939598 w=0.5 n=1
+T   40.0  268.9  178.4  280.0  9.0 MyriadPro-Bold       #231f20 'Description of Zoning Compliance'
+T   40.0  281.9   93.0  293.0  9.0 MyriadPro-Bold       #231f20 'Property Use'
+D s     36.0  293.1  300.0  293.1 fill=None col=#939598 w=0.5 n=1
+T   48.0  295.2  124.6  306.0  9.0 MyriadPro-Regular    #231f20 'Primarily Residential'
+D s     36.0  306.1  300.0  306.1 fill=None col=#939598 w=0.5 n=1
+T   48.0  308.2  105.2  319.0  9.0 MyriadPro-Regular    #231f20 'Residential Use'
+D s     36.0  319.1  300.0  319.1 fill=None col=#939598 w=0.5 n=1
+T   48.0  321.2  124.4  332.0  9.0 MyriadPro-Regular    #231f20 'Non-Residential Use'
+D s     36.0  332.1  300.0  332.1 fill=None col=#939598 w=0.5 n=1
+T   48.0  334.2  158.4  345.0  9.0 MyriadPro-Regular    #231f20 'Non-Residential Modification'
+D s     36.0  345.1  300.0  345.1 fill=None col=#939598 w=0.5 n=1
+T   40.0  350.4  240.8  361.5  9.0 MyriadPro-Bold       #231f20 'Description of Non-Residential Use/Modification  '
+T   40.0  375.4  101.0  387.8 10.0 MyriadPro-Bold       #231f20 'Site Influence'
+D s     36.0  381.8  576.0  381.8 fill=None col=#e6e7e8 w=15.0 n=1
+T   40.0  391.5   77.8  402.6  9.0 MyriadPro-Bold       #231f20 'Influence'
+T  148.0  391.5  187.9  402.6  9.0 MyriadPro-Bold       #231f20 'Proximity'
+T  256.0  391.5  280.5  402.6  9.0 MyriadPro-Bold       #231f20 'Detail'
+T  364.0  391.5  392.4  402.6  9.0 MyriadPro-Bold       #231f20 'Impact'
+T  472.0  391.5  511.7  402.6  9.0 MyriadPro-Bold       #231f20 'Comment'
+D s     36.0  402.6  144.0  402.6 fill=None col=#939598 w=0.5 n=1
+D s    144.0  402.6  252.0  402.6 fill=None col=#939598 w=0.5 n=1
+D s    252.0  402.6  360.0  402.6 fill=None col=#939598 w=0.5 n=1
+D s    360.0  402.6  468.0  402.6 fill=None col=#939598 w=0.5 n=1
+D s    468.0  402.6  576.0  402.6 fill=None col=#939598 w=0.5 n=1
+D s    144.0  402.9  144.0  415.4 fill=None col=#939598 w=0.5 n=1
+D s    252.0  402.9  252.0  415.4 fill=None col=#939598 w=0.5 n=1
+D s    360.0  402.9  360.0  415.4 fill=None col=#939598 w=0.5 n=1
+D s    468.0  402.9  468.0  415.4 fill=None col=#939598 w=0.5 n=1
+D s     36.0  415.6  144.0  415.6 fill=None col=#939598 w=0.5 n=1
+D s    144.0  415.6  252.0  415.6 fill=None col=#939598 w=0.5 n=1
+D s    252.0  415.6  360.0  415.6 fill=None col=#939598 w=0.5 n=1
+D s    360.0  415.6  468.0  415.6 fill=None col=#939598 w=0.5 n=1
+D s    468.0  415.6  576.0  415.6 fill=None col=#939598 w=0.5 n=1
+T   40.0  419.5  153.8  430.6  9.0 MyriadPro-Bold       #231f20 'Site Influence Commentary  '
+T   40.0  439.5  182.7  450.6  9.0 MyriadPro-Bold       #231f20 'Water Frontage with Private Access'
+D s     36.0  450.9  576.0  450.9 fill=None col=#231f20 w=1.0 n=1
+T   40.0  454.5  146.2  465.6  9.0 MyriadPro-Bold       #231f20 'Total Linear Measurement'
+T  316.0  454.5  441.2  465.6  9.0 MyriadPro-Bold       #231f20 'Permanent Waterfront Feature'
+D s     36.0  465.6  300.0  465.6 fill=None col=#939598 w=0.5 n=1
+D s    312.0  465.6  576.0  465.6 fill=None col=#939598 w=0.5 n=1
+T  324.0  467.8  375.0  478.6  9.0 MyriadPro-Regular    #231f20 'Right to Build'
+D s    312.0  478.6  576.0  478.6 fill=None col=#939598 w=0.5 n=1
+T   40.0  486.5   77.1  497.7  9.0 MyriadPro-Bold       #231f20 'Frontage'
+T  175.0  486.5  198.8  497.7  9.0 MyriadPro-Bold       #231f20 'Name'
+T  310.0  486.5  411.6  497.7  9.0 MyriadPro-Bold       #231f20 'Waterfront Access Rights'
+T  445.0  486.5  499.1  497.7  9.0 MyriadPro-Bold       #231f20 'Access Depth'
+D s     36.0  497.7  171.0  497.7 fill=None col=#939598 w=0.5 n=1
+D s    171.0  497.7  306.0  497.7 fill=None col=#939598 w=0.5 n=1
+D s    306.0  497.7  441.0  497.7 fill=None col=#939598 w=0.5 n=1
+D s    441.0  497.7  576.0  497.7 fill=None col=#939598 w=0.5 n=1
+D s    171.0  497.9  171.0  510.4 fill=None col=#939598 w=0.5 n=1
+D s    306.0  497.9  306.0  510.4 fill=None col=#939598 w=0.5 n=1
+D s    441.0  497.9  441.0  510.4 fill=None col=#939598 w=0.5 n=1
+D s     36.0  510.7  171.0  510.7 fill=None col=#939598 w=0.5 n=1
+D s    171.0  510.7  306.0  510.7 fill=None col=#939598 w=0.5 n=1
+D s    306.0  510.7  441.0  510.7 fill=None col=#939598 w=0.5 n=1
+D s    441.0  510.7  576.0  510.7 fill=None col=#939598 w=0.5 n=1
+T   40.0  514.5  158.1  525.7  9.0 MyriadPro-Bold       #231f20 'Water Frontage Commentary'
+T   40.0  539.5  217.9  551.9 10.0 MyriadPro-Bold       #231f20 'View and Impact to Value/Marketability'
+D s     36.0  545.9  576.0  545.9 fill=None col=#e6e7e8 w=15.0 n=1
+T   40.0  555.6   60.0  566.7  9.0 MyriadPro-Bold       #231f20 'View'
+T  220.0  555.6  277.8  566.7  9.0 MyriadPro-Bold       #231f20 'Range of View'
+T  400.0  555.6  428.4  566.7  9.0 MyriadPro-Bold       #231f20 'Impact'
+D s     36.0  566.7  216.0  566.7 fill=None col=#939598 w=0.5 n=1
+D s    216.0  566.7  396.0  566.7 fill=None col=#939598 w=0.5 n=1
+D s    396.0  566.7  576.0  566.7 fill=None col=#939598 w=0.5 n=1
+D s    216.0  567.0  216.0  579.5 fill=None col=#939598 w=0.5 n=1
+D s    396.0  567.0  396.0  579.5 fill=None col=#939598 w=0.5 n=1
+D s     36.0  579.7  216.0  579.7 fill=None col=#939598 w=0.5 n=1
+D s    216.0  579.7  396.0  579.7 fill=None col=#939598 w=0.5 n=1
+D s    396.0  579.7  576.0  579.7 fill=None col=#939598 w=0.5 n=1
+T   40.0  583.6  118.6  594.7  9.0 MyriadPro-Bold       #231f20 'View Commentary  '
+T   40.0  608.6  254.1  621.0 10.0 MyriadPro-Bold       #231f20 'Site Features and Impact to Value/Marketability'
+D s     36.0  615.0  576.0  615.0 fill=None col=#e6e7e8 w=15.0 n=1
+T   40.0  624.6   71.4  635.8  9.0 MyriadPro-Bold       #231f20 'Feature'
+T  175.0  624.6  199.5  635.8  9.0 MyriadPro-Bold       #231f20 'Detail'
+T  310.0  624.6  338.4  635.8  9.0 MyriadPro-Bold       #231f20 'Impact'
+T  370.0  624.6  409.8  635.8  9.0 MyriadPro-Bold       #231f20 'Comment'
+D s     36.0  635.8  171.0  635.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  635.8  306.0  635.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  635.8  366.0  635.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  635.8  576.0  635.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  636.0  171.0  648.5 fill=None col=#939598 w=0.5 n=1
+D s    306.0  636.0  306.0  648.5 fill=None col=#939598 w=0.5 n=1
+D s    366.0  636.0  366.0  648.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  638.0  139.9  647.6  8.0 MyriadPro-Regular    #231f20 'Non-Residential Property Use'
+D s     36.0  648.8  171.0  648.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  648.8  306.0  648.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  648.8  366.0  648.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  648.8  576.0  648.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  649.0  171.0  661.5 fill=None col=#939598 w=0.5 n=1
+D s    306.0  649.0  306.0  661.5 fill=None col=#939598 w=0.5 n=1
+D s    366.0  649.0  366.0  661.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  651.0   83.1  660.6  8.0 MyriadPro-Regular    #231f20 'Hazard Zone'
+D s     36.0  661.8  171.0  661.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  661.8  306.0  661.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  661.8  366.0  661.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  661.8  576.0  661.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  662.0  171.0  674.5 fill=None col=#939598 w=0.5 n=1
+D s    306.0  662.0  306.0  674.5 fill=None col=#939598 w=0.5 n=1
+D s    366.0  662.0  366.0  674.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  664.0  107.9  673.6  8.0 MyriadPro-Regular    #231f20 'Property Restriction'
+D s     36.0  674.8  171.0  674.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  674.8  306.0  674.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  674.8  366.0  674.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  674.8  576.0  674.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  675.0  171.0  687.5 fill=None col=#939598 w=0.5 n=1
+D s    306.0  675.0  306.0  687.5 fill=None col=#939598 w=0.5 n=1
+D s    366.0  675.0  366.0  687.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  677.0   73.3  686.6  8.0 MyriadPro-Regular    #231f20 'Easement'
+D s     36.0  687.8  171.0  687.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  687.8  306.0  687.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  687.8  366.0  687.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  687.8  576.0  687.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  688.0  171.0  700.5 fill=None col=#939598 w=0.5 n=1
+D s    306.0  688.0  306.0  700.5 fill=None col=#939598 w=0.5 n=1
+D s    366.0  688.0  366.0  700.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  690.0   89.2  699.6  8.0 MyriadPro-Regular    #231f20 'Encroachment'
+D s     36.0  700.8  171.0  700.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  700.8  306.0  700.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  700.8  366.0  700.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  700.8  576.0  700.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  701.0  171.0  713.5 fill=None col=#939598 w=0.5 n=1
+D s    306.0  701.0  306.0  713.5 fill=None col=#939598 w=0.5 n=1
+D s    366.0  701.0  366.0  713.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  703.0  100.6  712.6  8.0 MyriadPro-Regular    #231f20 'Site Characteristic'
+D s     36.0  713.8  171.0  713.8 fill=None col=#939598 w=0.5 n=1
+D s    171.0  713.8  306.0  713.8 fill=None col=#939598 w=0.5 n=1
+D s    306.0  713.8  366.0  713.8 fill=None col=#939598 w=0.5 n=1
+D s    366.0  713.8  576.0  713.8 fill=None col=#939598 w=0.5 n=1
+T   40.0  717.6  151.4  728.8  9.0 MyriadPro-Bold       #231f20 'Site Features Commentary  '
+T   40.0  742.6  231.1  755.0 10.0 MyriadPro-Bold       #231f20 'Utilities and Impact to Value/Marketability'
+D s     36.0  749.0  576.0  749.0 fill=None col=#e6e7e8 w=15.0 n=1
+T   40.0  758.6  160.7  769.8  9.0 MyriadPro-Bold       #231f20 'Broadband Internet Available'
+T  316.0  758.6  442.6  769.8  9.0 MyriadPro-Bold       #231f20 'Dwelling/Improvement within  '
+D s     36.0  769.8  300.0  769.8 fill=None col=#939598 w=0.5 n=1
+T  316.0  771.6  383.3  782.8  9.0 MyriadPro-Bold       #231f20 'Utility Easement'
+D s    312.0  782.8  576.0  782.8 fill=None col=#939598 w=0.5 n=1
+T  304.0  790.6  362.2  801.8  9.0 MyriadPro-Bold       #231f20 'Private Utility '
+T  124.0  800.6  149.2  811.8  9.0 MyriadPro-Bold       #231f20 'Public'
+T  172.0  800.6  201.0  811.8  9.0 MyriadPro-Bold       #231f20 'Private'
+T  220.0  800.6  244.5  811.8  9.0 MyriadPro-Bold       #231f20 'Detail'
+T  304.0  800.6  332.4  811.8  9.0 MyriadPro-Bold       #231f20 'Impact'
+T  388.0  800.6  427.7  811.8  9.0 MyriadPro-Bold       #231f20 'Comment'
+D s     36.0  811.8  120.0  811.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  811.8  168.0  811.8 fill=None col=#939598 w=0.5 n=1
+D s    168.0  811.8  216.0  811.8 fill=None col=#939598 w=0.5 n=1
+D s    216.0  811.8  300.0  811.8 fill=None col=#939598 w=0.5 n=1
+D s    300.0  811.8  384.0  811.8 fill=None col=#939598 w=0.5 n=1
+D s    384.0  811.8  576.0  811.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  812.0  120.0  824.5 fill=None col=#939598 w=0.5 n=1
+D s    168.0  812.0  168.0  824.5 fill=None col=#939598 w=0.5 n=1
+D s    216.0  812.0  216.0  824.5 fill=None col=#939598 w=0.5 n=1
+D s    300.0  812.0  300.0  824.5 fill=None col=#939598 w=0.5 n=1
+D s    384.0  812.0  384.0  824.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  814.0   73.5  823.6  8.0 MyriadPro-Regular    #231f20 'Electricity'
+D s     36.0  824.8  120.0  824.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  824.8  168.0  824.8 fill=None col=#939598 w=0.5 n=1
+D s    168.0  824.8  216.0  824.8 fill=None col=#939598 w=0.5 n=1
+D s    216.0  824.8  300.0  824.8 fill=None col=#939598 w=0.5 n=1
+D s    300.0  824.8  384.0  824.8 fill=None col=#939598 w=0.5 n=1
+D s    384.0  824.8  576.0  824.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  825.0  120.0  837.5 fill=None col=#939598 w=0.5 n=1
+D s    168.0  825.0  168.0  837.5 fill=None col=#939598 w=0.5 n=1
+D s    216.0  825.0  216.0  837.5 fill=None col=#939598 w=0.5 n=1
+D s    300.0  825.0  300.0  837.5 fill=None col=#939598 w=0.5 n=1
+D s    384.0  825.0  384.0  837.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  827.0   52.3  836.6  8.0 MyriadPro-Regular    #231f20 'Gas'
+D s     36.0  837.8  120.0  837.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  837.8  168.0  837.8 fill=None col=#939598 w=0.5 n=1
+D s    168.0  837.8  216.0  837.8 fill=None col=#939598 w=0.5 n=1
+D s    216.0  837.8  300.0  837.8 fill=None col=#939598 w=0.5 n=1
+D s    300.0  837.8  384.0  837.8 fill=None col=#939598 w=0.5 n=1
+D s    384.0  837.8  576.0  837.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  838.0  120.0  850.5 fill=None col=#939598 w=0.5 n=1
+D s    168.0  838.0  168.0  850.5 fill=None col=#939598 w=0.5 n=1
+D s    216.0  838.0  216.0  850.5 fill=None col=#939598 w=0.5 n=1
+D s    300.0  838.0  300.0  850.5 fill=None col=#939598 w=0.5 n=1
+D s    384.0  838.0  384.0  850.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  840.0   90.2  849.6  8.0 MyriadPro-Regular    #231f20 'Sanitary Sewer'
+D s     36.0  850.8  120.0  850.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  850.8  168.0  850.8 fill=None col=#939598 w=0.5 n=1
+D s    168.0  850.8  216.0  850.8 fill=None col=#939598 w=0.5 n=1
+D s    216.0  850.8  300.0  850.8 fill=None col=#939598 w=0.5 n=1
+D s    300.0  850.8  384.0  850.8 fill=None col=#939598 w=0.5 n=1
+D s    384.0  850.8  576.0  850.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  851.0  120.0  863.5 fill=None col=#939598 w=0.5 n=1
+D s    168.0  851.0  168.0  863.5 fill=None col=#939598 w=0.5 n=1
+D s    216.0  851.0  216.0  863.5 fill=None col=#939598 w=0.5 n=1
+D s    300.0  851.0  300.0  863.5 fill=None col=#939598 w=0.5 n=1
+D s    384.0  851.0  384.0  863.5 fill=None col=#939598 w=0.5 n=1
+T   40.0  853.0   59.9  862.6  8.0 MyriadPro-Regular    #231f20 'Water'
+D s     36.0  863.8  120.0  863.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  863.8  168.0  863.8 fill=None col=#939598 w=0.5 n=1
+D s    168.0  863.8  216.0  863.8 fill=None col=#939598 w=0.5 n=1
+D s    216.0  863.8  300.0  863.8 fill=None col=#939598 w=0.5 n=1
+D s    300.0  863.8  384.0  863.8 fill=None col=#939598 w=0.5 n=1
+D s    384.0  863.8  576.0  863.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  864.0  120.0  876.5 fill=None col=#939598 w=0.5 n=1
+D s    168.0  864.0  168.0  876.5 fill=None col=#939598 w=0.5 n=1
+D s    216.0  864.0  216.0  876.5 fill=None col=#939598 w=0.5 n=1
+D s    300.0  864.0  300.0  876.5 fill=None col=#939598 w=0.5 n=1
+D s    384.0  864.0  384.0  876.5 fill=None col=#939598 w=0.5 n=1
+D s     36.0  876.8  120.0  876.8 fill=None col=#939598 w=0.5 n=1
+D s    120.0  876.8  168.0  876.8 fill=None col=#939598 w=0.5 n=1
+D s    168.0  876.8  216.0  876.8 fill=None col=#939598 w=0.5 n=1
+D s    216.0  876.8  300.0  876.8 fill=None col=#939598 w=0.5 n=1
+D s    300.0  876.8  384.0  876.8 fill=None col=#939598 w=0.5 n=1
+D s    384.0  876.8  576.0  876.8 fill=None col=#939598 w=0.5 n=1
+D s     36.0  934.0  576.0  934.0 fill=None col=#231f20 w=2.0 n=1
+T   36.0  945.1  106.3  955.0  8.0 MyriadPro-Bold       #231f20 'Appraisal Version #'
+T  416.3  945.1  500.0  955.0  8.0 MyriadPro-Bold       #231f20 'Appraiser Reference ID'
+T  429.9  954.1  500.0  964.0  8.0 MyriadPro-Bold       #231f20 'Agency Case File ID'
+T   36.0  963.1  129.1  973.0  8.0 MyriadPro-Bold       #77787b 'Fannie Mae | Freddie Mac '
+T  430.7  963.1  500.0  973.0  8.0 MyriadPro-Bold       #231f20 'Client Reference ID'
+T   36.0  972.1   95.9  982.0  8.0 MyriadPro-Bold       #77787b 'September 2024'
+T  435.2  972.1  500.0  982.0  8.0 MyriadPro-Bold       #231f20 'AMC Reference ID'

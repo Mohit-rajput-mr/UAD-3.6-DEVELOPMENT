@@ -1,0 +1,2406 @@
+[
+ [
+  "log",
+  "propertyOrdinalNumbersMap: {}"
+ ],
+ [
+  "log",
+  "propertyImprovementsMap: {}"
+ ],
+ [
+  "log",
+  "propertyUnitsMap: {}"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "true"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "true"
+ ],
+ [
+  "log",
+  "true"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "true"
+ ],
+ [
+  "log",
+  "true"
+ ],
+ [
+  "log",
+  "true"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "log",
+  "false"
+ ],
+ [
+  "warn",
+  "Warning Data layer group is not found for repeatable key 'ssob1-sum-addd-ob-outbuilding-table' (requested 'ssob1-sum-addd-ob-outbuilding-table'). warning"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_KITCHENS color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_KITCHENS color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_HEATING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_HEATING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_COOLING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_COOLING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_UTILITIES color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_UTILITIES color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_OUTBUILDING_UTILITIES_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_BL_OUTBUILDING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_BL_OUTBUILDING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_BL_OUTBUILDING color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_PRESENT color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_PRESENT color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_TERMS color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_TERMS color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_PSH_TRANSFER_HISTORY_TERMS_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_PSH_TRANSFER_HISTORY_TERMS_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_DATE color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_DATE color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_AMOUNT color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_AMOUNT color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_DFE_TRANSFER_HISTORY_AMOUNT_VALUE color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_DFE_TRANSFER_HISTORY_AMOUNT_VALUE color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_DFE_TRANSFER_HISTORY_AMOUNT_REASON_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_SOURCE color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_TRANSFER_HISTORY_SOURCE color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_PSH_TRANSFER_HISTORY_SOURCE_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "log",
+  "%c UpdateTemplateFieldInstances exception: newField undefined oldField: GC1_PSH_TRANSFER_HISTORY_SOURCE_OTHER color: red; font-weight: bold;"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_UNIT_ID."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_UNIT_ID.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/index.js:"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_UNITS_IS_AN_ADU."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_UNITS_IS_AN_ADU.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/i"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_LOC_ADU."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_LOC_ADU.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/index.js:"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_PU_LOC_ADU_TYPE."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_PU_LOC_ADU_TYPE.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/i"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_PU_LOC_ADU_DESC."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_PU_LOC_ADU_DESC.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/i"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_PU_LOC_ADU_DESC_OTHER."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_PU_LOC_ADU_DESC_OTHER.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1."
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_LOC_ADU_ADJ."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_LOC_ADU_ADJ.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/index"
+ ],
+ [
+  "error",
+  "Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_FLOOR_NUM."
+ ],
+ [
+  "log",
+  "ConsoleError event fired: {\"message\":\"Field count mismatch in SetSectionTemplateDynamicFieldGroupValues: GC4_FLOOR_NUM.\",\"stack\":\"Error\\n    at console.error (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4496414)\\n    at console.<computed> [as error] (<anonymous>:12:19)\\n    at FormsDataSet.SetSectionTemplateDynamicFieldGroupValues (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4640065)\\n    at FormsDataSet.RemoveSectionTemplateDataFields (https://uadwebengine.alamode.com/0.0.1.3848/index.js:2:4657227)\\n    at SalesCompInformation.RemoveCompSection (https://uadwebengine.alamode.com/0.0.1.3848/index.j"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key parking-space-assignment-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key vehicle-storage-type-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key storage-space-square-feet-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key STORAGE_POPUP|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key subject-listing-info-exhibits|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key listing-info-exhibits-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key listing-info-exhibits-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key subject-listing-info-exhibits|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key subject-listing-info-exhibits|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key listing-info-exhibits-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key rec-addd-subject-property-amenities-section|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key rec-addd-subject-property-amenities-section-box|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key flow-rec-cost-to-repair|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key flow-rec-apparent-defects|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key flow-rec-apparent-defects-none|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-observed-deficiency|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-project-completeness|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-proj-name|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-total-units|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-sold|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-for-sale|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-reason-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-amnnt-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-expires-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-years-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail-charge|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-units-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-units-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-units-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key amentity-detail-area|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key dwellings-containing-units|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-observed-deficiency|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-project-completeness|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-proj-name|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-total-units|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-sold|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-for-sale|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-reason-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-amnnt-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-expires-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-years-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail-charge|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-units-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-units-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-units-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-units-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-observed-deficiency|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-project-completeness|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-proj-name|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-total-units|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-sold|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-for-sale|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-reason-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-amnnt-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-expires-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key incomplete-project-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-years-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key converted-past-3-years-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail-charge|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail-charge|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pdr|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key ui1-access-features-defects|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key ui1-access-features-defects-none|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key rec-reasonable-exposure-time-range|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key rec-reasonable-exposure-time-precise|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-subj-prop-complete-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-usao-lbl|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-usao-val|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-observed-deficiency|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-project-completeness|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-proj-name|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-total-units|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-sold|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-for-sale|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-reason-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-usao-lbl|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-usao-val|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail-charge|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-observed-deficiency|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key prj-info-project-completeness|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-proj-name|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-total-units|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-sold|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-for-sale|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-reason-units-rented|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key proj-info-amenities-services|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-usao-lbl|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key gen-info-pi-usao-val|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-ground-rent-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharedissues-otstanding|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-sharredattr-subj-property|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key pi-property-lease-expires|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key cooperative-information|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key project-blanket-financing|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key se-ownership-of-multiple-shares-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key single-entity-ownership-shares-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key commercial-space-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key known-legal-actions-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-transfer-fees-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-detail-charge|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-special-assessments-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-item|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-impact|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key unit-tax-abatements-comment|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "%c Key salescomp-grid-1|0 visible property changed twice within 50ms. Developer please correct. background: #770000; color: #FFFFFF"
+ ],
+ [
+  "log",
+  "ExecuteAllRules completed. Global RTV info: 274 errors found."
+ ],
+ [
+  "log",
+  "MISMO XML import completed in 62.00s"
+ ],
+ [
+  "log",
+  "%c Render started: RenderMode: DataEntry - CurrentActiveSectionKey: income-approach background: #222; color: #e012e0"
+ ],
+ [
+  "log",
+  "GetReportDataExchange: 494 ms"
+ ]
+]

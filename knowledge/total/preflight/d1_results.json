@@ -1,0 +1,32 @@
+{
+ "../knowledge/total/e2e/0.0.1.3848/2- to 4-unit_Appraisal/portable.xml": [
+  {
+   "severity": "warning",
+   "rule": "P22",
+   "catalog": "E-039",
+   "where": "INSPECTIONS/INSPECTION/IMAGES/IMAGE",
+   "message": "subject photo \\\\Images\\2-4_SubjectProperty.png is not building 1's front photo \\\\Images\\2-4_Dwelling1Front.png",
+   "fix": "TOTAL delivers building 1's front photo as the subject photo: use the same picture for both, or accept that this subject photo will not be delivered"
+  }
+ ],
+ "../knowledge/total/e2e/0.0.1.3848/2- to 4-unit_Scenario_2_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/Condo1_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/Condo2_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/Coop1_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/MH1_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/MH2_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/SF1_Appraisal/portable.xml": [
+  {
+   "severity": "warning",
+   "rule": "P22",
+   "catalog": "E-039",
+   "where": "SubjectProperty",
+   "message": "2 DwellingFront picture(s) for 1 building(s)",
+   "fix": "one DwellingFront per building, in building order (TOTAL files the n-th as building n's front)"
+  }
+ ],
+ "../knowledge/total/e2e/0.0.1.3848/SF2_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/SF3_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/SF4_Appraisal/portable.xml": [],
+ "../knowledge/total/e2e/0.0.1.3848/SF5_Appraisal/portable.xml": []
+}

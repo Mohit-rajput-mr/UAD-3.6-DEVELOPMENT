@@ -1,0 +1,326 @@
+{
+ "case": {
+  "case_id": "fb61011842c0",
+  "name": "E2E Condo2_Appraisal",
+  "template": "condo1_appraisal_v1_4",
+  "property_type": "condominium",
+  "state": "draft",
+  "created": "2026-09-28T13:17:53+00:00",
+  "updated": "2026-09-28T13:17:53+00:00",
+  "signed_by": "",
+  "signed_at": "",
+  "acknowledged": [],
+  "can": [
+   "in_review"
+  ]
+ },
+ "report": {
+  "xml_name": "Condo2_Appraisal_v1.4.xml",
+  "property_type": "condominium",
+  "values": 1252,
+  "on_report": 985,
+  "not_displayed": 267,
+  "comparables": {
+   "SalesComparable": 4,
+   "RentalComparable": 4
+  },
+  "normalised": [
+   [
+    "ObjectURL",
+    "Condo2_Appraisal_v1.4.pdf",
+    "previous report PDF: redrawn from the data"
+   ]
+  ],
+  "invalid": [],
+  "dropped": [],
+  "pictures_placed": [
+   {
+    "name": "Condo2_Bedroom1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Bedroom2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_FullBath1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_FamilyRoom1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Sunroom.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Bedroom3.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Office.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_DiningRoom.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_FamilyRoom2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_FullBath2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_HalfBath.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Kitchen.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Mudroom.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_DwellingFront.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_DwellingFront-1.jpg",
+    "category": "DwellingFront",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_PropertyAccess1.jpg",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_PropertyAccess2.jpg",
+    "category": "PropertyAccess",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_ComparableMap.jpg",
+    "category": "SalesComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_ComparableMap-1.jpg",
+    "category": "RentalComparableMap",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Floorplan.jpg",
+    "category": "FloorPlan",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_GolfCourse.jpg",
+    "category": "SiteInfluence",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_GolfCourse-1.jpg",
+    "category": "View",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_NoncontinuousArea.jpg",
+    "category": "NoncontinuousArea",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_DwellingRear.jpg",
+    "category": "DwellingRear",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Clubhouse.jpg",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_FrontGate.jpg",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_IngroundPool.jpg",
+    "category": "ProjectAmenity",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Patio.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Porch.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_IndoorFireplace1.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_IndoorFireplace2.jpg",
+    "category": "",
+    "owner": "SubjectProperty",
+    "comparable": 0,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Comp1.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Comp2.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Comp3.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_Comp4.jpg",
+    "category": "PropertyPhoto",
+    "owner": "SalesComparable",
+    "comparable": 4,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_RentComp1.jpg",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 1,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_RentComp2.jpg",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 2,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_RentComp3.jpg",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 3,
+    "source": "bundle"
+   },
+   {
+    "name": "Condo2_RentComp4.jpg",
+    "category": "PropertyPhoto",
+    "owner": "RentalComparable",
+    "comparable": 4,
+    "source": "bundle"
+   }
+  ],
+  "pictures_missing": [],
+  "pictures_unreferenced": [],
+  "documents": [],
+  "schema_errors": [],
+  "compliance": {
+   "schema": 0,
+   "fatal": 0,
+   "warning": 0,
+   "review": 171
+  },
+  "seconds": 0.89,
+  "normalised_count": 1,
+  "invalid_count": 0,
+  "dropped_count": 0
+ }
+}

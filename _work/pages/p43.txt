@@ -1,0 +1,40 @@
+Nassau 1004MC
+1004MC with sale date range of 09/14/2025 - 09/13/2026
+Inventory Analysis
+Prior 7-12 Months
+Prior 4-6 Months
+Current-3 Months
+Total
+Total # of Comparable Sales
+69
+37
+42
+148
+Absorption Rate(# Comparables/ # Months)
+11.50
+12.33
+14.00
+12.33
+Total # of Comparable Active Listings
+0
+0
+Months of Housing Supply (Total Listings/Ab. Rate)
+0
+0
+Median Comparable List Price
+$0
+$0
+Median Sale Price as % of List Price
+0
+0
+Median Comparable Sale Price
+$1,450,000
+$1,460,000
+$1,875,000
+$1,564,000
+Total # of Comparable Sales w/o Foreclosures*
+69
+37
+42
+148
+* ATTOM Data Solutions determines a foreclosure as any property that sold within 12 months of a lis pendens being filed upon it.

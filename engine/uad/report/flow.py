@@ -1,0 +1,1836 @@
+"""Pour the form's blocks onto Legal pages by measuring them.
+
+The blocks from ``form.build`` are laid out once as a galley at the report's
+45-pica measure, every block's real height (and every row inside a two-column
+block or table) is read back from the browser, and page breaks are placed where
+the content runs out -- following Appendix E's rules:
+
+* a section tab, bar or subheading never ends a page; it moves with what
+  follows it;
+* a section carried onto a new page reopens with its tab and "(continued)"
+  (TAB-C);
+* Assignment Information, Sales Comparison Approach and the Scope of Work
+  begin a new page (Part 2);
+* a table breaks only where it has to, and repeats its column heads.
+"""
+from __future__ import annotations
+
+import asyncio
+import json
+import sys
+from dataclasses import dataclass, field
+from typing import Any, Iterable
+
+from lxml import etree
+from uad.report.browser import sync_playwright  # optional: BrowserUnavailable without Chromium
+
+from .. import bind
+from . import form, page
+
+
+def _allow_subprocesses() -> None:
+    """Let Playwright start Chromium from inside the server.
+
+    Measuring the page needs a real browser, and starting one needs an event
+    loop that can spawn a child process.  On Windows uvicorn installs the
+    selector loop, which cannot, so every route that renders -- the preview,
+    the PDF, the package -- failed inside the running application while
+    working perfectly from a test or the command line, because both of those
+    get the default loop instead.  The policy only governs loops created after
+    it, so the server's own running loop is untouched.
+    """
+    if sys.platform != "win32":
+        return
+    proactor = getattr(asyncio, "WindowsProactorEventLoopPolicy", None)
+    if proactor is not None and not isinstance(
+            asyncio.get_event_loop_policy(), proactor):
+        asyncio.set_event_loop_policy(proactor())
+
+
+BODY_TOP = 62.4
+BODY_TOP_FIRST = 55.9
+BODY_BOTTOM = 926.0
+PX = 72 / 96
+
+MEASURE_JS = """
+() => {
+  const px = 72 / 96;
+  const out = [];
+  const galley = document.getElementById('galley');
+  // A block's border box is not what it costs a page.  The gap in front of it
+  // -- its own margin, collapsed with the previous block's -- is real vertical
+  // space that getBoundingClientRect().height does not report, and leaving it
+  // out is what put content off the bottom of the page.  Measure it as the
+  // distance from the previous block's bottom: that is what the browser did
+  // after collapsing, so the planner and the page agree by construction.
+  let prevBottom = galley.getBoundingClientRect().top;
+  for (const blk of document.querySelectorAll('#galley > .blk')) {
+    const r = blk.getBoundingClientRect();
+    const lead = Math.max(0, r.top - prevBottom) * px;
+    prevBottom = r.bottom;
+    const e = {n: +blk.dataset.n, kind: blk.dataset.kind, group: +blk.dataset.group,
+               section: blk.dataset.section || '', newpage: !!blk.dataset.newpage,
+               height: r.height * px, lead: lead, cols: [], rows: [], head: '',
+               html: blk.innerHTML, outer: blk.outerHTML.slice(0, 80)};
+    if (blk.classList.contains('cols')) {
+      for (const col of blk.querySelectorAll(':scope > .col')) {
+        const kids = Array.from(col.children);
+        const top = col.getBoundingClientRect().top;
+        const items = [];
+        // An item costs its own box plus the gap in front of it.  Measuring
+        // top-to-top instead charges that gap to the item above, which is
+        // wrong the moment the column is split: the slice below starts with a
+        // gap nobody paid for, and the page runs long by exactly that much.
+        // A .col is a flex item, so it is a block formatting context and the
+        // gap is inside it -- it renders at the top of a slice too.
+        let prevBottom = top;
+        for (let i = 0; i < kids.length; i++) {
+          const k = kids[i];
+          const kr = k.getBoundingClientRect();
+          const lead = Math.max(0, kr.top - prevBottom);
+          let bottom = kr.bottom;
+          let html = k.outerHTML;
+          const next = kids[i + 1];
+          // a Yes/No header travels with the checkbox under it
+          if (k.classList.contains('yn') && next) {
+            bottom = next.getBoundingClientRect().bottom;
+            html += next.outerHTML;
+            i++;
+          }
+          items.push({html: html, top: (kr.top - top) * px,
+                      height: (lead + bottom - kr.top) * px});
+          prevBottom = bottom;
+        }
+        e.cols.push(items);
+      }
+    }
+    const table = blk.querySelector(':scope > table');
+    if (table) {
+      const head = table.querySelector('thead');
+      const cg = table.querySelector('colgroup');
+      e.head = (cg ? cg.outerHTML : '') + (head ? head.outerHTML : '');
+      e.tableOpen = table.outerHTML.slice(0, table.outerHTML.indexOf('>') + 1);
+      e.headHeight = head ? head.getBoundingClientRect().height * px : 0;
+      // A grid's head gains its Property Address row on a continued page;
+      // measure that head too, so the continued slice is charged for it.
+      e.contHeadHeight = e.headHeight;
+      if (table.querySelector('thead tr.tca')) {
+        table.classList.add('cont');
+        e.contHeadHeight = head.getBoundingClientRect().height * px;
+        table.classList.remove('cont');
+      }
+      for (const tr of table.querySelectorAll('tbody > tr')) {
+        e.rows.push({html: tr.outerHTML, height: tr.getBoundingClientRect().height * px,
+                     sub: tr.classList.contains('sub')});
+      }
+    }
+    out.push(e);
+  }
+  return out;
+}
+"""
+
+
+@dataclass
+class Piece:
+    html: str
+    section: str
+    # What the planner charged this piece, in points.  Kept so the rendered
+    # page can be compared against the plan piece by piece: a block whose real
+    # height exceeds its charge is the thing that pushes content off the page.
+    charged: float = 0.0
+
+
+@dataclass
+class Page:
+    pieces: list[Piece] = field(default_factory=list)
+    first: bool = False
+    # What the planner believed the content bottom would be.  ``verify`` reads
+    # the real one back; the two disagreeing is the bug that puts content off
+    # the page, so the number is kept rather than thrown away.
+    planned: float = 0.0
+
+
+def _galley(blocks: list[form.Block], *, embed_fonts: bool,
+            edit: bool = False) -> str:
+    return (f"<!doctype html><html><head><meta charset='utf-8'><style>"
+            f"{form.stylesheet(embed_fonts=embed_fonts, edit=edit)}"
+            f"#galley{{width:540pt;margin-left:36pt}}"
+            f"#galley > .blk:not(.cols){{display:flow-root}}</style></head><body>"
+            f"<div class='hi'><div class='hz'>"
+            f"<div id='galley'>{form.galley_html(blocks, edit)}</div></div></div></body></html>")
+
+
+def measure(html: str) -> list[dict]:
+    _allow_subprocesses()
+    with sync_playwright() as p:
+        browser = p.chromium.launch(args=["--font-render-hinting=none"])
+        try:
+            pg = browser.new_page(viewport={"width": 900, "height": 1400},
+                                  device_scale_factor=1)
+            pg.set_content(html, wait_until="load", timeout=90_000)
+            pg.evaluate("document.fonts.ready")
+            pg.wait_for_timeout(150)
+            return pg.evaluate(MEASURE_JS)
+        finally:
+            browser.close()
+
+
+def _tab(section: str, continued: bool) -> str:
+    cont = "<span class='cont'>(continued)</span>" if continued else ""
+    return (f"<div class='blk tabblk'><div class='tabwrap'><span class='tab'>"
+            f"{form.esc(section)}{cont}</span></div></div>")
+
+
+TAB_H = 15.0 + 10.8
+
+
+def plan(blocks: list[dict], caps: dict[int, float] | None = None) -> list[Page]:
+    caps = caps or {}
+    pages: list[Page] = [Page(first=True)]
+    y = BODY_TOP_FIRST
+    current_section = ""
+
+    def room() -> float:
+        return caps.get(len(pages), BODY_BOTTOM) - y
+
+    def new_page(section: str | None = None, *, continued: bool = True) -> None:
+        nonlocal y
+        pages.append(Page())
+        y = BODY_TOP
+        if section and continued:
+            pages[-1].pieces.append(Piece(_tab(section, True), section, TAB_H))
+            y += TAB_H
+        pages[-1].planned = y
+
+    def at_top() -> bool:
+        """Is this the start of the page's content?  Used to decide breaks --
+        starting yet another page would put nothing on this one."""
+        return not pages[-1].pieces or (len(pages[-1].pieces) == 1 and
+                                        "(continued)" in pages[-1].pieces[0].html)
+
+    def empty() -> bool:
+        """Is there really nothing above this block?
+
+        Only then is its leading margin not rendered.  A carried section's
+        "(continued)" tab is content: the block under it still spaces itself
+        away from the tab, and charging it as though it were flush with the
+        top of the page loses that gap on every carried section."""
+        return not pages[-1].pieces
+
+    def place(html: str, height: float, lead: float, section: str) -> None:
+        nonlocal y
+        if empty():
+            # Nothing above it to space away from, and `.top` zeroes the margin
+            # in the stylesheet, so the page must not be charged for it either.
+            lead = 0.0
+            html = html.replace("class='blk", "class='blk top", 1)
+        pages[-1].pieces.append(Piece(html, section, lead + height))
+        y += lead + height
+        pages[-1].planned = y
+
+    i = 0
+    while i < len(blocks):
+        b = blocks[i]
+        section = b["section"]
+        wrap_open = (f"<div class='blk {'cols' if b['kind'] == 'cols' else 'solid ' + b['kind']}'>")
+
+        if b["kind"] == "tab":
+            current_section = section
+            nxt = blocks[i + 1] if i + 1 < len(blocks) else None
+            need = b["lead"] + b["height"] + _first_line(nxt)
+            if b["newpage"] and pages[-1].pieces:
+                new_page(None, continued=False)
+            elif need > room() and pages[-1].pieces:
+                new_page(None, continued=False)
+            place(_tab(section, False), b["height"], b["lead"], section)
+            i += 1
+            continue
+
+        if b["group"] in (1, 2):           # h1 / h2 keep with next
+            nxt = blocks[i + 1] if i + 1 < len(blocks) else None
+            need = b["lead"] + b["height"] + _first_line(nxt)
+            if need > room() and not at_top():
+                new_page(current_section)
+            if b.get("newpage") and not at_top():
+                new_page(None, continued=False)
+            place(f"<div class='blk solid'>{b['html']}</div>", b["height"], b["lead"], section)
+            i += 1
+            continue
+
+        if b["kind"] == "cols":
+            left, right = (b["cols"] + [[], []])[:2]
+            li = ri = 0
+            first = True
+            while li < len(left) or ri < len(right):
+                lead = 0.0 if (empty() or not first) else b["lead"]
+                avail = room() - lead
+                nl, hl = _fill(left, li, avail)
+                nr, hr = _fill(right, ri, avail)
+                if nl == li and nr == ri:
+                    if not at_top():
+                        new_page(current_section)
+                        continue
+                    if li < len(left):
+                        nl, hl = li + 1, left[li]["height"]
+                    else:
+                        nr, hr = ri + 1, right[ri]["height"]
+                gapcls = " gap" if (first and "blk cols gap" in b["outer"]) else ""
+                topcls = " top" if empty() else ""
+                html = (f"<div class='blk cols{gapcls}{topcls}'><div class='col left'>"
+                        + "".join(it["html"] for it in left[li:nl])
+                        + "</div><div class='col right'>"
+                        + "".join(it["html"] for it in right[ri:nr]) + "</div></div>")
+                pages[-1].pieces.append(Piece(html, section, lead + max(hl, hr)))
+                y += lead + max(hl, hr)
+                pages[-1].planned = y
+                li, ri = nl, nr
+                first = False
+                if li < len(left) or ri < len(right):
+                    new_page(current_section)
+            i += 1
+            continue
+
+        if b.get("newpage") and b["kind"] == "grid" and not at_top():
+            new_page(current_section)
+            continue
+
+        if b["rows"] and b["lead"] + b["height"] > room() and b["kind"] in ("table", "grid"):
+            # a table that does not fit: move it whole if it fits a page,
+            # otherwise break it between rows and repeat its heads
+            body_h = BODY_BOTTOM - BODY_TOP - TAB_H
+            if b["height"] <= body_h and not at_top():
+                new_page(current_section)
+                continue
+            rows = b["rows"]
+            ri = 0
+            first = True
+            while ri < len(rows):
+                lead = 0.0 if (empty() or not first) else b["lead"]
+                head_h = b.get("headHeight", 0) if first else b.get("contHeadHeight", b.get("headHeight", 0))
+                avail = room() - lead - head_h - 8
+                nr, hr = _fill(rows, ri, avail)
+                if nr == ri:
+                    if not at_top():
+                        new_page(current_section)
+                        continue
+                    nr, hr = ri + 1, rows[ri]["height"]
+                topcls = " top" if empty() else ""
+                opener = b['tableOpen'] if first else b['tableOpen'].replace("class=\"grid\"", "class=\"grid cont\"").replace("class='grid'", "class='grid cont'")
+                html = (f"<div class='blk solid {b['kind']}{topcls}'>{opener}{b['head']}<tbody>"
+                        + "".join(r["html"] for r in rows[ri:nr]) + "</tbody></table></div>")
+                pages[-1].pieces.append(
+                    Piece(html, section, lead + hr + head_h + 8))
+                y += lead + hr + head_h + 8
+                pages[-1].planned = y
+                ri = nr
+                first = False
+                if ri < len(rows):
+                    new_page(current_section)
+            i += 1
+            continue
+
+        if b["lead"] + b["height"] > room() and not at_top():
+            new_page(current_section)
+            continue
+        place(f"<div class='blk solid {b['kind']}'>{b['html']}</div>", b["height"], b["lead"], section)
+        i += 1
+    return [p for p in pages if p.pieces]
+
+
+def _first_line(b: dict | None) -> float:
+    if b is None:
+        return 0.0
+    lead = b.get("lead", 0.0)
+    if b["kind"] == "cols":
+        firsts = [c[0]["height"] for c in b["cols"] if c]
+        return lead + (max(firsts) if firsts else 13.0)
+    if b["rows"]:
+        return lead + b.get("headHeight", 0) + b["rows"][0]["height"] + 6
+    if b["kind"] == "exhibits":
+        # an image row cannot be split, so a heading keeps with all of it --
+        # otherwise a full-page map leaves its H1 alone at a page foot
+        return lead + b["height"]
+    return lead + min(b["height"], 60.0)
+
+
+def _fill(items: list[dict], start: int, avail: float) -> tuple[int, float]:
+    used, i = 0.0, start
+    while i < len(items) and used + items[i]["height"] <= avail + 0.3:
+        used += items[i]["height"]
+        i += 1
+    return i, used
+
+
+# ---------------------------------------------------------------------------
+# Page furniture
+# ---------------------------------------------------------------------------
+@dataclass
+class Meta:
+    version: str = "Appraisal Version #1"
+    issuer: str = "Fannie Mae | Freddie Mac"
+    form_date: str = "September 2024"
+    references: list[tuple[str, str]] = field(default_factory=list)
+
+    @classmethod
+    def from_case(cls, tree) -> "Meta":
+        from . import urar
+        m = urar.Meta.from_case(tree)
+        return cls(m.version, m.issuer, m.form_date, m.references)
+
+
+from functools import lru_cache
+
+
+@lru_cache(maxsize=4)
+def _metrics(face: str):
+    from fontTools.ttLib import TTFont
+    font = TTFont(str(form.fonts.ASSETS / f"{face}.ttf"))
+    return font.getBestCmap(), font["hmtx"], font["head"].unitsPerEm
+
+
+def text_width(text: str, face: str, size: float) -> float:
+    cmap, hmtx, upm = _metrics(face)
+    return sum(hmtx[cmap[ord(c)]][0] for c in text if ord(c) in cmap) / upm * size
+
+
+def _furniture(meta: Meta, n: int, total: int) -> str:
+    head = "" if n == 1 else (
+        f"<div class='hdr-l'>Uniform Residential Appraisal Report</div>"
+        f"<div class='hdr-r'>Page {n} of {total}</div><div class='hdr-rule'></div>")
+    refs = []
+    y = 947.1
+    # Appendix E FTR-R: identifiers align left, the longest ending on the
+    # measure; labels align right one em (measured 11.9 pt) before them.
+    value_x = 576.0 - max((text_width(v, "MyriadPro-Regular", 8.0)
+                           for _l, v in meta.references), default=30.3)
+    label_right = 612.0 - (value_x - 9.7)
+    for label, value in meta.references:
+        refs.append(f"<div class='refl' style='top:{y:.1f}pt;right:{label_right:.2f}pt'>{form.esc(label)}</div>"
+                    f"<div class='refv' style='top:{y:.1f}pt;left:{value_x:.2f}pt'>{form.esc(value)}</div>")
+        y += 9.0
+    foot = ("<div class='ftr-rule'></div><div class='ftr'>"
+            f"<div class='f1'>{form.esc(meta.version)}</div>"
+            f"<div class='f2'>{form.esc(meta.issuer)}</div>"
+            f"<div class='f3'>{form.esc(meta.form_date)}</div>" + "".join(refs) + "</div>")
+    return head + foot
+
+
+FIT_JS = """<script>
+(function(){function fit(){var w=document.documentElement.clientWidth-24;
+w-=(window.UAD_SIDE||0);var z=Math.min(1,w/816);document.querySelectorAll('.page').forEach(function(p){p.style.zoom=z;});}
+window.addEventListener('resize',fit);fit();})();
+</script>"""
+
+
+# Typing on the report writes through the same route the editor uses, so a
+# value set here lands exactly where a value set anywhere else would.  The page
+# is not re-rendered on every keystroke: it would move the caret and cost a
+# layout pass, so the value is left as typed and the page reloads only when the
+# document has been changed underneath it.
+EDIT_JS = """
+<script>
+(function(){
+  var qs=new URLSearchParams(location.search), id=qs.get('case');
+  if(!id) return;
+
+  // Show what is still unanswered from the moment the report opens, so the
+  // whole of what is left is visible before a word is typed.
+  document.body.classList.add('show-gaps');
+
+  /* What an import brought in.  Reading a value back cannot say where it came
+     from, so the import names the fields it answered and they are marked
+     here -- including the Summary, which holds no values of its own but
+     redisplays fields from the rest of the report, so a Summary line counts
+     as imported when the field behind it was. */
+  function markImported(){
+    var fids=window.UAD_IMPORTED;
+    if(!fids||!fids.length) return;
+    document.body.classList.add('has-imported','show-imported');
+    var want=Object.create(null);
+    for(var i=0;i<fids.length;i++) want[fids[i]]=1;
+    var all=document.querySelectorAll('[data-fid],[data-gf],[data-derived]');
+    for(var j=0;j<all.length;j++){
+      var el=all[j];
+      var key=el.getAttribute('data-fid')||el.getAttribute('data-gf')||
+              el.getAttribute('data-derived');
+      if(key&&want[key]) el.classList.add('imported');
+    }
+  }
+  markImported();
+  var parentWin=(window.parent!==window)?window.parent:null;
+  function tell(msg){ if(parentWin) parentWin.postMessage(msg,'*'); }
+  // the pages leave room at their right for Save / Save & Next
+  window.UAD_SIDE=240; document.body.style.boxSizing='border-box';
+  document.body.style.paddingRight='240px'; window.dispatchEvent(new Event('resize'));
+
+  function flash(target){
+    target.classList.add('found');
+    setTimeout(function(){target.classList.remove('found');},1600);
+  }
+  // Every piece of the page names its section (data-secn), so the rail can
+  // go to a section by number, whatever its tab prints ("Certifications",
+  // "Dwelling Exterior - Building 1") and however many pages it runs to.
+  function goSection(n){
+    var t=document.querySelector('[data-secn="'+n+'"]');
+    if(!t) return false;
+    // straight there: a smooth scroll across twenty pages outlasts any lock
+    // and the rail would follow the pages flying past
+    var top=t.getBoundingClientRect().top+window.scrollY-8;
+    spyLock=Date.now()+400; current=String(n);
+    window.scrollTo({top:Math.max(0,top),behavior:'auto'});
+    flash(t);
+    tell({uad:'at',secn:Number(n)});
+    return true;
+  }
+  function goField(fid){
+    var t=document.querySelector('[data-fid="'+fid+'"]');
+    if(!t) return false;
+    spyLock=Date.now()+400;
+    t.scrollIntoView({block:'center',behavior:'auto'});
+    flash(t);
+    var holder=t.closest('[data-secn]');
+    if(holder){ current=holder.dataset.secn; tell({uad:'at',secn:Number(current)}); }
+    return true;
+  }
+  window.addEventListener('message',function(e){
+    var m=e.data||{};
+    if(m.uad==='gaps'){
+      document.body.classList.toggle('show-gaps',!!m.on);
+    }
+    if(m.uad==='imported'){
+      document.body.classList.toggle('show-imported',!!m.on);
+    }
+    if(m.uad==='reload'){ reloadHere(); }
+    // The rail and the Review Master both navigate the report rather than
+    // opening a second page about it.
+    if(m.uad==='autofill'){ fill(m.steps||[],m.pace); }
+    if(m.uad==='autofill-stop'){ filling=false; }
+    if(m.uad==='goto'){
+      var ok=false;
+      if(m.fid) ok=goField(m.fid);
+      if(!ok&&m.secn) ok=goSection(m.secn);
+      tell({uad:'goto-result',found:ok,secn:m.secn||0,fid:m.fid||''});
+    }
+  });
+
+  /* --------------------------------------------------------- the filler
+     A case arrives as an order sheet, an MLS export and a folder of
+     photographs.  The server writes the whole document in one pass; this
+     replays the same list of steps on the page so the appraiser watches the
+     report being filled in rather than being handed it finished.  Nothing
+     here writes: every value shown has already been saved by the step the
+     server ran, and the form is reloaded from the server at the end, so what
+     is left on the screen is the saved document and not this animation.
+  */
+  var TICK='\uF052', CLEAR='\uF0A3';
+  var agentStyle=document.createElement('style');
+  agentStyle.textContent=
+    ".agent-on{outline:1.5pt solid #231f20;outline-offset:1pt;background:#fff3b0!important}"
+    +".agent-typed{background:#fff9d6}"
+    +"@keyframes agentpulse{from{box-shadow:0 0 0 0 rgba(35,31,32,.35)}"
+    +"to{box-shadow:0 0 0 6pt rgba(35,31,32,0)}}"
+    +".agent-on{animation:agentpulse .5s ease-out}";
+  document.head.appendChild(agentStyle);
+
+  var optionCache={};
+  function optionsFor(fid){
+    if(optionCache[fid]) return Promise.resolve(optionCache[fid]);
+    return fetch('/api/fields/'+fid+'/options').then(function(r){return r.json();})
+      .then(function(d){ optionCache[fid]=d.options||[]; return optionCache[fid]; })
+      .catch(function(){ optionCache[fid]=[]; return []; });
+  }
+  function words(t){ return (t||'').replace(/\\s+/g,' ').trim().toLowerCase(); }
+  /* A table cell is found by the field it writes and, where a table repeats a
+     row per instance, by the row it prints on. */
+  function cellFor(s){
+    var all=[].slice.call(document.querySelectorAll('[data-tf="'+s.fid+'"]'));
+    if(!all.length) return null;
+    if(s.row_label){
+      var named=all.filter(function(el){
+        var tr=el.closest('tr'), first=tr&&tr.querySelector('td');
+        return first&&words(first.textContent)===words(s.row_label);
+      });
+      if(named.length) all=named;
+    }
+    var free=all.filter(function(el){ return !words(el.textContent); });
+    return (free.length?free:all)[0];
+  }
+  /* A grid cell is the row whose label matches, in the column of that
+     comparable (0 is the subject). */
+  function gridCell(s){
+    var tables=document.querySelectorAll('table.grid');
+    for(var t=0;t<tables.length;t++){
+      var rows=tables[t].querySelectorAll('tbody tr');
+      for(var r=0;r<rows.length;r++){
+        var lab=rows[r].querySelector('td.lbl');
+        if(!lab||words(lab.textContent)!==words(s.label)) continue;
+        var vals=rows[r].querySelectorAll('td.v');
+        var want=s.adjust?(s.column*2):(s.column*2-(s.column?1:0));
+        var cell=vals[Math.min(Math.max(want,0),vals.length-1)];
+        if(cell) return cell;
+      }
+    }
+    return null;
+  }
+  function control(s){
+    if(s.kind==='check')
+      return document.querySelector('.bx[data-fid="'+s.fid+'"][data-pick="'+s.value+'"]');
+    if(s.kind==='grid') return gridCell(s);
+    if(s.kind==='cell') return cellFor(s);
+    if(s.kind==='photo') return document.querySelector('.exadd,.exdrop,.photo,.exbox');
+    if(!s.fid) return null;
+    return document.querySelector('[data-fid="'+s.fid+'"]')||cellFor(s);
+  }
+  function wait(ms){ return new Promise(function(go){ setTimeout(go,ms); }); }
+
+  function showList(el,options,chosen){
+    var list=document.createElement('div');
+    list.className='picklist';
+    var hit=null;
+    options.slice(0,12).forEach(function(o){
+      var row=document.createElement('div');
+      row.textContent=o.label;
+      if(o.value===chosen||o.label===chosen){ row.className='on'; hit=row; }
+      list.appendChild(row);
+    });
+    var host=el.closest('.hz')||document.body;
+    host.appendChild(list);
+    var a=el.getBoundingClientRect(), b=host.getBoundingClientRect();
+    var scale=(b.width/host.offsetWidth)||1;
+    list.style.left=((a.left-b.left)/scale)+'px';
+    list.style.top=((a.bottom-b.top)/scale)+'px';
+    if(hit) hit.scrollIntoView({block:'nearest'});
+    return list;
+  }
+  function typeInto(el,text,pace){
+    return new Promise(function(done){
+      var i=0, size=Math.max(2,Math.ceil(text.length/6));
+      el.classList.add('agent-typed');
+      (function beat(){
+        i=Math.min(text.length,i+size);
+        el.textContent=text.slice(0,i);
+        if(i>=text.length){ el.classList.remove('agent-typed'); return done(); }
+        setTimeout(beat,pace);
+      })();
+    });
+  }
+  var filling=false;
+  /* The order a value sits in the document is not the order it sits on the
+     page: a section's own steps arrive in XML order, so the filling appeared
+     to jump about within a section even though the sections themselves are in
+     report order.  The page is the only thing that knows where a control
+     actually is, so each section's steps are put into page order here, as the
+     section is reached -- not before, because the report is laid out again
+     part way through a run and the later controls do not exist yet. */
+  function inPageOrder(list){
+    var placed=[], loose=[];
+    for(var k=0;k<list.length;k++){
+      var el=null;
+      try{ el=control(list[k]); }catch(_){ el=null; }
+      if(el) placed.push({s:list[k],el:el}); else loose.push(list[k]);
+    }
+    placed.sort(function(a,b){
+      var rel=a.el.compareDocumentPosition(b.el);
+      if(rel&Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+      if(rel&Node.DOCUMENT_POSITION_PRECEDING) return 1;
+      return 0;
+    });
+    var out=[];
+    for(var j=0;j<placed.length;j++) out.push(placed[j].s);
+    return out.concat(loose);       // what has no control yet keeps its place
+  }
+
+  function fill(steps,pace){
+    if(filling) return;
+    filling=true;
+    pace=pace||70;
+    var i=0, atSection=null, shown=0, missed=0;
+    function finish(){
+      filling=false;
+      tell({uad:'autofill-done',shown:shown,missed:missed});
+    }
+    function next(){
+      if(i>=steps.length) return finish();
+      var s=steps[i++];
+      // Values that have no control of their own -- what a block is linked to,
+      // a measure's unit -- are written all the same; they are not acted out.
+      if(s.kind==='data'||s.kind==='link'){
+        if(s.n%12===0) tell({uad:'autofill-at',n:s.n,total:steps.length,secn:s.secn,
+                             section:s.section,label:s.label,value:s.display||s.value});
+        return setTimeout(next,0);
+      }
+      tell({uad:'autofill-at',n:s.n,total:steps.length,secn:s.secn,
+            section:s.section,label:s.label,value:s.display||s.value});
+      if(s.secn!==atSection){
+        atSection=s.secn; goSection(s.secn);
+        // put the rest of this section into the order it is printed in
+        var from=i-1, to=from;
+        while(to<steps.length&&steps[to].secn===s.secn) to++;
+        if(to-from>1){
+          var block=inPageOrder(steps.slice(from,to));
+          for(var b=0;b<block.length;b++) steps[from+b]=block[b];
+          s=steps[from]; i=from+1;
+        }
+      }
+      var el=control(s);
+      if(!el){
+        // The value is written; this page has no control for it yet (a row
+        // that only appears once the report is laid out again).  The section
+        // is still opened, so the filling is seen to move through the report.
+        missed++; return setTimeout(next,4);
+      }
+      el.scrollIntoView({block:'center',behavior:'auto'});
+      el.classList.add('agent-on');
+      var quiet=function(){
+        el.classList.remove('agent-on');
+        // Green the instant it is answered: the appraiser watching sees which
+        // field just changed, rather than only that something moved.
+        document.body.classList.add('has-imported','show-imported');
+        el.classList.add('imported');
+        var owner=el.closest?el.closest('td'):null;
+        if(owner) owner.classList.add('imported');
+        shown++; setTimeout(next,pace*0.4);
+      };
+      if(s.kind==='check'){
+        var run=el.parentNode.querySelectorAll('.bx[data-pick]');
+        [].forEach.call(run,function(b){ b.innerHTML=CLEAR; });
+        return wait(pace).then(function(){ el.innerHTML=TICK; }).then(function(){
+          return wait(pace*0.6); }).then(quiet);
+      }
+      if(s.kind==='pick'){
+        return optionsFor(s.fid).then(function(options){
+          el.classList.add('open');
+          var list=showList(el,options,s.value);
+          return wait(pace*1.6).then(function(){
+            list.remove(); el.classList.remove('open');
+            el.textContent=s.display||s.value;
+            return wait(pace*0.4);
+          });
+        }).then(quiet);
+      }
+      // A cell or a grid cell the server has already written still reads as
+      // filling: it is emptied for the moment it takes to enter it again.
+      var into=el.querySelector('span')||el;
+      if(s.kind==='cell'||s.kind==='grid'||s.kind==='data') into.textContent='';
+      return typeInto(into,s.display||s.value,Math.max(8,pace/6)).then(function(){
+        return wait(pace*0.4); }).then(quiet);
+    }
+    next();
+  }
+
+  /* Follow the reader: the section at the top quarter of the window is the
+     one the rail marks. */
+  var current=null, spyLock=0, ticking=false;
+  function spy(){
+    ticking=false;
+    if(Date.now()<spyLock) return;
+    var line=window.innerHeight*0.25, found=null;
+    var marks=document.querySelectorAll('[data-secn]');
+    for(var i=0;i<marks.length;i++){
+      if(marks[i].getBoundingClientRect().top<=line) found=marks[i].dataset.secn;
+      else break;
+    }
+    if(!found&&marks.length) found=marks[0].dataset.secn;
+    if(found&&found!==current){ current=found; tell({uad:'at',secn:Number(found)}); }
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ ticking=true; requestAnimationFrame(spy); }
+  },{passive:true});
+
+  /* After an image changes what fits, the report is laid out again; the
+     reader stays where they were. */
+  var KEY='uad-scroll-'+id;
+  function reloadHere(){
+    // Inside the editor the new layout is made in the background and swapped
+    // in without a blank page; on its own, the page reloads once it is ready.
+    if(parentWin){ parentWin.postMessage({uad:'relayout'},'*'); return; }
+    try{ sessionStorage.setItem(KEY,String(window.scrollY)); }catch(_){}
+    var R=window.UAD_RENDER||{};
+    function poll(){
+      fetch('/api/cases/'+id+'/render/form').then(function(r){return r.json();})
+        .then(function(st){ if(st.ready) location.reload(); else setTimeout(poll,600); })
+        .catch(function(){ location.reload(); });
+    }
+    if(R.kind) poll(); else location.reload();
+  }
+  function arrived(){
+    var y=null;
+    try{ y=sessionStorage.getItem(KEY); sessionStorage.removeItem(KEY); }catch(_){}
+    if(y!==null) window.scrollTo(0,Number(y));
+    spy();
+    var have={};
+    [].forEach.call(document.querySelectorAll('[data-secn]'),function(x){have[x.dataset.secn]=1;});
+    tell({uad:'ready',sections:Object.keys(have).map(Number)});
+  }
+  if(document.readyState==='complete') setTimeout(arrived,0);
+  else window.addEventListener('load',arrived);
+
+  /* The Summary redisplays the rest of the report (B-1 chapter 01): a click
+     goes to the field the value is entered in. */
+  document.addEventListener('click',function(e){
+    var d=e.target.closest && e.target.closest('[data-derived]');
+    if(!d) return;
+    e.preventDefault(); e.stopPropagation();
+    if(!(d.dataset.derived && goField(d.dataset.derived))){
+      if(d.dataset.derivedSection) goSection(d.dataset.derivedSection);
+    }
+  },true);
+  /* A table cell writes into the row it prints in; everything else by field. */
+  var inflight=[];
+  function send(el,body){
+    var p=sendNow(el,body);
+    inflight.push(p);
+    var done=function(){ inflight=inflight.filter(function(x){return x!==p;}); };
+    p.then(done,done);
+    return p;
+  }
+  function sendNow(el,body){
+    el.classList.remove('failed'); el.classList.add('saving');
+    var url='/api/cases/'+id+'/fields/'+el.dataset.fid;
+    if(el.dataset.ordinal && body.ordinal===undefined) body.ordinal=Number(el.dataset.ordinal);
+    if(el.dataset.tf===undefined && el.dataset.tdp && body.data_point===undefined) body.data_point=el.dataset.tdp;
+    if(el.dataset.route) url='/api/cases/'+id+'/'+el.dataset.route;
+    if(el.dataset.tf!==undefined){
+      url='/api/cases/'+id+'/cells/'+el.dataset.tf;
+      body.key=el.dataset.tk||''; body.data_point=body.data_point||el.dataset.tdp||'';
+      body.sel=el.dataset.tsel||''; body.label=el.dataset.tlab||'';
+      body.new=!!el.dataset.tnew; body.scope=el.dataset.tscope||''; body.cat=el.dataset.tcat||'';
+    }
+    return fetch(url,
+      {method:'PATCH',headers:{'Content-Type':'application/json'},
+       body:JSON.stringify(body)})
+      .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
+      .then(function(res){
+        el.classList.remove('saving');
+        if(!res.ok){
+          el.classList.add('failed');
+          el.title=(res.d && res.d.detail) || 'This value could not be saved.';
+          return false;
+        }
+        el.title='';
+        // a row just created: every cell on its line now writes into it
+        if(el.dataset.tf!==undefined && res.d && res.d.key){
+          var tr=el.closest('tr');
+          [].forEach.call(tr?tr.querySelectorAll('[data-tf]'):[el],function(c){
+            c.dataset.tk=res.d.key; delete c.dataset.tnew; delete c.dataset.tsel; delete c.dataset.tlab;
+          });
+          if(tr) tr.classList.remove('newrow');
+        }
+        // show it as the report prints it: "2352" typed, "2,352 Sq. Ft." shown
+        if(res.d && typeof res.d.value==='string' && res.d.value && el.matches('.v[contenteditable]')
+           && document.activeElement!==el){
+          el.textContent=res.d.value; el.dataset.was=res.d.value;
+        }
+        if(res.d && res.d.kind) el.dataset.kind=res.d.kind;
+        if(res.d && res.d.case && el.dataset.fid==='2.003'){
+          el.title=res.d.case==='A'?'Same party as the borrower (B-1 Case A)'
+                  :res.d.case==='B'?'Same party as the seller (B-1 Case B)':'';
+        }
+        if(window.parent!==window) window.parent.postMessage({uad:'saved'},'*');
+        return true;
+      })
+      .catch(function(){el.classList.remove('saving');el.classList.add('failed');
+        el.title='Connection lost. Your change was not saved.';return false;});
+  }
+  function commit(el){
+    // commentary keeps its line breaks; a one-line value does not have any
+    var now=(el.classList.contains('multiline')?el.innerText:el.textContent).trim();
+    if(now===(el.dataset.was||'').trim()) return;
+    if(el.dataset.li!==undefined){ nameRow(el,now); return; }
+    el.dataset.was=now;
+    send(el,{value:now});
+  }
+  /* A row the appraiser adds to a grid is named once and the name is kept
+     against the subject and every comparable, so the grid reads as one row
+     rather than four differently-named ones. */
+  function nameRow(el,now){
+    var was=el.dataset.liwas||'';
+    el.classList.remove('failed'); el.classList.add('saving');
+    json(api+'/comparables/lineitems',
+         {method:'PUT',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({kind:el.dataset.li,container:el.dataset.lic,
+                               adjust_type:el.dataset.lit,was:was,name:now})})
+      .then(function(){ el.classList.remove('saving'); el.dataset.liwas=now;
+                        el.dataset.was=now; reloadHere(); })
+      .catch(function(err){ el.classList.remove('saving'); el.classList.add('failed');
+                            el.title=err.message; });
+  }
+  document.addEventListener('focusin',function(e){
+    var el=e.target;
+    if(el.matches && el.matches('.v[contenteditable]')) el.dataset.was=el.textContent;
+  });
+  document.addEventListener('focusout',function(e){
+    var el=e.target;
+    if(el.matches && el.matches('.v[contenteditable]')) commit(el);
+  });
+  document.addEventListener('keydown',function(e){
+    var el=e.target;
+    if(!el.matches || !el.matches('.v[contenteditable]')) return;
+    // Enter commits here rather than leaning on the blur that follows it:
+    // moving focus is the browser's business and does not always raise the
+    // event first, and a value that looks accepted but was never sent is the
+    // worst of the three outcomes.
+    if(e.key==='Enter' && (!el.classList.contains('multiline') || e.ctrlKey || e.metaKey)){
+      e.preventDefault();commit(el);el.blur();
+    }
+    if(e.key==='Escape'){e.preventDefault();el.textContent=el.dataset.was||'';el.blur();}
+  });
+  /* ------------------------------------------------------------ the lists
+     Drawn inside the page rather than left to the browser: this page is laid
+     out at three times size and scaled back down, and a native popup ignores
+     that transform -- the list came up three times too big. */
+  var openList=null, openOn=null;
+
+  function shut(){
+    if(openList) openList.remove();
+    if(openOn) openOn.classList.remove('open');
+    openList=openOn=null;
+  }
+
+  /* "Other" is never saved bare: A-1 requires its description (CR, IF the
+     type is "Other"), and the description is what the report prints. */
+  function describeOther(list,el,o){
+    list.innerHTML='';
+    var box=document.createElement('div'); box.className='otherbox';
+    box.innerHTML='<label>Describe “Other”</label><input type="text"><div class="ob">'
+      +'<button type="button" class="no">Cancel</button><button type="button" class="go">Save</button></div>';
+    var input=box.querySelector('input');
+    if(o.other.max) input.maxLength=o.other.max;
+    list.appendChild(box);
+    box.addEventListener('mousedown',function(ev){ ev.stopPropagation(); });
+    var go=function(){
+      var text=input.value.trim();
+      if(!text){ input.focus(); input.classList.add('need'); return; }
+      send(el,{value:'Other'}).then(function(ok){
+        if(!ok) return;
+        return send(el,{value:text,data_point:o.other.data_point}).then(function(ok2){
+          if(ok2) el.textContent=text;
+        });
+      });
+      shut();
+    };
+    box.querySelector('.go').onclick=go;
+    box.querySelector('.no').onclick=function(){ shut(); };
+    input.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); go(); }
+      if(ev.key==='Escape'){ ev.preventDefault(); shut(); }
+    });
+    setTimeout(function(){ input.focus(); },0);
+  }
+  function openPicker(el){
+    if(openOn===el){ shut(); return; }
+    shut();
+    fetch('/api/fields/'+(el.dataset.fid||el.dataset.tf)+'/options'+(el.dataset.tdp?'?dp='+encodeURIComponent(el.dataset.tdp):''))
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var list=document.createElement('div');
+        list.className='picklist';
+        var here=(el.textContent||'').trim();
+        var rows=[{value:'',label:'\\u2014 not answered \\u2014',clear:true}]
+          .concat(d.options||[]);
+        rows.forEach(function(o){
+          var row=document.createElement('div');
+          row.textContent=o.label;
+          if(o.clear) row.className='clear';
+          if(o.label===here||o.value===here) row.className='on';
+          row.addEventListener('mousedown',function(ev){
+            ev.preventDefault();
+            if(o.other){ ev.stopPropagation(); describeOther(list,el,o); return; }
+            send(el,{value:o.value}).then(function(ok){
+              if(ok) el.textContent=o.value?o.label:'';
+            });
+            shut();
+          });
+          list.appendChild(row);
+        });
+        // Positioned within the scaled page, so it scales with it.
+        var host=el.closest('.hz')||el.offsetParent||document.body;
+        host.appendChild(list);
+        var a=el.getBoundingClientRect(), b=host.getBoundingClientRect();
+        var scale=(host.getBoundingClientRect().width/host.offsetWidth)||1;
+        list.style.left=((a.left-b.left)/scale)+'px';
+        list.style.top=((a.bottom-b.top)/scale)+'px';
+        openList=list; openOn=el; el.classList.add('open');
+      });
+  }
+
+  document.addEventListener('mousedown',function(e){
+    var el=e.target.closest && e.target.closest('.v.pick');
+    if(el){ e.preventDefault(); openPicker(el); return; }
+    if(!e.target.closest || !e.target.closest('.picklist')) shut();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') shut();
+    var el=e.target.closest && e.target.closest('.v.pick');
+    if(el && (e.key==='Enter'||e.key===' ')){e.preventDefault();openPicker(el);}
+  });
+  window.addEventListener('scroll',shut,true);
+
+  /* ---------------------------------------------------------------- images
+     A photograph reaches a section three ways, because appraisers work all
+     three: the file dialog, a drag from a folder, and a paste from whatever
+     took the screenshot. */
+  var lastZone=null;
+  var api='/api/cases/'+id;
+
+  function json(url,opts){
+    return fetch(url,opts).then(function(r){
+      return r.json().catch(function(){return {};}).then(function(d){
+        if(!r.ok) throw new Error((d&&d.detail)||('HTTP '+r.status));
+        return d;});
+    });
+  }
+  /* The location map: drawn by the map tool in the background, while its own
+     box on the page says so.  Nothing else on the page moves. */
+  function loadMap(btn){
+    var fig=btn.closest('figure')||btn.closest('.exaddrow'), note=fig.querySelector('.mapstate');
+    var aerial=btn.dataset.map==='aerial';
+    fig.classList.remove('mapfailed'); fig.classList.add('maploading');
+    note.textContent=aerial?'Loading aerial map…':'Loading location map…';
+    json(api+(aerial?'/maps/aerial':'/maps'),{method:'POST'}).then(function(st){
+      if(aerial && st.state==='current'){ tell({uad:'media'}); reloadHere(); return; }
+      if(st.state==='current'){ note.textContent='Placing the map in the report…'; reloadHere(); return; }
+      fig.classList.remove('maploading'); fig.classList.add('mapfailed');
+      note.textContent=((st.problems||[]).join('; ')||'The map could not be made yet.')
+        +(aerial?'':' Enter the subject and comparable addresses, then load the map again.');
+    }).catch(function(err){
+      fig.classList.remove('maploading'); fig.classList.add('mapfailed');
+      note.textContent='The map could not be loaded: '+err.message;
+    });
+  }
+  /* The map is edited inside its own box: the map tool opens there at the
+     box's exact size, and what is saved is what prints. */
+  var mapFrame=null;
+  function editMap(btn){
+    var fig=btn.closest('figure');
+    if(mapFrame) return;
+    fig.classList.add('mapediting');
+    mapFrame=document.createElement('iframe');
+    mapFrame.className='mapframe';
+    mapFrame.title='Sales Comparison Map';
+    mapFrame.src='/ui/map/index.html?case='+encodeURIComponent(id)+'&embed=1';
+    fig.appendChild(mapFrame);
+  }
+  window.addEventListener('message',function(e){
+    var m=e.data||{};
+    if(!mapFrame || e.source!==mapFrame.contentWindow) return;
+    var fig=mapFrame.closest('figure');
+    if(m.uad==='map-cancel'){
+      mapFrame.remove(); mapFrame=null; fig.classList.remove('mapediting');
+    }
+    if(m.uad==='map-saved'){
+      mapFrame.remove(); mapFrame=null; fig.classList.remove('mapediting');
+      fig.classList.add('maploading');
+      var note=fig.querySelector('.mapstate'); if(note) note.textContent='Placing the map in the report…';
+      tell({uad:'media'}); reloadHere();
+    }
+  });
+  /* ------------------------------------------------ Save, beside each page
+     Every value is already written the moment it is entered; Save confirms it
+     -- it finishes any edit still open, waits for the writes on their way, and
+     checks the sections on the page against the Review Master (H-1 compliance
+     and the schema).  Anything fatal or a warning is listed, each item a link
+     to its field, with "Save anyway" to accept the page as it stands.  The
+     sections rail then shows each saved section green, orange or red. */
+  function pageSections(pg){
+    var have={};
+    [].forEach.call(pg.querySelectorAll('[data-secn]'),function(x){ if(Number(x.dataset.secn)) have[x.dataset.secn]=1; });
+    return Object.keys(have).map(Number);
+  }
+  function blanksOn(pg){
+    return [].filter.call(pg.querySelectorAll('.v[contenteditable]:not(.multiline),.v.pick,.bxs.untouched'),function(x){
+      return x.classList.contains('bxs') || !x.textContent.trim();
+    });
+  }
+  function markSaved(secs){
+    return json(api+'/prefs').then(function(p){
+      var saved=p.savedSections||{}, now=new Date().toISOString();
+      secs.forEach(function(n){ saved[n]=now; });
+      return putJSON(api+'/prefs',{savedSections:saved});
+    }).then(function(){ tell({uad:'saved-sections',sections:secs}); });
+  }
+  function closeChecks(){ [].forEach.call(document.querySelectorAll('.savecheck'),function(x){x.remove();}); }
+  function savePage(pg,side,next){
+    closeChecks();
+    var a=document.activeElement;
+    if(a&&a.matches&&a.matches('.v[contenteditable],.capedit')) a.blur();
+    var btns=side.querySelectorAll('button');
+    [].forEach.call(btns,function(b){b.disabled=true;});
+    var main=side.querySelector('.pgsave'); main.textContent='Checking\u2026';
+    var secs=pageSections(pg);
+    var finish=function(){
+      [].forEach.call(btns,function(b){b.disabled=false;});
+      main.textContent='Save';
+    };
+    Promise.all(inflight.slice()).catch(function(){}).then(function(){
+      var failed=pg.querySelectorAll('.failed').length;
+      return json(api+'/review').then(function(rv){
+        var items=(rv.items||[]).filter(function(i){
+          return secs.indexOf(i.section_number)>=0 && (i.severity==='Fatal'||i.severity==='Warning');
+        });
+        var blanks=blanksOn(pg);
+        finish();
+        if(!items.length && !failed){
+          markSaved(secs).then(function(){
+            side.classList.add('ok'); main.textContent='Saved \u2713';
+            setTimeout(function(){ side.classList.remove('ok'); main.textContent='Save'; },1800);
+            if(next) goNext(pg);
+          });
+          return;
+        }
+        var box=document.createElement('div'); box.className='savecheck';
+        var fatal=items.filter(function(i){return i.severity==='Fatal';});
+        var warn=items.filter(function(i){return i.severity==='Warning';});
+        var html='<div class="sch">'+(fatal.length||failed?'Not UAD compliant yet':'Warnings on this page')+'</div>';
+        if(failed) html+='<div class="sci bad">'+failed+' value(s) on this page did not save \u2014 they are outlined in red.</div>';
+        fatal.forEach(function(i,n){ html+='<a class="sci bad" data-i="f'+n+'">'+esc(i.message)+'</a>'; });
+        warn.forEach(function(i,n){ html+='<a class="sci warn" data-i="w'+n+'">'+esc(i.message)+'</a>'; });
+        if(blanks.length) html+='<a class="sci blank" data-i="b">'+blanks.length+' field(s) on this page are still blank.</a>';
+        html+='<div class="scb"><button type="button" class="keep">Keep editing</button>'
+          +'<button type="button" class="anyway">Save anyway</button></div>';
+        box.innerHTML=html;
+        side.appendChild(box);
+        box.addEventListener('click',function(ev){
+          var t=ev.target;
+          if(t.classList.contains('keep')){ box.remove(); return; }
+          if(t.classList.contains('anyway')){
+            box.remove();
+            markSaved(secs).then(function(){
+              main.textContent='Saved as is';
+              setTimeout(function(){ main.textContent='Save'; },1800);
+              if(next) goNext(pg);
+            });
+            return;
+          }
+          var link=t.closest('.sci[data-i]'); if(!link) return;
+          var k=link.dataset.i;
+          if(k==='b'){ var b=blanks[0]; if(b){ b.scrollIntoView({block:'center'}); flash(b); if(b.focus) b.focus(); } return; }
+          var it=(k[0]==='f'?fatal:warn)[Number(k.slice(1))];
+          if(!(it.field_id && goField(it.field_id))) goSection(it.section_number);
+        });
+      });
+    }).catch(function(err){ finish(); alert('The page could not be checked: '+err.message); });
+  }
+  function goNext(pg){
+    var n=pg.nextElementSibling;
+    while(n && !(n.classList&&n.classList.contains('page'))) n=n.nextElementSibling;
+    if(n) window.scrollTo({top:n.getBoundingClientRect().top+window.scrollY-8,behavior:'smooth'});
+  }
+  function esc(s){ return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var sides=[];
+  function placeSides(){
+    sides.forEach(function(x){
+      var r=x.pg.getBoundingClientRect();
+      x.side.style.left=(r.right+window.scrollX+14)+'px';
+      x.side.style.top=(r.top+window.scrollY+56)+'px';
+    });
+  }
+  function buildSides(){
+    [].forEach.call(document.querySelectorAll('.page'),function(pg){
+      var side=document.createElement('div'); side.className='pageside';
+      side.innerHTML='<button type="button" class="pgsave">Save</button>'
+        +'<button type="button" class="pgnext">Save &amp; Next</button>';
+      side.querySelector('.pgsave').onclick=function(){ savePage(pg,side,false); };
+      side.querySelector('.pgnext').onclick=function(){ savePage(pg,side,true); };
+      document.body.appendChild(side);
+      sides.push({pg:pg,side:side});
+    });
+    placeSides();
+  }
+  window.addEventListener('resize',function(){ requestAnimationFrame(placeSides); });
+  if(document.readyState==='complete') setTimeout(buildSides,0);
+  else window.addEventListener('load',buildSides);
+
+  /* A party's name: a person's, split into first/middle/last/suffix, or an
+     organisation's full name -- the appraiser says which. */
+  var kindChip=null;
+  function nameKind(el){
+    if(kindChip) kindChip.remove();
+    kindChip=document.createElement('div'); kindChip.className='namekind';
+    var kind=el.dataset.kind||'';
+    kindChip.innerHTML='<span data-k="person">Person</span><span data-k="entity">Company</span>';
+    [].forEach.call(kindChip.children,function(c){ c.classList.toggle('on',c.dataset.k===kind); });
+    kindChip.addEventListener('mousedown',function(ev){
+      ev.preventDefault(); ev.stopPropagation();
+      var k=ev.target.dataset.k; if(!k) return;
+      el.dataset.kind=k;
+      [].forEach.call(kindChip.children,function(c){ c.classList.toggle('on',c.dataset.k===k); });
+      send(el,{value:el.innerText.trim(),kind:k});
+    });
+    var host=el.closest('.hz')||document.body;
+    host.appendChild(kindChip);
+    var a=el.getBoundingClientRect(), b=host.getBoundingClientRect();
+    var scale=(b.width/host.offsetWidth)||1;
+    kindChip.style.left=((a.right-b.left)/scale+3)+'px';
+    kindChip.style.top=((a.top-b.top)/scale)+'px';
+  }
+  document.addEventListener('focusin',function(e){
+    var el=e.target.closest&&e.target.closest('[data-name]');
+    if(el) nameKind(el);
+  });
+  document.addEventListener('focusout',function(e){
+    var el=e.target.closest&&e.target.closest('[data-name]');
+    if(el) setTimeout(function(){ if(kindChip&&!kindChip.matches(':hover')){ kindChip.remove(); kindChip=null; } },200);
+  });
+  function putJSON(url,body,method){
+    return json(url,{method:method||'PUT',headers:{'Content-Type':'application/json'},
+                     body:JSON.stringify(body)});
+  }
+
+  /* ------------------------------------------------ exhibit boxes (slots)
+     "+ Add Exhibit" puts an empty box into the section -- the report's own
+     grey box with a camera and a name to type above it.  It is kept with the
+     editor's state until a picture goes in, and the report is laid out again
+     so everything below moves down to make room. */
+  var slotChain=null;       // a new box's name waits until the box is saved
+  function slots(){ return json(api+'/prefs').then(function(p){ return p.exhibitSlots||[]; }); }
+  function saveSlots(list){ return putJSON(api+'/prefs',{exhibitSlots:list}); }
+
+  /* The new box is on the page the moment the button is pressed, with the
+     caret in its name; the exact layout follows behind it. */
+  function showSlot(button,sid){
+    var holder=button.closest('.blk');
+    if(!holder) return;
+    var fig=document.createElement('figure'); fig.className='ex';
+    var sample=document.querySelector('figure.ex .ph');
+    fig.innerHTML='<div class="cap"><b class="capedit" contenteditable="true" spellcheck="false"'
+      +' data-ph="Exhibit Name" data-slot="'+sid+'"></b></div>'
+      +(sample?'<div class="ph">'+sample.innerHTML+'</div>':'<div class="ph"><span></span></div>')
+      +'<span class="exdrop" data-section="'+button.dataset.section+'" data-name="'
+      +(button.dataset.name||'')+'" data-caption="" data-slot="'+sid+'"></span>'
+      +'<span class="exremove" role="button" aria-label="Remove" data-slot="'+sid+'">&times;</span>';
+    var span=fig.querySelector('.ph span'); if(span) span.textContent='This is where the exhibit photo would display.';
+    var prev=holder.previousElementSibling;
+    var row=prev&&prev.querySelector&&prev.querySelector('.exhibits');
+    if(row&&row.children.length===1){ row.appendChild(fig); }
+    else{
+      var blk=document.createElement('div'); blk.className='blk solid exhibits';
+      var wrap=document.createElement('div'); wrap.className='exhibits'; wrap.appendChild(fig);
+      blk.appendChild(wrap); holder.parentNode.insertBefore(blk,holder);
+    }
+    // Shown at once only while the page still has room for it.  A box that
+    // would cross the footer waits for the report to be laid out again -- the
+    // page never shows content over its own footer, not even for a moment.
+    var page=fig.closest('.page');
+    if(page){
+      var pr=page.getBoundingClientRect(), fr=fig.getBoundingClientRect();
+      var limit=pr.top+pr.height*(__BODY_BOTTOM__/1008);
+      var band=page.querySelector('.band'), low=fr.bottom;
+      if(band) [].forEach.call(band.querySelectorAll(':scope > .blk'),function(b){
+        var r=b.getBoundingClientRect(); if(r.height>0) low=Math.max(low,r.bottom);
+      });
+      if(low>limit){
+        var solo=fig.parentNode.children.length===1;
+        (solo?fig.closest('.blk'):fig).remove();
+        button.classList.add('pending'); button.textContent='Adding exhibit…';
+        return;
+      }
+    }
+    var cap=fig.querySelector('.capedit'); cap.dataset.was=''; cap.focus();
+  }
+
+  function addSlot(section,button){
+    var sid='x'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+    if(button&&parentWin) showSlot(button,sid);
+    return slotChain=slots().then(function(list){
+      list.push({id:sid,section:Number(section),caption:''});
+      return saveSlots(list);
+    }).then(function(){
+      try{ sessionStorage.setItem('uad-focus-'+id,sid); }catch(_){}
+      reloadHere();
+    });
+  }
+  function dropSlot(sid){
+    return slots().then(function(list){
+      return saveSlots(list.filter(function(x){return x.id!==sid;}));
+    });
+  }
+  function nameSlot(sid,caption){
+    return slots().then(function(list){
+      list.forEach(function(x){ if(x.id===sid) x.caption=caption; });
+      return saveSlots(list);
+    });
+  }
+  // the name of a box just added gets the caret, ready to type
+  window.addEventListener('load',function(){
+    var sid=null;
+    try{ sid=sessionStorage.getItem('uad-focus-'+id); sessionStorage.removeItem('uad-focus-'+id); }catch(_){}
+    if(!sid) return;
+    var cap=document.querySelector('.capedit[data-slot="'+sid+'"]');
+    if(cap){ cap.scrollIntoView({block:'center'}); cap.focus(); }
+  });
+
+  function captionOf(zone){
+    var fig=zone.closest && zone.closest('figure');
+    var cap=fig && fig.querySelector('.capedit');
+    return cap ? cap.textContent.trim() : (zone.dataset.caption||'');
+  }
+
+  function upload(zone,files){
+    var list=[].slice.call(files||[]).filter(function(f){
+      return f && /^image\\//.test(f.type);});
+    if(!list.length) return;
+    if(zone.dataset.slot||zone.dataset.fill||zone.classList.contains('photodrop')) list=list.slice(0,1);
+    zone.classList.add('over');
+    var section=zone.dataset.section||'0';
+    var category=zone.dataset.category||'other';
+    var jobs=list.map(function(file){
+      var fd=new FormData();
+      fd.append('file',file,file.name||'pasted.png');
+      var name=zone.classList.contains('exadd')
+        ? (file.name||'').replace(/\\.[^.]+$/,'').replace(/[_-]+/g,' ')
+        : captionOf(zone);
+      var q='?category='+encodeURIComponent(category)
+           +'&section='+encodeURIComponent(section)
+           +'&caption='+encodeURIComponent(name||'');
+      if(zone.dataset.comparable) q+='&comparable='+encodeURIComponent(zone.dataset.comparable);
+      return json(api+'/media'+q,{method:'POST',body:fd}).then(function(m){
+        if(zone.dataset.slot) return dropSlot(zone.dataset.slot);
+        if(zone.dataset.fill) return json(api+'/prefs').then(function(p){
+          var fills=p.fills||{}; fills[zone.dataset.fill]=m.media_id;
+          return putJSON(api+'/prefs',{fills:fills});
+        });
+      });
+    });
+    Promise.all(jobs)
+      .catch(function(err){ zone.classList.add('failed'); alert('The picture could not be added: '+err.message); })
+      .then(function(){ tell({uad:'media'}); reloadHere(); });
+  }
+
+  function browse(zone){
+    var input=document.createElement('input');
+    input.type='file'; input.accept='image/*';
+    input.multiple=zone.classList.contains('exadd');
+    input.style.display='none';
+    document.body.appendChild(input);
+    input.addEventListener('change',function(){
+      upload(zone,input.files); input.remove();});
+    input.click();
+  }
+
+  /* An exhibit's name is typed where it prints, above the picture. */
+  document.addEventListener('focusout',function(e){
+    var cap=e.target.closest && e.target.closest('.capedit');
+    if(!cap) return;
+    var now=cap.textContent.trim();
+    if(now===(cap.dataset.was||'')) return;
+    cap.dataset.was=now;
+    var job=cap.dataset.image
+      ? putJSON(api+'/images',{key:cap.dataset.image,caption:now},'PATCH')
+      : cap.dataset.slot
+      ? (slotChain||Promise.resolve()).then(function(){ return nameSlot(cap.dataset.slot,now); })
+      : putJSON(api+'/media/'+cap.dataset.media,{caption:now},'PATCH');
+    job.then(function(){
+      // the empty box says whose photo it is waiting for
+      var ph=cap.closest('figure').querySelector('.ph span');
+      if(ph) ph.textContent='This is where the '+(now.replace(/ *[(].*/,'')||'exhibit')+' photo would display.';
+    }).catch(function(err){ cap.classList.add('failed'); cap.title=err.message; });
+  });
+  document.addEventListener('focusin',function(e){
+    var cap=e.target.closest && e.target.closest('.capedit');
+    if(cap) cap.dataset.was=cap.textContent.trim();
+  });
+
+  document.addEventListener('keydown',function(e){
+    var z=e.target.closest && e.target.closest('.exadd,.compadd,.nuadd,.nudrop,.lidrop');
+    if(z && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); z.click(); return; }
+    var cap=e.target.closest && e.target.closest('.capedit');
+    if(cap && e.key==='Enter'){ e.preventDefault(); cap.blur(); }
+  });
+
+  /* ------------------------------------------------------- comparables
+     Another comparable joins the last block of three or opens a new block on
+     the next page, as the printed report lays it out (Appendix E p62). */
+  var menu=null;
+  function shutMenu(){ if(menu){ menu.remove(); menu=null; } }
+  function openCompMenu(th){
+    shutMenu();
+    var n=Number(th.dataset.compmenu);
+    var list=document.createElement('div'); list.className='picklist';
+    var row=document.createElement('div'); row.textContent='Remove Comparable #'+n;
+    row.addEventListener('mousedown',function(ev){
+      ev.preventDefault(); shutMenu();
+      if(!confirm('Remove Comparable #'+n+'? The ones after it move up a place.')) return;
+      json(api+'/comparables/'+n+'?kind=sales',{method:'DELETE'})
+        .then(function(){ tell({uad:'media'}); reloadHere(); })
+        .catch(function(err){ alert(err.message); });
+    });
+    list.appendChild(row);
+    place(list,th);
+    menu=list;
+  }
+  function place(el,anchor){
+    var host=anchor.closest('.hz')||document.body;
+    host.appendChild(el);
+    var a=anchor.getBoundingClientRect(), b=host.getBoundingClientRect();
+    var scale=(b.width/host.offsetWidth)||1;
+    el.style.left=((a.left-b.left)/scale)+'px';
+    el.style.top=((a.bottom-b.top)/scale)+'px';
+  }
+
+  /* A grid cell is edited where it prints.  Each data point the cell is made
+     of gets its own input -- an address is six -- and the list a field must
+     come from is a list.  The cell shows the saved value straight away; the
+     page is laid out again when it is next reloaded. */
+  var gridData=null;
+  function grid(){
+    if(gridData) return Promise.resolve(gridData);
+    return json(api+'/comparables?kind=sales').then(function(d){ gridData=d; return d; });
+  }
+  var gedit=null;
+  function shutEditor(){ if(gedit){ gedit.remove(); gedit=null; } }
+  function openCell(td){
+    shutEditor(); shutMenu();
+    var col=Number(td.dataset.gc), fid=td.dataset.gf||'', adj=td.dataset.ga||'';
+    grid().then(function(g){
+      var row=null;
+      for(var i=0;i<g.rows.length&&!row;i++){
+        var r=g.rows[i];
+        if(adj ? r.adjust_type===adj : (col===0 ? r.subject_fid===fid : r.comp_fid===fid)) row=r;
+      }
+      if(!row) return;
+      var box=document.createElement('div'); box.className='gedit';
+      var who=col===0?'Subject Property':'Comparable #'+col;
+      box.innerHTML='<div class="gh"></div>';
+      box.querySelector('.gh').textContent=row.label+' \u2014 '+who+(adj?' (adjustment)':'');
+      var inputs=[];
+      if(adj){
+        var cellA=(row.cells[col-1]||{});
+        inputs.push({dp:'',el:field('Adjustment',[],cellA.adjust_raw||'')});
+      }else{
+        var pts=(col===0?row.subject_points:row.comp_points)||[];
+        var parts=(col===0?row.subject_parts:(row.cells[col-1]||{}).parts)||{};
+        if(!pts.length) pts=[{data_point:'',options:row.options||[]}];
+        pts.forEach(function(pt){
+          var opts=pt.options||[];
+          if((pt.format||'').toLowerCase()==='boolean') opts=[{value:'true',label:'Yes'},{value:'false',label:'No'}];
+          inputs.push({dp:pt.data_point,el:field(pts.length>1?pt.data_point:'',opts,parts[pt.data_point]||'')});
+        });
+      }
+      inputs.forEach(function(x){ box.appendChild(x.el); });
+      var street=inputs.filter(function(x){return x.dp==='AddressLineText';})[0];
+      if(street) addressLookup(street.el.querySelector('input'),inputs,box);
+      var err=document.createElement('div'); err.className='err'; box.appendChild(err);
+      var bar=document.createElement('div'); bar.className='gb';
+      bar.innerHTML='<button type="button" class="no">Cancel</button><button type="button" class="go">Save</button>';
+      box.appendChild(bar);
+      bar.querySelector('.no').onclick=shutEditor;
+      bar.querySelector('.go').onclick=function(){
+        var chain=Promise.resolve(null);
+        inputs.forEach(function(x){
+          chain=chain.then(function(){
+            var input=x.el.querySelector('input,select');
+            var body=adj?{kind:'sales',adjust_type:adj,value:input.value}
+                        :{kind:'sales',data_point:x.dp,value:input.value};
+            return putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH');
+          });
+        });
+        chain.then(function(res){
+          gridData=null;
+          var span=td.querySelector('span');
+          var shown=(res&&res.value)||'';
+          if(span && !td.querySelector('.ca')) span.textContent=shown||(adj?'':'\u2014');
+          else if(td.querySelector('.ca')) td.querySelector('.ca').textContent=shown||'\u2014';
+          td.classList.toggle('grey',adj&&!shown);
+          shutEditor();
+          tell({uad:'saved'});
+        }).catch(function(e2){ err.textContent=e2.message; });
+      };
+      box.addEventListener('keydown',function(ev){
+        if(ev.key==='Escape'){ ev.preventDefault(); shutEditor(); }
+        if(ev.key==='Enter' && (ev.target.tagName==='INPUT'||ev.target.classList.contains('gpick'))){
+          ev.preventDefault(); bar.querySelector('.go').click();
+        }
+      });
+      place(box,td);
+      gedit=box;
+      var first=box.querySelector('input[type=text],.gpick'); if(first) first.focus();
+    }).catch(function(e3){ alert('The grid could not be read: '+e3.message); });
+  }
+  /* Typing a street offers real addresses; picking one fills the city,
+     state and ZIP beside it.  They are suggestions: every part stays
+     editable, and nothing is saved until Save. */
+  function addressLookup(input,inputs,box){
+    if(!input) return;
+    var list=document.createElement('div'); list.className='gsug'; list.hidden=true;
+    input.parentNode.appendChild(list);
+    var note=document.createElement('div'); note.className='gnote'; note.hidden=true;
+    box.insertBefore(note,box.querySelector('.err'));
+    var timer=null, asked='', idx=-1, items=[];
+    function byDp(dp){ var x=inputs.filter(function(i){return i.dp===dp;})[0]; return x&&x.el.querySelector('input'); }
+    function show(){
+      list.innerHTML='';
+      items.forEach(function(s,i){
+        var r=document.createElement('div'); r.textContent=s.label; if(i===idx) r.className='on';
+        r.addEventListener('mousedown',function(ev){ ev.preventDefault(); ev.stopPropagation(); setTimeout(function(){ pick(s); },0); });
+        list.appendChild(r);
+      });
+      list.hidden=!items.length;
+    }
+    function pick(s){
+      var set=function(dp,v){ var el=byDp(dp); if(el&&v){ el.value=v; el.classList.add('suggested'); } };
+      set('AddressLineText',s.street); set('CityName',s.city); set('StateCode',s.state); set('PostalCode',s.postal_code);
+      items=[]; show();
+      note.hidden=false;
+      note.textContent=s.house_number_matched
+        ?'Filled from the address lookup \u2014 check it before saving.'
+        :'The lookup found the street, not this house number \u2014 check the address before saving.';
+    }
+    input.setAttribute('autocomplete','off');
+    input.addEventListener('input',function(){
+      input.classList.remove('suggested');
+      clearTimeout(timer);
+      var q=input.value.trim();
+      var city=byDp('CityName'), st=byDp('StateCode');
+      if(city&&city.value) q+=' '+city.value; if(st&&st.value) q+=' '+st.value;
+      if(input.value.trim().length<4){ items=[]; show(); return; }
+      timer=setTimeout(function(){
+        asked=q;
+        fetch('/api/geocode/suggest?q='+encodeURIComponent(q)).then(function(r){return r.json();})
+          .then(function(d){ if(asked!==q) return; items=d.suggestions||[]; idx=-1; show(); })
+          .catch(function(){});
+      },450);
+    });
+    input.addEventListener('keydown',function(ev){
+      if(list.hidden) return;
+      if(ev.key==='ArrowDown'||ev.key==='ArrowUp'){
+        ev.preventDefault(); idx=Math.max(0,Math.min(items.length-1,idx+(ev.key==='ArrowDown'?1:-1))); show();
+      } else if(ev.key==='Enter'&&idx>=0){ ev.preventDefault(); ev.stopPropagation(); pick(items[idx]); }
+      else if(ev.key==='Escape'){ ev.stopPropagation(); items=[]; show(); }
+    });
+    input.addEventListener('blur',function(){ setTimeout(function(){ items=[]; show(); },150); });
+  }
+  function field(label,options,value){
+    var wrap=document.createElement('div');
+    if(label){ var l=document.createElement('label'); l.title=label;
+      // AddressUnitDesignatorType -> Address Unit Designator
+      l.textContent=label.replace(/(Text|Identifier|Type)$/,'').replace(/([a-z])([A-Z])/g,'$1 $2');
+      wrap.appendChild(l); }
+    var el;
+    if(options&&options.length){
+      // The field's official values as a short list inside the editor, sized
+      // to the report -- not the browser's own drop-down, which is not.
+      el=document.createElement('input'); el.type='hidden'; el.value=value||'';
+      var list=document.createElement('div'); list.className='gpick'; list.tabIndex=0;
+      list.setAttribute('role','listbox');
+      var rows=[{value:'',label:'\\u2014 not answered \\u2014',clear:true}].concat(options);
+      var mark=function(){
+        [].forEach.call(list.children,function(r){ r.classList.toggle('on',r.dataset.value===el.value); });
+      };
+      rows.forEach(function(o){
+        var r=document.createElement('div'); r.setAttribute('role','option');
+        r.dataset.value=o.value; r.textContent=o.label; if(o.clear) r.className='clear';
+        r.addEventListener('mousedown',function(ev){ ev.preventDefault(); ev.stopPropagation(); el.value=o.value; mark(); });
+        r.addEventListener('dblclick',function(){
+          var go=list.closest('.gedit').querySelector('.go'); if(go) go.click();
+        });
+        list.appendChild(r);
+      });
+      list.addEventListener('keydown',function(ev){
+        if(ev.key!=='ArrowDown'&&ev.key!=='ArrowUp') return;
+        ev.preventDefault();
+        var i=rows.findIndex(function(o){return o.value===el.value;});
+        i=Math.max(0,Math.min(rows.length-1,i+(ev.key==='ArrowDown'?1:-1)));
+        el.value=rows[i].value; mark();
+        list.children[i].scrollIntoView({block:'nearest'});
+      });
+      mark();
+      wrap.appendChild(list);
+      setTimeout(function(){ var on=list.querySelector('.on'); if(on) on.scrollIntoView({block:'nearest'}); },0);
+    }else{
+      el=document.createElement('input'); el.type='text'; el.value=value;
+    }
+    wrap.appendChild(el);
+    return wrap;
+  }
+
+  document.addEventListener('mousedown',function(e){
+    if(gedit && !(e.target.closest && e.target.closest('.gedit'))) shutEditor();
+    if(menu && !(e.target.closest && e.target.closest('.picklist'))) shutMenu();
+  });
+
+  document.addEventListener('click',function(e){
+    var t=e.target;
+    if(!t.closest) return;
+    var rm=t.closest('.exremove');
+    if(rm){
+      e.preventDefault();
+      if(rm.dataset.slot){ dropSlot(rm.dataset.slot).then(reloadHere); return; }
+      if(!confirm('Remove this exhibit from the report?')) return;
+      if(rm.dataset.image){
+        json(api+'/images?key='+encodeURIComponent(rm.dataset.image),{method:'DELETE'})
+          .then(function(){ tell({uad:'media'}); reloadHere(); })
+          .catch(function(err){ alert(err.message); });
+        return;
+      }
+      json(api+'/media/'+rm.dataset.media,{method:'DELETE'})
+        .then(function(){ tell({uad:'media'}); reloadHere(); });
+      return;
+    }
+    var me=t.closest('.mapedit');
+    if(me){ e.preventDefault(); e.stopPropagation(); editMap(me); return; }
+    var ml=t.closest('.maploader');
+    if(ml){ e.preventDefault(); e.stopPropagation(); loadMap(ml); return; }
+    var add=t.closest('.exadd');
+    if(add){ e.preventDefault(); addSlot(add.dataset.section,add); return; }
+    var more=t.closest('.compadd');
+    if(more){
+      e.preventDefault();
+      more.textContent='Adding\u2026';
+      json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
+                              body:JSON.stringify({kind:more.dataset.kind||'sales'})})
+        .then(function(){ tell({uad:'media'}); reloadHere(); })
+        .catch(function(err){ alert(err.message); });
+      return;
+    }
+    /* Additional Properties Analyzed Not Used: A-1 22.17, a list the
+       appraiser lengthens and shortens like any other. */
+    var nuadd=t.closest('.nuadd');
+    if(nuadd){
+      e.preventDefault();
+      nuadd.textContent='Adding…';
+      json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
+                              body:JSON.stringify({kind:'not_used'})})
+        .then(function(){ reloadHere(); })
+        .catch(function(err){ alert(err.message); });
+      return;
+    }
+    var lidrop=t.closest('.lidrop');
+    if(lidrop){
+      e.preventDefault();
+      var cell=lidrop.closest('td').querySelector('.v');
+      if(!cell) return;
+      if(!confirm('Remove the row \u201c'+(cell.dataset.liwas||'')+'\u201d from this grid?')) return;
+      json(api+'/comparables/lineitems',
+           {method:'PUT',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({kind:cell.dataset.li,container:cell.dataset.lic,
+                                 adjust_type:cell.dataset.lit,
+                                 was:cell.dataset.liwas,name:''})})
+        .then(function(){ reloadHere(); })
+        .catch(function(err){ alert(err.message); });
+      return;
+    }
+    var nudrop=t.closest('.nudrop');
+    if(nudrop){
+      e.preventDefault();
+      var n=Number(nudrop.dataset.nu);
+      if(!confirm('Remove property #'+n+' from the properties analyzed but not used?')) return;
+      json(api+'/comparables/'+n+'?kind=not_used',{method:'DELETE'})
+        .then(function(){ reloadHere(); })
+        .catch(function(err){ alert(err.message); });
+      return;
+    }
+    var th=t.closest('th[data-compmenu]');
+    if(th){ e.preventDefault(); openCompMenu(th); return; }
+    // a box waiting for a picture takes it straight from the file dialog
+    var zone=t.closest('.exdrop');
+    if(zone){ lastZone=zone; browse(zone); return; }
+    var td=t.closest('td[data-gc]');
+    if(td && !t.closest('.gedit')){ openCell(td); return; }
+    // Public / Private in a utilities row: the click sets the ownership
+    var tc=t.closest('td.tickcell');
+    if(tc){
+      var row=tc.parentNode, mark=tc.innerHTML;
+      send(tc,{value:tc.dataset.tval}).then(function(ok){
+        if(!ok) return;
+        var svg="<span><svg class='tick' viewBox='0 0 10 10' width='9pt' height='9pt'><path d='M1 5 L4 8 L9 1' fill='none' stroke='#231f20' stroke-width='1.2'/></svg></span>";
+        [].forEach.call(row.querySelectorAll('td.tickcell'),function(c){ c.innerHTML= c===tc ? svg : '<span></span>'; });
+      });
+      return;
+    }
+    var bx=t.closest('.bx[data-pick]');
+    if(!bx) return;
+    var want=bx.dataset.pick, run=bx.parentNode;
+    var boxes=run.querySelectorAll('.bx[data-pick]');
+    var already=bx.textContent.trim()==='\\uF052';
+    send(bx,{value:already?'':want}).then(function(ok){
+      if(!ok) return;
+      boxes.forEach(function(b){b.innerHTML='\\uF0A3';});
+      if(!already) bx.innerHTML='\\uF052';
+    });
+  });
+
+  ['dragenter','dragover'].forEach(function(kind){
+    document.addEventListener(kind,function(e){
+      var zone=e.target.closest && e.target.closest('.exadd,.exdrop');
+      if(!zone) return;
+      e.preventDefault(); lastZone=zone; zone.classList.add('over');
+    });
+  });
+  document.addEventListener('dragleave',function(e){
+    var zone=e.target.closest && e.target.closest('.exadd,.exdrop');
+    if(zone) zone.classList.remove('over');
+  });
+  document.addEventListener('drop',function(e){
+    var zone=e.target.closest && e.target.closest('.exadd,.exdrop');
+    if(!zone) return;
+    e.preventDefault(); zone.classList.remove('over');
+    upload(zone,e.dataTransfer && e.dataTransfer.files);
+  });
+  document.addEventListener('mouseover',function(e){
+    var zone=e.target.closest && e.target.closest('.exadd,.exdrop');
+    if(zone) lastZone=zone;
+  });
+  // Paste goes to whichever drop zone the pointer was last over, so a
+  // screenshot can go straight from the clipboard into the right section.
+  document.addEventListener('paste',function(e){
+    if(!lastZone||!e.clipboardData) return;
+    var files=[].slice.call(e.clipboardData.files||[]);
+    if(!files.length){
+      files=[].slice.call(e.clipboardData.items||[])
+        .filter(function(i){return i.kind==='file';})
+        .map(function(i){return i.getAsFile();})
+        .filter(Boolean);
+    }
+    if(!files.length) return;
+    e.preventDefault();
+    upload(lastZone,files);
+  });
+})();
+</script>"""
+
+
+def _stamp(piece: Piece) -> str:
+    """Name the section a piece of the page belongs to (editor only).
+
+    The rail navigates by it and follows the reader by it; an attribute moves
+    nothing on the page, and the printed report never carries it.
+    """
+    number = form.section_number(piece.section)
+    return piece.html.replace(
+        "<div class='blk",
+        f"<div data-secn='{number}' data-sec='{form.esc(piece.section)}' class='blk", 1)
+
+
+def render(pages: list[Page], meta: Meta, *, embed_fonts: bool = True,
+           screen: bool = False, edit: bool = False,
+           imported: Iterable[str] = ()) -> str:
+    total = len(pages)
+    body = []
+    for n, pg in enumerate(pages, start=1):
+        band = "band first" if n == 1 else "band"
+        pieces = "".join(_stamp(p) if edit else p.html for p in pg.pieces)
+        body.append(f"<div class='page' data-page='{n}'><div class='hi'><div class='hz'>"
+                    f"{_furniture(meta, n, total)}"
+                    f"<div class='{band}'>{pieces}</div></div></div></div>")
+    return (f"<!doctype html><html><head><meta charset='utf-8'>"
+            f"<title>Uniform Residential Appraisal Report</title><style>"
+            f"{form.stylesheet(embed_fonts=embed_fonts, screen=screen, edit=edit)}"
+            f".band > .blk:not(.cols){{display:flow-root}}"
+            f".band > .blk.top{{margin-top:0}}"
+            f".band > .blk.top .tabwrap,.band > .blk.top .h1,.band > .blk.top .h2{{margin-top:0}}"
+            f"</style></head><body>{''.join(body)}"
+            f"{_imported_js(imported) if edit else ''}"
+            f"{FIT_JS if screen else ''}{EDIT_JS.replace('__BODY_BOTTOM__', str(BODY_BOTTOM)) if edit else ''}</body></html>")
+
+
+def _imported_js(imported: Iterable[str]) -> str:
+    """The Report Field IDs a file brought in, for the editor to mark.
+
+    Named here rather than stamped on every control because the marking is a
+    view of the page, not a property of a value: the same field shows green
+    the moment it arrives and plain once the appraiser turns the marking off.
+    """
+    fids = sorted({str(f) for f in imported if f})
+    if not fids:
+        return ""
+    return f"<script>window.UAD_IMPORTED={json.dumps(fids)};</script>"
+
+
+OVERFLOW_JS = """
+() => Array.from(document.querySelectorAll('.page')).map(pg => {
+  const band = pg.querySelector('.band');
+  const top = pg.getBoundingClientRect().top;
+  let bottom = 0;
+  for (const el of band.querySelectorAll(':scope > .blk, :scope > .blk > .col > *, :scope > .blk *')) {
+    const r = el.getBoundingClientRect();
+    if (r.height > 0) bottom = Math.max(bottom, r.bottom);
+  }
+  return (bottom - top) * 72 / 96;
+})
+"""
+
+
+def verify(html: str) -> list[float]:
+    """The real bottom of the content on every page, in points."""
+    _allow_subprocesses()
+    with sync_playwright() as p:
+        browser = p.chromium.launch(args=["--font-render-hinting=none"])
+        try:
+            pg = browser.new_page(viewport={"width": 900, "height": 1400}, device_scale_factor=1)
+            pg.set_content(html, wait_until="load", timeout=90_000)
+            pg.evaluate("document.fonts.ready")
+            pg.wait_for_timeout(100)
+            return pg.evaluate(OVERFLOW_JS)
+        finally:
+            browser.close()
+
+
+def build(tree, *, folder=None, media=None, sample=False, screen=False,
+          embed_fonts=True, edit=False, diagnostics: dict | None = None,
+          slots: list[dict] | None = None, imported: Iterable[str] = ()) -> str:
+    """Lay the report out so that nothing lands below the body rule.
+
+    The planner works from measured heights, so a first pass is normally right
+    to within a couple of points -- the residual is sub-pixel rounding and the
+    small optical offsets Appendix E puts on prose blocks.  The loop below
+    closes that residual by re-planning with a tightened cap on whichever page
+    ran long, and it is a net, not the mechanism: if it is doing more than two
+    rounds of work, a height is being measured wrong and that is the bug to
+    fix.
+
+    Pass a dict as ``diagnostics`` to get the outcome back -- ``pages``,
+    ``attempts``, the worst ``drift`` between plan and render, and ``overflow``,
+    which is empty when every page is clean.  A caller that must not ship an
+    overflowing page checks it; nothing is swallowed.
+    """
+    from uad.report import browser
+    if not browser.AVAILABLE:
+        raise browser.BrowserUnavailable(browser.MESSAGE)
+    blocks = form.build(tree, folder=folder, media=media, sample=sample,
+                        edit=edit, slots=slots, imported=imported)
+    measured = measure(_galley(blocks, embed_fonts=embed_fonts, edit=edit))
+    meta = Meta.from_case(tree)
+    caps: dict[int, float] = {}
+    html = ""
+    over: dict[int, float] = {}
+    pages: list[Page] = []
+    drift = 0.0
+    attempt = 0
+    for attempt in range(1, 7):
+        pages = plan(measured, caps)
+        html = render(pages, meta, embed_fonts=embed_fonts, screen=screen,
+                      edit=edit, imported=imported)
+        bottoms = verify(html)
+        drift = max((b - pg.planned for pg, b in zip(pages, bottoms)), default=0.0)
+        over = {n + 1: round(b, 1) for n, b in enumerate(bottoms) if b > BODY_BOTTOM}
+        if not over:
+            break
+        for n, b in over.items():
+            # Shrink from the cap already in force, never from BODY_BOTTOM: the
+            # latter recomputes the same number every round, and the loop sits
+            # on a page that is long by a hair until it runs out of attempts.
+            caps[n] = caps.get(n, BODY_BOTTOM) - (b - BODY_BOTTOM) - 1.0
+    if diagnostics is not None:
+        diagnostics.update(pages=len(pages), attempts=attempt,
+                           drift=round(drift, 2), overflow=over)
+    return html
+
+
+def to_pdf(html: str, out_path) -> Any:
+    _allow_subprocesses()
+    with sync_playwright() as p:
+        browser = p.chromium.launch(args=["--font-render-hinting=none"])
+        try:
+            pg = browser.new_page()
+            pg.set_content(html, wait_until="load", timeout=120_000)
+            pg.evaluate("document.fonts.ready")
+            pg.wait_for_timeout(200)
+            pg.pdf(path=str(out_path), width="8.5in", height="14in",
+                   print_background=True,
+                   margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
+                   prefer_css_page_size=True)
+        finally:
+            browser.close()
+    return out_path

@@ -1043,3 +1043,65 @@ test, not in a case script.
   `a1_only` / `coverage.c1_placements` read the repaired form.
 - Test: `test_report_rows.py` (the four completions, and that none is left).
 - Layer: spec extraction. State: general.
+
+### E-073 Grid cells composed in the wrong order, with the wrong separator, unit or digits
+- Symptom (ours vs D-1 MH2/SF1 grids): `Asphalt Local Road` for `Local Road |
+  Asphalt`; `Electric Heat Pump`; `2 0` for `2 | 0`; `Driveway Pavers 4` for
+  `Driveway | 4 | Pavers`; `SE 3.00` for `3 Miles SE`; `Porch | Deck` for
+  `Deck | Porch`; the street and town of an address run together; only the
+  first vehicle storage printed (no Garage line).
+- Cause: different data points under one label were joined with spaces in the
+  order A-1 lists them; the linear unit attribute was ignored; A-1's numeric
+  precision "+3.2" was applied as a fixed width; instances of one enumerated
+  data point kept the XML order; a grid cell read only the first instance of its
+  block; the grid's HTML dropped the line breaks the text carried.
+- Fix: `bind.COMPOSITES` -- each composite cell with its order, separator, "stack"
+  flag and the B-1 / grid-supplement sentence it comes from; `bind.with_unit`
+  (areas and distances: "3 Miles", "0.40 Miles", ".5" -> "0.5", never singular);
+  Numeric prints the XML's own digits; values (and instances) of one enumerated
+  data point list in A-1's enumeration order (alphabetical order would not give
+  "8 Ft. | 9 Ft. | 10 or more feet"); `comparables._read` reads every instance of a
+  stacked cell; `comparables._esc` keeps line breaks.
+- NOT fixable as a rule: the order of `Assessor Record | MLS 124523` -- the 12
+  samples disagree with each other for XML of identical structure (condo1 vs
+  condo2, sf2 vs sf4) and B-1 states none. Left as the document order.
+- Test: `test_report_rows.py` (composite, unit, order tests). Layer: render.
+  State: general.
+
+### E-074 A block's display rule lives on its heading; the extractor lost it; the block printed in every report
+- Symptom: the Supervisory Appraiser certifications (a second full page of
+  certification text) printed in all 12 samples; D-1 prints them only in MH1 and
+  the 2-4 unit sample.
+- Cause: B-1 p396 states the rule once, on the block's heading (29.054 "Display
+  when PartyRoleType = AppraiserSupervisor"); the paragraphs under it carry
+  none. The extractor takes the field-ID column from the column with most IDs and
+  that table sets 29.054's ID one column over, so the row and its rule were
+  dropped.
+- Fix: `extract_display_rules.py` takes a lone ID from an unnamed column when the
+  ID column is empty (regenerated display_rules.json / field_index.json: 29.054
+  added, nothing else changed). `form._anchor_gate`: a margin slot that decides
+  sets the state for its block; slots with no rule of their own inherit a hidden
+  state.
+- Test: all 12 samples -- our report contains the Supervisory certifications
+  exactly when the official PDF does. Layer: spec extraction / render.
+
+### E-075 Every empty comparable-grid cell printed an em-dash; rows judged per block; subject values missing
+- Symptom: 2-6x the dashes of the official report; Contract Price / Contract
+  Date rows (subject price, dashes for the comparables) missing; a row that
+  only a fourth comparable has was absent from the first block.
+- Cause: `html()` printed a dash for any empty cell. B-1's supplement gives each
+  row "Display Em-Dash for Subject / Comp when ..." (mostly "Never display
+  dash"). `GridRow.rules` read the label column ("Row Display Rules") instead of
+  the rules column, so "Subject: Display if ..." was never seen and the subject
+  FID of Contract Price / Date (N/A in the workbook, 22.01.04 / 22.01.06 in A-1)
+  was never filled. Row visibility was decided per block of three comparables.
+- Fix: `report/dashes.py` executes the sentences (data point =/<>/>/number, "an
+  instance of X is not provided", "for all instances of", the column-wise prose,
+  AND/OR); `comparables._attach_dash_sentences` pairs them with the rows by
+  order; `_fill_subject_fids`; the rules column fixed; visibility judged over all
+  comparables; the Not Used table uses the same sentences. `<>` on a data point
+  that is not there is true.
+- Evidence: grid dashes now equal the official count exactly on condo2, coop1,
+  sf5 and 2-4 unit scenario 2 (was 2-6x over everywhere). Remaining differences
+  are the outbuilding rows (T-123).
+- Test: `test_report_rows.py`. Layer: render. State: general.

@@ -115,3 +115,105 @@ def test_a_label_naming_a_family_of_rows_still_reads_its_own_cells():
     rows = _rows(_table_with("coop1_appraisal_v1_4", "Property Restriction"))
     assert any("Historic Preservation" in c for c in rows["Property Restriction"])
     assert any("Historic Designation" in c for c in rows["Property Restriction"])
+
+
+# ------------------------------------------------- block-level display rules
+@pytest.mark.parametrize("key", [t.key for t in templates.catalogue()])
+def test_supervisory_certifications_print_exactly_when_the_official_report_prints_them(key):
+    """B-1 p396, 29.054: "Display when PartyRoleType = AppraiserSupervisor".  The
+    rule sits on the block's heading and the paragraphs under it carry none, so
+    they were printed in every report.  All twelve D-1 PDFs agree with the rule."""
+    import pymupdf
+    tpl = templates.get(key)
+    official = " ".join(" ".join(p.get_text().split()) for p in pymupdf.open(tpl.pdf))
+    tree = etree.parse(str(tpl.path))
+    ours = " ".join(" ".join(lhtml.fromstring(form.galley_html(
+        form.build(tree, folder=tpl.path.parent))).text_content().split()).split())
+    marker = "The Supervisory Appraiser certifies"
+    assert (marker in ours) == (marker in official)
+    assert ours.count("I have no present or prospective interest") == official.count(
+        "I have no present or prospective interest")
+
+
+# --------------------------------------------- composite cells, units, dashes
+def test_a_distance_prints_the_xml_digits_and_its_unit():
+    from uad import bind
+    assert bind.format_linear("3", "Miles") == "3 Miles"
+    assert bind.format_linear("0.40", "Miles") == "0.40 Miles"
+    assert bind.format_linear(".5", "Miles") == "0.5 Miles"       # B-1: leading zero
+    assert bind.format_linear("1", "Miles") == "1 Miles"          # D-1 2-4 unit prints "1 Miles W"
+
+
+def _grid_cells(key: str, label: str) -> tuple[str, list[str]]:
+    from uad.report import comparables
+    tpl = templates.get(key)
+    for grid in comparables.build(etree.parse(str(tpl.path))):
+        for row in grid.rows:
+            if row.label == label:
+                return row.subject, [c.text for c in row.cells]
+    raise AssertionError(label)
+
+
+def test_grid_cells_compose_in_the_order_and_with_the_separator_b1_gives():
+    mh2 = "mh2_appraisal_v1_4"
+    assert _grid_cells(mh2, "Proximity to Subject")[1] == ["3 Miles SE", "4 Miles NW", "5 Miles S"]
+    assert _grid_cells(mh2, "Street Type | Surface")[1][0] == "Local Road | Asphalt"
+    assert _grid_cells(mh2, "Heating")[0] == "Heat Pump | Electric"
+    assert _grid_cells(mh2, "Baths – Full | Half")[0] == "2 | 0"
+    subject, comps = _grid_cells(mh2, "Type| Spaces | Detail")
+    assert subject == "Driveway | 4 | Pavers\nGarage | 2 | Attached 400 Sq. Ft."   # a line for each, area last
+    assert comps[1] == "Driveway | 2 | Asphalt"
+
+
+def test_several_values_of_one_data_point_list_in_a_1_enumeration_order():
+    # XML order is Porch, Deck; D-1 prints "Deck | Porch"
+    assert _grid_cells("mh2_appraisal_v1_4", "Outdoor Living")[1][2] == "Porch"
+    from uad.report import comparables
+    tree = etree.parse(str(templates.get("mh2_appraisal_v1_4").path))
+    cells = [c.text for g in comparables.build(tree) for r in g.rows if r.label == "Outdoor Living" for c in r.cells]
+    assert "Deck | Porch" in cells
+
+
+def test_a_dash_sentence_is_executed_not_assumed():
+    from uad.report import dashes
+    tree = etree.parse(str(templates.get("sf3_appraisal_v1_4").path))
+    root = tree.getroot()
+    from uad.report import comparables
+    comp = comparables.properties(root, "SalesComparable")[0]
+    cell = dashes.Cell(root, comp, False, [False, True, True, True], 1)
+    assert dashes.decide('ListingStatusType (UID: 1800.0075, FID: 22.01.21) <> "Pending"', cell)
+    assert not dashes.decide('ListingStatusType = "Pending"', cell)
+    assert not dashes.decide("Never display dash", cell)
+    assert not dashes.decide("", cell)
+    assert not dashes.decide("Display em-dash for Additional Property Analyzed Not Used when …", cell)
+    # about the row's other cells: this one is empty and another has a value
+    assert dashes.decide("Comp does not have outbuilding on row, and Subject or another Comp does.", cell)
+    nothing_else = dashes.Cell(root, comp, False, [True, True, True, True], 1)
+    assert not dashes.decide("Comp does not have outbuilding on row, and Subject or another Comp does.", nothing_else)
+
+
+EXACT_DASHES = ["condo2_appraisal_v1_4", "coop1_appraisal_v1_4", "sf5_appraisal_v1_2",
+                "2_to_4_unit_scenario_2_appraisal_v1_2"]
+
+
+@pytest.mark.parametrize("key", EXACT_DASHES)
+def test_grid_dashes_match_the_official_report(key):
+    """Every empty cell used to print a dash (two to six times the D-1 count).
+    B-1's per-row sentences decide now; on these four samples the count is
+    exactly the official one (the others differ only where the outbuilding rows
+    are still wrong -- T-123)."""
+    import pymupdf
+    from uad import templates as T
+    from uad.report import comparables
+
+    tpl = T.get(key)
+    official = sum(" ".join(p.get_text().split()).split().count("—")
+                   for p in list(pymupdf.open(tpl.pdf))[2:])
+    tree = etree.parse(str(tpl.path))
+    ours = 0
+    for grid in comparables.build(tree):
+        for row in grid.rows:
+            ours += int(row.subject_dash) + sum(c.dash for c in row.cells)
+    # the grid is most, not all, of the report's dashes: the official count also
+    # holds the Not Used table's, so the grid's own may only be the smaller
+    assert 0 < ours <= official

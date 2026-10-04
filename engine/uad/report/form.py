@@ -426,9 +426,7 @@ def instances(ctx: Ctx, fid: str) -> list[tuple[str, list[tuple[str, str]]]]:
         if key not in groups:
             groups[key] = []
             order.append(key)
-        unit = node.get("AreaUnitOfMeasureType")
-        if unit:
-            text = bind.format_area(text, unit)
+        text = bind.with_unit(text, node)
         if (name, text) not in groups[key]:
             groups[key].append((name, text))
     return [(k, groups[k]) for k in order]
@@ -1032,6 +1030,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             if el.get("x0", 99) < 46:
                 anchor = (el.get("ids") or [""])[0]
                 ctx.placeholders["rule_fid"] = anchor
+                _anchor_gate(ctx, anchor)
                 answer = _fixed_text_answer(ctx, anchor, printed)
                 if answer is not None:
                     flush()
@@ -1266,6 +1265,8 @@ def _not_used_html(ctx: "Ctx") -> tuple[str, bool]:
                 continue
             text = comparables.value_for(ctx.root, fid, prop) or (
                 str(number) if fid == "22.17.01" else "")
+            if not text and comparables.not_used_dash(ctx.root, prop, _head):
+                text = comparables.EM_DASH
             cells.append(_cell(esc(text), fid, inside, key=key) if ctx.edit
                          else _td(esc(text)))
         row = "".join(cells)
@@ -1357,6 +1358,23 @@ def _agency_ok(ctx: Ctx, text: str) -> bool:
     return True
 
 
+def _anchor_gate(ctx: Ctx, fid: str) -> bool:
+    """Whether the paragraphs under this margin slot print.
+
+    The slot's field carries B-1's rule for the paragraph that follows.  Where
+    B-1 states a rule once, on a block's heading (29.054, "Display when
+    PartyRoleType = AppraiserSupervisor"), the slots under it carry none of
+    their own and stay out with it: a slot that decides sets the state for the
+    block, a slot that does not inherits a hidden one.
+    """
+    for rule in _fields().get(fid, {}).get("display_rules", []):
+        decided = rules.evaluate(rule.get("rule", ""), ctx.root)
+        if decided.known:
+            ctx.placeholders["block_shown"] = "1" if decided.shown else "0"
+            return decided.shown
+    return ctx.placeholders.get("block_shown") != "0"
+
+
 def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     """One paragraph of the report's own fixed wording.
 
@@ -1369,13 +1387,7 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     if not text:
         return
     fid = ctx.placeholders.get("rule_fid", "")
-    shown = True
-    entry = _fields().get(fid, {})
-    for rule in entry.get("display_rules", []):
-        decided = rules.evaluate(rule.get("rule", ""), ctx.root)
-        if decided.known:
-            shown = decided.shown
-            break
+    shown = _anchor_gate(ctx, fid)
     if shown and not _agency_ok(ctx, text):
         shown = False
     numbered = bool(NUMBER.match(text))

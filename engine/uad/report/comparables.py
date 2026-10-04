@@ -29,7 +29,7 @@ from typing import Any
 from lxml import etree
 
 from .. import bind, edit
-from . import page, typography
+from . import dashes, page, typography
 
 XLINK = "http://www.w3.org/1999/xlink"
 
@@ -98,6 +98,10 @@ class GridRow:
     container_kind: str = ""       # which grid this row belongs to
     new_item: bool = False
     named: Any = None              # how the row is stored, when it is a named one
+    # B-1's "Display Em-Dash for Subject / Comp when ..." sentences for this row
+    # ("" where the table has none for it)
+    dash_subject: str = ""
+    dash_comp: str = ""
 
     @property
     def adjustable(self) -> bool:
@@ -168,7 +172,10 @@ def rows(kind: str = "sales") -> list[GridRow]:
     # blank, so it is found by the group key, not by the column name.
     col_point = (column(key_has="mismo data point")
                  or column(named="mismo data point"))
-    col_rules = column(key_has="display rules")
+    # the workbook's first column is "Row Display Rules" (the label); the rules
+    # themselves sit under "Display Rules / If SalesComparisonApproachIndicator..."
+    col_rules = next((k for k in header
+                      if " ".join(str(k).split()).casefold().startswith("display rules")), "")
     # The column beside the adjustment's field ID names the
     # ComparableAdjustmentType that identifies which adjustment the row means.
     # Without it every adjustable row reads the first adjustment on the
@@ -199,9 +206,97 @@ def rows(kind: str = "sales") -> list[GridRow]:
             adjust_fid=adjust if FID.match(adjust) else "",
             adjust_type=_clean(entry.get(col_adjust_type)),
             data_point=point,
-            rules=_clean(entry.get(col_rules))[:200],
+            rules=_clean(entry.get(col_rules))[:400],
         ))
+    _fill_subject_fids(out)
+    _attach_dash_sentences(kind, out)
     return out
+
+
+def _fill_subject_fids(out: list[GridRow]) -> None:
+    """A row whose own text says it has a subject value, but whose subject
+    column reads N/A.
+
+    "Contract Price" and "Contract Date" say "Subject: Display if
+    SalesContractReviewedIndicator = true", and the Contract Price note names
+    the pair ("displays in 22.01.04/22.01.22"), yet the workbook's subject FID
+    column is N/A for both -- so the subject's price and date, which the D-1
+    samples print, were never read.  A-1 files the subject's value under the
+    same label in the same group (22.01.04 beside the comparable's 22.01.22);
+    it is taken only when that is the one field no row already uses.
+    """
+    used = {x for r in out for x in (r.subject_fid, r.comp_fid, r.adjust_fid) if x}
+    index = bind._index()
+    squash = lambda t: re.sub(r"[^a-z0-9]", "", t.casefold())
+    for row in out:
+        if row.heading or row.subject_fid or not row.comp_fid:
+            continue
+        if not re.search(r"\bSubject:\s*Display", row.rules):
+            continue
+        group = row.comp_fid.rsplit(".", 1)[0]
+        found = [fid for fid, entry in index.items()
+                 if fid.rsplit(".", 1)[0] == group and fid not in used
+                 and any(squash(loc.get("label", "")) == squash(row.label)
+                         for loc in entry.get("locations") or [])]
+        if len(found) == 1:
+            row.subject_fid = found[0]
+            used.add(found[0])
+
+
+@lru_cache(maxsize=1)
+def _dash_table() -> dict[str, list[tuple[str, str, str]]]:
+    """B-1's em-dash table (``b1_em_dashes``), cut into its three grids:
+    kind -> [(row label, Subject sentence, Comp sentence)] in the table's order."""
+    data = json.loads((SPEC / "supplements.json").read_text(encoding="utf-8")).get("b1_em_dashes", [])
+    if not data:
+        return {}
+    keys = list(data[0])
+    label_key = next(k for k in keys if "label" in k.casefold())
+    subject_key = next(k for k in keys if "subject" in k.casefold())
+    comp_key = next(k for k in keys if "comp" in k.casefold())
+    starts = {"sales": "Sales Comparison Approach", "grm": "Income Approach (GRM Comps)",
+              "rental": "Rental Information (Rental Comps)"}
+    at = {kind: next((i for i, r in enumerate(data) if _clean(r.get(label_key)) == head), None)
+          for kind, head in starts.items()}
+    bounds = sorted((i, kind) for kind, i in at.items() if i is not None)
+    out: dict[str, list[tuple[str, str, str]]] = {}
+    for n, (i, kind) in enumerate(bounds):
+        end = bounds[n + 1][0] if n + 1 < len(bounds) else len(data)
+        out[kind] = [(_clean(r.get(label_key)), _clean(r.get(subject_key)), _clean(r.get(comp_key)))
+                     for r in data[i:end]]
+    return out
+
+
+def not_used_dash(root: etree._Element, prop: etree._Element, label: str) -> bool:
+    """Does an empty cell of the "Additional Properties Analyzed Not Used" list
+    print an em-dash?  Its own rows in B-1's table decide, the same way the
+    grid's do (Sale Date: ListingStatusType <> "SettledSale")."""
+    table = _dash_table().get("sales") or []
+    squash = lambda t: re.sub(r"[^a-z0-9]", "", t.casefold())
+    start = next((i for i, row in enumerate(table)
+                  if squash(row[0]).startswith("additionalpropertiesanalyzednotused")), None)
+    if start is None:
+        return False
+    for name, _subject, comp in table[start + 1:start + 8]:
+        if squash(name) == squash(label):
+            return dashes.decide(comp, dashes.Cell(root, prop, False, [True], 0))
+    return False
+
+
+def _attach_dash_sentences(kind: str, out: list[GridRow]) -> None:
+    """Give each row its two sentences.  The workbook and the em-dash table list
+    a grid's rows in the same order, so a row takes the next sentence pair whose
+    label it shares; labels repeat (Roof, [Additional Row]) and only the order
+    tells them apart."""
+    table = _dash_table().get(kind) or []
+    squash = lambda t: re.sub(r"[^a-z0-9]", "", t.casefold())
+    at = 0
+    for row in out:
+        for j in range(at, min(at + 12, len(table))):
+            if squash(table[j][0]) == squash(row.label):
+                row.dash_subject, row.dash_comp = table[j][1], table[j][2]
+                at = j + 1
+                break
 
 
 # --------------------------------------------------------------------------
@@ -348,6 +443,22 @@ def _row_marks(row: "GridRow | None", binding) -> dict[str, str]:
     return {}
 
 
+def _read(root: etree._Element, binding, scope: etree._Element | None,
+          marks: dict[str, str] | None = None):
+    """The elements a grid cell reads: the first instance of its block, or --
+    where B-1 stacks them ("a separate line for each street", each vehicle
+    storage, each view) -- every instance."""
+    composite = bind.composite_for([dp.get("mismo", "") for dp in binding.data_points])
+    if not (composite and composite.stack):
+        yield from bind._walk(root, binding, scope, 1, marks)
+        return
+    for ordinal in range(1, 25):
+        nodes = list(bind._walk(root, binding, scope, ordinal, marks))
+        if not nodes:
+            return
+        yield from nodes
+
+
 def value_for(root: etree._Element, field_id: str,
               scope: etree._Element | None, row: "GridRow | None" = None) -> str:
     """One grid cell: the value of a field read within one property.
@@ -368,13 +479,11 @@ def value_for(root: etree._Element, field_id: str,
         return ""
     groups = []
     marks = _row_marks(row, binding)
-    for name, node in bind._walk(root, binding, scope, 1, marks):
+    for name, node in _read(root, binding, scope, marks):
         text = (node.text or "").strip()
         if not text or name in marks:
             continue                 # the row's label already says which type
-        unit = node.get("AreaUnitOfMeasureType")
-        if unit:
-            text = bind.format_area(text, unit)
+        text = bind.with_unit(text, node)
         key = bind.instance_of(node)
         if not groups or groups[-1][0] != key:
             groups.append((key, []))
@@ -501,6 +610,7 @@ def write_adjustment(prop: etree._Element, adjust_type: str, value: str):
 class Cell:
     text: str = ""
     adjustment: str = ""
+    dash: bool = False             # empty, and B-1 says this cell prints an em-dash
 
 
 @dataclass
@@ -509,6 +619,7 @@ class BuiltRow:
     heading: bool
     subject: str
     cells: list[Cell] = field(default_factory=list)
+    subject_dash: bool = False
     adjustable: bool = False
     subject_fid: str = ""
     comp_fid: str = ""
@@ -827,20 +938,37 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                 text = value_for(root, row.comp_fid, prop, row) if row.comp_fid else ""
                 adj = adjustment_for(root, row, prop)
                 cells.append(Cell(text=text, adjustment=adj))
-            built = BuiltRow(row.label, False, subject_text, cells, bool(row.adjustable),
-                             row.subject_fid, row.comp_fid, row.adjust_type, row.adjust_fid,
+            built = BuiltRow(row.label, False, subject_text, cells,
+                             adjustable=bool(row.adjustable),
+                             subject_fid=row.subject_fid, comp_fid=row.comp_fid,
+                             adjust_type=row.adjust_type, adjust_fid=row.adjust_fid,
                              line_item=row.container, item_name=row.item_name,
                              new_item=row.new_item)
+            # an empty cell prints an em-dash only where B-1's sentence for the
+            # row says so (dashes.py); every other empty cell stays blank
+            empty = [not subject_text] + [not c.text for c in cells]
+            if not subject_text:
+                built.subject_dash = dashes.decide(
+                    row.dash_subject, dashes.Cell(root, subject, True, empty, 0))
+            for n, (prop, cell) in enumerate(zip(block, cells), start=1):
+                if not cell.text:
+                    cell.dash = dashes.decide(
+                        row.dash_comp, dashes.Cell(root, prop, False, empty, n))
             # The supplement marks each row always / if applicable / if
             # relevant.  "None" is an answer, not a fact about the property,
             # so a row every property answers "None" is not printed -- which is
             # how the samples drop Hazard Zone, Functional Issues and the rest.
             subject_raw = raw_for(root, row.subject_fid, subject) if row.subject_fid else []
+            # whether a row prints is judged across every comparable, not only
+            # the block of three it is drawn in: D-1 MH2's fourth comparable is
+            # pending, and its contract price puts the Contract Price row (with
+            # dashes for the other three) in the first block too
             comp_raw: list[str] = []
             if row.comp_fid:
-                for prop in block:
+                for prop in comps:
                     comp_raw += raw_for(root, row.comp_fid, prop)
-            adjusted = any(c.adjustment for c in cells)
+            adjusted = any(c.adjustment for c in cells) or any(
+                adjustment_for(root, row, prop) for prop in comps)
             # (in the editor every row stays, so it can be answered)
             if row.new_item:
                 grid.rows.append(built)      # the empty line that names another
@@ -978,22 +1106,24 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
             cells = [f"<td class='lbl'><span>{_esc(row.label)}</span></td>"]
         subject_grey = row.label.strip() in SUBJECT_GREY
         align = " left" if address else ""
+        sub_text = row.subject or (EM_DASH if row.subject_dash else "")
         sub = (_photo_cell(photos.get(0), row.subject, 0, edit) if (address and first)
-               else _esc(row.subject or EM_DASH))
+               else _esc(sub_text))
         cells.append(f"<td class='v sub{align}{' grey' if subject_grey else ''}'"
                      f"{gattr(0, row.subject_fid)}><span>{sub}</span></td>")
-        plain = [cells[0], f"<td class='v sub left'><span>{_esc(row.subject or EM_DASH)}</span></td>"]
+        plain = [cells[0], f"<td class='v sub left'><span>{_esc(sub_text)}</span></td>"]
         for i, cell in enumerate(row.cells, start=1):
             number = start + i - 1
+            shown = cell.text or (EM_DASH if cell.dash else "")
             text = (_photo_cell(photos.get(number), cell.text, number, edit) if (address and first)
-                    else _esc(cell.text or EM_DASH))
+                    else _esc(shown))
             grey = " grey" if row.label.strip() in COMP_GREY else ""
             if not row.adjustable:
                 # nothing can be adjusted on this row, so the value has the
                 # width of the whole comparable column (Appendix E, Type 2)
                 cells.append(f"<td class='v comp{align}{grey}' colspan='2'"
                              f"{gattr(number, row.comp_fid)}><span>{text}</span></td>")
-                plain.append(f"<td class='v comp left' colspan='2'><span>{_esc(cell.text or EM_DASH)}</span></td>")
+                plain.append(f"<td class='v comp left' colspan='2'><span>{_esc(shown)}</span></td>")
                 continue
             cells.append(f"<td class='v comp{align}{grey}'{gattr(number, row.comp_fid)}>"
                          f"<span>{text}</span></td>")
@@ -1032,12 +1162,14 @@ def _photo_cell(src: str | None, text: str, number: int = 0, edit: bool = False)
                  f" data-name='Sales Comparison Approach' data-caption='Comparable #{number}'")
         picture = (f"<span class='cpwrap'>{picture}<span class='photodrop exdrop'{attrs}>"
                    f"</span></span>")
-    return f"<span class='ca'>{_esc(text or EM_DASH)}</span>{picture}"
+    return f"<span class='ca'>{_esc(text)}</span>{picture}"      # an address never prints a dash
 
 
 def _esc(text: str) -> str:
+    """A cell's text as HTML, keeping the line breaks it carries: the street on
+    one line and the town on the next, a line for each vehicle storage."""
     return (str(text).replace("&", "&amp;").replace("<", "&lt;")
-            .replace(">", "&gt;"))
+            .replace(">", "&gt;").replace("\n", "<br>"))
 
 
 def main() -> None:

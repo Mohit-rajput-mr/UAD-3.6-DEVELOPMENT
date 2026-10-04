@@ -2685,3 +2685,86 @@ key means "reload and lay out again"); `Renderer.key` hashes the XML **content**
 content. Verified in Chromium through two server copies behind a round-robin proxy with one shared
 store: edit → report shows the new value in 3 s; photo upload → photo in the report in 3 s; no
 change → no reload; no 5xx. LESSON: a key shared between server copies must be content-derived.
+
+## 2026-10-04 (session 3) — text-fidelity audit, slices 1-2; what the next agent takes over
+
+Branch `claude/confident-maxwell-id7biz` (pushed). Read `AI_HANDOVER.md` §4/§5 first; this is the detail.
+
+### Environment set-up on a fresh Linux container (cost me 15 minutes, don't repeat it)
+- `pip install -r requirements.txt pytest httpx` then **`pip install playwright==1.56.0`**. The
+  container's preinstalled Chromium is build 1194; any newer playwright wants another build and
+  fails with "Executable doesn't exist". Never run `playwright install`.
+- Without Playwright the harness raises `BrowserUnavailable` (layout needs Chromium).
+
+### How to measure (the loop that found everything)
+1. `python _work/audit/render_all.py [sample_key ...]` -- renders to `_work/harness/` (~1 min for 12).
+   **Do not redirect its stderr** -- a render error that is hidden leaves the old PDFs and every
+   number after it is stale (it cost me an hour once).
+2. `python _work/audit/linediff.py [-v] [-l] [sample]` -- word diff vs the D-1 PDFs (`-l` = lines).
+   TOTAL: 21411 -> 17706 over this session. Words that are only in ours/only in GSE are listed with `-v`.
+   Caveat: a block that was printed twice can mask a shortfall elsewhere; the SUM is what to read.
+3. LOOK at pages: `pymupdf.open(pdf)[n].get_pixmap(dpi=80).save('x.png')` and read the PNG, ours next
+   to `tpl.pdf` (official; skip `report_start(tpl.pdf)` pages). Text diffs said "Roof: 10-20 years |
+   Composition" was merely formatted differently; the picture showed the same comment on every row.
+4. A/B a change: render all with the old code into a scratch dir, again with the new, compare
+   word counters per sample (what I used: `ab.py base new`). Do not compare against the committed
+   `_work/harness/*.pdf` -- they were stale.
+5. Full tests take ~7 min: run them from a **git worktree** (`git worktree add <dir> <commit>`) in the
+   background so you can keep editing. A background command must be a single command with
+   `run_in_background`, not `cmd &`, or it is killed. Never `pkill -f "<text that is in your own
+   command line>"` -- it kills your shell.
+6. `git checkout -- _work/harness/` before committing (the harness rewrites tracked PDFs).
+
+### What was found and fixed (details in knowledge/errors/CATALOG.md E-071..E-075)
+Repeated-row tables read only the first instance (wrong data on a signed report); C-1's PDF clips
+a few Report Field IDs (4.06 for 4.069 ...); grid cell composition/units/order; the Supervisory
+certifications printed in every report (extractor dropped the rule); every empty grid cell printed
+an em-dash. Tests: `engine/tests/test_report_rows.py` (27).
+
+### Next: the Unit Interior tables (T-119) -- everything needed is here
+Official D-1 SF1 p7-8 vs ours p6-7. The XML (SF1 `PROPERTY_UNIT`):
+- `LEVELS/LEVEL` x3 (LevelType BelowGradeOne/LevelOne/LevelTwo, GradeLevelType, AccessType,
+  BelowGradeExteriorAccessType, LevelFinishedAreaMeasure, LevelUnfinishedAreaMeasure).
+- `ROOMS/ROOM/ROOM_DETAIL` (LevelType, RoomType [Other -> RoomTypeOtherDescription], RoomUpdateStatusType,
+  RoomUpdatedTimeframeType, RoomQualityDescription, RoomConditionStatusType,
+  RoomConditionAdditionalDescription) + `ROOM/IMAGES/IMAGE` (ImageCaptionCommentDescription, file).
+- `INTERIOR_COMPONENTS/INTERIOR_COMPONENT`: Flooring has `FLOOR_COVERINGS/FLOOR_COVERING` x4 (FlooringType,
+  quality/condition text+status) and `INTERIOR_COMPONENT_DETAIL` (OverallFlooringUpdateStatusType);
+  WallsAndCeiling has `WALLS_AND_CEILING/CEILING_HEIGHTS/CEILING_HEIGHT` and `CEILING_STYLES/CEILING_STYLE`.
+The official tables (B-1 10.029-10.049, p195-203):
+- **Level and Room Detail**: one block per LEVEL, lowest first (B2, B1, 1, 2). Columns Level ("Level B1"),
+  Grade Level Detail (stacked: "Partially Below Grade / Interior and Exterior Access / Walk Out"; "Above
+  Grade"), Finish ("Finished" row, then an "Unfinished" row only if > 0), Area ("1,300 Sq. Ft."), Room
+  Summary = counts derived per level, "n - <room display>", sorted by display ("1 - Bath - Half / 1 - Media
+  Room / 1 - Recreation Room / 1 - Wet Bar" -- Other shows its description). Not delivered; counted.
+- **Kitchen and Bathroom Details**: one row per ROOM whose type is Kitchen / Full or Half bathroom; Room cell
+  = "Kitchen" over "Level 1"; Time Frame only when FullyUpdated/PartiallyUpdated; then
+  "Overall Update Status for Bathrooms" (PROPERTY_UNIT_DETAIL). Official order: Kitchen, Bath-Full..., Bath-Half
+  (within a type the samples' order is not derivable).
+- **Interior Features**: "Flooring" row per FLOOR_COVERING (Feature name only on the first row), Detail =
+  FlooringType; "Walls and Ceiling": heights then styles each `|`-joined ("8 Ft. | 9 Ft. | 10 or more feet |
+  2 or more stories | Cathedral | Coffered | Flat"); then "Overall Update Status for Flooring".
+- Also missing in ours: "Area Data Source" row (Area Breakdown), the Interior **defects** table
+  (Feature/Location/Description/Affects Soundness/Recommended Action), and the section's **Exhibits** boxes carry
+  a caption in the official ("Level B1 - Bath - Half", "Level 1 - Bath - Full - Bath 3" = level + room + image
+  caption); ours prints boxes with no caption.
+Where to do it: `form._table_html` (template-row path "a template row: one line per instance") reads ordinal 1
+only. Cells are built with `_cell(text, fid, ctx, key=<instance path>)`; edit mode writes by that key
+(`_container_of` climbs to the container the field's path passes through), so keep the keys. The
+exterior fix (`_label_blocks` / `row_instances`) is the pattern; these three tables need their own row
+enumerators (LEVEL, ROOM_DETAIL of kitchen/bath, FLOOR_COVERING), not the label mechanism.
+Test against `templates.get('sf1_appraisal_v1_4')` and the SF1 official page 7.
+
+### Smaller open items (all in TASKS.md)
+T-120 Utilities header rows always print (B-1 p140; our empty Electricity row is dropped -- the
+`_table_html` fixed-label branch prints a row only if it has data). T-121 defects tables + exhibits. T-123
+Outbuilding grid rows (read inside Outbuilding IMPROVEMENTs only, exclude ADUs; a stray "Cooling" row prints in
+reports with no outbuilding because 22.14.24 reads the dwelling's CoolingSystemExistsIndicator). Roof detail:
+B-1 8.033 "materials first; 'Estimated Age: 10-20 years' on a separate line; '(Unobservable)' when
+RoofObservableIndicator = false" -- implement as a composer in `bind.display_value` for 8.033. Cost approach
+`1,568 Sq. Ft. @ $121.25` / `45 years`. Market "Price Trend Source". Page counts (9 of 12 differ).
+
+### Deployment
+`main` auto-deploys to Vercel. This session pushed the branch; `main` is fast-forwarded only after
+the full suite shows no new failure (known failing: test_cells sf1, test_autofill condo1/mh1,
+test_golden::test_the_pdf_is_text_not_a_picture; golden_baseline.json was regenerated deliberately).

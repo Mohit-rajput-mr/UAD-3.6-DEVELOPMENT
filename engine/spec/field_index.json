@@ -19300,7 +19300,8 @@
    ],
    "display_rules": [],
    "compliance": [],
-   "grid": {}
+   "grid": {},
+   "labels": []
   },
   "6.010": {
    "field_id": "6.010",
@@ -76931,7 +76932,8 @@
      "source": "H-1 UAD Compliance Rules v1.5"
     }
    ],
-   "grid": {}
+   "grid": {},
+   "labels": []
   },
   "4.015": {
    "field_id": "4.015",
@@ -122364,6 +122366,25 @@
      "table": "",
      "page": 395,
      "rule": "Always displays",
+     "source": "B-1 URAR Implementation Guide"
+    }
+   ],
+   "compliance": [],
+   "grid": {},
+   "labels": []
+  },
+  "29.054": {
+   "field_id": "29.054",
+   "report_location": "",
+   "locations": [],
+   "data_points": [],
+   "roles": [],
+   "display_rules": [
+    {
+     "section": "29 Certifications and Scope of Work",
+     "table": "",
+     "page": 396,
+     "rule": "Display when PartyRoleType = \"AppraiserSupervisor\"",
      "source": "B-1 URAR Implementation Guide"
     }
    ],

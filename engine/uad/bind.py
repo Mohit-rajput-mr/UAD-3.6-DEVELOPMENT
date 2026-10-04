@@ -853,7 +853,9 @@ def format_value(raw: str, format_type: str, details: str = "",
             places = 0 if number == int(number) else 2
         shown = f"{abs(number):,.{places}f}"
         if kind == "amount":
-            return f"-${shown}" if number < 0 else f"${shown}"
+            # B-1 Figure 22-5 and every D-1 sample (121 times, never "-$"):
+            # a negative amount prints in parentheses, $(10,000)
+            return f"$({shown})" if number < 0 else f"${shown}"
         if kind == "percent" or data_point.endswith("Percent"):
             return f"-{shown}%" if number < 0 else f"{shown}%"
         return f"-{shown}" if number < 0 else shown

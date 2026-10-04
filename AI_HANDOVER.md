@@ -84,6 +84,9 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-04 — Negative dollar amounts print as `$(10,000)`** (bind.py
+  `format_value`, kind "amount"). Authority: B-1 Figure 22-5 (page 297 of B-1
+  v1.4) and all 12 D-1 PDFs (121 x `$(n)`, 0 x `-$n`). Harness 87 pass / 0 fail.
 - **2026-10-04 — Audit: no character falls back to a system font.** The MH2
   sample's "®" printed in a system font because the kerned fonts were subset
   to a hand-typed list; the set is now derived from the WinAnsi (cp1252)
@@ -114,8 +117,47 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
-**Being worked on when this file was last written (2026-10-04):** nothing
-half-done. The last finished item is the font fallback below (§4).
+**Being worked on when this file was last written (2026-10-04, session paused
+by the owner for handover):** the **text-fidelity audit** against the D-1
+samples. Tools (committed): `_work/audit/pagecmp.py <sample_key>` (section
+headings per page, ours vs GSE) and `_work/audit/secdiff.py <sample_key>`
+(per-section lines only in ours / only in GSE). Run `python
+engine/tests/harness.py 12` first — it writes our PDFs to `_work/harness/`,
+which both tools read (restore them afterwards with `git checkout --
+_work/harness/` so the tree stays clean). Sample keys: sf1_appraisal_v1_4 …
+mh2_appraisal_v1_4, 2_to_4_unit_appraisal_v1_4 (see `templates.catalogue()`).
+
+Findings on MH2 not yet fixed (each must be confirmed against B-1 text or a
+B-1 figure before changing — B-1 figures are images: render the page with
+pymupdf and look; D-1 PDFs are the published evidence):
+1. Check whether any `-$` still prints after the bind.py fix (the comparables
+   net/gross adjustment and Summary paths may format money separately; GSE:
+   `$(39,120)`).
+2. Multi-value cells join in a different order/format: GSE `Local Road |
+   Asphalt`, ours `Asphalt Local Road`; GSE `Heat Pump | Electric`, ours
+   `Electric Heat Pump`; GSE `Manufactured | Site Built`; GSE `Park |
+   Residential`; GSE `Deck | Porch` vs ours `Porch | Deck`; GSE `2 | 0` vs ours
+   `2 0`; GSE `Driveway | 4 | Pavers` vs ours `Driveway Pavers 4`; GSE header
+   `Type | Spaces | Detail` vs ours `Type| Spaces | Detail`.
+3. Data source order: GSE `MLS 124523 | Assessor Record`, ours
+   `Assessor Record | MLS 124523`.
+4. Proximity: GSE `3 Miles SE`, ours `SE 3.00`.
+5. Comparable address: GSE prints street and city on separate lines.
+6. Cost approach: GSE `1,568 Sq. Ft. @ $121.25`, ours `| `; GSE `45 years`,
+   `1-5 years`, ours `45`, `5 1`.
+7. Rows in GSE missing in ours: Market "Price Trend Source" (+ sources),
+   "Sales in Past 24 Months"; grid "Unfinished Area Below Grade", "Quality and
+   Condition (Ratings: 1-6, 1 is highest)", "Contract Price $0"; Summary
+   "Indicated Value by Sales Comparison Approach"; Manufactured Home "Have there
+   been any modifications, attachments, or additions…?" and the serial / HUD
+   label numbers; Unit Interior "Area Data Source"; Dwelling Exterior feature
+   comments (e.g. "The subject has a crawl space…").
+8. Page counts differ on 9 of 12 samples (sf1, sf2, condo1 match) — partly a
+   consequence of the above (extra/missing rows); B-1 also says "The Sales
+   Comparison Approach section always begins at the top of a page" (B-1 p.297).
+   Re-measure page counts after fixing 1–7.
+Fix each as a rule (never per sample), re-run the harness and all 12
+secdiffs, record each in `knowledge/errors/CATALOG.md` with its test.
 
 **Next, in priority order:**
 

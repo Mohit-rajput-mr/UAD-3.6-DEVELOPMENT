@@ -97,7 +97,7 @@ engine/
       comparables.py  the comparable grids
       urar.py      the earlier renderer (still used by some tests)
   app/
-    main.py        server + passcode gate (`kech`)
+    main.py        server + passcode gate (hashed verifier in access.json)
     api.py         REST API -- the UI is one client of it, not a privileged path
     cases.py       case storage and the sign-off state machine
     ui/            the editor
@@ -108,7 +108,7 @@ engine/
 ## Running it
 
 ```bash
-python engine/app/main.py          # http://127.0.0.1:8765, passcode kech
+python engine/app/main.py          # http://127.0.0.1:8765 (passcode: see app/access.py)
 python engine/tests/harness.py 12  # 8 checks x 12 official scenarios
 ```
 

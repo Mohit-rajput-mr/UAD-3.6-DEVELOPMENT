@@ -8,7 +8,7 @@ Keep this file current: at the end of every batch, update "Status" and
 ## Rules from the owner (every session)
 
 1. **On start: restart the server and give the owner the link.**
-   - http://localhost:8766 (passcode `kech`) — Claude desktop launch config `uad-app`
+   - http://localhost:8766 (passcode: the owner's, verifier in engine/app/access.json) — Claude desktop launch config `uad-app`
    - http://localhost:8767 (no passcode, for testing) — `uad-dev-open`
    - Without the desktop app: `python engine/app/main.py` (port from `URAR_PORT`).
    - Restart again after every Python change (modules load once), and say so.

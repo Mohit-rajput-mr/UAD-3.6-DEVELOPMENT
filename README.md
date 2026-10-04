@@ -16,7 +16,9 @@ the appraiser edits in the browser or a program drives through the API.
 python engine/app/main.py
 ```
 
-Then open <http://127.0.0.1:8765> and enter the passcode **`kech`**.
+Then open <http://127.0.0.1:8765> and enter the passcode. It is stored only as a
+PBKDF2 verifier in `engine/app/access.json`; change it with
+`python engine/app/access.py set-passcode` or override it with `URAR_ACCESS_CODE`.
 The API is the same surface: <http://127.0.0.1:8765/api/docs>.
 
 ## How it is built

@@ -75,7 +75,7 @@ engine/
   tasks.py         the shared task registry tool
 ```
 
-Run it: `python engine/app/main.py` (passcode `kech`).
+Run it: `python engine/app/main.py` (passcode verifier: `engine/app/access.json`).
 `.claude/launch.json` has the preview configurations.
 `URAR_WORK` gives an instance its own case store; `URAR_HOST=0.0.0.0` puts it
 on the local network.

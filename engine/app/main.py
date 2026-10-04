@@ -27,7 +27,7 @@ from fastapi.middleware.gzip import GZipMiddleware            # noqa: E402
 from fastapi.staticfiles import StaticFiles                    # noqa: E402
 
 from app import api                                            # noqa: E402
-from app.access import Access, gate_page, guard                # noqa: E402
+from app.access import Access, client_address, gate_page, guard  # noqa: E402
 from app.cases import SchemaRegression, Store                  # noqa: E402
 from uad.report import fonts                                   # noqa: E402
 from uad.report.browser import BrowserUnavailable              # noqa: E402
@@ -45,11 +45,8 @@ WORK = (Path(os.environ["URAR_WORK"]) if os.environ.get("URAR_WORK")
 WORK.mkdir(parents=True, exist_ok=True)
 UI = Path(__file__).resolve().parent / "ui"
 
-# The passcode the user chose for this platform -- on this machine only.  A
-# public deployment must set URAR_ACCESS_CODE itself; without it the gate
-# generates a random code and stays locked (app/access.py).
-if not ON_VERCEL:
-    os.environ.setdefault("URAR_ACCESS_CODE", "kech")
+# The passcode is held as a PBKDF2 verifier in app/access.json (never in plain
+# text); URAR_ACCESS_CODE in the environment overrides it.  See app/access.py.
 
 app = FastAPI(title="UAD 3.6 Report Platform", docs_url="/api/docs",
               openapi_url="/api/openapi.json")
@@ -112,12 +109,19 @@ def healthz() -> dict:
 
 @app.post("/access")
 async def unlock(request: Request):
+    who = client_address(request)
+    if ACCESS.throttled(who):
+        return gate_page(throttled=True)
     form = await request.form()
-    if not ACCESS.check(str(form.get("code", ""))):
+    token = ACCESS.check(str(form.get("code", "")), who)
+    if token is None:
         return gate_page(error=True)
-    response = HTMLResponse(
-        '<meta http-equiv="refresh" content="0; url=/">Unlocked.')
-    ACCESS.grant(response)
+    # 303 so a reload of the landing page never re-posts the passcode
+    response = HTMLResponse('<meta http-equiv="refresh" content="0; url=/">Unlocked.',
+                            status_code=303, headers={"Location": "/"})
+    secure = (request.url.scheme == "https"
+              or request.headers.get("x-forwarded-proto", "") == "https")
+    ACCESS.grant(response, token, secure=secure)
     return response
 
 
@@ -158,8 +162,8 @@ def main() -> None:
     # the headless map tool reaches this server on its own address and session
     from app.access import COOKIE
     api.SERVER = {"base": f"http://127.0.0.1:{port}", "cookie": COOKIE, "token": ACCESS.token}
-    print(f"UAD 3.6 platform on http://127.0.0.1:{port}  (passcode: "
-          f"{os.environ['URAR_ACCESS_CODE']})")
+    # the passcode is never printed: it is the owner's, and consoles get logged
+    print(f"UAD 3.6 platform on http://127.0.0.1:{port}")
     if host not in ("127.0.0.1", "localhost"):
         print(f"  on this network:   http://{lan_address()}:{port}")
         if ACCESS.open:

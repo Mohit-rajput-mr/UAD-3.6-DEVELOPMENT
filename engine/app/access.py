@@ -1,19 +1,43 @@
-"""Access control for a publicly reachable review session.
+"""Access control: one shared passcode in front of every report.
 
-A tunnel makes the review server reachable by anyone who has the URL, and the
-report carries the borrower's name, the property address and the contract
-price.  So the server asks for a passcode before it will show anything, and the
-appraiser hands that code to colleagues along with the link.
+A deployment is reachable by anyone who has the URL, and a report carries the
+borrower's name, the property address and the contract price.  So nothing but
+the unlock form and the health check answers until the passcode is given.
 
-Set ``URAR_ACCESS_CODE`` to choose the code; otherwise one is generated at
-startup and printed to the console.  Set ``URAR_OPEN=1`` to run without a gate,
-which is reasonable on a trusted network and never on a public tunnel.
+How the passcode is held -- and why it is never in plain text:
+
+* ``engine/app/access.json`` holds a PBKDF2-SHA256 *verifier* for the passcode
+  (salt, iterations, two digests).  The repository therefore never contains the
+  passcode itself.  ``python engine/app/access.py set-passcode`` rewrites it.
+* ``URAR_ACCESS_CODE`` in the server's environment overrides the file (the
+  verifier is then derived at start-up).  Use it to change the passcode on a
+  deployment without a commit.
+* ``URAR_OPEN=1`` disables the gate.  Only on a trusted local machine.
+
+The session is *stateless*, because a serverless deployment runs many
+instances and a token kept in one instance's memory is unknown to the next
+(which is how the earlier gate locked people out at random on Vercel):
+
+* With ``URAR_SESSION_SECRET`` set, the cookie is ``expiry.HMAC(secret, expiry)``
+  -- it expires on the server's clock and rotating the secret revokes all.
+* Without it, the cookie is a key derived from the passcode (HMAC of the PBKDF2
+  key), which only someone who knew the passcode can produce; the server keeps
+  only its SHA-256.  Changing the passcode revokes every session.
+
+Unlock attempts are throttled per client address.  The passcode is never
+printed, logged or sent to the browser.
 """
 from __future__ import annotations
 
+import hashlib
 import hmac
+import json
 import os
 import secrets
+import sys
+import threading
+import time
+from pathlib import Path
 
 from fastapi import Request
 from fastapi.responses import HTMLResponse, JSONResponse, Response
@@ -21,41 +45,111 @@ from fastapi.responses import HTMLResponse, JSONResponse, Response
 COOKIE = "urar_access"
 # The unlock form itself must stay reachable, or there is no way in.
 OPEN_PATHS = ("/healthz", "/access")
+CONFIG = Path(__file__).resolve().parent / "access.json"
+ITERATIONS = 600_000            # OWASP 2023 guidance for PBKDF2-HMAC-SHA256
+SESSION_HOURS = 12
+# throttle: this many failures per address inside the window, then a lockout
+MAX_FAILURES, WINDOW = 8, 15 * 60
+
+
+def _derive(code: str, salt: bytes, iterations: int) -> bytes:
+    return hashlib.pbkdf2_hmac("sha256", code.encode("utf-8"), salt, iterations)
+
+
+def make_config(code: str, iterations: int = ITERATIONS) -> dict:
+    """The verifier for ``code``: what access.json stores instead of the code."""
+    salt = secrets.token_bytes(16)
+    key = _derive(code, salt, iterations)
+    token = hmac.new(key, b"session-v1", hashlib.sha256).hexdigest()
+    return {"algorithm": "pbkdf2_sha256", "iterations": iterations, "salt": salt.hex(),
+            "check": hashlib.sha256(b"check" + key).hexdigest(),
+            "session": hashlib.sha256(token.encode()).hexdigest()}
 
 
 class Access:
-    def __init__(self) -> None:
+    def __init__(self, config: dict | None = None) -> None:
         self.open = os.environ.get("URAR_OPEN") == "1"
-        self.code = os.environ.get("URAR_ACCESS_CODE") or self._generate()
-        self._token = secrets.token_urlsafe(32)
+        env_code = os.environ.get("URAR_ACCESS_CODE")
+        if config is None:
+            if env_code:
+                config = make_config(env_code, iterations=100_000)
+            elif CONFIG.exists():
+                config = json.loads(CONFIG.read_text(encoding="utf-8"))
+            else:
+                # no passcode configured anywhere: stay locked to everyone
+                config = make_config(secrets.token_urlsafe(24), iterations=1000)
+        self.config = config
+        self._salt = bytes.fromhex(config["salt"])
+        self._iterations = int(config["iterations"])
+        self._secret = os.environ.get("URAR_SESSION_SECRET", "").encode() or None
+        self._failures: dict[str, list[float]] = {}
+        self._lock = threading.Lock()
+        # the server's own token, for its in-process tools (the headless map
+        # tool calls back with it); random per process, never leaves the host
+        self._own = "internal-" + secrets.token_urlsafe(32)
 
-    @staticmethod
-    def _generate() -> str:
-        """Four short words are easier to read aloud than a random string."""
-        words = (
-            "amber birch cedar delta ember fjord grove harbor indigo jasper "
-            "kestrel larch maple nimbus onyx poplar quarry rowan summit tamarind"
-        ).split()
-        return "-".join(secrets.choice(words) for _ in range(3))
+    # ------------------------------------------------------------ tokens
+    def _token_for(self, code: str) -> str:
+        key = _derive(code, self._salt, self._iterations)
+        if self._secret:
+            exp = str(int(time.time()) + SESSION_HOURS * 3600)
+            sig = hmac.new(self._secret, exp.encode(), hashlib.sha256).hexdigest()
+            return f"{exp}.{sig}"
+        return hmac.new(key, b"session-v1", hashlib.sha256).hexdigest()
+
+    def valid(self, token: str) -> bool:
+        if not token:
+            return False
+        if hmac.compare_digest(token, self._own):
+            return True
+        if self._secret and "." in token:
+            exp, _, sig = token.partition(".")
+            good = hmac.new(self._secret, exp.encode(), hashlib.sha256).hexdigest()
+            return (hmac.compare_digest(sig, good) and exp.isdigit()
+                    and int(exp) > time.time())
+        digest = hashlib.sha256(token.encode()).hexdigest()
+        return hmac.compare_digest(digest, self.config["session"])
 
     def granted(self, request: Request) -> bool:
         if self.open:
             return True
-        return hmac.compare_digest(request.cookies.get(COOKIE, ""), self._token)
+        return self.valid(request.cookies.get(COOKIE, ""))
 
     @property
     def token(self) -> str:
-        """The session token, for the server's own PDF renderer."""
-        return self._token
+        """The server's own session token (local runs only), for its tools."""
+        return self._own
 
-    def grant(self, response: Response) -> None:
+    # ------------------------------------------------------------ unlock
+    def throttled(self, who: str) -> bool:
+        now = time.time()
+        with self._lock:
+            recent = [t for t in self._failures.get(who, []) if now - t < WINDOW]
+            self._failures[who] = recent
+            return len(recent) >= MAX_FAILURES
+
+    def check(self, submitted: str, who: str = "") -> str | None:
+        """The session token when ``submitted`` is the passcode, else None.
+
+        Exact match (surrounding whitespace aside): the passcode is what the
+        owner chose, character for character."""
+        code = submitted.strip()
+        key = _derive(code, self._salt, self._iterations)
+        ok = hmac.compare_digest(hashlib.sha256(b"check" + key).hexdigest(),
+                                 self.config["check"])
+        if not ok:
+            with self._lock:
+                self._failures.setdefault(who, []).append(time.time())
+            return None
+        with self._lock:
+            self._failures.pop(who, None)
+        return self._token_for(code)
+
+    def grant(self, response: Response, token: str, secure: bool = False) -> None:
         response.set_cookie(
-            COOKIE, self._token,
-            httponly=True, samesite="lax", max_age=60 * 60 * 12,
+            COOKIE, token, httponly=True, samesite="lax", secure=secure,
+            max_age=SESSION_HOURS * 3600, path="/",
         )
-
-    def check(self, submitted: str) -> bool:
-        return hmac.compare_digest(submitted.strip().lower(), self.code.lower())
 
 
 GATE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -106,7 +200,8 @@ button:hover{background:var(--surface);color:var(--ink)}
     <p>This report carries the borrower's name, the property address and the
        contract price. Enter the passcode to open the platform.</p>
     <label for="code">Passcode</label>
-    <input id="code" name="code" autocomplete="one-time-code" autofocus>
+    <input id="code" name="code" type="password" autocomplete="current-password"
+           autocapitalize="off" autocorrect="off" spellcheck="false" autofocus required>
     <button type="submit">Unlock</button>
     __ERROR__
   </div>
@@ -115,8 +210,10 @@ button:hover{background:var(--surface);color:var(--ink)}
 </main></body></html>"""
 
 
-def gate_page(error: bool = False) -> HTMLResponse:
-    message = '<div class="err">That passcode did not match. Try again.</div>' if error else ""
+def gate_page(error: bool = False, throttled: bool = False) -> HTMLResponse:
+    message = ('<div class="err">Too many attempts from this address. Wait 15 minutes.</div>'
+               if throttled else
+               '<div class="err">That passcode did not match. Try again.</div>' if error else "")
     return HTMLResponse(GATE.replace("__ERROR__", message), status_code=401)
 
 
@@ -127,3 +224,21 @@ def guard(access: Access, request: Request) -> Response | None:
     if request.url.path.startswith("/api/"):
         return JSONResponse({"error": "locked"}, status_code=401)
     return gate_page()
+
+
+def client_address(request: Request) -> str:
+    fwd = request.headers.get("x-forwarded-for", "")
+    return (fwd.split(",")[0].strip() if fwd else
+            (request.client.host if request.client else "")) or "?"
+
+
+if __name__ == "__main__":
+    # python engine/app/access.py set-passcode      (prompts; nothing echoed)
+    if sys.argv[1:2] != ["set-passcode"]:
+        raise SystemExit("usage: access.py set-passcode")
+    import getpass
+    first = getpass.getpass("New passcode: ")
+    if first != getpass.getpass("Again: ") or not first.strip():
+        raise SystemExit("passcodes did not match")
+    CONFIG.write_text(json.dumps(make_config(first.strip()), indent=2) + "\n", encoding="utf-8")
+    print(f"wrote {CONFIG}")

@@ -24,8 +24,7 @@ if __name__ == "__main__":
     if server.ACCESS.open:
         print("  Passcode        DISABLED (URAR_OPEN=1) - do not expose publicly")
     else:
-        print(f"  Passcode        {server.ACCESS.code}")
-        print("                  share this with the link")
+        print("  Passcode        set in engine/app/access.json or URAR_ACCESS_CODE (not printed)")
     print()
     # Bind on all interfaces so a tunnel can reach it.
     uvicorn.run(server.app, host="0.0.0.0", port=8000, log_level="warning")

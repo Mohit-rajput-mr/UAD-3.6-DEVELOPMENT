@@ -29,7 +29,7 @@ Read `CLAUDE.md`, `TASKS.md` and `_work/HANDOFF.md` first; then this.
 5. **Verify behaviour, not the diff.**  After each batch: the unit suite
    (`python -m pytest engine/tests -q`), the twelve-sample harness
    (`python engine/tests/harness.py 12`), then the real UI at
-   http://127.0.0.1:8766 (passcode `kech`) — click the control, read the value
+   http://127.0.0.1:8766 (passcode: the owner's, verifier in engine/app/access.json) — click the control, read the value
    back, look at the printed report.
 6. **Record it here the same turn.**  Move the item to "Done" with the evidence,
    and add anything new you found to "Queue".

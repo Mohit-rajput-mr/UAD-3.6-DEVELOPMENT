@@ -159,10 +159,11 @@ async def require_passcode(request: Request, call_next):
 @app.post("/access")
 async def unlock(request: Request) -> Response:
     form = await request.form()
-    if not ACCESS.check(str(form.get("code", ""))):
+    token = ACCESS.check(str(form.get("code", "")), request.client.host if request.client else "")
+    if token is None:
         return gate_page(error=True)
     response = Response(status_code=303, headers={"Location": "/"})
-    ACCESS.grant(response)
+    ACCESS.grant(response, token)
     return response
 
 

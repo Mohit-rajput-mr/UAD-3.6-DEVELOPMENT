@@ -2,6 +2,8 @@
 
 > **Every AI agent: read [`AI_HANDOVER.md`](AI_HANDOVER.md) first** — the owner's aim, the main goal, what the last session finished, what to take over next, and how to behave. Keep it current in the same commit as your work.
 
+> **Reference documentation:** [`docs/`](docs/README.md) covers architecture, data model, rules and validation, report and PDF, comparables, images and maps, import and export, persistence and deployment, testing, and the GSE vendor-recognition note.
+
 
 > **New device, or an AI agent told "refresh your memory"? Open
 > [`START_HERE.md`](START_HERE.md) first.** It installs the WinTOTAL MOD

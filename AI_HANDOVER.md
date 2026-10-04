@@ -150,6 +150,9 @@ Most recent first. Each line: what, and how it was verified.
   87 pass / 0 fail / 21 gap. New audit tools: `_work/audit/render_all.py`,
   `linediff.py` (whole-report word diff vs the D-1 PDFs; total is the number to
   drive down).
+- **2026-10-04 — `docs/` reference set** (architecture, data model, rules and
+  validation, report and PDF, comps/images/maps, import/export, persistence and
+  deployment, testing, GSE vendor-recognition note), written from the code.
 - **2026-10-04 — Docker image: server-side layout and PDF** (`Dockerfile`,
   `.dockerignore`, `DEPLOY_DOCKER.md`). Built and run here: `/healthz` 200,
   sign-in 303, sf1 case `report.pdf` 200, 6 pages, 8.0 s cold. A proxy CA
@@ -244,11 +247,10 @@ Pre-existing failing tests (also fail on the commit before slice 1): `test_cells
    site a PDF, host this image (any container host) and point the owner at it.
 5. ~~UI redesign~~ — done (monochrome editorial v2, in-app dialogs). Keep
    new UI inside that design system (`index.html` tokens, `.eyebrow`, `UADDialog`).
-6. Permanent documentation set (architecture, data model, field registry,
-   UAD/MISMO mappings, rules, validation, import/export, images, comps,
-   adjustments, maps, PDF, XML, persistence, deployment, testing), a GSE
-   vendor-recognition note (requirement vs inference; never claim approval),
-   second audit, final report.
+6. Permanent documentation set: **written** (`docs/`, 2026-10-04; nine pages
+   plus `docs/gse-vendor-recognition.md`, which separates requirements from
+   inference and lists what must never be claimed). Keep the pages true when
+   behaviour changes. Still to do: second audit and final report.
 7. Housekeeping: `UAD_P1..UAD_P7` on the Vercel project are dead (the build
    skips the patch because `engine/app/access.json` exists) and can be deleted
    from the dashboard (Settings -> Environment Variables; the MCP tools here

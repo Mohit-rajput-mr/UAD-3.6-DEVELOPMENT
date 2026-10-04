@@ -249,10 +249,12 @@ Pre-existing failing tests (also fail on the commit before slice 1): `test_cells
    adjustments, maps, PDF, XML, persistence, deployment, testing), a GSE
    vendor-recognition note (requirement vs inference; never claim approval),
    second audit, final report.
-7. Housekeeping: the old `UAD_P1..UAD_P7` and `UAD_BUILD` patch env vars on the
-   Vercel project are dead weight now that `main` carries the code — delete
-   them when convenient (the build skips the patch because
-   `engine/app/access.json` exists).
+7. Housekeeping: `UAD_P1..UAD_P7` on the Vercel project are dead (the build
+   skips the patch because `engine/app/access.json` exists) and can be deleted
+   from the dashboard (Settings -> Environment Variables; the MCP tools here
+   have no delete). **Keep `UAD_BUILD`**: the project's build step runs it to
+   prune files the function never reads, which keeps the function under the
+   225 MB limit. Checked 2026-10-04.
 
 ## 6. The approach — keep it unchanged
 

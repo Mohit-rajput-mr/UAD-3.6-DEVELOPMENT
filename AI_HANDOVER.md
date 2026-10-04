@@ -84,6 +84,14 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-04 — NOT YET DEPLOYED.** The branch `claude/confident-maxwell-id7biz` (head
+  = the commit that carries this line) holds slices 1-2 plus the Roof detail composer
+  (T-124). Full suite on `ee2dd82` (slice 2): 328 pass, 4 fail -- all four pre-existing
+  (`test_cells` sf1, `test_autofill` condo1/mh1, `test_golden::test_the_pdf_is_text_not_a_picture`);
+  harness 87 pass / 0 fail. The agent's push to `main` was refused by the session's
+  permission classifier ("Production Deploy"), so Vercel still serves the older `main`.
+  To deploy: `git push origin claude/confident-maxwell-id7biz:main` (fast-forward, main is
+  an ancestor), then check the Vercel build is READY and ask the owner to try it live.
 - **2026-10-04 — Audit slice 2: grid fidelity** (E-073, E-074, E-075).
   (a) Grid cells compose as B-1 says (`Local Road | Asphalt`, `3 Miles SE`,
   `Driveway | 4 | Pavers` + a Garage line, enumeration order, address on two lines).

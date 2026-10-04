@@ -1718,6 +1718,13 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 vals = []
                 for fid in ids:
                     b_ = binding(fid)
+                    if b_ is not None and b_.field_id in bind.ROOF_DETAIL:
+                        # the material and the age sit in different blocks of
+                        # the roof and print as one cell (B-1 8.033)
+                        t = bind.display_value([g for _k, g in row_instances(fid)], b_)
+                        if t and t not in vals:
+                            vals.append(t)
+                        continue
                     for _k, g in row_instances(fid):
                         t = bind.display_value(g, b_) if b_ else ""
                         if t and t not in vals:

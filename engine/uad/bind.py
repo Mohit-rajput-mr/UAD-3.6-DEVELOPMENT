@@ -948,12 +948,16 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
     # the instances with a pipe -- or, where B-1 says the instances "stack",
     # one to a line.
     if values and isinstance(values[0], list):
+        if binding.field_id in ROOF_DETAIL:
+            return _roof_detail([p for g in values for p in g], binding)
         values = _in_enumeration_order(values, binding)
         shown = [display_value(group, binding) for group in values]
         stacked = composite_for([dp.get("mismo", "") for dp in binding.data_points])
         return ("\n" if stacked and stacked.stack else " | ").join(s for s in shown if s)
     parts: list[tuple[str, str]] = [
         v if isinstance(v, tuple) else ("", v) for v in values]
+    if binding.field_id in ROOF_DETAIL:
+        return _roof_detail(parts, binding)
     days = _days_text(parts)
     if days:
         return days
@@ -1006,6 +1010,30 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
     if composite:
         return composite.join(rendered)
     return " ".join(text for _n, text in rendered).strip()
+
+
+# B-1 8.033 (p171): "When true, display RoofMaterialType. When false, display
+# '(Unobservable)'"; materials separated by "|"; "Display 'Estimated Age:'
+# followed by the number and 'years' on a separate line under material."
+# The grid's Roof row (22.08.20) says the same about its materials.
+ROOF_DETAIL = {"8.033"}
+
+
+def _roof_detail(parts: list[tuple[str, str]], binding: Binding) -> str:
+    by_point = {dp.get("mismo", ""): dp for dp in binding.data_points}
+
+    def shown(name: str, raw: str) -> str:
+        options = {o["value"]: o.get("display", "")
+                   for o in (by_point.get(name, {}).get("enumerations") or []) if o.get("value")}
+        return options.get(raw, "") if raw in options else _humanise(raw)
+
+    observable = next((raw for name, raw in parts if name == "RoofObservableIndicator"), "")
+    materials = [shown(name, raw) for name, raw in parts
+                 if name in ("RoofMaterialType", "RoofMaterialTypeOtherDescription")]
+    age = next((shown(name, raw) for name, raw in parts if name == "RoofEstimatedAgeRangeType"), "")
+    first = ("(Unobservable)" if observable.strip().casefold() == "false"
+             else " | ".join(m for m in materials if m))
+    return "\n".join(x for x in (first, f"Estimated Age: {age}" if age else "") if x)
 
 
 def _in_enumeration_order(groups: list, binding: Binding) -> list:

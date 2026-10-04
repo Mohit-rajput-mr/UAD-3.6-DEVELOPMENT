@@ -29,6 +29,8 @@ def _tables(key: str) -> list:
 def _rows(table) -> dict[str, list[str]]:
     out = {}
     for tr in table.xpath(".//tr"):
+        for br in tr.xpath(".//br"):
+            br.tail = " " + (br.tail or "")        # a line break reads as a space
         cells = [" ".join(td.text_content().split()) for td in tr.xpath("./td")]
         if cells and cells[0]:
             out[cells[0]] = cells
@@ -217,3 +219,13 @@ def test_grid_dashes_match_the_official_report(key):
     # the grid is most, not all, of the report's dashes: the official count also
     # holds the Not Used table's, so the grid's own may only be the smaller
     assert 0 < ours <= official
+
+
+def test_roof_detail_lists_materials_then_the_estimated_age_on_its_own_line():
+    """B-1 8.033 p171: materials first, "Estimated Age: 10-20 years" on a separate line."""
+    from uad import bind
+    table = _table_with(SF1, "Exterior Walls and Trim")
+    assert _rows(table)["Roof"][1] == "Composition Estimated Age: 10-20 years"
+    binding = bind.binding_for("8.033")
+    parts = [("RoofObservableIndicator", "false"), ("RoofMaterialType", "Asphalt")]
+    assert bind.display_value(parts, binding) == "(Unobservable)"

@@ -2934,8 +2934,13 @@ $('#btnPrint').addEventListener('click', function(){
   setTimeout(function(){ window.print(); }, 600);
 });
 
-$('#btnClear').addEventListener('click', function(){
-  if (!confirm('Clear the subject, every comparable, and all saved work?\n\nThis cannot be undone.')) return;
+$('#btnClear').addEventListener('click', async function(){
+  // the platform's own dialog when the map runs inside the editor; the
+  // browser's only when the map tool is opened on its own
+  let D=null; try{ D=window.top!==window&&window.top.UADDialog; }catch(e){}
+  const ok = D ? await D.confirm('This cannot be undone.',{title:'Clear the subject, every comparable and all saved work?',ok:'Clear map',danger:true})
+               : confirm('Clear the subject, every comparable, and all saved work?\n\nThis cannot be undone.');
+  if (!ok) return;
   state.subject = newProp('subject');
   state.comps = [newProp('comp'), newProp('comp'), newProp('comp')];
   lastFitCount = 0;

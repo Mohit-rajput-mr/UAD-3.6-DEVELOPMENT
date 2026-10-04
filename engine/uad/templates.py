@@ -148,6 +148,9 @@ IDENTITY = frozenset({
     "UtilityType", "ImprovementType", "ImprovementComponentType",
     "DocumentType", "DocumentFormIssuingEntityNameType", "DocumentFormIssuingEntityVersionIdentifier",
     "ValuationReportContentIdentifier",
+    # a comparable's number is the column it occupies, not the sample's answer:
+    # without it every blank report was blocked as "not numbered 1..n"
+    "PropertyOrdinalNumber",
 })
 
 

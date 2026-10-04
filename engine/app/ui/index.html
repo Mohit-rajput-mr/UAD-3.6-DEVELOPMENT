@@ -437,6 +437,7 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 <main id="shell"></main>
 
 <script src="/ui/vault.js"></script>
+<script src="/ui/dialog.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -593,7 +594,7 @@ async function showLaunch(){
       el.onkeydown=e=>{ if(e.key==='Enter') openCase(c.case_id); };
       el.querySelector('[data-del]').onclick=async e=>{
         e.stopPropagation();
-        if(!confirm('Delete this case and everything in it?'))return;
+        if(!await UADDialog.confirm('This removes the report, its pictures and its history from this workspace.',{title:`Delete “${c.name}”?`,ok:'Delete report',danger:true}))return;
         el.style.opacity='.3';                     // gone at once; the list follows
         await api('/cases/'+c.case_id,{method:'DELETE'}); EDITOR.drop(c.case_id); showLaunch();};
       box.appendChild(el);
@@ -1565,7 +1566,7 @@ function wireGrid(wrap,g,kind,w){
     });
     const remove=th.querySelector('[data-act=remove]');
     if(remove) remove.onclick=async()=>{
-      if(!confirm(`Remove comparable #${th.dataset.index}? The ones after it move up.`))return;
+      if(!await UADDialog.confirm('The comparables after it move up a place.',{title:`Remove comparable #${th.dataset.index}?`,ok:'Remove',danger:true}))return;
       const res=await api(`/cases/${S.caseId}/comparables/${th.dataset.index}?kind=${kind}`,
         {method:'DELETE'});
       toast(res.ok?'Comparable removed':'Could not remove'); drawComps(w);
@@ -1784,17 +1785,16 @@ function fillSignoff(b){
   $$('#rev').onclick=async()=>{await api(`/cases/${S.caseId}/state`,
     {method:'POST',body:JSON.stringify({state:'in_review'})}); refresh();};
   $$('#sign').onclick=async()=>{
-    const who=prompt('Sign as (your name):'); if(!who)return;
+    const who=await UADDialog.prompt('The name recorded against the signature.',{title:'Sign the report',placeholder:'Your full name',ok:'Sign'}); if(!who)return;
     const r=await fetch(`/api/cases/${S.caseId}/state`,{method:'POST',
       headers:{'Content-Type':'application/json','X-Actor':who},
       body:JSON.stringify({state:'signed'})});
     const d=await r.json();
-    if(!r.ok) alert('Cannot sign yet:\n\n'+(d.reasons||[d.error]).join('\n'));
+    if(!r.ok) await UADDialog.alert((d.reasons||[d.error]).join('\n'),{title:'This report cannot be signed yet',eyebrow:'Sign-off'});
     else toast('Signed'); refresh();};
   $$('#zip').onclick=e=>{
     if(!(c.state==='signed'||c.state==='exported')){e.preventDefault();
-      alert('The package can only be exported once the case is signed.\n\n'+
-        (rep.blockers||[]).join('\n'));}};
+      UADDialog.alert((rep.blockers||[]).join('\n'),{title:'Sign the report before exporting it',eyebrow:'Delivery package'});}};
 }
 /* Crossing the breakpoint moves the sign-off panel between the inspector
    column and its own tab, so the chrome is redrawn when it changes. */

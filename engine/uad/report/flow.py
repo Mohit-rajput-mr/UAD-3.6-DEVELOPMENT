@@ -460,6 +460,12 @@ EDIT_JS = """
   markImported();
   var parentWin=(window.parent!==window)?window.parent:null;
   function tell(msg){ if(parentWin) parentWin.postMessage(msg,'*'); }
+  /* The platform's own dialogs (app/ui/dialog.js, in the editor window), never
+     the browser's "... says" box; the browser's only when this page is opened
+     on its own. */
+  function dlg(){ try{ return window.top!==window&&window.top.UADDialog; }catch(_){ return null; } }
+  function say(msg,o){ var d=dlg(); if(d) return d.alert(msg,o||{title:'Something went wrong'}); window.alert(msg); return Promise.resolve(); }
+  function ask(msg,o){ var d=dlg(); if(d) return d.confirm(msg,o||{}); return Promise.resolve(window.confirm((o&&o.title?o.title+'\\n\\n':'')+msg)); }
   // the pages leave room at their right for Save / Save & Next
   window.UAD_SIDE=240; document.body.style.boxSizing='border-box';
   document.body.style.paddingRight='240px'; window.dispatchEvent(new Event('resize'));
@@ -1139,7 +1145,7 @@ EDIT_JS = """
           if(!(it.field_id && goField(it.field_id))) goSection(it.section_number);
         });
       });
-    }).catch(function(err){ finish(); alert('The page could not be checked: '+err.message); });
+    }).catch(function(err){ finish(); say('The page could not be checked: '+err.message); });
   }
   function goNext(pg){
     var n=pg.nextElementSibling;
@@ -1368,7 +1374,7 @@ EDIT_JS = """
       });
     });
     Promise.all(jobs)
-      .catch(function(err){ zone.classList.add('failed'); alert('The picture could not be added: '+err.message); })
+      .catch(function(err){ zone.classList.add('failed'); say('The picture could not be added: '+err.message); })
       .then(function(){ tell({uad:'media'}); reloadHere(); });
   }
 
@@ -1425,11 +1431,13 @@ EDIT_JS = """
     var row=document.createElement('div'); row.textContent='Remove Comparable #'+n;
     row.addEventListener('mousedown',function(ev){
       ev.preventDefault(); shutMenu();
-      if(!confirm('Remove Comparable #'+n+'? The ones after it move up a place.')) return;
-      going(th);
-      json(api+'/comparables/'+n+'?kind=sales',{method:'DELETE'})
-        .then(function(){ tell({uad:'media'}); reloadHere(); })
-        .catch(function(err){ alert(err.message); });
+      ask('The comparables after it move up a place.',{title:'Remove Comparable #'+n+'?',ok:'Remove',danger:true}).then(function(ok){
+        if(!ok) return;
+        going(th);
+        json(api+'/comparables/'+n+'?kind=sales',{method:'DELETE'})
+          .then(function(){ tell({uad:'media'}); reloadHere(); })
+          .catch(function(err){ say(err.message); });
+      });
     });
     list.appendChild(row);
     place(list,th);
@@ -1521,7 +1529,7 @@ EDIT_JS = """
       place(box,td);
       gedit=box;
       var first=box.querySelector('input[type=text],.gpick'); if(first) first.focus();
-    }).catch(function(e3){ alert('The grid could not be read: '+e3.message); });
+    }).catch(function(e3){ say('The grid could not be read: '+e3.message); });
   }
   /* Typing a street offers real addresses; picking one fills the city,
      state and ZIP beside it.  They are suggestions: every part stays
@@ -1632,16 +1640,18 @@ EDIT_JS = """
     if(rm){
       e.preventDefault();
       if(rm.dataset.slot){ going(rm.closest('figure')); dropSlot(rm.dataset.slot).then(reloadHere); return; }
-      if(!confirm('Remove this exhibit from the report?')) return;
-      going(rm.closest('figure'));
-      if(rm.dataset.image){
-        json(api+'/images?key='+encodeURIComponent(rm.dataset.image),{method:'DELETE'})
-          .then(function(){ tell({uad:'media'}); reloadHere(); })
-          .catch(function(err){ alert(err.message); });
-        return;
-      }
-      json(api+'/media/'+rm.dataset.media,{method:'DELETE'})
-        .then(function(){ tell({uad:'media'}); reloadHere(); });
+      ask('The picture is taken out of the report and the delivery package.',{title:'Remove this exhibit?',ok:'Remove',danger:true}).then(function(ok){
+        if(!ok) return;
+        going(rm.closest('figure'));
+        if(rm.dataset.image){
+          json(api+'/images?key='+encodeURIComponent(rm.dataset.image),{method:'DELETE'})
+            .then(function(){ tell({uad:'media'}); reloadHere(); })
+            .catch(function(err){ say(err.message); });
+          return;
+        }
+        json(api+'/media/'+rm.dataset.media,{method:'DELETE'})
+          .then(function(){ tell({uad:'media'}); reloadHere(); });
+      });
       return;
     }
     var me=t.closest('.mapedit');
@@ -1657,7 +1667,7 @@ EDIT_JS = """
       json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
                               body:JSON.stringify({kind:more.dataset.kind||'sales'})})
         .then(function(){ tell({uad:'media'}); reloadHere(); })
-        .catch(function(err){ alert(err.message); });
+        .catch(function(err){ say(err.message); });
       return;
     }
     /* Additional Properties Analyzed Not Used: A-1 22.17, a list the
@@ -1669,7 +1679,7 @@ EDIT_JS = """
       json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
                               body:JSON.stringify({kind:'not_used'})})
         .then(function(){ reloadHere(); })
-        .catch(function(err){ alert(err.message); });
+        .catch(function(err){ say(err.message); });
       return;
     }
     var lidrop=t.closest('.lidrop');
@@ -1677,26 +1687,30 @@ EDIT_JS = """
       e.preventDefault();
       var cell=lidrop.closest('td').querySelector('.v');
       if(!cell) return;
-      if(!confirm('Remove the row \u201c'+(cell.dataset.liwas||'')+'\u201d from this grid?')) return;
-      going(lidrop.closest('tr'));
-      json(api+'/comparables/lineitems',
-           {method:'PUT',headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({kind:cell.dataset.li,container:cell.dataset.lic,
-                                 adjust_type:cell.dataset.lit,
-                                 was:cell.dataset.liwas,name:''})})
-        .then(function(){ reloadHere(); })
-        .catch(function(err){ alert(err.message); });
+      ask('The row is removed for the subject and every comparable.',{title:'Remove the row \u201c'+(cell.dataset.liwas||'')+'\u201d?',ok:'Remove row',danger:true}).then(function(ok){
+        if(!ok) return;
+        going(lidrop.closest('tr'));
+        json(api+'/comparables/lineitems',
+             {method:'PUT',headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({kind:cell.dataset.li,container:cell.dataset.lic,
+                                   adjust_type:cell.dataset.lit,
+                                   was:cell.dataset.liwas,name:''})})
+          .then(function(){ reloadHere(); })
+          .catch(function(err){ say(err.message); });
+      });
       return;
     }
     var nudrop=t.closest('.nudrop');
     if(nudrop){
       e.preventDefault();
       var n=Number(nudrop.dataset.nu);
-      if(!confirm('Remove property #'+n+' from the properties analyzed but not used?')) return;
-      going(nudrop.closest('tr')||nudrop.closest('.blk'));
-      json(api+'/comparables/'+n+'?kind=not_used',{method:'DELETE'})
-        .then(function(){ reloadHere(); })
-        .catch(function(err){ alert(err.message); });
+      ask('It is taken off the list of properties analyzed but not used.',{title:'Remove property #'+n+'?',ok:'Remove',danger:true}).then(function(ok){
+        if(!ok) return;
+        going(nudrop.closest('tr')||nudrop.closest('.blk'));
+        json(api+'/comparables/'+n+'?kind=not_used',{method:'DELETE'})
+          .then(function(){ reloadHere(); })
+          .catch(function(err){ say(err.message); });
+      });
       return;
     }
     var th=t.closest('th[data-compmenu]');

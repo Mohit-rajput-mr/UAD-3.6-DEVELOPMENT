@@ -1120,3 +1120,15 @@ test, not in a case script.
   Layer: model. State: general.
 - Test: `engine/tests/test_address_entry.py` (owner's case, 9 checks: parts,
   unit removal, coordinates on the map pin, 0 schema errors).
+
+### E-077 Every new blank report is blocked: "comparables are not numbered 1..n"
+- Symptom: a blank case's sign-off and export list "The comparables are not
+  numbered 1..n in the order the report prints them. (found ['', '', ''])".
+- Cause: `templates.clear` kept only determinants and identity types; the
+  comparables' `PropertyOrdinalNumber` (the column each occupies) was removed
+  as if it were the sample's answer.
+- Fix: `PropertyOrdinalNumber` is part of `templates.IDENTITY` — structure,
+  kept in a blank. Layer: model. State: general.
+- Test: all 12 blank templates: no COMP-NUMBERING blocker, 0 schema errors
+  (`engine/tests/test_browser_scripts.py` covers the dialogs that show it;
+  the check itself is `uad/integrity.py` COMP-NUMBERING).

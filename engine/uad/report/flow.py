@@ -538,7 +538,16 @@ EDIT_JS = """
     +"animation:uadbar 1.1s linear infinite}"
     +"@keyframes uadbar{to{background-position:-200% 0}}"
     +".uad-removing{opacity:.28;transition:opacity .18s;pointer-events:none}"
-    +"img.uad-local{width:100%;height:100%;object-fit:contain;display:block;flex:1;min-height:0}";
+    +"img.uad-local{width:100%;height:100%;object-fit:contain;display:block;flex:1;min-height:0}"
+    // Save / Save & Next beside each page are the editor's, not the report's
+    +".pageside button{font-family:'Inter','Segoe UI Variable','Segoe UI',-apple-system,Roboto,Arial,sans-serif;"
+    +"font-weight:600;border-radius:10px;border:1px solid #d5d7e4;background:#fff;color:#151629;"
+    +"box-shadow:0 1px 2px rgba(20,22,50,.06);transition:background .12s,border-color .12s}"
+    +".pageside button.pgsave{background:linear-gradient(180deg,#8f81ff,#6d5dfc);border-color:#6d5dfc;color:#fff;"
+    +"box-shadow:0 6px 16px rgba(109,93,252,.32)}"
+    +".pageside button:hover{background:#efedff;border-color:#6d5dfc;color:#4c3fd6}"
+    +".pageside button.pgsave:hover{filter:brightness(1.06);background:linear-gradient(180deg,#8f81ff,#6d5dfc);color:#fff}"
+    +".pageside.ok button.pgsave{background:#15996a;border-color:#15996a;box-shadow:none}";
   document.head.appendChild(agentStyle);
 
   var optionCache={};

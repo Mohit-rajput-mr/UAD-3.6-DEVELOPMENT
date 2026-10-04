@@ -84,6 +84,17 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-04 — Full UI redesign** (owner: "entire design should be changed";
+  references: glassmorphism card, admin dashboards, content-list UI). Only the
+  application shell changed; the report pages are untouched. Passcode gate:
+  frosted glass on navy with violet light (`engine/app/access.py` GATE). Home:
+  dark navigation, four live status cards, searchable report list, import
+  card, template cards (`showLaunch` in `engine/app/ui/index.html`). Editor:
+  dark section rail, underline tabs, chip header with fatal/warning counts,
+  card inspector; editor controls inside the report frame (Save / Save & Next)
+  restyled from `flow.EDIT_JS`, not from `form.py`. Design tokens are the CSS
+  variables at the top of `index.html` (accent `#6d5dfc`). Screenshots:
+  `_work/ui/redesign-*.png`. Every element id the JavaScript uses is kept.
 - **2026-10-04 — Instant updates and fast reload** (owner: "all updates should
   show instantly"). (1) The report frame's start-up script keeps the last
   layout per case in IndexedDB (`uad36-layout`) and shows it at once; when the

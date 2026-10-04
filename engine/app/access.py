@@ -154,60 +154,73 @@ class Access:
 
 GATE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UAD 3.6 Report Platform</title><style>
-/* The same monochrome the platform itself is set in: one neutral grey, black
-   for emphasis, Bahnschrift condensed. */
-:root{--ink:#101010;--paper:#f2f2f0;--surface:#fff;--sunk:#e8e8e5;
- --rule:#c9c9c5;--rule-2:#9a9a95;--muted:#6a6a66;
- --sans:"Bahnschrift","DIN Next","Segoe UI","Liberation Sans",sans-serif;
- --mono:"Cascadia Mono","Consolas",ui-monospace,monospace;--stretch:88%}
+<meta name="color-scheme" content="dark">
+<title>UAD 3.6 Form Filler</title><style>
+/* Frosted glass over deep navy and soft violet light -- the platform's own
+   accent -- drawn in CSS alone, so the gate needs nothing from the network. */
+:root{--bg:#090b1a;--ink:#f4f5ff;--muted:#a3a7c7;--line:rgba(255,255,255,.14);
+ --glass:rgba(255,255,255,.065);--accent:#6d5dfc;--accent-2:#9d8fff;
+ --sans:"Inter","Segoe UI Variable","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+ --mono:"JetBrains Mono","Cascadia Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:var(--paper);color:var(--ink);
- font:400 13px/1.42 var(--sans);font-stretch:var(--stretch);
- display:grid;grid-template-rows:46px 1fr}
-header{display:flex;align-items:center;gap:20px;padding:0 18px;
- background:var(--ink);color:var(--paper)}
-header .mark{font:700 15px/1 var(--sans);letter-spacing:.22em}
-header .sub{font-size:11px;color:#9d9d99;letter-spacing:.09em;text-transform:uppercase}
-main{display:grid;place-items:center;padding:20px}
-form{width:min(94vw,392px);background:var(--surface);border:1px solid var(--rule)}
-.head{padding:13px 18px;border-bottom:1px solid var(--rule);background:var(--sunk)}
-h1{margin:0;font:600 14px/1.3 var(--sans);letter-spacing:.01em}
-.body{padding:18px}
-p{margin:0 0 16px;color:var(--muted);font-size:12px}
-label{display:block;font:600 10px/1 var(--sans);letter-spacing:.18em;
- text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-input{width:100%;padding:7px 9px;border:1px solid var(--rule-2);
- background:var(--surface);color:inherit;font:inherit;font-family:var(--mono);
- letter-spacing:.08em}
-input:focus{outline:2px solid var(--ink);outline-offset:-1px}
-button{width:100%;margin-top:14px;padding:9px;border:1px solid var(--ink);
- background:var(--ink);color:var(--paper);cursor:pointer;
- font:600 10px/1.2 var(--sans);letter-spacing:.14em;text-transform:uppercase;
- font-stretch:var(--stretch)}
-button:hover{background:var(--surface);color:var(--ink)}
-.err{margin-top:12px;padding:6px 9px;background:var(--ink);color:var(--paper);
- font-size:11.5px}
-.foot{padding:9px 18px;border-top:1px solid var(--rule);color:var(--muted);
- font:400 10px/1.4 var(--mono)}
+html,body{height:100%}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+ font:400 14px/1.5 var(--sans);-webkit-font-smoothing:antialiased;
+ display:grid;place-items:center;padding:24px;overflow:hidden;position:relative}
+.orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.75;pointer-events:none}
+.o1{width:520px;height:520px;left:-120px;top:-140px;
+ background:radial-gradient(circle at 35% 35%,#7b6cff,#3b2fb5 55%,transparent 70%)}
+.o2{width:460px;height:460px;right:-120px;bottom:-160px;
+ background:radial-gradient(circle at 60% 40%,#4f8bff,#2a3fb8 55%,transparent 72%)}
+.o3{width:260px;height:260px;right:18%;top:12%;opacity:.45;
+ background:radial-gradient(circle,#b9a8ff,transparent 70%)}
+@media (prefers-reduced-motion:no-preference){
+ .o1{animation:drift 18s ease-in-out infinite alternate}
+ .o2{animation:drift 22s ease-in-out infinite alternate-reverse}}
+@keyframes drift{to{transform:translate(40px,30px) scale(1.06)}}
+.card{position:relative;width:min(100%,460px);padding:30px 32px 26px;border-radius:26px;
+ background:var(--glass);border:1px solid var(--line);
+ -webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%);
+ box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12)}
+.top,.foot{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}
+.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;letter-spacing:.01em}
+.logo{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+ background:linear-gradient(135deg,var(--accent-2),var(--accent));box-shadow:0 6px 18px rgba(109,93,252,.5)}
+h1{margin:34px 0 8px;font:650 34px/1.08 var(--sans);letter-spacing:-.02em}
+.pill{display:inline-block;margin:0 0 22px;padding:5px 12px;border:1px solid var(--line);
+ border-radius:999px;font-size:12px;color:#d9dbf4}
+p{margin:0 0 20px;color:var(--muted);font-size:13px}
+label{display:block;font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;
+ color:var(--muted);margin-bottom:8px}
+input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);
+ background:rgba(255,255,255,.07);color:var(--ink);font:500 15px/1.2 var(--mono);letter-spacing:.12em;
+ transition:border-color .15s,box-shadow .15s}
+input:focus{outline:none;border-color:var(--accent-2);box-shadow:0 0 0 4px rgba(109,93,252,.28)}
+button{width:100%;margin-top:14px;padding:12px;border:0;border-radius:12px;cursor:pointer;
+ background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#fff;
+ font:600 14px/1.2 var(--sans);box-shadow:0 10px 26px rgba(109,93,252,.45);transition:filter .15s,transform .15s}
+button:hover{filter:brightness(1.08)}
+button:active{transform:translateY(1px)}
+.err{margin-top:14px;padding:10px 12px;border-radius:12px;background:rgba(229,72,77,.16);
+ border:1px solid rgba(229,72,77,.45);color:#ffc7c9;font-size:13px}
+.foot{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px}
 </style></head><body>
-<header><span class="mark">UAD 3.6</span>
-  <span class="sub">Uniform Residential Appraisal Report</span></header>
-<main>
-<form method="post" action="/access">
-  <div class="head"><h1>Locked</h1></div>
-  <div class="body">
-    <p>This report carries the borrower's name, the property address and the
-       contract price. Enter the passcode to open the platform.</p>
-    <label for="code">Passcode</label>
-    <input id="code" name="code" type="password" autocomplete="current-password"
-           autocapitalize="off" autocorrect="off" spellcheck="false" autofocus required>
-    <button type="submit">Unlock</button>
-    __ERROR__
-  </div>
-  <div class="foot">Fannie Mae | Freddie Mac &nbsp;·&nbsp; UAD 3.6 deliverable</div>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+<form class="card" method="post" action="/access">
+  <div class="top"><span class="brand"><span class="logo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/></svg></span>UAD 3.6 Form Filler</span>
+    <span>Passcode protected</span></div>
+  <h1>Appraisal<br>workspace</h1>
+  <span class="pill">Uniform Residential Appraisal Report</span>
+  <p>This workspace holds borrowers' names, property addresses and contract
+     prices. Enter the passcode to open it.</p>
+  <label for="code">Passcode</label>
+  <input id="code" name="code" type="password" autocomplete="current-password"
+         autocapitalize="off" autocorrect="off" spellcheck="false" autofocus required>
+  <button type="submit">Unlock</button>
+  __ERROR__
+  <div class="foot"><span>Fannie Mae | Freddie Mac</span><span>UAD 3.6 deliverable</span></div>
 </form>
-</main></body></html>"""
+</body></html>"""
 
 
 def gate_page(error: bool = False, throttled: bool = False) -> HTMLResponse:

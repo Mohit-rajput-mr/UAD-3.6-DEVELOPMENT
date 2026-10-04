@@ -98,8 +98,7 @@ def _value_options(dp: dict) -> list[str]:
 def c1_placements() -> dict[str, str]:
     """Report Field ID -> the kind of C-1 element that places it."""
     out: dict[str, str] = {}
-    data = json.loads((SPEC / "c1_form.json").read_text(encoding="utf-8"))
-    for pg in data["pages"]:
+    for pg in form.form()["pages"]:
         for el in pg["elements"]:
             kind = el["kind"]
             for fid in el.get("ids") or []:

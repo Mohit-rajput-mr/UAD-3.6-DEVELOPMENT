@@ -999,3 +999,47 @@ test, not in a case script.
   row or no rows are found. Never press Cancel on a setup panel from the
   bridge: re-open and correct instead.
 - Layer: MOD (ui.py, units_setup.py). State: fixed; live rerun pending.
+
+### E-071 A row told apart by its label printed the first block's values (Exterior Features, Utilities)
+- Symptom (D-1 SF1 vs our page): every row of the Exterior Features table
+  printed the wall's condition comment ("Minor cracks to vinyl typical for
+  age."); Detail was blank for Walls and Windows; the Utilities table printed
+  the water comment against Electricity and Gas (D-1 MH1). Wrong data on a
+  signed report, not a layout slip.
+- Cause: four rows (Walls, Foundation, Roof, Windows) share one Report Field ID
+  (8.041, ImprovementComponentType) because MISMO keeps them as four
+  STRUCTURE_COMPONENTs of one STRUCTURE_COMPONENTS and A-1 numbers fields by
+  row, not by repeat. The row label picks the row, but the reader took the
+  ordinal-1 block only, so rows 2..n found no block to select and fell back to
+  "every instance" -- the single comment it had read. Cells also sit at
+  different depths of the block (wall material under EXTERIOR_WALL, comment
+  under STRUCTURE_COMPONENT_DETAIL), so matching by depth lost the Detail.
+- Fix: `form._label_blocks` resolves a fixed row label to every block that
+  holds it (the same two tests a label always had to pass), and each cell of
+  the row is read from inside that block (`row_instances`). A label that is
+  itself one of the field's values with no block ("Electricity", no
+  electricity) holds nothing (`_names_a_value`); a label that is not
+  ("Property Restriction" for A-1's "Property Restrictions") keeps the old
+  per-cell marks -- guarded by a test. B-1 p.140: Electricity, Sanitary Sewer
+  and Water always display as row headers -- NOT yet implemented (an empty
+  Electricity row is dropped), see TASKS.
+- Test: `engine/tests/test_report_rows.py` (5 of its 7 fail on the old code).
+- Layer: model/render. State: general. Related, still open: the Unit Interior
+  tables (Level and Room Detail, Kitchen and Bathroom Details, Interior
+  Features) read the same way and are wrong the same way.
+
+### E-072 C-1's PDF clips a few Report Field IDs; the extractor kept the clipped text
+- Symptom: Electricity's row had no binding at all ("4.06"), so E-071's
+  fallback printed the water comment against it; `a1_only` listed 4.009 and
+  20.009 as "unplaced" and printed "Classification Code" and "Total Sales
+  Concessions" a second time at the end of their sections.
+- Cause: where a table runs to the page edge C-1's text layer holds "4.0"
+  and the extractor completed it wrongly ("4.06" for 4.069, "4.05" for 4.058,
+  "4.00" for 4.009, "20.00" for 20.009).
+- Fix: `form._complete_clipped_ids` completes a clipped ID only when the answer
+  is unique -- the one A-1 ID with that prefix filed under the same label, or,
+  for a table row's first cell, the ID just before the row's next cell
+  (4.070 follows 4.069). Applied when the form is loaded (`form.form()`), and
+  `a1_only` / `coverage.c1_placements` read the repaired form.
+- Test: `test_report_rows.py` (the four completions, and that none is left).
+- Layer: spec extraction. State: general.

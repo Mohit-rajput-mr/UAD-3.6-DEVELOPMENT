@@ -84,6 +84,17 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-04 — Audit slice 1: wrong data in repeated-row tables fixed** (E-071,
+  E-072). Laying our SF1/MH1 pages beside the official PDFs showed the Exterior
+  Features table printing the wall's comment on every row, and the Utilities
+  table printing the water comment against Electricity and Gas. Cause: rows told
+  apart by a label read only the first block. Fix: `form._label_blocks` /
+  `row_instances`; C-1's clipped IDs (4.06 for 4.069, 4.05, 4.00, 20.00) repaired
+  at load (`form._complete_clipped_ids`), which also removes two duplicate prints.
+  Tests: `engine/tests/test_report_rows.py` (5/7 fail on the old code). Harness
+  87 pass / 0 fail / 21 gap. New audit tools: `_work/audit/render_all.py`,
+  `linediff.py` (whole-report word diff vs the D-1 PDFs; total is the number to
+  drive down).
 - **2026-10-04 — Negative dollar amounts print as `$(10,000)`** (bind.py
   `format_value`, kind "amount"). Authority: B-1 Figure 22-5 (page 297 of B-1
   v1.4) and all 12 D-1 PDFs (121 x `$(n)`, 0 x `-$n`). Harness 87 pass / 0 fail.

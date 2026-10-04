@@ -2624,3 +2624,29 @@ are tagged ASSUMED there); logs `run*.log`. Signs: Leonardo Jo (licence + Aspen 
   owner-occupied), dwelling (smoke/CO, mechanicals, bars), sketch (2,649 net vs 3,360 gross public record),
   unit 4. Re-certified READY 0/0/0, audit clean. LESSON: after any owner correction, grep every narrative
   for the old fact (vacant/tenant/date) -- validators never see prose.
+
+## 2026-10-04 — live Vercel: blank report not loading; shared case store (branch claude/keen-turing-3r26sh)
+
+**Cause.** Vercel runs several server copies, each with its own /tmp disk. A case created on one
+copy is unknown to the next, so "New blank" opened a report the next request could not find.
+
+**Fix (committed 31a0cb1, 2nd commit logs failures; NOT pushed, NOT deployed).**
+`engine/app/durable.py` keeps each case's bundle in one shared store: Vercel Blob (private)
+when `BLOB_READ_WRITE_TOKEN` is set, or a shared folder with `URAR_DURABLE_DIR` (Docker volume,
+tests). `main.py` middleware pulls the case before any `/api/cases/<id>` request, `pull_all` on the
+case list, pushes after every successful change, forgets on delete; a store failure answers 503
+with the reason (and logs it), never a silent guess. Verified: `engine/tests/test_durable.py`
+(9/9), and two real server processes behind a round-robin proxy — "New blank" renders 26 pages,
+an edit on one copy is read on the other.
+
+**Vercel state.** Blob store `uad36-cases` (store_2X950Muudm6XvK2n, private, iad1) created and
+connected; `BLOB_READ_WRITE_TOKEN` injected. Live production is still the older deployment
+dpl_EZpEn7HaqFKoWqe6pWmSeaSDKWit (no shared store). **Env chunks are inconsistent:** `UAD_P1` holds
+chunk 1 of the NEW patch, `UAD_P2..P7` the OLD one — a new build from main would fail at `git apply`
+(production stays on the old deployment; nothing breaks live). The proper route is pushing the
+branch and merging to main, after which the build skips the patch (access.json present) and the
+`UAD_P*` vars can be deleted.
+
+**Tests.** The fixtures signed in with the retired passcode `kech`; they now use
+`app.access.sign_in(client)` (server's own token). 150 pass; 3 failures (test_cells sf1,
+test_autofill condo1/mh1) fail identically on `main` — pre-existing, not from this work.

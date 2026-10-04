@@ -19,6 +19,7 @@ from __future__ import annotations
 import io
 import os
 import json
+import re
 import mimetypes
 import shutil
 import zipfile
@@ -1641,6 +1642,12 @@ def render_status(case_id: str, kind: str) -> dict:
     _case_or_404(case_id)
     if kind not in renders.KINDS:
         raise HTTPException(404, f"no render kind {kind}")
+    from uad.report import browser
+    if not browser.server_layout():
+        # the appraiser's browser lays the report out (no Chromium on this
+        # host): a newer key means "reload and lay out again", never "wait for
+        # the server" -- waiting here was the endless "Updating the report"
+        return {"ready": True, "key": renderer().key(case_id, kind), "stale": False}
     have, want = renderer().get(case_id, kind)
     return {"ready": have is not None and have.key == want, "key": want,
             "stale": have is not None and have.key != want}
@@ -1652,8 +1659,11 @@ def layout_galley(case_id: str, kind: str) -> HTMLResponse:
     _case_or_404(case_id)
     if kind not in renders.KINDS:
         raise HTTPException(404, f"no render kind {kind}")
+    # the key first: if the case changes while the galley is built, the page
+    # carries the older key and the editor asks for one more layout
+    key = renderer().key(case_id, kind)
     return HTMLResponse(renderer().client_galley(case_id, kind),
-                        headers={"Cache-Control": "no-store"})
+                        headers={"Cache-Control": "no-store", "X-Render-Key": key})
 
 
 @router.post("/cases/{case_id}/layout/{kind}/pages")
@@ -1675,7 +1685,9 @@ def layout_pages(case_id: str, kind: str, body: dict = Body(...)) -> dict:
         html, planned = renderer().client_pages(case_id, kind, measured, caps)
     except (KeyError, TypeError, ValueError) as exc:
         raise HTTPException(400, f"the measurements could not be planned: {exc}")
-    info = json.dumps({"case": case_id, "kind": kind, "key": "client", "stale": False})
+    key = str(body.get("key") or "")
+    key = key if re.fullmatch(r"[0-9a-f]{16}", key) else "client"
+    info = json.dumps({"case": case_id, "kind": kind, "key": key, "stale": False})
     html = html.replace("</head>", f"<script>window.UAD_RENDER={info};</script>" + FRESH_JS
                         + "</head>", 1)
     return {"html": html, "planned": planned, "bodyBottom": flow.BODY_BOTTOM,
@@ -1732,9 +1744,10 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
       headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
       .then(function(r){if(!r.ok) return r.text().then(function(t){throw new Error(t);}); return r.json();});
   }
-  var measured, caps={}, attempt=0, last=null;
+  var measured, caps={}, attempt=0, last=null, KEY='client';
   fetch('/api/cases/'+CASE+'/layout/'+KIND+'/galley').then(function(r){
-    if(!r.ok) throw new Error('the report could not be prepared ('+r.status+')'); return r.text();
+    if(!r.ok) throw new Error('the report could not be prepared ('+r.status+')');
+    KEY=r.headers.get('X-Render-Key')||'client'; return r.text();
   }).then(frame).then(function(f){
     say('Measuring every block against Appendix C-1...');
     measured=inFrame(String(MEASURE),f); f.remove();
@@ -1744,7 +1757,7 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
   function pass(){
     attempt++;
     say('Paginating (pass '+attempt+')...');
-    return post({measured:measured,caps:caps}).then(function(res){
+    return post({measured:measured,caps:caps,key:KEY}).then(function(res){
       last=res;
       return frame(res.html).then(function(f){
         var bottoms=inFrame(String(OVERFLOW),f); f.remove();
@@ -1764,7 +1777,7 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
     document.open(); document.write(html); document.close();
     // the editor waits for this, as it does for a server-rendered page
     setTimeout(function(){ try{ if(window.parent!==window) window.parent.postMessage(
-      {uad:'frame-ready',kind:KIND,key:'client',stale:false},'*'); }catch(e){} }, 50);
+      {uad:'frame-ready',kind:KIND,key:KEY,stale:false},'*'); }catch(e){} }, 50);
   }
 })();
 </script></body></html>"""

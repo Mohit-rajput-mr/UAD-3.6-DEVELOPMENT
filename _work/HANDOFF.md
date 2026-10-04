@@ -2667,3 +2667,18 @@ Live "The report could not be laid out: Internal Server Error" had two causes, b
    that copy B could never make. `TTFont(..., recalcTimestamp=False)` makes the build
    deterministic. Reproduced and verified with a cold second "copy": 48/48 fonts served (was 14/60).
 LESSON: anything named by a content digest must be built deterministically on every copy.
+
+### 2026-10-04 (later) — live: "Updating the report…" never finished after a save / photo / exhibit
+
+Cause: in browser-layout mode (Vercel, no Chromium) the page a browser laid out carried the key
+`"client"`, while `/render/{kind}` compared against the server's content key and — the server
+never rendering — answered `ready: false` forever; the editor polled 240 × 0.7 s and never swapped
+in the updated report (133 polls seen in the live log). Second trap behind it: `Renderer.key`
+hashed file **mtimes**, which differ on every server copy after a shared-store restore, so even a
+correct key would have flip-flopped between copies (endless reloads).
+Fix: the galley sends `X-Render-Key`; the bootstrap passes it to `/layout/pages`, which stamps it on
+the page; `/render/{kind}` in browser-layout mode answers `ready: true` with the current key (a newer
+key means "reload and lay out again"); `Renderer.key` hashes the XML **content** and the code by
+content. Verified in Chromium through two server copies behind a round-robin proxy with one shared
+store: edit → report shows the new value in 3 s; photo upload → photo in the report in 3 s; no
+change → no reload; no 5xx. LESSON: a key shared between server copies must be content-derived.

@@ -730,7 +730,8 @@ function swapFrame(kind){
   nf.src=url.pathname+url.search;
   S.swaps[kind]=nf;
   old.parentNode.appendChild(nf);
-  setTimeout(()=>{ if(S.swaps[kind]===nf){ nf.remove(); S.swaps[kind]=null; } },60000);
+  // a browser that lays the report out itself needs longer than a server copy
+  setTimeout(()=>{ if(S.swaps[kind]===nf){ nf.remove(); S.swaps[kind]=null; } },150000);
 }
 function finishSwap(kind,nf){
   const old=kind==='form'?$('#rf'):$('#pv');

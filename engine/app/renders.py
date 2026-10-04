@@ -43,6 +43,24 @@ CODE = [Path(flow.__file__), Path(flow.__file__).with_name("form.py"),
         Path(flow.__file__).with_name("rules.py"), Path(__file__)]
 
 
+_CODE_SEEN: dict[Path, tuple[int, str]] = {}
+
+
+def _code_digest() -> str:
+    """The renderer's own code, by content (re-read only when a file changes)."""
+    out = hashlib.sha1()
+    for path in CODE:
+        if not path.exists():
+            continue
+        mtime = path.stat().st_mtime_ns
+        seen = _CODE_SEEN.get(path)
+        if seen is None or seen[0] != mtime:
+            seen = (mtime, hashlib.sha1(path.read_bytes()).hexdigest())
+            _CODE_SEEN[path] = seen
+        out.update(seen[1].encode())
+    return out.hexdigest()
+
+
 FONT_ASSETS = Path(__import__("tempfile").gettempdir()) / "uad36-fontassets"
 FONT_MIMES = {"font/ttf", "font/otf", "font/woff2", "font/woff"}
 _FONT_LOCK = threading.Lock()
@@ -124,10 +142,12 @@ class Renderer:
     def key(self, case_id: str, kind: str) -> str:
         st = self._store()
         h = hashlib.sha1(kind.encode())
+        # what the files hold, never when they were written: on a host that
+        # runs several copies each restores the case at its own moment, and a
+        # time-based key made every copy think the others' report was newer
         xml = st.xml_path(case_id)
         if xml.exists():
-            stat = xml.stat()
-            h.update(f"{stat.st_mtime_ns}:{stat.st_size}".encode())
+            h.update(hashlib.sha1(xml.read_bytes()).digest())
         for m in self._media(case_id):
             h.update(json.dumps(m, sort_keys=True, default=str).encode())
         if kind == "form":
@@ -135,9 +155,7 @@ class Renderer:
             h.update(json.dumps({"slots": prefs.get("exhibitSlots"), "fills": prefs.get("fills"),
                                  "imported": prefs.get("imported")},
                                 sort_keys=True).encode())
-        for path in CODE:
-            if path.exists():
-                h.update(str(path.stat().st_mtime_ns).encode())
+        h.update(_code_digest().encode())
         return h.hexdigest()[:16]
 
     def assets(self, case_id: str) -> Path:

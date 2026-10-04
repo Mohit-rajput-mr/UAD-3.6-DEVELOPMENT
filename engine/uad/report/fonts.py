@@ -23,6 +23,10 @@ from functools import lru_cache
 from pathlib import Path
 
 ASSETS = Path(__file__).resolve().parents[2] / "assets" / "fonts"
+# Open-licence stand-ins with Myriad Pro's published widths, used whenever the
+# licensed files are not installed (a fresh checkout, a deployment).  See
+# substitute_fonts.py for how they are made and what they do not match.
+SUBSTITUTE = Path(__file__).resolve().parents[2] / "assets" / "substitute" / "built"
 
 # Adobe ships these with Acrobat; fsType=8 permits document embedding.
 FACES = {
@@ -85,6 +89,22 @@ def missing() -> list[str]:
     return [n for n, ok in available().items() if not ok]
 
 
+def source(name: str) -> Path | None:
+    """The TrueType file a face is built from: the licensed one when installed,
+    otherwise the substitute.  ``None`` only when neither exists."""
+    licensed = ASSETS / f"{name}.ttf"
+    if licensed.is_file():
+        return licensed
+    stand_in = SUBSTITUTE / f"{name}.ttf"
+    return stand_in if stand_in.is_file() else None
+
+
+def substituted() -> list[str]:
+    """The report faces currently drawn from the open-licence substitute."""
+    return [n for n in list(FACES) + ["Wingdings2"]
+            if not (ASSETS / f"{n}.ttf").is_file() and (SUBSTITUTE / f"{n}.ttf").is_file()]
+
+
 def face_file(name: str) -> Path | None:
     """The file to serve for a face, preferring TrueType.
 
@@ -98,7 +118,7 @@ def face_file(name: str) -> Path | None:
         path = ASSETS / f"{name}{suffix}"
         if path.is_file():
             return path
-    return None
+    return source(name)
 
 
 def face_css(embed: bool = True, url_prefix: str = "/assets/fonts") -> str:

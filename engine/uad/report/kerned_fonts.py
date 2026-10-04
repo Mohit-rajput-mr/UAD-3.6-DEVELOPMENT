@@ -29,7 +29,26 @@ from fontTools.ttLib import TTFont
 from . import fonts
 
 SPEC = Path(__file__).resolve().parents[2] / "spec" / "d1_kerning.json"
-OUT = fonts.ASSETS / "kerned"
+def _out_dir() -> Path:
+    """Where kerned copies are cached: beside the fonts when that is writable,
+    otherwise a temporary directory (a serverless host's code is read-only)."""
+    import os
+    import tempfile
+    env = os.environ.get("URAR_FONT_CACHE")
+    for cand in ([Path(env)] if env else []) + [fonts.ASSETS / "kerned",
+                                                  Path(tempfile.gettempdir()) / "uad36-kerned"]:
+        try:
+            cand.mkdir(parents=True, exist_ok=True)
+            probe = cand / ".w"
+            probe.write_bytes(b"")
+            probe.unlink()
+            return cand
+        except OSError:
+            continue
+    raise OSError("no writable directory for the kerned fonts")
+
+
+OUT = fonts.ASSETS / "kerned"     # kept for callers that read it; build() uses _out_dir()
 FACES = {"MyriadPro-Regular": (400, "normal"), "MyriadPro-Bold": (700, "normal"),
          "MyriadPro-It": (400, "italic"), "MyriadPro-BoldIt": (700, "italic"),
          "MyriadPro-Black": (900, "normal")}
@@ -100,14 +119,21 @@ def _metric_kern(font: TTFont) -> dict[tuple[str, str], int]:
 
 
 def build(face: str, size: float) -> Path:
-    OUT.mkdir(parents=True, exist_ok=True)
-    dst = OUT / f"{face}-{size:g}.ttf"
-    if dst.exists() and dst.stat().st_mtime > SPEC.stat().st_mtime:
-        return dst
     source = face
-    if face == BLACK_SUBSTITUTE and not (fonts.ASSETS / f"{face}.ttf").exists():
+    if face == BLACK_SUBSTITUTE and fonts.source(face) is None:
         source = "MyriadPro-Bold"
-    font = TTFont(str(fonts.ASSETS / f"{source}.ttf"))
+    src_path = fonts.source(source)
+    if src_path is None:
+        raise FileNotFoundError(f"neither licensed nor substitute file for {source}")
+    # the cache key names the source file and the kerning data, not a
+    # modification time -- mtimes mean nothing after a git checkout
+    import hashlib
+    key = hashlib.sha1(src_path.read_bytes()
+                       + (SPEC.read_bytes() if SPEC.exists() else b"")).hexdigest()[:10]
+    dst = _out_dir() / f"{face}-{size:g}-{key}.ttf"
+    if dst.exists():
+        return dst
+    font = TTFont(str(src_path))
     if source != face:
         published = json.loads(WIDTHS.read_text(encoding="utf-8")).get(face, {})
         cmap0, hmtx0 = font.getBestCmap(), font["hmtx"]

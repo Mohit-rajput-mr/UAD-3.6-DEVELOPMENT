@@ -385,7 +385,7 @@ from functools import lru_cache
 @lru_cache(maxsize=4)
 def _metrics(face: str):
     from fontTools.ttLib import TTFont
-    font = TTFont(str(form.fonts.ASSETS / f"{face}.ttf"))
+    font = TTFont(str(form.fonts.source(face)))
     return font.getBestCmap(), font["hmtx"], font["head"].unitsPerEm
 
 

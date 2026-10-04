@@ -2955,8 +2955,8 @@ table.grid .ca{{display:block}}
 
 @lru_cache(maxsize=1)
 def _wingdings_css() -> str:
-    path = fonts.ASSETS / "Wingdings2.ttf"
-    if not path.exists():
+    path = fonts.source("Wingdings2")
+    if path is None:
         return ""
     data = base64.b64encode(path.read_bytes()).decode("ascii")
     return ("@font-face{font-family:'UAD Wingdings2';"

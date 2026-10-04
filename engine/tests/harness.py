@@ -135,8 +135,15 @@ def check_fonts(pdf: Path, skip: int = 0) -> Result:
     stray = [n for n in names if not any(a in n for a in ALLOWED_FONTS)]
     if not names:
         return Result("fonts", FAIL, "no named font embedded (Type3 output)")
+    # The open-licence stand-in (substitute_fonts.py) is a declared gap, not a
+    # pass: it sets to Myriad's measure but its letterforms are not Myriad's.
+    sub = sorted(n for n in stray if "UADSubstitute" in n or "UADBoxes" in n)
+    stray = [n for n in stray if n not in sub]
     if stray:
         return Result("fonts", FAIL, f"unexpected: {sorted(stray)}")
+    if sub:
+        return Result("fonts", GAP, "licensed Myriad Pro not installed; open-licence "
+                      f"substitute with Myriad widths embedded: {', '.join(sub)}")
     return Result("fonts", PASS, ", ".join(sorted(names)))
 
 

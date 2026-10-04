@@ -32,3 +32,4 @@ engine/assets/fonts/kerned/
 
 # the local server's runtime case store (engine/app/main.py WORK) -- data, not source
 _work/cases/
+.claude/settings.local.json

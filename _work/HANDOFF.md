@@ -2650,3 +2650,20 @@ branch and merging to main, after which the build skips the patch (access.json p
 **Tests.** The fixtures signed in with the retired passcode `kech`; they now use
 `app.access.sign_in(client)` (server's own token). 150 pass; 3 failures (test_cells sf1,
 test_autofill condo1/mh1) fail identically on `main` — pre-existing, not from this work.
+
+### 2026-10-04 (later) — pushed; continuous deployment from GitHub works; layout 500 fixed
+
+GitHub write access now works: the branch is pushed and `main` fast-forwarded, and Vercel
+builds production from `main` on every push (no Vercel tool calls needed). The `UAD_P*` patch
+env vars are now dead weight (the build skips them because `engine/app/access.json` exists on
+main) — delete them when convenient.
+
+Live "The report could not be laid out: Internal Server Error" had two causes, both fixed (345ffb5):
+1. `kerned_fonts._out_dir` probed writability with ONE shared file name; two font requests at once
+   deleted each other's probe and the loser raised "no writable directory". Now a per-thread probe,
+   decided once per process; fonts are written to `*.part` and `os.replace`d in.
+2. fontTools stamped `head.modified = now` on every kerned font, so each server copy produced
+   different bytes → different digest → a page laid out on copy A asked `/api/fontasset/<digest>`
+   that copy B could never make. `TTFont(..., recalcTimestamp=False)` makes the build
+   deterministic. Reproduced and verified with a cold second "copy": 48/48 fonts served (was 14/60).
+LESSON: anything named by a content digest must be built deterministically on every copy.

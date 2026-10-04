@@ -30,7 +30,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable
 
-from uad.report import flow
+from uad.report import browser, flow
 
 KINDS = ("form", "preview")
 DATA_URI = re.compile(r"data:([a-z]+/[a-z0-9.+-]+);base64,([A-Za-z0-9+/=]+)")
@@ -135,7 +135,7 @@ class Renderer:
                     self._cache[(case_id, kind)] = have
                 except (ValueError, KeyError, OSError):
                     have = None
-        if have is None or have.key != want:
+        if (have is None or have.key != want) and browser.server_layout():
             self.request(case_id, kind)
         return have, want
 
@@ -192,6 +192,41 @@ class Renderer:
                     self._busy = None
                     self._lock.notify_all()
 
+    def build_kwargs(self, case_id: str, kind: str) -> dict:
+        """What flow.build is given for this case and kind -- one place, so the
+        server's own layout and the browser-measured one agree."""
+        st = self._store()
+        prefs = self._prefs(case_id)
+        kwargs = dict(folder=st.folder(case_id), media=self._media(case_id), screen=True)
+        if kind == "form":
+            slots = [s for s in (prefs.get("exhibitSlots") or []) if isinstance(s, dict) and s.get("id")]
+            # what an import answered, so the editor can show it in green
+            brought = (prefs.get("imported") or {}).get("fields") or []
+            kwargs.update(edit=True, slots=slots, imported=brought)
+        return kwargs
+
+    # ------------------------------------------- layout measured elsewhere
+    # A host without Chromium (serverless) cannot measure a page.  The
+    # appraiser's browser can: it is handed the galley, reports the geometry,
+    # and is handed back pages to check.  The planning arithmetic stays in
+    # flow.py.  Nothing the browser sends is stored or shown to anyone else --
+    # the result goes back only to the browser that measured it.
+    def client_galley(self, case_id: str, kind: str) -> str:
+        kw = self.build_kwargs(case_id, kind)
+        galley, _meta = flow.prepare(self._store().tree(case_id), folder=kw["folder"],
+                                     media=kw["media"], edit=kw.get("edit", False),
+                                     slots=kw.get("slots"), imported=kw.get("imported", ()))
+        return self._externalise(case_id, galley)
+
+    def client_pages(self, case_id: str, kind: str, measured: list[dict],
+                     caps: dict[int, float]) -> tuple[str, list[float]]:
+        kw = self.build_kwargs(case_id, kind)
+        meta = flow.Meta.from_case(self._store().tree(case_id))
+        html, pages = flow.paginate(measured, meta, caps, screen=True,
+                                    edit=kw.get("edit", False),
+                                    imported=kw.get("imported", ()))
+        return self._externalise(case_id, html), [p.planned for p in pages]
+
     def _render(self, case_id: str, kind: str) -> None:
         st = self._store()
         if not st.xml_path(case_id).exists():
@@ -200,13 +235,7 @@ class Renderer:
         have = self._cache.get((case_id, kind))
         if have is not None and have.key == key:
             return
-        prefs = self._prefs(case_id)
-        kwargs = dict(folder=st.folder(case_id), media=self._media(case_id), screen=True)
-        if kind == "form":
-            slots = [s for s in (prefs.get("exhibitSlots") or []) if isinstance(s, dict) and s.get("id")]
-            # what an import answered, so the editor can show it in green
-            brought = (prefs.get("imported") or {}).get("fields") or []
-            kwargs.update(edit=True, slots=slots, imported=brought)
+        kwargs = self.build_kwargs(case_id, kind)
         html = flow.build(st.tree(case_id), **kwargs)
         html = self._externalise(case_id, html)
         if self.key(case_id, kind) != key:

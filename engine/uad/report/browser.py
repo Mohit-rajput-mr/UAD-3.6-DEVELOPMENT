@@ -28,3 +28,14 @@ except ImportError:                                     # pragma: no cover
 
     def sync_playwright():                              # type: ignore[no-redef]
         raise BrowserUnavailable(MESSAGE)
+
+
+def server_layout() -> bool:
+    """Whether this server lays reports out itself.
+
+    False without Chromium -- and when ``URAR_CLIENT_LAYOUT=1`` forces the
+    other path, so it can be exercised on a machine that has Chromium.  When
+    False, the appraiser's own browser does the measuring (app/api.py,
+    ``CLIENT_LAYOUT_HTML``) and the server does the arithmetic."""
+    import os
+    return AVAILABLE and os.environ.get("URAR_CLIENT_LAYOUT") != "1"

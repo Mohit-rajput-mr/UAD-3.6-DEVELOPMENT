@@ -1583,6 +1583,129 @@ def render_status(case_id: str, kind: str) -> dict:
             "stale": have is not None and have.key != want}
 
 
+@router.get("/cases/{case_id}/layout/{kind}/galley", response_class=HTMLResponse)
+def layout_galley(case_id: str, kind: str) -> HTMLResponse:
+    """The report as one long column, for the browser to measure (client layout)."""
+    _case_or_404(case_id)
+    if kind not in renders.KINDS:
+        raise HTTPException(404, f"no render kind {kind}")
+    return HTMLResponse(renderer().client_galley(case_id, kind),
+                        headers={"Cache-Control": "no-store"})
+
+
+@router.post("/cases/{case_id}/layout/{kind}/pages")
+def layout_pages(case_id: str, kind: str, body: dict = Body(...)) -> dict:
+    """Pages planned from the browser's measurements of the galley.
+
+    ``measured`` is what flow.MEASURE_JS returned in the browser; ``caps``
+    the per-page limits from earlier passes.  The pages go back to the browser
+    that asked and are not kept: what a browser sends is never stored or
+    served to anyone else."""
+    _case_or_404(case_id)
+    if kind not in renders.KINDS:
+        raise HTTPException(404, f"no render kind {kind}")
+    measured = body.get("measured")
+    if not isinstance(measured, list) or not measured:
+        raise HTTPException(400, "measured blocks are required")
+    try:
+        caps = {int(k): float(v) for k, v in (body.get("caps") or {}).items()}
+        html, planned = renderer().client_pages(case_id, kind, measured, caps)
+    except (KeyError, TypeError, ValueError) as exc:
+        raise HTTPException(400, f"the measurements could not be planned: {exc}")
+    info = json.dumps({"case": case_id, "kind": kind, "key": "client", "stale": False})
+    html = html.replace("</head>", f"<script>window.UAD_RENDER={info};</script>" + FRESH_JS
+                        + "</head>", 1)
+    return {"html": html, "planned": planned, "bodyBottom": flow.BODY_BOTTOM,
+            "attempts": flow.ATTEMPTS}
+
+
+def _client_layout_page(case_id: str, kind: str) -> str:
+    return (CLIENT_LAYOUT_HTML.replace("{{case}}", case_id).replace("{{kind}}", kind)
+            .replace("{{measure}}", flow.MEASURE_JS).replace("{{overflow}}", flow.OVERFLOW_JS))
+
+
+# The page the editor's frame loads when this server cannot lay the report out
+# itself.  It measures the galley in a hidden frame with the same script the
+# server's Chromium runs (flow.MEASURE_JS, injected below -- one source), asks
+# for pages, checks them against the body rule (flow.OVERFLOW_JS), and asks
+# again with tighter caps if a page ran long, exactly as flow.build does.
+CLIENT_LAYOUT_HTML = """<!doctype html><html><head><meta charset='utf-8'>
+<title>Laying out the report</title><style>
+html,body{margin:0;height:100%;background:#6f6f6f;font:13px/1.4 system-ui,sans-serif}
+.msg{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#101010;color:#f2f2f0;
+  padding:9px 16px;border-radius:6px;display:flex;gap:10px;align-items:center;z-index:2}
+.spin{width:14px;height:14px;border:2px solid #6a6a66;border-top-color:#f2f2f0;border-radius:50%;
+  animation:sp .8s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.err{background:#7a1c1c}
+iframe.m{position:absolute;left:-10000px;top:0;width:900px;height:1400px;border:0;visibility:hidden}
+</style></head><body>
+<div class='msg' id='msg'><span class='spin'></span><span id='say'>Laying out the report in this browser...</span></div>
+<script>
+(function(){
+  var CASE='{{case}}', KIND='{{kind}}';
+  var MEASURE={{measure}};
+  var OVERFLOW={{overflow}};
+  function say(t,bad){document.getElementById('say').textContent=t;
+    if(bad){document.getElementById('msg').className='msg err';}}
+  function frame(html){
+    return new Promise(function(res,rej){
+      var f=document.createElement('iframe'); f.className='m';
+      f.onload=function(){
+        var d=f.contentDocument;
+        (d.fonts?d.fonts.ready:Promise.resolve()).then(function(){
+          var imgs=Array.prototype.slice.call(d.images);
+          return Promise.all(imgs.map(function(i){return i.complete?0:new Promise(function(r){i.onload=i.onerror=r;});}));
+        }).then(function(){setTimeout(function(){res(f);},120);}).catch(rej);
+      };
+      document.body.appendChild(f);
+      f.srcdoc=html;
+    });
+  }
+  function run(fn,f){return fn.call(f.contentWindow);}  // the scripts read document via `document`
+  function inFrame(src,f){return f.contentWindow.eval('('+src+')()');}
+  function post(body){
+    return fetch('/api/cases/'+CASE+'/layout/'+KIND+'/pages',{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){if(!r.ok) return r.text().then(function(t){throw new Error(t);}); return r.json();});
+  }
+  var measured, caps={}, attempt=0, last=null;
+  fetch('/api/cases/'+CASE+'/layout/'+KIND+'/galley').then(function(r){
+    if(!r.ok) throw new Error('the report could not be prepared ('+r.status+')'); return r.text();
+  }).then(frame).then(function(f){
+    say('Measuring every block against Appendix C-1...');
+    measured=inFrame(String(MEASURE),f); f.remove();
+    return pass();
+  }).catch(function(e){ say('The report could not be laid out: '+e.message, true); });
+
+  function pass(){
+    attempt++;
+    say('Paginating (pass '+attempt+')...');
+    return post({measured:measured,caps:caps}).then(function(res){
+      last=res;
+      return frame(res.html).then(function(f){
+        var bottoms=inFrame(String(OVERFLOW),f); f.remove();
+        var over={}, any=false;
+        bottoms.forEach(function(b,i){ if(b>res.bodyBottom){ over[i+1]=b; any=true; } });
+        if(any && attempt<res.attempts){
+          // flow.tighten: shrink from the cap in force, by the overrun and 1pt
+          Object.keys(over).forEach(function(n){
+            caps[n]=(caps[n]!==undefined?caps[n]:res.bodyBottom)-(over[n]-res.bodyBottom)-1.0; });
+          return pass();
+        }
+        show(res.html);
+      });
+    });
+  }
+  function show(html){
+    document.open(); document.write(html); document.close();
+    // the editor waits for this, as it does for a server-rendered page
+    setTimeout(function(){ try{ if(window.parent!==window) window.parent.postMessage(
+      {uad:'frame-ready',kind:KIND,key:'client',stale:false},'*'); }catch(e){} }, 50);
+  }
+})();
+</script></body></html>"""
+
+
 @router.get("/cases/{case_id}/asset/{name}")
 def render_asset(case_id: str, name: str) -> Response:
     """A photograph or font a rendered page references, named by its digest --
@@ -1591,6 +1714,18 @@ def render_asset(case_id: str, name: str) -> Response:
     if not _re.fullmatch(r"[0-9a-f]{20}\.[a-z0-9]{2,5}", name):
         raise HTTPException(404, "no such asset")
     path = renderer().assets(case_id) / name
+    if not path.is_file():
+        # Written by a render on another instance (serverless) or cleared:
+        # the assets are content-addressed, so laying the case out again
+        # writes the same files under the same names.
+        _case_or_404(case_id)
+        for kind in renders.KINDS:
+            if path.is_file():
+                break
+            try:
+                renderer().client_galley(case_id, kind)
+            except Exception:
+                pass
     if not path.is_file():
         raise HTTPException(404, "no such asset")
     kind = {"ttf": "font/ttf", "otf": "font/otf", "svg": "image/svg+xml",
@@ -1618,9 +1753,11 @@ def _rendered(case_id: str, kind: str, request: Request) -> HTMLResponse:
     waits for the current render, so it never reads a stale report.
     """
     from uad.report import browser
-    if not browser.AVAILABLE:
-        # no Chromium here (Vercel): the layout would never land -- say why now
-        raise browser.BrowserUnavailable(browser.MESSAGE)
+    if not browser.server_layout():
+        # no Chromium here (a serverless host): the appraiser's own browser
+        # measures the page and this server does the arithmetic
+        return HTMLResponse(_client_layout_page(case_id, kind),
+                            headers={"Cache-Control": "no-store"})
     r = renderer()
     browser = "text/html" in request.headers.get("accept", "")
     have, want = r.get(case_id, kind)

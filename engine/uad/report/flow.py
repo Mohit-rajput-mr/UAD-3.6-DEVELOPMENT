@@ -1788,34 +1788,70 @@ def build(tree, *, folder=None, media=None, sample=False, screen=False,
     from uad.report import browser
     if not browser.AVAILABLE:
         raise browser.BrowserUnavailable(browser.MESSAGE)
-    blocks = form.build(tree, folder=folder, media=media, sample=sample,
-                        edit=edit, slots=slots, imported=imported)
-    measured = measure(_galley(blocks, embed_fonts=embed_fonts, edit=edit))
-    meta = Meta.from_case(tree)
+    galley, meta = prepare(tree, folder=folder, media=media, sample=sample,
+                           embed_fonts=embed_fonts, edit=edit, slots=slots,
+                           imported=imported)
+    measured = measure(galley)
     caps: dict[int, float] = {}
     html = ""
     over: dict[int, float] = {}
     pages: list[Page] = []
     drift = 0.0
     attempt = 0
-    for attempt in range(1, 7):
-        pages = plan(measured, caps)
-        html = render(pages, meta, embed_fonts=embed_fonts, screen=screen,
-                      edit=edit, imported=imported)
+    for attempt in range(1, ATTEMPTS + 1):
+        html, pages = paginate(measured, meta, caps, embed_fonts=embed_fonts,
+                               screen=screen, edit=edit, imported=imported)
         bottoms = verify(html)
         drift = max((b - pg.planned for pg, b in zip(pages, bottoms)), default=0.0)
-        over = {n + 1: round(b, 1) for n, b in enumerate(bottoms) if b > BODY_BOTTOM}
+        over = overflowing(bottoms)
         if not over:
             break
-        for n, b in over.items():
-            # Shrink from the cap already in force, never from BODY_BOTTOM: the
-            # latter recomputes the same number every round, and the loop sits
-            # on a page that is long by a hair until it runs out of attempts.
-            caps[n] = caps.get(n, BODY_BOTTOM) - (b - BODY_BOTTOM) - 1.0
+        caps = tighten(caps, over)
     if diagnostics is not None:
         diagnostics.update(pages=len(pages), attempts=attempt,
                            drift=round(drift, 2), overflow=over)
     return html
+
+
+# The three steps of ``build`` without the browser in between, so a caller
+# whose browser is elsewhere -- the appraiser's own, when the server has no
+# Chromium (a serverless deployment) -- can run the measuring itself.  The
+# arithmetic stays here, in one place; the browser only reports geometry.
+ATTEMPTS = 6
+
+
+def prepare(tree, *, folder=None, media=None, sample=False, embed_fonts=True,
+            edit=False, slots=None, imported: Iterable[str] = ()) -> tuple[str, "Meta"]:
+    """The galley to measure, and the page furniture's facts."""
+    blocks = form.build(tree, folder=folder, media=media, sample=sample,
+                        edit=edit, slots=slots, imported=imported)
+    return _galley(blocks, embed_fonts=embed_fonts, edit=edit), Meta.from_case(tree)
+
+
+def paginate(measured: list[dict], meta: "Meta", caps: dict[int, float] | None = None, *,
+             embed_fonts=True, screen=False, edit=False,
+             imported: Iterable[str] = ()) -> tuple[str, list[Page]]:
+    """Plan pages from measured blocks and render them."""
+    pages = plan(measured, caps or {})
+    return render(pages, meta, embed_fonts=embed_fonts, screen=screen, edit=edit,
+                  imported=imported), pages
+
+
+def overflowing(bottoms: list[float]) -> dict[int, float]:
+    """Pages (1-based) whose content runs below the body rule, and how far."""
+    return {n + 1: round(b, 1) for n, b in enumerate(bottoms) if b > BODY_BOTTOM}
+
+
+def tighten(caps: dict[int, float], over: dict[int, float]) -> dict[int, float]:
+    """The caps for the next pass, given which pages ran long.
+
+    Shrink from the cap already in force, never from BODY_BOTTOM: the latter
+    recomputes the same number every round, and the loop sits on a page that
+    is long by a hair until it runs out of attempts."""
+    caps = dict(caps)
+    for n, b in over.items():
+        caps[n] = caps.get(n, BODY_BOTTOM) - (b - BODY_BOTTOM) - 1.0
+    return caps
 
 
 def to_pdf(html: str, out_path) -> Any:

@@ -150,6 +150,20 @@ Most recent first. Each line: what, and how it was verified.
   87 pass / 0 fail / 21 gap. New audit tools: `_work/audit/render_all.py`,
   `linediff.py` (whole-report word diff vs the D-1 PDFs; total is the number to
   drive down).
+- **2026-10-04 — Docker image: server-side layout and PDF** (`Dockerfile`,
+  `.dockerignore`, `DEPLOY_DOCKER.md`). Built and run here: `/healthz` 200,
+  sign-in 303, sf1 case `report.pdf` 200, 6 pages, 8.0 s cold. A proxy CA
+  goes in as a BuildKit secret, never into the image.
+- **2026-10-04 — In-app dialogs replace the browser's alert/confirm/prompt**
+  (`engine/app/ui/dialog.js`, `UADDialog`); 19 call sites converted in the
+  editor, report frame and map tool. Guarded by
+  `engine/tests/test_browser_scripts.py::test_no_browser_dialogs_in_the_editor`.
+- **2026-10-04 — Blank reports no longer blocked by comparable numbering**
+  (E-077: `PropertyOrdinalNumber` kept in `templates.IDENTITY`); all 12 blank
+  templates: 0 schema errors. **Typed whole addresses split into A-1 parts**
+  (E-076, `edit.split_address`; `engine/tests/test_address_entry.py` 9/9).
+- **2026-10-04 — Second UI redesign (monochrome editorial)** is the one that
+  stands: Geist fonts, dark/light theme, glass cards; the violet v1 was rejected.
 - **2026-10-04 — Negative dollar amounts print as `$(10,000)`** (bind.py
   `format_value`, kind "amount"). Authority: B-1 Figure 22-5 (page 297 of B-1
   v1.4) and all 12 D-1 PDFs (121 x `$(n)`, 0 x `-$n`). Harness 87 pass / 0 fail.
@@ -225,10 +239,11 @@ Pre-existing failing tests (also fail on the commit before slice 1): `test_cells
    `test_cells` sf1 (fields 4.093 / 10.031 / 10.045 not writable),
    `test_autofill` condo1/mh1 blank fill. `total-bridge/tests` fail at
    collection in this Linux container (Windows-only bridge).
-4. PDF export on a host with Chromium (Docker image) — the owner asked for
-   Docker; on Vercel PDF is 503 by design.
-5. UI redesign (reference style: glassmorphism card, admin dashboards, content
-   list UI) — after correctness, never at its expense.
+4. ~~PDF export on a host with Chromium~~ — done: Docker image, see
+   `DEPLOY_DOCKER.md`. On Vercel PDF stays 503 by design; to give the live
+   site a PDF, host this image (any container host) and point the owner at it.
+5. ~~UI redesign~~ — done (monochrome editorial v2, in-app dialogs). Keep
+   new UI inside that design system (`index.html` tokens, `.eyebrow`, `UADDialog`).
 6. Permanent documentation set (architecture, data model, field registry,
    UAD/MISMO mappings, rules, validation, import/export, images, comps,
    adjustments, maps, PDF, XML, persistence, deployment, testing), a GSE

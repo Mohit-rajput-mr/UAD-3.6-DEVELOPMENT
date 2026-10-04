@@ -1,0 +1,16 @@
+# only engine/, specs/ (trimmed below), requirements.txt and run_server.py go in
+*
+!engine
+!specs
+!requirements.txt
+!run_server.py
+engine/tests
+**/__pycache__
+engine/assets/fonts/kerned
+specs/official/_Loose_Files_From_Root
+specs/official/urar_*
+specs/official/*_0
+specs/official/Appendix B-1*
+specs/official/Appendix C-1*
+specs/official/Appendix E*
+specs/official/Appendix F-1*

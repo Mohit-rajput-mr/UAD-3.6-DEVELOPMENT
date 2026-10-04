@@ -84,6 +84,20 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-04 — Instant updates and fast reload** (owner: "all updates should
+  show instantly"). (1) The report frame's start-up script keeps the last
+  layout per case in IndexedDB (`uad36-layout`) and shows it at once; when the
+  case changed it shows the kept one and the editor lays the current one out
+  behind it (`engine/app/api.py` CLIENT_LAYOUT_HTML). (2) A chosen/dropped
+  photo is shown from the local file in 50 ms (`showLocal` in
+  `flow.EDIT_JS`); removals fade at once; a slim moving line marks what is
+  still being saved. (3) A change that arrives while a layout is in flight is
+  remembered (`S.again` in `index.html`), never dropped. (4) `Renderer.key`
+  uses media file *names*, not paths — two copies with different folders
+  computed different keys and swapped forever. (5) `/fields` and the galley
+  are cached per content version. Measured in Chromium against two server
+  copies + shared store: reopen 0.02 s (was ~5 s), browser reload 0.27 s,
+  photo visible 52 ms, saved photo laid out 2.7 s behind; 121 tests pass.
 - **2026-10-04 — Negative dollar amounts print as `$(10,000)`** (bind.py
   `format_value`, kind "amount"). Authority: B-1 Figure 22-5 (page 297 of B-1
   v1.4) and all 12 D-1 PDFs (121 x `$(n)`, 0 x `-$n`). Harness 87 pass / 0 fail.

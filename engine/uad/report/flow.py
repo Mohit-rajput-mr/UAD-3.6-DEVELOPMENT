@@ -530,7 +530,15 @@ EDIT_JS = """
     +".agent-typed{background:#fff9d6}"
     +"@keyframes agentpulse{from{box-shadow:0 0 0 0 rgba(35,31,32,.35)}"
     +"to{box-shadow:0 0 0 6pt rgba(35,31,32,0)}}"
-    +".agent-on{animation:agentpulse .5s ease-out}";
+    +".agent-on{animation:agentpulse .5s ease-out}"
+    // shown at once, saved behind: a slim moving line until the layout lands
+    +".uad-pending{position:relative}"
+    +".uad-pending:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2pt;z-index:6;"
+    +"background:linear-gradient(90deg,#6d5dfc,#c4bbff,#6d5dfc);background-size:200% 100%;"
+    +"animation:uadbar 1.1s linear infinite}"
+    +"@keyframes uadbar{to{background-position:-200% 0}}"
+    +".uad-removing{opacity:.28;transition:opacity .18s;pointer-events:none}"
+    +"img.uad-local{width:100%;height:100%;object-fit:contain;display:block;flex:1;min-height:0}";
   document.head.appendChild(agentStyle);
 
   var optionCache={};
@@ -1189,9 +1197,9 @@ EDIT_JS = """
 
   /* The new box is on the page the moment the button is pressed, with the
      caret in its name; the exact layout follows behind it. */
-  function showSlot(button,sid){
+  function showSlot(button,sid,quiet){
     var holder=button.closest('.blk');
-    if(!holder) return;
+    if(!holder) return null;
     var fig=document.createElement('figure'); fig.className='ex';
     var sample=document.querySelector('figure.ex .ph');
     fig.innerHTML='<div class="cap"><b class="capedit" contenteditable="true" spellcheck="false"'
@@ -1224,11 +1232,55 @@ EDIT_JS = """
         var solo=fig.parentNode.children.length===1;
         (solo?fig.closest('.blk'):fig).remove();
         button.classList.add('pending'); button.textContent='Adding exhibit…';
-        return;
+        return null;
       }
     }
-    var cap=fig.querySelector('.capedit'); cap.dataset.was=''; cap.focus();
+    var cap=fig.querySelector('.capedit');
+    if(quiet) return fig;
+    cap.dataset.was=''; cap.focus();
+    return fig;
   }
+
+  /* A picture is on the page the moment it is chosen -- read from the
+     appraiser's own disk, not waited for from the server -- and the box says
+     it is on its way until the laid-out report, with the saved picture,
+     replaces this one. */
+  function showLocal(zone,file,i){
+    var url;
+    try{ url=URL.createObjectURL(file); }catch(_){ return; }
+    var img=document.createElement('img'); img.src=url; img.alt=''; img.className='uad-local';
+    if(zone.classList.contains('exadd')){
+      if(!parentWin) return;
+      var fig=showSlot(zone,'local'+Date.now().toString(36)+(i||0),true);
+      if(!fig) return;
+      var ph=fig.querySelector('.ph'); if(ph) ph.replaceWith(img);
+      var cap=fig.querySelector('.capedit');
+      if(cap){ cap.removeAttribute('contenteditable');
+        cap.textContent=(file.name||'').replace(/\\.[^.]+$/,'').replace(/[_-]+/g,' '); }
+      var rm=fig.querySelector('.exremove'); if(rm) rm.remove();
+      fig.classList.add('uad-pending');
+      return;
+    }
+    var box=zone.closest('figure');
+    if(box){
+      var old=box.querySelector('img'), ph2=box.querySelector('.ph');
+      if(old) old.src=url; else if(ph2) ph2.replaceWith(img);
+      box.classList.add('uad-pending');
+      return;
+    }
+    var photo=zone.closest('.photo');
+    if(photo){
+      var im=photo.querySelector('img');
+      if(im) im.src=url;
+      else{
+        [].slice.call(photo.children).forEach(function(c){ if(c!==zone) c.remove(); });
+        [].slice.call(photo.childNodes).forEach(function(c){ if(c.nodeType===3) c.remove(); });
+        photo.insertBefore(img,zone); photo.classList.remove('empty');
+      }
+      photo.classList.add('uad-pending');
+    }
+  }
+  function going(el){ if(el) el.classList.add('uad-removing'); }
 
   function addSlot(section,button){
     var sid='x'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
@@ -1272,7 +1324,8 @@ EDIT_JS = """
       return f && /^image\\//.test(f.type);});
     if(!list.length) return;
     if(zone.dataset.slot||zone.dataset.fill||zone.classList.contains('photodrop')) list=list.slice(0,1);
-    zone.classList.add('over');
+    list.forEach(function(file,i){ showLocal(zone,file,i); });
+    zone.classList.remove('over');
     var section=zone.dataset.section||'0';
     var category=zone.dataset.category||'other';
     var jobs=list.map(function(file){
@@ -1352,6 +1405,7 @@ EDIT_JS = """
     row.addEventListener('mousedown',function(ev){
       ev.preventDefault(); shutMenu();
       if(!confirm('Remove Comparable #'+n+'? The ones after it move up a place.')) return;
+      going(th);
       json(api+'/comparables/'+n+'?kind=sales',{method:'DELETE'})
         .then(function(){ tell({uad:'media'}); reloadHere(); })
         .catch(function(err){ alert(err.message); });
@@ -1556,8 +1610,9 @@ EDIT_JS = """
     var rm=t.closest('.exremove');
     if(rm){
       e.preventDefault();
-      if(rm.dataset.slot){ dropSlot(rm.dataset.slot).then(reloadHere); return; }
+      if(rm.dataset.slot){ going(rm.closest('figure')); dropSlot(rm.dataset.slot).then(reloadHere); return; }
       if(!confirm('Remove this exhibit from the report?')) return;
+      going(rm.closest('figure'));
       if(rm.dataset.image){
         json(api+'/images?key='+encodeURIComponent(rm.dataset.image),{method:'DELETE'})
           .then(function(){ tell({uad:'media'}); reloadHere(); })
@@ -1577,7 +1632,7 @@ EDIT_JS = """
     var more=t.closest('.compadd');
     if(more){
       e.preventDefault();
-      more.textContent='Adding\u2026';
+      more.textContent='Adding\u2026'; more.classList.add('uad-pending');
       json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
                               body:JSON.stringify({kind:more.dataset.kind||'sales'})})
         .then(function(){ tell({uad:'media'}); reloadHere(); })
@@ -1589,7 +1644,7 @@ EDIT_JS = """
     var nuadd=t.closest('.nuadd');
     if(nuadd){
       e.preventDefault();
-      nuadd.textContent='Adding…';
+      nuadd.textContent='Adding…'; nuadd.classList.add('uad-pending');
       json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
                               body:JSON.stringify({kind:'not_used'})})
         .then(function(){ reloadHere(); })
@@ -1602,6 +1657,7 @@ EDIT_JS = """
       var cell=lidrop.closest('td').querySelector('.v');
       if(!cell) return;
       if(!confirm('Remove the row \u201c'+(cell.dataset.liwas||'')+'\u201d from this grid?')) return;
+      going(lidrop.closest('tr'));
       json(api+'/comparables/lineitems',
            {method:'PUT',headers:{'Content-Type':'application/json'},
             body:JSON.stringify({kind:cell.dataset.li,container:cell.dataset.lic,
@@ -1616,6 +1672,7 @@ EDIT_JS = """
       e.preventDefault();
       var n=Number(nudrop.dataset.nu);
       if(!confirm('Remove property #'+n+' from the properties analyzed but not used?')) return;
+      going(nudrop.closest('tr')||nudrop.closest('.blk'));
       json(api+'/comparables/'+n+'?kind=not_used',{method:'DELETE'})
         .then(function(){ reloadHere(); })
         .catch(function(err){ alert(err.message); });

@@ -516,12 +516,14 @@ async function refresh(){
   if(S.section===null&&S.sections.length) S.section=S.sections[0].number;
   drawRail(); drawHead(); drawWork(); drawInsp();
 }
-const sevCount=n=>{const i=(S.review.items||[]).filter(x=>x.section_number===n);
+const sevCount=n=>{const i=((S.review&&S.review.items)||[]).filter(x=>x.section_number===n);
   return {f:i.filter(x=>x.severity==='Fatal').length,w:i.filter(x=>x.severity==='Warning').length};};
-const shotsIn=n=>(S.media.media||[]).filter(x=>Number(x.section)===n);
+const shotsIn=n=>((S.media&&S.media.media)||[]).filter(x=>Number(x.section)===n);
 
 function drawRail(){
-  const r=$('#rail'); if(!r)return;
+  // the report can say it is ready before the case's data has arrived (a kept
+  // layout shows at once); the rail is drawn when both are there
+  const r=$('#rail'); if(!r||!S.case||!S.sections)return;
   r.innerHTML='<div class="railhead k">Sections</div>';
   for(const s of S.sections||[]){
     const c=sevCount(s.number), pics=shotsIn(s.number).length;
@@ -688,7 +690,11 @@ function drawWork(){
    strip across the top, then swapped in. */
 async function checkFresh(kind){
   const frame=kind==='form'?$('#rf'):$('#pv');
-  if(!frame||S.checking[kind]) return;
+  S.again=S.again||{};
+  // a change while a layout is already on its way is remembered and caught up
+  // with straight after -- dropping it left the report one change behind
+  if(frame&&(S.checking[kind]||(S.swaps&&S.swaps[kind]))){ S.again[kind]=true; return; }
+  if(!frame) return;
   let shown='';
   try{ shown=(frame.contentWindow.UAD_RENDER||{}).key||''; }catch(_){}
   if(!shown) return;                               // still loading its first page
@@ -702,12 +708,13 @@ async function checkFresh(kind){
       if(r.data.key===shown) break;                // nothing newer
       if(r.data.ready){ swapFrame(kind); break; }
       if(!strip){ strip=document.createElement('div'); strip.className='rf-busy';
-        strip.textContent='Updating the report…'; host.appendChild(strip); }
+        strip.textContent='Updating layout'; host.appendChild(strip); }
       await new Promise(res=>setTimeout(res,700));
     }
   }finally{
     S.checking[kind]=false;
     if(strip) setTimeout(()=>strip.remove(),kind==='form'?900:300);
+    if(S.again[kind]&&!(S.swaps&&S.swaps[kind])){ S.again[kind]=false; setTimeout(()=>checkFresh(kind),30); }
   }
 }
 
@@ -752,6 +759,8 @@ function finishSwap(kind,nf){
           {uad:'autofill',steps:S.autoSteps.slice(S.autoAt),pace:S.autoPace||45},'*');
       }
     }
+    S.again=S.again||{}; S.again[kind]=false;
+    setTimeout(()=>checkFresh(kind),30);
   });
 }
 

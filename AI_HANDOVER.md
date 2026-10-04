@@ -84,14 +84,21 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
-- **2026-10-04 — NOT YET DEPLOYED.** The branch `claude/confident-maxwell-id7biz` (head
-  = the commit that carries this line) holds slices 1-2 plus the Roof detail composer
-  (T-124). Full suite on `ee2dd82` (slice 2): 328 pass, 4 fail -- all four pre-existing
-  (`test_cells` sf1, `test_autofill` condo1/mh1, `test_golden::test_the_pdf_is_text_not_a_picture`);
-  harness 87 pass / 0 fail. The agent's push to `main` was refused by the session's
-  permission classifier ("Production Deploy"), so Vercel still serves the older `main`.
-  To deploy: `git push origin claude/confident-maxwell-id7biz:main` (fast-forward, main is
-  an ancestor), then check the Vercel build is READY and ask the owner to try it live.
+- **2026-10-04 — Instant updates and fast reload** (owner: "all updates should
+  show instantly"). (1) The report frame's start-up script keeps the last
+  layout per case in IndexedDB (`uad36-layout`) and shows it at once; when the
+  case changed it shows the kept one and the editor lays the current one out
+  behind it (`engine/app/api.py` CLIENT_LAYOUT_HTML). (2) A chosen/dropped
+  photo is shown from the local file in 50 ms (`showLocal` in
+  `flow.EDIT_JS`); removals fade at once; a slim moving line marks what is
+  still being saved. (3) A change that arrives while a layout is in flight is
+  remembered (`S.again` in `index.html`), never dropped. (4) `Renderer.key`
+  uses media file *names*, not paths — two copies with different folders
+  computed different keys and swapped forever. (5) `/fields` and the galley
+  are cached per content version. Measured in Chromium against two server
+  copies + shared store: reopen 0.02 s (was ~5 s), browser reload 0.27 s,
+  photo visible 52 ms, saved photo laid out 2.7 s behind; 121 tests pass.
+- **2026-10-04 — Audit branch merged with main's "Instant updates" work.** Pending the owner's merge of PR #1, `main` was not yet carrying slices 1-2; after the merge Vercel builds them. The Roof detail composer (T-124) is in as well.
 - **2026-10-04 — Audit slice 2: grid fidelity** (E-073, E-074, E-075).
   (a) Grid cells compose as B-1 says (`Local Road | Asphalt`, `3 Miles SE`,
   `Driveway | 4 | Pavers` + a Garage line, enumeration order, address on two lines).

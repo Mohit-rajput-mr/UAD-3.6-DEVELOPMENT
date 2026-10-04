@@ -478,6 +478,14 @@ def case_fields(case_id: str, section: int | None = Query(None),
     can be traced to the data point and xPath that produced it.
     """
     _case_or_404(case_id)
+    # every field and the H-1 rules over the whole document cost about a
+    # second; the answer depends on the document alone, so it is made once per
+    # version of it, not on every open of the editor
+    return store()._memo(f"fields:{section}:{only_filled}", case_id,
+                         lambda: _case_fields(case_id, section, only_filled))
+
+
+def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
     tree = store().tree(case_id)
     root = tree.getroot()
     findings = compliance.evaluate(tree)
@@ -1745,14 +1753,51 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
       .then(function(r){if(!r.ok) return r.text().then(function(t){throw new Error(t);}); return r.json();});
   }
   var measured, caps={}, attempt=0, last=null, KEY='client';
-  fetch('/api/cases/'+CASE+'/layout/'+KIND+'/galley').then(function(r){
-    if(!r.ok) throw new Error('the report could not be prepared ('+r.status+')');
-    KEY=r.headers.get('X-Render-Key')||'client'; return r.text();
-  }).then(frame).then(function(f){
-    say('Measuring every block against Appendix C-1...');
-    measured=inFrame(String(MEASURE),f); f.remove();
-    return pass();
-  }).catch(function(e){ say('The report could not be laid out: '+e.message, true); });
+  /* The last layout this browser made of this report is kept (IndexedDB), so
+     opening or reloading the report shows it at once.  When the case has
+     changed since, the kept one is shown all the same and the editor lays the
+     current one out behind it and swaps it in -- a frame made for that swap
+     (?t=...) always lays out afresh. */
+  var SWAP=/[?&]t=/.test(location.search), SLOT=CASE+'/'+KIND;
+  function idb(){
+    return new Promise(function(res){
+      try{ var r=indexedDB.open('uad36-layout',1);
+        r.onupgradeneeded=function(){ r.result.createObjectStore('pages'); };
+        r.onsuccess=function(){ res(r.result); }; r.onerror=function(){ res(null); };
+      }catch(e){ res(null); }
+    });
+  }
+  function kept(){
+    return idb().then(function(db){ return db&&new Promise(function(res){
+      try{ var q=db.transaction('pages').objectStore('pages').get(SLOT);
+        q.onsuccess=function(){ res(q.result||null); }; q.onerror=function(){ res(null); };
+      }catch(e){ res(null); } }); });
+  }
+  function keep(rec){
+    idb().then(function(db){ if(!db) return;
+      try{ db.transaction('pages','readwrite').objectStore('pages').put(rec,SLOT); }catch(e){} });
+  }
+  function layout(){
+    fetch('/api/cases/'+CASE+'/layout/'+KIND+'/galley').then(function(r){
+      if(!r.ok) throw new Error('the report could not be prepared ('+r.status+')');
+      KEY=r.headers.get('X-Render-Key')||'client'; return r.text();
+    }).then(frame).then(function(f){
+      say('Measuring every block against Appendix C-1...');
+      measured=inFrame(String(MEASURE),f); f.remove();
+      return pass();
+    }).catch(function(e){ say('The report could not be laid out: '+e.message, true); });
+  }
+  Promise.all([SWAP?null:kept(),
+               SWAP?null:fetch('/api/cases/'+CASE+'/render/'+KIND).then(function(r){
+                 return r.ok?r.json():null; }).catch(function(){ return null; })])
+    .then(function(got){
+      var rec=got[0], now=got[1]&&got[1].key;
+      if(rec&&rec.html&&rec.key){
+        KEY=rec.key; show(rec.html, now&&rec.key!==now);
+        return;
+      }
+      layout();
+    }, layout);
 
   function pass(){
     attempt++;
@@ -1769,15 +1814,18 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
             caps[n]=(caps[n]!==undefined?caps[n]:res.bodyBottom)-(over[n]-res.bodyBottom)-1.0; });
           return pass();
         }
-        show(res.html);
+        if(KEY!=='client') keep({key:KEY,html:res.html,at:Date.now()});
+        show(res.html, false);
       });
     });
   }
-  function show(html){
+  function show(html, stale){
     document.open(); document.write(html); document.close();
-    // the editor waits for this, as it does for a server-rendered page
-    setTimeout(function(){ try{ if(window.parent!==window) window.parent.postMessage(
-      {uad:'frame-ready',kind:KIND,key:KEY,stale:false},'*'); }catch(e){} }, 50);
+    // the editor waits for this, as it does for a server-rendered page; a kept
+    // layout older than the case asks for the current one straight after
+    setTimeout(function(){ try{ if(window.parent!==window){
+      window.parent.postMessage({uad:'frame-ready',kind:KIND,key:KEY,stale:!!stale},'*');
+      if(stale) window.parent.postMessage({uad:'relayout'},'*'); } }catch(e){} }, 50);
   }
 })();
 </script></body></html>"""

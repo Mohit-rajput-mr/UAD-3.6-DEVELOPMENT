@@ -149,6 +149,9 @@ class Renderer:
         if xml.exists():
             h.update(hashlib.sha1(xml.read_bytes()).digest())
         for m in self._media(case_id):
+            # the file's name, not where this server copy keeps it: every copy
+            # must agree on the key, or each layout looks stale to the next
+            m = {**m, "path": Path(str(m.get("path", ""))).name}
             h.update(json.dumps(m, sort_keys=True, default=str).encode())
         if kind == "form":
             prefs = self._prefs(case_id)
@@ -287,6 +290,21 @@ class Renderer:
     # flow.py.  Nothing the browser sends is stored or shown to anyone else --
     # the result goes back only to the browser that measured it.
     def client_galley(self, case_id: str, kind: str) -> str:
+        # one build per version of the case: the galley depends on nothing the
+        # key does not cover, and building it costs about a second
+        key = self.key(case_id, kind)
+        memo = self.__dict__.setdefault("_galleys", {})
+        hit = memo.get((case_id, kind))
+        if hit is not None and hit[0] == key:
+            return hit[1]
+        html = self._client_galley(case_id, kind)
+        memo.pop((case_id, kind), None)
+        memo[(case_id, kind)] = (key, html)
+        while len(memo) > 12:             # about a megabyte each: keep the recent ones
+            memo.pop(next(iter(memo)))
+        return html
+
+    def _client_galley(self, case_id: str, kind: str) -> str:
         kw = self.build_kwargs(case_id, kind)
         galley, _meta = flow.prepare(self._store().tree(case_id), folder=kw["folder"],
                                      media=kw["media"], edit=kw.get("edit", False),

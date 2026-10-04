@@ -443,6 +443,148 @@ class Store:
             " ORDER BY id DESC LIMIT ?", (case_id, limit)).fetchall()
         return [dict(r) for r in rows]
 
+    # -------------------------------------------------------------- bundles
+    # A case, whole, in one ZIP: the MISMO document, the editor's state, every
+    # other file in the case folder, the media rows and the history -- and,
+    # when asked, the images.  It is how a case survives the loss of the
+    # server that held it (a serverless instance is recycled; a disk dies),
+    # how it moves to another machine, and what the browser keeps as its
+    # recovery copy.  ``_render`` is a cache and is left out.
+    BUNDLE_FORMAT = "uad36-case-bundle/1"
+    _CASE_ID = re.compile(r"[0-9a-f]{12}")
+
+    def bundle(self, case_id: str, *, images: bool = True) -> bytes:
+        import io
+        import zipfile
+        case = self.get(case_id)
+        folder = self.folder(case_id)
+        meta = {"format": self.BUNDLE_FORMAT, "case": case.__dict__.copy(),
+                "media": [m.to_json() for m in self.media(case_id)],
+                "history": list(reversed(self.history(case_id, limit=5000)))}
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+            z.writestr("case.json", json.dumps(meta, indent=1))
+            for path in sorted(folder.rglob("*")):
+                rel = path.relative_to(folder)
+                if not path.is_file() or rel.parts[0] == "_render":
+                    continue
+                if rel.parts[0] == "Images" and not images:
+                    continue
+                z.write(path, "files/" + rel.as_posix())
+        return buf.getvalue()
+
+    def restore(self, data: bytes, *, actor: str = "appraiser",
+                replace: bool = False) -> Case:
+        """Recreate a case from its bundle, under the same case ID.
+
+        An existing case is never overwritten unless ``replace`` is given (an
+        explicit choice by the appraiser), so a stale copy can not clobber
+        newer work.  A bundle is outside data: paths are confined to the case
+        folder, and a signature does not survive the trip -- a restored case
+        that was signed or exported returns to review and must be signed
+        again, so a hand-edited bundle can never carry a signature past the
+        gate."""
+        import io
+        import zipfile
+        try:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            meta = json.loads(z.read("case.json"))
+        except (zipfile.BadZipFile, KeyError, ValueError) as exc:
+            raise ValueError(f"not a case bundle: {exc}")
+        if meta.get("format") != self.BUNDLE_FORMAT:
+            raise ValueError(f"unknown bundle format {meta.get('format')!r}")
+        info = meta.get("case") or {}
+        case_id = str(info.get("case_id", ""))
+        if not self._CASE_ID.fullmatch(case_id):
+            raise ValueError("the bundle names no valid case ID")
+        exists = self.conn.execute("SELECT 1 FROM cases WHERE case_id=?",
+                                   (case_id,)).fetchone() is not None
+        if exists and not replace:
+            raise FileExistsError(case_id)
+        if "files/mismo.xml" not in z.namelist():
+            raise ValueError("the bundle carries no MISMO document")
+        etree.fromstring(z.read("files/mismo.xml"))         # must parse
+        if exists:
+            self.delete(case_id)
+            with self._lock:
+                self.conn.execute("DELETE FROM history WHERE case_id=?", (case_id,))
+                self.conn.commit()
+        folder = self.folder(case_id).resolve()
+        for name in z.namelist():
+            if not name.startswith("files/") or name.endswith("/"):
+                continue
+            target = (folder / name[len("files/"):]).resolve()
+            if folder not in target.parents:
+                raise ValueError(f"unsafe path in bundle: {name}")
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(z.read(name))
+        state = info.get("state", DRAFT)
+        signed_by, signed_at = info.get("signed_by", ""), info.get("signed_at", "")
+        voided = state in (SIGNED, EXPORTED)
+        if voided or state not in TRANSITIONS:
+            state, signed_by, signed_at = (IN_REVIEW if voided else DRAFT), "", ""
+        acked = [int(n) for n in (info.get("acknowledged") or []) if str(n).isdigit()]
+        with self._lock:
+            self.conn.execute(
+                "INSERT INTO cases VALUES (?,?,?,?,?,?,?,?,?,?)",
+                (case_id, str(info.get("name", ""))[:300], str(info.get("template", "")),
+                 str(info.get("property_type", "")), state,
+                 str(info.get("created") or _now()), str(info.get("updated") or _now()),
+                 signed_by, signed_at, json.dumps(sorted(set(acked)))))
+            for m in meta.get("media") or []:
+                if m.get("category") not in MEDIA_CATEGORIES:
+                    continue
+                fname = Path(str(m.get("filename", ""))).name
+                self.conn.execute(
+                    "INSERT OR REPLACE INTO media (media_id, case_id, category, filename,"
+                    " caption, ordinal, comparable, comp_key, size, content_type,"
+                    " section, provenance) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    (str(m.get("media_id", ""))[:40] or uuid.uuid4().hex[:12], case_id,
+                     m["category"], fname, str(m.get("caption", "")),
+                     int(m.get("order") or 0), int(m.get("comparable") or 0),
+                     str(m.get("comp_key") or ""), int(m.get("size") or 0),
+                     str(m.get("content_type") or ""), int(m.get("section") or 0),
+                     TEMPLATE if m.get("provenance") == TEMPLATE else APPRAISER))
+            for h in meta.get("history") or []:
+                self.conn.execute(
+                    "INSERT INTO history (case_id, at, actor, action, detail) VALUES (?,?,?,?,?)",
+                    (case_id, str(h.get("at", "")), str(h.get("actor", "")),
+                     str(h.get("action", "")), str(h.get("detail", ""))))
+            self.conn.commit()
+        # a template's own photographs can be fetched again from the template
+        tpl = None
+        try:
+            tpl = templates.get(str(info.get("template", "")))
+        except KeyError:
+            pass
+        if tpl is not None:
+            by_name = {p.name: p for p in tpl.images}
+            for m in self.media(case_id):
+                dst = self.media_dir(case_id) / m.filename
+                if m.provenance == TEMPLATE and not dst.exists() and m.filename in by_name:
+                    shutil.copy2(by_name[m.filename], dst)
+        self.log(case_id, actor, "restored",
+                 "from a case bundle" + ("; the signature was voided and the case "
+                                         "returned to review" if voided else ""))
+        self.touch(case_id)
+        return self.get(case_id)
+
+    def missing_media(self, case_id: str) -> list[Media]:
+        """Media rows whose file is not on this server (after a restore without images)."""
+        return [m for m in self.media(case_id)
+                if not (self.media_dir(case_id) / m.filename).is_file()]
+
+    def put_media_file(self, case_id: str, media_id: str, data: bytes) -> Media:
+        """Put back the file of a media row that lacks one; never replace one."""
+        item = next((m for m in self.media(case_id) if m.media_id == media_id), None)
+        if item is None:
+            raise KeyError(media_id)
+        path = self.media_dir(case_id) / Path(item.filename).name
+        if not path.is_file():
+            path.write_bytes(data)
+            self.touch(case_id)
+        return item
+
     # ------------------------------------------------------------ the gate
     def acknowledge(self, case_id: str, section: int, actor: str,
                     on: bool = True) -> Case:

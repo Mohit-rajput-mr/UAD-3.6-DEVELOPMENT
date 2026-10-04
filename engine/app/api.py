@@ -17,6 +17,7 @@ Two rules hold throughout:
 from __future__ import annotations
 
 import io
+import os
 import json
 import mimetypes
 import shutil
@@ -155,6 +156,61 @@ def create_case(request: Request, body: dict = Body(...)) -> dict:
     except KeyError:
         raise HTTPException(404, f"no template {template}")
     return case.to_json()
+
+
+# ------------------------------------------------------------- case bundles
+# A whole case in one ZIP (app/cases.py ``Store.bundle``): a backup the
+# appraiser can download, a way to move a case to another machine, and the copy
+# the browser keeps so a case survives the server losing it (a serverless
+# instance is recycled with its /tmp).
+@router.get("/host")
+def host_info() -> dict:
+    """What this server can do, so the interface offers only what works."""
+    from uad.report import browser
+    durable = not os.environ.get("VERCEL")
+    return {"serverLayout": browser.server_layout(), "pdf": browser.AVAILABLE,
+            "durable": durable,
+            "host": "serverless" if not durable else "server"}
+
+
+@router.get("/cases/{case_id}/bundle")
+def case_bundle(case_id: str, images: bool = Query(True)) -> Response:
+    case = _case_or_404(case_id)
+    data = store().bundle(case_id, images=images)
+    safe = "".join(c if c.isalnum() or c in "-_ " else "_" for c in case.name)[:60].strip() or case_id
+    return Response(data, media_type="application/zip",
+                    headers={"Content-Disposition": f'attachment; filename="{safe}.uadcase.zip"',
+                             "Cache-Control": "no-store",
+                             "X-Case-Updated": case.updated})
+
+
+@router.post("/cases/restore")
+async def restore_case(request: Request, file: UploadFile = File(...),
+                       replace: bool = Query(False)) -> dict:
+    data = await file.read()
+    try:
+        case = store().restore(data, actor=_actor(request), replace=replace)
+    except FileExistsError as exc:
+        raise HTTPException(409, f"case {exc} already exists here; nothing was overwritten")
+    except ValueError as exc:
+        raise HTTPException(400, str(exc))
+    renderer().forget(case.case_id)
+    return {**case.to_json(),
+            "missing_media": [m.media_id for m in store().missing_media(case.case_id)]}
+
+
+@router.put("/cases/{case_id}/media/{media_id}/file")
+async def restore_media_file(case_id: str, media_id: str, request: Request) -> dict:
+    """The file of an image whose row came back in a bundle without it."""
+    _case_or_404(case_id)
+    data = await request.body()
+    if not data:
+        raise HTTPException(400, "no file content")
+    try:
+        item = store().put_media_file(case_id, media_id, data)
+    except KeyError:
+        raise HTTPException(404, f"no image {media_id} in case {case_id}")
+    return item.to_json()
 
 
 # ------------------------------------------------------------ import (UAD 3.6)

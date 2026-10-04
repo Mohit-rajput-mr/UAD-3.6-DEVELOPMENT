@@ -11,7 +11,7 @@ from uad import compliance, schema
 src = Path(sys.argv[1]); template = sys.argv[2] if len(sys.argv) > 2 else "sf3_appraisal_v1_4"
 tmp = Path(tempfile.mkdtemp()); api.STORE = Store(tmp / "cases"); api.RENDERER = None
 with TestClient(app) as c:
-    c.post("/access", data={"code": "kech"})
+    __import__("app.access").access.sign_in(c)
     case = c.post("/api/cases", json={"template": template, "blank": True,
                                       "name": "portable test"}).json()["case_id"]
     r = c.post(f"/api/cases/{case}/autofill/source",

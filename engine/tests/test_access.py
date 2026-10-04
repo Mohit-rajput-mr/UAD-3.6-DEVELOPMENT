@@ -35,7 +35,7 @@ def main() -> int:
     check("the configured passcode uad3.6 unlocks", token is not None)
     check("surrounding whitespace is forgiven", a.check("  uad3.6 ", "t") is not None)
     check("a different case is refused (exact match)", a.check("UAD3.6", "t") is None)
-    check("the old passcode is refused", a.check("kech", "t") is None)
+    check("a retired passcode is refused", a.check("retired-code", "t") is None)
     check("a session from one instance is valid on another", b.valid(token or ""))
     check("the stored digest is not itself a session", not b.valid(cfg["session"]))
     check("an empty cookie is refused", not b.valid(""))

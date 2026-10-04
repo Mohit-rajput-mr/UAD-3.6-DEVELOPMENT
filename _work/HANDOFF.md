@@ -215,7 +215,7 @@ is only an asterisk drawn from `conditionality == 'R'` (T-202).
 
 ## Decisions the user has made
 
-- Passcode is `kech`.
+- Passcode was an earlier code (since 2026-10-04 it is `uad3.6`).
 - **MyriadPro-Black is dropped** (2026-09-16). The Bold substitute carrying
   Black's published advances stays. Do not raise the font question again.
 - Templates come from the twelve official D-1 sample cases, never hand-authored.
@@ -622,7 +622,7 @@ rear photograph is a side elevation and the report says so.
    doubling the room count. Check before adding an exhibit that TOTAL has not
    already added it.
 5. **`git add -A` for the whole folder is still blocked** by the permission
-   classifier; the repo is `github.com/kech8014/3.6-UAD-DEVELOPMENT.git`,
+   classifier; the repo was the earlier private GitHub repository,
    private and must stay private. The development tree must stay separate from
    real case material, including names and credentials.
 
@@ -2647,7 +2647,7 @@ chunk 1 of the NEW patch, `UAD_P2..P7` the OLD one — a new build from main wou
 branch and merging to main, after which the build skips the patch (access.json present) and the
 `UAD_P*` vars can be deleted.
 
-**Tests.** The fixtures signed in with the retired passcode `kech`; they now use
+**Tests.** The fixtures signed in with the retired passcode; they now use
 `app.access.sign_in(client)` (server's own token). 150 pass; 3 failures (test_cells sf1,
 test_autofill condo1/mh1) fail identically on `main` — pre-existing, not from this work.
 

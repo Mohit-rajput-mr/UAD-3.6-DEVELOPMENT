@@ -15,7 +15,7 @@ def words(tree, folder):
 key="2_to_4_unit_appraisal_v1_4"
 tmp=Path(tempfile.mkdtemp()); api.STORE=Store(tmp/"cases"); api.RENDERER=None
 with TestClient(app) as c:
-    c.post("/access", data={"code":"kech"})
+    __import__("app.access").access.sign_in(c)
     case=c.post("/api/cases",json={"template":key,"blank":True,"name":"x"}).json()["case_id"]
     c.post(f"/api/cases/{case}/autofill", json={"source":key})
     for _ in range(600):

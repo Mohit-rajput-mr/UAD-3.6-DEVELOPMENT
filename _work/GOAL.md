@@ -70,7 +70,7 @@ family, condominium, 2-4 unit.
   or pending sale. Derivation: `_work/rockland/adjust.py`.
 - **The development tree stays separate from real case material** — names,
   credentials and everything else. The repo
-  (`github.com/kech8014/3.6-UAD-DEVELOPMENT.git`) is private and stays private.
+  (the earlier private GitHub repository) is private and stays private.
 - **Do not control the owner's PC** (no desktop/computer-use clicking). Work in
   WinTOTAL only through the MOD (`total-bridge/`, CDP on :8088). What only the
   desktop can do (open or reopen a report), ask the owner to do.

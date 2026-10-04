@@ -10,7 +10,7 @@ M="{http://www.mismo.org/residential/2009/schemas}"
 bundle=Path(sys.argv[1]); template=sys.argv[2]
 tmp=Path(tempfile.mkdtemp()); api.STORE=Store(tmp/"cases"); api.RENDERER=None
 with TestClient(app) as c:
-    c.post("/access", data={"code":"kech"})
+    __import__("app.access").access.sign_in(c)
     case=c.post("/api/cases",json={"template":template,"blank":True,"name":"diag"}).json()["case_id"]
     r=c.post(f"/api/cases/{case}/autofill/source", files={"files":(bundle.name,bundle.read_bytes(),"application/zip")})
     source=r.json()["source"]

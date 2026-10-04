@@ -560,9 +560,15 @@ def count(tree: etree._ElementTree, report: Report) -> None:
 # built from the same document with the extensions left out.
 PORTABLE = "urn:uad36:portable:1"
 P = f"{{{PORTABLE}}}"
-# files exported before the rename carry the old namespace; they are still read
-LEGACY = ("urn:" + "kech" + ":uad36:portable:1",)
-READ = [f"{{{ns}}}" for ns in (PORTABLE, *LEGACY)]
+
+
+def _portable(root: etree._Element, local: str) -> list[etree._Element]:
+    """Every portable-extension element of this name.  Files exported before
+    2026-10-04 used an older ``urn:<name>:uad36:portable:1`` namespace; any
+    namespace of that form is read, so those files still import."""
+    return [n for n in root.iter() if isinstance(n.tag, str)
+            and etree.QName(n).localname == local
+            and (etree.QName(n).namespace or "").endswith("uad36:portable:1")]
 
 
 def embed(tree: etree._ElementTree, images: dict[str, Path], state: dict | None = None) -> dict:
@@ -586,7 +592,7 @@ def embed(tree: etree._ElementTree, images: dict[str, Path], state: dict | None 
         other = ext.find(f"{M}OTHER")
         if other is None:
             other = etree.SubElement(ext, f"{M}OTHER")
-        for old in [n for ns in READ for n in other.findall(f"{ns}EmbeddedFile")]:
+        for old in [n for n in _portable(other, "EmbeddedFile") if n.getparent() is other]:
             other.remove(old)
         node = etree.SubElement(other, f"{P}EmbeddedFile", nsmap={"uad": PORTABLE})
         node.set("FileName", name)
@@ -611,7 +617,7 @@ def take_embedded(tree: etree._ElementTree, report: Report) -> tuple[dict[str, b
     import hashlib
     root = tree.getroot()
     files: dict[str, bytes] = {}
-    for node in [n for ns in READ for n in root.iter(f"{ns}EmbeddedFile")]:
+    for node in _portable(root, "EmbeddedFile"):
         name = node.get("FileName") or "image"
         try:
             data = base64.b64decode(re.sub(r"\s+", "", node.text or ""), validate=True)
@@ -625,7 +631,7 @@ def take_embedded(tree: etree._ElementTree, report: Report) -> tuple[dict[str, b
             files[name.lower()] = (name, data)
         _prune(node)
     state = {}
-    for node in [n for ns in READ for n in root.iter(f"{ns}EditorState")]:
+    for node in _portable(root, "EditorState"):
         try:
             state = json.loads(node.text or "{}")
         except ValueError:

@@ -12,7 +12,7 @@ from uad import compliance, schema
 bundle = Path(sys.argv[1]); out = Path(sys.argv[2])
 tmp = Path(tempfile.mkdtemp()); api.STORE = Store(tmp / "cases"); api.RENDERER = None
 with TestClient(app) as c:
-    c.post("/access", data={"code": "kech"})
+    __import__("app.access").access.sign_in(c)
     r = c.post("/api/import", files=[("files", (bundle.name, bundle.read_bytes(),
                                                 "application/zip"))])
     if r.status_code != 200:

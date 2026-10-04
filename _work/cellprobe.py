@@ -10,7 +10,7 @@ import tempfile
 tmp=Path(tempfile.mkdtemp())
 store=Store(tmp/"cases"); api.STORE=store; api.RENDERER=None
 with TestClient(app) as c:
-    c.post("/access", data={"code":"kech"})
+    __import__("app.access").access.sign_in(c)
     case=c.post("/api/cases",json={"template":"sf1_appraisal_v1_4","blank":False,"name":"probe"}).json()["case_id"]
     tree=api.store().tree(case)
     blocks=form.build(tree, folder=api.store().folder(case), edit=True)

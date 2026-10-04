@@ -17,7 +17,7 @@ want=words(etree.parse(str(tpl.path)), tpl.path.parent)
 for run in range(4):
     tmp=Path(tempfile.mkdtemp()); api.STORE=Store(tmp/"cases"); api.RENDERER=None
     with TestClient(app) as c:
-        c.post("/access", data={"code":"kech"})
+        __import__("app.access").access.sign_in(c)
         case=c.post("/api/cases",json={"template":key,"blank":True,"name":"x"}).json()["case_id"]
         c.post(f"/api/cases/{case}/autofill", json={"source":key})
         for _ in range(600):

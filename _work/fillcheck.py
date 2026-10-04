@@ -13,7 +13,7 @@ from uad.report import form
 key = sys.argv[1] if len(sys.argv)>1 else "sf1_appraisal_v1_4"
 tmp=Path(tempfile.mkdtemp()); api.STORE=Store(tmp/"cases"); api.RENDERER=None
 with TestClient(app) as c:
-    c.post("/access", data={"code":"kech"})
+    __import__("app.access").access.sign_in(c)
     case=c.post("/api/cases",json={"template":key,"blank":True,"name":"fill"}).json()["case_id"]
     body=c.post(f"/api/cases/{case}/autofill", json={"source":key}).json()
     for _ in range(400):

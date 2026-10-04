@@ -158,10 +158,10 @@ configuration info 1, roundtrip info 6, roundtrip warning 49, total-field-valida
 [warning/roundtrip]                report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['ManagementCompany'] -> TOTAL ['ValuationSoftwareVendor']
 [info/configuration]                                                                URAR UAD-3.6-AR-1.000 -- 1025 (72); 1 building(s), 4 unit(s)
 [info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['URAR Delivery Specification v1.4'] -> TOTAL ['URAR Delivery Specification v1.3'] -- expecte
-[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['Kech'] -> TOTAL ['UADAPI006'] -- expected: TOTAL writes its own product identifier
-[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['Kech'] -> TOTAL ['TOTAL'] -- expected: TOTAL writes its own product
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['UAD 3.6 Form Filler'] -> TOTAL ['UADAPI006'] -- expected: TOTAL writes its own product identifier
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['UAD 3.6 Form Filler'] -> TOTAL ['TOTAL'] -- expected: TOTAL writes its own product
 [info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['11.2.1'] -> TOTAL ['TOTAL v6.331 | v0.0.1.3855'] -- expected: TOTAL writes its own version 
-[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['Kech'] -> TOTAL ['Cotality | a la mode, inc.'] -- expected: TOTAL writes its own vendor
+[info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['UAD 3.6 Form Filler'] -> TOTAL ['Cotality | a la mode, inc.'] -- expected: TOTAL writes its own vendor
 [info/roundtrip]                   report: MESSAGE/DOCUMENT_SETS/DOCUMENT_SET/DOCUM changed: package ['\\\\appraisal.pdf'] -> TOTAL ['\\\\SAMPLEBLANK.pdf'] -- expected: the PDF TOTAL names after
 [info/total-uad]                                                                    TOTAL's UAD rules did not run: field validation is not clear (P21) -- clear it and diagnose again
 

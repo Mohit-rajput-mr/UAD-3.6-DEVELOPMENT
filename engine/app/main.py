@@ -12,6 +12,7 @@ and the contract price.
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 from pathlib import Path
@@ -22,7 +23,7 @@ if str(ROOT / "engine") not in sys.path:
 
 from fastapi.responses import JSONResponse
 from fastapi import FastAPI, Request                           # noqa: E402
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse  # noqa: E402
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response  # noqa: E402
 from fastapi.middleware.gzip import GZipMiddleware            # noqa: E402
 from fastapi.staticfiles import StaticFiles                    # noqa: E402
 
@@ -53,6 +54,121 @@ app = FastAPI(title="UAD 3.6 Report Platform", docs_url="/api/docs",
 ACCESS = Access()
 api.STORE = Store(WORK)
 app.include_router(api.router)
+# ------------------------------------------------------------- case vault
+# The browser keeps a copy of each case (app/ui/vault.js) so a case survives
+# the server copy that held it -- the norm on a serverless host, where several
+# short-lived copies each have their own disk.  Two things make that safe:
+#   * every change to a case answers with the case's fresh bundle, so the
+#     browser's copy is never behind the server that made the change;
+#   * the browser sends the revision it holds (X-UAD-Rev, the case's
+#     ``updated`` stamp); a server copy holding an older revision answers 409
+#     so the browser replaces it before the request is made again.
+# Only requests that ask (X-UAD-Vault: 1) are touched.  Registered before the
+# gzip middleware so it sees plain JSON.
+import base64 as _b64          # noqa: E402
+import re as _re               # noqa: E402
+
+_VAULT_CASE = _re.compile(r"^/api/cases/([0-9a-f]{12})(/|$)")
+
+
+@app.middleware("http")
+async def vault(request: Request, call_next):
+    if request.headers.get("x-uad-vault") != "1":
+        return await call_next(request)
+    path = request.url.path
+    m = _VAULT_CASE.match(path)
+    cid = m.group(1) if m else None
+    rev = request.headers.get("x-uad-rev", "")
+    if cid and rev and not DURABLE.on:
+        try:
+            if api.store().get(cid).updated < rev:
+                return JSONResponse({"stale": True, "case_id": cid,
+                                     "detail": "this server copy holds an older revision"},
+                                    status_code=409)
+        except KeyError:
+            pass
+    response = await call_next(request)
+    if (request.method == "GET" or not 200 <= response.status_code < 300
+            or "application/json" not in response.headers.get("content-type", "")):
+        return response
+    body = b"".join([chunk async for chunk in response.body_iterator])
+    headers = {k: v for k, v in response.headers.items() if k.lower() != "content-length"}
+    try:
+        data = json.loads(body)
+    except ValueError:
+        return Response(body, status_code=response.status_code, headers=headers)
+    if not isinstance(data, dict):
+        return Response(body, status_code=response.status_code, headers=headers)
+    if path == "/api/cases" and request.method == "POST":
+        cid = data.get("case_id")
+    elif path == "/api/import":
+        cid = (data.get("case") or {}).get("case_id")
+    if not cid or path == "/api/cases/restore" or (
+            request.method == "DELETE" and path == f"/api/cases/{cid}"):
+        return Response(body, status_code=response.status_code, headers=headers)
+    try:
+        case = api.store().get(cid)
+        bundle = api.store().bundle(cid, images=False, history=300)
+        data["_vault"] = {"case_id": cid, "updated": case.updated, "name": case.name,
+                          "bundle": _b64.b64encode(bundle).decode("ascii")}
+    except KeyError:
+        pass
+    return JSONResponse(data, status_code=response.status_code, headers=headers)
+
+
+# ------------------------------------------------------- shared case store
+# On a host that runs many server copies (Vercel), every copy reads and writes
+# the same shared store (app/durable.py): a request about a case first makes
+# this copy's case current, and a request that changed it writes it back.
+# Without BLOB_READ_WRITE_TOKEN this is off and the local disk is the store.
+from app import durable as _durable                     # noqa: E402
+from starlette.concurrency import run_in_threadpool     # noqa: E402
+
+DURABLE = _durable.from_env()
+api.DURABLE = DURABLE
+_CREATES = ("/api/cases", "/api/import", "/api/cases/restore")
+
+
+@app.middleware("http")
+async def shared_store(request: Request, call_next):
+    if not DURABLE.on or not request.url.path.startswith("/api/"):
+        return await call_next(request)
+    path, method = request.url.path, request.method
+    m = _VAULT_CASE.match(path)
+    cid = m.group(1) if m else None
+    try:
+        if cid:
+            await run_in_threadpool(DURABLE.pull, api.store(), cid)
+        elif path == "/api/cases" and method == "GET":
+            await run_in_threadpool(DURABLE.pull_all, api.store())
+    except Exception as exc:                 # the store is down: say so, never guess
+        return JSONResponse({"detail": f"the shared case store could not be read: {exc}"},
+                            status_code=503)
+    response = await call_next(request)
+    if method == "GET" or not 200 <= response.status_code < 300:
+        return response
+    try:
+        if cid and method == "DELETE" and path == f"/api/cases/{cid}":
+            await run_in_threadpool(DURABLE.forget, cid)
+        elif cid:
+            await run_in_threadpool(DURABLE.push, api.store(), cid)
+        elif path in _CREATES and method == "POST":
+            body = b"".join([chunk async for chunk in response.body_iterator])
+            headers = {k: v for k, v in response.headers.items() if k.lower() != "content-length"}
+            try:
+                data = json.loads(body)
+                new = data.get("case_id") or (data.get("case") or {}).get("case_id")
+                if new:
+                    await run_in_threadpool(DURABLE.push, api.store(), new)
+            except ValueError:
+                pass
+            return Response(body, status_code=response.status_code, headers=headers)
+    except Exception as exc:
+        return JSONResponse({"detail": "the change was made on this server copy but could not "
+                             f"be saved to the shared case store: {exc}"}, status_code=503)
+    return response
+
+
 # A rendered page is mostly text; compressed, it arrives several times faster.
 app.add_middleware(GZipMiddleware, minimum_size=2048)
 

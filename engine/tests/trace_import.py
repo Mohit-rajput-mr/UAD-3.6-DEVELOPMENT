@@ -19,7 +19,7 @@ with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
     api.STORE = Store(Path(tmp) / "cases")
     api.RENDERER = None
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         for z in ZIPS:
             t = time.time()
             r = c.post("/api/import", files=[("files", (Path(z).name, open(z, "rb").read(), "application/zip"))])

@@ -132,7 +132,7 @@ def imported(tmp_path_factory, server):
     api.RENDERER = None
     bundle, expect = build_bundle(server)
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         r = c.post("/api/import", files=[("files", ("bundle.zip", bundle, "application/zip"))])
         assert r.status_code == 200, r.text
         out = r.json()
@@ -231,7 +231,7 @@ def test_a_failed_import_leaves_nothing(tmp_path):
     store = Store(tmp_path / "cases")
     api.STORE = store
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         before = len(store.list())
         r = c.post("/api/import", files=[("files", ("x.xml", b"<notmismo/>", "text/xml"))])
         assert r.status_code == 422
@@ -284,7 +284,7 @@ def test_one_portable_xml_restores_the_whole_report(tmp_path):
         return " ".join(doc.text_content().split()), len(re.findall(r"<img src='data:", h))
 
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         first = c.post("/api/import", files=[("files", ("sf2.zip", open(zips[0], "rb").read(), "application/zip"))]).json()
         case1 = first["case"]["case_id"]
         api.set_prefs(case1, {"mapState": {"userView": {"lat": 39.1, "lng": -77.2, "zoom": 15}}})

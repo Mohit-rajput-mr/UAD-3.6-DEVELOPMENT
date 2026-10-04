@@ -42,6 +42,49 @@ CODE = [Path(flow.__file__), Path(flow.__file__).with_name("form.py"),
         Path(flow.__file__).with_name("rules.py"), Path(__file__)]
 
 
+FONT_ASSETS = Path(__import__("tempfile").gettempdir()) / "uad36-fontassets"
+FONT_MIMES = {"font/ttf", "font/otf", "font/woff2", "font/woff"}
+
+
+def externalise(folder: Path, case_id: str, html: str) -> str:
+    """Every large embedded photograph and font, served once instead.
+
+    Fonts go to a store shared by every case and named only by their digest,
+    because they come from the code: any server copy can make them again
+    (``font_asset``).  Photographs belong to the case."""
+    FONT_ASSETS.mkdir(parents=True, exist_ok=True)
+
+    def swap(match: "re.Match") -> str:
+        mime, payload = match.group(1), match.group(2)
+        if len(payload) < 4096:
+            return match.group(0)
+        digest = hashlib.sha1(payload.encode("ascii")).hexdigest()[:20]
+        ext = EXT.get(mime, "bin")
+        if mime in FONT_MIMES:
+            path = FONT_ASSETS / f"{digest}.{ext}"
+            if not path.exists():
+                path.write_bytes(base64.b64decode(payload))
+            return f"/api/fontasset/{digest}.{ext}"
+        folder.mkdir(parents=True, exist_ok=True)
+        path = folder / f"{digest}.{ext}"
+        if not path.exists():
+            path.write_bytes(base64.b64decode(payload))
+        return f"/api/cases/{case_id}/asset/{digest}.{ext}"
+
+    return DATA_URI.sub(swap, html)
+
+
+def font_asset(name: str) -> Path | None:
+    """The font file for this digest, made again from the code if this copy
+    of the server has not made it yet."""
+    path = FONT_ASSETS / name
+    if path.is_file():
+        return path
+    from uad.report import form
+    externalise(FONT_ASSETS, "_", form.stylesheet(embed_fonts=True, edit=True))
+    return path if path.is_file() else None
+
+
 def background(work: Callable[[], None], name: str = "work") -> threading.Thread:
     """Run something off the request thread, so the page is answered at once."""
     thread = threading.Thread(target=work, name=name, daemon=True)
@@ -92,6 +135,9 @@ class Renderer:
         return folder
 
     def _externalise(self, case_id: str, html: str) -> str:
+        return externalise(self.assets(case_id), case_id, html)
+
+    def _externalise_old(self, case_id: str, html: str) -> str:
         """Every embedded photograph and font, served once instead.
 
         The page is laid out and measured with everything inline, then each

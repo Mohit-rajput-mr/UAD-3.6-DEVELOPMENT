@@ -308,6 +308,7 @@ header .powered b{color:#f2f2f0;font-weight:700}
 <div id="topbar"></div>
 <main id="shell"></main>
 
+<script src="/ui/vault.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -469,6 +470,7 @@ function importFiles(files){
     if(r.schema_errors.length) h+=li('bad',r.schema_errors.length+' schema finding(s) — see Review Master');
     h+='</ul><button class="addbtn" id="ib-open">Open the report</button>';
     out.innerHTML=h;
+    if(window.UADVault&&d._vault) UADVault.ingest(d._vault);
     $('#ib-open').onclick=()=>openCase(d.case.case_id);
   };
   x.onerror=()=>{ bar.hidden=true; out.innerHTML='<div class="ib-err">The connection failed; nothing was imported.</div>'; };

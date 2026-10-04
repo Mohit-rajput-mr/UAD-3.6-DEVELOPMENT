@@ -28,7 +28,7 @@ def client():
     from app.main import app
     c = TestClient(app)
     c.__enter__()
-    c.post("/access", data={"code": "kech"})
+    __import__("app.access").access.sign_in(c)
     return c
 
 

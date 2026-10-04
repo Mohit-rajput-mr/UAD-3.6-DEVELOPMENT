@@ -170,7 +170,7 @@ def live(section: int, template: str = "sf1_appraisal_v1_4") -> dict[str, list[L
         api.STORE = store
         api.RENDERER = None
         with TestClient(app) as client:
-            client.post("/access", data={"code": "kech"})
+            __import__("app.access").access.sign_in(client)
             case = client.post("/api/cases", json={"template": template, "blank": False,
                                                     "name": "dossier"}).json()["case_id"]
             tree = store.tree(case)

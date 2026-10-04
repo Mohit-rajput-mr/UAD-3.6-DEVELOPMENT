@@ -242,3 +242,10 @@ if __name__ == "__main__":
         raise SystemExit("passcodes did not match")
     CONFIG.write_text(json.dumps(make_config(first.strip()), indent=2) + "\n", encoding="utf-8")
     print(f"wrote {CONFIG}")
+
+
+def sign_in(client) -> None:
+    """Let an in-process client (tests, the dossier tool) through the gate with
+    the server's own token -- no passcode in the code that calls it."""
+    from app.main import ACCESS
+    client.cookies.set(COOKIE, ACCESS.token)

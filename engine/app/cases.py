@@ -80,7 +80,10 @@ class GateError(RuntimeError):
 
 
 def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    # microseconds: ``updated`` is also the case's revision stamp, compared
+    # across server copies (app/main.py vault middleware), so two writes in the
+    # same second must still order
+    return datetime.now(timezone.utc).isoformat(timespec="microseconds")
 
 
 class _Locked:
@@ -456,14 +459,14 @@ class Store:
     BUNDLE_FORMAT = "uad36-case-bundle/1"
     _CASE_ID = re.compile(r"[0-9a-f]{12}")
 
-    def bundle(self, case_id: str, *, images: bool = True) -> bytes:
+    def bundle(self, case_id: str, *, images: bool = True, history: int = 5000) -> bytes:
         import io
         import zipfile
         case = self.get(case_id)
         folder = self.folder(case_id)
         meta = {"format": self.BUNDLE_FORMAT, "case": case.__dict__.copy(),
                 "media": [m.to_json() for m in self.media(case_id)],
-                "history": list(reversed(self.history(case_id, limit=5000)))}
+                "history": list(reversed(self.history(case_id, limit=history)))}
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
             z.writestr("case.json", json.dumps(meta, indent=1))
@@ -473,12 +476,18 @@ class Store:
                     continue
                 if rel.parts[0] == "Images" and not images:
                     continue
+                if rel.name == ".durable.json":
+                    continue
                 z.write(path, "files/" + rel.as_posix())
         return buf.getvalue()
 
     def restore(self, data: bytes, *, actor: str = "appraiser",
-                replace: bool = False) -> Case:
+                replace: bool = False, trusted: bool = False) -> Case:
         """Recreate a case from its bundle, under the same case ID.
+
+        ``trusted`` is for a bundle this server wrote itself to the shared store
+        (app/durable.py): it is taken as it stands -- signature, revision and
+        history -- because it is this server's own record, not outside data.
 
         An existing case is never overwritten unless ``replace`` is given (an
         explicit choice by the appraiser), so a stale copy can not clobber
@@ -523,7 +532,7 @@ class Store:
             target.write_bytes(z.read(name))
         state = info.get("state", DRAFT)
         signed_by, signed_at = info.get("signed_by", ""), info.get("signed_at", "")
-        voided = state in (SIGNED, EXPORTED)
+        voided = state in (SIGNED, EXPORTED) and not trusted
         if voided or state not in TRANSITIONS:
             state, signed_by, signed_at = (IN_REVIEW if voided else DRAFT), "", ""
         acked = [int(n) for n in (info.get("acknowledged") or []) if str(n).isdigit()]
@@ -566,6 +575,8 @@ class Store:
                 dst = self.media_dir(case_id) / m.filename
                 if m.provenance == TEMPLATE and not dst.exists() and m.filename in by_name:
                     shutil.copy2(by_name[m.filename], dst)
+        if trusted:
+            return self.get(case_id)
         self.log(case_id, actor, "restored",
                  "from a case bundle" + ("; the signature was voided and the case "
                                          "returned to review" if voided else ""))
@@ -577,7 +588,8 @@ class Store:
         return [m for m in self.media(case_id)
                 if not (self.media_dir(case_id) / m.filename).is_file()]
 
-    def put_media_file(self, case_id: str, media_id: str, data: bytes) -> Media:
+    def put_media_file(self, case_id: str, media_id: str, data: bytes,
+                       quiet: bool = False) -> Media:
         """Put back the file of a media row that lacks one; never replace one."""
         item = next((m for m in self.media(case_id) if m.media_id == media_id), None)
         if item is None:
@@ -585,7 +597,8 @@ class Store:
         path = self.media_dir(case_id) / Path(item.filename).name
         if not path.is_file():
             path.write_bytes(data)
-            self.touch(case_id)
+            if not quiet:
+                self.touch(case_id)
         return item
 
     # ------------------------------------------------------------ the gate

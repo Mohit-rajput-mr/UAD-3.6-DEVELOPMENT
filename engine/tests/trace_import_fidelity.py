@@ -34,7 +34,7 @@ with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
     api.RENDERER = None
     api.renderer = lambda: type("R", (), {"request": lambda *a, **k: None, "changed": lambda *a, **k: None})()
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         for z in ZIPS:
             r = c.post("/api/import", files=[("files", (Path(z).name, open(z, "rb").read(), "application/zip"))])
             case = r.json()["case"]["case_id"]

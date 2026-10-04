@@ -39,9 +39,8 @@ def client(tmp_path, monkeypatch):
 
     store = Store(tmp_path / "cases")
     monkeypatch.setattr(api, "STORE", store)
-    monkeypatch.setenv("URAR_ACCESS_CODE", "kech")
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         yield c
     store.conn.close()
 

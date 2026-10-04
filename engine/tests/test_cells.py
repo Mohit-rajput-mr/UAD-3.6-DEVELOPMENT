@@ -30,7 +30,7 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setattr(api, "STORE", store)
     monkeypatch.setattr(api, "RENDERER", None)
     with TestClient(app) as c:
-        c.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(c)
         yield c
     store.conn.close()
 

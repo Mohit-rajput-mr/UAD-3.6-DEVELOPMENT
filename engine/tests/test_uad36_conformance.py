@@ -67,9 +67,8 @@ def imported(tmp_path, monkeypatch):
 
     store = Store(tmp_path / "cases")
     monkeypatch.setattr(api, "STORE", store)
-    monkeypatch.setenv("URAR_ACCESS_CODE", "kech")
     with TestClient(app) as client:
-        client.post("/access", data={"code": "kech"})
+        __import__("app.access").access.sign_in(client)
         sent = PACKAGE if PACKAGE.exists() else MISMO
         reply = client.post("/api/import",
                             files={"files": (sent.name, sent.read_bytes(),

@@ -163,11 +163,14 @@ def create_case(request: Request, body: dict = Body(...)) -> dict:
 # appraiser can download, a way to move a case to another machine, and the copy
 # the browser keeps so a case survives the server losing it (a serverless
 # instance is recycled with its /tmp).
+DURABLE = None     # app/durable.py, set by main.py
+
+
 @router.get("/host")
 def host_info() -> dict:
     """What this server can do, so the interface offers only what works."""
     from uad.report import browser
-    durable = not os.environ.get("VERCEL")
+    durable = not os.environ.get("VERCEL") or bool(DURABLE and DURABLE.on)
     return {"serverLayout": browser.server_layout(), "pdf": browser.AVAILABLE,
             "durable": durable,
             "host": "serverless" if not durable else "server"}
@@ -1498,7 +1501,9 @@ def media_file(case_id: str, media_id: str) -> Response:
 @router.get("/cases/{case_id}/preview", response_class=HTMLResponse)
 def preview(case_id: str, request: Request, screen: bool = Query(True)) -> HTMLResponse:
     """The report, drawn by the engine that prints the PDF (Appendix C-1 form)."""
-    _case_or_404(case_id)
+    from uad.report import browser
+    if not (screen and not browser.server_layout()):
+        _case_or_404(case_id)
     if screen:
         return _rendered(case_id, "preview", request)
     st = store()
@@ -1624,7 +1629,9 @@ def editable_form(case_id: str, request: Request) -> HTMLResponse:
     Served from the background renderer (``app/renders.py``) so opening it
     does not wait on a layout pass.
     """
-    _case_or_404(case_id)
+    from uad.report import browser
+    if browser.server_layout():
+        _case_or_404(case_id)
     return _rendered(case_id, "form", request)
 
 
@@ -1697,6 +1704,7 @@ iframe.m{position:absolute;left:-10000px;top:0;width:900px;height:1400px;border:
 </style></head><body>
 <div class='msg' id='msg'><span class='spin'></span><span id='say'>Laying out the report in this browser...</span></div>
 <script>
+try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.install(window); }catch(e){}
 (function(){
   var CASE='{{case}}', KIND='{{kind}}';
   var MEASURE={{measure}};
@@ -1760,6 +1768,21 @@ iframe.m{position:absolute;left:-10000px;top:0;width:900px;height:1400px;border:
   }
 })();
 </script></body></html>"""
+
+
+@router.get("/fontasset/{name}")
+def font_asset(name: str) -> Response:
+    """A report typeface, named by its digest.  Fonts come from the code alone,
+    never from a case, so any server copy can produce the file another copy
+    referenced (renders.FONT_ASSETS)."""
+    import re as _re
+    if not _re.fullmatch(r"[0-9a-f]{20}\.(ttf|otf|woff2?)", name):
+        raise HTTPException(404, "no such font")
+    path = renders.font_asset(name)
+    if path is None:
+        raise HTTPException(404, "no such font")
+    return Response(path.read_bytes(), media_type="font/" + path.suffix[1:],
+                    headers={"Cache-Control": "public, max-age=31536000, immutable"})
 
 
 @router.get("/cases/{case_id}/asset/{name}")
@@ -1840,6 +1863,7 @@ def _page(html: str, case_id: str, kind: str, key: str, *, stale: bool) -> HTMLR
 # A page served stale watches for its fresh render and tells the editor, which
 # swaps it in behind the scenes; a page on its own reloads.
 FRESH_JS = """<script>
+(function(){ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.install(window); }catch(e){} })();
 (function(){
   var R=window.UAD_RENDER||{}; var parentWin=(window.parent!==window)?window.parent:null;
   window.addEventListener('load',function(){

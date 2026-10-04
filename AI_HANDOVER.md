@@ -84,7 +84,25 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
-- **2026-10-04 — Full UI redesign** (owner: "entire design should be changed";
+- **2026-10-04 — Second redesign (the one that stands).** The owner rejected
+  the violet design ("shittiest") and sent new references: a dark wireframe
+  with chrome/silver accents and glass cards, a bold grotesk "WEBSITE DEV"
+  poster, an editorial light/dark site (white/black, "+ 01 / LABEL", two-tone
+  headlines, solid ink buttons with ↗, sun/moon switch) and the Wallety dark
+  dashboard. **The design language is: monochrome; Geist (SIL OFL, bundled in
+  `engine/app/ui/fonts/`, served before sign-in for the gate); dark by default
+  with a light theme switched in the header (localStorage `uad-theme`);
+  "+"-prefixed tracked labels (`.eyebrow` — never `.lbl`, which the
+  comparables grid uses for its cells); hairline rules; glass cards with a
+  chrome edge; colour only for status (green/amber/red, with the word).**
+  Tokens: CSS variables at the top of `index.html` (`[data-theme=dark|light]`).
+  The report frame paints its stage in the theme colour (a transparent frame
+  is drawn white by Chrome when colour schemes differ). Do not reintroduce a
+  coloured accent. Screenshots: `_work/ui/redesign-*.png`.
+- **2026-10-04 — Typed addresses save** (owner's property 186 8th St # 2B,
+  Brooklyn, NY 11215 at 40.671292, -73.989409): `edit.split_address`;
+  catalog E-076; `engine/tests/test_address_entry.py`.
+- **2026-10-04 — First UI redesign (superseded the same day by the second, below the line above)** (owner: "entire design should be changed";
   references: glassmorphism card, admin dashboards, content-list UI). Only the
   application shell changed; the report pages are untouched. Passcode gate:
   frosted glass on navy with violet light (`engine/app/access.py` GATE). Home:

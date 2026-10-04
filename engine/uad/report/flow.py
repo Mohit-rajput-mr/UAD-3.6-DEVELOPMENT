@@ -534,20 +534,32 @@ EDIT_JS = """
     // shown at once, saved behind: a slim moving line until the layout lands
     +".uad-pending{position:relative}"
     +".uad-pending:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2pt;z-index:6;"
-    +"background:linear-gradient(90deg,#6d5dfc,#c4bbff,#6d5dfc);background-size:200% 100%;"
+    +"background:linear-gradient(90deg,#9a9aa0,#f4f4f5,#9a9aa0);background-size:200% 100%;"
     +"animation:uadbar 1.1s linear infinite}"
     +"@keyframes uadbar{to{background-position:-200% 0}}"
     +".uad-removing{opacity:.28;transition:opacity .18s;pointer-events:none}"
     +"img.uad-local{width:100%;height:100%;object-fit:contain;display:block;flex:1;min-height:0}"
-    // Save / Save & Next beside each page are the editor's, not the report's
-    +".pageside button{font-family:'Inter','Segoe UI Variable','Segoe UI',-apple-system,Roboto,Arial,sans-serif;"
-    +"font-weight:600;border-radius:10px;border:1px solid #d5d7e4;background:#fff;color:#151629;"
-    +"box-shadow:0 1px 2px rgba(20,22,50,.06);transition:background .12s,border-color .12s}"
-    +".pageside button.pgsave{background:linear-gradient(180deg,#8f81ff,#6d5dfc);border-color:#6d5dfc;color:#fff;"
-    +"box-shadow:0 6px 16px rgba(109,93,252,.32)}"
-    +".pageside button:hover{background:#efedff;border-color:#6d5dfc;color:#4c3fd6}"
-    +".pageside button.pgsave:hover{filter:brightness(1.06);background:linear-gradient(180deg,#8f81ff,#6d5dfc);color:#fff}"
-    +".pageside.ok button.pgsave{background:#15996a;border-color:#15996a;box-shadow:none}";
+    // the stage behind the pages is the application's (light or dark), not the
+    // page's -- painted here: a frame left transparent is drawn white by the
+    // browser when its colour scheme differs from the editor's
+    +"html,body{background:#e4e4e6!important}"
+    +"[data-uitheme=dark],[data-uitheme=dark] body{background:#19191c!important}"
+    // Save / Save & Next beside each page are the editor's controls, not the report's
+    +".pageside button{font-family:'Geist','Inter','Segoe UI',-apple-system,Roboto,Arial,sans-serif;font-weight:500;"
+    +"border-radius:10px;border:1px solid rgba(0,0,0,.18);background:#fff;color:#0b0b0c;transition:opacity .12s,background .12s}"
+    +".pageside button.pgsave{background:#0b0b0c;border-color:#0b0b0c;color:#fff}"
+    +".pageside button:hover{background:#f2f2f2;color:#0b0b0c}"
+    +".pageside button.pgsave:hover{background:#0b0b0c;color:#fff;opacity:.86}"
+    +"[data-uitheme=dark] .pageside button{background:transparent;border-color:rgba(255,255,255,.22);color:#f4f4f5}"
+    +"[data-uitheme=dark] .pageside button.pgsave{background:#f4f4f5;border-color:#f4f4f5;color:#0a0a0b}"
+    +"[data-uitheme=dark] .pageside button:hover{background:rgba(255,255,255,.08);color:#f4f4f5}"
+    +"[data-uitheme=dark] .pageside button.pgsave:hover{background:#f4f4f5;color:#0a0a0b;opacity:.86}"
+    +".pageside.ok button.pgsave{background:#0f8a5f;border-color:#0f8a5f;color:#fff}";
+  // the application's theme, now and when it is switched
+  try{ document.documentElement.dataset.uitheme=(window.parent!==window&&window.parent.document.documentElement.dataset.theme)||'light'; }catch(_){}
+  window.addEventListener('message',function(e){
+    if(e.data&&e.data.uad==='theme') document.documentElement.dataset.uitheme=e.data.theme;
+  });
   document.head.appendChild(agentStyle);
 
   var optionCache={};

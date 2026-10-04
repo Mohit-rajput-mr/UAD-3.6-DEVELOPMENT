@@ -471,7 +471,7 @@ def _write_checked(tree, pf, value: str, *, data_point: str = "", ordinal: int =
 
 @router.get("/cases/{case_id}/fields")
 def case_fields(case_id: str, section: int | None = Query(None),
-                only_filled: bool = Query(False)) -> dict:
+                only_filled: bool = Query(False), slim: bool = Query(False)) -> dict:
     """The form: every field the specification places on the page, with values.
 
     Each field carries where its value came from, so any figure on the report
@@ -481,8 +481,16 @@ def case_fields(case_id: str, section: int | None = Query(None),
     # every field and the H-1 rules over the whole document cost about a
     # second; the answer depends on the document alone, so it is made once per
     # version of it, not on every open of the editor
-    return store()._memo(f"fields:{section}:{only_filled}", case_id,
+    full = store()._memo(f"fields:{section}:{only_filled}", case_id,
                          lambda: _case_fields(case_id, section, only_filled))
+    if slim is not True:                 # also when called directly, with the Query default
+        return full
+    # what the editor's rail needs: each section and which of its fields hold
+    # a value -- a few kilobytes instead of two megabytes of field definitions
+    return {"sections": [{"number": sec["number"], "name": sec["name"], "tab": sec["tab"],
+                          "fields": [{"field_id": f["field_id"], "value": f["value"]}
+                                     for f in sec["fields"]]}
+                         for sec in full["sections"]]}
 
 
 def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
@@ -1723,16 +1731,19 @@ def _client_layout_page(case_id: str, kind: str) -> str:
 # again with tighter caps if a page ran long, exactly as flow.build does.
 CLIENT_LAYOUT_HTML = """<!doctype html><html><head><meta charset='utf-8'>
 <title>Laying out the report</title><style>
-html,body{margin:0;height:100%;background:#6f6f6f;font:13px/1.4 system-ui,sans-serif}
-.msg{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#101010;color:#f2f2f0;
-  padding:9px 16px;border-radius:6px;display:flex;gap:10px;align-items:center;z-index:2}
-.spin{width:14px;height:14px;border:2px solid #6a6a66;border-top-color:#f2f2f0;border-radius:50%;
+html,body{margin:0;height:100%;background:transparent;font:13px/1.4 "Geist","Segoe UI",system-ui,sans-serif}
+.msg{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:rgba(17,17,19,.9);color:#f4f4f5;
+  border:1px solid rgba(255,255,255,.12);padding:9px 16px;border-radius:999px;display:flex;gap:10px;align-items:center;z-index:2}
+.spin{width:12px;height:12px;border:1.5px solid rgba(255,255,255,.25);border-top-color:#f4f4f5;border-radius:50%;
   animation:sp .8s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
-.err{background:#7a1c1c}
+.err{background:#3a1416;border-color:rgba(242,120,126,.45)}
 iframe.m{position:absolute;left:-10000px;top:0;width:900px;height:1400px;border:0;visibility:hidden}
 </style></head><body>
 <div class='msg' id='msg'><span class='spin'></span><span id='say'>Laying out the report in this browser...</span></div>
 <script>
+function stage(T){ document.documentElement.style.background=document.body.style.background=(T==='light'?'#e4e4e6':'#19191c'); }
+try{ stage(window.parent!==window&&window.parent.document.documentElement.dataset.theme); }catch(e){}
+window.addEventListener('message',function(e){ if(e.data&&e.data.uad==='theme') stage(e.data.theme); });
 try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.install(window); }catch(e){}
 (function(){
   var CASE='{{case}}', KIND='{{kind}}';

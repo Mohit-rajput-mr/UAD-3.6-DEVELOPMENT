@@ -44,7 +44,10 @@ from fastapi.responses import HTMLResponse, JSONResponse, Response
 
 COOKIE = "urar_access"
 # The unlock form itself must stay reachable, or there is no way in.
-OPEN_PATHS = ("/healthz", "/access")
+# the gate page's own typeface (SIL OFL, engine/app/ui/fonts/OFL-Geist.txt) --
+# public files, nothing behind the passcode
+OPEN_PATHS = ("/healthz", "/access", "/ui/fonts/Geist-Variable.woff2",
+              "/ui/fonts/GeistMono-Variable.woff2")
 CONFIG = Path(__file__).resolve().parent / "access.json"
 ITERATIONS = 600_000            # OWASP 2023 guidance for PBKDF2-HMAC-SHA256
 SESSION_HOURS = 12
@@ -156,70 +159,85 @@ GATE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>UAD 3.6 Form Filler</title><style>
-/* Frosted glass over deep navy and soft violet light -- the platform's own
-   accent -- drawn in CSS alone, so the gate needs nothing from the network. */
-:root{--bg:#090b1a;--ink:#f4f5ff;--muted:#a3a7c7;--line:rgba(255,255,255,.14);
- --glass:rgba(255,255,255,.065);--accent:#6d5dfc;--accent-2:#9d8fff;
- --sans:"Inter","Segoe UI Variable","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
- --mono:"JetBrains Mono","Cascadia Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+/* Monochrome, editorial: near-black, white type, a chrome ribbon and a glass
+   card with a silver edge.  Everything is local -- the typeface is served from
+   this host (SIL OFL) -- so the gate needs nothing from the network. */
+@font-face{font-family:"Geist";src:url(/ui/fonts/Geist-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url(/ui/fonts/GeistMono-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--bg:#0a0a0b;--ink:#f4f4f5;--ink-2:#c9c9ce;--muted:#8b8b93;--line:rgba(255,255,255,.09);
+ --sans:"Geist","Inter","Segoe UI",-apple-system,Roboto,Arial,sans-serif;
+ --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
- font:400 14px/1.5 var(--sans);-webkit-font-smoothing:antialiased;
- display:grid;place-items:center;padding:24px;overflow:hidden;position:relative}
-.orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.75;pointer-events:none}
-.o1{width:520px;height:520px;left:-120px;top:-140px;
- background:radial-gradient(circle at 35% 35%,#7b6cff,#3b2fb5 55%,transparent 70%)}
-.o2{width:460px;height:460px;right:-120px;bottom:-160px;
- background:radial-gradient(circle at 60% 40%,#4f8bff,#2a3fb8 55%,transparent 72%)}
-.o3{width:260px;height:260px;right:18%;top:12%;opacity:.45;
- background:radial-gradient(circle,#b9a8ff,transparent 70%)}
-@media (prefers-reduced-motion:no-preference){
- .o1{animation:drift 18s ease-in-out infinite alternate}
- .o2{animation:drift 22s ease-in-out infinite alternate-reverse}}
-@keyframes drift{to{transform:translate(40px,30px) scale(1.06)}}
-.card{position:relative;width:min(100%,460px);padding:30px 32px 26px;border-radius:26px;
- background:var(--glass);border:1px solid var(--line);
- -webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%);
- box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12)}
-.top,.foot{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}
-.brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:600;letter-spacing:.01em}
-.logo{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
- background:linear-gradient(135deg,var(--accent-2),var(--accent));box-shadow:0 6px 18px rgba(109,93,252,.5)}
-h1{margin:34px 0 8px;font:650 34px/1.08 var(--sans);letter-spacing:-.02em}
-.pill{display:inline-block;margin:0 0 22px;padding:5px 12px;border:1px solid var(--line);
- border-radius:999px;font-size:12px;color:#d9dbf4}
-p{margin:0 0 20px;color:var(--muted);font-size:13px}
-label{display:block;font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;
- color:var(--muted);margin-bottom:8px}
-input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);
- background:rgba(255,255,255,.07);color:var(--ink);font:500 15px/1.2 var(--mono);letter-spacing:.12em;
- transition:border-color .15s,box-shadow .15s}
-input:focus{outline:none;border-color:var(--accent-2);box-shadow:0 0 0 4px rgba(109,93,252,.28)}
-button{width:100%;margin-top:14px;padding:12px;border:0;border-radius:12px;cursor:pointer;
- background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#fff;
- font:600 14px/1.2 var(--sans);box-shadow:0 10px 26px rgba(109,93,252,.45);transition:filter .15s,transform .15s}
-button:hover{filter:brightness(1.08)}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:400 14px/1.55 var(--sans);
+ -webkit-font-smoothing:antialiased;display:grid;grid-template-rows:auto 1fr auto;overflow-x:hidden;position:relative}
+body:before{content:'';position:fixed;inset:0;pointer-events:none;
+ background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+ background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse at 60% 40%,#000 20%,transparent 75%);
+ mask-image:radial-gradient(ellipse at 60% 40%,#000 20%,transparent 75%)}
+.ribbon{position:fixed;right:-120px;top:-160px;width:720px;height:720px;pointer-events:none;opacity:.9}
+.top,.foot{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 40px}
+.top{border-bottom:1px solid var(--line)}
+.foot{border-top:1px solid var(--line);color:var(--muted);font-size:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:34px;height:34px;display:grid;place-items:center;background:var(--ink);color:var(--bg);
+ font:800 17px/1 var(--sans);letter-spacing:-.04em}
+.bt b{display:block;font:500 18px/1 var(--sans);letter-spacing:-.02em}
+.bt span{display:block;margin-top:4px;font:500 9.5px/1 var(--sans);letter-spacing:.2em;color:var(--muted)}
+.top .r{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.top .r:before{content:'';width:6px;height:6px;border-radius:50%;background:#4fd1a5;box-shadow:0 0 0 4px rgba(79,209,165,.15)}
+main{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;
+ width:min(100%,1180px);margin:0 auto;padding:56px 40px}
+@media (max-width:900px){main{grid-template-columns:1fr;gap:32px;padding:36px 22px}.top,.foot{padding:18px 22px}}
+.lbl{display:flex;align-items:center;gap:10px;font:500 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2)}
+.lbl:before{content:'+';font:300 18px/1 var(--sans);letter-spacing:0}
+h1{margin:26px 0 22px;font:500 clamp(40px,5vw,66px)/.98 var(--sans);letter-spacing:-.045em}
+h1 span{display:block;color:#7c7c84}
+.lede{margin:0;max-width:44ch;color:var(--muted);font-size:15px}
+.card{position:relative;padding:32px;border-radius:20px;border:1px solid transparent;
+ background:linear-gradient(180deg,rgba(23,23,26,.92),rgba(14,14,16,.92)) padding-box,
+   linear-gradient(135deg,rgba(255,255,255,.5),rgba(255,255,255,.06) 38%,rgba(255,255,255,.22) 72%,rgba(255,255,255,.05)) border-box;
+ -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 40px 90px rgba(0,0,0,.55)}
+.card h2{margin:0 0 6px;font:500 20px/1.2 var(--sans);letter-spacing:-.02em}
+.card p{margin:0 0 24px;color:var(--muted);font-size:13px}
+label{display:block;font:500 10.5px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+input{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);
+ color:var(--ink);font:500 16px/1.2 var(--mono);letter-spacing:.14em;transition:border-color .15s,background .15s}
+input:focus{outline:none;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.07)}
+button{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:16px;padding:15px 18px;border:0;border-radius:12px;
+ cursor:pointer;background:var(--ink);color:var(--bg);font:600 14px/1 var(--sans);letter-spacing:-.01em;transition:opacity .15s,transform .15s}
+button:hover{opacity:.9}
 button:active{transform:translateY(1px)}
-.err{margin-top:14px;padding:10px 12px;border-radius:12px;background:rgba(229,72,77,.16);
- border:1px solid rgba(229,72,77,.45);color:#ffc7c9;font-size:13px}
-.foot{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px}
+.err{margin-top:16px;padding:11px 14px;border-radius:12px;background:rgba(240,113,120,.1);border:1px solid rgba(240,113,120,.35);
+ color:#ffb4b8;font-size:13px}
+.note{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 </style></head><body>
-<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
-<form class="card" method="post" action="/access">
-  <div class="top"><span class="brand"><span class="logo"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/></svg></span>UAD 3.6 Form Filler</span>
-    <span>Passcode protected</span></div>
-  <h1>Appraisal<br>workspace</h1>
-  <span class="pill">Uniform Residential Appraisal Report</span>
-  <p>This workspace holds borrowers' names, property addresses and contract
-     prices. Enter the passcode to open it.</p>
-  <label for="code">Passcode</label>
-  <input id="code" name="code" type="password" autocomplete="current-password"
-         autocapitalize="off" autocorrect="off" spellcheck="false" autofocus required>
-  <button type="submit">Unlock</button>
-  __ERROR__
-  <div class="foot"><span>Fannie Mae | Freddie Mac</span><span>UAD 3.6 deliverable</span></div>
-</form>
+<svg class="ribbon" viewBox="0 0 720 720" aria-hidden="true"><defs>
+ <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset=".22" stop-color="#6d6d72"/>
+  <stop offset=".45" stop-color="#f2f2f2"/><stop offset=".7" stop-color="#3b3b40"/><stop offset="1" stop-color="#d9d9dc"/></linearGradient></defs>
+ <path d="M140 40 C 300 160, 420 360, 360 700" fill="none" stroke="url(#chrome)" stroke-width="26" stroke-linecap="round" opacity=".85"/>
+ <path d="M520 10 C 600 140, 700 220, 760 240" fill="none" stroke="url(#chrome)" stroke-width="14" stroke-linecap="round" opacity=".6"/>
+</svg>
+<div class="top"><div class="brand"><span class="logo">U</span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span></div>
+  <span class="r">Passcode protected</span></div>
+<main>
+  <div><span class="lbl">For U.S. appraisers &middot; URAR</span>
+    <h1>Appraisal workspace.<span>One document, checked as you go.</span></h1>
+    <p class="lede">The form you fill, the PDF and the MISMO XML are the same file,
+      checked against the GSE subschema at every step.</p></div>
+  <form class="card" method="post" action="/access">
+    <h2>Sign in</h2>
+    <p>This workspace holds borrowers' names, property addresses and contract prices.</p>
+    <label for="code">Passcode</label>
+    <input id="code" name="code" type="password" autocomplete="current-password"
+           autocapitalize="off" autocorrect="off" spellcheck="false" autofocus required>
+    <button type="submit"><span>Unlock</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+    __ERROR__
+    <div class="note">Sessions last twelve hours on this device.</div>
+  </form>
+</main>
+<div class="foot"><span>Fannie Mae | Freddie Mac &middot; Uniform Residential Appraisal Report</span><span>UAD 3.6 &middot; MISMO 3.6 deliverable</span></div>
 </body></html>"""
 
 

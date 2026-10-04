@@ -1,7 +1,7 @@
 {
  "source": "Appendix B-1 URAR Implementation Guide v1.4.pdf",
- "rows": 731,
- "fields": 609,
+ "rows": 736,
+ "fields": 612,
  "by_field_id": {
   "25.75": {
    "field_id": "25.75",
@@ -2842,6 +2842,13 @@
     }
    ]
   },
+  "4.043": {
+   "field_id": "4.043",
+   "labels": [],
+   "uids": [],
+   "mismo": [],
+   "statements": []
+  },
   "4.044": {
    "field_id": "4.044",
    "labels": [
@@ -3105,6 +3112,13 @@
      "rule": "Display when (EncumbranceType = \"Easement\" AND (ValueMarketabilityImpactType = \"Adverse\" OR \"Beneficial\")) OR (EncumbranceType = \"Easement\" AND ValueMarketabilityImpactType = \"Neutral\" AND Exists)"
     }
    ]
+  },
+  "4.058": {
+   "field_id": "4.058",
+   "labels": [],
+   "uids": [],
+   "mismo": [],
+   "statements": []
   },
   "4.059": {
    "field_id": "4.059",
@@ -5545,6 +5559,24 @@
     }
    ]
   },
+  "10.044": {
+   "field_id": "10.044",
+   "labels": [
+    "Walls and Ceiling"
+   ],
+   "uids": [
+    "0700.0046"
+   ],
+   "mismo": [],
+   "statements": [
+    {
+     "section": "10 Unit Interior",
+     "table": "",
+     "page": 202,
+     "rule": "Always displays"
+    }
+   ]
+  },
   "10.045": {
    "field_id": "10.045",
    "labels": [
@@ -5699,24 +5731,6 @@
      "table": "",
      "page": 202,
      "rule": "Display when ImprovementComponentType = \"Flooring\""
-    }
-   ]
-  },
-  "10.044": {
-   "field_id": "10.044",
-   "labels": [
-    "Walls and Ceiling"
-   ],
-   "uids": [
-    "0700.0046"
-   ],
-   "mismo": [],
-   "statements": [
-    {
-     "section": "10 Unit Interior",
-     "table": "",
-     "page": 202,
-     "rule": "Always displays"
     }
    ]
   },
@@ -10681,6 +10695,20 @@
      "table": "",
      "page": 395,
      "rule": "Display when AppraiserPriorServicesPerform edIndicator = \"false\" Display when AppraiserPriorServicesPerform edIndicator = \"true\""
+    }
+   ]
+  },
+  "29.054": {
+   "field_id": "29.054",
+   "labels": [],
+   "uids": [],
+   "mismo": [],
+   "statements": [
+    {
+     "section": "29 Certifications and Scope of Work",
+     "table": "",
+     "page": 396,
+     "rule": "Display when PartyRoleType = \"AppraiserSupervisor\""
     }
    ]
   },

@@ -109,6 +109,29 @@ Most recent first. Each line: what, and how it was verified.
   are cached per content version. Measured in Chromium against two server
   copies + shared store: reopen 0.02 s (was ~5 s), browser reload 0.27 s,
   photo visible 52 ms, saved photo laid out 2.7 s behind; 121 tests pass.
+- **2026-10-04 — Audit branch merged with main's "Instant updates" work.** Pending the owner's merge of PR #1, `main` was not yet carrying slices 1-2; after the merge Vercel builds them. The Roof detail composer (T-124) is in as well.
+- **2026-10-04 — Audit slice 2: grid fidelity** (E-073, E-074, E-075).
+  (a) Grid cells compose as B-1 says (`Local Road | Asphalt`, `3 Miles SE`,
+  `Driveway | 4 | Pavers` + a Garage line, enumeration order, address on two lines).
+  (b) The Supervisory Appraiser certifications print only with a supervisory
+  appraiser (B-1 p396; extractor fixed, regenerated specs; matches 12/12 official
+  PDFs). (c) An empty grid cell prints an em-dash only where B-1's per-row
+  sentence says so (`report/dashes.py`; exact dash count on 4 samples, was 2-6x
+  over); Contract Price / Date subject values and the all-comparables row
+  visibility fixed. Whole-report word diff vs D-1: 21411 -> 17706. Harness 87 pass
+  / 0 fail; `test_report_rows.py` 27 pass. Golden baseline regenerated (+2 grid
+  rows per sample: Contract Price / Date).
+- **2026-10-04 — Audit slice 1: wrong data in repeated-row tables fixed** (E-071,
+  E-072). Laying our SF1/MH1 pages beside the official PDFs showed the Exterior
+  Features table printing the wall's comment on every row, and the Utilities
+  table printing the water comment against Electricity and Gas. Cause: rows told
+  apart by a label read only the first block. Fix: `form._label_blocks` /
+  `row_instances`; C-1's clipped IDs (4.06 for 4.069, 4.05, 4.00, 20.00) repaired
+  at load (`form._complete_clipped_ids`), which also removes two duplicate prints.
+  Tests: `engine/tests/test_report_rows.py` (5/7 fail on the old code). Harness
+  87 pass / 0 fail / 21 gap. New audit tools: `_work/audit/render_all.py`,
+  `linediff.py` (whole-report word diff vs the D-1 PDFs; total is the number to
+  drive down).
 - **2026-10-04 — Negative dollar amounts print as `$(10,000)`** (bind.py
   `format_value`, kind "amount"). Authority: B-1 Figure 22-5 (page 297 of B-1
   v1.4) and all 12 D-1 PDFs (121 x `$(n)`, 0 x `-$n`). Harness 87 pass / 0 fail.
@@ -142,47 +165,29 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
-**Being worked on when this file was last written (2026-10-04, session paused
-by the owner for handover):** the **text-fidelity audit** against the D-1
-samples. Tools (committed): `_work/audit/pagecmp.py <sample_key>` (section
-headings per page, ours vs GSE) and `_work/audit/secdiff.py <sample_key>`
-(per-section lines only in ours / only in GSE). Run `python
-engine/tests/harness.py 12` first — it writes our PDFs to `_work/harness/`,
-which both tools read (restore them afterwards with `git checkout --
-_work/harness/` so the tree stays clean). Sample keys: sf1_appraisal_v1_4 …
-mh2_appraisal_v1_4, 2_to_4_unit_appraisal_v1_4 (see `templates.catalogue()`).
+**State of the text-fidelity audit (updated 2026-10-04, slice 2).** Method:
+`python _work/audit/render_all.py` (renders the 12 samples to `_work/harness/`,
+~1 min), then `python _work/audit/linediff.py [-v] [sample]` (whole-report word
+diff vs the D-1 PDFs; the TOTAL is the number to drive down: 21411 at the start,
+17706 now), and look at pages side by side (render with pymupdf and read the PNGs --
+this found the real bugs; the text diff alone hides wrong-but-present data).
+Restore the tracked PDFs afterwards: `git checkout -- _work/harness/`.
 
-Findings on MH2 not yet fixed (each must be confirmed against B-1 text or a
-B-1 figure before changing — B-1 figures are images: render the page with
-pymupdf and look; D-1 PDFs are the published evidence):
-1. Check whether any `-$` still prints after the bind.py fix (the comparables
-   net/gross adjustment and Summary paths may format money separately; GSE:
-   `$(39,120)`).
-2. Multi-value cells join in a different order/format: GSE `Local Road |
-   Asphalt`, ours `Asphalt Local Road`; GSE `Heat Pump | Electric`, ours
-   `Electric Heat Pump`; GSE `Manufactured | Site Built`; GSE `Park |
-   Residential`; GSE `Deck | Porch` vs ours `Porch | Deck`; GSE `2 | 0` vs ours
-   `2 0`; GSE `Driveway | 4 | Pavers` vs ours `Driveway Pavers 4`; GSE header
-   `Type | Spaces | Detail` vs ours `Type| Spaces | Detail`.
-3. Data source order: GSE `MLS 124523 | Assessor Record`, ours
-   `Assessor Record | MLS 124523`.
-4. Proximity: GSE `3 Miles SE`, ours `SE 3.00`.
-5. Comparable address: GSE prints street and city on separate lines.
-6. Cost approach: GSE `1,568 Sq. Ft. @ $121.25`, ours `| `; GSE `45 years`,
-   `1-5 years`, ours `45`, `5 1`.
-7. Rows in GSE missing in ours: Market "Price Trend Source" (+ sources),
-   "Sales in Past 24 Months"; grid "Unfinished Area Below Grade", "Quality and
-   Condition (Ratings: 1-6, 1 is highest)", "Contract Price $0"; Summary
-   "Indicated Value by Sales Comparison Approach"; Manufactured Home "Have there
-   been any modifications, attachments, or additions…?" and the serial / HUD
-   label numbers; Unit Interior "Area Data Source"; Dwelling Exterior feature
-   comments (e.g. "The subject has a crawl space…").
-8. Page counts differ on 9 of 12 samples (sf1, sf2, condo1 match) — partly a
-   consequence of the above (extra/missing rows); B-1 also says "The Sales
-   Comparison Approach section always begins at the top of a page" (B-1 p.297).
-   Re-measure page counts after fixing 1–7.
-Fix each as a rule (never per sample), re-run the harness and all 12
-secdiffs, record each in `knowledge/errors/CATALOG.md` with its test.
+Done: E-071..E-075 (repeated-row tables read their own block, clipped C-1 IDs, grid
+cell composition/units/order/dashes, supervisory gate). Known NOT a rule: the order of
+data sources in a grid cell (samples disagree for identical XML).
+
+Still wrong, found by looking at SF1 pages (each is a task in TASKS.md, T-119..T-121,
+T-123): **Unit Interior** (Level and Room Detail, Kitchen and Bathroom Details, Interior
+Features read only the first instance -- B-1 10.029-10.049 gives every rule; the XML
+shape and the official table are in `_work/HANDOFF.md`'s last section), the Apparent
+Defects tables (Dwelling Exterior, Unit Interior) and per-section Exhibits with their
+captions, the Outbuilding grid rows (ADUs excluded; area/heating/utilities), roof detail
+("Estimated Age:" on its own line, "(Unobservable)"), Utilities header rows that always
+print, Market "Price Trend Source", Cost approach `1,568 Sq. Ft. @ $121.25` and
+`45 years`, page counts differing on 9 of 12 samples.
+Pre-existing failing tests (also fail on the commit before slice 1): `test_cells` sf1,
+`test_autofill` condo1/mh1, `test_golden::test_the_pdf_is_text_not_a_picture`.
 
 **Next, in priority order:**
 

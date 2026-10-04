@@ -849,6 +849,14 @@ def format_value(raw: str, format_type: str, details: str = "",
             number = float(text)
         except ValueError:
             return text
+        if (places and kind in ("numeric", "number", "measure", "count")
+                and not data_point.endswith("Percent")):
+            # A-1's "+3.2" bounds the digits (three before the point, two
+            # after); it does not pad them.  Every D-1 sample prints the digits
+            # the XML carries -- 3 as "3", 0.40 as "0.40" -- with a leading
+            # zero where the XML has none (B-1 supplement, Proximity to Subject:
+            # ".5" is "0.5").
+            return literal_number(text)
         if places is None:
             places = 0 if number == int(number) else 2
         shown = f"{abs(number):,.{places}f}"
@@ -872,6 +880,37 @@ def format_value(raw: str, format_type: str, details: str = "",
 
 AREA_UNITS = {"SquareFeet": "Sq. Ft.", "Acres": "Acres", "SquareMeters": "Sq. M.",
               "Hectares": "Hectares"}
+
+
+LINEAR_UNITS = {"Feet": "Feet", "Kilometers": "Kilometers", "Meters": "Meters", "Miles": "Miles"}
+
+
+def literal_number(text: str) -> str:
+    """A number as the XML wrote it, with the thousands grouped and a zero
+    before a bare decimal point: "3" -> "3", "0.40" -> "0.40", ".5" -> "0.5"."""
+    raw = text.strip()
+    sign = "-" if raw.startswith("-") else ""
+    whole, point, fraction = raw.lstrip("+-").partition(".")
+    whole = f"{int(whole):,}" if whole.isdigit() else (whole or "0")
+    return f"{sign}{whole}{point}{fraction}"
+
+
+def format_linear(text: str, unit: str) -> str:
+    """A distance with its unit in one cell, as B-1 says and the samples print
+    it: "3 Miles", "0.02 Miles".  The unit is never made singular ("1 Miles",
+    D-1 2-4 unit)."""
+    return f"{literal_number(text)} {LINEAR_UNITS.get(unit, _humanise(unit))}".strip()
+
+
+def with_unit(text: str, node: etree._Element) -> str:
+    """A value with the unit its element carries -- an area, or a distance."""
+    unit = node.get("AreaUnitOfMeasureType")
+    if unit:
+        return format_area(text, unit)
+    unit = node.get("LinearUnitOfMeasureType")
+    if unit:
+        return format_linear(text, unit)
+    return text
 
 
 AMOUNT_CENTS = re.compile(r"(\$[\d,]+)\.00(?!\d)")
@@ -906,12 +945,19 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
     if not values:
         return ""
     # A list of lists is already grouped by instance; compose each and join
-    # the instances with a pipe.
+    # the instances with a pipe -- or, where B-1 says the instances "stack",
+    # one to a line.
     if values and isinstance(values[0], list):
+        if binding.field_id in ROOF_DETAIL:
+            return _roof_detail([p for g in values for p in g], binding)
+        values = _in_enumeration_order(values, binding)
         shown = [display_value(group, binding) for group in values]
-        return " | ".join(s for s in shown if s)
+        stacked = composite_for([dp.get("mismo", "") for dp in binding.data_points])
+        return ("\n" if stacked and stacked.stack else " | ").join(s for s in shown if s)
     parts: list[tuple[str, str]] = [
         v if isinstance(v, tuple) else ("", v) for v in values]
+    if binding.field_id in ROOF_DETAIL:
+        return _roof_detail(parts, binding)
     days = _days_text(parts)
     if days:
         return days
@@ -934,7 +980,7 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
         else:
             groups.append((name, [raw]))
 
-    rendered: list[str] = []
+    rendered: list[tuple[str, str]] = []
     for name, raws in groups:
         dp = by_point.get(name, {})
         options = {o["value"]: o.get("display", "")
@@ -942,6 +988,13 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
         kind = (dp.get("format_type") or "").strip()
         details = dp.get("format_details") or ""
         shown = []
+        if len(raws) > 1 and all(r in options for r in raws):
+            # several values of one enumerated data point list in the order A-1
+            # lists the enumeration, not the order the XML happened to write
+            # them: D-1 prints "Deck | Porch" for Porch, Deck (and "8 Ft. | 9 Ft.
+            # | 10 or more feet", which alphabetical order would not give)
+            rank = {value: n for n, value in enumerate(options)}
+            raws = sorted(raws, key=rank.__getitem__)
         for raw in raws:
             if raw in options:
                 text = options[raw]
@@ -952,8 +1005,116 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
             else:
                 shown.append(_humanise(raw))
         if shown:
-            rendered.append(" | ".join(shown))
-    return " ".join(rendered).strip()
+            rendered.append((name, " | ".join(shown)))
+    composite = composite_for([n for n, _ in rendered])
+    if composite:
+        return composite.join(rendered)
+    return " ".join(text for _n, text in rendered).strip()
+
+
+# B-1 8.033 (p171): "When true, display RoofMaterialType. When false, display
+# '(Unobservable)'"; materials separated by "|"; "Display 'Estimated Age:'
+# followed by the number and 'years' on a separate line under material."
+# The grid's Roof row (22.08.20) says the same about its materials.
+ROOF_DETAIL = {"8.033"}
+
+
+def _roof_detail(parts: list[tuple[str, str]], binding: Binding) -> str:
+    by_point = {dp.get("mismo", ""): dp for dp in binding.data_points}
+
+    def shown(name: str, raw: str) -> str:
+        options = {o["value"]: o.get("display", "")
+                   for o in (by_point.get(name, {}).get("enumerations") or []) if o.get("value")}
+        return options.get(raw, "") if raw in options else _humanise(raw)
+
+    observable = next((raw for name, raw in parts if name == "RoofObservableIndicator"), "")
+    materials = [shown(name, raw) for name, raw in parts
+                 if name in ("RoofMaterialType", "RoofMaterialTypeOtherDescription")]
+    age = next((shown(name, raw) for name, raw in parts if name == "RoofEstimatedAgeRangeType"), "")
+    first = ("(Unobservable)" if observable.strip().casefold() == "false"
+             else " | ".join(m for m in materials if m))
+    return "\n".join(x for x in (first, f"Estimated Age: {age}" if age else "") if x)
+
+
+def _in_enumeration_order(groups: list, binding: Binding) -> list:
+    """Instances that each hold one value of the same enumerated data point
+    (two AMENITY blocks, Porch then Deck) list in A-1's enumeration order, as
+    D-1 prints "Deck | Porch" -- the same rule as several values in one block."""
+    if len(groups) < 2 or not all(isinstance(g, list) and len(g) == 1 and isinstance(g[0], tuple)
+                                  for g in groups):
+        return groups
+    names = {g[0][0] for g in groups}
+    if len(names) != 1:
+        return groups
+    dp = next((d for d in binding.data_points if d.get("mismo") == next(iter(names))), {})
+    rank = {o["value"]: n for n, o in enumerate(dp.get("enumerations") or []) if o.get("value")}
+    if not rank or not all(g[0][1] in rank for g in groups):
+        return groups
+    return sorted(groups, key=lambda g: rank[g[0][1]])
+
+
+@dataclass(frozen=True)
+class Composite:
+    """A cell several data points share, in the order and with the separator
+    B-1 gives it.  Without one, different data points under a label compose a
+    value with spaces ("Betty Borrower")."""
+    order: tuple[str, ...]
+    sep: str = " | "
+    stack: bool = False          # several instances: one to a line
+    tail: tuple[str, ...] = ()   # joined last, with a space, not the separator
+    authority: str = ""
+
+    @property
+    def names(self) -> set[str]:
+        return set(self.order) | set(self.tail)
+
+    def join(self, rendered: list[tuple[str, str]]) -> str:
+        by: dict[str, str] = {}
+        for name, text in rendered:
+            base = name[:-len("OtherDescription")] if name.endswith("OtherDescription") else name
+            by[base] = f"{by[base]} {text}" if base in by else text
+        head = [by[n] for n in self.order if n in by]
+        head += [t for n, t in by.items() if n not in self.order and n not in self.tail]
+        tail = [by[n] for n in self.tail if n in by]
+        return " ".join(x for x in (self.sep.join(head), " ".join(tail)) if x)
+
+
+COMPOSITES = (
+    Composite(("StreetAccessType", "ImprovedSurfaceMaterialType"), stack=True,
+              authority="B-1 4.021 p130; grid 'Street Type | Surface'"),
+    Composite(("HeatingSystemType", "HeatingFuelType"), stack=True,
+              authority="grid 'Heating': System and Fuel separated by |, a line for each system"),
+    Composite(("FullBathroomCount", "HalfBathroomCount"),
+              authority="grid 'Baths - Full | Half'"),
+    Composite(("ViewType", "ViewRangeType"), stack=True,
+              authority="grid 'View | Range': a line for each view"),
+    Composite(("ProjectName", "SameProjectAsSubjectIndicator"),
+              authority="grid 'Project Name | Same Project as Subject'"),
+    Composite(("GreenCertificationName", "GreenCertificationLevelName"), stack=True,
+              authority="grid 'Building Certification'"),
+    Composite(("EfficiencyRatingName", "EfficiencyRatingScoreValue"), stack=True,
+              authority="grid 'Efficiency Rating'"),
+    Composite(("BodyOfWaterType", "BodyOfWaterName", "WaterAccessDepthType"), stack=True,
+              authority="grid 'Water Frontage'"),
+    Composite(("CarStorageType", "ParkingSpacesCount", "CarStorageAttachmentType",
+               "ImprovedSurfaceMaterialType"), stack=True, tail=("CarStorageAreaMeasure",),
+              authority="grid 'Type | Spaces | Detail': facts separated by |, a line for each"),
+    Composite(("ProximityToSubjectDistanceLinearMeasure", "ComparableToSubjectDirectionType"),
+              sep=" ", authority="grid 'Proximity to Subject': measurement, unit, direction"),
+    Composite(("EnvironmentalConditionProximityType", "BodyOfWaterProximityType",
+               "SiteInfluenceProximityType", "DistanceFromPropertyLinearMeasure"),
+              authority="B-1 4.026 p132: Proximity | Distance and Unit"),
+)
+
+
+def composite_for(names) -> "Composite | None":
+    """The composite these data points belong to: two or more of its own."""
+    present = {n[:-len("OtherDescription")] if n.endswith("OtherDescription") else n
+               for n in names if n}
+    for composite in COMPOSITES:
+        if len(present & composite.names) >= 2:
+            return composite
+    return None
 
 
 # An address is not the sum of its data points in the order A-1 lists them.

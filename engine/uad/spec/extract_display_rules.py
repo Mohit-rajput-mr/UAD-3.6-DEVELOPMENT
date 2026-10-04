@@ -179,6 +179,15 @@ def extract(pdf: Path) -> list[Rule]:
                     cells = {role: _clean(row[ci])
                              for ci, role in columns.items() if ci < len(row)}
                     ids = _split_ids(cells.get("field_id", ""))
+                    if not ids:
+                        # An irregular table (the Supervisory Appraiser
+                        # Certifications heading, B-1 p396) can set one row's
+                        # ID a column away from the rest.  A lone ID in a
+                        # column no header names is that row's own.
+                        stray = [fid for ci, cell in enumerate(row)
+                                 if ci not in columns for fid in _split_ids(_clean(cell))]
+                        if len(stray) == 1:
+                            ids = stray
                     carried = {
                         "label": cells.get("label", ""),
                         "uid": cells.get("uid", "") if UID.match(cells.get("uid", "")) else "",

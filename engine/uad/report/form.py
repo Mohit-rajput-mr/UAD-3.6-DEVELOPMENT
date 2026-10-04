@@ -117,7 +117,72 @@ def esc(text: Any) -> str:
 # ---------------------------------------------------------------------------
 @lru_cache(maxsize=1)
 def form() -> dict:
-    return json.loads((SPEC / "c1_form.json").read_text(encoding="utf-8"))
+    data = json.loads((SPEC / "c1_form.json").read_text(encoding="utf-8"))
+    _complete_clipped_ids(data)
+    return data
+
+
+CLIPPED_ID = re.compile(r"^\d+\.\d{2}$")
+
+
+def _complete_clipped_ids(data: Any) -> list[tuple[str, str]]:
+    """Give back the last digit C-1's PDF clips off a few Report Field IDs.
+
+    Where a table runs to the page edge the text layer keeps "4.06" for
+    Electricity's 4.069, "4.05" for Encroachment's 4.058, "20.00" for Total
+    Sales Concessions' 20.009.  The extractor kept what it read, the ID
+    matched nothing in A-1, and the row it heads lost its binding -- so its
+    cells took whichever instance came first.
+
+    A clipped ID is completed only when the answer is unique: the one A-1 ID
+    with that prefix filed under the same label, or, for the first cell of a
+    table row, the ID just before the row's own next cell (4.070 follows
+    4.069).  Anything else is left as it was.  Returns what it changed.
+    """
+    fields = _fields()
+    changed: list[tuple[str, str]] = []
+
+    def complete(x: str, label: str, following: str = "") -> str:
+        if x in fields or not CLIPPED_ID.match(x):
+            return x
+        cands = [k for k in fields if len(k) == len(x) + 1 and k.startswith(x)]
+        by_label = [k for k in cands if any(
+            _norm(loc.get("label", "")) == _norm(label) for loc in fields[k].get("locations") or [])]
+        if len(by_label) == 1:
+            return by_label[0]
+        head, _, tail = following.rpartition(".")
+        if following in fields and tail.isdigit() and int(tail) > 0:
+            before = f"{head}.{int(tail) - 1:0{len(tail)}d}"
+            if before in cands:
+                return before
+        return x
+
+    def walk(node: Any) -> None:
+        if isinstance(node, dict):
+            ids = node.get("ids")
+            if isinstance(ids, list):
+                label = node.get("text") or ""
+                for i, x in enumerate(ids):
+                    new = complete(x, label)
+                    if new != x:
+                        ids[i] = new
+                        changed.append((x, new))
+            cells = node.get("cells")
+            if isinstance(cells, list) and len(cells) > 1 and cells[0].get("ids"):
+                after = next((c["ids"][0] for c in cells[1:] if c.get("ids")), "")
+                first = cells[0]["ids"]
+                new = complete(first[0], cells[0].get("text") or "", after)
+                if new != first[0]:
+                    changed.append((first[0], new))
+                    first[0] = new
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    walk(data)
+    return changed
 
 
 @lru_cache(maxsize=1)
@@ -361,9 +426,7 @@ def instances(ctx: Ctx, fid: str) -> list[tuple[str, list[tuple[str, str]]]]:
         if key not in groups:
             groups[key] = []
             order.append(key)
-        unit = node.get("AreaUnitOfMeasureType")
-        if unit:
-            text = bind.format_area(text, unit)
+        text = bind.with_unit(text, node)
         if (name, text) not in groups[key]:
             groups[key].append((name, text))
     return [(k, groups[k]) for k in order]
@@ -967,6 +1030,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             if el.get("x0", 99) < 46:
                 anchor = (el.get("ids") or [""])[0]
                 ctx.placeholders["rule_fid"] = anchor
+                _anchor_gate(ctx, anchor)
                 answer = _fixed_text_answer(ctx, anchor, printed)
                 if answer is not None:
                     flush()
@@ -1101,8 +1165,7 @@ def a1_only() -> dict[str, list[tuple[str, str, str]]]:
     the end of their section -- rather than being lost."""
     from . import comparables as _comparables
     placed = set()
-    data = json.loads((SPEC / "c1_form.json").read_text(encoding="utf-8"))
-    for pg in data["pages"]:
+    for pg in form()["pages"]:
         for el in pg["elements"]:
             placed.update(el.get("ids") or [])
             for row in el.get("rows") or []:
@@ -1117,7 +1180,7 @@ def a1_only() -> dict[str, list[tuple[str, str, str]]]:
     # already printed by that table
     heads: dict[str, set[str]] = {}
     section_now = ""
-    for pg in data["pages"]:
+    for pg in form()["pages"]:
         for el in pg["elements"]:
             if el["kind"] == "tab":
                 section_now = re.sub(r"\s*-\s*\[.*", "", el.get("title", "")).strip()
@@ -1202,6 +1265,8 @@ def _not_used_html(ctx: "Ctx") -> tuple[str, bool]:
                 continue
             text = comparables.value_for(ctx.root, fid, prop) or (
                 str(number) if fid == "22.17.01" else "")
+            if not text and comparables.not_used_dash(ctx.root, prop, _head):
+                text = comparables.EM_DASH
             cells.append(_cell(esc(text), fid, inside, key=key) if ctx.edit
                          else _td(esc(text)))
         row = "".join(cells)
@@ -1293,6 +1358,23 @@ def _agency_ok(ctx: Ctx, text: str) -> bool:
     return True
 
 
+def _anchor_gate(ctx: Ctx, fid: str) -> bool:
+    """Whether the paragraphs under this margin slot print.
+
+    The slot's field carries B-1's rule for the paragraph that follows.  Where
+    B-1 states a rule once, on a block's heading (29.054, "Display when
+    PartyRoleType = AppraiserSupervisor"), the slots under it carry none of
+    their own and stay out with it: a slot that decides sets the state for the
+    block, a slot that does not inherits a hidden one.
+    """
+    for rule in _fields().get(fid, {}).get("display_rules", []):
+        decided = rules.evaluate(rule.get("rule", ""), ctx.root)
+        if decided.known:
+            ctx.placeholders["block_shown"] = "1" if decided.shown else "0"
+            return decided.shown
+    return ctx.placeholders.get("block_shown") != "0"
+
+
 def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     """One paragraph of the report's own fixed wording.
 
@@ -1305,13 +1387,7 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     if not text:
         return
     fid = ctx.placeholders.get("rule_fid", "")
-    shown = True
-    entry = _fields().get(fid, {})
-    for rule in entry.get("display_rules", []):
-        decided = rules.evaluate(rule.get("rule", ""), ctx.root)
-        if decided.known:
-            shown = decided.shown
-            break
+    shown = _anchor_gate(ctx, fid)
     if shown and not _agency_ok(ctx, text):
         shown = False
     numbered = bool(NUMBER.match(text))
@@ -1430,6 +1506,70 @@ def _drop_cost_column(el: dict) -> dict:
     return {**el, "columns": cols, "rows": rows}
 
 
+def _names_a_value(fid: str, label: str) -> bool:
+    """Is the row label itself one of the values of the field that heads the
+    row ("Windows", "Electricity")?  A label that is not ("Property
+    Restriction" for A-1's "Property Restrictions") names a family of rows and
+    says nothing about which instance it means."""
+    b = binding(fid)
+    return bool(b) and any(
+        _norm(label) in (_norm(e.get("value")), _norm(e.get("display")))
+        for dp in b.data_points if not dp.get("attribute")
+        for e in (dp.get("enumerations") or []))
+
+
+def _label_blocks(ctx: Ctx, fid: str, label: str) -> list[etree._Element] | None:
+    """The repeated blocks a fixed row label names, or None when this label's
+    field is not one a block repeats around.
+
+    "Exterior Walls and Trim", "Foundation", "Roof" and "Windows" are four rows
+    of one table, each headed by the same Report Field ID (8.041,
+    ImprovementComponentType), because MISMO keeps them as four
+    STRUCTURE_COMPONENTs of one STRUCTURE_COMPONENTS and A-1 numbers the
+    fields by row, not by repeat.  Which block a row is can only be read from
+    the type it carries, across *all* the blocks -- the ordinal read the first
+    one, so every row after it found nothing to select by and took any block's
+    values (the roof and the windows printed the wall's condition comment).
+    """
+    b = binding(fid)
+    if b is None or repeats_as_list(fid):
+        return None
+    points = [dp for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")]
+    enum = [dp for dp in points if dp.get("enumerations")]
+    if not enum:
+        return None
+    container = bind.repeating_container(enum[0].get("xpath", ""))
+    if not container:
+        return None
+    base = ctx.scope if ctx.scope is not None else (
+        subject(ctx) if bind.PROPERTY_PATH in enum[0].get("xpath", "") else ctx.root)
+    candidates: list[etree._Element] = []
+    for dp in points:
+        segs = bind._tail(dp.get("xpath", ""))
+        for node in (base.iter(f"{M}{dp['mismo']}") if base is not None else []):
+            if not bind._matches(node, segs):
+                continue
+            block = node
+            while block is not None and _local(block) != container:
+                block = block.getparent()
+            if block is not None and block not in candidates:
+                candidates.append(block)
+    if not candidates:
+        return None
+    # the same two tests a row's label has always had to pass: the value is the
+    # label, or reads as the label once A-1's display text is applied
+    out: list[etree._Element] = []
+    for block in candidates:
+        for _k, g in instances(ctx.inside(block), fid):
+            if (any(_norm(v) == _norm(label) for _n, v in g)
+                    or _norm(bind.display_value(g, b)) == _norm(label)):
+                out.append(block)
+                break
+    if not out and not _names_a_value(fid, label):
+        return None
+    return out
+
+
 def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     if ctx.edit and ctx.placeholders.get("base") == "Summary":
         # B-1 ch. 01: the Summary redisplays -- its tables are read-only too
@@ -1498,6 +1638,26 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                     selector = set(keys)
                     claimed.update(keys)
                     break
+            tree_ = ctx.root.getroottree()
+            blocks = _label_blocks(ctx, first_ids[0], label) if first_ids else None
+            was_selector = selector
+            if blocks is not None:
+                selector = {tree_.getpath(blk) for blk in blocks}
+                claimed.update(selector)
+            elif selector is None and first_ids and _names_a_value(first_ids[0], label):
+                # "Electricity", with no electricity in the case: the row holds
+                # nothing -- not the first other instance's values
+                selector = set()
+
+            def row_instances(fid: str, selector=selector, blocks=blocks):
+                if blocks is not None:
+                    for blk in blocks:
+                        yield from instances(ctx.inside(blk), fid)
+                    return
+                for k, g in instances(ctx, fid):
+                    if selector is None or k in selector:
+                        yield k, g
+
             ids_by_cell = [list(c["ids"]) for c in cells]
             target = next((i for i in range(1, len(cells)) if not cells[i]["ids"]), None)
             # The label's own cell can carry more than one Report Field ID: a
@@ -1523,7 +1683,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             # the row's commentary category, named by its comment cell
             cats = commentary_categories()
             row_cat = next((cats[f] for c in cells for f in c["ids"] if f in cats), "")
-            if selector is None and first_ids and ctx.edit and _repeats(first_ids[0]) and any(
+            if was_selector is None and first_ids and ctx.edit and _repeats(first_ids[0]) and any(
                     _norm(label) in (_norm(v), _norm(shown_)) for v, shown_ in choices_for(first_ids[0])):
                 # The field over the label names the row ("Gas" is one of its
                 # A-1 values): the row does not exist yet, and the first value
@@ -1540,8 +1700,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 head = next((col.get("head", "") for col in cols
                              if abs(col["x0"] - c["x0"]) < 1), "")
                 if head in ("Public", "Private"):
-                    raws = [v for fid in ids for k, g in instances(ctx, fid)
-                            if selector is None or k in selector for _n, v in g]
+                    raws = [v for fid in ids for _k, g in row_instances(fid) for _n, v in g]
                     want = "Public" if head == "Public" else "NonPublic"
                     tick = any(r == want for r in raws)
                     has = has or bool(raws)
@@ -1559,9 +1718,14 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 vals = []
                 for fid in ids:
                     b_ = binding(fid)
-                    for k, g in instances(ctx, fid):
-                        if selector is not None and k not in selector:
-                            continue
+                    if b_ is not None and b_.field_id in bind.ROOF_DETAIL:
+                        # the material and the age sit in different blocks of
+                        # the roof and print as one cell (B-1 8.033)
+                        t = bind.display_value([g for _k, g in row_instances(fid)], b_)
+                        if t and t not in vals:
+                            vals.append(t)
+                        continue
+                    for _k, g in row_instances(fid):
                         t = bind.display_value(g, b_) if b_ else ""
                         if t and t not in vals:
                             vals.append(t)

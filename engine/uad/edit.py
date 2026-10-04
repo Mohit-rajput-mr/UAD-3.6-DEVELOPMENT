@@ -147,10 +147,70 @@ def choose_data_point(binding: bind.Binding, data_point: str = "") -> dict:
             if dp["mismo"] == data_point:
                 return dp
         raise KeyError(f"{data_point} is not a data point of {binding.field_id}")
+    # An address is not a choice: its one enumerated part is the unit
+    # designator, which can only hold "Unit".  A plain value typed into an
+    # address is the street line (or, whole, see split_address).
+    if is_address(binding):
+        return next(dp for dp in points if dp["mismo"] == "AddressLineText")
     for dp in points:
         if (dp.get("format_type") or "").casefold() == "enumerated":
             return dp
     return points[0]
+
+
+ADDRESS_PARTS = ("AddressLineText", "CityName", "StateCode", "PostalCode")
+
+
+def is_address(binding: bind.Binding) -> bool:
+    """A field that prints a whole postal address from its parts."""
+    names = {dp.get("mismo") for dp in binding.data_points}
+    return all(n in names for n in ADDRESS_PARTS)
+
+
+_STATE_ZIP = re.compile(r"[,\s]+([A-Za-z]{2})\.?\s+(\d{5})(?:-?(\d{4}))?\s*$")
+_UNIT = re.compile(r"[,\s]+(?:#|unit|apt\.?|apartment|suite|ste\.?|room|rm\.?|no\.)\s*#?\s*"
+                   r"([A-Za-z0-9][A-Za-z0-9-]*)\s*$", re.I)
+
+
+def split_address(text: str, binding: bind.Binding) -> dict[str, str] | None:
+    """A whole address typed into one field, as the parts A-1 stores.
+
+    "186 8th St # 2B, Brooklyn, NY 11215" -> street "186 8th St", unit "2B",
+    city "Brooklyn", state "NY", ZIP "11215".  The unit's designator is the
+    one the specification allows for AddressUnitDesignatorType (A-1 lists
+    "Unit" alone), so "#", "Apt" and "Suite" are stored as that and the
+    identifier is kept.  None when the text is not a whole address (no city,
+    state and ZIP), so the caller treats it as the street line alone.
+    """
+    t = " ".join((text or "").split()).strip(" ,")
+    m = _STATE_ZIP.search(" " + t)
+    if not m or "," not in t[:max(0, m.start() - 1)]:
+        return None
+    state, zip5, plus4 = m.group(1).upper(), m.group(2), m.group(3)
+    rest = t[:m.start() - 1].strip(" ,")
+    head, _, city = rest.rpartition(",")
+    head, city = head.strip(" ,"), city.strip()
+    if not head or not city:
+        return None
+    street, unit = head, ""
+    u = _UNIT.search(" " + head.replace(",", " "))
+    if u:
+        unit = u.group(1)
+        street = (" " + head.replace(",", " "))[:u.start()].strip(" ,")
+    designator = ""
+    if unit:
+        point = next((dp for dp in binding.data_points
+                      if dp.get("mismo") == "AddressUnitDesignatorType"), {})
+        allowed = [o.get("value") for o in point.get("enumerations", []) if o.get("value")]
+        designator = "Unit" if "Unit" in allowed or not allowed else allowed[0]
+    names = {dp.get("mismo") for dp in binding.data_points}
+    out = {"AddressLineText": street, "CityName": city, "StateCode": state,
+           "PostalCode": f"{zip5}-{plus4}" if plus4 else zip5}
+    if "AddressUnitIdentifier" in names:
+        out["AddressUnitIdentifier"] = unit
+    if "AddressUnitDesignatorType" in names:
+        out["AddressUnitDesignatorType"] = designator
+    return out
 
 
 def _is_it_this(dp: dict, binding: bind.Binding, value: str, current: str) -> str:

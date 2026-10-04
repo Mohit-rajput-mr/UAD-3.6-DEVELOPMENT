@@ -1105,3 +1105,18 @@ test, not in a case script.
   sf5 and 2-4 unit scenario 2 (was 2-6x over everywhere). Remaining differences
   are the outbuilding rows (T-123).
 - Test: `test_report_rows.py`. Layer: render. State: general.
+
+### E-076 A whole address typed into a report address field is refused
+- Symptom: typing "186 8th St # 2B, Brooklyn, NY 11215" into Physical Address
+  (3.000) answers 422 "could not be saved to its matching report field".
+- Cause: a plain value went to the field's write target, chosen as "the
+  enumerated data point" — for an address that is AddressUnitDesignatorType,
+  which A-1 allows to hold only "Unit"; the read-back of a whole address in
+  that slot failed. Every address field (subject, alternate, parties) had it.
+- Fix: `edit.is_address` / `edit.split_address` store a whole typed address as
+  its A-1 parts (street, unit designator + identifier, city, state, ZIP); "#",
+  "Apt", "Suite" become the spec's one designator "Unit"; a plain value that
+  is not a whole address goes to AddressLineText, never to the designator.
+  Layer: model. State: general.
+- Test: `engine/tests/test_address_entry.py` (owner's case, 9 checks: parts,
+  unit removal, coordinates on the map pin, 0 schema errors).

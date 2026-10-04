@@ -790,9 +790,18 @@ def set_field(case_id: str, field_id: str, request: Request,
         ordinal = int(body.get("ordinal") or pf.ordinal)
         if ordinal < 1:
             raise ValueError("The field instance must be at least 1")
-        tree, written = _write_checked(tree, pf, str(body.get("value", "")),
-                                       data_point=body.get("data_point", ""),
-                                       ordinal=ordinal)
+        value = str(body.get("value", ""))
+        # A whole address typed where the report prints one is stored as the
+        # parts A-1 defines (street, unit, city, state, ZIP), each read back.
+        parts = (edit.split_address(value, pf.binding)
+                 if not body.get("data_point") and edit.is_address(pf.binding) else None)
+        if parts:
+            for dp_name, part in parts.items():
+                tree, written = _write_checked(tree, pf, part, data_point=dp_name, ordinal=ordinal)
+        else:
+            tree, written = _write_checked(tree, pf, value,
+                                           data_point=body.get("data_point", ""),
+                                           ordinal=ordinal)
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
     st.save_tree(case_id, tree)

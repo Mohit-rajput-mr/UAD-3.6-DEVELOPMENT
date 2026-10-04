@@ -1571,6 +1571,8 @@ def _label_blocks(ctx: Ctx, fid: str, label: str) -> list[etree._Element] | None
 
 
 def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    if any(LEVEL_ID in c.get("ids", []) for row in el["rows"] for c in row.get("cells", [])):
+        return _levels_table_html(el, ctx)
     if ctx.edit and ctx.placeholders.get("base") == "Summary":
         # B-1 ch. 01: the Summary redisplays -- its tables are read-only too
         ctx = Ctx(ctx.root, ctx.scope, ctx.folder, ctx.media, ctx.placeholders, False,
@@ -1827,6 +1829,141 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             f"{head}<tbody>{''.join(body)}</tbody></table>"), True
 
 
+# Appendix B-1, 10 Unit Interior, "Level and Room Detail" (p195):
+#   10.029 Level in Unit   always; one row per level, lowest grade first (B2, B1, 1, 2)
+#   10.030 Grade Level     GradeLevelType always; AccessType when the level is
+#                          below grade; BelowGradeExteriorAccessType when the
+#                          access is from outside
+#   10.031 Finish          "Finished" when the finished area > 0, "Unfinished"
+#   10.032 Area            when the unfinished area > 0 -- each its own line,
+#                          with its area and unit in the Area column
+#   10.033 Room Summary    not delivered: the count of each RoomType per
+#                          LevelType, "1 - Bath - Half" (Figure 10-8)
+# The generic table reader walks a field's first block only, so it printed the
+# first level's values and nothing for the rest (T-119).
+LEVEL_ID, GRADE_ID, FINISH_ID, AREA_ID, ROOMS_ID = "10.029", "10.030", "10.031", "10.032", "10.033"
+NUMBER_WORDS = {w: n for n, w in enumerate(
+    "Zero One Two Three Four Five Six Seven Eight Nine Ten".split())}
+BELOW_GRADE = ("FullyBelowGrade", "PartiallyBelowGrade")
+OUTSIDE_ACCESS = ("ExteriorAccessOnly", "InteriorAndExteriorAccess")
+
+
+def level_rank(level_type: str) -> int:
+    """BelowGradeTwo -> -2, LevelOne -> 1: the order B-1 prints levels in."""
+    m = re.match(r"(BelowGrade|Level)(\w+)$", level_type or "")
+    if not m:
+        return 99
+    n = NUMBER_WORDS.get(m.group(2), 50)
+    return -n if m.group(1) == "BelowGrade" else n
+
+
+def _shown_point(fid: str, name: str, node: "etree._Element | None") -> str:
+    b = binding(fid)
+    text = (node.text or "").strip() if node is not None else ""
+    if not (b and text):
+        return ""
+    return bind.display_value([(name, bind.with_unit(text, node))], b)
+
+
+def room_summary(rooms: list["etree._Element"]) -> dict[str, list[str]]:
+    """LevelType -> ["1 - Bath - Half", ...], counted from the ROOMs."""
+    b = binding(ROOMS_ID)
+    counts: dict[str, dict[str, int]] = {}
+    for room in rooms:
+        detail = room.find(f"{M}ROOM_DETAIL")
+        if detail is None or b is None:
+            continue
+        group = [(n, (detail.findtext(f"{M}{n}") or "").strip()) for n in ("RoomType", "RoomTypeOtherDescription")]
+        group = [(n, v) for n, v in group if v]
+        name = bind.display_value(group, b) if group else ""
+        if not name:
+            continue
+        level = (detail.findtext(f"{M}LevelType") or "").strip()
+        per = counts.setdefault(level, {})
+        per[name] = per.get(name, 0) + 1
+    return {lvl: [f"{n} - {name}" for name, n in sorted(per.items(), key=lambda kv: kv[0].casefold())]
+            for lvl, per in counts.items()}
+
+
+def _levels_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    cols = el["columns"]
+    tree = ctx.root.getroottree()
+    levels = []
+    for key, _g in instances(ctx, LEVEL_ID):
+        hit = tree.xpath(key)
+        node = hit[0] if hit else None
+        while node is not None and _local(node) != "LEVEL":
+            node = node.getparent()
+        if node is not None and all(node is not l for l in levels):
+            levels.append(node)
+    levels.sort(key=lambda lv: level_rank(lv.findtext(f"{M}LevelType", "").strip()))
+    holder = levels[0].getparent().getparent() if levels else None
+    rooms = holder.findall(f"{M}ROOMS/{M}ROOM") if holder is not None else []
+    summary = room_summary(rooms)
+
+    def area_value(lv, name):
+        node = lv.find(f"{M}{name}")
+        try:
+            amount = float((node.text or "").strip()) if node is not None else 0.0
+        except ValueError:
+            amount = 0.0
+        return node, amount
+
+    body = []
+    for lv in levels:
+        key = tree.getpath(lv)
+        level_type = lv.findtext(f"{M}LevelType", "").strip()
+        grade = lv.findtext(f"{M}GradeLevelType", "").strip()
+        access = lv.findtext(f"{M}AccessType", "").strip()
+        detail = [("GradeLevelType", True),
+                  ("AccessType", grade in BELOW_GRADE),
+                  ("BelowGradeExteriorAccessType", access in OUTSIDE_ACCESS)]
+        lines = []
+        for name, shows in detail:
+            node = lv.find(f"{M}{name}")
+            if node is None and not ctx.edit:
+                continue
+            if not shows and not ctx.edit:
+                continue
+            text = _shown_point(GRADE_ID, name, node)
+            if name == "BelowGradeExteriorAccessType" and (node is not None and (node.text or "").strip() == "Other"):
+                text = lv.findtext(f"{M}BelowGradeExteriorAccessTypeOtherDescription", "").strip() or text
+            if ctx.edit:
+                if text or name == "GradeLevelType" or shows:
+                    lines.append(re.sub(r"^<td[^>]*>|</td>$", "", _cell(esc(text), GRADE_ID, ctx, key=key, point=name)))
+            elif text:
+                lines.append(f"<span>{esc(text)}</span>")
+        grade_td = "<td class='lines'>" + "<br>".join(lines) + "</td>"
+        level_shown = _shown_point(LEVEL_ID, "LevelType", lv.find(f"{M}LevelType"))
+        level_td = (_cell(esc(level_shown), LEVEL_ID, ctx, key=key) if ctx.edit else _td(esc(level_shown)))
+        rooms_td = "<td class='lines'>" + "<br>".join(
+            f"<span>{esc(r)}</span>" for r in summary.get(level_type, [])) + "</td>"
+        finishes = []
+        for word, name in (("Finished", "LevelFinishedAreaMeasure"), ("Unfinished", "LevelUnfinishedAreaMeasure")):
+            node, amount = area_value(lv, name)
+            if amount > 0 or ctx.edit:
+                shown_ = _shown_point(AREA_ID, name, node) if node is not None else ""
+                area_td = (_cell(esc(shown_), AREA_ID, ctx, key=key, point=name) if ctx.edit
+                           else _td(esc(shown_)))
+                finishes.append((_td(word), area_td))
+        if not finishes:
+            finishes.append((_td(""), _td("")))
+        for i, (finish_td, area_td) in enumerate(finishes):
+            if i == 0:
+                body.append("<tr>" + level_td + grade_td + finish_td + area_td + rooms_td + "</tr>")
+            else:
+                body.append("<tr class='cont'>" + _td("") + _td("") + finish_td + area_td + _td("") + "</tr>")
+    if ctx.edit:
+        body.append("<tr class='newrow'>" + _cell("", LEVEL_ID, ctx, new=True)
+                    + "".join(_td("") for _ in cols[1:]) + "</tr>")
+    if not levels and not ctx.edit:
+        return "", False
+    colgroup = "".join(f"<col style='width:{(c['x1'] - c['x0']):.2f}pt'>" for c in cols)
+    head = "<thead><tr>" + "".join(f"<th><span>{esc(c.get('head', ''))}</span></th>" for c in cols) + "</tr></thead>"
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), bool(levels)
+
+
 DEFECT_TARGETS = {"Site": None, "Dwelling Exterior": "IMPROVEMENT",
                   "Unit Interior": "PROPERTY_UNIT", "Outbuilding": "IMPROVEMENT",
                   "Vehicle Storage": "CAR_STORAGE", "Subject Property Amenities": "AMENITY"}
@@ -1985,7 +2122,8 @@ def _repeats(fid: str) -> bool:
 
 
 def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
-          label: str = "", new: bool = False, cat: str = "", td_class: str = "") -> str:
+          label: str = "", new: bool = False, cat: str = "", td_class: str = "",
+          point: str = "") -> str:
     """A table cell in the editor: the value, typed or picked where it prints.
 
     The cell names the field and the instance it belongs to (``data-tk``, the
@@ -1995,6 +2133,10 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
     its type; the empty line under a repeating table creates a new one.
     """
     dp = cell_point(fid, _container_of(ctx, key, sel, fid), _instance_el(ctx, key))
+    if point:
+        # the cell names its own data point (Area: finished or unfinished)
+        b_ = binding(fid)
+        dp = next((d for d in (b_.data_points if b_ else []) if d.get("mismo") == point), dp)
     attrs = (f" data-tf='{esc(fid)}' data-tk='{esc(_stable(ctx, key))}'"
              f" data-tdp='{esc(dp.get('mismo', ''))}'")
     if "VALUATION_COMMENTAR" in dp.get("xpath", "") and (commentary_category(fid) or cat):

@@ -1132,3 +1132,23 @@ test, not in a case script.
 - Test: all 12 blank templates: no COMP-NUMBERING blocker, 0 schema errors
   (`engine/tests/test_browser_scripts.py` covers the dialogs that show it;
   the check itself is `uad/integrity.py` COMP-NUMBERING).
+
+### E-078 Level and Room Detail prints only the first level, data in the wrong rows
+- Symptom: SF1's Unit Interior table showed "Level B1 | Interior and Exterior
+  Access Walk Out | | 1,300 Sq. Ft. 230 Sq. Ft. |" then Level 1 and Level 2
+  empty, and room names on blank lines; the published PDF has one row per
+  level with Finished / Unfinished lines and "1 - Bath - Half" counts. The
+  editor's Finish cells (C-1 10.031) answered 404: A-1 has no row for it.
+- Cause: the generic table reader walks a field's first block only
+  (`form._walk` / `bind._walk` ordinal 1) and pairs columns by position;
+  10.031 is not a data point but a display of which area (finished /
+  unfinished) the line carries (B-1 p195).
+- Fix: `form._levels_table_html`, from B-1 10.029-10.033: every LEVEL, lowest
+  grade first (`level_rank`); Grade, then AccessType when below grade, then
+  BelowGradeExteriorAccessType when the access is from outside; a "Finished" /
+  "Unfinished" line only when that area > 0 (both shown in the editor so they
+  can be typed), each area cell writing its own data point (`_cell(point=)`);
+  the room summary counted per RoomType per LevelType from the sibling ROOMS.
+  Layer: render. State: general.
+- Test: `engine/tests/test_level_table.py` — SF1 row by row, and every cell
+  printed for all 12 samples found in the published PDF (12/12).

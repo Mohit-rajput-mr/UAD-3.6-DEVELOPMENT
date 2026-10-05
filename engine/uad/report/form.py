@@ -2265,6 +2265,41 @@ def room_summary(rooms: list["etree._Element"]) -> dict[str, list[str]]:
             for lvl, per in counts.items()}
 
 
+def room_groups(rooms: list["etree._Element"]) -> dict[str, list[tuple[str, str, str, int]]]:
+    """LevelType -> [(RoomType, Other description, printed name, count)] --
+    the summary's lines with what identifies each, for the editor's - / +."""
+    b = binding(ROOMS_ID)
+    out: dict[str, dict[tuple[str, str], list]] = {}
+    for room in rooms:
+        detail = room.find(f"{M}ROOM_DETAIL")
+        if detail is None or b is None:
+            continue
+        kind = (detail.findtext(f"{M}RoomType") or "").strip()
+        other = (detail.findtext(f"{M}RoomTypeOtherDescription") or "").strip() if kind == "Other" else ""
+        group = [(n, v) for n, v in (("RoomType", kind), ("RoomTypeOtherDescription", other)) if v]
+        name = bind.display_value(group, b) if group else ""
+        if not name:
+            continue
+        level = (detail.findtext(f"{M}LevelType") or "").strip()
+        row = out.setdefault(level, {}).setdefault((kind, other), [kind, other, name, 0])
+        row[3] += 1
+    return {lvl: sorted((tuple(v) for v in per.values()), key=lambda r: r[2].casefold())
+            for lvl, per in out.items()}
+
+
+def _rooms_editor_html(key: str, groups: list[tuple[str, str, str, int]]) -> str:
+    """The Room Summary cell in the editor: each line with - / +, then
+    "+ Add room" (uad/rooms.py does the writing)."""
+    lines = []
+    for kind, other, name, n in groups:
+        attrs = f" data-level='{esc(key)}' data-rtype='{esc(kind)}' data-other='{esc(other)}'"
+        lines.append(f"<span class='rm'><span>{n} - {esc(name)}</span>"
+                     f"<span class='rmb' role='button' tabindex='0' data-room-dec{attrs} title='One fewer'>&minus;</span>"
+                     f"<span class='rmb' role='button' tabindex='0' data-room-inc{attrs} title='One more'>+</span></span>")
+    lines.append(f"<span class='rmadd' role='button' tabindex='0' data-room-add data-level='{esc(key)}'>+ Add room</span>")
+    return "<td class='lines rooms'>" + "".join(lines) + "</td>"
+
+
 def _levels_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     cols = el["columns"]
     tree = ctx.root.getroottree()
@@ -2280,6 +2315,7 @@ def _levels_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     holder = levels[0].getparent().getparent() if levels else None
     rooms = holder.findall(f"{M}ROOMS/{M}ROOM") if holder is not None else []
     summary = room_summary(rooms)
+    groups = room_groups(rooms) if ctx.edit else {}
 
     def area_value(lv, name):
         node = lv.find(f"{M}{name}")
@@ -2316,8 +2352,15 @@ def _levels_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
         grade_td = "<td class='lines'>" + "<br>".join(lines) + "</td>"
         level_shown = _shown_point(LEVEL_ID, "LevelType", lv.find(f"{M}LevelType"))
         level_td = (_cell(esc(level_shown), LEVEL_ID, ctx, key=key) if ctx.edit else _td(esc(level_shown)))
-        rooms_td = "<td class='lines'>" + "<br>".join(
-            f"<span>{esc(r)}</span>" for r in summary.get(level_type, [])) + "</td>"
+        if ctx.edit:
+            # the level can be taken out, with the rooms on it
+            level_td = level_td.replace(
+                "</td>", f"<span class='lvdel' role='button' tabindex='0' data-level-del"
+                         f" data-level='{esc(key)}' title='Remove this level and its rooms'>&times;</span></td>", 1)
+            rooms_td = _rooms_editor_html(key, groups.get(level_type, []))
+        else:
+            rooms_td = "<td class='lines'>" + "<br>".join(
+                f"<span>{esc(r)}</span>" for r in summary.get(level_type, [])) + "</td>"
         finishes = []
         for word, name in (("Finished", "LevelFinishedAreaMeasure"), ("Unfinished", "LevelUnfinishedAreaMeasure")):
             node, amount = area_value(lv, name)
@@ -3634,6 +3677,15 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .txc{{line-height:11pt;padding:3pt 0 2pt 4pt;position:relative;top:var(--txc-top)}}
 .txc.np{{padding-left:13pt;text-indent:-9pt}}
 .txc.kp{{line-height:12pt;padding:3pt 0 3pt 4pt}}
+td.rooms .rm{{display:flex;align-items:center;gap:3pt;line-height:12pt}}
+td.rooms .rm > span:first-child{{flex:1}}
+.rmb,.lvdel{{display:inline-flex;align-items:center;justify-content:center;width:11pt;height:11pt;border:0.5pt solid #939598;
+  border-radius:2pt;font-size:8pt;line-height:1;cursor:pointer;color:#231f20;background:#fff;user-select:none}}
+.rmb:hover,.lvdel:hover{{background:#e6e7e8}}
+.lvdel{{margin-left:4pt;vertical-align:middle;border-color:#c0392b;color:#c0392b}}
+.rmadd{{display:inline-block;margin-top:2pt;font-size:7.5pt;font-weight:700;border:0.5pt solid #231f20;border-radius:2pt;
+  padding:0 4pt;cursor:pointer;user-select:none}}
+.rmadd:hover{{background:#e6e7e8}}
 .sg{{display:flex;justify-content:space-between;padding:4pt 0 6pt 4pt}}
 .sgl{{width:250pt}}.sgrt{{width:264pt}}
 .sgrole{{font-weight:700;line-height:11pt}}

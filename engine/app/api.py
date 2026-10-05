@@ -906,6 +906,59 @@ def set_field(case_id: str, field_id: str, request: Request,
 
 
 # ------------------------------------------------------------ structure engine
+# ------------------------------------------------------------ rooms & levels
+def _rooms_change(case_id: str, request: Request, fn, what: str) -> dict:
+    from uad import rooms
+    st = store()
+    candidate = deepcopy(st.tree(case_id))
+    root = candidate.getroot()
+    try:
+        said = fn(root, rooms)
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(422, str(exc).strip("'"))
+    st.save_tree(case_id, candidate)
+    st.invalidate(case_id, _actor(request), what)
+    st.log(case_id, _actor(request), "rooms", what)
+    return {"ok": True, "said": said}
+
+
+@router.post("/cases/{case_id}/rooms")
+def add_room(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """One more room of a type on a level (Level and Room Detail, 10.029-10.033);
+    Levels in Unit, Total Bedrooms and Total Bathrooms follow (uad/rooms.py)."""
+    _case_or_404(case_id)
+    level_key, kind, other = str(body.get("level") or ""), str(body.get("type") or ""), str(body.get("other") or "")
+
+    def fn(root, rooms):
+        level = rooms.level_at(root, level_key)
+        rooms.add_room(level, kind, other)
+        return rooms.recount(rooms.unit_of(level)) or {}
+    return _rooms_change(case_id, request, fn, f"room added: {other or kind}")
+
+
+@router.delete("/cases/{case_id}/rooms")
+def remove_room(case_id: str, request: Request, level: str = Query(...),
+                type: str = Query(...), other: str = Query("")) -> dict:
+    _case_or_404(case_id)
+
+    def fn(root, rooms):
+        lv = rooms.level_at(root, level)
+        if not rooms.remove_room(lv, type, other):
+            raise ValueError("there is no such room on that level")
+        return {}
+    return _rooms_change(case_id, request, fn, f"room removed: {other or type}")
+
+
+@router.delete("/cases/{case_id}/levels")
+def remove_level(case_id: str, request: Request, level: str = Query(...)) -> dict:
+    _case_or_404(case_id)
+
+    def fn(root, rooms):
+        n = rooms.remove_level(rooms.level_at(root, level))
+        return {"rooms_removed": n}
+    return _rooms_change(case_id, request, fn, "level removed")
+
+
 @router.get("/cases/{case_id}/structure")
 def get_structure(case_id: str) -> dict:
     """Dwellings with their units, outbuildings, and the counts read from them."""

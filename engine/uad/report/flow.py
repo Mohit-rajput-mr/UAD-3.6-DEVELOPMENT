@@ -1482,6 +1482,85 @@ EDIT_JS = """
     el.style.top=((a.bottom-b.top)/scale)+'px';
   }
 
+  /* ----------------------------------------------------------- rooms
+     A level's rooms are counted where the report lists them: - and + on
+     each line, "+ Add room" for another type, x to take a level out with its
+     rooms.  Levels in Unit, Total Bedrooms and Bathrooms follow (rooms.py). */
+  function roomsDone(){ tell({uad:'saved'}); reloadHere(); }
+  function roomsFail(err){ say(err.message,{title:'The rooms were not changed'}); }
+  function addRoom(el,type,other){
+    going(el.closest('td'));
+    json(api+'/rooms',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({level:el.dataset.level,type:type,other:other||''})})
+      .then(roomsDone).catch(roomsFail);
+  }
+  function otherRoom(list,el){
+    list.innerHTML='';
+    var box=document.createElement('div'); box.className='otherbox';
+    box.innerHTML='<label>Describe the room</label><input type="text" maxlength="50"><div class="ob">'
+      +'<button type="button" class="no">Cancel</button><button type="button" class="go">Add</button></div>';
+    var input=box.querySelector('input');
+    list.appendChild(box);
+    box.addEventListener('mousedown',function(ev){ ev.stopPropagation(); });
+    var go=function(){
+      var text=input.value.trim();
+      if(!text){ input.focus(); input.classList.add('need'); return; }
+      shutMenu(); addRoom(el,'Other',text);
+    };
+    box.querySelector('.go').onclick=go;
+    box.querySelector('.no').onclick=function(){ shutMenu(); };
+    input.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); go(); }
+      if(ev.key==='Escape'){ ev.preventDefault(); shutMenu(); }
+    });
+    setTimeout(function(){ input.focus(); },0);
+  }
+  function roomPick(el){
+    shut(); shutMenu();
+    fetch('/api/fields/10.033/options').then(function(r){return r.json();}).then(function(d){
+      var list=document.createElement('div'); list.className='picklist';
+      (d.options||[]).forEach(function(o){
+        if(!o.value) return;
+        var row=document.createElement('div'); row.textContent=o.label;
+        row.addEventListener('mousedown',function(ev){
+          ev.preventDefault(); ev.stopPropagation();
+          if(o.value==='Other'){ otherRoom(list,el); return; }
+          shutMenu(); addRoom(el,o.value,'');
+        });
+        list.appendChild(row);
+      });
+      place(list,el); menu=list;
+    });
+  }
+  function roomAction(t){
+    if(t.hasAttribute('data-room-add')) return roomPick(t);
+    if(t.hasAttribute('data-room-inc')) return addRoom(t,t.dataset.rtype,t.dataset.other);
+    if(t.hasAttribute('data-room-dec')){
+      going(t.closest('.rm'));
+      return json(api+'/rooms?level='+encodeURIComponent(t.dataset.level)+'&type='+encodeURIComponent(t.dataset.rtype)
+        +'&other='+encodeURIComponent(t.dataset.other||''),{method:'DELETE'}).then(roomsDone).catch(roomsFail);
+    }
+    if(t.hasAttribute('data-level-del')){
+      return ask('Every room listed on it is removed with it.',{title:'Remove this level?',ok:'Remove level',danger:true})
+        .then(function(ok){
+          if(!ok) return;
+          going(t.closest('tr'));
+          return json(api+'/levels?level='+encodeURIComponent(t.dataset.level),{method:'DELETE'})
+            .then(roomsDone).catch(roomsFail);
+        });
+    }
+  }
+  var ROOM_SEL='[data-room-add],[data-room-inc],[data-room-dec],[data-level-del]';
+  document.addEventListener('mousedown',function(e){
+    var t=e.target.closest&&e.target.closest(ROOM_SEL);
+    if(!t) return;
+    e.preventDefault(); e.stopPropagation(); roomAction(t);
+  },true);
+  document.addEventListener('keydown',function(e){
+    var t=e.target.closest&&e.target.closest(ROOM_SEL);
+    if(t&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); roomAction(t); }
+  });
+
   /* A grid cell is edited where it prints.  Each data point the cell is made
      of gets its own input -- an address is six -- and the list a field must
      come from is a list.  The cell shows the saved value straight away; the

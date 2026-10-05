@@ -1388,3 +1388,14 @@ test, not in a case script.
   "true" for 04 from A-3, "false" for 03 from B-3 p21) into the new block.
   Test: test_report_types.py::test_a_new_row_in_a_completion_table_belongs_to_that_table.
 
+### E-101 Rooms could not be added to a level (owner request)
+- The Level and Room Detail table printed the room summary as fixed text; an
+  appraiser could add a level but not a room, and could not remove a level.
+- Fix: `uad/rooms.py` (add / remove a ROOM on a LEVEL, remove a level with
+  its rooms, recount Levels in Unit / Total Bedrooms / Bathrooms from the
+  unit's own levels and rooms -- B-1 Usability item 8, as D-1 keeps them
+  equal); `/api/cases/{id}/rooms` (POST, DELETE) and `/levels` (DELETE);
+  editor: - / + per summary line, "+ Add room" (A-1 10.033's 19 types, Other
+  asks its description), x on a level. Tests: tests/test_rooms.py (7) and a
+  Chromium click-through (Bedroom added on Level 2 -> Total Bedrooms 5 -> 6).
+

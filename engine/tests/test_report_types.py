@@ -227,3 +227,24 @@ def test_only_a_urar_is_derived_from(client):
     child = client.post(f"/api/cases/{parent}/derive", json={"kind": "update"}).json()["case_id"]
     assert client.post(f"/api/cases/{child}/derive", json={"kind": "completion"}).status_code == 409
     assert client.post(f"/api/cases/{parent}/derive", json={"kind": "other"}).status_code == 400
+
+
+def test_a_new_row_in_a_completion_table_belongs_to_that_table(client):
+    """T-1038: the empty line under "New Observed Items for Repair" makes a
+    DEFECT marked CompletionReportNewDefectIndicator = "true", so it prints
+    there and not among the original repairs (and the reverse, B-3 p21)."""
+    parent = client.post("/api/cases", json={"template": "sf2_appraisal_v1_4", "blank": False}).json()["case_id"]
+    cid = client.post(f"/api/cases/{parent}/derive", json={"kind": "completion"}).json()["case_id"]
+    r = client.patch(f"/api/cases/{cid}/cells/CR-04.003", json={"value": "Cracked tile in hall bath.", "new": True})
+    assert r.status_code == 200, r.text
+    r = client.patch(f"/api/cases/{cid}/cells/CR-03.003", json={"value": "Loose stair rail.", "new": True})
+    assert r.status_code == 200, r.text
+    from app import api
+    tree = api.store().tree(cid)
+    ctx = form.Ctx(tree.getroot())
+    new_items = form.shown(ctx, "CR-04.003")
+    repairs = form.shown(ctx, "CR-03.003")
+    assert new_items == ["Cracked tile in hall bath."]
+    assert "Loose stair rail." in repairs and "Cracked tile in hall bath." not in repairs
+    flags = [d.findtext(f"{rt.M}CompletionReportNewDefectIndicator") for d in tree.getroot().iter(f"{rt.M}DEFECT_DETAIL")]
+    assert flags.count("true") == 1 and None not in flags

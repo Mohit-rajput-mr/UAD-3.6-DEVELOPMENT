@@ -717,6 +717,9 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             scope = _new_instance(root, dp, base)
             if scope is None:
                 raise ValueError("the row could not be created")
+            # an update / completion report's row knows which table it is in
+            from uad import report_types
+            report_types.stamp_instance(scope, field_id)
         if scope is None and body.get("cat") and "VALUATION_COMMENTAR" in dp.get("xpath", ""):
             # a row's impact and comment live in the commentary of its category
             cat = str(body["cat"])

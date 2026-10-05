@@ -1360,3 +1360,31 @@ test, not in a case script.
 - `flow.plan` placed the keep-with-next break before the forced one. Fix: the
   forced break runs first and never continues the section before.
 
+### E-098 URAR certifications printed every alternative and dropped the supervisor's
+- SF1 printed both #29 prior-services versions, all three #10 inspection
+  versions and the FHA/USDA/VA intended users; MH1 and 2-4 dropped the
+  supervisory block. Causes: B-1 states each alternative as its own sentence
+  under one field ID; the alternative counter carried from #29 into the next
+  block; a quoted value broken by the PDF ("...Apprai salAssistance"); the
+  second alternative of #21 has no sentence of its own in B-1.
+- Fix: the kinds' paragraph mechanism now runs for the URAR (number repeats ->
+  n-th sentence; a missing sentence is the "otherwise" case; counters reset at
+  each heading and slot); `rules.rejoin` mends quoted enumeration values from
+  `values()` (A-1 enumerations sheet incl. Does Not Display); assistant names
+  go into #21 where C-1's [Contact Name(s)] sits.
+- Conflict left as C-1 prints it: Intended User "this report" (C-1, 10/12
+  samples) vs "this appraisal report" (B-1 v1.4 29.008, 2 samples).
+- Test: tests/test_certifications.py (12/12 samples, both directions).
+
+### E-099 Exhibit cells were not D-1's geometry
+- D-1 (19 photos in SF1) and D-3 draw 270pt x 200pt cells sharing one rule,
+  caption 13pt under the top, photo 258 x 166 inset 6pt; ours were 264pt with a
+  12pt gap and a flexible photo. Fix: `.ex` geometry in form.stylesheet.
+
+### E-100 A new Completion Report table row belonged to no table
+- The empty line under "New Observed Items for Repair" made a DEFECT without
+  CompletionReportNewDefectIndicator, so it showed in both tables. Fix:
+  `report_types.stamp_instance` writes the row identity (entry["instance"],
+  "true" for 04 from A-3, "false" for 03 from B-3 p21) into the new block.
+  Test: test_report_types.py::test_a_new_row_in_a_completion_table_belongs_to_that_table.
+

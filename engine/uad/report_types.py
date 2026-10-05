@@ -160,6 +160,12 @@ def entry(field_id: str) -> dict | None:
         for key, want in dp["requires"].items():
             if key not in names and key != "PartyRoleType" and not key.startswith(("@", "__")):
                 instance[key] = want
+    if kind == "completion" and raw.startswith("03.") and any(
+            bind.repeating_container(dp.get("xpath", "")) == "DEFECT" for dp in points):
+        # B-3 p21: "Each itemized repair from the original appraisal report
+        # must include the CompletionReportNewDefectIndicator = 'false'" --
+        # stated in prose, not in A-3's conditionality like section 04's "true"
+        instance.setdefault("CompletionReportNewDefectIndicator", "false")
     for dp in points:
         # whose block it is (an inspection is the appraiser's or the
         # supervisor's) stays with the data point; only row conditions move
@@ -169,6 +175,31 @@ def entry(field_id: str) -> dict | None:
                            "label": f["label"]}],
             "data_points": points, "display_rules": f.get("display_rules", []),
             "roles": ["Subject Property"], "kind": kind, "instance": instance}
+
+
+def stamp_instance(block: etree._Element, field_id: str) -> list[str]:
+    """Give a newly added table row its identity: the values that say which
+    table it belongs to (``entry(...)["instance"]``), written in the block in
+    the schema's order -- a new row under "New Observed Items for Repair" is a
+    DEFECT whose CompletionReportNewDefectIndicator is "true"."""
+    from . import edit
+    e = entry(field_id)
+    if not e or not e.get("instance"):
+        return []
+    kind, _raw = split(field_id)
+    container = etree.QName(block).localname
+    done = []
+    for name, value in e["instance"].items():
+        if block.find(f".//{M}{name}") is not None:
+            continue
+        path = next((p for p in _paths_of(kind, name) if container in p), None)
+        if path is None:
+            continue
+        rest = list(path[path.index(container) + 1:])
+        holder, missing = edit.ensure_path(block, rest) if rest else (block, [])
+        edit.insert_ordered(holder, name).text = value
+        done.append(name)
+    return done
 
 
 def binding(field_id: str) -> bind.Binding | None:

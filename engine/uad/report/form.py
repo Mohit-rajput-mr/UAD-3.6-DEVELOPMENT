@@ -1068,12 +1068,14 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind == "h1":
             flush()
             t = _label_fill(el.get("title", ""), ctx)
-            if report != "urar":
+            if True:
                 # a heading closes the block the last margin rule governed
                 ctx.placeholders.pop("block_shown", None)
                 ctx.placeholders["rule_fid"] = ""
                 ctx.placeholders["cert_no"] = ""
                 ctx.placeholders.pop("para", None)
+                ctx.placeholders.pop("alt", None)
+                ctx.placeholders.pop("alt_src", None)
                 # The supervisory appraiser's certifications print when there
                 # is one: B-1 29.054's rule for the URAR, and what D-2 AU1 (no
                 # supervisor) prints, though B-2 p49 says the subsection
@@ -1226,12 +1228,16 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             # value of its own it is drawn as well as read.
             if el.get("x0", 99) < 46:
                 anchor = (el.get("ids") or [""])[0]
-                again = report != "urar" and ctx.placeholders.get("rule_fid") == anchor
+                again = ctx.placeholders.get("rule_fid") == anchor
                 ctx.placeholders["rule_fid"] = anchor
-                if report != "urar" and not again:
-                    # paragraphs counted from this slot (see _fixed_text)
+                if not again:
+                    # paragraphs counted from this slot (see _fixed_text); a
+                    # new slot also ends the alternatives of the one before
                     ctx.placeholders["para"] = "0"
                     ctx.placeholders["para_open"] = ""
+                    ctx.placeholders.pop("alt", None)
+                    ctx.placeholders.pop("alt_src", None)
+                    ctx.placeholders["cert_no"] = ""
                 _anchor_gate(ctx, anchor)
                 answer = _fixed_text_answer(ctx, anchor, printed)
                 if answer is not None:
@@ -1277,7 +1283,25 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                              html=(f"<div class='txcb'><b>{esc(el['text'].strip())}&nbsp; </b>"
                                    f"{esc(value)}</div>")))
             continue
-        if report != "urar" and _fixed(base) and kind == "head" and NUMBER.match(el.get("text", "").strip()):
+        if _fixed(base) and "[Contact Name(s)]" in (el.get("text") or ""):
+            # Certification 21 (C-1) / 13 (C-2, C-3): "... I personally prepared
+            # conclusions ... [Contact Name(s)] provided significant real
+            # property appraisal assistance ...".  The names come from the
+            # field beside the placeholder (C-1 29.042) or the placeholder's
+            # own (C-2 05.025), and print where the Layout leaves room for them.
+            ids = [i for i in el.get("ids") or [] if binding(i) is not None]
+            if not ids:
+                near = next((e for e in els if e["kind"] == "slot" and e.get("x0", 0) > 300
+                             and abs(e["y"] - el["y"]) < 14 and e.get("page") == el.get("page")), None)
+                ids = [i for i in (near.get("ids") or []) if binding(i) is not None] if near else []
+                if near is not None:
+                    near["_names"] = True
+            ctx.placeholders["contact_names"] = " and ".join(
+                v for i in ids for v in shown(ctx, i)) if ids else ""
+            continue
+        if kind == "slot" and el.get("_names"):
+            continue
+        if _fixed(base) and kind == "head" and NUMBER.match(el.get("text", "").strip()):
             # A numbered certification.  B-2 / B-3 give the alternatives of one
             # certification (#10 interior and exterior / exterior / none) one
             # field ID and one sentence each, and C-2 / C-3 draw them as the
@@ -1289,12 +1313,13 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             same = ctx.placeholders.get("cert_no") == number
             ctx.placeholders["cert_no"] = number
             ctx.placeholders["alt"] = str(int(ctx.placeholders.get("alt", "0")) + 1 if same else 0)
+            ctx.placeholders["alt_src"] = "number"
             beside = next((e for e in els if e["kind"] == "slot" and e.get("x0", 99) < 46
                            and abs(e["y"] - el["y"]) < 6 and e.get("page") == el.get("page")), None)
             if beside is not None:
                 ctx.placeholders["rule_fid"] = (beside.get("ids") or [""])[0]
             continue           # it prints as the paragraph's bold lead (_fixed_text)
-        if report != "urar" and _fixed(base) and kind == "head" and not el.get("bold", False):
+        if _fixed(base) and kind == "head" and not el.get("bold", False):
             # C-2 / C-3 set a paragraph's first line a point above its margin
             # slot, so the slot beside a line governs it, not the one before
             beside = next((e for e in els if e["kind"] == "slot" and e.get("x0", 99) < 46
@@ -1621,12 +1646,24 @@ def _anchor_gate(ctx: Ctx, fid: str) -> bool:
     """
     for rule in field_entry(fid).get("display_rules", []):
         text = rule.get("rule", "")
-        if "-" in fid and "alt" in ctx.placeholders:
+        if "alt" in ctx.placeholders:
             # one sentence per alternative of a numbered certification
             parts = [p for p in re.split(r"(?=\bDisplay (?:(?:descriptive|this) text )?when\b)", text) if p.strip()]
+            n = int(ctx.placeholders["alt"] or 0)
+            if (n >= len(parts) and ctx.placeholders.get("alt_src") == "number"
+                    and not rules.ALWAYS.match(parts[0])):
+                # A repeated certification number with no sentence of its own
+                # is the "otherwise" alternative (B-1 29.041 states only the
+                # first of #21's two): it prints when none of the stated ones
+                # does.
+                said = [rules.evaluate(p, ctx.root, lenient=True) for p in parts]
+                if all(d.known for d in said):
+                    shown = not any(d.shown for d in said)
+                    ctx.placeholders["block_shown"] = "1" if shown else "0"
+                    return shown and ctx.placeholders.get("gate") != "0"
             if len(parts) > 1:
-                text = parts[min(int(ctx.placeholders["alt"] or 0), len(parts) - 1)]
-        decided = rules.evaluate(text, ctx.root, lenient="-" in fid)
+                text = parts[min(n, len(parts) - 1)]
+        decided = rules.evaluate(text, ctx.root, lenient=True)
         if decided.known:
             ctx.placeholders["block_shown"] = "1" if decided.shown else "0"
             return decided.shown and ctx.placeholders.get("gate") != "0"
@@ -1645,13 +1682,16 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     if not text:
         return
     fid = ctx.placeholders.get("rule_fid", "")
-    kinded = ctx.placeholders.get("report", "urar") != "urar"
+    kinded = True       # every report's fixed wording flows as its Layout sets it
     number = ctx.placeholders.pop("pending_no", "") if kinded else ""
     if kinded:
         # C-2 / C-3 draw a paragraph line by line.  A line set within 15pt of
         # the one before (the leading is 12pt; paragraphs are 17-18pt apart)
         # and not opened by a number continues that paragraph, so the
         # wording flows as the official report sets it.
+        if text.startswith("provided significant real property appraisal assistance") \
+                and ctx.placeholders.get("contact_names"):
+            text = f"{ctx.placeholders['contact_names']} {text}"
         y, page_no = float(el.get("y", 0)), str(el.get("page", ""))
         last_y = float(ctx.placeholders.get("last_y", "-99"))
         cont = (not number and ctx.placeholders.get("last_page") == page_no
@@ -1663,7 +1703,7 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
             prev.html = prev.html.rsplit("<span class='pt'>", 1)[0] + \
                 f"<span class='pt'>{esc(prev.para_text)}</span></div>"
             return
-        if "-" in fid and "para" in ctx.placeholders:
+        if "para" in ctx.placeholders:
             # B-2 / B-3 state the alternatives a slot governs as one sentence
             # each ("Display descriptive text when GovernmentAgencyAppraisalType
             # = 'FHA' ...", then "... 'USDA'", then "... 'VA'"), in the order
@@ -1675,6 +1715,7 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
             ctx.placeholders["para_open"] = "1"
             if ctx.placeholders.get("cert_no", "") == "":
                 ctx.placeholders["alt"] = ctx.placeholders["para"]
+                ctx.placeholders["alt_src"] = "para"
         shown = _anchor_gate(ctx, fid)
         if shown and not _agency_ok(ctx, text):
             shown = False
@@ -3630,11 +3671,16 @@ table.tbl tr.tot td.amt > span,table.tbl tr.tot td.lab > span{{display:inline;to
 table.tbl tr.tot td.blank{{border:0}}
 table.tbl tr.tot .amt{{display:inline-block;min-width:50pt}}
 
-.exhibits{{display:flex;flex-wrap:wrap;gap:8pt 12pt;margin-top:6pt}}
-.ex{{margin:0;width:264pt;border:{rule};padding:5pt;height:200pt;display:flex;flex-direction:column}}
+/* D-1 exhibits (SF1 p5, 19 photos; D-3 CR2 p2): two 200pt cells side by side
+   on one shared rule, each 270pt wide, the caption 13pt under the top rule and
+   a 258 x 166pt photo inset 6pt */
+.exhibits{{display:flex;flex-wrap:wrap;gap:8pt 0;margin-top:6pt}}
+.ex{{margin:0;width:270pt;border:{rule};padding:12pt 6pt 5.5pt 6pt;height:200pt;box-sizing:border-box;
+     display:flex;flex-direction:column}}
+.ex + .ex{{border-left:0}}
 .ex.full{{width:540pt;height:576pt;padding:6pt;box-sizing:border-box}}
 .ex.graph{{width:540pt;height:240pt;padding:6pt;box-sizing:border-box}}
-.ex .cap{{font-size:9pt;line-height:10pt;margin-bottom:4pt}}
+.ex .cap{{font-size:9pt;line-height:10pt;margin-bottom:6pt;min-height:10pt}}
 .ex img{{flex:1;min-height:0;width:100%;object-fit:contain}}
 .ex .ph{{flex:1;background:{BAR};display:flex;flex-direction:column;gap:9pt;align-items:center;justify-content:center;
          font-style:italic;color:#939598;text-align:center}}

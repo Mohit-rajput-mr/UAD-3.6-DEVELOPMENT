@@ -72,7 +72,40 @@ def rejoin(text: str) -> str:
     def mend(m: re.Match) -> str:
         joined = m.group(1) + m.group(2)
         return joined if joined in names and m.group(1) not in names else m.group(0)
-    return _NAME.sub(lambda m: spelled(m.group(0)), _SPLIT.sub(mend, text))
+    text = _NAME.sub(lambda m: spelled(m.group(0)), _SPLIT.sub(mend, text))
+
+    # the same break inside a quoted value: "SignificantRealPropertyApprai
+    # salAssistance" is the enumeration SignificantRealPropertyAppraisalAssistance
+    def mend_value(m: re.Match) -> str:
+        inner = m.group(2)
+        joined = inner.replace(" ", "")
+        return f"{m.group(1)}{joined}{m.group(3)}" if " " in inner and joined in values() else m.group(0)
+    return _QUOTED.sub(mend_value, text)
+
+
+_QUOTED = re.compile(r"([\"\u201c])([A-Za-z][A-Za-z ]+[A-Za-z])([\"\u201d])")
+
+
+@lru_cache(maxsize=1)
+def values() -> frozenset[str]:
+    """Every enumeration value the appendices define (A-1's enumerations
+    sheet, which lists those that do not display too, and A-2 / A-3's)."""
+    out: set[str] = set()
+    sheet = bind.SPEC / "enumerations.json"
+    if sheet.is_file():
+        for row in json.loads(sheet.read_text(encoding="utf-8")):
+            out.add(" ".join(str(row.get("Supported Enumerations") or "").split()))
+    for entry in bind._index().values():
+        for dp in entry.get("data_points") or []:
+            out.update(e.get("value") or "" for e in dp.get("enumerations") or [])
+    folder = bind.SPEC / "report_types"
+    for path in sorted(folder.glob("*.json")) if folder.is_dir() else []:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for f in data.get("fields", {}).values():
+            for dp in f.get("data_points") or []:
+                out.update(e.get("value") or "" for e in dp.get("enumerations") or [])
+    out.discard("")
+    return frozenset(out)
 
 
 _NAME = re.compile(r"\b[A-Z][a-z]+(?:[A-Z][a-z]*){3,}\b")

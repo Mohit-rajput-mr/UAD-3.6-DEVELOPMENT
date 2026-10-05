@@ -517,7 +517,7 @@ function setNav(items){
   const first=n.querySelector('a'); if(first) first.classList.add('on');
 }
 async function showLaunch(){
-  S.caseId=null;
+  S.caseId=null; setRoute(false);
   $('#shell').className='launcher';
   const back=$('#backhome'); if(back) back.hidden=true;
   setCrumb(''); const st=$('#stat'); if(st) st.innerHTML='';
@@ -715,8 +715,31 @@ const EDITOR=(()=>{
 })();
 
 /* --------------------------------------------------------------- editor */
+/* The open report lives in the address bar (#/case/<id>/s/<section>), so a
+   reload, a bookmark or a shared link opens the same report at the same
+   section, and Back returns to the list (owner's section test B11). */
+function route(){
+  const m=/^#\/case\/([A-Za-z0-9_-]+)(?:\/s\/(\d+))?/.exec(location.hash||'');
+  return m?{caseId:m[1],section:m[2]?Number(m[2]):null}:null;
+}
+function setRoute(push){
+  const want=S.caseId?('#/case/'+S.caseId+(S.section!=null?'/s/'+S.section:'')):'';
+  if((location.hash||'')===want) return;
+  const url=want||(location.pathname+location.search);
+  try{ push?history.pushState(null,'',url):history.replaceState(null,'',url); }catch(_){}
+}
+function followRoute(){
+  const r=route();
+  if(r&&r.caseId!==S.caseId){ S.section=r.section; openCase(r.caseId); }
+  else if(r&&r.section!=null&&r.section!==S.section){ S.section=r.section; markRail(); }
+  else if(!r&&S.caseId) showLaunch();
+}
+window.addEventListener('popstate',followRoute);
 async function openCase(id){
-  S.caseId=id; S.view='report'; S.saveErrors={}; S.saveError=''; S.printed=null; S.atSection=null;
+  const fresh=(route()||{}).caseId!==id;
+  if(fresh) S.section=null;          // a report opened from the list starts at its top
+  S.caseId=id; S.view='report';
+  setRoute(fresh); S.saveErrors={}; S.saveError=''; S.printed=null; S.atSection=null;
   S.formReady=false; S.swaps={}; S.review=null; S.case=null; S.checking={};
   $('#shell').className='';          // back to the three-pane layout
   setCrumb('Opening the report…');
@@ -812,6 +835,7 @@ function drawRail(){
 /* Move the rail's marker without rebuilding the rail -- the report calls this
    for every section it scrolls into. */
 function markRail(){
+  if(S.caseId) setRoute(false);
   const r=$('#rail'); if(!r)return;
   let on=null;
   r.querySelectorAll('.railitem').forEach(b=>{
@@ -1775,9 +1799,11 @@ function fillSignoff(b){
   api(`/cases/${S.caseId}/package/check`).then(r=>{
     const box=$$('#pkg'); if(!box||!r||!r.ok) return;
     const d=r.data, faults=(d.faults||[]).filter(f=>f.severity==='Fatal');
+    // "ready" is the export's own verdict, sign-off included (B12)
     if(d.ready){ box.innerHTML=`<div class="verdict">Package ready — ${d.images.length} image(s)</div>`; return; }
-    box.innerHTML=`<div class="verdict blocked">${faults.length+(d.schema||[]).length} problem(s)</div>`+
-      `<ul class="blockers">${faults.slice(0,12).map(f=>`<li><b>${esc(f.code)}</b> ${esc(f.message)} ${esc(f.detail||'')}</li>`).join('')}`+
+    const shown=d.signed_off?'':`<li><b>Sign-off</b> The report is not signed yet.</li>`;
+    box.innerHTML=`<div class="verdict blocked">${faults.length+(d.schema||[]).length+(d.signed_off?0:1)} problem(s) before export</div>`+
+      `<ul class="blockers">${shown}${faults.slice(0,12).map(f=>`<li><b>${esc(f.code)}</b> ${esc(f.message)} ${esc(f.detail||'')}</li>`).join('')}`+
       `${(d.schema||[]).slice(0,5).map(e=>`<li><b>XSD</b> ${esc(e)}</li>`).join('')}</ul>`;
   });
 
@@ -1811,8 +1837,15 @@ document.getElementById('backhome').onclick=async()=>{
   try{ if(typeof flushPending==='function') await flushPending(); }catch(_){}
   showLaunch();
 };
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',showLaunch);
-else showLaunch();
+function start(){
+  const r=route();
+  if(!r) return showLaunch();
+  S.section=r.section;
+  if(r.section!=null) S.pendingGoto={secn:r.section};   // scrolled to once the report is ready
+  openCase(r.caseId);
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start);
+else start();
 </script>
 </body>
 </html>

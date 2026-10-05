@@ -78,7 +78,7 @@ class ElementOrder:
             collect(node, names, {name})
             if names:
                 table[name] = {n: i for i, n in enumerate(names)}
-        return cls(table)
+        return cls(_with_aliases(root, table))
 
     @classmethod
     def load(cls) -> "ElementOrder":
@@ -91,6 +91,30 @@ class ElementOrder:
         with open(CACHE_FILE, "w", encoding="utf-8") as fh:
             json.dump(order.table, fh)
         return order
+
+
+def _aliases(root: etree._Element) -> dict[str, str]:
+    """element name -> its complexType where the two differ.
+
+    Nearly every complexType is named after the element it types, but not
+    all: ADDITIONAL_ADDRESS is typed ADDRESS.  Without the alias its children
+    have no order, the alternate address was written in typing order, and the
+    schema refused it (E-080).  A name declared with two different types is
+    left out rather than guessed."""
+    types = {t.get("name") for t in root.iterfind(f"{XS}complexType") if t.get("name")}
+    seen: dict[str, set[str]] = {}
+    for el in root.iter(f"{XS}element"):
+        name, typ = el.get("name"), (el.get("type") or "").split(":")[-1]
+        if name and typ and typ in types and name != typ and name not in types:
+            seen.setdefault(name, set()).add(typ)
+    return {n: next(iter(t)) for n, t in seen.items() if len(t) == 1}
+
+
+def _with_aliases(root: etree._Element, table: dict) -> dict:
+    for name, typ in _aliases(root).items():
+        if typ in table and name not in table:
+            table[name] = table[typ]
+    return table
 
 
 _order: ElementOrder | None = None
@@ -149,6 +173,7 @@ def required_table() -> dict[str, list[str]]:
         walk(node, out, {name}, False)
         if out:
             table[name] = out
+    _with_aliases(root, table)
     REQUIRED_CACHE.write_text(json.dumps(table), encoding="utf-8")
     return table
 
@@ -207,6 +232,7 @@ def choice_table() -> dict[str, list[list[str]]]:
         walk(node, groups, {name})
         if groups:
             table[name] = groups
+    _with_aliases(root, table)
     CHOICE_CACHE.write_text(json.dumps(table), encoding="utf-8")
     return table
 
@@ -224,3 +250,98 @@ def rivals(parent: str, child: str) -> set[str]:
         if child in group:
             out.update(g for g in group if g != child)
     return out
+
+
+# ------------------------------------------------------------ how often a child may appear
+MAX_CACHE = CACHE_FILE.with_name("xsd_max.json")
+UNBOUNDED = -1
+
+
+def max_table() -> dict[str, dict[str, int]]:
+    """element name -> {child: maxOccurs} (``UNBOUNDED`` for unbounded).
+
+    A name is not a cardinality: MISMO calls the holder SALES_CONTRACTS, but
+    the GSE subschema lets it hold one SALES_CONTRACT, and a second one makes
+    the document invalid ("This element is not expected").  The schema says
+    which blocks repeat, so the writer asks it rather than the plural."""
+    if MAX_CACHE.exists():
+        return json.loads(MAX_CACHE.read_text(encoding="utf-8"))
+    root = etree.parse(str(_schema_file())).getroot()
+    types = {t.get("name"): t for t in root.iterfind(f"{XS}complexType") if t.get("name")}
+
+    def occurs(node) -> int:
+        m = node.get("maxOccurs", "1")
+        return UNBOUNDED if m == "unbounded" else int(m)
+
+    def walk(node, out, seen, factor):
+        for child in node:
+            tag = child.tag
+            if tag == f"{XS}element":
+                name = child.get("name") or child.get("ref", "").split(":")[-1]
+                if name:
+                    m = occurs(child)
+                    m = UNBOUNDED if UNBOUNDED in (m, factor) else m * factor
+                    prev = out.get(name)
+                    out[name] = m if prev is None else (UNBOUNDED if UNBOUNDED in (m, prev) else max(m, prev))
+            elif tag == f"{XS}extension":
+                base = child.get("base", "").split(":")[-1]
+                if base in types and base not in seen:
+                    walk(types[base], out, seen | {base}, factor)
+                walk(child, out, seen, factor)
+            elif tag in (f"{XS}sequence", f"{XS}choice", f"{XS}all"):
+                f = occurs(child)
+                walk(child, out, seen, UNBOUNDED if UNBOUNDED in (f, factor) else f * factor)
+            elif tag in (f"{XS}complexContent", f"{XS}simpleContent"):
+                walk(child, out, seen, factor)
+
+    table = {}
+    for name, node in types.items():
+        out: dict[str, int] = {}
+        walk(node, out, {name}, 1)
+        if out:
+            table[name] = out
+    _with_aliases(root, table)
+    try:
+        MAX_CACHE.write_text(json.dumps(table, sort_keys=True), encoding="utf-8")
+    except OSError:
+        pass                                  # a read-only deployment: computed each start
+    return table
+
+
+_max: dict | None = None
+
+
+def max_occurs(parent: str, child: str) -> int:
+    """How many ``child`` elements ``parent`` may hold (``UNBOUNDED``: any);
+    0 when the schema does not know the pair."""
+    global _max
+    if _max is None:
+        _max = max_table()
+    return _max.get(parent, {}).get(child, 0)
+
+
+# ------------------------------------------------------------ xlink arcroles
+ARCROLE_CACHE = CACHE_FILE.with_name("xsd_arcroles.json")
+ARCROLE_STEM = "urn:fdc:mismo.org:2009:residential/"
+
+
+def arcroles() -> list[str]:
+    """The RELATIONSHIP @xlink:arcrole values the GSE xlink schema allows."""
+    if ARCROLE_CACHE.exists():
+        return json.loads(ARCROLE_CACHE.read_text(encoding="utf-8"))
+    xlink = _schema_file().with_name(_schema_file().name.replace("_v1.3.xsd", "_xlink_v1.3.xsd"))
+    root = etree.parse(str(xlink)).getroot()
+    out = sorted({e.get("value") for e in root.iter(f"{XS}enumeration")
+                  if (e.get("value") or "").startswith(ARCROLE_STEM)})
+    try:
+        ARCROLE_CACHE.write_text(json.dumps(out, indent=0), encoding="utf-8")
+    except OSError:
+        pass
+    return out
+
+
+def arcrole(source: str, target: str) -> str:
+    """The one allowed arcrole from ``source`` to ``target`` (SIGNATORY ->
+    ROLE is IsAssociatedWith, INSPECTION -> ROLE is CompletedBy), or ''."""
+    hits = [a for a in arcroles() if a.startswith(f"{ARCROLE_STEM}{source}_") and a.endswith(f"_{target}")]
+    return hits[0] if len(hits) == 1 else ""

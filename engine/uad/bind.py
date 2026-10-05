@@ -933,6 +933,30 @@ def trim_cents(text: str, label: str = "") -> str:
     return AMOUNT_CENTS.sub(lambda m: m.group(1), text)
 
 
+NO_PRINT = re.compile(r"^<<.*>>$")
+
+
+def answer_label(value: str, printed: str = "") -> str:
+    """What the editor calls an answer, where the report may print nothing.
+
+    B-1 gives some answers no printed text -- "Known Renewable Energy
+    Components: true" prints "<<Does Not Display>>", because the components
+    themselves print instead.  That marker is a print rule, not a label: as a
+    choice it read "<<Does Not Display>>", and an answered "Yes" looked
+    unanswered (owner's section test B7).  A Boolean indicator is Yes / No
+    (A-1 format Boolean); any other value keeps its printed form or its own
+    words."""
+    printed = (printed or "").strip()
+    if printed and not NO_PRINT.match(printed):
+        return printed
+    v = (value or "").strip()
+    if v.lower() == "true":
+        return "Yes"
+    if v.lower() == "false":
+        return "No"
+    return _humanise(v) if v else ""
+
+
 def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -> str:
     """The text the page shows for a field.
 

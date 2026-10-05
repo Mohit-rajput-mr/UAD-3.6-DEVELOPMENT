@@ -301,6 +301,16 @@ class Store:
         did not already have.  (A document that is already invalid can still
         be edited; its existing errors are the Review Master's to report.)"""
         path = self.xml_path(case_id)
+        if not allow_invalid:
+            # the grid's totals are arithmetic A-1 defines (net adjustment,
+            # adjusted price, per unit / bedroom / area): kept current on every
+            # edit, from every route, so they cannot go stale (B4).  An import
+            # is taken as it is.
+            from uad import grid_math
+            try:
+                grid_math.recompute(tree)
+            except Exception:              # arithmetic never blocks a save
+                pass
         if not allow_invalid and path.exists():
             from collections import Counter
             before = self._memo("schema-messages", case_id,

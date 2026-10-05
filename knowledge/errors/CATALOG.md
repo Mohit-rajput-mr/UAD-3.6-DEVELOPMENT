@@ -1152,3 +1152,64 @@ test, not in a case script.
   Layer: render. State: general.
 - Test: `engine/tests/test_level_table.py` — SF1 row by row, and every cell
   printed for all 12 samples found in the published PDF (12/12).
+
+### E-079 A plural name is not a repeat: a second SALES_CONTRACT the schema refuses
+- Symptom (owner's section test B1): on a blank SF / Condo / 2-4 report, after
+  "Is there a sales contract? = Yes", Contract Price, Date, Sale Type and the
+  non-arm's-length comment answer 422 "Element 'SALES_CONTRACT': This element
+  is not expected. Expected is (EXTENSION)". No purchase could be entered.
+- Cause: A-1 conditions the price on `SalesContractReviewedIndicator = true`;
+  `edit.instance_for` treats a condition under a repeating block as "find the
+  instance with that value, or add one", and judged SALES_CONTRACTS/
+  SALES_CONTRACT repeating from its plural name. The GSE subschema allows one.
+- Fix: `xsd_order.max_occurs` (from the XSD, cached in `spec/xsd_max.json`);
+  `edit._plural` answers no when the schema allows one, so the condition is a
+  gate on the single block. Layer: model. State: general.
+- Test: `engine/tests/test_blank_writes.py` (all 12 blank templates).
+
+### E-080 An element typed by another name has no child order (alternate address)
+- Symptom (B8): 3.001 Alternate Physical Address refused on every type
+  ("PostalCode: This element is not expected").
+- Cause: the order table assumed every complexType is named after its element;
+  ADDITIONAL_ADDRESS is typed ADDRESS, so its children were appended in typing
+  order.
+- Fix: `xsd_order._aliases` maps element -> type where they differ; the order,
+  required, choice and max tables all carry the alias (adds ADDITIONAL_ADDRESS
+  and PROJECT_CONVERSION; no existing entry changed). Layer: model. State: general.
+- Test: `engine/tests/test_blank_writes.py`.
+
+### E-081 Date of Signature refused on SF and 2-4 (arcrole, and a third SIGNATORY)
+- Symptom (B9): 29.066 answers "RELATIONSHIP @arcrole enumeration" on SF; on
+  2-4, "SIGNATORY is not expected".
+- Cause: the writer hard-coded `{container}_CompletedBy_ROLE`; the schema's
+  arcrole for SIGNATORY -> ROLE is IsAssociatedWith. And a blank drops the
+  sample's parties but keeps SIGNATORY_Appraiser, so the writer found no
+  signatory linked to the appraiser and added a third (the subschema allows two).
+- Fix: `xsd_order.arcrole(source, target)` from the GSE xlink schema
+  (`spec/xsd_arcroles.json`); `edit._related_instance` reuses an orphaned block
+  (same label, or the only one left when the schema is full) and retargets its
+  existing relationship. Also: an empty PARTY is falsy in lxml, so
+  `_role_of_type` tests identity. Layer: model. State: general.
+- Test: `engine/tests/test_blank_writes.py`.
+
+### E-082 An answered Yes/No looks unanswered; choices read "<<Does Not Display>>"
+- Symptom (B7): 10 of 47 Yes/No fields show blank after "Yes"; their lists
+  offer "<<Does Not Display>>" and "None".
+- Cause: B-1 prints nothing for some answers (the detail rows print instead);
+  that print marker was used as the editor's label and value.
+- Fix: `bind.answer_label` -- a `<<...>>` marker is a print rule, not a label;
+  a Boolean is Yes / No. Used by `/fields` (`value`; `printed` keeps what the
+  report prints), the option lists and the report-frame pickers. The printed
+  report is unchanged. Layer: UI. State: general.
+- Test: `test_blank_writes.py::test_every_yes_no_answer_reads_as_answered`.
+
+### E-083 The sales grid's totals were never computed (B4)
+- Symptom: with a sale price and adjustments entered, Net Adjustment Total,
+  Adjusted Price and the per-unit / bedroom / area prices stay empty in the
+  XML (H-1 UAD1456, UAD1460, UAD1461).
+- Fix: `uad/grid_math.py`, each formula from A-1's Implementation Notes;
+  `Store.save_tree` recomputes on every edit from every route (not on import,
+  which is taken as it is). Validated first on the samples: all 141 delivered
+  totals reproduced exactly, none computed where a sample has none.
+  Layer: model. State: general.
+- Test: `engine/tests/test_grid_math.py` (12 samples + a blank report).

@@ -551,7 +551,9 @@ def _role_of_type(root: etree._Element, role_type: str) -> etree._Element:
             break
     else:
         parties = next(root.iter(f"{QN}PARTIES"))
-        party = next((x for x in parties.findall(f"{QN}PARTY") if not "".join(x.itertext()).strip()), None)             or insert_ordered(parties, "PARTY")
+        party = next((x for x in parties.findall(f"{QN}PARTY") if not "".join(x.itertext()).strip()), None)
+        if party is None:            # an empty PARTY is falsy in lxml: test identity, not truth
+            party = insert_ordered(parties, "PARTY")
         role, _ = ensure_path(party, ["ROLES", "ROLE"])
         detail, _ = ensure_path(role, ["ROLE_DETAIL"])
         insert_ordered(detail, "PartyRoleType").text = role_type
@@ -588,17 +590,38 @@ def _related_instance(root: etree._Element, dp: dict, role_type: str,
         if role is not None and role.findtext(f"{QN}ROLE_DETAIL/{QN}PartyRoleType", "").strip() == role_type:
             return inst
     parent, _ = ensure_path(anchor, upto)
-    inst = insert_ordered(parent, container)
     stem = f"{container}_{role_type}"
-    inst.set(f"{XL}label", _free_label(root, stem))
+    # A block whose role is gone (a blank report drops the sample's parties
+    # but keeps SIGNATORY_Appraiser) is this one, not a reason to add another:
+    # the subschema allows two SIGNATORYs, and a third made every signature
+    # date on a 2-4 unit report invalid (E-081).
+    orphans = [x for x in parent.findall(f"{QN}{container}") if bind.related_role(x) is None]
+    inst = next((x for x in orphans if (x.get(f"{XL}label") or "") == stem), None)
+    full = xsd_order.max_occurs(etree.QName(parent).localname, container)
+    if inst is None and orphans and full > 0 and len(parent.findall(f"{QN}{container}")) >= full:
+        inst = orphans[0]
+    if inst is None:
+        inst = insert_ordered(parent, container)
+        inst.set(f"{XL}label", _free_label(root, stem))
+    elif not inst.get(f"{XL}label"):
+        inst.set(f"{XL}label", _free_label(root, stem))
     role = _role_of_type(root, role_type)
     rels = next(root.iter(f"{QN}RELATIONSHIPS"), None)
     if rels is None:
         holder = next(e for e in root.iter() if isinstance(e.tag, str)
                       and "RELATIONSHIPS" in _order_of(etree.QName(e).localname))
         rels = insert_ordered(holder, "RELATIONSHIPS")
+    link = next((r for r in rels.findall(f"{QN}RELATIONSHIP")
+                 if r.get(f"{XL}from") == inst.get(f"{XL}label")
+                 and r.get(f"{XL}arcrole", "").endswith("_ROLE")), None)
+    if link is not None:
+        link.set(f"{XL}to", role.get(f"{XL}label"))
+        return inst
     link = insert_ordered(rels, "RELATIONSHIP")
-    link.set(f"{XL}arcrole", f"urn:fdc:mismo.org:2009:residential/{container}_CompletedBy_ROLE")
+    # the arcrole is the schema's own for this pair -- a SIGNATORY is
+    # IsAssociatedWith its ROLE, an INSPECTION CompletedBy it (E-081)
+    link.set(f"{XL}arcrole", xsd_order.arcrole(container, "ROLE")
+             or f"urn:fdc:mismo.org:2009:residential/{container}_CompletedBy_ROLE")
     link.set(f"{XL}from", inst.get(f"{XL}label"))
     link.set(f"{XL}to", role.get(f"{XL}label"))
     return inst
@@ -699,6 +722,11 @@ def _marks(dp: dict, field_id: str = "") -> dict[str, str]:
 def _plural(parent: str, child: str) -> bool:
     if child in bind.DOCUMENT_SINGLETONS:
         return False                     # one document, deal, service, subject
+    if xsd_order.max_occurs(parent, child) == 1:
+        # the subschema allows one (SALES_CONTRACTS/SALES_CONTRACT): a
+        # condition on it is a gate on that one block, never a reason to add
+        # a second, which the schema refuses (E-079)
+        return False
     return parent in (f"{child}S", f"{child}ES") or (
         child.endswith("Y") and parent == f"{child[:-1]}IES")
 

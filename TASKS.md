@@ -151,13 +151,13 @@ python engine/tasks.py add "Title" --area render --note "asked 2026-09-16"
 | T-1035 | open | structure | Dynamic report: generated blank skeleton, Property Setup, structure engine, applicability (owner prompt 2026-10-04, _work/dyn) |  |
 | T-1034 | open | compliance | B6 execute the 171 H-1 rules not executed yet |  |
 | T-1033 | open | pdf | B5 client-side PDF on the hosted site from the laid-out pages |  |
-| T-1032 | open | grid | B13 comparable adjustment write without adjust_type must be refused |  |
-| T-1031 | open | grid | B4 grid arithmetic: net adjustment, adjusted price, gross/net percent |  |
-| T-1030 | open | delivery | B12 package/check says ready while package.zip refuses |  |
-| T-1029 | open | grid | B10 comparables deletable below the spec minimum (sales 3, rental 1, GRM 3) |  |
-| T-1028 | open | data | B8/B9 3.001 alternate address and 29.066 signature date refused by schema |  |
-| T-1027 | open | data | B7 Yes/No answers display blank; pick list shows raw true |  |
-| T-1026 | open | data | B1 sales contract fields refused by schema after 20.000=Yes (container order) |  |
+| T-1032 | done | grid | B13 comparable adjustment write without adjust_type must be refused | comparables.adjustment_type_of from the B-1 grid (70 adjustment fields, one type each); 422 when none; test_an_adjustment_goes_under_its_own_type (2026-10-05) |
+| T-1031 | done | grid | B4 grid arithmetic: net adjustment, adjusted price, gross/net percent | E-083 uad/grid_math.py from A-1 notes, recomputed in Store.save_tree; 141/141 sample totals reproduced; test_grid_math.py 13/13 (2026-10-05) |
+| T-1030 | done | delivery | B12 package/check says ready while package.zip refuses | _export_verdict shared by check and export; ready includes sign-off; test_package_check_agrees_with_the_export (2026-10-05) |
+| T-1029 | done | grid | B10 comparables deletable below the spec minimum (sales 3, rental 1, GRM 3) | comparables.LIMITS sales 3-24, rental 1-24, GRM 3-24 (TOTAL-measured, owner's ask; GSE states no count); all 12 samples inside; test_comparable_limits.py (2026-10-05) |
+| T-1028 | done | data | B8/B9 3.001 alternate address and 29.066 signature date refused by schema | E-080 (ADDRESS alias) + E-081 (schema arcrole, orphan SIGNATORY reuse); test_blank_writes.py 12/12 (2026-10-05) |
+| T-1027 | done | data | B7 Yes/No answers display blank; pick list shows raw true | E-082 bind.answer_label; test_every_yes_no_answer_reads_as_answered (all SF1 Yes/No fields) (2026-10-05) |
+| T-1026 | done | data | B1 sales contract fields refused by schema after 20.000=Yes (container order) | E-079: xsd_order.max_occurs; test_blank_writes.py 12/12 blank templates (2026-10-05) |
 | T-1025 | done | deploy | Docker image with Chromium for server-side layout and PDF export | docker build + run: /healthz 200, login 303, sf1 report.pdf 200 application/pdf 6 pages 8.0s; DEPLOY_DOCKER.md (2026-10-04) |
 | T-1024 | done | data | Typing a whole address into a report address field must save it (owner's case: 186 8th St # 2B, Brooklyn, NY 11215 at 40.671292,-73.989409) | edit.split_address stores street/Unit/identifier/city/state/ZIP; 'Unit' is A-1's only AddressUnitDesignatorType; map pin at 40.671292,-73.989409 from Additional Data lat/long; 0 schema errors; test_address_entry 9/9; 136 tests pass; catalog E-076 (2026-10-04) |
 | T-1023 | done | docs | AI handover README so any agent continues with the same goal, approach and behaviour | AI_HANDOVER.md: owner's aim, main goal, live setup, finished work with evidence, next tasks in order, approach, takeover checklist, behaviour; linked from START_HERE, README, CLAUDE.md, HANDOFF (2026-10-04) |
@@ -303,7 +303,7 @@ python engine/tasks.py add "Title" --area render --note "asked 2026-09-16"
 | T-254 | done | ui | Full UI redesign of the application shell (report pages unchanged) | glass passcode gate, dashboard home (dark nav, 4 live KPI cards, searchable report list, import card, template cards), editor (dark section rail, underline tabs, chip header, card inspector); screenshots in _work/ui/; Chromium flows pass (reopen 0.01 s, photo 35 ms, edit + upload land, no page errors); 121 tests + access + durable pass (2026-10-04) |
 | T-255 | done | ui | Second redesign to the owner's monochrome editorial references (dark/light, Geist, hairlines, chrome glass) | monochrome editorial shell: Geist (OFL, bundled), dark default + light with header switch (kept per browser), '+' tracked labels, two-tone hero headlines, hairline lists, chrome-edged glass cards, ink buttons with arrows; report stage follows theme; comparables grid fixed-layout bug fixed; slim /fields + browser-kept editor data -> rail on reopen 0.01 s; screenshots _work/ui/; 157 tests + access + durable pass, Chromium flows pass, no page errors (2026-10-04) |
 | T-256 | done | ui | No browser alert/confirm/prompt pop-ups: the platform's own dialogs everywhere (owner 2026-10-04) | engine/app/ui/dialog.js (alert/confirm/prompt as Promises, theme-aware, Enter/Esc, focus kept); 19 native pop-ups replaced (editor 5, report frame 13 via window.top.UADDialog, map tool 1); Chromium test: cancel keeps / confirm deletes, export blockers listed, 0 native dialogs, 0 page errors; test_browser_scripts.py 10/10 (node --check of every generated script + no native dialogs) (2026-10-04) |
-| T-257 | open | ui | B11 reload loses the open report: case and section in the URL |  |
+| T-257 | done | ui | B11 reload loses the open report: case and section in the URL | #/case/<id>/s/<n> in the address bar; Chromium: reload keeps case + section, Back returns to list, no page errors (2026-10-05) |
 | T-258 | open | ui | B15 gated fields name the selection they wait on |  |
 | T-300 | open | feature | Transfer history — subject and per comparable, fully editable | add/remove rows; must appear in the report |
 | T-301 | open | feature | Comparable transfer history placed at the end of the comp workflow | |

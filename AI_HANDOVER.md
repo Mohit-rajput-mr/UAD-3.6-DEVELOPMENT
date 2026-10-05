@@ -150,6 +150,15 @@ Most recent first. Each line: what, and how it was verified.
   87 pass / 0 fail / 21 gap. New audit tools: `_work/audit/render_all.py`,
   `linediff.py` (whole-report word diff vs the D-1 PDFs; total is the number to
   drive down).
+- **2026-10-05 — Owner's section-test bugs B1, B4, B7-B13 fixed** (E-079..E-083):
+  sales contract saves (XSD maxOccurs, not plural names), alternate address
+  (element/type alias), signature date (schema arcrole, orphan SIGNATORY reuse),
+  Yes/No answers read as answered, grid totals computed from A-1 on every save,
+  grid limits 3-24 / 1-24 / 3-24, report and section in the URL, package check
+  agrees with export, adjustment type taken from the B-1 grid. Tests:
+  `test_blank_writes.py`, `test_grid_math.py`, `test_comparable_limits.py`.
+- **2026-10-05 — T-119 Level and Room Detail** (E-078): every level, B-1 rules,
+  checked against all 12 published PDFs (`test_level_table.py`).
 - **2026-10-04 — `docs/` reference set** (architecture, data model, rules and
   validation, report and PDF, comps/images/maps, import/export, persistence and
   deployment, testing, GSE vendor-recognition note), written from the code.
@@ -199,6 +208,19 @@ Full narrative and traps: last sections of `_work/HANDOFF.md`.
 Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
+
+**Owner's section test, 2026-10-05 (`_work/dyn/SECTION_TEST_REPORT.md`) — the
+current priority.** The owner's tester wrote ~1,060 fields on the live site and
+found 16 bugs (B1-B16), then asked for the report to become *dynamic*: a generated
+blank skeleton, a Property Setup step, a structure engine and spec-driven
+applicability (full brief condensed in the same file; task T-1035).
+Fixed and tested (E-078..E-083): B1 sales contract, B4 grid totals (A-1 formulas,
+141/141 sample values), B7 Yes/No display, B8 alternate address, B9 signature
+date, B10 grid limits, B11 report in the URL, B12 check = export, B13 adjustment
+type, plus T-119 Level and Room Detail. **Still open, in this order:** B15 (gated
+fields name their gate), B16 (photo category "DwellingFront" stored as "other",
+to confirm), B5 (client-side PDF on Vercel), B2/B3 + T-1035 (structure engine,
+skeleton, setup, applicability: B14), B6 (171 H-1 rules not executed).
 
 **State of the text-fidelity audit (updated 2026-10-04, slice 2).** Method:
 `python _work/audit/render_all.py` (renders the 12 samples to `_work/harness/`,

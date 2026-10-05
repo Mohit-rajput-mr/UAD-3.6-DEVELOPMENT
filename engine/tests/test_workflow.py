@@ -167,7 +167,10 @@ def test_removing_a_comparable_takes_its_photo_and_closes_the_gap(client, case):
     upload(client, case, comparable=1, caption="doomed")
     upload(client, case, comparable=2, caption="survivor")
 
-    client.delete(f"/api/cases/{case}/comparables/1", params={"kind": "sales"})
+    # the sales grid keeps at least three (B10): make room for the removal
+    client.post(f"/api/cases/{case}/comparables", json={"kind": "sales"})
+    r = client.delete(f"/api/cases/{case}/comparables/1", params={"kind": "sales"})
+    assert r.status_code == 200, r.text
     left = comp_photos(client, case)
     assert "doomed" not in left, "the removed comparable's photo was orphaned"
     assert left["survivor"] == 1, "the surviving photo did not move up"
@@ -804,11 +807,15 @@ def test_the_package_is_exactly_what_b1_allows(client, case, monkeypatch, tmp_pa
                     files={"file": ("front.png", io.BytesIO(png()), "image/png")})
     assert r.status_code == 200
     check = client.get(f"/api/cases/{case}/package/check").json()
-    assert check["ready"], check
+    # the delivery rules and the schema are satisfied; only the sign-off is
+    # left, and "ready" means the export would answer (B12)
+    assert not [f for f in check["faults"] if f["severity"] == "Fatal"] and not check["schema"], check
+    assert not check["signed_off"] and not check["ready"]
     assert check["images"] == ["front.png"]
 
     st.transition(case, "in_review", "test")
     st.transition(case, "signed", "test", force=True)
+    assert client.get(f"/api/cases/{case}/package/check").json()["ready"]
     r = client.get(f"/api/cases/{case}/package.zip")
     assert r.status_code == 200, r.text
     zf = zipfile.ZipFile(io.BytesIO(r.content))

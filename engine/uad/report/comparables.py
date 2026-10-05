@@ -34,6 +34,27 @@ from . import dashes, page, typography
 XLINK = "http://www.w3.org/1999/xlink"
 
 SPEC = Path(__file__).resolve().parents[2] / "spec"
+#: How many comparables each grid holds, (fewest, most).  The GSE appendices
+#: we hold state no count; these are WinTOTAL's measured grid limits
+#: (knowledge/total/FINDINGS.md: sales 3-24, rental 1-24, GRM 3-24), which the
+#: owner asked the editor to keep.  All twelve D-1 samples sit inside them
+#: (engine/tests/test_comparable_limits.py).  "Not used" has no limit.
+LIMITS = {"sales": (3, 24), "rental": (1, 24), "grm": (3, 24)}
+
+
+def limit_problem(kind: str, after: int) -> str:
+    """Why a grid may not hold ``after`` comparables, or ''.  A grid with
+    none is one the report does not use; the sales grid always is."""
+    if kind not in LIMITS:
+        return ""
+    low, high = LIMITS[kind]
+    if after > high:
+        return f"The {kind} grid holds at most {high} comparables."
+    if after < low and (after > 0 or kind == "sales"):
+        return (f"The {kind} grid needs at least {low} comparable{'s' if low > 1 else ''}; "
+                f"replace this one instead of removing it.")
+    return ""
+
 SHEETS = {
     "sales": ("b1_sales_grid", "SalesComparable", "Sales Comparison Approach"),
     "rental": ("b1_rental_grid", "RentalComparable", "Rental Information"),
@@ -1303,3 +1324,16 @@ def options_for(field_id: str) -> list[dict]:
         return []
     return [{"value": o["value"], "label": o.get("display") or o["value"]}
             for o in binding.enumerations if o.get("value")]
+
+
+def adjustment_type_of(field_id: str, kind: str = "sales") -> str:
+    """The ComparableAdjustmentType an adjustment cell's Report Field ID writes,
+    read from the B-1 grid ('' when the grid does not name exactly one).
+
+    Written without it, an adjustment fell through to the generic writer and
+    was filed under whichever COMPARABLE_ADJUSTMENT came first
+    (owner's section test B13)."""
+    if kind not in SHEETS or not SHEETS[kind][0]:
+        return ""
+    types = {r.adjust_type for r in rows(kind) if r.adjust_fid == field_id and r.adjust_type}
+    return next(iter(types)) if len(types) == 1 else ""

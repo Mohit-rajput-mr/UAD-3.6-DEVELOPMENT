@@ -2070,7 +2070,8 @@ def cell_point(fid: str, container: str, instance: "etree._Element | None" = Non
 
 
 def point_choices(dp: dict) -> tuple[tuple[str, str], ...]:
-    return tuple(((o.get("value") or "").strip(), (o.get("display") or o.get("value") or "").strip())
+    return tuple(((o.get("value") or "").strip(),
+                  bind.answer_label((o.get("value") or "").strip(), o.get("display") or o.get("value") or ""))
                  for o in dp.get("enumerations") or [] if (o.get("value") or "").strip()
                  and not dp.get("attribute"))
 
@@ -2602,11 +2603,11 @@ def _merged_choices(mismo: str, fid: str, dp: dict) -> tuple[tuple[str, str], ..
         value = (opt.get("value") or "").strip()
         if value and value not in seen:
             seen.add(value)
-            out.append((value, (opt.get("display") or shown.get(value) or value).strip()))
+            out.append((value, bind.answer_label(value, opt.get("display") or shown.get(value) or value)))
     for value in uadmap.options(mismo, slot=fid):
         if value not in seen:
             seen.add(value)
-            out.append((value, (shown.get(value) or value).strip()))
+            out.append((value, bind.answer_label(value, shown.get(value) or value)))
     out.sort(key=lambda pair: pair[1].casefold())
     return tuple(out)
 

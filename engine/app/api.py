@@ -533,7 +533,10 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
                 "indent": pf.indent,
                 "ordinal": pf.ordinal,
                 "group": pf.group,
-                "value": text,
+                # what the report prints; an answer B-1 prints nothing for
+                # ("<<Does Not Display>>") still reads as answered here
+                "value": text or bind.answer_label((node.text or "").strip() if node is not None else ""),
+                "printed": text,
                 "edit_value": (node.text or "").strip() if node is not None else "",
                 "edit_data_point": target,
                 "definition": dp.get("definition", ""),
@@ -544,7 +547,7 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
                         "format": point.get("format_type", ""),
                         "definition": point.get("definition", ""),
                         "options": [{"value": o["value"],
-                                     "label": o.get("display") or o["value"]}
+                                     "label": bind.answer_label(o["value"], o.get("display") or "")}
                                     for o in point.get("enumerations", []) if o.get("value")],
                     }
                     for point in {d["mismo"]: d for d in pf.binding.data_points
@@ -556,7 +559,7 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
                 "conditionality": dp.get("conditionality", ""),
                 "conditionality_details": dp.get("conditionality_details", ""),
                 "options": [
-                    {"value": o["value"], "label": o.get("display") or o["value"]}
+                    {"value": o["value"], "label": bind.answer_label(o["value"], o.get("display") or "")}
                     for o in dp.get("enumerations", []) if o.get("value")],
                 "data_points": [d.get("mismo") for d in pf.binding.data_points
                                 if d.get("mismo")],
@@ -1038,6 +1041,16 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     value = str(body.get("value", ""))
     point = body.get("data_point", "")
     adjust_type = body.get("adjust_type", "")
+    if not adjust_type:
+        adjust_type = comparables.adjustment_type_of(field_id, kind)
+        if not adjust_type:
+            try:
+                dp_ = edit.choose_data_point(edit.field(field_id).binding, point)
+            except (KeyError, ValueError):
+                dp_ = {}
+            if "COMPARABLE_ADJUSTMENT" in dp_.get("xpath", ""):
+                raise HTTPException(422, f"Field {field_id} is an adjustment; say which one "
+                                         "(adjust_type, a ComparableAdjustmentType).")
 
     pf = None
     if not adjust_type:
@@ -1164,6 +1177,9 @@ def add_comparable(case_id: str, request: Request,
     if kind not in comparables.SHEETS:
         raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
     _sheet, role, _title = comparables.SHEETS[kind]
+    problem = comparables.limit_problem(kind, len(_labels(tree, kind)) + 1)
+    if problem:
+        raise HTTPException(409, problem)
     added = comparables.add_property(tree, role)
     st.save_tree(case_id, tree)
     st.invalidate(case_id, _actor(request), "a comparable was added")
@@ -1181,6 +1197,10 @@ def remove_comparable(case_id: str, number: int, request: Request,
     if kind not in comparables.SHEETS:
         raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
     _sheet, role, _title = comparables.SHEETS[kind]
+    count = len(_labels(tree, kind))
+    problem = comparables.limit_problem(kind, count - 1) if 1 <= number <= count else ""
+    if problem:
+        raise HTTPException(409, problem)
     st.backfill_comparable_keys(case_id, _labels(tree, kind))
     try:
         comparables.remove_property(tree, role, number)
@@ -2192,16 +2212,34 @@ def set_extra_data(case_id: str, uid: str, request: Request, body: dict = Body(.
     return {"answers": extra.read(tree.getroot(), row)}
 
 
+def _export_verdict(case_id: str):
+    """One answer to "can this case be exported?", for the check and the
+    export alike -- they used to disagree: the check said ready (delivery
+    rules and schema only) while the export refused for the sign-off gate
+    (owner's section test B12).  Returns (built package, blockers)."""
+    st = store()
+    allowed, reasons = st.exportable(case_id)
+    built = _delivery(case_id)
+    blockers = [] if allowed else [str(r) for r in reasons]
+    blockers += [f"{f.code}: {f.message} {f.detail}".strip() for f in built.fatal]
+    problems = schema.validate(built.tree)
+    blockers += [f"Schema: {e}" for e in problems[:20]]
+    return built, problems, blockers, allowed
+
+
 @router.get("/cases/{case_id}/package/check")
 def package_check(case_id: str) -> dict:
-    """What stands between this case and a deliverable ZIP (B-1 pp 69-73)."""
+    """What stands between this case and a deliverable ZIP (B-1 pp 69-73),
+    including the sign-off gate: ``ready`` is true exactly when
+    ``package.zip`` would answer with an archive."""
     _case_or_404(case_id)
-    built = _delivery(case_id)
-    problems = schema.validate(built.tree)
+    built, problems, blockers, signed = _export_verdict(case_id)
     return {"faults": [f.to_json() for f in built.faults],
             "schema": [str(e) for e in problems[:50]],
             "images": sorted(built.images),
-            "ready": not built.fatal and not problems}
+            "signed_off": signed,
+            "blockers": blockers,
+            "ready": not blockers}
 
 
 @router.get("/cases/{case_id}/package.zip")
@@ -2213,26 +2251,12 @@ def package(case_id: str) -> Response:
     """
     _case_or_404(case_id)
     st = store()
-    allowed, reasons = st.exportable(case_id)
-    if not allowed:
-        return JSONResponse(
-            {"error": "this case cannot be exported yet", "reasons": reasons},
-            status_code=409)
-
     tree = st.tree(case_id)
-    built = _delivery(case_id)
-    if built.fatal:
+    built, problems, blockers, _signed = _export_verdict(case_id)
+    if blockers:
         return JSONResponse(
-            {"error": "the package does not meet the delivery requirements",
-             "reasons": [f"{f.code}: {f.message} {f.detail}".strip() for f in built.fatal]},
+            {"error": "this case cannot be exported yet", "reasons": blockers},
             status_code=409)
-    # The XML that ships must still be valid once the images and the PDF
-    # reference are written into it.
-    problems = schema.validate(built.tree)
-    if problems:
-        return JSONResponse(
-            {"error": "the delivered XML does not validate",
-             "reasons": [str(e) for e in problems[:20]]}, status_code=409)
     pdf_path = _render_pdf(case_id)
 
     # B-1 p69-73: one XML, one PDF, and the Images folder -- nothing else.

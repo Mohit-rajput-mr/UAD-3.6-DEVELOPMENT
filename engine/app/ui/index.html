@@ -357,6 +357,12 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 .group h3{margin:0 0 12px;font:500 10.5px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
 .newbox{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center}
 @media (max-width:760px){.newbox{grid-template-columns:1fr}}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.sbox{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--surface,transparent)}
+.shead{display:flex;align-items:center;gap:10px;margin-bottom:8px}.shead b{flex:1;font-weight:500}
+.srow{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
+.srow .sk{font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);width:36px}
+.srow .sn{flex:1}.sadd{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center}
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
 .tcard{position:relative;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:16px;min-height:186px;
   border:1px solid var(--line);background:var(--glass);transition:border-color .15s,transform .15s,box-shadow .15s}
@@ -887,7 +893,7 @@ function drawHead(){
     <div class="tabs" id="tabs" role="tablist"></div>`;
   setCrumb(`${esc(c.name)}<small>${esc(c.property_type.replace(/_/g,' '))}</small>`);
   // There is one form filler, and it is the report itself.
-  const tabs=[['report','Report'],['extra','Additional Data'],['comps','Comparables'],
+  const tabs=[['report','Report'],['structure','Property'],['extra','Additional Data'],['comps','Comparables'],
               ['map','Location Map'],['review','Review Master'],
               ['preview','Preview'],['history','History']];
   // On a narrow screen the inspector column is gone, so its panel becomes a tab.
@@ -923,6 +929,8 @@ window.addEventListener('message',e=>{
   const m=e.data||{}; if(!m.uad) return;
   if(e.source&&WARM_FRAMES.has(e.source)) return;      // the warm-up frame is not the report
   if(m.uad==='reshaped'&&S.caseId){ reshaped(m.info||{}); return; }
+  if(m.uad==='structure'&&S.caseId){       // units / ADUs added or removed by a typed count
+    toast((m.said||[]).slice(0,3).join(' \u00b7 '),4000); refresh().then(()=>checkFresh('form')); return; }
   for(const kind of ['form','preview']){
     const nf=S.swaps&&S.swaps[kind];
     if(nf&&e.source===nf.contentWindow){ if(m.uad==='frame-ready') finishSwap(kind,nf); return; }
@@ -971,6 +979,7 @@ function drawWork(){
   const w=panel;
   if(S.view==='comps')   return drawComps(w);
   if(S.view==='extra')   return drawExtra(w);
+  if(S.view==='structure') return drawStructure(w);
   if(S.view==='map'){
     if(!window.__uadMapListener){window.__uadMapListener=true;
       window.addEventListener('message',e=>{if(e.data&&e.data.uad==='media-added'){toast('Map saved — refreshing the report');refresh();}});}
@@ -1391,6 +1400,70 @@ async function marketImport(){
    A-1 requires these but the report has nowhere to show them: the scope of
    work, each property's coordinates, whether a reconsideration of value was
    requested.  One row per data point; a column per comparable where it repeats. */
+/* ------------------------------------------------- the property's structure
+   Dwellings and the units in each, ADUs, outbuildings -- the tree the report
+   is built from (uad/structure.py).  Each change adds or removes the parts of
+   the report that follow from it (a Unit Interior per unit, a Dwelling
+   Exterior per dwelling, an Outbuilding section, a unit row in every
+   comparable) and the counts 3.005 / 3.006 / 3.007 are read from the tree. */
+async function drawStructure(w){
+  if(!w.querySelector('.stree')) w.innerHTML='<div class="skel">'+'<i></i>'.repeat(8)+'</div>';
+  const [r,ob]=await Promise.all([api(`/cases/${S.caseId}/structure`),api('/fields/12.001/options')]);
+  if(S.view!=='structure') return;
+  if(!r||!r.ok){ w.innerHTML='<div class="panel empty">Could not load the structure.</div>'; return; }
+  drawStructureTree(w,r.data,((ob&&ob.ok&&ob.data.options)||[]));
+}
+function drawStructureTree(w,t,types){
+  const c=t.counts;
+  const unitRow=(u)=>`<div class="srow"><span class="sk">${u.adu?'ADU':'Unit'}</span>
+      <span class="sn">${esc(u.identifier||(u.adu?'ADU':'Unit'))}</span>
+      <button class="iconbtn" data-rm="${esc(u.key)}" data-what="${u.adu?'this ADU':'this unit'}" title="Remove" aria-label="Remove">${ICON.bin}</button></div>`;
+  const dw=t.dwellings.map((d,i)=>`<div class="sbox"><div class="shead"><span class="eyebrow">Dwelling ${i+1}</span>
+      <b>${esc(d.identifier||'Primary dwelling')}</b>
+      ${t.dwellings.length>1?`<button class="iconbtn" data-rm="${esc(d.key)}" data-what="this dwelling and its units" title="Remove dwelling">${ICON.bin}</button>`:''}</div>
+      ${d.units.map(unitRow).join('')}
+      <div class="sadd"><button class="btn sm" data-add="unit" data-dw="${i}">+ Living unit</button>
+        <button class="btn sm" data-add="adu" data-dw="${i}">+ ADU in this dwelling</button></div></div>`).join('');
+  const obs=t.outbuildings.map(o=>`<div class="sbox"><div class="shead"><span class="eyebrow">Outbuilding</span>
+      <b>${esc((types.find(x=>x.value===o.type)||{}).label||o.type||'Outbuilding')}</b>
+      <button class="iconbtn" data-rm="${esc(o.key)}" data-what="this outbuilding" title="Remove outbuilding">${ICON.bin}</button></div>
+      ${o.units.map(unitRow).join('')}</div>`).join('');
+  const opts=types.filter(x=>x.value!=='Other').map(x=>`<option value="${esc(x.value)}">${esc(x.label)}</option>`).join('');
+  w.innerHTML=`<div class="panel stree">
+    <div class="compbar"><span class="k">The property, as the report is built from it</span>
+      <span style="font:400 11px var(--mono);color:var(--muted)">${c.units_excluding_adus} unit(s) excluding ADUs &middot; ${c.adus} ADU(s) &middot; ${c.dwellings} dwelling(s) &middot; ${c.outbuildings} outbuilding(s) &mdash; counts follow the tree (F-1 3.005-3.007)</span></div>
+    <p class="lede" style="margin:4px 0 14px">Each dwelling gets its own Dwelling Exterior, each unit and ADU its own Unit Interior, each outbuilding its own section, and every comparable a row for each unit. Nothing is removed without showing what goes with it.</p>
+    <div class="sgrid">${dw}${obs}</div>
+    <div class="sadd" style="margin-top:14px">
+      <button class="btn" data-add="dwelling">+ Dwelling</button>
+      <select class="search" id="ob-type" aria-label="Outbuilding type" style="max-width:220px">${opts}<option value="ADUGarage">ADU/Garage (with ADU)</option></select>
+      <button class="btn" data-add="outbuilding">+ Outbuilding</button>
+      <button class="btn" data-add="adu-out">+ ADU in a detached outbuilding</button></div></div>`;
+  const change=async(body,method)=>{
+    const r=method==='DELETE'?await api(`/cases/${S.caseId}/structure?key=${encodeURIComponent(body.key)}`,{method:'DELETE'})
+                             :await api(`/cases/${S.caseId}/structure`,{method:'POST',body:JSON.stringify(body)});
+    if(!r||!r.ok){ UADDialog.alert((r&&r.data&&r.data.detail)||'That change could not be made.',{title:'Not changed',eyebrow:'Property'}); return; }
+    toast((r.data.said||[]).join(' · ')||'Updated',3500);
+    drawStructureTree(w,r.data,types);
+    refresh(); checkFresh('form');        // the sections and the report follow
+  };
+  w.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.add, dw=Number(b.dataset.dw||0), ty=($('#ob-type')||{}).value||'Other';
+    if(k==='unit') change({add:'unit',dwelling:dw});
+    else if(k==='adu') change({add:'adu',dwelling:dw});
+    else if(k==='dwelling') change({add:'dwelling'});
+    else if(k==='adu-out') change({add:'adu',location:'outbuilding',type:ty==='ADUGarage'?'ADUGarage':'StandaloneADU'});
+    else if(k==='outbuilding') change(ty==='ADUGarage'?{add:'adu',location:'outbuilding',type:'ADUGarage'}:{add:'outbuilding',type:ty});
+  });
+  w.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{
+    const key=b.dataset.rm;
+    const l=await api(`/cases/${S.caseId}/structure/loss?key=${encodeURIComponent(key)}`);
+    const lost=(l&&l.ok&&l.data.lost)||[];
+    const msg=lost.length?['These answers go with it:'].concat(lost.slice(0,25)).join('\n'):'Nothing entered for it is lost.';
+    if(!await UADDialog.confirm(msg,{title:`Remove ${b.dataset.what}?`,ok:'Remove',danger:true,eyebrow:'Property'})) return;
+    change({key},'DELETE');
+  });
+}
 async function drawExtra(w){
   if(!w.querySelector('.xtbl')) w.innerHTML='<div class="skel">'+'<i></i>'.repeat(14)+'</div>';
   const r=await api(`/cases/${S.caseId}/extra`);

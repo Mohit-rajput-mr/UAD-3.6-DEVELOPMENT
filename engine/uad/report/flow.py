@@ -838,6 +838,15 @@ EDIT_JS = """
       .then(function(r){return r.json().then(function(d){return {ok:r.ok,d:d};});})
       .then(function(res){
         el.classList.remove('saving');
+        if(!res.ok && res.d && res.d.confirm && res.d.lost){
+          // a smaller count would remove units that hold answers: say which first
+          var lines=['Making this count smaller removes these answers:'].concat(res.d.lost.slice(0,20));
+          return ask(lines.join('\\n'),{title:'Remove the unit and what was entered for it?',ok:'Remove',danger:true})
+            .then(function(ok){
+              if(!ok){ el.textContent=el.dataset.was||''; return false; }
+              body.confirm=true; return sendNow(el,body);
+            });
+        }
         if(!res.ok){
           el.classList.add('failed');
           el.title=(res.d && res.d.detail) || 'This value could not be saved.';
@@ -867,6 +876,8 @@ EDIT_JS = """
         // been rebuilt on that shape (uad/shape.py) and the editor reloads it
         if(res.d && res.d.reshaped && window.parent!==window)
           window.parent.postMessage({uad:'reshaped',info:res.d.reshaped},'*');
+        else if(res.d && res.d.structure && res.d.structure.length && window.parent!==window)
+          window.parent.postMessage({uad:'structure',said:res.d.structure},'*');
         return true;
       })
       .catch(function(){el.classList.remove('saving');el.classList.add('failed');
@@ -1966,3 +1977,87 @@ def to_pdf(html: str, out_path) -> Any:
         finally:
             browser.close()
     return out_path
+
+
+# ------------------------------------------------- geometry from elsewhere
+def _outer(el) -> str:
+    from lxml import html as lhtml
+    return lhtml.tostring(el, encoding="unicode", with_tail=False)
+
+
+def _inner(el) -> str:
+    from lxml import html as lhtml
+    return (el.text or "") + "".join(lhtml.tostring(c, encoding="unicode", with_tail=True) for c in el)
+
+
+def skeleton(galley_html: str) -> list[dict]:
+    """What MEASURE_JS reports, minus the numbers: every block's markup and
+    parts, read from the server's own galley.  The browser's measurement is
+    then trusted for geometry only (``trusted``)."""
+    from lxml import html as lhtml
+    doc = lhtml.fromstring(galley_html)
+    galley = doc.get_element_by_id("galley")
+    out = []
+    for blk in [c for c in galley if isinstance(c.tag, str) and "blk" in (c.get("class") or "").split()]:
+        e = {"n": int(blk.get("data-n") or 0), "kind": blk.get("data-kind"),
+             "group": int(blk.get("data-group") or 0), "section": blk.get("data-section") or "",
+             "newpage": blk.get("data-newpage") is not None, "html": _inner(blk),
+             "outer": _outer(blk)[:80], "cols": [], "rows": [], "head": ""}
+        if "cols" in (blk.get("class") or "").split():
+            for col in [c for c in blk if isinstance(c.tag, str) and "col" in (c.get("class") or "").split()]:
+                kids = [k for k in col if isinstance(k.tag, str)]
+                items, i = [], 0
+                while i < len(kids):
+                    html = _outer(kids[i])
+                    if "yn" in (kids[i].get("class") or "").split() and i + 1 < len(kids):
+                        html += _outer(kids[i + 1])
+                        i += 1
+                    items.append({"html": html})
+                    i += 1
+                e["cols"].append(items)
+        table = next((c for c in blk if isinstance(c.tag, str) and c.tag == "table"), None)
+        if table is not None:
+            head = table.find("thead")
+            cg = table.find("colgroup")
+            e["head"] = (_outer(cg) if cg is not None else "") + (_outer(head) if head is not None else "")
+            t_outer = _outer(table)
+            e["tableOpen"] = t_outer[:t_outer.index(">") + 1]
+            body = table.find("tbody")
+            for tr in ([r for r in body if isinstance(r.tag, str) and r.tag == "tr"] if body is not None else []):
+                e["rows"].append({"html": _outer(tr), "sub": "sub" in (tr.get("class") or "").split()})
+        out.append(e)
+    return out
+
+
+def trusted(measured: list[dict], galley_html: str) -> list[dict]:
+    """The server's own markup with the browser's numbers.
+
+    A layout another browser will be shown must hold nothing a browser sent
+    but geometry: block by block, item by item and row by row the structure
+    has to agree with the server's galley, and only heights and offsets are
+    taken.  Any disagreement (a different document, a stale galley, a forged
+    payload) raises -- the layout is then simply not shared."""
+    base = skeleton(galley_html)
+    if len(base) != len(measured):
+        raise ValueError("the measurement is of a different report")
+    num = lambda v: float(v) if isinstance(v, (int, float)) and v == v else 0.0   # noqa: E731
+    for e, m in zip(base, measured):
+        if not isinstance(m, dict) or int(m.get("n", -1)) != e["n"]:
+            raise ValueError("the measurement is of a different report")
+        e["height"], e["lead"] = num(m.get("height")), num(m.get("lead"))
+        if e["cols"]:
+            mc = m.get("cols") or []
+            if len(mc) != len(e["cols"]) or any(len(a) != len(b) for a, b in zip(mc, e["cols"])):
+                raise ValueError("the measurement is of a different report")
+            for items, mitems in zip(e["cols"], mc):
+                for it, mi in zip(items, mitems):
+                    it["top"], it["height"] = num(mi.get("top")), num(mi.get("height"))
+        if "tableOpen" in e:
+            mr = m.get("rows") or []
+            if len(mr) != len(e["rows"]):
+                raise ValueError("the measurement is of a different report")
+            for r, mrow in zip(e["rows"], mr):
+                r["height"] = num(mrow.get("height"))
+            e["headHeight"] = num(m.get("headHeight"))
+            e["contHeadHeight"] = num(m.get("contHeadHeight"))
+    return base

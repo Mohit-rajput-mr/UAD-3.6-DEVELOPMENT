@@ -209,6 +209,16 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+**Structure engine and applicability (2026-10-05, E-086..E-088, T-1035 done).**
+`uad/structure.py` holds the property as a tree (dwellings -> units, ADUs,
+outbuildings); counts 3.005/3.006/3.007 are read from it; API
+`/api/cases/{id}/structure` (GET/POST/DELETE, `/loss`) and the editor's
+"Property" tab; typed counts run the same operations and ask before losing
+answers. Which sections a report has comes from B-1's own display sentences
+(`spec/section_display.json`, extractor `uad/spec/extract_section_display.py`),
+checked equal to the D-1 Scenario Matrix. Shared layouts take only numbers from
+the browser (`flow.trusted`). Harness 87/0/21 unchanged.
+
 **One report, opens instantly (2026-10-05, E-084/E-085, T-1037).** There is no
 template picker: `POST /api/cases` with no template starts `api.NEW_REPORT`, and
 `uad/shape.py` rebuilds the report on the closest D-1 structure when an answer

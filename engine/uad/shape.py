@@ -102,6 +102,8 @@ def reshape(current: etree._ElementTree, template: str) -> Reshaped:
     delivery.stamp_software(target.getroot())
     steps = autofill.plan(target, source)
     done = autofill.apply(target, steps, source)
+    from . import structure
+    structure.tidy(target.getroot())      # links, identifiers and counts follow the new tree
     return Reshaped(template=template, property_type=templates.get(template).property_type,
                     tree=target, carried=done["written"], failed=done["failed"])
 

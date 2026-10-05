@@ -266,11 +266,65 @@ def section_shown(ctx: "Ctx", section: str) -> bool | None:
                 return True
         legal = rules.values_of(ctx.root, "ProjectLegalStructureType")
         return bool([v for v in legal if v and v != "None"])
+    if section == "Manufactured Home":
+        # B-1 p182 (bullets, so not in the extracted sentences): the section is
+        # there for a manufactured home that is a dwelling or an ADU --
+        # ConstructionMethodType = "Manufactured" on the subject's improvement
+        subj = bind.subject(ctx.root)
+        return "Manufactured" in rules.values_of(ctx.root, "ConstructionMethodType", subj)
+    for rule in section_display().get(section, []):
+        decided = _evaluate_section_rule(rule, ctx.root)
+        if decided is not None:
+            return decided
     rule = section_rules().get(section)
     if not rule:
         return None
     decided = rules.evaluate(rule, ctx.root)
     return decided.shown if decided.known else None
+
+
+#: sections whose own questions switch them on (B-1: "displays when one or
+#: more of the ... features is true" -- the questions are in the section), so
+#: the editor keeps them on the page to be answered; the print rule still hides
+#: them on the report when the answers are No
+SELF_GATED = {"Disaster Mitigation", "Energy Efficient and Green Features", "Sales Contract",
+              "Revision History", "Supplemental Information"}
+
+
+@lru_cache(maxsize=1)
+def section_display() -> dict[str, list[str]]:
+    """B-1's own "the section displays when ..." sentences, per section
+    (spec/section_display.json, uad/spec/extract_section_display.py)."""
+    path = SPEC / "section_display.json"
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8")).get("sections", {})
+    return {name: [r["text"] for r in v.get("displays", [])] for name, v in data.items()
+            if name not in SELF_GATED}
+
+
+_NAMED = re.compile(r"\b([A-Z][A-Za-z]+)\s*\(UID")
+
+
+def _evaluate_section_rule(rule: str, root) -> bool | None:
+    """A section rule, read against the subject when the data points it names
+    are the subject's (a comparable's outbuilding is not the subject's), and
+    against the whole document otherwise (the approach indicators)."""
+    names = _NAMED.findall(rule)
+    subj = bind.subject(root)
+    scope = subj if (subj is not None and names
+                     and all(rules.values_of(root, n, subj) or _subject_point(n) for n in names)) else None
+    if names and not any(rules.values_of(root, n, scope) for n in names):
+        return None           # unanswered: the section stays, to be answered
+    decided = rules.evaluate(rule, root, scope)
+    return decided.shown if decided.known else None
+
+
+@lru_cache(maxsize=256)
+def _subject_point(name: str) -> bool:
+    """Does A-1 place this data point under PROPERTY (the subject's side)?"""
+    return any(name == dp.get("mismo") and "PROPERTIES/PROPERTY" in dp.get("xpath", "")
+               for f in _fields().values() for dp in (f.get("data_points") or []))
 
 
 # ---------------------------------------------------------------------------

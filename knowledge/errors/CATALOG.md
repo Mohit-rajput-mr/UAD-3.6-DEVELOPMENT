@@ -1246,3 +1246,49 @@ test, not in a case script.
   Layer: model + UI. State: general.
 - Test: `engine/tests/test_one_report.py` (condo, co-op, 2 and 4 units, ADU;
   values kept; no reshape when the shape does not change).
+
+### E-086 Units and ADUs were numbers, not structure (owner's test B2/B3)
+- Symptom: 3.005 = 3 wrote "3" and left 2 PROPERTY_UNITs; 3.006 = 1 created no
+  ADU; nothing could add a unit, dwelling, ADU or outbuilding.
+- Fix: the structure engine in `uad/structure.py` (tree, add_unit,
+  add_dwelling, add_outbuilding [ADU in it], remove, set_units, set_adus,
+  recount, tidy, prune_dangling) per F-1 3.005-3.007 / 8.000 / 10.002 / 10.011
+  and B-1's section table. Counts are read from the tree; identifiers are made
+  unique; every sales comparable of a multi-unit subject gets one unit row per
+  subject unit, linked PROPERTY_UNIT_IsComparableFor_PROPERTY_UNIT (as both
+  2-4 samples); removal takes the comparable rows, rental comparisons and
+  defects that only that unit explained, and `loss` lists what goes first
+  (typed counts answer 409 with the list until confirmed). API:
+  GET/POST/DELETE /api/cases/{id}/structure, GET .../structure/loss; editor tab
+  "Property". Blanks now keep AccessoryDwellingUnitIndicator and OutbuildingType
+  (a blank SF4 counted its ADU as a living unit). Layer: model. State: general.
+- Test: `engine/tests/test_structure_engine.py` -- every one of the 12 D-1
+  structures rebuilt from a new report through the API (dwellings, units per
+  dwelling, ADUs, outbuildings, counts), comparable unit rows linked, loss
+  shown before removal, last unit/dwelling kept. Chromium: Property tab adds a
+  unit and a standalone-ADU outbuilding; the report gains "Unit Interior -
+  Building 1 - Unit 2" and an Outbuilding section.
+
+### E-087 Sections that do not apply were offered (owner's test B14)
+- Symptom: a site-built house showed Manufactured Home, Income Approach and a
+  comparables' Outbuilding; spec/section_rules.json held each chapter's first
+  sentence, which for several sections is a description, not the rule.
+- Fix: `uad/spec/extract_section_display.py` -> `spec/section_display.json`,
+  B-1's own "the section displays when ..." sentences per chapter;
+  `form.section_shown` evaluates them on the subject when the data points are
+  the subject's, keeps a section whose switch is unanswered, and reads the
+  Manufactured Home trigger B-1 gives in bullets (ConstructionMethodType =
+  Manufactured, p182). Sections whose own questions switch them on stay in the
+  editor. Blanks keep the approach indicators (they decide the shape).
+- Test: `engine/tests/test_section_display.py` -- Rental Information, Income
+  Approach, Cost Approach, outbuildings, PUD/project and manufactured home on
+  every sample equal the GSE's D-1 Sample Scenario Matrix (12/12).
+
+### E-088 A shared layout could carry browser-sent markup
+- Found while building E-084: MEASURE_JS returns each block's HTML, and pages
+  were assembled from it; a layout kept for other reports would have held what
+  a browser sent, and a case changing during "keep" stored a 6-page layout.
+- Fix: `flow.skeleton` / `flow.trusted` -- the server's own galley supplies
+  every block's markup; only heights and offsets come from the browser; block,
+  item and row counts must agree or nothing is kept; the key is checked again
+  after building. Test: `test_one_report.py::test_a_shared_layout_takes_only_numbers_from_the_browser`.

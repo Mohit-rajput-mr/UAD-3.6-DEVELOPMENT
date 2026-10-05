@@ -287,8 +287,10 @@ class Renderer:
     # A host without Chromium (serverless) cannot measure a page.  The
     # appraiser's browser can: it is handed the galley, reports the geometry,
     # and is handed back pages to check.  The planning arithmetic stays in
-    # flow.py.  Nothing the browser sends is stored or shown to anyone else --
-    # the result goes back only to the browser that measured it.
+    # flow.py.  The pages built from a browser's measurement go back only to
+    # that browser; a layout shared with others (app/layouts.py, api
+    # ``layout_keep``) takes nothing from the browser but its numbers -- the
+    # markup is the server's own galley (flow.trusted).
     def client_galley(self, case_id: str, kind: str) -> str:
         # one build per version of the case: the galley depends on nothing the
         # key does not cover, and building it costs about a second

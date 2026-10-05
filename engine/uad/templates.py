@@ -151,6 +151,16 @@ IDENTITY = frozenset({
     # a comparable's number is the column it occupies, not the sample's answer:
     # without it every blank report was blocked as "not numbered 1..n"
     "PropertyOrdinalNumber",
+    # what a unit or an outbuilding *is*: a blank of SF4 that dropped the ADU
+    # flag counted its ADU as a second living unit and became a 2-unit report
+    # (uad/structure.py counts from these)
+    "AccessoryDwellingUnitIndicator", "OutbuildingType",
+    # which approaches the report develops decides which sections it has
+    # (B-1: Sales Comparison / Income / Cost / Rental Information display on
+    # these); a new report starts with its shape's, and the appraiser changes
+    # them -- unanswered, the editor hid the sales grid of every new report
+    "SalesComparisonApproachIndicator", "CostApproachIndicator", "IncomeApproachIndicator",
+    "RentScheduleIndicator",
 })
 
 

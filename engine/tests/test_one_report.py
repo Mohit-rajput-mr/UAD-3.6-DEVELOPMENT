@@ -101,3 +101,31 @@ def test_an_unnamed_report_is_named_by_its_address(client):
     assert client.get(f"/api/cases/{cid}").json()["name"] == "New report"
     client.patch(f"/api/cases/{cid}/fields/3.000", json={"value": "186 8th St # 2B, Brooklyn, NY 11215"})
     assert client.get(f"/api/cases/{cid}").json()["name"] == "186 8th St # 2B, Brooklyn, NY 11215"
+
+
+def test_a_shared_layout_takes_only_numbers_from_the_browser():
+    """flow.trusted: the browser's markup is replaced by the server's galley;
+    a measurement of another document is refused."""
+    from uad.report import flow
+    t = templates.load("sf1_appraisal_v1_4", blank=True)
+    galley, _meta = flow.prepare(t, edit=True)
+    sk = flow.skeleton(galley)
+    forged = [{**e, "height": 10.0, "lead": 0.0, "html": "<script>alert(1)</script>",
+               "cols": [[{**it, "html": "<script>x</script>", "top": 0, "height": 5} for it in col]
+                        for col in e["cols"]],
+               "rows": [{**r, "html": "<script>y</script>", "height": 5} for r in e["rows"]],
+               "headHeight": 1, "contHeadHeight": 1} for e in sk]
+    got = flow.trusted(forged, galley)
+    blob = repr(got)
+    assert "<script>" not in blob and got[0]["height"] == 10.0
+    with pytest.raises(ValueError):
+        flow.trusted(forged[:-1], galley)
+    with pytest.raises(ValueError):
+        flow.trusted([{**forged[0], "n": 999}] + forged[1:], galley)
+
+
+def test_warming_twice_at_once_is_harmless(client):
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(4) as ex:
+        codes = list(ex.map(lambda _: client.post("/api/warm", json={}).status_code, range(4)))
+    assert codes == [200] * 4

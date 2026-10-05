@@ -822,6 +822,21 @@ def set_field(case_id: str, field_id: str, request: Request,
     reshaped = _reshape_if_needed(case_id, case, st.tree(case_id), tree)
     if reshaped is not None:
         tree = reshaped.tree
+    # A count typed where the report asks for it (3.005 units, 3.006 ADUs) is
+    # a shortcut for the structure operations: the tree is made to hold that
+    # many, and the counts are then read back from the tree (uad/structure.py).
+    said: list[str] = []
+    if written.data_point in ("LivingUnitExcludingADUCount", "AccessoryDwellingUnitTotalCount") \
+            and written.new.isdigit():
+        from uad import structure
+        candidate, lost = deepcopy(tree), []
+        op = structure.set_units if written.data_point == "LivingUnitExcludingADUCount" else structure.set_adus
+        said = op(candidate.getroot(), int(written.new), lost)
+        if lost and not body.get("confirm"):
+            return JSONResponse({"detail": "Removing a unit would discard what was entered for it.",
+                                 "lost": lost[:40], "confirm": True}, status_code=409)
+        tree = candidate
+    if reshaped is not None:
         st.save_tree(case_id, tree, allow_invalid=True)
         st.set_shape(case_id, reshaped.template, reshaped.property_type)
     else:
@@ -836,6 +851,7 @@ def set_field(case_id: str, field_id: str, request: Request,
     root = tree.getroot()
     groups = bind.read_groups(root, pf.binding, ordinal=ordinal)
     return {"written": written.to_json(),
+            "structure": said,
             "reshaped": None if reshaped is None else {
                 "property_type": reshaped.property_type,
                 "type_name": templates.PROPERTY_TYPES.get(reshaped.property_type, reshaped.property_type),
@@ -844,6 +860,81 @@ def set_field(case_id: str, field_id: str, request: Request,
             # what the report prints: whole dollars without cents, as D-1 sets them
             "value": bind.trim_cents(bind.display_value(groups, pf.binding), pf.label),
             "state": st.get(case_id).state}
+
+
+# ------------------------------------------------------------ structure engine
+@router.get("/cases/{case_id}/structure")
+def get_structure(case_id: str) -> dict:
+    """Dwellings with their units, outbuildings, and the counts read from them."""
+    from uad import structure
+    _case_or_404(case_id)
+    return structure.tree(store().tree(case_id).getroot())
+
+
+@router.get("/cases/{case_id}/structure/loss")
+def structure_loss(case_id: str, key: str = Query(...)) -> dict:
+    """What removing this dwelling, unit, ADU or outbuilding would discard."""
+    from uad import structure
+    _case_or_404(case_id)
+    root = store().tree(case_id).getroot()
+    node = structure.find(root, key)
+    if node is None:
+        raise HTTPException(404, "that part of the property is no longer in the report")
+    return {"lost": structure.loss(root, node)}
+
+
+def _structure_change(case_id: str, request: Request, fn, what: str) -> dict:
+    from uad import structure
+    st = store()
+    candidate = deepcopy(st.tree(case_id))
+    try:
+        said = fn(candidate.getroot())
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(422, str(exc).strip("'"))
+    st.save_tree(case_id, candidate)
+    st.invalidate(case_id, _actor(request), what)
+    st.log(case_id, _actor(request), "structure", "; ".join(said) or what)
+    return {**structure.tree(candidate.getroot()), "said": said}
+
+
+@router.post("/cases/{case_id}/structure")
+def add_structure(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Add a dwelling, a living unit, an ADU (in a dwelling or an outbuilding)
+    or an outbuilding.  Counts 3.005 / 3.006 / 3.007 follow from the tree."""
+    from uad import structure
+    _case_or_404(case_id)
+    what = str(body.get("add") or "")
+    ident = str(body.get("identifier") or "")
+    dwelling = int(body.get("dwelling") or 0)
+    if what == "dwelling":
+        def fn(r): return structure.add_dwelling(r, ident)
+    elif what == "unit":
+        def fn(r): return structure.add_unit(r, dwelling, ident)
+    elif what == "adu" and body.get("location") == "outbuilding":
+        kind = str(body.get("type") or "StandaloneADU")
+        def fn(r):
+            if kind == "ADUGarage":           # B-1 p217: Other + "ADUGarage"
+                return structure.add_outbuilding(r, "Other", "ADUGarage", adu=True)
+            return structure.add_outbuilding(r, kind, adu=True)
+    elif what == "adu":
+        def fn(r): return structure.add_unit(r, dwelling, ident or "ADU", adu=True)
+    elif what == "outbuilding":
+        kind, other = str(body.get("type") or "Other"), str(body.get("other") or "")
+        def fn(r): return structure.add_outbuilding(r, kind, other)
+    else:
+        raise HTTPException(400, "add one of: dwelling, unit, adu, outbuilding")
+    return _structure_change(case_id, request, fn, f"added a {what}")
+
+
+@router.delete("/cases/{case_id}/structure")
+def remove_structure(case_id: str, request: Request, key: str = Query(...)) -> dict:
+    """Remove a dwelling, unit, ADU or outbuilding -- and only what exists
+    because of it (its comparable unit rows, rental comparisons, defects).
+    Ask ``/structure/loss`` first to show the appraiser what goes."""
+    from uad import structure
+    _case_or_404(case_id)
+    return _structure_change(case_id, request, lambda r: structure.remove(r, key),
+                             "removed part of the property")
 
 
 def _reshape_if_needed(case_id: str, case, before_tree, after_tree):
@@ -1764,9 +1855,16 @@ def layout_keep(case_id: str, kind: str, body: dict = Body(...)) -> dict:
         return {"kept": False}
     try:
         caps = {int(k): float(v) for k, v in (body.get("caps") or {}).items()}
+        # only the browser's numbers are used: the markup of every block is
+        # the server's own galley for this key (flow.trusted), so a shared
+        # layout never holds anything a browser sent
+        galley = renderer().client_galley(case_id, kind)
+        measured = flow.trusted(measured, galley)
         html, _planned = renderer().client_pages(case_id, kind, measured, caps)
     except (KeyError, TypeError, ValueError):
         return {"kept": False}
+    if key != renderer().key(case_id, kind):
+        return {"kept": False}               # the case changed meanwhile
     from app.layouts import neutral
     layouts().put(key, kind, neutral(html, case_id))
     return {"kept": True}
@@ -2040,6 +2138,10 @@ def warm(body: dict = Body(default={})) -> dict:
                       actor="server", case_id=case_id)
         except KeyError:
             raise HTTPException(404, f"no template {template}")
+        except Exception:                       # noqa: BLE001
+            # two windows (or two server copies) warming at once: the other
+            # one made it, which is all that was wanted
+            st.get(case_id)
     ready = {}
     for kind in renders.KINDS:
         html, _key = _shared_page(case_id, kind)

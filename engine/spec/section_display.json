@@ -1,0 +1,293 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide v1.4.pdf, each chapter's own display sentences",
+ "sections": {
+  "Summary": {
+   "number": 1,
+   "displays": [
+    {
+     "page": 78,
+     "text": "The Summary section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Assignment Information": {
+   "number": 2,
+   "displays": [],
+   "repeats": []
+  },
+  "Subject Property": {
+   "number": 3,
+   "displays": [
+    {
+     "page": 117,
+     "text": "The Subject Property section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Site": {
+   "number": 4,
+   "displays": [
+    {
+     "page": 124,
+     "text": "The Site section always displays in the report; however, there are multiple data points from the Subject Property section that determine conditionality, such as: •."
+    }
+   ],
+   "repeats": []
+  },
+  "Disaster Mitigation": {
+   "number": 5,
+   "displays": [
+    {
+     "page": 152,
+     "text": "The Disaster Mitigation section displays when DisasterMitigationFeatureType (UID: 3700.0002, FID: 5.000) is a value other than ‘None’."
+    }
+   ],
+   "repeats": []
+  },
+  "Energy Efficient and Green Features": {
+   "number": 6,
+   "displays": [
+    {
+     "page": 155,
+     "text": "The Energy Efficient and Green Features section displays when one or more of the three energy efficient or green features is “true”."
+    }
+   ],
+   "repeats": []
+  },
+  "Sketch": {
+   "number": 7,
+   "displays": [
+    {
+     "page": 162,
+     "text": "The Sketch section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Dwelling Exterior": {
+   "number": 8,
+   "displays": [
+    {
+     "page": 166,
+     "text": "The Dwelling Exterior section displays when ImprovementType (UID: 0300.0009, FID: Not on report) = “Dwelling”."
+    }
+   ],
+   "repeats": [
+    {
+     "page": 164,
+     "text": "The section repeats for each dwelling on the property."
+    }
+   ]
+  },
+  "Manufactured Home": {
+   "number": 9,
+   "displays": [],
+   "repeats": [
+    {
+     "page": 181,
+     "text": "This section repeats for each manufactured home on the property that is either a dwelling or an ADU."
+    },
+    {
+     "page": 182,
+     "text": "The Manufactured Home section repeats for each manufactured home on the property that is either a dwelling or an ADU."
+    }
+   ]
+  },
+  "Unit Interior": {
+   "number": 10,
+   "displays": [
+    {
+     "page": 189,
+     "text": "The Unit Interior section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Functional Obsolescence": {
+   "number": 11,
+   "displays": [
+    {
+     "page": 213,
+     "text": "The Functional Obsolescence section always displays in the report."
+    }
+   ],
+   "repeats": []
+  },
+  "Outbuilding": {
+   "number": 12,
+   "displays": [
+    {
+     "page": 216,
+     "text": "The Outbuilding section displays when ImprovementType (UID: 0300.0009, FID: Not on report) = “Outbuilding”."
+    }
+   ],
+   "repeats": []
+  },
+  "Vehicle Storage": {
+   "number": 13,
+   "displays": [
+    {
+     "page": 228,
+     "text": "The Vehicle Storage section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Subject Property Amenities": {
+   "number": 14,
+   "displays": [
+    {
+     "page": 234,
+     "text": "The Subject Property Amenities section always displays in the report."
+    }
+   ],
+   "repeats": []
+  },
+  "Overall Quality and Condition": {
+   "number": 15,
+   "displays": [
+    {
+     "page": 242,
+     "text": "The Overall Quality and Condition section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Highest and Best Use": {
+   "number": 16,
+   "displays": [
+    {
+     "page": 245,
+     "text": "The Highest and Best Use section always displays with the static text, “Is the present use of the subject property …”, followed by the required fields."
+    }
+   ],
+   "repeats": []
+  },
+  "Market": {
+   "number": 17,
+   "displays": [
+    {
+     "page": 248,
+     "text": "The Market section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Project Information": {
+   "number": 18,
+   "displays": [
+    {
+     "page": 257,
+     "text": "The Project Information section displays when the property is in a project (condominium, cooperative, or condop) or in a PUD."
+    }
+   ],
+   "repeats": []
+  },
+  "Subject Listing Information": {
+   "number": 19,
+   "displays": [
+    {
+     "page": 272,
+     "text": "The Subject Listing Information section with the italicized text, “Current and/or relevant listings of the subject property (minimum 1 year lookback)” always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Sales Contract": {
+   "number": 20,
+   "displays": [
+    {
+     "page": 278,
+     "text": "The Sales Contract section displays when an active sales contract exists."
+    },
+    {
+     "page": 279,
+     "text": "The Sales Contract section displays when SalesContractExistsIndicator (UID: 0600.0016, FID: 20.000) = “true”."
+    }
+   ],
+   "repeats": []
+  },
+  "Prior Sale and Transfer History": {
+   "number": 21,
+   "displays": [
+    {
+     "page": 284,
+     "text": "The Prior Sale and Transfer History section always displays in the report."
+    }
+   ],
+   "repeats": []
+  },
+  "Sales Comparison Approach": {
+   "number": 22,
+   "displays": [
+    {
+     "page": 297,
+     "text": "Sales Comparison Approach displays when SalesComparisonApproachIndicator (UID: 1000.0032, FID: Not on report) = \"true\"."
+    }
+   ],
+   "repeats": []
+  },
+  "Rental Information": {
+   "number": 23,
+   "displays": [
+    {
+     "page": 317,
+     "text": "The Rental Information section displays when RentScheduleIndicator (UID: 1000.0031, FID: Not on report) = \"true\"."
+    }
+   ],
+   "repeats": []
+  },
+  "Income Approach": {
+   "number": 24,
+   "displays": [
+    {
+     "page": 338,
+     "text": "The section displays when IncomeApproachIndicator (UID: 1000.0030, FID: Not on report) = \"true\"."
+    }
+   ],
+   "repeats": []
+  },
+  "Cost Approach": {
+   "number": 25,
+   "displays": [
+    {
+     "page": 345,
+     "text": "The Cost Approach section displays when CostApproachIndicator (UID: 1000.0027, FID: Not on report) = “true”."
+    }
+   ],
+   "repeats": []
+  },
+  "Reconciliation": {
+   "number": 26,
+   "displays": [
+    {
+     "page": 369,
+     "text": "The Reconciliation section always displays."
+    }
+   ],
+   "repeats": []
+  },
+  "Revision History": {
+   "number": 27,
+   "displays": [
+    {
+     "page": 381,
+     "text": "The Revision History section displays only if the information is provided."
+    }
+   ],
+   "repeats": []
+  },
+  "Supplemental Information": {
+   "number": 28,
+   "displays": [],
+   "repeats": []
+  },
+  "Certifications and Scope of Work": {
+   "number": 29,
+   "displays": [],
+   "repeats": []
+  }
+ }
+}

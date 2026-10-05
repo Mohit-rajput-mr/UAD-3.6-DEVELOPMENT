@@ -16,9 +16,11 @@ under the work folder on a single server.  Opening any report whose key has
 been laid out before -- by this server or any other copy, for this case or any
 other -- is one read.
 
-What is shared is the page the server itself built (``flow.paginate`` /
-``flow.build``) from a layout pass; it is stored only when that pass reports
-that every page fits the body rule.
+What is shared is a page the server itself built: from its own Chromium
+(``flow.build``), or from a browser's layout pass in which only the browser's
+numbers are used and every block's markup is the server's own galley for that
+key (``flow.trusted``) -- so a shared layout never holds anything a browser
+sent.  It is stored only when that pass reports that every page fits.
 """
 from __future__ import annotations
 

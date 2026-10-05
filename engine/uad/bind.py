@@ -498,9 +498,13 @@ def commentary_category(field_id: str) -> str:
 
 @lru_cache(maxsize=4096)
 def binding_for(field_id: str) -> "Binding | None":
-    """A binding built straight from A-1's index, for any Report Field ID."""
+    """A binding built straight from A-1's index, for any Report Field ID (an
+    update or completion report's namespaced ID from its own appendix)."""
     entry = _index().get(field_id)
-    if not entry or not entry.get("data_points"):
+    if entry is None:
+        from . import report_types
+        return report_types.binding(field_id)
+    if not entry.get("data_points"):
         return None
     loc = (entry.get("locations") or [{}])[0]
     return Binding(field_id=field_id, section=loc.get("section", ""),

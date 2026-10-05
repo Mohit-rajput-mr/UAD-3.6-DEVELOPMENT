@@ -197,9 +197,21 @@ def _fields() -> dict:
     return json.loads((SPEC / "field_index.json").read_text(encoding="utf-8"))["fields"]
 
 
+def field_entry(fid: str) -> dict:
+    """A field's index entry: A-1's, or an update / completion report's own."""
+    entry = _fields().get(fid)
+    if entry is None and "-" in fid:
+        from .. import report_types
+        entry = report_types.entry(fid)
+    return entry or {}
+
+
 @lru_cache(maxsize=4096)
 def binding(fid: str) -> bind.Binding | None:
     entry = _fields().get(fid)
+    if entry is None and "-" in fid:
+        from .. import report_types
+        return report_types.binding(fid)
     if not entry or not entry.get("data_points"):
         return None
     loc = (entry.get("locations") or [{}])[0]
@@ -378,6 +390,12 @@ def resolve(ids: list[str], label: str) -> list[str]:
         if fid in _fields() and _fields()[fid].get("data_points"):
             out.append(fid)
             continue
+        if "-" in fid:
+            # an update / completion report's own ID: its appendix is the only
+            # place to look it up, never the URAR's labels
+            if binding(fid) is not None:
+                out.append(fid)
+            continue
         head = fid.split(".")[0]
         hits = _by_section_label().get((head, label.strip().casefold()), [])
         if not hits:
@@ -420,6 +438,35 @@ def _walk(ctx: Ctx, fid: str):
                 if isinstance(node.tag, str) and _local(node) in names and (node.text or "").strip():
                     yield _local(node), node
         return
+    if "-" in fid and ctx.scope is None:
+        # An update / completion report's table column (C-3 Itemized List of
+        # Repairs): one field ID for the column, one row per block.  A-1's
+        # convention -- a field ID per repeat, the ordinal picking the block --
+        # would read only the first repair.
+        points = [dp for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")
+                  and "PARTIES/PARTY/" not in dp.get("xpath", "")]
+        conts = {bind.repeating_container(dp.get("xpath", "")) for dp in points}
+        if len(conts) == 1 and "" not in conts:
+            container = conts.pop()
+            blocks, seen = [], set()
+            for dp in points:
+                segs = bind._tail(dp.get("xpath", ""))
+                for node in ctx.root.iter(f"{M}{dp['mismo']}"):
+                    if segs and not bind._matches(node, segs):
+                        continue
+                    block = node.getparent()
+                    while block is not None and _local(block) != container:
+                        block = block.getparent()
+                    if block is None:
+                        continue
+                    path = bind.stable_path(block)
+                    if path not in seen:
+                        seen.add(path)
+                        blocks.append((path, block))
+            order = {bind.stable_path(e): n for n, e in enumerate(ctx.root.iter(f"{M}{container}"))}
+            for _path, block in sorted(blocks, key=lambda pb: order.get(pb[0], 0)):
+                yield from bind._walk(ctx.root, b, block, 1)
+            return
     roles = _fields().get(fid, {}).get("roles") or []
     if ctx.scope is None and roles and "Subject Property" not in roles and any(
             "PROPERTIES/PROPERTY" in dp.get("xpath", "") for dp in b.data_points):
@@ -472,9 +519,13 @@ def instances(ctx: Ctx, fid: str) -> list[tuple[str, list[tuple[str, str]]]]:
     """Values grouped by the repeated container each sits in, in document order."""
     order: list[str] = []
     groups: dict[str, list[tuple[str, str]]] = {}
+    # an update / completion report's row identity (report_types.entry)
+    only = field_entry(fid).get("instance") if "-" in fid else None
     for name, node in _walk(ctx, fid):
         text = (node.text or "").strip()
         if not text:
+            continue
+        if only and not bind._instance_matches(node, only):
             continue
         key = bind.instance_of(node)
         if key not in groups:
@@ -856,6 +907,10 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
     ctx = Ctx(root, None, folder, list(media or []), edit=edit,
               slots=list(slots or []) if edit else [],
               imported=frozenset(imported or ()))
+    from .. import report_types
+    kind = report_types.kind_of(root)
+    if kind != report_types.URAR:
+        return _build_kind(kind, ctx, sample=sample)
     elements: list[dict] = []
     for pg in form()["pages"]:
         for el in pg["elements"]:
@@ -883,14 +938,65 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
     return blocks
 
 
+def _build_kind(kind: str, ctx: Ctx, *, sample: bool) -> list[Block]:
+    """A Restricted Appraisal Update or Completion Report, drawn from its own
+    Layout appendix (C-2 / C-3) with the URAR's own section machinery.
+
+    Its sections are not the URAR's: none of B-1's section rules applies, and
+    a tab opens a page only where the Layout starts one with it.  What prints
+    within a section follows the same rule as the URAR -- an answered field
+    prints, an unanswered one keeps its place only in the editor."""
+    from .. import report_types
+    toc = list(report_types.spec(kind)["sections"].values())
+
+    def toc_name(tab: str) -> str:
+        return next((t for t in toc if t == tab), None) or next(
+            (t for t in toc if t.startswith(tab)), tab)
+
+    # (section as B-x names it, tab as the Layout prints it, elements, opens a page)
+    sections: list[list] = []
+    for pg in report_types.form(kind)["pages"]:
+        els = [{**el, "page": pg["page"]} for el in pg["elements"]]
+        tabs = [e for e in els if e["kind"] == "tab"]
+        if els and els[0]["kind"] == "h1" and tabs:
+            # C-2 / C-3 open their last section's page with its first subsections
+            # (Scope of Work, Intended Use) and set the tab below them, as C-1
+            # does on its page 40: they are that section's, not the one before.
+            sections.append([toc_name(tabs[0]["title"]), tabs[0]["title"], [], True])
+        for i, el in enumerate(els):
+            if el["kind"] == "tab":
+                name = toc_name(el["title"])
+                if sections and sections[-1][0] == name and not any(
+                        e["kind"] == "tab" for e in sections[-1][2]):
+                    sections[-1][2].append(el)
+                    continue
+                sections.append([name, el["title"], [el], i == 0])
+            elif sections:
+                sections[-1][2].append(el)
+    blocks: list[Block] = []
+    for title, printed, els, opens_page in sections:
+        out = _section(title, printed, els, ctx, sample=sample, report=kind)
+        if out and opens_page and blocks:
+            out[0].new_page = True
+        blocks += out
+    _resolve_visibility(blocks)
+    return blocks
+
+
 NEW_PAGE_SECTIONS = {"Assignment Information", "Sales Comparison Approach",
                      "Certifications and Scope of Work"}
 # Sections whose body is the report's own fixed wording rather than case data.
 FIXED_TEXT = {"Certifications and Scope of Work", "Certifications"}
 
 
+def _fixed(base: str) -> bool:
+    """A section of fixed wording: the URAR's, or an update / completion
+    report's "Certifications and Scope of Work" / "... Intended Use/User"."""
+    return base in FIXED_TEXT or base.startswith("Certifications")
+
+
 def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
-             sample: bool) -> list[Block]:
+             sample: bool, report: str = "urar") -> list[Block]:
     base = title.split(" - [")[0]
     ctx = ctx.inside(ctx.scope, section=base, base=base, rule_fid="")
     out: list[Block] = []
@@ -936,11 +1042,27 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind == "tab":
             flush()
             out.append(Block("tab", section=printed, title=printed, group=3,
-                             new_page=base in NEW_PAGE_SECTIONS))
+                             new_page=base in NEW_PAGE_SECTIONS and report == "urar"))
             continue
         if kind == "h1":
             flush()
             t = _label_fill(el.get("title", ""), ctx)
+            if report != "urar":
+                # a heading closes the block the last margin rule governed
+                ctx.placeholders.pop("block_shown", None)
+                ctx.placeholders["rule_fid"] = ""
+                ctx.placeholders["cert_no"] = ""
+                ctx.placeholders.pop("para", None)
+                # The supervisory appraiser's certifications print when there
+                # is one: B-1 29.054's rule for the URAR, and what D-2 AU1 (no
+                # supervisor) prints, though B-2 p49 says the subsection
+                # "always displays" (knowledge/errors/CATALOG.md E-089).
+                ctx.placeholders["gate"] = "" if not t.startswith("Supervisory Appraiser") else (
+                    "1" if "AppraiserSupervisor" in rules.values_of(ctx.root, "PartyRoleType") else "0")
+                if ctx.placeholders["gate"] == "0":
+                    out.append(Block("h1", section=printed, title=t, group=2, visible=False,
+                                     html=_h1_html(t, el.get("note", ""), "")))
+                    continue
             extra = text_of(ctx, ids) if ids and base == "Cost Approach" else ""
             html_ = _h1_html(t, el.get("note", ""), extra)
             writable = [f for f in ids if binding(f) is not None]
@@ -1074,7 +1196,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             out.append(Block("check", section=printed, visible=value is not None,
                              html=_check_full_html(el["text"], value)))
             continue
-        if kind == "slot" and base in FIXED_TEXT:
+        if kind == "slot" and _fixed(base):
             # A slot in the margin opens the paragraph that follows it and
             # carries the rule that decides whether the paragraph prints.  Some
             # of those fields are also the appraiser's to answer -- whether
@@ -1083,7 +1205,12 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             # value of its own it is drawn as well as read.
             if el.get("x0", 99) < 46:
                 anchor = (el.get("ids") or [""])[0]
+                again = report != "urar" and ctx.placeholders.get("rule_fid") == anchor
                 ctx.placeholders["rule_fid"] = anchor
+                if report != "urar" and not again:
+                    # paragraphs counted from this slot (see _fixed_text)
+                    ctx.placeholders["para"] = "0"
+                    ctx.placeholders["para_open"] = ""
                 _anchor_gate(ctx, anchor)
                 answer = _fixed_text_answer(ctx, anchor, printed)
                 if answer is not None:
@@ -1096,10 +1223,11 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                 pass
             flush()
             main = [i for i in ids if not re.search(r"\.\d$", i) or i.count(".") == 1]
-            if any(i.endswith(".1") or i.endswith(".2") for i in ids):
+            if any(i.endswith(".1") or i.endswith(".2") for i in ids) and (
+                    report == "urar" or not [m for m in main if binding(m) is not None]):
                 continue           # exhibits are placed below from the case's images
             value = text_of(ctx, main, " ")
-            if base in FIXED_TEXT and not [f for f in main if binding(f) is not None]:
+            if _fixed(base) and not [f for f in main if binding(f) is not None]:
                 continue           # a slot that only carries a paragraph's rule
             writable = [f for f in main if binding(f) is not None]
             if ctx.edit and writable and base != "Summary":
@@ -1119,9 +1247,44 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             out.append(Block("text", section=printed, visible=bool(value), fids=ids,
                              html=f"<div class='txc'>{_paras(value)}</div>"))
             continue
+        if report != "urar" and kind == "head" and el.get("text", "").strip() == "Final Value Condition Statement":
+            # B-3 02.007: composed from the Market Value Condition exactly as
+            # B-1 composes the URAR's (the same sentences, B-3 p19-20)
+            flush()
+            value = final_value_statement(ctx)
+            out.append(Block("prose", section=printed, visible=bool(value), fids=ids,
+                             html=(f"<div class='txcb'><b>{esc(el['text'].strip())}&nbsp; </b>"
+                                   f"{esc(value)}</div>")))
+            continue
+        if report != "urar" and _fixed(base) and kind == "head" and NUMBER.match(el.get("text", "").strip()):
+            # A numbered certification.  B-2 / B-3 give the alternatives of one
+            # certification (#10 interior and exterior / exterior / none) one
+            # field ID and one sentence each, and C-2 / C-3 draw them as the
+            # same number repeated: the n-th repeat is the n-th sentence.  The
+            # number opens the paragraph, so it also takes the rule of the
+            # margin slot set beside it.
+            number = el["text"].strip()
+            same = ctx.placeholders.get("cert_no") == number
+            ctx.placeholders["cert_no"] = number
+            ctx.placeholders["alt"] = str(int(ctx.placeholders.get("alt", "0")) + 1 if same else 0)
+            beside = next((e for e in els if e["kind"] == "slot" and e.get("x0", 99) < 46
+                           and abs(e["y"] - el["y"]) < 6 and e.get("page") == el.get("page")), None)
+            if beside is not None:
+                ctx.placeholders["rule_fid"] = (beside.get("ids") or [""])[0]
+        if report != "urar" and _fixed(base) and kind == "head" and not el.get("bold", False):
+            # C-2 / C-3 set a paragraph's first line a point above its margin
+            # slot, so the slot beside a line governs it, not the one before
+            beside = next((e for e in els if e["kind"] == "slot" and e.get("x0", 99) < 46
+                           and abs(e["y"] - el["y"]) < 4 and e.get("page") == el.get("page")), None)
+            anchor = (beside.get("ids") or [""])[0] if beside is not None else ""
+            if anchor and anchor != ctx.placeholders.get("rule_fid"):
+                ctx.placeholders["rule_fid"] = anchor
+                ctx.placeholders["para"] = "0"
+                ctx.placeholders["para_open"] = ""
+                _anchor_gate(ctx, anchor)
         if kind in ("row", "head", "check", "prose"):
             item = _column_item(el, ctx)
-            if base in FIXED_TEXT and kind in ("head", "prose") \
+            if _fixed(base) and kind in ("head", "prose") \
                     and not el.get("bold", False):
                 flush()
                 _fixed_text(out, printed, el, ctx)
@@ -1140,12 +1303,22 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         blk = out[i]
         if blk.kind == "h2-repeat":
             body = out[i + 1] if i + 1 < len(out) and out[i + 1].kind == "cols" else None
-            template = [e for e in els if e["kind"] in ("row", "head")
-                        and 230 < e["y"] < 300 and e.get("page") == 5]
+            if report == "urar":
+                template = [e for e in els if e["kind"] in ("row", "head")
+                            and 230 < e["y"] < 300 and e.get("page") == 5]
+            else:
+                # the rows the Layout draws under its own "[Role]/[Role]" bar
+                at = next(n for n, e in enumerate(els) if "[Role]" in e.get("title", ""))
+                template = []
+                for e in els[at + 1:]:
+                    if e["kind"] in ("h1", "h2", "tab"):
+                        break
+                    if e["kind"] in ("row", "head"):
+                        template.append(e)
             for party, title in contact_parties(ctx):
                 pctx = ctx.inside(party)
                 html_ = _h2_html(title, 540)
-                if ctx.edit and title.startswith("Client"):
+                if ctx.edit and title.startswith("Client") and report == "urar":
                     # the client's role is picked where it prints (H-1 UAD1543)
                     shown_ = title.split("/", 1)[1] if "/" in title else ""
                     html_ = (f"<div class='h2' style='width:540pt'>Client/<span class='v pick' data-fid='2.011'"
@@ -1165,7 +1338,9 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
     _place_a1_only(out, base, printed, ctx)
 
     # exhibits: the section's images, under its exhibits bar
-    exhibits = _exhibits(ctx, base)
+    exhibits = _exhibits(ctx, base) if report == "urar" else (
+        _kind_exhibits(ctx, report) if any(b.kind in ("h1", "tab") and b.title.endswith("Exhibits")
+                                           for b in out) else [])
 
     # The Sales Comparison Map sets full page under its own H1 (E p66); a
     # sketch or floor plan sets full page in Sketch, before its commentary.
@@ -1194,7 +1369,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                                  html=_exhibits_html([it], base, ctx.edit)))
         exhibits = [it for it in exhibits if it not in sketches]
     for n, blk in enumerate(out):
-        if blk.kind == "h1" and blk.title.endswith("Exhibits"):
+        if blk.kind in ("h1", "tab") and blk.title.endswith("Exhibits"):
             offset = 0
             for offset, pair in enumerate(_pairs(exhibits)):
                 out.insert(n + 1 + offset,
@@ -1421,12 +1596,18 @@ def _anchor_gate(ctx: Ctx, fid: str) -> bool:
     their own and stay out with it: a slot that decides sets the state for the
     block, a slot that does not inherits a hidden one.
     """
-    for rule in _fields().get(fid, {}).get("display_rules", []):
-        decided = rules.evaluate(rule.get("rule", ""), ctx.root)
+    for rule in field_entry(fid).get("display_rules", []):
+        text = rule.get("rule", "")
+        if "-" in fid and "alt" in ctx.placeholders:
+            # one sentence per alternative of a numbered certification
+            parts = [p for p in re.split(r"(?=\bDisplay (?:(?:descriptive|this) text )?when\b)", text) if p.strip()]
+            if len(parts) > 1:
+                text = parts[min(int(ctx.placeholders["alt"] or 0), len(parts) - 1)]
+        decided = rules.evaluate(text, ctx.root, lenient="-" in fid)
         if decided.known:
             ctx.placeholders["block_shown"] = "1" if decided.shown else "0"
-            return decided.shown
-    return ctx.placeholders.get("block_shown") != "0"
+            return decided.shown and ctx.placeholders.get("gate") != "0"
+    return ctx.placeholders.get("block_shown") != "0" and ctx.placeholders.get("gate") != "0"
 
 
 def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
@@ -1441,6 +1622,18 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     if not text:
         return
     fid = ctx.placeholders.get("rule_fid", "")
+    if "-" in fid and "para" in ctx.placeholders:
+        # B-2 / B-3 state the alternatives a slot governs as one sentence
+        # each ("Display descriptive text when GovernmentAgencyAppraisalType
+        # = 'FHA' ...", then "... 'USDA'", then "... 'VA'"), in the order the
+        # Layout sets the paragraphs under it: the n-th paragraph after the
+        # slot takes the n-th sentence.  A line that ends a sentence closes its
+        # paragraph.  A numbered certification counts by its number instead.
+        if ctx.placeholders.get("para_open") == "closed":
+            ctx.placeholders["para"] = str(int(ctx.placeholders["para"]) + 1)
+        ctx.placeholders["para_open"] = "closed" if text.rstrip().endswith((".", ":")) else "open"
+        if ctx.placeholders.get("cert_no", "") == "":
+            ctx.placeholders["alt"] = ctx.placeholders["para"]
     shown = _anchor_gate(ctx, fid)
     if shown and not _agency_ok(ctx, text):
         shown = False
@@ -2042,7 +2235,7 @@ def _no_defects(ctx: Ctx, el: dict) -> bool:
     for row in el["rows"]:
         for c in row["cells"]:
             for fid in c["ids"]:
-                for dp in _fields().get(fid, {}).get("data_points", []):
+                for dp in field_entry(fid).get("data_points", []):
                     for k in (dp.get("requires") or {}):
                         if k.endswith("DefectsExistIndicator"):
                             scope = ctx.scope if ctx.scope is not None else subject(ctx)
@@ -2417,6 +2610,57 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
         if int(slot.get("section") or 0) == number:
             out.append({"src": "", "title": str(slot.get("caption") or ""), "caption": "",
                         "slot": str(slot["id"]), "named": True})
+    return out
+
+
+#: B-3 p30: the text each kind of completion-report image is titled with,
+#: ahead of what identifies it and its own caption
+REPAIR_TITLES = {"false": "Itemized List of Repairs", "true": "New Observed Items for Repair"}
+INCONSISTENT_TITLE = "Inconsistent Item"
+
+
+def _kind_exhibits(ctx: Ctx, report: str) -> list[dict]:
+    """An update / completion report's exhibits, titled as B-2 / B-3 compose
+    them (B-3 p30-32): a repair's photo "Itemized List of Repairs - [Feature]
+    - [caption]", a newly observed one "New Observed Items for Repair - ...",
+    an item not completed per plans "Inconsistent Item - [Feature] -
+    [caption]", any other "[category] - [caption]" -- the category's display
+    text from A-2 / A-3, none for the ...Exhibit categories.  The subject's
+    front photo and the legal description's image have boxes of their own."""
+    from .. import report_types
+    shown: dict[str, str] = {}
+    for f in report_types.spec(report)["fields"].values():
+        for dp in f["data_points"]:
+            if dp.get("mismo") == "ImageCategoryType":
+                for e in dp.get("enumerations") or []:
+                    shown.setdefault(e["value"], e.get("display", ""))
+    feature = binding(report_types.fid(report, "03.001"))
+    out = []
+    for im in _images(ctx):
+        if im["category"] in ("PropertyPhoto", "LegalDescription"):
+            continue
+        node = im["node"]
+        owner = next((a for a in node.iterancestors()
+                      if _local(a) in ("DEFECT", "SUBJECT_TO_COMPLETION_ITEM")), None)
+        parts: list[str] = []
+        if owner is not None and _local(owner) == "DEFECT":
+            new = (_find_text(owner, "CompletionReportNewDefectIndicator") or "false").strip()
+            parts.append(REPAIR_TITLES.get(new, REPAIR_TITLES["false"]))
+            group = [(n, _find_text(owner, n)) for n in
+                     ("DefectComponentLabelType", "DefectComponentLabelTypeOtherDescription")
+                     if _find_text(owner, n)]
+            if group and feature is not None:
+                parts.append(bind.display_value(group, feature))
+        elif owner is not None:
+            parts += [INCONSISTENT_TITLE, _find_text(owner, "SubjectToCompletionFeatureDescription")]
+        else:
+            parts.append(shown.get(im["category"], ""))
+        parts.append(im["caption"])
+        title = " - ".join(p.strip() for p in parts if p and p.strip())
+        out.append({"src": _data_uri(im["path"]), "title": title, "caption": "",
+                    "location": im["location"], "category": im["category"],
+                    "layout": layout_of(im["category"]), "media_id": "",
+                    "image_key": bind.stable_path(node), "raw_caption": im["caption"]})
     return out
 
 

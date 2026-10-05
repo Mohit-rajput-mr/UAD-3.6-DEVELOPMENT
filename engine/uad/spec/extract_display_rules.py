@@ -99,10 +99,24 @@ def _split_ids(cell: str) -> list[str]:
     return [p for p in re.split(r"[|,/]|\s+", cell) if FID.match(p)]
 
 
-def extract(pdf: Path) -> list[Rule]:
+def extract(pdf: Path, sections: dict[int, str] | None = None, *,
+            carry: bool = False) -> list[Rule]:
+    """Every display-rule table row of an Implementation Guide (B-1, or B-2 /
+    B-3 with their own ``sections``).
+
+    ``carry`` lets a field-less row at the top of a table continue the last
+    row of the table before it (a table broken over a page).  B-2 and B-3 need
+    it and are checked with it; on B-1 it attaches unrelated text to 9.013,
+    26.009 and others, so B-1 is read without it."""
+    sections = sections or SECTIONS
     doc = pymupdf.open(pdf)
     rules: list[Rule] = []
     section = ""
+    # The row a field-less row continues.  It carries across tables: a table
+    # that breaks over a page repeats its header and goes on with rows that
+    # have no field ID of their own (B-2 p47, the third alternative of
+    # certification 10), and those belong to the last row before the break.
+    current: Rule | None = None
     try:
         for pno in range(doc.page_count):
             page = doc[pno]
@@ -114,7 +128,7 @@ def extract(pdf: Path) -> list[Rule]:
                 if not m:
                     continue
                 number = int(m.group(1))
-                name = SECTIONS.get(number)
+                name = sections.get(number)
                 if name and m.group(2).strip().lower().startswith(name.split()[0].lower()):
                     section = f"{number} {name}"
 
@@ -174,7 +188,12 @@ def extract(pdf: Path) -> list[Rule]:
                 if not ({"rule", "origin", "source_fid"} & set(columns.values())):
                     continue
 
-                current: Rule | None = None
+                # what a page break interrupted: only a table on a later page,
+                # in the same section, and only its leading field-less rows
+                # that state a display rule of their own
+                over = (current if carry and current is not None
+                        and current.section == section and current.page < pno + 1 else None)
+                current = None
                 for row in body:
                     cells = {role: _clean(row[ci])
                              for ci, role in columns.items() if ci < len(row)}
@@ -196,7 +215,14 @@ def extract(pdf: Path) -> list[Rule]:
                         "source_fid": cells.get("source_fid", ""),
                         "origin": cells.get("origin", ""),
                     }
+                    if over is not None and not ids and current is None:
+                        if re.match(r"^Display\b", carried["rule"]):
+                            over.merge(Rule(field_id="", rule=carried["rule"]))
+                            continue
+                        if any(carried.values()):
+                            over = None
                     if ids:
+                        over = None
                         for fid in ids:
                             current = Rule(field_id=fid, section=section,
                                            table=caption, page=pno + 1, **carried)

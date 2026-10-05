@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This sample XML file represents the 'CR1_CompletionReport_v1.4' scenario.-->
+<!--XML Comments: DO NOT DELIVER THE GRAY XML COMMENTS IN THE SUBMISSION PAYLOAD TO UCDP. THEY HAVE BEEN INCLUDED FOR IMPLEMENTATION REFERENCE ONLY.-->
+<!--XML File Created: 02/10/2026-->
+<!--XML Encoding: All XML files submitted to the Uniform Collateral Data Portal MUST follow the UTF-8 encoding standard. -->
+<!--Copyright Notice: Copyright 2026 Fannie Mae and Freddie Mac. Trademarks of respective owners.
+                      This document relates to the Uniform Mortgage Data Program, an effort undertaken jointly by
+                      Freddie Mac and Fannie Mae at the direction of the Federal Housing Finance Agency.-->
+<MESSAGE xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.mismo.org/residential/2009/schemas" xmlns:gse="http://www.datamodelextension.org" MISMOReferenceModelIdentifier="3.6.0366">
+	<DOCUMENT_SETS>
+		<DOCUMENT_SET>
+			<DOCUMENTS>
+				<DOCUMENT>
+					<DEAL_SETS>
+						<DEAL_SET>
+							<DEALS>
+								<DEAL>
+									<SERVICES>
+										<SERVICE>
+											<VALUATION>
+												<VALUATION_RESPONSE>
+													<VALUATION_ANALYSES>
+														<VALUATION_ANALYSIS>
+															<PROPERTIES>
+																<PROPERTY ValuationUseType="SubjectProperty">
+																	<ADDRESS>
+																		<AddressLineText>1234 Anywhere Pl</AddressLineText>
+																		<CityName>Anywhere</CityName>
+																		<CountyName>Monty</CountyName>
+																		<PostalCode>20854</PostalCode>
+																		<StateCode>MD</StateCode>
+																	</ADDRESS>
+																	<INSPECTIONS>
+																		<INSPECTION>
+																			<IMAGES>
+																				<IMAGE>
+																					<ImageCategoryType>PropertyPhoto</ImageCategoryType>
+																					<ImageFileLocationIdentifier>\\Images\CR1_Dwelling_Front.png</ImageFileLocationIdentifier>
+																					<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																				</IMAGE>
+																			</IMAGES>
+																		</INSPECTION>
+																		<INSPECTION xlink:label="INSPECTION_APPRAISER">
+																			<INSPECTION_DETAIL>
+																				<InspectionDate>2009-08-21</InspectionDate>
+																				<PropertyExteriorInspectionMethodType>Physical</PropertyExteriorInspectionMethodType>
+																				<PropertyInteriorInspectionMethodType>Physical</PropertyInteriorInspectionMethodType>
+																			</INSPECTION_DETAIL>
+																		</INSPECTION>
+																	</INSPECTIONS>
+																	<PARCEL_SUMMARY>
+																		<PARCEL_SUMMARY_DETAIL>
+																			<ParcelsLegalDescription>Block H Lot XX of XYZ Place</ParcelsLegalDescription>
+																		</PARCEL_SUMMARY_DETAIL>
+																	</PARCEL_SUMMARY>
+																	<PROPERTY_DEFECT>
+																		<DEFECTS>
+																			<DEFECT>
+																				<DEFECT_DETAIL>
+																					<CompletionReportNewDefectIndicator>false</CompletionReportNewDefectIndicator>
+																					<DefectComponentLabelType>MechanicalSystem</DefectComponentLabelType>
+																					<DefectItemAffectsSoundnessStructuralIntegrityIndicator>false</DefectItemAffectsSoundnessStructuralIntegrityIndicator>
+																					<DefectItemDescription>The hot water heater did not appear to be operational. No hot water.</DefectItemDescription>
+																					<DefectItemLocationType>Other</DefectItemLocationType>
+																					<DefectItemLocationTypeOtherDescription>Water Heater</DefectItemLocationTypeOtherDescription>
+																					<DefectItemRecommendedActionCompletedIndicator>true</DefectItemRecommendedActionCompletedIndicator>
+																					<DefectItemRecommendedActionCompletionDescription>Hot water working upon reinspection.</DefectItemRecommendedActionCompletionDescription>
+																					<DefectItemRecommendedActionInspectionDate>2009-08-21</DefectItemRecommendedActionInspectionDate>
+																				</DEFECT_DETAIL>
+																				<IMAGES>
+																					<IMAGE>
+																						<ImageCaptionCommentDescription>Water Heater</ImageCaptionCommentDescription>
+																						<ImageFileLocationIdentifier>\\Images\CR1_Water_Heater.png</ImageFileLocationIdentifier>
+																						<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																					</IMAGE>
+																				</IMAGES>
+																			</DEFECT>
+																			<DEFECT>
+																				<DEFECT_DETAIL>
+																					<CompletionReportNewDefectIndicator>true</CompletionReportNewDefectIndicator>
+																					<DefectComponentLabelType>Flooring</DefectComponentLabelType>
+																					<DefectItemAffectsSoundnessStructuralIntegrityIndicator>false</DefectItemAffectsSoundnessStructuralIntegrityIndicator>
+																					<DefectItemDescription>Water damage to carpet.</DefectItemDescription>
+																					<DefectItemLocationType>Other</DefectItemLocationType>
+																					<DefectItemLocationTypeOtherDescription>Basement Den</DefectItemLocationTypeOtherDescription>
+																					<DefectItemRecommendedActionInspectionDate>2009-08-21</DefectItemRecommendedActionInspectionDate>
+																					<DefectItemRecommendedActionType>Repair</DefectItemRecommendedActionType>
+																				</DEFECT_DETAIL>
+																				<IMAGES>
+																					<IMAGE>
+																						<ImageCaptionCommentDescription>Basement Carpeting</ImageCaptionCommentDescription>
+																						<ImageFileLocationIdentifier>\\Images\CR1_Carpet.png</ImageFileLocationIdentifier>
+																						<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																					</IMAGE>
+																				</IMAGES>
+																			</DEFECT>
+																		</DEFECTS>
+																	</PROPERTY_DEFECT>
+																</PROPERTY>
+															</PROPERTIES>
+															<VALUATION_REPORT>
+																<ADDITIONAL_IDENTIFIERS>
+																	<ADDITIONAL_IDENTIFIER>
+																		<AdditionalValuationIdentifier>456-8124</AdditionalValuationIdentifier>
+																		<AdditionalValuationIdentifierType>Client</AdditionalValuationIdentifierType>
+																	</ADDITIONAL_IDENTIFIER>
+																	<ADDITIONAL_IDENTIFIER>
+																		<AdditionalValuationIdentifier>123-456798</AdditionalValuationIdentifier>
+																		<AdditionalValuationIdentifierType>ValuationSoftwareVendor</AdditionalValuationIdentifierType>
+																	</ADDITIONAL_IDENTIFIER>
+																</ADDITIONAL_IDENTIFIERS>
+																<SCOPE_OF_WORK>
+																	<SCOPE_OF_WORK_DETAIL>
+																		<GovernmentAgencyAppraisalIndicator>false</GovernmentAgencyAppraisalIndicator>
+																		<ValuationAdditionalIntendedUserIndicator>false</ValuationAdditionalIntendedUserIndicator>
+																	</SCOPE_OF_WORK_DETAIL>
+																</SCOPE_OF_WORK>
+																<VALUATION_COMPLETION>
+																	<ORIGINAL_VALUATION_CONDITIONS>
+																		<ORIGINAL_VALUATION_CONDITION>
+																			<PropertyValuationConditionalConclusionType>SubjectToRepair</PropertyValuationConditionalConclusionType>
+																		</ORIGINAL_VALUATION_CONDITION>
+																	</ORIGINAL_VALUATION_CONDITIONS>
+																	<VALUATION_COMPLETION_DETAIL>
+																		<AppraisalCompletionCommentText>The subject property was reinspected due to a faulty water heater. The water heater has been repaired, but additional damage noted due to a water leak prior to the repair. The existing carpeting throughout the basement is damaged and this may affect the original assignment results. As such, the carpeting is required to be replaced.</AppraisalCompletionCommentText>
+																		<PersonalInspectionPerformedIndicator>true</PersonalInspectionPerformedIndicator>
+																	</VALUATION_COMPLETION_DETAIL>
+																</VALUATION_COMPLETION>
+																<VALUATION_REPORT_DETAIL>
+																	<AppraiserAdditionalCertificationIndicator>false</AppraiserAdditionalCertificationIndicator>
+																	<AppraiserFileIdentifier>LN32942301</AppraiserFileIdentifier>
+																	<OriginalAppraisalEffectiveDate>2009-08-07</OriginalAppraisalEffectiveDate>
+																	<OriginalAppraisedValueAmount>870000</OriginalAppraisedValueAmount>
+																	<OriginalAppraiserFileIdentifier>LN1265431</OriginalAppraiserFileIdentifier>
+																	<OriginalAppraiserUnparsedName>Jane Summers</OriginalAppraiserUnparsedName>
+																	<OriginalLenderUnparsedName>ABC Mortgage Company</OriginalLenderUnparsedName>
+																	<ValuationReportContentIdentifier>Completion Report Delivery Specification v1.4</ValuationReportContentIdentifier>
+																</VALUATION_REPORT_DETAIL>
+																<VALUATION_SOFTWARE_SYSTEMS>
+																	<VALUATION_SOFTWARE_SYSTEM>
+																		<ValuationSoftwareProductIdentifier>SATKIT</ValuationSoftwareProductIdentifier>
+																		<ValuationSoftwareProductName>Superb Appraising Toolkit</ValuationSoftwareProductName>
+																		<ValuationSoftwareProductVersionIdentifier>1.7</ValuationSoftwareProductVersionIdentifier>
+																		<ValuationSoftwareVendorName>Superb Appraisal Software Vendor, LLC</ValuationSoftwareVendorName>
+																	</VALUATION_SOFTWARE_SYSTEM>
+																</VALUATION_SOFTWARE_SYSTEMS>
+															</VALUATION_REPORT>
+														</VALUATION_ANALYSIS>
+													</VALUATION_ANALYSES>
+												</VALUATION_RESPONSE>
+											</VALUATION>
+											<PARTIES>
+												<PARTY>
+													<LEGAL_ENTITY>
+														<LEGAL_ENTITY_DETAIL>
+															<FullName>ABC Mortgage Company</FullName>
+														</LEGAL_ENTITY_DETAIL>
+													</LEGAL_ENTITY>
+													<ADDRESSES>
+														<ADDRESS>
+															<AddressLineText>456 Somewhere Ave</AddressLineText>
+															<CityName>Sometown</CityName>
+															<PostalCode>55555</PostalCode>
+															<StateCode>NV</StateCode>
+														</ADDRESS>
+													</ADDRESSES>
+													<ROLES>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Lender</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Client</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<INDIVIDUAL>
+														<NAME>
+															<FirstName>Amy</FirstName>
+															<LastName>Appraiser</LastName>
+														</NAME>
+													</INDIVIDUAL>
+													<ADDRESSES>
+														<ADDRESS>
+															<AddressLineText>22 A St NE</AddressLineText>
+															<CityName>Washington</CityName>
+															<PostalCode>10001</PostalCode>
+															<StateCode>DC</StateCode>
+														</ADDRESS>
+													</ADDRESSES>
+													<ROLES>
+														<ROLE xlink:label="ROLE_APPRAISER">
+															<APPRAISER>
+																<APPRAISER_DETAIL>
+																	<AppraiserCompanyName>XYZ Appraisal Company</AppraiserCompanyName>
+																</APPRAISER_DETAIL>
+															</APPRAISER>
+															<LICENSES>
+																<LICENSE>
+																	<APPRAISER_LICENSE>
+																		<AppraiserLicenseType>LicensedResidentialAppraiser</AppraiserLicenseType>
+																	</APPRAISER_LICENSE>
+																	<LICENSE_DETAIL>
+																		<LicenseExpirationDate>2010-10-21</LicenseExpirationDate>
+																		<LicenseIdentifier>3333333333</LicenseIdentifier>
+																		<LicenseIssuingAuthorityStateCode>MD</LicenseIssuingAuthorityStateCode>
+																	</LICENSE_DETAIL>
+																</LICENSE>
+															</LICENSES>
+															<ROLE_DETAIL>
+																<PartyRoleType>Appraiser</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+														<ROLE>
+															<SERVICE_PROVIDER>
+																<PROVIDED_SERVICES>
+																	<PROVIDED_SERVICE>
+																		<FeeType>AppraisalFee</FeeType>
+																		<ProvidedServiceActualCostAmount>0</ProvidedServiceActualCostAmount>
+																	</PROVIDED_SERVICE>
+																</PROVIDED_SERVICES>
+															</SERVICE_PROVIDER>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<INDIVIDUAL>
+														<NAME>
+															<FirstName>Michael</FirstName>
+															<LastName>Jones</LastName>
+														</NAME>
+													</INDIVIDUAL>
+													<ROLES>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Borrower</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<INDIVIDUAL>
+														<NAME>
+															<FirstName>Mary</FirstName>
+															<LastName>Jones</LastName>
+														</NAME>
+													</INDIVIDUAL>
+													<ROLES>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Borrower</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+											</PARTIES>
+											<RELATIONSHIPS>
+												<RELATIONSHIP xlink:arcrole="urn:fdc:mismo.org:2009:residential/SIGNATORY_IsAssociatedWith_ROLE" xlink:from="SIGNATORY_APPRAISER" xlink:to="ROLE_APPRAISER"/>
+												<RELATIONSHIP xlink:arcrole="urn:fdc:mismo.org:2009:residential/INSPECTION_CompletedBy_ROLE" xlink:from="INSPECTION_APPRAISER" xlink:to="ROLE_APPRAISER"/>
+											</RELATIONSHIPS>
+											<SERVICE_DETAIL>
+												<ServiceType>Valuation</ServiceType>
+											</SERVICE_DETAIL>
+										</SERVICE>
+									</SERVICES>
+								</DEAL>
+							</DEALS>
+						</DEAL_SET>
+					</DEAL_SETS>
+					<SIGNATORIES>
+						<SIGNATORY xlink:label="SIGNATORY_APPRAISER">
+							<EXECUTION>
+								<EXECUTION_DETAIL>
+									<ExecutionDate>2009-08-21</ExecutionDate>
+								</EXECUTION_DETAIL>
+							</EXECUTION>
+						</SIGNATORY>
+					</SIGNATORIES>
+					<VIEWS>
+						<VIEW>
+							<VIEW_FILES>
+								<VIEW_FILE>
+									<FOREIGN_OBJECT>
+										<ObjectURL>\\CR1_CompletionReport_v1.4.pdf</ObjectURL>
+										<MIMETypeIdentifier>application/pdf</MIMETypeIdentifier>
+									</FOREIGN_OBJECT>
+								</VIEW_FILE>
+							</VIEW_FILES>
+						</VIEW>
+					</VIEWS>
+					<ABOUT_VERSIONS>
+						<ABOUT_VERSION>
+							<AboutVersionIdentifier>1</AboutVersionIdentifier>
+						</ABOUT_VERSION>
+					</ABOUT_VERSIONS>
+					<DOCUMENT_CLASSIFICATION>
+						<DOCUMENT_CLASSES>
+							<DOCUMENT_CLASS>
+								<DocumentType>ValuationCompletion</DocumentType>
+							</DOCUMENT_CLASS>
+						</DOCUMENT_CLASSES>
+						<DOCUMENT_CLASSIFICATION_DETAIL>
+							<DocumentFormIssuingEntityNameType>FNM_FRE</DocumentFormIssuingEntityNameType>
+							<DocumentFormIssuingEntityVersionIdentifier>September 2024</DocumentFormIssuingEntityVersionIdentifier>
+						</DOCUMENT_CLASSIFICATION_DETAIL>
+					</DOCUMENT_CLASSIFICATION>
+				</DOCUMENT>
+			</DOCUMENTS>
+		</DOCUMENT_SET>
+	</DOCUMENT_SETS>
+</MESSAGE>

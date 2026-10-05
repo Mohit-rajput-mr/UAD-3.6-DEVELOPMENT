@@ -371,11 +371,28 @@ def _number(raw) -> float | None:
 
 @lru_cache(maxsize=1)
 def rules() -> list[Rule]:
-    raw = json.loads((SPEC / "compliance_rules.json").read_text(encoding="utf-8"))
+    """The URAR's rules (Appendix H-1)."""
+    return build(json.loads((SPEC / "compliance_rules.json").read_text(encoding="utf-8")))
+
+
+@lru_cache(maxsize=4)
+def rules_for(kind: str) -> list[Rule]:
+    """A further report type's rules (H-2 update, H-3 completion), published in
+    the same columns as H-1 and lifted by ``spec/build_report_types.py``."""
+    data = json.loads((SPEC / "report_types" / f"{kind}.json").read_text(encoding="utf-8"))
+    return build(data["compliance_rules"])
+
+
+def build(raw: list[dict]) -> list[Rule]:
+    """Rules from the rows of a compliance-rules sheet."""
     out: list[Rule] = []
     for r in raw:
         logic = " ".join(str(r.get("Rule Logic") or "").split())
         data_point = " ".join(str(r.get("Primary Data Element") or "").split())
+        # H-3 names an attribute without its "@" in this column (UAD4012), while
+        # its logic and Data Point column keep it; the logic decides.
+        if data_point and not data_point.startswith("@") and f"@{data_point}" in logic:
+            data_point = f"@{data_point}"
         path = " ".join(str(r.get("xPath") or "").split())
         # Bounds and formats are published as their own columns, so those
         # rules are executed from data rather than from their prose.  A bound
@@ -879,14 +896,16 @@ EXTENDED = {
 }
 
 
-def evaluate(tree, *, include_ok: bool = False) -> list[Finding]:
-    """Run every rule against a case document."""
+def evaluate(tree, *, include_ok: bool = False, rule_set: list[Rule] | None = None,
+             field_ids: dict[str, str] | None = None) -> list[Finding]:
+    """Run every rule against a case document (the URAR's, unless another
+    report type's ``rule_set`` and its unique-ID -> field-ID map are given)."""
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     scope = Scope(root)
-    by_uid = _field_id_by_uid()
+    by_uid = _field_id_by_uid() if field_ids is None else field_ids
     out: list[Finding] = []
 
-    for rule in rules():
+    for rule in (rules() if rule_set is None else rule_set):
         fid = by_uid.get(rule.unique_id, "")
         base = dict(message_id=rule.message_id, severity=rule.severity,
                     text=rule.text, data_point=rule.data_point, field_id=fid,

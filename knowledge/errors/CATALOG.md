@@ -1292,3 +1292,46 @@ test, not in a case script.
   every block's markup; only heights and offsets come from the browser; block,
   item and row counts must agree or nothing is kept; the key is checked again
   after building. Test: `test_one_report.py::test_a_shared_layout_takes_only_numbers_from_the_browser`.
+
+### E-089 B-2 / D-2 disagree on the Supervisory Appraiser Certifications
+- B-2 p49 says the subsection "always displays"; the official D-2 AU1 (no
+  supervisor) omits it, as B-1 29.054 does for the URAR. Decision: print it
+  only when a party has PartyRoleType = AppraiserSupervisor (form._section,
+  `gate`). Test: test_report_types.py (AU1 prints nothing the PDF does not).
+
+### E-090 Rule sentences broken or misspelled by the guides' PDFs
+- Narrow table cells split names ("ValuationReportInspectionCertificat
+  ionType", 11 such in B-1 too, e.g. 9.012) and the guides misspell some
+  ("PersonalInspectoinPerformedIndicator" B-3, "Conditoinal" B-3, "Atatched"
+  B-1), so the rule named nothing and decided nothing.
+- Fix: `rules.rejoin` joins two words when together they are a defined data
+  point; `rules.spelled` corrects a name to the one defined name a swap or one
+  letter away. Harness 87/0/21 unchanged. Test:
+  test_report_types.py::test_a_rule_names_the_data_point_the_guide_broke_or_misspelled.
+
+### E-091 Alternatives of one certification share one field ID
+- B-2/B-3 give #10's three alternatives (interior+exterior / exterior / none),
+  #13 and #15 one field ID and one sentence each; the extractor dropped the one
+  that continues over a page break, and all alternatives printed.
+- Fix: `extract_display_rules.extract(carry=True)` (B-2/B-3 only; on B-1 it
+  attaches unrelated text, so B-1 is unchanged) keeps a leading field-less
+  "Display ..." row with the row before the break; form counts repeats of a
+  certification number (or paragraphs after a slot) and takes the n-th
+  sentence; a line takes the slot beside it (C-2/C-3 set the slot 1pt below).
+
+### E-092 A table column read only its first block
+- `bind.scope_for(..., ordinal=1)` and `_walk_marked` pick the ordinal-th
+  instance (A-1: one field ID per repeat). C-3's repair tables give one field
+  ID per column, so a second repair vanished and "Other" location read the
+  first defect's description.
+- Fix: for namespaced IDs `form._walk` visits every block; a row's identity
+  (CompletionReportNewDefectIndicator) becomes `entry["instance"]`, filtering
+  rows; value conditions (Location = Other) are left to the display.
+
+### E-093 Deriving a report wrote parties field by field
+- A second borrower's name landed in whichever party the blank held at that
+  ordinal. Fix: `report_types._carry_parties` copies the borrower / client /
+  lender / AMC PARTY blocks whole and drops relationships left pointing
+  nowhere (and an emptied RELATIONSHIPS). Test: derived documents are
+  schema-valid (test_report_types.py).
+

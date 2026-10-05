@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This sample XML file represents the 'CR2_CompletionReport_v1.4' scenario.-->
+<!--XML Comments: DO NOT DELIVER THE GRAY XML COMMENTS IN THE SUBMISSION PAYLOAD TO UCDP. THEY HAVE BEEN INCLUDED FOR IMPLEMENTATION REFERENCE ONLY.-->
+<!--XML File Created: 02/10/2026-->
+<!--XML Encoding: All XML files submitted to the Uniform Collateral Data Portal MUST follow the UTF-8 encoding standard. -->
+<!--Copyright Notice: Copyright 2026 Fannie Mae and Freddie Mac. Trademarks of respective owners.
+                      This document relates to the Uniform Mortgage Data Program, an effort undertaken jointly by
+                      Freddie Mac and Fannie Mae at the direction of the Federal Housing Finance Agency.-->
+<MESSAGE xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.mismo.org/residential/2009/schemas" xmlns:gse="http://www.datamodelextension.org" MISMOReferenceModelIdentifier="3.6.0366">
+	<DOCUMENT_SETS>
+		<DOCUMENT_SET>
+			<DOCUMENTS>
+				<DOCUMENT>
+					<DEAL_SETS>
+						<DEAL_SET>
+							<DEALS>
+								<DEAL>
+									<SERVICES>
+										<SERVICE>
+											<VALUATION>
+												<VALUATION_RESPONSE>
+													<VALUATION_ANALYSES>
+														<VALUATION_ANALYSIS>
+															<PROPERTIES>
+																<PROPERTY ValuationUseType="SubjectProperty">
+																	<ADDRESS>
+																		<AddressLineText>456 Something Rd</AddressLineText>
+																		<CityName>Somewhere</CityName>
+																		<CountyName>Fabricated</CountyName>
+																		<PostalCode>12345</PostalCode>
+																		<StateCode>VA</StateCode>
+																	</ADDRESS>
+																	<INSPECTIONS>
+																		<INSPECTION>
+																			<IMAGES>
+																				<IMAGE>
+																					<ImageCategoryType>PropertyPhoto</ImageCategoryType>
+																					<ImageFileLocationIdentifier>\\Images\CR2_DwellingFront.png</ImageFileLocationIdentifier>
+																					<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																				</IMAGE>
+																				<IMAGE>
+																					<ImageCaptionCommentDescription>Constructed Barn</ImageCaptionCommentDescription>
+																					<ImageCategoryType>CompletedConstruction</ImageCategoryType>
+																					<ImageFileLocationIdentifier>\\Images\CR2_Barn.png</ImageFileLocationIdentifier>
+																					<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																				</IMAGE>
+																				<IMAGE>
+																					<ImageCaptionCommentDescription>Barn Floorplan</ImageCaptionCommentDescription>
+																					<ImageCategoryType>ValuationCompletionExhibit</ImageCategoryType>
+																					<ImageFileLocationIdentifier>\\Images\CR2_BarnFloorplan.png</ImageFileLocationIdentifier>
+																					<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																				</IMAGE>
+																			</IMAGES>
+																		</INSPECTION>
+																		<INSPECTION xlink:label="INSPECTION_APPRAISER">
+																			<INSPECTION_DETAIL>
+																				<InspectionDate>2026-01-12</InspectionDate>
+																				<PropertyExteriorInspectionMethodType>Physical</PropertyExteriorInspectionMethodType>
+																				<PropertyInteriorInspectionMethodType>Physical</PropertyInteriorInspectionMethodType>
+																			</INSPECTION_DETAIL>
+																		</INSPECTION>
+																	</INSPECTIONS>
+																	<PARCEL_SUMMARY>
+																		<PARCEL_SUMMARY_DETAIL>
+																			<ParcelsLegalDescription>Unreal Farm S.1 PCL.300201121002432 F-594-7 BLA 3573702301420 Use agreement 71</ParcelsLegalDescription>
+																		</PARCEL_SUMMARY_DETAIL>
+																	</PARCEL_SUMMARY>
+																</PROPERTY>
+															</PROPERTIES>
+															<VALUATION_REPORT>
+																<ADDITIONAL_IDENTIFIERS>
+																	<ADDITIONAL_IDENTIFIER>
+																		<AdditionalValuationIdentifier>D-124394</AdditionalValuationIdentifier>
+																		<AdditionalValuationIdentifierType>Client</AdditionalValuationIdentifierType>
+																	</ADDITIONAL_IDENTIFIER>
+																	<ADDITIONAL_IDENTIFIER>
+																		<AdditionalValuationIdentifier>VSRSP-658240</AdditionalValuationIdentifier>
+																		<AdditionalValuationIdentifierType>ValuationSoftwareVendor</AdditionalValuationIdentifierType>
+																	</ADDITIONAL_IDENTIFIER>
+																	<ADDITIONAL_IDENTIFIER>
+																		<AdditionalValuationIdentifier>A-1434525</AdditionalValuationIdentifier>
+																		<AdditionalValuationIdentifierType>ManagementCompany</AdditionalValuationIdentifierType>
+																	</ADDITIONAL_IDENTIFIER>
+																</ADDITIONAL_IDENTIFIERS>
+																<SCOPE_OF_WORK>
+																	<SCOPE_OF_WORK_DETAIL>
+																		<GovernmentAgencyAppraisalIndicator>false</GovernmentAgencyAppraisalIndicator>
+																		<ValuationAdditionalIntendedUserIndicator>false</ValuationAdditionalIntendedUserIndicator>
+																	</SCOPE_OF_WORK_DETAIL>
+																</SCOPE_OF_WORK>
+																<VALUATION_COMPLETION>
+																	<ORIGINAL_VALUATION_CONDITIONS>
+																		<ORIGINAL_VALUATION_CONDITION>
+																			<PropertyValuationConditionalConclusionType>SubjectToCompletionPerPlans</PropertyValuationConditionalConclusionType>
+																		</ORIGINAL_VALUATION_CONDITION>
+																	</ORIGINAL_VALUATION_CONDITIONS>
+																	<SUBJECT_TO_COMPLETION_ITEMS>
+																		<SUBJECT_TO_COMPLETION_ITEM>
+																			<IMAGES>
+																				<IMAGE>
+																					<ImageFileLocationIdentifier>\\Images\CR2_BarnDoor.png</ImageFileLocationIdentifier>
+																					<MIMETypeIdentifier>image/png</MIMETypeIdentifier>
+																				</IMAGE>
+																			</IMAGES>
+																			<SUBJECT_TO_COMPLETION_ITEM_DETAIL>
+																				<SubjectToCompletionFeatureComparisonType>Similar</SubjectToCompletionFeatureComparisonType>
+																				<SubjectToCompletionFeatureDescription>Exterior Barn Door</SubjectToCompletionFeatureDescription>
+																				<SubjectToCompletionFeatureIncompleteOrInconsistentDescription>Exterior sliding barn door is inconsistent with location and size (dimensions). Original plans called for two exterior sliding doors, one at 12' x 8' and one 20' x 8' (see plan attached). The 12' x 8' door was completed per plans. The 2nd door, located on the side of the barn, dimensions are 20' x 12' versus 20' x 8'.</SubjectToCompletionFeatureIncompleteOrInconsistentDescription>
+																				<SubjectToCompletionFeatureLocationDescription>Exterior - north end and east side of the barn.</SubjectToCompletionFeatureLocationDescription>
+																			</SUBJECT_TO_COMPLETION_ITEM_DETAIL>
+																		</SUBJECT_TO_COMPLETION_ITEM>
+																	</SUBJECT_TO_COMPLETION_ITEMS>
+																	<VALUATION_COMPLETION_DETAIL>
+																		<AppraisalCompletionCommentText>Change in dimension of the door has no measurable impact on the utility of the barn or the subject property.</AppraisalCompletionCommentText>
+																		<PersonalInspectionPerformedIndicator>true</PersonalInspectionPerformedIndicator>
+																		<PropertyImprovementsCompletedIndicator>true</PropertyImprovementsCompletedIndicator>
+																		<PropertyImprovementsCompletedPerPlansIndicator>false</PropertyImprovementsCompletedPerPlansIndicator>
+																	</VALUATION_COMPLETION_DETAIL>
+																</VALUATION_COMPLETION>
+																<VALUATION_REPORT_DETAIL>
+																	<AppraiserAdditionalCertificationIndicator>false</AppraiserAdditionalCertificationIndicator>
+																	<AppraiserFileIdentifier>AA12346</AppraiserFileIdentifier>
+																	<OriginalAppraisalEffectiveDate>2025-09-08</OriginalAppraisalEffectiveDate>
+																	<OriginalAppraisedValueAmount>770000</OriginalAppraisedValueAmount>
+																	<OriginalAppraiserFileIdentifier>AA12345</OriginalAppraiserFileIdentifier>
+																	<OriginalAppraiserUnparsedName>Agatha Appraiser</OriginalAppraiserUnparsedName>
+																	<OriginalLenderUnparsedName>Empty Bank</OriginalLenderUnparsedName>
+																	<ValuationReportContentIdentifier>Completion Report Delivery Specification v1.4</ValuationReportContentIdentifier>
+																</VALUATION_REPORT_DETAIL>
+																<VALUATION_SOFTWARE_SYSTEMS>
+																	<VALUATION_SOFTWARE_SYSTEM>
+																		<ValuationSoftwareProductIdentifier>GAAPPL</ValuationSoftwareProductIdentifier>
+																		<ValuationSoftwareProductName>Great Appraisal Application</ValuationSoftwareProductName>
+																		<ValuationSoftwareProductVersionIdentifier>2.4</ValuationSoftwareProductVersionIdentifier>
+																		<ValuationSoftwareVendorName>Great Appraisals, LLC</ValuationSoftwareVendorName>
+																	</VALUATION_SOFTWARE_SYSTEM>
+																</VALUATION_SOFTWARE_SYSTEMS>
+															</VALUATION_REPORT>
+														</VALUATION_ANALYSIS>
+													</VALUATION_ANALYSES>
+												</VALUATION_RESPONSE>
+											</VALUATION>
+											<PARTIES>
+												<PARTY>
+													<LEGAL_ENTITY>
+														<LEGAL_ENTITY_DETAIL>
+															<FullName>Empty Bank</FullName>
+														</LEGAL_ENTITY_DETAIL>
+													</LEGAL_ENTITY>
+													<ADDRESSES>
+														<ADDRESS>
+															<AddressLineText>200 Tree St</AddressLineText>
+															<CityName>Somewhere</CityName>
+															<PostalCode>12346</PostalCode>
+															<StateCode>VA</StateCode>
+														</ADDRESS>
+													</ADDRESSES>
+													<ROLES>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Lender</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Client</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<LEGAL_ENTITY>
+														<LEGAL_ENTITY_DETAIL>
+															<FullName>IDK Appraisal Management Company</FullName>
+														</LEGAL_ENTITY_DETAIL>
+													</LEGAL_ENTITY>
+													<ADDRESSES>
+														<ADDRESS>
+															<AddressLineText>300 Main Ave</AddressLineText>
+															<CityName>Somewhere</CityName>
+															<PostalCode>12345</PostalCode>
+															<StateCode>VA</StateCode>
+														</ADDRESS>
+													</ADDRESSES>
+													<ROLES>
+														<ROLE>
+															<LICENSES>
+																<LICENSE>
+																	<LICENSE_DETAIL>
+																		<LicenseExpirationDate>2026-12-31</LicenseExpirationDate>
+																		<LicenseIdentifier>XYZ352032</LicenseIdentifier>
+																		<LicenseIssuingAuthorityStateCode>VA</LicenseIssuingAuthorityStateCode>
+																	</LICENSE_DETAIL>
+																</LICENSE>
+															</LICENSES>
+															<ROLE_DETAIL>
+																<PartyRoleType>ManagementCompany</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<INDIVIDUAL>
+														<NAME>
+															<FirstName>Agatha</FirstName>
+															<LastName>Appraiser</LastName>
+														</NAME>
+													</INDIVIDUAL>
+													<ADDRESSES>
+														<ADDRESS>
+															<AddressLineText>123 Main St</AddressLineText>
+															<CityName>Nowhere</CityName>
+															<PostalCode>12345</PostalCode>
+															<StateCode>VA</StateCode>
+														</ADDRESS>
+													</ADDRESSES>
+													<ROLES>
+														<ROLE xlink:label="ROLE_APPRAISER">
+															<APPRAISER>
+																<APPRAISER_DETAIL>
+																	<AppraiserCompanyName>WAS Appraisal</AppraiserCompanyName>
+																</APPRAISER_DETAIL>
+															</APPRAISER>
+															<LICENSES>
+																<LICENSE>
+																	<APPRAISER_LICENSE>
+																		<AppraiserLicenseType>CertifiedResidential</AppraiserLicenseType>
+																	</APPRAISER_LICENSE>
+																	<LICENSE_DETAIL>
+																		<LicenseExpirationDate>2027-12-31</LicenseExpirationDate>
+																		<LicenseIdentifier>XYZ12345</LicenseIdentifier>
+																		<LicenseIssuingAuthorityStateCode>VA</LicenseIssuingAuthorityStateCode>
+																	</LICENSE_DETAIL>
+																</LICENSE>
+															</LICENSES>
+															<ROLE_DETAIL>
+																<PartyRoleType>Appraiser</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<INDIVIDUAL>
+														<NAME>
+															<FirstName>Bob</FirstName>
+															<LastName>Buyer</LastName>
+														</NAME>
+													</INDIVIDUAL>
+													<ROLES>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Borrower</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+												<PARTY>
+													<INDIVIDUAL>
+														<NAME>
+															<FirstName>Betty</FirstName>
+															<LastName>Buyer</LastName>
+														</NAME>
+													</INDIVIDUAL>
+													<ROLES>
+														<ROLE>
+															<ROLE_DETAIL>
+																<PartyRoleType>Borrower</PartyRoleType>
+															</ROLE_DETAIL>
+														</ROLE>
+													</ROLES>
+												</PARTY>
+											</PARTIES>
+											<RELATIONSHIPS>
+												<RELATIONSHIP xlink:arcrole="urn:fdc:mismo.org:2009:residential/SIGNATORY_IsAssociatedWith_ROLE" xlink:from="SIGNATORY_APPRAISER" xlink:to="ROLE_APPRAISER"/>
+												<RELATIONSHIP xlink:arcrole="urn:fdc:mismo.org:2009:residential/INSPECTION_CompletedBy_ROLE" xlink:from="INSPECTION_APPRAISER" xlink:to="ROLE_APPRAISER"/>
+											</RELATIONSHIPS>
+											<SERVICE_DETAIL>
+												<ServiceType>Valuation</ServiceType>
+											</SERVICE_DETAIL>
+										</SERVICE>
+									</SERVICES>
+								</DEAL>
+							</DEALS>
+						</DEAL_SET>
+					</DEAL_SETS>
+					<SIGNATORIES>
+						<SIGNATORY xlink:label="SIGNATORY_APPRAISER">
+							<EXECUTION>
+								<EXECUTION_DETAIL>
+									<ExecutionDate>2026-01-12</ExecutionDate>
+								</EXECUTION_DETAIL>
+							</EXECUTION>
+						</SIGNATORY>
+					</SIGNATORIES>
+					<VIEWS>
+						<VIEW>
+							<VIEW_FILES>
+								<VIEW_FILE>
+									<FOREIGN_OBJECT>
+										<ObjectURL>\\CR2_CompletionReport_v1.4.pdf</ObjectURL>
+										<MIMETypeIdentifier>application/pdf</MIMETypeIdentifier>
+									</FOREIGN_OBJECT>
+								</VIEW_FILE>
+							</VIEW_FILES>
+						</VIEW>
+					</VIEWS>
+					<ABOUT_VERSIONS>
+						<ABOUT_VERSION>
+							<AboutVersionIdentifier>1</AboutVersionIdentifier>
+						</ABOUT_VERSION>
+					</ABOUT_VERSIONS>
+					<DOCUMENT_CLASSIFICATION>
+						<DOCUMENT_CLASSES>
+							<DOCUMENT_CLASS>
+								<DocumentType>ValuationCompletion</DocumentType>
+							</DOCUMENT_CLASS>
+						</DOCUMENT_CLASSES>
+						<DOCUMENT_CLASSIFICATION_DETAIL>
+							<DocumentFormIssuingEntityNameType>FNM_FRE</DocumentFormIssuingEntityNameType>
+							<DocumentFormIssuingEntityVersionIdentifier>September 2024</DocumentFormIssuingEntityVersionIdentifier>
+						</DOCUMENT_CLASSIFICATION_DETAIL>
+					</DOCUMENT_CLASSIFICATION>
+				</DOCUMENT>
+			</DOCUMENTS>
+		</DOCUMENT_SET>
+	</DOCUMENT_SETS>
+</MESSAGE>

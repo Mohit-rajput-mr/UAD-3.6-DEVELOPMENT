@@ -209,6 +209,13 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+**Official blueprint studied, 2026-10-05: read `knowledge/blueprint/STUDY.md` before
+any dynamic-form work.** The owner's repo `Mohit-rajput-mr/UAD36-Blueprint` holds the
+official set; its URAR documents (A-1..H-1, XSD, 12 samples) are identical to ours. It
+adds the Restricted Update (A-2..H-2) and Completion Report (A-3..H-3) report types and
+the GSE job aids. STUDY.md has the section display/repeat table keyed to MISMO data
+points, the dwelling/unit/ADU/outbuilding tree, and the Usability rules.
+
 **Owner's section test, 2026-10-05 (`_work/dyn/SECTION_TEST_REPORT.md`) — the
 current priority.** The owner's tester wrote ~1,060 fields on the live site and
 found 16 bugs (B1-B16), then asked for the report to become *dynamic*: a generated

@@ -1335,3 +1335,28 @@ test, not in a case script.
   nowhere (and an emptied RELATIONSHIPS). Test: derived documents are
   schema-valid (test_report_types.py).
 
+### E-094 A section was numbered by the URAR's titles
+- "Subject Property" is URAR section 3 but update section 1; the update's own
+  sections had no number, so the rail, the reviewed-sections gate and the
+  editor's section stamps were wrong. Fix: `form.section_number(printed, kind)`
+  / `report_types.section_number`; `flow.Meta.kind` feeds the stamps; the gate
+  names the kind's own sections.
+
+### E-095 C-3's Completion Status read as one check
+- The extractor merged two Yes/No questions into one check with both IDs, put
+  "specifications?" into the table header and all four row IDs into one cell.
+  Fix: `build_report_types._repair` splits by shape (bold "?" head over a
+  two-ID check; a "?"-ended head prefix; a row whose one cell holds one ID per
+  column), and restores the Yes/No header C-3 draws.
+
+### E-096 Signature block printed the Layout's placeholders
+- "[Role]" / "[Contact Name]" and the date slot printed as loose rows (URAR
+  too). Fix: `form._signature_html` composes role, name over a rule with the
+  date, the caption, and the licence rows, in print view; the editor keeps its
+  controls. A font-size with no kerned family (11pt) or italic with no italic
+  face embeds a system font -- the harness fonts check caught both.
+
+### E-097 A forced page break printed the previous section's "(continued)" tab
+- `flow.plan` placed the keep-with-next break before the forced one. Fix: the
+  forced break runs first and never continues the section before.
+

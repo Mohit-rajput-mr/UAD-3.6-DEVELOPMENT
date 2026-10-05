@@ -155,6 +155,8 @@ class Case:
     def to_json(self) -> dict[str, Any]:
         out = self.__dict__.copy()
         out["can"] = sorted(TRANSITIONS.get(self.state, set()))
+        # "urar", or "update" / "completion" for a report derived from one
+        out["kind"] = self.template.split(":", 1)[1] if self.template.startswith("report:") else "urar"
         return out
 
 
@@ -246,6 +248,25 @@ class Store:
         # Templates ship with the GSE's own images; a blank case starts empty.
         if not blank and tpl.images:
             self._copy_template_images(case_id, tpl)
+        return case
+
+    def create_from(self, tree, *, name: str, template: str, property_type: str,
+                    actor: str = "appraiser", note: str = "") -> Case:
+        """A case whose document is already made -- a Restricted Appraisal
+        Update or Completion Report derived from a URAR (uad/report_types.py).
+        ``template`` names its kind ("report:update"), not a D-1 sample."""
+        case_id = uuid.uuid4().hex[:12]
+        self.folder(case_id)
+        tree.write(str(self.xml_path(case_id)), encoding="utf-8",
+                   xml_declaration=True, pretty_print=True)
+        case = Case(case_id=case_id, name=name, template=template, property_type=property_type)
+        with self._lock:
+            self.conn.execute(
+                "INSERT INTO cases VALUES (?,?,?,?,?,?,?,?,?,?)",
+                (case.case_id, case.name, case.template, case.property_type,
+                 case.state, case.created, case.updated, "", "", "[]"))
+            self.conn.commit()
+        self.log(case_id, actor, "created", note or f"as {template}")
         return case
 
     def _copy_template_images(self, case_id: str, tpl) -> None:
@@ -665,7 +686,11 @@ class Store:
         drawn = self.sections_present(case_id)
         missing = [n for n in drawn if n not in set(case.acknowledged)]
         if missing:
-            names = ", ".join(review.SECTIONS.get(n, str(n)) for n in missing[:4])
+            from uad import report_types
+            kind = report_types.kind_of(self.tree(case_id))
+            titles = (review.SECTIONS if kind == report_types.URAR else
+                      {int(k): v for k, v in report_types.spec(kind)["sections"].items()})
+            names = ", ".join(titles.get(n, str(n)) for n in missing[:4])
             more = f" and {len(missing) - 4} more" if len(missing) > 4 else ""
             out.append(f"{len(missing)} section(s) not yet reviewed: {names}{more}")
         return out
@@ -700,10 +725,14 @@ class Store:
         """
         from uad.report import form
 
+        from uad import report_types
+
         def compute():
-            blocks = form.build(self.tree(case_id))
-            return sorted({form.section_number(b.section) for b in blocks
-                           if b.visible and form.section_number(b.section)})
+            tree = self.tree(case_id)
+            kind = report_types.kind_of(tree)
+            blocks = form.build(tree)
+            return sorted({form.section_number(b.section, kind) for b in blocks
+                           if b.visible and form.section_number(b.section, kind)})
         return self._memo("sections", case_id, compute)
 
     def transition(self, case_id: str, to: str, actor: str,

@@ -426,6 +426,9 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 .sheet-in textarea{width:100%;font:400 12px/1.5 var(--mono);padding:10px 12px;border-radius:12px;border:1px solid var(--line-2);
   background:var(--bg-2);color:var(--ink);resize:vertical}
 .sheet-in .bar{margin-bottom:8px}
+/* the map, the market charts and the URAR import belong to a URAR; an
+   update or completion report (body.kind-other) has nothing for them to fill */
+body.kind-other #rf-maps,body.kind-other #rf-market,body.kind-other #rf-auto{display:none!important}
 </style>
 </head>
 <body>
@@ -893,8 +896,12 @@ function drawHead(){
     <div class="tabs" id="tabs" role="tablist"></div>`;
   setCrumb(`${esc(c.name)}<small>${esc(c.property_type.replace(/_/g,' '))}</small>`);
   // There is one form filler, and it is the report itself.
-  const tabs=[['report','Report'],['structure','Property'],['extra','Additional Data'],['comps','Comparables'],
-              ['map','Location Map'],['review','Review Master'],
+  // An update or completion report (c.kind) has no structure, grid or map
+  // of its own: those stay with the URAR it was made from.
+  const urar=(c.kind||'urar')==='urar';
+  document.body.classList.toggle('kind-other',!urar);
+  const tabs=[['report','Report'],...(urar?[['structure','Property'],['extra','Additional Data'],['comps','Comparables'],
+              ['map','Location Map']]:[]),['review','Review Master'],
               ['preview','Preview'],['history','History']];
   // On a narrow screen the inspector column is gone, so its panel becomes a tab.
   if(NARROW()) tabs.push(['signoff','Sign-off']);
@@ -977,6 +984,7 @@ function drawWork(){
     return;
   }
   const w=panel;
+  if((S.case&&S.case.kind||'urar')!=='urar'&&['structure','extra','comps','map'].includes(S.view)) S.view='report';
   if(S.view==='comps')   return drawComps(w);
   if(S.view==='extra')   return drawExtra(w);
   if(S.view==='structure') return drawStructure(w);
@@ -1873,7 +1881,11 @@ function fillSignoff(b){
       <a class="btn block" href="/api/cases/${S.caseId}/mismo.xml" target="_blank">Open MISMO XML</a>
       <a class="btn block" href="/api/cases/${S.caseId}/portable.xml" download
          title="The whole appraisal in one UAD 3.6 XML, pictures inside: import it anywhere this software runs">Download portable XML</a>
-      <button class="btn block" id="back">All cases</button></div>`;
+      <button class="btn block" id="back">All cases</button></div>
+    ${(c.kind||'urar')==='urar'?`<div class="panelhead k">After this appraisal</div>
+    <div class="panelblock actions">
+      <button class="btn block" id="mkru" title="A new Restricted Appraisal Update Report for this property, pre-filled from this report (Appendix A-2)">New Restricted Appraisal Update</button>
+      <button class="btn block" id="mkcr" title="A new Completion Report for this property, with this report's repairs listed (Appendix A-3)">New Completion Report</button></div>`:''}`;
   // Scoped to this panel: the same markup is drawn in the inspector column on
   // a wide screen and in the work area on a narrow one.
   const $$=sel=>b.querySelector(sel);
@@ -1913,6 +1925,18 @@ function fillSignoff(b){
   });
 
   $$('#back').onclick=showLaunch;
+  for(const [id,kind,what] of [['#mkru','update','Restricted Appraisal Update'],['#mkcr','completion','Completion Report']]){
+    const bt=$$(id); if(!bt) continue;
+    bt.onclick=async()=>{
+      if(!await UADDialog.confirm(`A new ${what} is made for this property, carrying the subject, the original appraisal, the borrower and client and${kind==='completion'?" this report's repairs":' lender'}. This report is not changed.`,{title:`New ${what}`,ok:'Create'}))return;
+      bt.disabled=true;
+      const r=await api(`/cases/${S.caseId}/derive`,{method:'POST',body:JSON.stringify({kind})});
+      bt.disabled=false;
+      if(!r||!r.ok){ await UADDialog.alert((r&&r.data&&r.data.detail)||'It could not be created.',{title:`New ${what}`}); return; }
+      toast(`${what} created — ${r.data.filled.length} field(s) carried over`);
+      openCase(r.data.case_id);
+    };
+  }
   $$('#rev').onclick=async()=>{await api(`/cases/${S.caseId}/state`,
     {method:'POST',body:JSON.stringify({state:'in_review'})}); refresh();};
   $$('#sign').onclick=async()=>{

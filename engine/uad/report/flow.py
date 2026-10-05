@@ -185,10 +185,11 @@ def _tab(section: str, continued: bool) -> str:
 TAB_H = 15.0 + 10.8
 
 
-def plan(blocks: list[dict], caps: dict[int, float] | None = None) -> list[Page]:
+def plan(blocks: list[dict], caps: dict[int, float] | None = None, *,
+         header_on_first: bool = False) -> list[Page]:
     caps = caps or {}
     pages: list[Page] = [Page(first=True)]
-    y = BODY_TOP_FIRST
+    y = BODY_TOP if header_on_first else BODY_TOP_FIRST
     current_section = ""
 
     def room() -> float:
@@ -250,10 +251,12 @@ def plan(blocks: list[dict], caps: dict[int, float] | None = None) -> list[Page]
         if b["group"] in (1, 2):           # h1 / h2 keep with next
             nxt = blocks[i + 1] if i + 1 < len(blocks) else None
             need = b["lead"] + b["height"] + _first_line(nxt)
-            if need > room() and not at_top():
-                new_page(current_section)
+            # a forced break first: it opens a fresh page, and the section it
+            # opens is not a continuation of the one before
             if b.get("newpage") and not at_top():
                 new_page(None, continued=False)
+            if need > room() and not at_top():
+                new_page(current_section)
             place(f"<div class='blk solid'>{b['html']}</div>", b["height"], b["lead"], section)
             i += 1
             continue
@@ -371,12 +374,24 @@ class Meta:
     issuer: str = "Fannie Mae | Freddie Mac"
     form_date: str = "September 2024"
     references: list[tuple[str, str]] = field(default_factory=list)
+    title: str = "Uniform Residential Appraisal Report"
+    # The URAR opens with its lead block and no running header; an update or
+    # completion report carries "<title>  Page 1 of N" from its first page
+    # (D-2 AU1, D-3 CR1/CR2, A-2/A-3 HF.001).
+    header_on_first: bool = False
+    kind: str = "urar"
 
     @classmethod
     def from_case(cls, tree) -> "Meta":
         from . import urar
+        from .. import report_types
         m = urar.Meta.from_case(tree)
-        return cls(m.version, m.issuer, m.form_date, m.references)
+        kind = report_types.kind_of(tree)
+        if kind == report_types.URAR:
+            return cls(m.version, m.issuer, m.form_date, m.references)
+        number = m.version.rsplit("#", 1)[-1] or "1"
+        return cls(f"{report_types.version_label(kind)}{number}", m.issuer, m.form_date,
+                   m.references, report_types.title(kind), True, kind)
 
 
 from functools import lru_cache
@@ -395,8 +410,8 @@ def text_width(text: str, face: str, size: float) -> float:
 
 
 def _furniture(meta: Meta, n: int, total: int) -> str:
-    head = "" if n == 1 else (
-        f"<div class='hdr-l'>Uniform Residential Appraisal Report</div>"
+    head = "" if n == 1 and not meta.header_on_first else (
+        f"<div class='hdr-l'>{form.esc(meta.title)}</div>"
         f"<div class='hdr-r'>Page {n} of {total}</div><div class='hdr-rule'></div>")
     refs = []
     y = 947.1
@@ -1798,13 +1813,13 @@ EDIT_JS = """
 </script>"""
 
 
-def _stamp(piece: Piece) -> str:
+def _stamp(piece: Piece, kind: str = "urar") -> str:
     """Name the section a piece of the page belongs to (editor only).
 
     The rail navigates by it and follows the reader by it; an attribute moves
     nothing on the page, and the printed report never carries it.
     """
-    number = form.section_number(piece.section)
+    number = form.section_number(piece.section, kind)
     return piece.html.replace(
         "<div class='blk",
         f"<div data-secn='{number}' data-sec='{form.esc(piece.section)}' class='blk", 1)
@@ -1816,13 +1831,13 @@ def render(pages: list[Page], meta: Meta, *, embed_fonts: bool = True,
     total = len(pages)
     body = []
     for n, pg in enumerate(pages, start=1):
-        band = "band first" if n == 1 else "band"
-        pieces = "".join(_stamp(p) if edit else p.html for p in pg.pieces)
+        band = "band first" if n == 1 and not meta.header_on_first else "band"
+        pieces = "".join(_stamp(p, meta.kind) if edit else p.html for p in pg.pieces)
         body.append(f"<div class='page' data-page='{n}'><div class='hi'><div class='hz'>"
                     f"{_furniture(meta, n, total)}"
                     f"<div class='{band}'>{pieces}</div></div></div></div>")
     return (f"<!doctype html><html><head><meta charset='utf-8'>"
-            f"<title>Uniform Residential Appraisal Report</title><style>"
+            f"<title>{form.esc(meta.title)}</title><style>"
             f"{form.stylesheet(embed_fonts=embed_fonts, screen=screen, edit=edit)}"
             f".band > .blk:not(.cols){{display:flow-root}}"
             f".band > .blk.top{{margin-top:0}}"
@@ -1939,7 +1954,7 @@ def paginate(measured: list[dict], meta: "Meta", caps: dict[int, float] | None =
              embed_fonts=True, screen=False, edit=False,
              imported: Iterable[str] = ()) -> tuple[str, list[Page]]:
     """Plan pages from measured blocks and render them."""
-    pages = plan(measured, caps or {})
+    pages = plan(measured, caps or {}, header_on_first=meta.header_on_first)
     return render(pages, meta, embed_fonts=embed_fonts, screen=screen, edit=edit,
                   imported=imported), pages
 

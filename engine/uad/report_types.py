@@ -181,6 +181,17 @@ def binding(field_id: str) -> bind.Binding | None:
                         display_rules=e["display_rules"])
 
 
+def section_number(kind: str, printed: str) -> int:
+    """A printed section title's number in this kind's own table of contents
+    (B-2 / B-3): the Layout prints "Certifications" for B-2's section 5
+    "Certifications and Scope of Work"."""
+    base = printed.split(" - ")[0].strip()
+    for n, name in spec(kind)["sections"].items():
+        if base == name or name.startswith(base) or base.startswith(name):
+            return int(n)
+    return 0
+
+
 def fields(kind: str) -> list[str]:
     return [fid(kind, raw) for raw in spec(kind)["fields"]]
 

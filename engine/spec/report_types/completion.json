@@ -11750,7 +11750,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "03.001"
+          ]
          },
          {
           "x0": 113.1,
@@ -11758,7 +11760,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "03.002"
+          ]
          },
          {
           "x0": 190.2,
@@ -11766,7 +11770,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "03.003"
+          ]
          },
          {
           "x0": 267.3,
@@ -11775,13 +11781,7 @@
           "bold": false,
           "check": false,
           "ids": [
-           "03.001",
-           "03.002",
-           "03.003",
-           "03.004",
-           "03.005",
-           "03.006",
-           "03.007"
+           "03.004"
           ]
          },
          {
@@ -11790,7 +11790,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "03.005"
+          ]
          },
          {
           "x0": 421.5,
@@ -11798,7 +11800,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "03.006"
+          ]
          },
          {
           "x0": 498.6,
@@ -11806,7 +11810,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "03.007"
+          ]
          }
         ]
        }
@@ -11872,7 +11878,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "04.001"
+          ]
          },
          {
           "x0": 126.0,
@@ -11880,7 +11888,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "04.002"
+          ]
          },
          {
           "x0": 216.0,
@@ -11889,12 +11899,7 @@
           "bold": false,
           "check": false,
           "ids": [
-           "04.001",
-           "04.002",
-           "04.003",
-           "04.004",
-           "04.005",
-           "04.006"
+           "04.003"
           ]
          },
          {
@@ -11903,7 +11908,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "04.004"
+          ]
          },
          {
           "x0": 396.0,
@@ -11911,7 +11918,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "04.005"
+          ]
          },
          {
           "x0": 486.0,
@@ -11919,7 +11928,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "04.006"
+          ]
          }
         ]
        }
@@ -11939,16 +11950,20 @@
       "y": 623.7789916992188,
       "y1": 634.9299926757812,
       "x0": 40.0,
-      "x1": 144.093994140625,
-      "column": "left",
+      "x1": 361.79522705078125,
+      "column": "full",
       "text": "Is construction complete?",
       "bold": true,
       "italic": false,
       "size": 9.0,
       "lines": 1,
-      "ids": [],
-      "kind": "head",
-      "style": "TX-B"
+      "ids": [
+       "05.001"
+      ],
+      "kind": "check",
+      "style": "CK1",
+      "box_x": 381.2532958984375,
+      "yes_no": true
      },
      {
       "y": 635.6839599609375,
@@ -11956,13 +11971,12 @@
       "x0": 40.0,
       "x1": 361.79522705078125,
       "column": "full",
-      "text": "Was construction completed in a manner consistent with the original plans and",
+      "text": "Was construction completed in a manner consistent with the original plans and specifications?",
       "bold": true,
       "italic": false,
       "size": 9.0,
       "lines": 1,
       "ids": [
-       "05.001",
        "05.002"
       ],
       "kind": "check",
@@ -11981,7 +11995,7 @@
        {
         "x0": 36.0,
         "x1": 171.0,
-        "head": "specifications? Feature"
+        "head": "Feature"
        },
        {
         "x0": 171.0,
@@ -12010,7 +12024,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "05.003"
+          ]
          },
          {
           "x0": 171.0,
@@ -12019,10 +12035,7 @@
           "bold": false,
           "check": false,
           "ids": [
-           "05.003",
-           "05.004",
-           "05.005",
-           "05.006"
+           "05.004"
           ]
          },
          {
@@ -12031,7 +12044,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "05.005"
+          ]
          },
          {
           "x0": 441.0,
@@ -12039,7 +12054,9 @@
           "text": "",
           "bold": false,
           "check": false,
-          "ids": []
+          "ids": [
+           "05.006"
+          ]
          }
         ]
        }

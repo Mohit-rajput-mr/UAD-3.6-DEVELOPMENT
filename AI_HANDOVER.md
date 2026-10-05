@@ -209,23 +209,32 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
-**Restricted Appraisal Update and Completion Report — engine done, API/UI next
-(2026-10-05, E-089..E-093, T-1036 partial).** A case's kind is its own
-`DocumentType` (ValuationUpdate / ValuationCompletion). `uad/report_types.py`
-holds both kinds from `spec/report_types/{update,completion}.json` (built by
+**Restricted Appraisal Update and Completion Report — live in the editor
+(2026-10-05, E-089..E-097, T-1036).** A case's kind is its own `DocumentType`
+(ValuationUpdate / ValuationCompletion); `Case.to_json()["kind"]` mirrors it
+from the template marker `report:<kind>`. `uad/report_types.py` holds both
+kinds from `spec/report_types/{update,completion}.json` (built by
 `uad/spec/build_report_types.py` from A-2..H-2 / A-3..H-3, incl. the C-2/C-3
-layouts read by the C-1 extractor). Field IDs are namespaced `RU-01.001` /
-`CR-01.001`. `form.build` draws them from their own layout with the URAR
-machinery; H-2/H-3 run through `compliance.evaluate(rule_set=...)`;
-`report_types.derive(urar, kind)` pre-fills subject, Original Appraisal,
-client-side parties (whole PARTY blocks) and, for a completion report, the
-original's repairs. Proven by `tests/test_report_types.py` (AU1/CR1/CR2: zero
-H-2/H-3 findings, every PDF line printed and nothing extra; SF1->AU1, SF2->CR1,
-SF4->CR2 derive). **Next:** API (`POST /cases/{id}/derive {kind}`, fields/review
-for the kinds), the editor action "Create Restricted Update / Completion Report"
-on a URAR, page header/footer for the kinds (`report_types.title`,
-`version_label` into `flow.Meta`), and the CR tables' editing (new-item rows must
-write CompletionReportNewDefectIndicator = true).
+layouts read by the C-1 extractor, with C-3's misreads repaired). Field IDs are
+namespaced `RU-01.001` / `CR-01.001`. `form.build` draws them from their own
+layout with the URAR machinery (numbered, flowing certification paragraphs;
+alternatives by sentence; supervisor gate; signature block; exhibits titled per
+B-3); `flow.Meta` gives the header ("Restricted Appraisal Update Report  Page 1
+of 3") and footer ("Update Version #1"). H-2/H-3 run in review and /fields.
+**Editor:** a URAR's sign-off panel has "New Restricted Appraisal Update" /
+"New Completion Report" -> `POST /api/cases/{id}/derive {kind}` (subject,
+Original Appraisal, client-side parties, original repairs carried). Those cases
+hide the Property / Additional Data / Comparables / Location Map tabs and the
+map/market/fill buttons; structure routes answer 409. Proven by
+`tests/test_report_types.py` (21 tests: AU1/CR1/CR2 text both ways, zero
+H-2/H-3 findings, derive pairs SF1->AU1, SF2->CR1, SF4->CR2, API flow) and a
+Chromium click-through; laid out, AU1 and CR1 are 3 pages like the official
+PDFs; CR2 is 4 against 3 (the exhibit pair does not fit under the commentary).
+Harness 87/0/21 unchanged. **Left:** CR repair-table editing must write
+CompletionReportNewDefectIndicator = true for a newly observed item; exhibit
+box height vs D-3; the URAR's own certifications still print alternatives
+line by line (the kinds' paragraph/alternative logic is not yet applied to the
+URAR -- needs the harness to confirm before switching it on).
 
 **Structure engine and applicability (2026-10-05, E-086..E-088, T-1035 done).**
 `uad/structure.py` holds the property as a tree (dwellings -> units, ADUs,

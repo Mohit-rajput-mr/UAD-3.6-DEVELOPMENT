@@ -160,6 +160,31 @@ def create_case(request: Request, body: dict = Body(...)) -> dict:
     return case.to_json()
 
 
+@router.post("/cases/{case_id}/derive")
+def derive_case(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """A Restricted Appraisal Update Report or a Completion Report for this
+    URAR's property, as a new case (uad/report_types.py ``derive``): the
+    subject, the Original Appraisal section, the borrower / client / lender /
+    AMC and, for a completion report, the original's repairs are carried; the
+    new assignment's inspection, certifications and signature are left to be
+    entered."""
+    from uad import report_types
+    case = _case_or_404(case_id)
+    kind = str(body.get("kind") or "")
+    if kind not in report_types.KINDS:
+        raise HTTPException(400, f"kind must be one of {', '.join(report_types.KINDS)}")
+    src = store().tree(case_id)
+    if report_types.kind_of(src) != report_types.URAR:
+        raise HTTPException(409, "an update or completion report is made from a URAR, not from another update")
+    tree, filled = report_types.derive(src, kind)
+    title = report_types.title(kind)
+    new = store().create_from(
+        tree, name=str(body.get("name") or f"{title} - {case.name}")[:120],
+        template=f"report:{kind}", property_type=title, actor=_actor(request),
+        note=f"{title} derived from case {case_id}")
+    return {**new.to_json(), "kind": kind, "parent": case_id, "filled": filled}
+
+
 # ------------------------------------------------------------- case bundles
 # A whole case in one ZIP (app/cases.py ``Store.bundle``): a backup the
 # appraiser can download, a way to move a case to another machine, and the copy
@@ -495,17 +520,32 @@ def case_fields(case_id: str, section: int | None = Query(None),
 
 
 def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
+    from uad import report_types
     tree = store().tree(case_id)
     root = tree.getroot()
-    findings = compliance.evaluate(tree)
+    findings = report_types.evaluate(tree)        # H-1, or H-2 / H-3 by the document's kind
     by_field: dict[str, list[dict]] = {}
     for f in findings:
         if f.status == compliance.FINDING and f.field_id:
             by_field.setdefault(f.field_id, []).append(f.to_json())
 
-    model = bind.page_model()
+    kind = report_types.kind_of(tree)
+    if kind == report_types.URAR:
+        model, section_list, tabs = bind.page_model(), bind.SECTIONS, bind.TAB_NAME
+    else:
+        # an update / completion report: its own sections and fields (A-2 / A-3)
+        section_list = [(int(n), name) for n, name in report_types.spec(kind)["sections"].items()]
+        tabs, model = {}, {}
+        for fid in report_types.fields(kind):
+            b = report_types.binding(fid)
+            if b is None:
+                continue
+            number = int(report_types.split(fid)[1].split(".")[0])
+            model.setdefault(number, []).append(bind.PageField(
+                field_id=fid, label=b.label, section=b.section, subsection=b.subsection,
+                column=0, indent=0, binding=b))
     sections = []
-    for number, name in bind.SECTIONS:
+    for number, name in section_list:
         if section is not None and number != section:
             continue
         fields = model.get(number, [])
@@ -570,7 +610,7 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
                 "findings": by_field.get(pf.field_id, []),
             })
         sections.append({"number": number, "name": name,
-                         "tab": bind.TAB_NAME.get(number, name), "fields": rows})
+                         "tab": tabs.get(number, name), "fields": rows})
     return {"sections": sections}
 
 
@@ -884,9 +924,11 @@ def structure_loss(case_id: str, key: str = Query(...)) -> dict:
 
 
 def _structure_change(case_id: str, request: Request, fn, what: str) -> dict:
-    from uad import structure
+    from uad import report_types, structure
     st = store()
     candidate = deepcopy(st.tree(case_id))
+    if report_types.kind_of(candidate) != report_types.URAR:
+        raise HTTPException(409, "an update or completion report has no dwellings or units of its own")
     try:
         said = fn(candidate.getroot())
     except (KeyError, ValueError) as exc:
@@ -942,7 +984,9 @@ def _reshape_if_needed(case_id: str, case, before_tree, after_tree):
     answer (units, ADUs, project legal structure, construction method,
     attachment...) changes what kind of property this is, the report is
     rebuilt on the closest official structure with every value carried."""
-    from uad import shape
+    from uad import report_types, shape
+    if report_types.kind_of(after_tree) != report_types.URAR:
+        return None              # an update / completion report has one shape
     before = shape.determinants(before_tree.getroot())
     after = shape.determinants(after_tree.getroot())
     if not shape.needed(before, after):

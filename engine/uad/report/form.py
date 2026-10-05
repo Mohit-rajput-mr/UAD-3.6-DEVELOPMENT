@@ -48,13 +48,17 @@ INK = typography.INK
 SECTION_NUMBER = {name: number for number, name in bind.SECTION_NAME.items()}
 
 
-def section_number(printed: str) -> int:
+def section_number(printed: str, kind: str = "urar") -> int:
     """The section a printed title belongs to.
 
     Repeated sections print with their instance ("Dwelling Exterior - Building
     1", "Outbuilding - Barn"), and section 29 has a continuation that prints
-    as plain "Certifications".
+    as plain "Certifications".  An update / completion report numbers its own
+    sections (``report_types.section_number``).
     """
+    if kind != "urar":
+        from .. import report_types
+        return report_types.section_number(kind, printed)
     base = printed.split(" - ")[0].strip()
     if base in SECTION_NUMBER:
         return SECTION_NUMBER[base]
@@ -961,7 +965,9 @@ def _build_kind(kind: str, ctx: Ctx, *, sample: bool) -> list[Block]:
         if els and els[0]["kind"] == "h1" and tabs:
             # C-2 / C-3 open their last section's page with its first subsections
             # (Scope of Work, Intended Use) and set the tab below them, as C-1
-            # does on its page 40: they are that section's, not the one before.
+            # does on its page 40: they are that section's, not the one before,
+            # and the section opens a page (D-2 AU1 p2, D-3 CR2 p3).  Every
+            # other section flows on: a Layout page is a drawing, not a break.
             sections.append([toc_name(tabs[0]["title"]), tabs[0]["title"], [], True])
         for i, el in enumerate(els):
             if el["kind"] == "tab":
@@ -970,7 +976,7 @@ def _build_kind(kind: str, ctx: Ctx, *, sample: bool) -> list[Block]:
                         e["kind"] == "tab" for e in sections[-1][2]):
                     sections[-1][2].append(el)
                     continue
-                sections.append([name, el["title"], [el], i == 0])
+                sections.append([name, el["title"], [el], False])
             elif sections:
                 sections[-1][2].append(el)
     blocks: list[Block] = []
@@ -998,7 +1004,7 @@ def _fixed(base: str) -> bool:
 def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
              sample: bool, report: str = "urar") -> list[Block]:
     base = title.split(" - [")[0]
-    ctx = ctx.inside(ctx.scope, section=base, base=base, rule_fid="")
+    ctx = ctx.inside(ctx.scope, section=base, base=base, rule_fid="", report=report)
     out: list[Block] = []
     run: Block | None = None
     grid_done = False
@@ -1044,6 +1050,21 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             out.append(Block("tab", section=printed, title=printed, group=3,
                              new_page=base in NEW_PAGE_SECTIONS and report == "urar"))
             continue
+        if kind == "h1" and el.get("title", "") == "Signature":
+            # The signature block as C-1 / C-2 / C-3 draw it: per signer the
+            # role, the name over a rule with the date beside it, the printed
+            # name and "Date of Signature and Report" under the rule, and the
+            # licence rows to the right (D-1 SF1 p21, D-2 AU1 p3).  Its parts
+            # are loose pieces in the Layout ("[Role]", "[Contact Name]", a
+            # date slot), so it is composed here rather than set piece by piece.
+            flush()
+            out.append(Block("h1", section=printed, title="Signature", group=2,
+                             html=_h1_html("Signature", "", "")))
+            rest = els[els.index(el) + 1:]
+            out.append(Block("text", section=printed, visible=True,
+                             html=_signature_html(ctx, rest),
+                             fids=[i for e in rest for i in e.get("ids") or []]))
+            break
         if kind == "h1":
             flush()
             t = _label_fill(el.get("title", ""), ctx)
@@ -1264,6 +1285,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             # number opens the paragraph, so it also takes the rule of the
             # margin slot set beside it.
             number = el["text"].strip()
+            ctx.placeholders["pending_no"] = number
             same = ctx.placeholders.get("cert_no") == number
             ctx.placeholders["cert_no"] = number
             ctx.placeholders["alt"] = str(int(ctx.placeholders.get("alt", "0")) + 1 if same else 0)
@@ -1271,6 +1293,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                            and abs(e["y"] - el["y"]) < 6 and e.get("page") == el.get("page")), None)
             if beside is not None:
                 ctx.placeholders["rule_fid"] = (beside.get("ids") or [""])[0]
+            continue           # it prints as the paragraph's bold lead (_fixed_text)
         if report != "urar" and _fixed(base) and kind == "head" and not el.get("bold", False):
             # C-2 / C-3 set a paragraph's first line a point above its margin
             # slot, so the slot beside a line governs it, not the one before
@@ -1622,18 +1645,45 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     if not text:
         return
     fid = ctx.placeholders.get("rule_fid", "")
-    if "-" in fid and "para" in ctx.placeholders:
-        # B-2 / B-3 state the alternatives a slot governs as one sentence
-        # each ("Display descriptive text when GovernmentAgencyAppraisalType
-        # = 'FHA' ...", then "... 'USDA'", then "... 'VA'"), in the order the
-        # Layout sets the paragraphs under it: the n-th paragraph after the
-        # slot takes the n-th sentence.  A line that ends a sentence closes its
-        # paragraph.  A numbered certification counts by its number instead.
-        if ctx.placeholders.get("para_open") == "closed":
-            ctx.placeholders["para"] = str(int(ctx.placeholders["para"]) + 1)
-        ctx.placeholders["para_open"] = "closed" if text.rstrip().endswith((".", ":")) else "open"
-        if ctx.placeholders.get("cert_no", "") == "":
-            ctx.placeholders["alt"] = ctx.placeholders["para"]
+    kinded = ctx.placeholders.get("report", "urar") != "urar"
+    number = ctx.placeholders.pop("pending_no", "") if kinded else ""
+    if kinded:
+        # C-2 / C-3 draw a paragraph line by line.  A line set within 15pt of
+        # the one before (the leading is 12pt; paragraphs are 17-18pt apart)
+        # and not opened by a number continues that paragraph, so the
+        # wording flows as the official report sets it.
+        y, page_no = float(el.get("y", 0)), str(el.get("page", ""))
+        last_y = float(ctx.placeholders.get("last_y", "-99"))
+        cont = (not number and ctx.placeholders.get("last_page") == page_no
+                and 0 < y - last_y < 15)
+        ctx.placeholders["last_y"], ctx.placeholders["last_page"] = str(y), page_no
+        prev = out[-1] if out else None
+        if cont and prev is not None and getattr(prev, "para_text", None) is not None:
+            prev.para_text += " " + text
+            prev.html = prev.html.rsplit("<span class='pt'>", 1)[0] + \
+                f"<span class='pt'>{esc(prev.para_text)}</span></div>"
+            return
+        if "-" in fid and "para" in ctx.placeholders:
+            # B-2 / B-3 state the alternatives a slot governs as one sentence
+            # each ("Display descriptive text when GovernmentAgencyAppraisalType
+            # = 'FHA' ...", then "... 'USDA'", then "... 'VA'"), in the order
+            # the Layout sets the paragraphs under it: the n-th paragraph after
+            # the slot takes the n-th sentence.  A numbered certification
+            # counts by its number instead.
+            if ctx.placeholders.get("para_open") == "1":
+                ctx.placeholders["para"] = str(int(ctx.placeholders["para"]) + 1)
+            ctx.placeholders["para_open"] = "1"
+            if ctx.placeholders.get("cert_no", "") == "":
+                ctx.placeholders["alt"] = ctx.placeholders["para"]
+        shown = _anchor_gate(ctx, fid)
+        if shown and not _agency_ok(ctx, text):
+            shown = False
+        lead = f"<b>{esc(number)}</b> " if number else ""
+        blk = Block("static", section=printed, visible=shown, fids=[fid],
+                    html=f"<div class='txc kp'>{lead}<span class='pt'>{esc(text)}</span></div>")
+        blk.para_text = text
+        out.append(blk)
+        return
     shown = _anchor_gate(ctx, fid)
     if shown and not _agency_ok(ctx, text):
         shown = False
@@ -1643,6 +1693,48 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     cls = "txc np" if numbered else "txc"
     out.append(Block("static", section=printed, visible=shown, fids=[fid],
                      html=f"<div class='{cls}'>{esc(text)}</div>"))
+
+
+def _signature_html(ctx: Ctx, els: list[dict]) -> str:
+    def first(pred) -> str:
+        e = next((e for e in els if pred(e)), None)
+        return (e.get("ids") or [""])[0] if e else ""
+    role_f = first(lambda e: "[Role]" in (e.get("text") or ""))
+    name_f = first(lambda e: "[Contact Name]" in (e.get("text") or ""))
+    date_f = first(lambda e: e["kind"] == "slot" and (e.get("ids") or [""])[0]
+                   and binding(e["ids"][0]) is not None
+                   and any(dp.get("mismo") == "ExecutionDate" for dp in binding(e["ids"][0]).data_points))
+    rows = [e for e in els if e["kind"] == "row" and e.get("ids")]
+    roles = shown(ctx, role_f) if role_f else []
+    names = shown(ctx, name_f) if name_f else []
+    dates = shown(ctx, date_f) if date_f else []
+    cols = {e["text"]: (e["ids"][0], shown(ctx, e["ids"][0])) for e in rows}
+
+    def value(fid: str, text: str, n: int) -> str:
+        # In the editor the appraiser's own date and licence are typed where
+        # they print (the first signer: the appraiser).  The name is the
+        # appraiser's contact name, entered under Assignment Information.
+        if ctx.edit and n == 0 and fid:
+            control = _value_control(ctx, fid, text)
+            return control or (f"<span class='v' data-fid='{esc(fid)}' contenteditable='true'"
+                               f" spellcheck='false'>{esc(text)}</span>")
+        return esc(text)
+    out = []
+    for n in range(max(len(roles), len(names), 1)):
+        role = roles[n] if n < len(roles) else ""
+        name = names[n] if n < len(names) else ""
+        date = dates[n] if n < len(dates) else (dates[0] if dates and n == 0 else "")
+        right = "".join(
+            f"<div class='sgr'><span>{esc(label)}</span>"
+            f"<span>{value(fid, v[n] if n < len(v) else '', n)}</span></div>"
+            for label, (fid, v) in cols.items())
+        out.append(
+            "<div class='sg'><div class='sgl'>"
+            f"<div class='sgrole'>{esc(_role_display(role) if role else '')}</div>"
+            f"<div class='sgline'><span class='sgname'>{esc(name)}</span><span class='sgdate'>{value(date_f, date, n)}</span></div>"
+            f"<div class='sgcap'><span>{esc(name)}</span><span>Date of Signature and Report</span></div>"
+            f"</div><div class='sgrt'>{right}</div></div>")
+    return "".join(out)
 
 
 def _party_item(el: dict, ctx: Ctx) -> Item:
@@ -2636,6 +2728,7 @@ def _kind_exhibits(ctx: Ctx, report: str) -> list[dict]:
                     shown.setdefault(e["value"], e.get("display", ""))
     feature = binding(report_types.fid(report, "03.001"))
     out = []
+    rank: list[int] = []
     for im in _images(ctx):
         if im["category"] in ("PropertyPhoto", "LegalDescription"):
             continue
@@ -2646,6 +2739,7 @@ def _kind_exhibits(ctx: Ctx, report: str) -> list[dict]:
         if owner is not None and _local(owner) == "DEFECT":
             new = (_find_text(owner, "CompletionReportNewDefectIndicator") or "false").strip()
             parts.append(REPAIR_TITLES.get(new, REPAIR_TITLES["false"]))
+            rank.append(1 if new == "true" else 0)
             group = [(n, _find_text(owner, n)) for n in
                      ("DefectComponentLabelType", "DefectComponentLabelTypeOtherDescription")
                      if _find_text(owner, n)]
@@ -2653,15 +2747,20 @@ def _kind_exhibits(ctx: Ctx, report: str) -> list[dict]:
                 parts.append(bind.display_value(group, feature))
         elif owner is not None:
             parts += [INCONSISTENT_TITLE, _find_text(owner, "SubjectToCompletionFeatureDescription")]
+            rank.append(3)
         else:
             parts.append(shown.get(im["category"], ""))
+            rank.append(2 if im["category"] == "CompletedConstruction" else 4)
         parts.append(im["caption"])
         title = " - ".join(p.strip() for p in parts if p and p.strip())
         out.append({"src": _data_uri(im["path"]), "title": title, "caption": "",
                     "location": im["location"], "category": im["category"],
                     "layout": layout_of(im["category"]), "media_id": "",
                     "image_key": bind.stable_path(node), "raw_caption": im["caption"]})
-    return out
+    # in the order B-3 ch. 07 lists them: repairs, newly observed items,
+    # completed construction, inconsistent items, then any other exhibit
+    order = sorted(range(len(out)), key=lambda n: (rank[n], n))
+    return [out[n] for n in order]
 
 
 # ---------------------------------------------------------------------------
@@ -3493,6 +3592,15 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .txcb{{line-height:11pt;padding:3.1pt 0 7.4pt 4pt;position:relative;top:var(--txcb-top)}}
 .txc{{line-height:11pt;padding:3pt 0 2pt 4pt;position:relative;top:var(--txc-top)}}
 .txc.np{{padding-left:13pt;text-indent:-9pt}}
+.txc.kp{{line-height:12pt;padding:3pt 0 3pt 4pt}}
+.sg{{display:flex;justify-content:space-between;padding:4pt 0 6pt 4pt}}
+.sgl{{width:250pt}}.sgrt{{width:264pt}}
+.sgrole{{font-weight:700;line-height:11pt}}
+.sgline{{display:flex;justify-content:space-between;border-bottom:0.5pt solid #231f20;padding:2pt 0 1pt}}
+.sgdate{{padding-right:28pt;align-self:flex-end}}
+.sgcap{{display:flex;justify-content:space-between;line-height:11pt}}
+.sgr{{display:flex;border-bottom:0.5pt solid #939598;line-height:11pt}}
+.sgr span:first-child{{width:110pt;font-weight:700;padding-left:4pt}}
 .txci{{line-height:11pt;padding:5.5pt 0 2pt 4pt;font-style:italic;position:relative;top:var(--txc-top)}}
 .txci1{{line-height:11pt;padding:5.5pt 0 2pt 4pt;font-style:italic;max-width:264pt;position:relative;top:var(--txci1-top)}}
 .photo{{border:{rule};margin-top:2pt;display:flex;align-items:center;justify-content:center;

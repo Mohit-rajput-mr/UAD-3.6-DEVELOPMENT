@@ -110,7 +110,55 @@ def layout(folder: Path, name: str) -> dict:
     finally:
         a.close()
         b.close()
-    return {"source": [clean.name, with_ids.name], "pages": pages}
+    return {"source": [clean.name, with_ids.name], "pages": [_repair(p) for p in pages]}
+
+
+def _repair(page: dict) -> dict:
+    """What C-1's extractor misreads on C-3's Completion Status (p3), fixed by
+    shape rather than by name:
+
+    * two Yes/No questions set one under the other came out as a bold head
+      (the first question) and one check carrying both field IDs: each
+      question becomes its own check with its own ID;
+    * the second question wraps, and its last word ("specifications?") was
+      read as the first column head of the table below it: a head that starts
+      with words ending in "?" gives them back to the check above;
+    * a table row whose IDs all sit in one cell, one per column, gets one ID
+      per column again.
+    """
+    els = page["elements"]
+    out: list[dict] = []
+    for i, e in enumerate(els):
+        if (e["kind"] == "check" and len(e.get("ids") or []) >= 2 and out
+                and out[-1]["kind"] == "head" and out[-1].get("bold")
+                and (out[-1].get("text") or "").rstrip().endswith("?")
+                and 0 < e["y"] - out[-1]["y"] < 16):
+            head = out.pop()
+            # C-3 sets "Yes No" over the pair (p3); merged, the header was lost
+            first = {**e, "y": head["y"], "y1": head["y1"], "text": head["text"],
+                     "ids": e["ids"][:1], "yes_no": True}
+            second = {**e, "ids": e["ids"][1:], "yes_no": False}
+            nxt = els[i + 1] if i + 1 < len(els) else None
+            if nxt is not None and nxt["kind"] == "table" and nxt.get("columns"):
+                col = nxt["columns"][0]
+                m = re.match(r"^(.*?\?)\s+(.*)$", col.get("head", ""))
+                if m:
+                    second["text"] = f"{second['text']} {m.group(1)}"
+                    col["head"] = m.group(2)
+            out += [first, second]
+            continue
+        if e["kind"] == "table":
+            n = len(e.get("columns") or [])
+            for row in e.get("rows") or []:
+                cells = row.get("cells") or []
+                full = [c for c in cells if c.get("ids")]
+                if n > 1 and len(cells) == n and len(full) == 1 and len(full[0]["ids"]) == n:
+                    ids = full[0]["ids"]
+                    for c, fid in zip(cells, ids):
+                        c["ids"] = [fid]
+        out.append(e)
+    page["elements"] = out
+    return page
 
 
 def build(kind: str) -> dict:

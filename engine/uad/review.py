@@ -137,7 +137,8 @@ def _schema_items(tree) -> list[Item]:
 
 def _compliance_items(tree) -> list[Item]:
     out = []
-    for f in compliance.evaluate(tree):
+    from . import report_types
+    for f in report_types.evaluate(tree):        # H-1, or H-2 / H-3 by kind
         if f.status == compliance.FINDING:
             out.append(Item(
                 source=COMPLIANCE, severity=f.severity, code=f.message_id,

@@ -45,7 +45,11 @@ def _render_text(tree) -> tuple[str, list[str]]:
         else:
             text = html.unescape(re.sub("<[^>]+>", " ", b.html or b.title))
             parts.append(text)
-            values.append(text)
+            if b.html and "class='sg'" in b.html:
+                # the composed signature block: each of its texts on its own
+                values += [html.unescape(t) for t in re.findall(r">([^<>]+)<", b.html) if t.strip()]
+            else:
+                values.append(text)
     return html.unescape(" ".join(parts)), values
 
 
@@ -149,3 +153,77 @@ def test_a_blank_report_holds_no_sample_content():
         text = etree.tostring(tree, encoding="unicode")
         for word in ("Falling Tree", "Anywhere Pl", "Something Rd", "Allan Appraiser", "Agatha"):
             assert word not in text
+
+
+# ------------------------------------------------------------------- the API
+@pytest.fixture
+def client(tmp_path):
+    from fastapi.testclient import TestClient
+    from app import api
+    from app.access import sign_in
+    from app.cases import Store
+    from app.main import app
+    api.STORE = Store(tmp_path / "cases")
+    api.RENDERER = None
+    api.LAYOUTS = None
+    with TestClient(app) as c:
+        sign_in(c)
+        yield c
+
+
+def _urar(client):
+    r = client.post("/api/cases", json={"template": "sf1_appraisal_v1_4", "blank": False,
+                                        "name": "123 Falling Tree Ct"})
+    assert r.status_code == 200, r.text
+    return r.json()["case_id"]
+
+
+@pytest.mark.parametrize("kind,prefix", [("update", "RU"), ("completion", "CR")])
+def test_an_appraiser_makes_an_update_or_completion_report_from_a_urar(client, kind, prefix):
+    parent = _urar(client)
+    r = client.post(f"/api/cases/{parent}/derive", json={"kind": kind})
+    assert r.status_code == 200, r.text
+    made = r.json()
+    cid = made["case_id"]
+    assert made["kind"] == kind and made["parent"] == parent
+    assert f"{prefix}-01.001" in made["filled"]
+    listed = {c["case_id"]: c for c in client.get("/api/cases").json()["cases"]}
+    assert listed[cid]["kind"] == kind
+
+    # its own sections and fields, read from the document
+    secs = client.get(f"/api/cases/{cid}/fields").json()["sections"]
+    assert [s["name"] for s in secs] == list(rt.spec(kind)["sections"].values())[:len(secs)]
+    values = {f["field_id"]: f["value"] for s in secs for f in s["fields"]}
+    assert values[f"{prefix}-01.001"].startswith("123 Falling Tree Ct")
+    assert values[f"{prefix}-02.005"] == "AA12345"
+
+    # a field is written through the same route as a URAR's
+    date = f"{prefix}-03.001" if kind == "update" else f"{prefix}-09.027"
+    if kind == "update":
+        w = client.patch(f"/api/cases/{cid}/fields/{date}", json={"value": "2026-01-12"})
+        assert w.status_code == 200, w.text
+        secs = client.get(f"/api/cases/{cid}/fields").json()["sections"]
+        values = {f["field_id"]: f["value"] for s in secs for f in s["fields"]}
+        assert values[date] == "01/12/2026"
+
+    # reviewed against its own rules (H-2 / H-3), not the URAR's
+    review = client.get(f"/api/cases/{cid}/review").json()
+    codes = {i["code"] for i in review["items"]}
+    h = {r["Message ID"] for r in rt.spec(kind)["compliance_rules"]}
+    assert codes - {"XSD"} <= h | {""}, sorted(codes - h)[:5]
+
+    # the editor's page is the update / completion report
+    g = client.get(f"/api/cases/{cid}/layout/form/galley")
+    assert g.status_code == 200
+    assert rt.title(kind) in g.text or "Subject Property" in g.text
+    assert "Sales Comparison Approach" not in g.text
+
+    # it keeps its own shape: no URAR structure, no reshaping
+    assert client.post(f"/api/cases/{cid}/structure", json={"add": "dwelling"}).status_code == 409
+
+
+def test_only_a_urar_is_derived_from(client):
+    parent = _urar(client)
+    child = client.post(f"/api/cases/{parent}/derive", json={"kind": "update"}).json()["case_id"]
+    assert client.post(f"/api/cases/{child}/derive", json={"kind": "completion"}).status_code == 409
+    assert client.post(f"/api/cases/{parent}/derive", json={"kind": "other"}).status_code == 400

@@ -147,11 +147,12 @@ def list_cases() -> dict:
 
 @router.post("/cases")
 def create_case(request: Request, body: dict = Body(...)) -> dict:
-    template = body.get("template")
-    if not template:
-        raise HTTPException(400, "a template is required; see /api/templates")
+    # One "New report": the report is shaped by what the appraiser enters, not
+    # by picking a form.  A caller may still name a template (tests, imports).
+    template = body.get("template") or NEW_REPORT
     try:
-        case = store().create(template=template, name=body.get("name", ""),
+        case = store().create(template=template,
+                              name=body.get("name", "") or (NEW_NAME if not body.get("template") else ""),
                               blank=bool(body.get("blank", True)),
                               actor=_actor(request))
     except KeyError:
@@ -815,16 +816,50 @@ def set_field(case_id: str, field_id: str, request: Request,
                                            ordinal=ordinal)
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
-    st.save_tree(case_id, tree)
+    if field_id == "3.000" and case.name == NEW_NAME and value.strip():
+        # an unnamed report takes the subject's address as its name
+        st.rename(case_id, value.strip())
+    reshaped = _reshape_if_needed(case_id, case, st.tree(case_id), tree)
+    if reshaped is not None:
+        tree = reshaped.tree
+        st.save_tree(case_id, tree, allow_invalid=True)
+        st.set_shape(case_id, reshaped.template, reshaped.property_type)
+    else:
+        st.save_tree(case_id, tree)
     st.invalidate(case_id, _actor(request), f"{field_id} changed")
     st.log(case_id, _actor(request), "edited",
            f"{field_id} {written.old!r} -> {written.new!r}")
+    if reshaped is not None:
+        st.log(case_id, _actor(request), "reshaped",
+               f"now {reshaped.property_type} on the {reshaped.template} structure; "
+               f"{reshaped.carried} values carried, {len(reshaped.failed)} not placed")
     root = tree.getroot()
     groups = bind.read_groups(root, pf.binding, ordinal=ordinal)
     return {"written": written.to_json(),
+            "reshaped": None if reshaped is None else {
+                "property_type": reshaped.property_type,
+                "type_name": templates.PROPERTY_TYPES.get(reshaped.property_type, reshaped.property_type),
+                "template": reshaped.template, "carried": reshaped.carried,
+                "not_placed": [f.get("label") or f.get("fid") for f in reshaped.failed][:20]},
             # what the report prints: whole dollars without cents, as D-1 sets them
             "value": bind.trim_cents(bind.display_value(groups, pf.binding), pf.label),
             "state": st.get(case_id).state}
+
+
+def _reshape_if_needed(case_id: str, case, before_tree, after_tree):
+    """One report, shaped by its answers (uad/shape.py): when a determining
+    answer (units, ADUs, project legal structure, construction method,
+    attachment...) changes what kind of property this is, the report is
+    rebuilt on the closest official structure with every value carried."""
+    from uad import shape
+    before = shape.determinants(before_tree.getroot())
+    after = shape.determinants(after_tree.getroot())
+    if not shape.needed(before, after):
+        return None
+    template = shape.best_template(after, prefer=case.template)
+    if not template or template == case.template:
+        return None
+    return shape.reshape(after_tree, template)
 
 
 @router.post("/cases/{case_id}/fields")
@@ -1694,6 +1729,8 @@ def render_status(case_id: str, kind: str) -> dict:
         # the server" -- waiting here was the endless "Updating the report"
         return {"ready": True, "key": renderer().key(case_id, kind), "stale": False}
     have, want = renderer().get(case_id, kind)
+    if (have is None or have.key != want) and layouts().get(want, kind) is not None:
+        return {"ready": True, "key": want, "stale": False}
     return {"ready": have is not None and have.key == want, "key": want,
             "stale": have is not None and have.key != want}
 
@@ -1709,6 +1746,30 @@ def layout_galley(case_id: str, kind: str) -> HTMLResponse:
     key = renderer().key(case_id, kind)
     return HTMLResponse(renderer().client_galley(case_id, kind),
                         headers={"Cache-Control": "no-store", "X-Render-Key": key})
+
+
+@router.post("/cases/{case_id}/layout/{kind}/keep")
+def layout_keep(case_id: str, kind: str, body: dict = Body(...)) -> dict:
+    """The browser's final pass fitted every page: share that layout by key.
+
+    The page is rebuilt here from the same measurements and caps (the server's
+    own HTML, never the browser's), and kept only while the case still has the
+    key it was laid out for."""
+    _case_or_404(case_id)
+    if kind not in renders.KINDS:
+        raise HTTPException(404, f"no render kind {kind}")
+    key = str(body.get("key") or "")
+    measured = body.get("measured")
+    if key != renderer().key(case_id, kind) or not isinstance(measured, list) or not measured:
+        return {"kept": False}
+    try:
+        caps = {int(k): float(v) for k, v in (body.get("caps") or {}).items()}
+        html, _planned = renderer().client_pages(case_id, kind, measured, caps)
+    except (KeyError, TypeError, ValueError):
+        return {"kept": False}
+    from app.layouts import neutral
+    layouts().put(key, kind, neutral(html, case_id))
+    return {"kept": True}
 
 
 @router.post("/cases/{case_id}/layout/{kind}/pages")
@@ -1855,6 +1916,13 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
           return pass();
         }
         if(KEY!=='client') keep({key:KEY,html:res.html,at:Date.now()});
+        if(KEY!=='client'&&!any){
+          // every page fits: the server keeps this layout for every report with
+          // the same content, so the next one opens without a layout pass
+          fetch('/api/cases/'+CASE+'/layout/'+KIND+'/keep',{method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({measured:measured,caps:caps,key:KEY})}).catch(function(){});
+        }
         show(res.html, false);
       });
     });
@@ -1915,12 +1983,79 @@ def render_asset(case_id: str, name: str) -> Response:
 
 
 RENDERER = None
+LAYOUTS = None
+#: The document every new report starts from (one entry point; the report then
+#: takes its shape from the appraiser's answers).
+NEW_REPORT = "sf1_appraisal_v1_4"
+#: what an unnamed new report is called until its address is entered
+NEW_NAME = "New report"
+
+
+def layouts():
+    """Laid-out reports shared by content key (app/layouts.py)."""
+    global LAYOUTS
+    if LAYOUTS is None:
+        from app.layouts import Layouts
+        backend = DURABLE.backend if (DURABLE is not None and DURABLE.on) else None
+        LAYOUTS = Layouts(backend, folder=None if backend else Path(store().root) / "_layouts")
+    return LAYOUTS
+
+
+def _shared_page(case_id: str, kind: str):
+    """The current layout of this case if any report with the same content was
+    laid out before -- one read instead of a layout pass."""
+    try:
+        key = renderer().key(case_id, kind)
+        html = layouts().get(key, kind)
+    except Exception:
+        return None, ""
+    if html is None:
+        return None, key
+    from app.layouts import for_case
+    return for_case(html, case_id), key
+
+
+def _warm_id(template: str) -> str:
+    import hashlib
+    return hashlib.sha1(f"warm:{template}".encode()).hexdigest()[:12]
+
+
+@router.post("/warm")
+def warm(body: dict = Body(default={})) -> dict:
+    """Make sure a new report will open at once.
+
+    A new report is the same document every time, so its layout is the same
+    every time; the editor asks for this while the list of reports is on
+    screen, and lays the hidden warm-up report out in the background if no
+    server copy has its layout yet (app/layouts.py)."""
+    from app.cases import WARM
+    template = body.get("template") or NEW_REPORT
+    case_id = _warm_id(template)
+    st = store()
+    try:
+        st.get(case_id)
+    except KeyError:
+        try:
+            st.create(template=template, name=f"{WARM}{template}", blank=True,
+                      actor="server", case_id=case_id)
+        except KeyError:
+            raise HTTPException(404, f"no template {template}")
+    ready = {}
+    for kind in renders.KINDS:
+        html, _key = _shared_page(case_id, kind)
+        ready[kind] = html is not None
+    return {"case_id": case_id, "ready": ready}
 
 
 def renderer():
     global RENDERER
     if RENDERER is None:
         RENDERER = renders.Renderer(store, _media_for_render, get_prefs)
+
+        def _share(case_id, kind, key, html):
+            from app.layouts import neutral
+            layouts().put(key, kind, neutral(html, case_id))
+        RENDERER.on_rendered = _share
     return RENDERER
 
 
@@ -1933,6 +2068,9 @@ def _rendered(case_id: str, kind: str, request: Request) -> HTMLResponse:
     waits for the current render, so it never reads a stale report.
     """
     from uad.report import browser
+    shared, key = _shared_page(case_id, kind)
+    if shared is not None:
+        return _page(shared, case_id, kind, key, stale=False)
     if not browser.server_layout():
         # no Chromium here (a serverless host): the appraiser's own browser
         # measures the page and this server does the arithmetic

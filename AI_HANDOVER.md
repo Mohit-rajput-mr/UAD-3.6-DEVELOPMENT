@@ -209,6 +209,14 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+**One report, opens instantly (2026-10-05, E-084/E-085, T-1037).** There is no
+template picker: `POST /api/cases` with no template starts `api.NEW_REPORT`, and
+`uad/shape.py` rebuilds the report on the closest D-1 structure when an answer
+changes the property type, carrying every value. Every new report has the same
+content, so its layout is kept by content key (`app/layouts.py`) and served at
+once; the launcher warms it (`POST /api/warm`, hidden case). Next: the structure
+engine (T-1035) so unit/ADU/outbuilding counts are exact rather than "closest sample".
+
 **Official blueprint studied, 2026-10-05: read `knowledge/blueprint/STUDY.md` before
 any dynamic-form work.** The owner's repo `Mohit-rajput-mr/UAD36-Blueprint` holds the
 official set; its URAR documents (A-1..H-1, XSD, 12 samples) are identical to ours. It

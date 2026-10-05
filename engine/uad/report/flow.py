@@ -863,6 +863,10 @@ EDIT_JS = """
                   :res.d.case==='B'?'Same party as the seller (B-1 Case B)':'';
         }
         if(window.parent!==window) window.parent.postMessage({uad:'saved'},'*');
+        // the answer changed what kind of property this is: the report has
+        // been rebuilt on that shape (uad/shape.py) and the editor reloads it
+        if(res.d && res.d.reshaped && window.parent!==window)
+          window.parent.postMessage({uad:'reshaped',info:res.d.reshaped},'*');
         return true;
       })
       .catch(function(){el.classList.remove('saving');el.classList.add('failed');

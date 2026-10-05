@@ -355,6 +355,8 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 .state.draft:before{background:var(--ink-2)}
 .group{margin-top:26px}
 .group h3{margin:0 0 12px;font:500 10.5px/1 var(--sans);letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.newbox{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center}
+@media (max-width:760px){.newbox{grid-template-columns:1fr}}
 .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
 .tcard{position:relative;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:16px;min-height:186px;
   border:1px solid var(--line);background:var(--glass);transition:border-color .15s,transform .15s,box-shadow .15s}
@@ -542,9 +544,10 @@ async function showLaunch(){
         <input class="search" id="q" type="search" placeholder="Search by name, type or ID" aria-label="Search reports"></div>
       <div class="list" id="cases"><div class="skel" style="padding:10px 0"><i></i><i></i><i></i></div></div></section>
     <section class="sect" id="start"><div class="sect-head"><div><span class="eyebrow">02 / Start a new report</span>
-        <h2>From the GSEs' own samples.<span> Ready to fill.</span></h2>
-        <p class="lede">Every template is one of the Appendix D-1 sample cases, so a report starts from a document that already validates against the subschema. <b>New blank</b> keeps the structure and clears the values; <b>Open sample</b> opens the sample as published.</p></div></div>
-      <div id="tpls"><div class="skel" style="padding:0"><i></i><i></i></div></div></section>
+        <h2>One report.<span> It takes the shape of the property.</span></h2>
+        <p class="lede">There is no form to pick. Answer the property questions &mdash; units, ADUs, condominium or co-op, PUD, manufactured home &mdash; and the report adds or removes its own sections, the way the UAD 3.6 URAR is designed (Appendix B-1, Report PDF).</p></div></div>
+      <div class="newbox"><input class="search" id="new-name" placeholder="Name this report (optional) &mdash; e.g. the property address" aria-label="Report name">
+        <button class="btn primary lg" id="new-go">New report ${ARROW}</button></div></section>
     <section class="sect" id="import"><div class="sect-head"><div><span class="eyebrow">03 / Import</span>
         <h2>Bring an appraisal in.</h2>
         <p class="lede">A UAD 3.6 MISMO XML &mdash; alone, as the delivery .zip, with its pictures, or a whole folder.</p></div></div>
@@ -559,14 +562,17 @@ async function showLaunch(){
         <div class="ib-r" id="ib-r"></div></div></section>
     <div class="foot"><div><b>UAD 3.6</b>Uniform Residential Appraisal Report</div>
       <div><b>MISMO 3.6</b>One XML, checked against the GSE subschema</div>
-      <div><b>Appendix D-1</b>Templates from the GSE sample cases</div>
+      <div><b>B-1</b>Sections appear as the property needs them</div>
       <div><b>H-1</b>Compliance rules run as you fill</div></div>
   </div></div>`;
   const go=id=>{ const t=document.getElementById(id); if(t) t.scrollIntoView({behavior:'smooth',block:'start'}); };
-  $('#hero-new').onclick=()=>go('start');
+  $('#hero-new').onclick=()=>newCase();
+  $('#new-go').onclick=()=>newCase('',true,($('#new-name').value||'').trim());
+  $('#new-name').onkeydown=e=>{ if(e.key==='Enter') $('#new-go').click(); };
+  warmUp();
   $('#hero-import').onclick=()=>go('import');
   wireImport();
-  const [cs,tp]=await Promise.all([api('/cases'),api('/templates')]);
+  const [cs,tp]=await Promise.all([api('/cases'),api('/templates')]);  // templates: the type names
   if(S.caseId) return;                      // a case was opened meanwhile
   const cases=(cs&&cs.ok&&cs.data.cases)||[];
   const types=(tp&&tp.ok&&tp.data.property_types)||{};
@@ -602,22 +608,6 @@ async function showLaunch(){
   };
   draw('');
   $('#q').oninput=e=>draw(e.target.value);
-  const tb=$('#tpls'); tb.innerHTML='';
-  for(const [type,items] of Object.entries((tp&&tp.ok&&tp.data.templates)||{})){
-    const g=document.createElement('div'); g.className='group';
-    g.innerHTML=`<h3>${esc(types[type]||type)}</h3><div class="tgrid"></div>`;
-    for(const t of items){
-      const r=document.createElement('div'); r.className='tcard';
-      r.innerHTML=`<div><div class="ty">${esc(types[type]||type)}</div><div class="nm">${esc(t.name)}</div></div>
-        <div class="chips"><span>${t.comps} comps</span><span>${t.units} unit${t.units==1?'':'s'}</span><span>${t.images} images</span></div>
-        <div class="go"><button class="btn primary sm" data-b>New blank</button>
-        <button class="btn sm" data-f>Open sample</button></div>`;
-      r.querySelector('[data-b]').onclick=()=>newCase(t.key,true,t.name);
-      r.querySelector('[data-f]').onclick=()=>newCase(t.key,false,t.name);
-      g.querySelector('.tgrid').appendChild(r);
-    }
-    tb.appendChild(g);
-  }
 }
 /* ----------------------------------------------------------- import
    One step: the files go up, the server reads, normalises and places
@@ -691,9 +681,49 @@ function importFiles(files){
   x.send(fd);
 }
 async function newCase(template,blank,name){
-  toast('Creating…');
-  const r=await api('/cases',{method:'POST',body:JSON.stringify({template,blank,name})});
+  const body={blank:blank!==false,name:name||''}; if(template) body.template=template;
+  const r=await api('/cases',{method:'POST',body:JSON.stringify(body)});
+  if(!r.ok){ toast('The report could not be created.',5000); return; }
   openCase(r.data.case_id);
+}
+/* A new report is the same document every time, so its layout is too.  While
+   the list is on screen the server is asked whether that layout is already
+   kept (app/layouts.py); if not, it is laid out here, out of sight, so the
+   next "New report" opens at once instead of laying the report out. */
+/* One report, shaped by its answers: when an answer changes the kind of
+   property (units, ADUs, condominium, co-op, manufactured...), the server
+   rebuilds the report on that shape with every value carried (uad/shape.py).
+   The sections and the report are reloaded and the appraiser is told what
+   happened -- and about anything that could not be carried. */
+async function reshaped(info){
+  const lost=(info.not_placed||[]);
+  toast(`This is now a ${info.type_name||'different'} report — its sections follow. ${info.carried||0} answers kept.`,6000);
+  if(lost.length) UADDialog.alert(['These answers have no place in the new shape of the report:'].concat(lost).join('\n'),
+    {title:'Some answers were not carried',eyebrow:'Report shape'});
+  await refresh();
+  checkFresh('form');                 // the reshaped report swaps in behind the current one
+}
+let WARMING=false; const WARM_FRAMES=new WeakSet();
+async function warmUp(){
+  if(WARMING) return; WARMING=true;
+  try{
+    const r=await api('/warm',{method:'POST',body:'{}'});
+    if(!r.ok) return;
+    for(const kind of ['form','preview']){
+      if(r.data.ready[kind]) continue;
+      await new Promise(done=>{
+        const f=document.createElement('iframe');
+        f.setAttribute('aria-hidden','true'); f.tabIndex=-1;
+        f.style.cssText='position:fixed;left:-12000px;top:0;width:1200px;height:900px;border:0;visibility:hidden';
+        const end=()=>{ window.removeEventListener('message',on); setTimeout(()=>{ f.remove(); done(); },400); };
+        const on=e=>{ if(e.source===f.contentWindow&&e.data&&e.data.uad==='frame-ready') end(); };
+        window.addEventListener('message',on);
+        setTimeout(end,120000);
+        f.src=`/api/cases/${r.data.case_id}/${kind==='form'?'form':'preview'}`;
+        document.body.appendChild(f); WARM_FRAMES.add(f.contentWindow);
+      });
+    }
+  }catch(_){ } finally { WARMING=false; }
 }
 
 /* The editor's own data for a case (sections, review, media), kept in this
@@ -818,10 +848,10 @@ function drawRail(){
     // The rail moves the report to that section; it does not open a second
     // page about it.
     const present=S.printed||[];
-    if(present.length&&!present.includes(s.number)){
-      b.classList.add('absent');
-      b.title+=' · not in this report: the B-1 display rules leave it out for this property';
-    }
+    // one report shaped by the property: a section the B-1 display rules
+    // leave out for this property is not offered at all (it returns the
+    // moment an answer makes it apply)
+    if(present.length&&!present.includes(s.number)) continue;
     if(saved){
       b.classList.add(c.f?'st-bad':c.w?'st-warn':'st-good');
       b.title+=' · saved '+new Date(saved).toLocaleString()
@@ -891,6 +921,8 @@ function sendGoto(){
 /* Messages from the report being filled in. */
 window.addEventListener('message',e=>{
   const m=e.data||{}; if(!m.uad) return;
+  if(e.source&&WARM_FRAMES.has(e.source)) return;      // the warm-up frame is not the report
+  if(m.uad==='reshaped'&&S.caseId){ reshaped(m.info||{}); return; }
   for(const kind of ['form','preview']){
     const nf=S.swaps&&S.swaps[kind];
     if(nf&&e.source===nf.contentWindow){ if(m.uad==='frame-ready') finishSwap(kind,nf); return; }

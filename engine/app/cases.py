@@ -158,6 +158,11 @@ class Case:
         return out
 
 
+#: Name of the hidden report a server lays out ahead of time so that a new
+#: report opens at once (api.warm, app/layouts.py).  Never listed.
+WARM = "__warm__"
+
+
 class Store:
     """Every case on this machine, and everything that belongs to one."""
 
@@ -218,9 +223,9 @@ class Store:
 
     # --------------------------------------------------------------- cases
     def create(self, *, template: str, name: str = "", blank: bool = True,
-               actor: str = "appraiser") -> Case:
+               actor: str = "appraiser", case_id: str = "") -> Case:
         tpl = templates.get(template)
-        case_id = uuid.uuid4().hex[:12]
+        case_id = case_id or uuid.uuid4().hex[:12]
         tree = templates.load(template, blank=blank)
         # the producing software is this platform, whatever the template said
         from uad import delivery
@@ -268,7 +273,21 @@ class Store:
     def list(self) -> list[Case]:
         rows = self.conn.execute(
             "SELECT case_id FROM cases ORDER BY updated DESC").fetchall()
-        return [self.get(r["case_id"]) for r in rows]
+        # the warm-up report (api.warm) is the server's, never the appraiser's
+        return [c for c in (self.get(r["case_id"]) for r in rows) if not c.name.startswith(WARM)]
+
+    def rename(self, case_id: str, name: str) -> None:
+        with self._lock:
+            self.conn.execute("UPDATE cases SET name=? WHERE case_id=?", (name[:120], case_id))
+            self.conn.commit()
+
+    def set_shape(self, case_id: str, template: str, property_type: str) -> None:
+        """The structure the report now has (uad/shape.py): which official
+        shape it was rebuilt on, and the property type its answers imply."""
+        with self._lock:
+            self.conn.execute("UPDATE cases SET template=?, property_type=? WHERE case_id=?",
+                              (template, property_type, case_id))
+            self.conn.commit()
 
     def delete(self, case_id: str) -> None:
         with self._lock:

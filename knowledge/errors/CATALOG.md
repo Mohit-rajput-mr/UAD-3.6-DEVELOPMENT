@@ -1213,3 +1213,36 @@ test, not in a case script.
   totals reproduced exactly, none computed where a sample has none.
   Layer: model. State: general.
 - Test: `engine/tests/test_grid_math.py` (12 samples + a blank report).
+
+### E-084 Every new report waited for a full layout pass
+- Symptom: "New report" showed "Laying out the report in this browser..." for
+  several seconds (25 s cold with the server's Chromium), every time.
+- Cause: a layout was cached per case, but every new report is a new case --
+  while its content (and so its render key) is identical every time.
+- Fix: `app/layouts.py` keeps finished layouts by content key, case-neutral, in
+  memory and the shared store (Vercel Blob / shared dir) or the work folder;
+  `_rendered` serves one at once. A layout is stored when the server lays it out
+  (renders `on_rendered`) or when the browser's final pass fits every page
+  (`POST .../layout/{kind}/keep`; the server rebuilds the page from the same
+  measurements -- never stores browser HTML). The launcher warms the hidden
+  warm-up report (`POST /api/warm`, never listed) in the background.
+  Measured (client-layout mode, shared dir): warm-up 3.4 s while the list is on
+  screen; New report on screen in 0.36-0.87 s, also from another browser.
+  Layer: app. State: general.
+- Test: `engine/tests/test_one_report.py::test_a_new_report_opens_from_the_shared_layout`.
+
+### E-085 A report had to be started from a chosen sample "form"
+- Symptom: the launcher offered 12 sample templates (New blank / Open sample);
+  a property that changed type mid-report could not change its report.
+- Fix (owner's instruction 2026-10-05: one report, no form types): one "New
+  report" (POST /api/cases needs no template; api.NEW_REPORT); `uad/shape.py`
+  rebuilds the report when a determining answer (units, ADUs, project legal
+  structure, construction method, attachment) changes the property type, on the
+  closest D-1 structure, carrying every value by address (autofill.plan/apply);
+  the editor reloads and says so; sections the report does not print are not
+  offered in the rail. Every D-1 shape is the best match for its own answers.
+  Known limit: a unit count no sample has (3 units) takes the 4-unit structure
+  until the structure engine (T-1035) makes the count exact.
+  Layer: model + UI. State: general.
+- Test: `engine/tests/test_one_report.py` (condo, co-op, 2 and 4 units, ADU;
+  values kept; no reshape when the shape does not change).

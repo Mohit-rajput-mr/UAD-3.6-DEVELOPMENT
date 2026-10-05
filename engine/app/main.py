@@ -126,7 +126,7 @@ from starlette.concurrency import run_in_threadpool     # noqa: E402
 
 DURABLE = _durable.from_env()
 api.DURABLE = DURABLE
-_CREATES = ("/api/cases", "/api/import", "/api/cases/restore")
+_CREATES = ("/api/cases", "/api/import", "/api/cases/restore", "/api/warm")
 
 
 @app.middleware("http")

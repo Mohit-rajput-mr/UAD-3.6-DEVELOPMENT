@@ -335,6 +335,12 @@ class Renderer:
             self.request(case_id, kind)       # changed while rendering: do it again
             return
         render = Render(key, html, time.time())
+        hook = getattr(self, "on_rendered", None)
+        if hook is not None:
+            try:
+                hook(case_id, kind, key, html)    # shared by key (app/layouts.py)
+            except Exception:
+                pass
         path = self._disk(case_id, kind)
         path.write_text(html, encoding="utf-8")
         path.with_suffix(".json").write_text(json.dumps({"key": key, "made": render.made}),

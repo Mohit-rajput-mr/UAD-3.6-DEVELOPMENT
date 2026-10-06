@@ -1767,3 +1767,45 @@ test, not in a case script.
   D-1 samples (scratchpad secset.py; only the Certifications tab name differs
   in detection).
 - Test: test_site_and_defects.py::test_self_gated_sections_print_by_their_b1_rule.
+
+### E-135 Per-section text against the official PDFs: labels, notes and per-location text
+Found by splitting each official PDF on its own white section tabs and
+comparing word sets section by section (scratchpad secdiff.py), and by
+checking every italic note per section (italics.py: 48 mismatches -> 0).
+- **A-1 enumeration text is per Report Location.** The enumerations sheet
+  gives a value's printed text per location: PropertyMixedUsageIndicator
+  "false" prints "None" at 4.017; EnvironmentalConditionType "None" prints
+  only at 22.03.14. Without the location the last row won, so Site printed
+  no "Non-Residential Use None" (all 10 samples print it).
+  `build_index` now keeps each option's `location`, and
+  `bind.enumeration_texts` picks the field's own row, then the "Does Not
+  Display" row, then any other location. The repeats-as-list fallback also
+  reads a point the property holds once when no block-level point answered.
+- **Known Sales Concessions "Yes":** A-1 leaves "true" blank, but D-1 SF1
+  prints Yes (TRUE_PRINTS_YES, found by sweeping every such indicator).
+- **Inspection Date (2.023/2.038)** borrowed the PDR row's
+  PropertyDataReportIndicator = "true" (`_inherit_requires`), so it was hidden
+  on 10 samples. A row whose own stated condition contradicts the borrowed
+  one, or a subject row with an unrelated IF, no longer borrows
+  (`_contradicts`; 15 data points). Points sharing an A-1 context and
+  container now share its PartyRoleType (`_context_requires`, 11 points), so
+  the appraiser's date is the appraiser's.
+- **C-1 labels with the ID on the line below** (19.011 "Analysis of Subject
+  Property Listing History", 18.094, 25.021) became prose. D-1 prints label
+  and text inline.
+- **Italic notes:**
+  - A note looks past unanswered blocks to what it introduces (the listing and
+    prior-sale captions).
+  - B-1's "When X = v, display static text in italics" (spec/italic_rules.json,
+    extract_italic_rules.py) decides the personal-property note.
+  - A note's own "When <cond>: ... Display text in italics" decides it
+    (26.075, cooperative).
+  - The Summary's "None" only when *all* six DefectsExistIndicators are false
+    (B-1 p82), including indicators named only in A-1's IF text; otherwise the
+    sentence "There are no apparent defects ... requiring action".
+- **"(Cooperative Interest)"** follows the Opinion of Market Value (26.074 /
+  Summary 1.085 via summary_sources). It is shown in the editor too, outside
+  the typed value.
+- **Outbuilding sections by name** (Barn before Rec Room/Garage), as the grid.
+- Tests: test_site_and_defects.py::test_static_notes_and_labels_follow_b1,
+  ::test_outbuildings_print_by_name. Suite 648 pass; harness 87/0/21.

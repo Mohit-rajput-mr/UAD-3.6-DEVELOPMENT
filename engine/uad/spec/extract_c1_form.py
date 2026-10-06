@@ -602,6 +602,18 @@ def extract_page(layout_page, ids_page, number: int) -> dict:
                          "column": "full" if m.x0 < 60 else _column_of(m.x0, m.x1),
                          "ids": list(m.ids)})
 
+    # a label whose ID C-1 sets on the line below it, inside the body: the
+    # text it heads prints after it ("Analysis of Subject Property Listing
+    # History" with 19.011 under it; D-1 prints the label and the analysis
+    # together).  Margin IDs (x < 30, the certification paragraphs) are not
+    # these.
+    ordered = sorted(elements, key=lambda e: (round(e["y"], 0), e.get("x0", 0)))
+    for here, after in zip(ordered, ordered[1:]):
+        if (here["kind"] == "head" and not here.get("ids") and after["kind"] == "slot"
+                and after.get("x0", 0) >= 40 and 5 <= after["y"] - here["y"] < 20
+                and here.get("x0", 0) <= after.get("x0", 0) <= here.get("x1", 0)):
+            here["ids"] = list(after["ids"])
+            elements.remove(after)
     for e in elements:
         if e["kind"] == "head" and e["ids"]:
             e["kind"] = "prose"

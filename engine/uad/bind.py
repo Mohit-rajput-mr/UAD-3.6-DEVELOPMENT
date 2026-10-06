@@ -976,6 +976,33 @@ def answer_label(value: str, printed: str = "") -> str:
 # other blank "false"s (SalesContractExistsIndicator, the "~" / "(Shared)" /
 # "10 or More" modifiers) really print nothing.
 FALSE_PRINTS_NO = {"CornerUnitIndicator"}
+# The same for "true": A-1 leaves Known Sales Concessions' "true" blank
+# (20.008), yet D-1 SF1 prints "Known Sales Concessions  Yes" -- the only
+# sample answering true; the five answering false print "No".  Found by
+# sweeping every indicator whose "true" A-1 leaves blank against the samples.
+TRUE_PRINTS_YES = {"SalesConcessionIndicator"}
+
+
+def enumeration_texts(dp: dict, field_id: str = "") -> dict[str, str]:
+    """value -> printed text for one data point, as printed at ``field_id``.
+
+    A-1's enumerations sheet gives a value's text per Report Location: 4.017
+    prints PropertyMixedUsageIndicator "false" as "None", while the sheet's
+    "Does Not Display" row prints nothing; EnvironmentalConditionType "None"
+    prints at 22.03.14 (the grid) and nowhere else (D-1 2-4: Site Influence
+    Detail blank).  A field reads its own row first, then the "Does Not
+    Display" row, then any other location's."""
+    rank = {}
+    out: dict[str, str] = {}
+    for o in dp.get("enumerations") or []:
+        value = o.get("value")
+        if not value:
+            continue
+        where = o.get("location")
+        r = 0 if (field_id and where == field_id) else 1 if where == "" else 2
+        if value not in out or r < rank[value]:
+            out[value], rank[value] = o.get("display", ""), r
+    return out
 
 
 def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -> str:
@@ -1043,8 +1070,7 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
     rendered: list[tuple[str, str]] = []
     for name, raws in groups:
         dp = by_point.get(name, {})
-        options = {o["value"]: o.get("display", "")
-                   for o in (dp.get("enumerations") or []) if o.get("value")}
+        options = enumeration_texts(dp, binding.field_id)
         kind = (dp.get("format_type") or "").strip()
         details = dp.get("format_details") or ""
         shown = []
@@ -1060,6 +1086,8 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
                 text = options[raw]
                 if not text and raw == "false" and name in FALSE_PRINTS_NO:
                     text = "No"
+                if not text and raw == "true" and name in TRUE_PRINTS_YES:
+                    text = "Yes"
                 if text:                     # blank means "does not display"
                     shown.append(text)
             elif kind and kind.casefold() not in ("enumerated", "boolean"):

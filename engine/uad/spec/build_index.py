@@ -226,10 +226,16 @@ def build() -> dict:
     for row in enums:
         uid = _text(row.get("Unique ID"))
         if uid:
+            # the sheet gives a value's text per Report Location ("4.017: Site
+            # - ... - Non-Residential Use" prints "false" as "None"; "Does Not
+            # Display" prints nothing): kept so a field reads its own row
+            where = _text(row.get("Report Location"))
+            m = re.match(r"^(\d+(?:\.\d+)+):", where)
             by_uid[uid].append({
                 "value": _text(row.get(value_col)),
                 "display": _display(row.get(display_col)),
                 "definition": _text(row.get(define_col)),
+                "location": m.group(1) if m else ("" if where.casefold().startswith("does not display") else where),
             })
     for entry in fields.values():
         for dp in entry["data_points"]:
@@ -316,6 +322,7 @@ def build() -> dict:
         entry["roles"] = sorted(entry["roles"])
 
     _inherit_requires(fields)
+    _context_requires(fields)
 
     return {
         "discriminators": discriminators(delivery),
@@ -335,6 +342,59 @@ def build() -> dict:
 
 def _below_property(xpath: str) -> str:
     return xpath.split("/PROPERTIES/PROPERTY/", 1)[1] if "/PROPERTIES/PROPERTY/" in xpath else ""
+
+
+def _contradicts(own: str, borrowed: dict[str, str], subject_row: bool) -> bool:
+    """A row's own stated condition rules out the one it would borrow.
+
+    Either it names the same data point with another value (14.004
+    AmenityCount: 'AmenityCategoryType = "OutdoorAccessories"', not the
+    borrowed "Miscellaneous"), or it is the subject's own row with a condition
+    that does not mention the borrowed point at all (2.023 InspectionDate:
+    "IF (PropertyExteriorInspectionMethodType = Physical OR ...)" -- the PDR
+    row's PropertyDataReportIndicator = "true" hid every D-1 inspection date).
+    A comparable's row ("IF @ValuationUseType = SalesComparable ...") still
+    borrows the subject's discriminator, which is what this is for."""
+    for name, value in borrowed.items():
+        named = re.findall(re.escape(name) + r'\s*=\s*"([^"]*)"', own)
+        if named and value not in named:
+            return True
+        if subject_row and not named and name not in own:
+            return True
+    return False
+
+
+def _context_requires(fields: dict[str, dict]) -> int:
+    """Data points A-1 files under one "Additional Context" in one container
+    are one block's: "Subject Property: Appraiser Property Inspection" holds
+    Exterior (2.021) and Interior (2.022), both stated for PartyRoleType =
+    "Appraiser", and Inspection Date (2.023), stated for neither.  Without the
+    shared discriminator the date was read from whichever INSPECTION came
+    first -- the property data collector's (Condo1) or one without a date
+    (SF1).  A point with no condition of its own takes its context siblings'
+    when they all agree; recorded as ``requires_from``."""
+    groups: dict[tuple[str, str], list[tuple[str, dict]]] = defaultdict(list)
+    for entry in fields.values():
+        for dp in entry["data_points"]:
+            # only the party's role names *which* block this is; any other
+            # condition ("... = Other" for an Other-description) is the
+            # point's own and does not pass to its neighbours
+            if (dp.get("requires") and set(dp["requires"]) == {"PartyRoleType"}
+                    and dp.get("context") and dp.get("container")):
+                groups[(dp["context"], dp["container"])].append((dp.get("unique_id", ""), dp["requires"]))
+    n = 0
+    for entry in fields.values():
+        for dp in entry["data_points"]:
+            if (dp.get("requires") or not dp.get("context") or not dp.get("container")
+                    or dp.get("mismo") == "PartyRoleType"):
+                continue
+            found = groups.get((dp["context"], dp["container"]), [])
+            if len({json.dumps(r, sort_keys=True) for _u, r in found}) != 1:
+                continue
+            dp["requires"] = dict(found[0][1])
+            dp["requires_from"] = found[0][0]
+            n += 1
+    return n
 
 
 def _inherit_requires(fields: dict[str, dict]) -> int:
@@ -360,8 +420,11 @@ def _inherit_requires(fields: dict[str, dict]) -> int:
             tail = _below_property(dp.get("xpath", ""))
             if dp.get("requires") or not tail:
                 continue
+            own = " ".join(str(dp.get("conditionality_details") or "").split())
             found = known.get((dp.get("mismo", ""), tail), [])
             conds = {json.dumps(r, sort_keys=True) for _u, r in found}
+            if len(conds) == 1 and own and _contradicts(own, found[0][1], "Subject Property" in entry.get("roles", [])):
+                continue
             if len(conds) == 1:
                 dp["requires"] = dict(found[0][1])
                 dp["requires_from"] = found[0][0]

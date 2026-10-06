@@ -686,12 +686,14 @@ def _walk(ctx: Ctx, fid: str, every: bool = False):
         # Every block of each other kind is read, so a second influence keeps
         # its own proximity.
         taken: list[etree._Element] = []
+        single: list[dict] = []
         for dp in b.data_points:
             if dp is principal or not dp.get("mismo") or dp.get("attribute"):
                 continue
             cont = bind.repeating_container(dp.get("xpath", ""))
             segs_ = bind._tail(dp.get("xpath", ""))
             if not cont:
+                single.append(dp)
                 continue
             for node in (base.iter(f"{M}{dp['mismo']}") if base is not None else []):
                 if not bind._matches(node, segs_):
@@ -705,6 +707,13 @@ def _walk(ctx: Ctx, fid: str, every: bool = False):
                 taken.append(block)
                 one = bind.Binding(b.field_id, b.section, b.subsection, b.label, [dp])
                 yield from bind._walk(ctx.root, one, block, 1)
+        if not taken and base is not None:
+            # nothing in any repeated block: a point the property holds once
+            # answers the row (PropertyMixedUsageIndicator in
+            # PROPERTY_USE_SUMMARY -- D-1 SF1 "Non-Residential Use  None")
+            for dp in single:
+                one = bind.Binding(b.field_id, b.section, b.subsection, b.label, [dp])
+                yield from bind._walk(ctx.root, one, base, 1)
         return
     for name, node in bind._walk(ctx.root, b, ctx.scope, 1):
         if comment and name in ("ValuationCommentText", "ValueMarketabilityImpactType"):
@@ -1015,7 +1024,9 @@ def section_instances(ctx: Ctx, title: str) -> list[tuple[Ctx, str]]:
                 bind._humanise(_find_text(imp, "OutbuildingType"))
             out.append((ctx.inside(imp, outbuilding=kind),
                         f"Outbuilding - {kind}" if kind else "Outbuilding"))
-        return out
+        # by name, as D-1 MH1 prints them (Barn before Rec Room/Garage) and
+        # as the sales grid already pairs them (comparables._outbuildings)
+        return sorted(out, key=lambda pair: pair[1])
     if base == "Unit Interior":
         subj = subject(ctx)
         units = list(subj.iter(f"{M}PROPERTY_UNIT")) if subj is not None else []
@@ -1054,6 +1065,7 @@ class Item:
     visible: bool = False
     fids: list[str] = field(default_factory=list)
     keys: list[str] = field(default_factory=list)    # each value's repeated block
+    suffix: str = ""          # static text after the value, never typed into ("(Cooperative Interest)")
 
 
 @dataclass
@@ -1075,6 +1087,59 @@ LEVEL = {"TXR-B": 0, "TX-B": 0, "TXR": 0, "TXR-I": 1, "TXR-II": 2, "CK1": 0, "CK
 
 
 _DISPLAY_WHEN = re.compile(r"^\s*display\b[^.]*?\bwhen\b", re.I)
+
+
+@lru_cache(maxsize=1)
+def _italic_rules() -> list[dict]:
+    path = SPEC / "italic_rules.json"
+    return json.loads(path.read_text(encoding="utf-8"))["rules"] if path.exists() else []
+
+
+def italic_rule_holds(ctx: "Ctx", text: str) -> bool | None:
+    """B-1's "When X = "v", display static text in italics, "..."" for a note
+    C-1 sets with no field ID (Personal Property Conveyed's, 20.007): None
+    when B-1 states no condition for it.  A note with its own field ID (the
+    defect tables' 13.004 / 14.005) is decided where its table is."""
+    norm = lambda t: re.sub(r"[^a-z0-9]", "", t.lower())
+    for rule in _italic_rules():
+        if rule.get("fid") or norm(rule["text"]) != norm(text):
+            continue
+        subj = bind.subject(ctx.root)
+        return rule["value"] in rules.values_of(ctx.root, rule["name"], subj)
+    return None
+
+
+_PAREN = re.compile(r"^When (?P<cond>[^:]+):.*?Display (?P<text>\([^)]+\)) in parenthesis on the right", re.I)
+
+
+def _paren_suffix(ctx: "Ctx", fid: str) -> str:
+    """B-1's "When <condition>: Display (X) in parenthesis on the right" for a
+    static ID beside a value (26.074: "$548,999 (Cooperative Interest)"); the
+    Summary's copy (1.085) is the Reconciliation's, per summary_sources."""
+    src = summary_sources().get(fid, {}).get("sources") or [fid]
+    for f in src:
+        for st in field_entry(f).get("display_rules", []):
+            m = _PAREN.match(" ".join(st.get("rule", "").split()))
+            if m:
+                cond = m["cond"].replace("“", '"').replace("”", '"')
+                d = rules.evaluate("Display when " + cond, ctx.root, ctx.scope)
+                return m["text"] if d.known and d.shown else ""
+    return ""
+
+
+_WHEN_ITALIC = re.compile(r"^When (?P<cond>[^:]+):.*Display text in italics", re.I)
+
+
+def _italic_when(ctx: "Ctx", fid: str) -> bool | None:
+    """A static note's own B-1 condition, "When <condition>: ... Display text
+    in italics ...", decided against the document; None when it has none."""
+    for st in field_entry(fid).get("display_rules", []):
+        m = _WHEN_ITALIC.match(" ".join(st.get("rule", "").split()))
+        if m:
+            cond = m["cond"].replace("“", '"').replace("”", '"')
+            d = rules.evaluate("Display when " + cond, ctx.root, ctx.scope)
+            return d.shown if d.known else None
+    return None
 
 
 def field_rule_hides(ctx: "Ctx", fid: str) -> bool:
@@ -1159,9 +1224,10 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
             values, pairs = [], []        # B-1's own "Display when ..." for the field is false
         if label.startswith("Total Estimated Cost of Items") and cost_to_repair_type(ctx) != "TotalCost":
             values = []
+        suffix = next((x for x in (_paren_suffix(ctx, f) for f in el.get("ids", [])) if x), "")
         item = Item("row", style=style, label=label, values=values,
                     level=LEVEL.get(style, 0),
-                    visible=bool(values) or ctx.edit, fids=ids)
+                    visible=bool(values) or ctx.edit, fids=ids, suffix=suffix if values else "")
         item.keys = [k for _t, k in pairs]
         return item
     if kind == "head":
@@ -1496,6 +1562,17 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                 out.append(Block("italic", section=printed, visible=True, fids=ids,
                                  html=(f"<div class='txci'>{esc(text)} "
                                        f"{_boxes(value, flags[0])}</div>")))
+                continue
+            if not ctx.edit and italic_rule_holds(ctx, text) is False:
+                continue          # B-1's condition for this note does not hold
+            own = next((v for v in (_italic_when(ctx, f) for f in ids) if v is not None), None)
+            if own is not None:
+                # B-1 states this note's own condition (26.075: "When
+                # ProjectLegalStructureType = Cooperative OR Condop: ...
+                # Display text in italics ..."): it decides, not the neighbours
+                if own or ctx.edit:
+                    out.append(Block("italic", section=printed, visible=True, fids=ids,
+                                     html=f"<div class='txci'>{esc(text)}</div>"))
                 continue
             out.append(Block("italic", section=printed, html=f"<div class='txci'>{esc(text)}</div>",
                              decoration=True, fids=ids))
@@ -3600,17 +3677,26 @@ def _relations(root: etree._Element) -> dict[str, etree._Element]:
 
 
 def _no_defects(ctx: Ctx, el: dict) -> bool:
-    """B-1: a section's DDD shows "None" when its DefectsExistIndicator is false."""
+    """B-1: a section's DDD shows "None" when its DefectsExistIndicator is
+    false -- and the Summary's, which gathers six of them, only "when all
+    indicators are false" (B-1 p82).  Reading only the first (Site's) printed
+    "None" for Condo1, whose unit interior has defects needing no action; it
+    prints "There are no apparent defects ... requiring action" instead."""
+    scope = ctx.scope if ctx.scope is not None else subject(ctx)
+    names: list[str] = []
     for row in el["rows"]:
         for c in row["cells"]:
             for fid in c["ids"]:
                 for dp in field_entry(fid).get("data_points", []):
-                    for k in (dp.get("requires") or {}):
-                        if k.endswith("DefectsExistIndicator"):
-                            scope = ctx.scope if ctx.scope is not None else subject(ctx)
-                            node = scope.find(f".//{M}{k}") if scope is not None else None
-                            return node is not None and (node.text or "").strip() == "false"
-    return False
+                    # its condition, or one named in A-1's own IF (1.056's
+                    # "... AND OutbuildingDefectsExistIndicator = true")
+                    stated = re.findall(r"\w+DefectsExistIndicator", dp.get("conditionality_details") or "")
+                    for k in list(dp.get("requires") or {}) + stated:
+                        if k.endswith("DefectsExistIndicator") and k not in names:
+                            names.append(k)
+    answers = [(n.text or "").strip() for k in names
+               for n in (scope.iter(f"{M}{k}") if scope is not None else [])]
+    return bool(answers) and all(a == "false" for a in answers)
 
 
 def _td(t: str) -> str:
@@ -4506,7 +4592,8 @@ def _item_html(item: Item, edit: bool = False, derived: bool = False) -> str:
             attrs = _derived_attrs(item.fids)
             return "".join(
                 f"<div class='{cls}'><span class='lb'>{esc(item.label) if n == 0 else ''}</span>"
-                f"<span class='v derived'{attrs}>{esc(line)}</span></div>"
+                f"<span class='v derived'{attrs}>{esc(line)}"
+                f"{' ' + esc(item.suffix) if item.suffix and n == 0 else ''}</span></div>"
                 for n, line in enumerate(lines))
         if edit and item.fids:
             pick = _picker(item.fids[0], lines[0])
@@ -4528,8 +4615,14 @@ def _item_html(item: Item, edit: bool = False, derived: bool = False) -> str:
                 return (f"<div class='{cls}'><span class='lb'>{esc(item.label)}</span>"
                         f"{pick}</div>")
         attrs = _edit_attrs(item) if edit else ""
-        out = [f"<div class='{cls}'><span class='lb'>{esc(item.label)}</span>"
-               f"<span class='v'{attrs}>{esc(lines[0])}</span></div>"]
+        if item.suffix:
+            # static text after the value, in the value's own cell but not
+            # part of what is typed: "$548,999 (Cooperative Interest)"
+            first = (f"<span class='v'><span{attrs}>{esc(lines[0])}</span> "
+                     f"{esc(item.suffix)}</span>")
+        else:
+            first = f"<span class='v'{attrs}>{esc(lines[0])}</span>"
+        out = [f"<div class='{cls}'><span class='lb'>{esc(item.label)}</span>{first}</div>"]
         for n, extra in enumerate(lines[1:], start=1):
             more = _edit_attrs(item, n) if edit else ""
             out.append(f"<div class='{cls}'><span class='lb'></span>"
@@ -4579,9 +4672,27 @@ def _resolve_visibility(blocks: list[Block]) -> None:
             if blk.kind == "italic" and "There are no apparent" in blk.html:
                 prv = next((b for b in reversed(blocks[:i]) if b.kind == "table"), None)
                 blk.visible = bool(prv is not None and not prv.visible)
+            elif blk.kind == "italic":
+                # what the note introduces: the next content block, looking
+                # past unanswered ones until a heading follows them -- Subject
+                # Listing's "Current and/or relevant listings ... (minimum 1
+                # year look back)" heads the listing table with two unanswered
+                # rows between (D-1 prints it on every sample)
+                shown, passed = None, False
+                for b in blocks[i + 1:]:
+                    if b.group != 0:
+                        if passed:
+                            break
+                        continue
+                    if b.decoration:
+                        continue
+                    if b.visible:
+                        shown = b
+                        break
+                    passed = True
+                blk.visible = bool(shown is not None and "class='txc none'" not in shown.html)
             else:
-                blk.visible = (bool(nxt and nxt.visible and "class='txc none'" not in nxt.html)
-                               if blk.kind == "italic" else True)
+                blk.visible = True
     # groups: h2 < h1 < tab
     for level in (1, 2, 3):
         for i, blk in enumerate(blocks):

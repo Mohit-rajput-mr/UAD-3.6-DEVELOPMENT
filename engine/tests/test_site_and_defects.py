@@ -25,7 +25,7 @@ def _text(key: str, section: str) -> str:
             continue
         if b.left or b.right:
             parts += [html.unescape(re.sub(r"<[^>]+>", " ", i.html)) if i.kind == "table"
-                      else f"{i.label} {' '.join(i.values)}" for i in b.left + b.right if i.visible]
+                      else f"{i.label} {' '.join(i.values)} {i.suffix}" for i in b.left + b.right if i.visible]
         else:
             parts.append(html.unescape(re.sub(r"<[^>]+>", " ", b.html or b.title)))
     return " ".join(" ".join(parts).split())
@@ -297,3 +297,35 @@ def test_self_gated_sections_print_by_their_b1_rule(key, energy, disaster):
     tabs = _sections(key)
     assert ("Energy Efficient and Green Features" in tabs) is energy
     assert ("Disaster Mitigation" in tabs) is disaster
+
+
+@pytest.mark.parametrize("key,section,present,absent", [
+    # B-1 p279: the note prints only when personal property is conveyed
+    ("sf1_appraisal_v1_4", "Sales Contract", ["Personal property is not included", "Known Sales Concessions Yes"], []),
+    ("sf2_appraisal_v1_4", "Sales Contract", [], ["Personal property is not included"]),
+    # B-1 p82: defects exist, none needing action -> the sentence, not "None"
+    ("condo1_appraisal_v1_4", "Summary", ["There are no apparent defects"], []),
+    ("mh1_appraisal_v1_4", "Summary", ["There are no apparent defects"], []),
+    ("condo2_appraisal_v1_4", "Summary", [], ["There are no apparent defects"]),
+    # B-1 p370: a cooperative's value and note
+    ("coop1_appraisal_v1_4", "Reconciliation", ["$548,999 (Cooperative Interest)",
+                                                "The market value represents the cooperative interest"], []),
+    # A-1 per-location text: 4.017 prints "false" as "None"
+    ("sf1_appraisal_v1_4", "Site", ["Non-Residential Use None"], []),
+    # the appraiser's own inspection date (A-1 context shares PartyRoleType)
+    ("sf1_appraisal_v1_4", "Assignment Information", ["Inspection Date 09/20/2019"], []),
+    # the listing table's caption and the analysis label (C-1 ID under the label)
+    ("sf1_appraisal_v1_4", "Subject Listing Information",
+     ["minimum 1 year look back", "Analysis of Subject Property Listing History The only listing"], []),
+])
+def test_static_notes_and_labels_follow_b1(key, section, present, absent):
+    text = _text(key, section)
+    for p in present:
+        assert p in text, p
+    for a in absent:
+        assert a not in text, a
+
+
+def test_outbuildings_print_by_name():
+    tabs = [t for t in _tabs("mh1_appraisal_v1_4") if t.startswith("Outbuilding")]
+    assert tabs == ["Outbuilding - Barn", "Outbuilding - Rec Room/Garage"]

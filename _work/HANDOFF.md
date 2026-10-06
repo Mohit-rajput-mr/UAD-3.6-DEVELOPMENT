@@ -2789,3 +2789,4 @@ PDF segmenter mislabels), show.py (block dump), hidden.py (what field_rule_hides
 - `uad/compliance_shapes.py` decides 107 of 171 H-1 "review" rules by sentence shape; none faults a D-1 sample (tests/test_compliance_shapes.py). BLOCK_WITHOUT skips when the data point is absent (CR1/CR2 crashed on an empty owner tag).
 - Full suite: 562 pass; only the 3 known failures remain (autofill condo1/mh1, golden pdf-text).
 - Harness 87 pass / 0 fail / 21 gap — every gap is fonts (Myriad licence) or page count vs D-1 (±1–4 pages). Page count is the next layout target.
+- Later the same day: `uad/compliance_checks.py` executes the last 64 H-1 rules (one function per Message ID), so all 171 that used to read "for review" now decide. tests/test_compliance_checks.py has 78 tests. Golden review counts dropped to 0-4 per sample; fatal and warning are unchanged. T-1044 is done.

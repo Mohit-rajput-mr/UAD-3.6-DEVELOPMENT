@@ -1673,3 +1673,35 @@ test, not in a case script.
   ('= "Dwelling" or (ImprovementType = ...') as if it listed values -- the
   expression became "1 (" and every such rule was undecidable. Fixed; the
   report's field_rule_hides results are unchanged (re-validated).
+
+### E-130 H-1 rules written once each stayed "for review" (36 of the last 64)
+
+- Symptom: after the sentence shapes (E-129), 64 H-1 rules still printed as
+  "for review": sums across instances (UAD1461 net adjustment, UAD1693 unit
+  total), dates against the effective date (UAD1051/1053/1529/1611), label
+  resolution and uniqueness of RELATIONSHIP (UAD1717-1719), defect
+  indicators without their DEFECT_ContainsDefectOf_* link (UAD1685-1692),
+  value-or-range pairs (UAD1695/1696, UAD1733/1746) and others.
+- Mechanism: `uad/compliance_checks.py` — one small function per Message ID,
+  the rule text quoted above it, consulted first by `compliance_shapes.decide`.
+  It covers all 64, so **every one of H-1's 171 non-presence rules now
+  executes**. Inspections, signatures and comparable units are read through
+  their arcs (INSPECTION_CompletedBy_ROLE, SIGNATORY_IsAssociatedWith_ROLE,
+  PROPERTY_UNIT_IsComparableFor_PROPERTY_UNIT).
+- Four (UAD1250 GRM added rows, UAD1777-1779 subject areas above zero) meet
+  nothing in any D-1 sample, so they are tested on constructed cases.
+- UAD1468 ("MLS source with arc role to PROPERTY container"): the first reading,
+  "anything inside a comparable", faulted 9 samples. The samples link MLS
+  sources to the comparable's PROPERTY element itself, so only that link counts.
+- UAD1029: the Logic has no condition. Its Message Text says the block lists
+  the rights *not* appraised, so every instance must say "false".
+- Two first readings faulted every sample and were corrected from the samples:
+  - UAD1179 (DataSourceType required): the Price Trend Source carries only a
+    DataSourceName in all 12 samples (H-1 asks only that, in UAD1657), so a
+    source linked by DATA_SOURCE_IsDataSourceFor_MARKET_TREND is exempt.
+  - UAD1034 (@ValuationUseType required): limited to its xPath,
+    VALUATION_ANALYSIS/PROPERTIES/PROPERTY. The inspection service's own
+    PROPERTY carries no use type.
+- Test: tests/test_compliance_checks.py (78 tests). No check fires on any of
+  the 12 D-1 samples, and each fires on a sample broken the way its rule says.
+- Golden review counts fell by about 32 per sample; fatal and warning are unchanged.

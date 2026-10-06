@@ -233,11 +233,13 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   analysis" (no A-1 data point records relevance -- see CATALOG E-128 "Known limit").
 - Compliance (E-129): `uad/compliance_shapes.py` executes H-1 rules by sentence shape; 107 of
   the 171 "review" rules now run (none faults a D-1 sample; each fires on a broken copy --
-  tests/test_compliance_shapes.py). 64 remain (arithmetic across instances, multi-role
-  inspection rules, arcrole uniqueness) -- T-1044. `rules.CLAUSE` no longer swallows a
-  clause-joining OR. Rental analysis now two units to a line (T-1043). Harness 88/0/20.
-- Next: the 64 H-1 rules still for review (T-1044); page counts vs D-1 (harness 'package'
-  gaps); the editor's usability items (B15 gate hints, B16 photo category).
+  tests/test_compliance_shapes.py). The other 64 run through `uad/compliance_checks.py`
+  (E-130): one function per Message ID, with inspections, signatures and unit pairs read
+  through their arcs. **All 171 now execute** (T-1044 done, 78 tests).
+  `rules.CLAUSE` no longer swallows a clause-joining OR. Rental analysis now prints two
+  units to a line (T-1043). Harness 87/0/21: the only gaps are fonts and page counts.
+- Next: page counts vs D-1 (the harness 'package' gaps); the editor's usability items
+  (B15 gate hints, B16 photo category).
 
 
 ### 2026-10-06 -- tables read every block; Site and Reconciliation fidelity (E-102..E-111)

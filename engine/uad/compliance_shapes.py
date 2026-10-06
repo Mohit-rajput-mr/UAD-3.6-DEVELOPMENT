@@ -142,6 +142,10 @@ def _antecedent_holds(text: str, root, scope) -> bool | None:
 
 
 def decide(root: etree._Element, rule) -> bool | None:
+    from . import compliance_checks
+    own = compliance_checks.decide(root, rule)
+    if own != "none":
+        return own
     logic = " ".join((rule.logic or "").split())
     m = POSTAL.match(logic)
     if m:

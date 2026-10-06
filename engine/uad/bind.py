@@ -906,7 +906,9 @@ AREA_UNITS = {"SquareFeet": "Sq. Ft.", "Acres": "Acres", "SquareMeters": "Sq. M.
               "Hectares": "Hectares"}
 
 
-LINEAR_UNITS = {"Feet": "Feet", "Kilometers": "Kilometers", "Meters": "Meters", "Miles": "Miles"}
+# D-1 prints feet as "Ft." on all twelve samples (MH1 "Total Linear
+# Measurement 40 Ft."), never "Feet"
+LINEAR_UNITS = {"Feet": "Ft.", "Kilometers": "Kilometers", "Meters": "Meters", "Miles": "Miles"}
 
 
 def literal_number(text: str) -> str:

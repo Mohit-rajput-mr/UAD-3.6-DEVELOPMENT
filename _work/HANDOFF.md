@@ -2813,3 +2813,31 @@ Next from the secdiff list:
 - the HBU "Is the present use..." line;
 - page counts.
 Device check in the cloud container: WinTOTAL items FAIL by design (no TOTAL here); the engine needs none of them.
+
+## 2026-10-06 (night) -- current position (editor look + MH1 Site)
+Landed (CATALOG E-139, E-140; T-260 done):
+- MH1 Site:
+  - Site Influence prints as a drawer, one row per influence;
+  - linear measures print "Ft.";
+  - row 4.044 and the Non-Residential Property Use row print.
+- The B-1 "Site Valuation Methodology" gate was removed because D-1 MH1
+  overrules it (the validator caught it).
+- Editor:
+  - every input shows its kind through `data-k`: text cream "Type…", pick
+    blue pill "Select", amount/number green "$"/"#", date violet
+    "MM/DD/YYYY";
+  - comparable-grid cells and the "±$" adjustments look writable;
+  - Yes/No questions are labelled and captioned;
+  - heading placeholders are named;
+  - add-row lines hint;
+  - empty commentary fields stay on their label's line.
+Verification:
+- Playwright tool: scratchpad/e2e_kinds.py `<scratch> <case> "Section:tag" ...`
+  (screenshots `kinds_<tag>.png`).
+- Suite: 668 pass.
+Trap: EDIT_CSS is a non-raw Python string, so CSS escapes need `\\2026`.
+Next:
+- review the remaining editor sections (Market, Project Information,
+  Rental, Cost Approach, Certifications);
+- the secdiff backlog: MH1 Sketch caption, MH1 Outbuilding details, the HBU
+  line, page counts.

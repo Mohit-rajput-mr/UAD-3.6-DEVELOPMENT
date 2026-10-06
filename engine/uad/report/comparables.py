@@ -1508,7 +1508,10 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
     def gattr(col: int, fid: str = "", adjust: str = "", scope: str = "") -> str:
         if not edit or not (fid or adjust):
             return ""
-        return (f" data-gc='{col}'" + (f" data-gf='{_esc(fid)}'" if fid else "")
+        from . import form as _form
+        # the input the cell takes, drawn as the editor draws it elsewhere
+        k = "amount" if adjust else _form.input_kind(fid)
+        return (f" data-gc='{col}' data-k='{k}'" + (f" data-gf='{_esc(fid)}'" if fid else "")
                 + (f" data-ga='{_esc(adjust)}'" if adjust else "")
                 + (f" data-gs='{_esc(scope)}'" if scope else ""))
 

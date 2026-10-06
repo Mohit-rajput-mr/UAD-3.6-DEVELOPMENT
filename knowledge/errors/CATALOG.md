@@ -1881,3 +1881,68 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   "Set Up" vs "Setup". Tests:
   test_rooms.py::test_a_cost_line_edited_under_its_outbuilding_lands_in_that_cost_block;
   editor parity holds on all 12.
+
+### E-139 Site (D-1 MH1): influence rows, "Ft.", conditional rows, and a B-1 gate D-1 overrules
+- Symptoms:
+  - Site Influence printed one row per data point rather than one row per
+    influence;
+  - linear measures printed "Feet";
+  - the Non-Residential Property Use feature row was hidden;
+  - row 4.044 was hidden by its own trailing "If there are multiple..."
+    sentence.
+- Fixes:
+  - `form._site_influence_html` is the drawer for 4.025-4.029. It prints
+    ENVIRONMENTAL_CONDITION, BODY_OF_WATER and the other
+    SITE_INFLUENCE_DETAIL rows, one per influence. Environmental and water
+    rows come first. Proximities are joined with " | " and "1 Mile" is
+    singular. The editor cells write into the row's own block, plus a new row.
+  - `bind.LINEAR_UNITS` prints "Ft." (all 12 samples do).
+  - `field_rule_hides` cuts the rule at `\sIf\s` before it evaluates.
+  - A fixed-row selector matches keys beneath it, and its commentary.
+- Validator caught: B-1 p145 gates "Site Valuation Methodology" on
+  CostApproachIndicator = false. D-1 MH1 develops the cost approach and still
+  prints the site value and the land comparables in Site. The gate faulted a
+  published sample (test_land_comparables_a_line_each[Site]), so the
+  sample wins: `SUBSECTION_RULES` is empty, and the mechanism is kept for
+  gates that D-1 agrees with.
+
+### E-140 Editor: every input looked the same, and the comparable grid looked read-only (T-260)
+- Symptoms (owner screenshots):
+  - text, list, number and date fields all showed the same tint, so the
+    appraiser could not tell which was which;
+  - the comparable grid's cells had no affordance and read as printed
+    output;
+  - there was a stray "☐☐" before the Reconciliation defects table;
+  - a flooring row's "×" wrapped onto its own line.
+- Fixes:
+  - `form.kind_of_point` / `form.input_kind` classify every field from
+    F-1/B-1 data, not by hand. Format comes first: enumerated or boolean is a
+    pick; date, month or year is a date kind; amount; then number or
+    percent. An address or name field is text.
+  - Each editable span and grid cell carries `data-k`. EDIT_CSS gives each
+    kind its own fill and hint:
+    - text: cream, "Type…";
+    - pick: blue pill with an arrow, "Select";
+    - amount, number, percent and year: green, right-aligned, with "$", "#",
+      "%" and "YYYY";
+    - date and month: violet, "MM/DD/YYYY" and "MM/YYYY";
+    - commentary: a wide "Type comment…" field;
+    - grid adjustments: green "±$".
+  - A Yes/No italic note is a labelled question ("<Point name>? ☐Yes ☐No"),
+    and only for a single Boolean point.
+  - The legend in the editor toolbar matches the kinds.
+- More fixes:
+  - A heading's own placeholders ("- [Structure Identifier]") are named
+    controls. An empty Outbuilding Type on a dwelling's heading is not
+    offered.
+  - An add-row line hints "← choose to add a row".
+  - An empty commentary field stays on its label's line, so the editor page
+    is no taller than the laid-out one (Zoning Compliance overlapped the
+    footer).
+  - Yes/No question boxes are captioned.
+- Trap: CSS escapes inside the non-raw EDIT_CSS string need doubled
+  backslashes (`'\\2026'`); a single one is a Python octal escape
+  ("Type⋯6").
+- Verified with Playwright screenshots of Assignment Information, Sales
+  Comparison, Unit Interior, Site and Reconciliation on a blank case. The
+  print path is unchanged (golden suite).

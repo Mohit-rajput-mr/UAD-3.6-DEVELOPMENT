@@ -1258,7 +1258,7 @@ def field_rule_hides(ctx: "Ctx", fid: str) -> bool:
         # only the condition: B-1 goes on with presentation notes ("- Display
         # Street Access Type ...", "Note: ...", "(Figure 4 - 4)", "When ... = 0
         # checkboxes do not display")
-        text = re.split(r"\s[\u2212\u2013-]\s|\sNote:|\(Figure|\.\s|\sWhen\s", text)[0]
+        text = re.split(r"\s[\u2212\u2013-]\s|\sNote:|\(Figure|\.\s|\sWhen\s|\sIf\s", text)[0]
         if "do not display" in text.lower() or "@" in text:
             continue                       # an inverse rule, or one on an attribute: not read here
         # "Display checkboxes on each instance of Unit Interior when ..."
@@ -1511,6 +1511,16 @@ def _fixed(base: str) -> bool:
     return base in FIXED_TEXT or base.startswith("Certifications")
 
 
+#: subsections B-1 switches on and off by a stated condition (not carried by
+#: the per-field rules, which are per field ID)
+SUBSECTION_RULES: dict[str, str] = {
+    # B-1 p145 gates "Site Valuation Methodology" on (CostApproachIndicator =
+    # "false" AND SiteValueIndicator = "true"), but D-1 MH1 develops the cost
+    # approach and still prints the site value and land comparables in Site --
+    # the published sample wins, so that subsection is not gated (E-139)
+}
+
+
 def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
              sample: bool, report: str = "urar") -> list[Block]:
     base = title.split(" - [")[0]
@@ -1534,10 +1544,17 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         return run
 
     in_grid = False
+    gated = False
     for el in els:
         kind = el["kind"]
         column = el.get("column", "full")
         ids = el.get("ids", [])
+        if kind in ("h1", "tab"):
+            rule = SUBSECTION_RULES.get(el.get("title", "")) if kind == "h1" else None
+            d = rules.evaluate(rule, ctx.root) if (rule and not ctx.edit) else None
+            gated = bool(d is not None and d.known and not d.shown)
+        if gated:
+            continue
         # C-1 draws the comparable grid as a run of loose pieces -- sub-tables,
         # "$" column heads, the comparable numbers, subsection adjustments --
         # all of which the grid renderer already prints in place.  Until the
@@ -1602,7 +1619,23 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             extra = text_of(ctx, ids) if ids and base == "Cost Approach" and "[" not in el.get("title", "") else ""
             html_ = _h1_html(t, el.get("note", ""), extra)
             writable = [f for f in ids if binding(f) is not None]
-            if ctx.edit and writable and base != "Summary":
+            names = re.findall(r"\[([^\]]+)\]", el.get("title", ""))
+            if ctx.edit and writable and base != "Summary" and names:
+                # the title's own placeholders ("- [Structure Identifier]"):
+                # each says what it is, or it reads as a stray box
+                ctls = []
+                for name, fid in zip(names, ids):
+                    if binding(fid) is None:
+                        continue
+                    value = text_of(ctx, [fid])
+                    if name == "Outbuilding Type" and not value:
+                        continue      # a dwelling's heading: not an outbuilding
+                    ctl = _picker(fid, value) or (
+                        f"<span class='v' data-fid='{esc(fid)}' data-k='{input_kind(fid)}'"
+                        f" contenteditable='true' spellcheck='false'>{esc(value)}</span>")
+                    ctls.append(f"<span class='hph'><i>{esc(name)}</i>{ctl}</span>")
+                html_ = f"<div class='h1'><span>{esc(t)}</span><span class='amt'>{''.join(ctls)}</span></div>"
+            elif ctx.edit and writable and base != "Summary":
                 value = text_of(ctx, writable)
                 ctl = _picker(writable[0], value) or (
                     f"<span class='v' data-fid='{esc(writable[0])}' contenteditable='true'"
@@ -1698,15 +1731,24 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     if column == "left" else col(el).right.append(Item("italic", style="TXC-I1", label=text))
                 continue
             flush()
-            flags = [f for f in ids if (binding(f) and any((dp.get("format_type") or "") == "Boolean"
-                                                           for dp in binding(f).data_points))]
+            # one question answered here; a note gathering six (26.020, each
+            # answered in its own section) asks nothing of its own
+            flags = [f for f in ids if (binding(f) and [(dp.get("format_type") or "")
+                                                        for dp in binding(f).data_points
+                                                        if dp.get("mismo")] == ["Boolean"])]
             if ctx.edit and flags and base != "Summary":
                 # "Sketch or Floor Plan Not Available": the statement is a
                 # Yes/No data point, answered where it prints
                 value = checkbox(ctx, flags[0], text)
+                # the question the boxes answer, in the data point's own words
+                # (UnitInteriorDefectsExistIndicator -> "Unit Interior Defects
+                # Exist?"): boxes trailing a sentence read as part of it
+                point = next((d["mismo"] for d in binding(flags[0]).data_points if d.get("mismo")), "")
+                question = bind._humanise(re.sub(r"Indicator$", "", point)) + "?"
                 out.append(Block("italic", section=printed, visible=True, fids=ids,
-                                 html=(f"<div class='txci'>{esc(text)} "
-                                       f"{_boxes(value, flags[0])}</div>")))
+                                 html=(f"<div class='txcq'><span class='q'>{esc(question)}</span>"
+                                       f"{_boxes(value, flags[0])}</div>"
+                                       f"<div class='txci'>{esc(text)}</div>")))
                 continue
             if not ctx.edit and italic_rule_holds(ctx, text) is False:
                 continue          # B-1's condition for this note does not hold
@@ -1715,7 +1757,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                 # B-1 states this note's own condition (26.075: "When
                 # ProjectLegalStructureType = Cooperative OR Condop: ...
                 # Display text in italics ..."): it decides, not the neighbours
-                if own or ctx.edit:
+                if own:
                     out.append(Block("italic", section=printed, visible=True, fids=ids,
                                      html=f"<div class='txci'>{esc(text)}</div>"))
                 continue
@@ -2540,6 +2582,8 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
         return _interior_features_table_html(el, ctx)
     if AMENITY_CATEGORY_ID in ids and AMENITY_TYPE_ID in ids:
         return _amenities_table_html(el, ctx)
+    if INFLUENCE_ID in ids:
+        return _site_influence_html(el, ctx)
     if RENT_STRIP_PHOTO_ID in ids:
         return _rent_strip_html(el, ctx)
     use = _one_comparable_role(ids)
@@ -2648,7 +2692,12 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                         yield from instances(ctx.inside(blk), fid, every=True)
                     return
                 for k, g in instances(ctx, fid):
-                    if selector is None or k in selector:
+                    # a block inside the selected one is the row's too: the
+                    # property's mixed-use indicator selects the row, its
+                    # PROPERTY_USE holds the Detail (4.043 / 4.044, D-1 MH1)
+                    # (a commentary is found by its category, not inside the row)
+                    if (selector is None or k in selector or any(k.startswith(s_ + "/") for s_ in selector)
+                            or (selector and commentary_category(fid))):
                         yield k, g
 
             ids_by_cell = [list(c["ids"]) for c in cells]
@@ -3031,6 +3080,102 @@ def _amenity_detail(am: "etree._Element", manufactured: bool) -> list[str]:
         lines.append("Attached to Manufactured Home" if attached == "true"
                      else "Not Attached to Manufactured Home")
     return lines
+
+
+# B-1 4.025-4.029 (Site Influence): a row per block, three kinds of block --
+#   each ENVIRONMENTAL_CONDITION whose type is not None: "Apparent
+#   Environmental Condition", its proximity "|" the distance, its type;
+#   each BODY_OF_WATER: "Body of Water", its proximity, its type;
+#   each other SITE_INFLUENCE ("Each SiteInfluenceType displays once ...
+#   unless ApparentEnvironmentalCondition / BodyOfWater").
+# Read column by column the kinds paired by position (D-1 MH1: the power
+# line's row took the landfill's proximity and comment).
+INFLUENCE_ID, INFLUENCE_PROX_ID, INFLUENCE_DETAIL_ID, INFLUENCE_IMPACT_ID, INFLUENCE_COMMENT_ID = \
+    "4.025", "4.026", "4.027", "4.028", "4.029"
+
+
+def _site_influence_rows(ctx: Ctx) -> list[tuple[str, etree._Element, dict[str, list[str]]]]:
+    """(kind, block, {column fid: the data points it reads in this block})."""
+    subj = ctx.scope if ctx.scope is not None else subject(ctx)
+    if subj is None:
+        return []
+    env, water, other = [], [], []
+    for b in subj.iter(f"{M}ENVIRONMENTAL_CONDITION"):
+        if (b.findtext(f"{M}EnvironmentalConditionType") or "").strip() not in ("", "None"):
+            env.append(("ApparentEnvironmentalCondition", b, {
+                INFLUENCE_PROX_ID: ["EnvironmentalConditionProximityType", "DistanceFromPropertyLinearMeasure"],
+                INFLUENCE_DETAIL_ID: ["EnvironmentalConditionType", "EnvironmentalConditionTypeOtherDescription"],
+                INFLUENCE_IMPACT_ID: ["ValueMarketabilityImpactType"],
+                INFLUENCE_COMMENT_ID: ["EnvironmentalConditionIdentifiedDescription"]}))
+    for b in subj.iter(f"{M}BODY_OF_WATER"):
+        water.append(("BodyOfWater", b, {
+            INFLUENCE_PROX_ID: ["BodyOfWaterProximityType"],
+            INFLUENCE_DETAIL_ID: ["BodyOfWaterType", "BodyOfWaterTypeOtherDescription"],
+            INFLUENCE_IMPACT_ID: ["ValueMarketabilityImpactType"],
+            INFLUENCE_COMMENT_ID: ["BodyOfWaterDescription"]}))
+    for b in subj.iter(f"{M}SITE_INFLUENCE_DETAIL"):
+        kind = (b.findtext(f"{M}SiteInfluenceType") or "").strip()
+        if kind in ("", "BodyOfWater", "ApparentEnvironmentalCondition"):
+            continue
+        other.append((kind, b, {
+            INFLUENCE_PROX_ID: ["SiteInfluenceProximityType"],
+            INFLUENCE_DETAIL_ID: (["InfluenceMeetsPolicyRequirementsIndicator"] if "true" in rules.values_of(
+                ctx.root, "GovernmentAgencyAppraisalIndicator") else []),
+            INFLUENCE_IMPACT_ID: ["ValueMarketabilityImpactType"],
+            INFLUENCE_COMMENT_ID: ["SiteInfluenceDescription"]}))
+    return env + water + other
+
+
+def _site_influence_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    tree = ctx.root.getroottree()
+    head_b = binding(INFLUENCE_ID)
+    type_dp = next((d for d in (head_b.data_points if head_b else []) if d.get("mismo") == "SiteInfluenceType"), {})
+    names = bind.enumeration_texts(type_dp, INFLUENCE_ID)
+    def label_of(kind, blk):
+        if kind == "Other":
+            return (blk.findtext(f"{M}SiteInfluenceTypeOtherDescription") or "").strip()
+        return names.get(kind) or bind._humanise(kind)
+
+    rows = _site_influence_rows(ctx)
+    # environmental conditions and water first (D-1 MH1, Coop1), then the
+    # other influences by name (Condo2 "Gated Community" before "Golf Course",
+    # SF2, MH2, 2-4 Scenario 2)
+    fixed = [r for r in rows if r[0] in ("ApparentEnvironmentalCondition", "BodyOfWater")]
+    rest = sorted((r for r in rows if r not in fixed), key=lambda r: label_of(r[0], r[1]).casefold())
+    rows = fixed + rest
+    body = []
+    for kind, blk, cols in rows:
+        label = label_of(kind, blk)
+        key = tree.getpath(blk)
+        cells = [_td(esc(label))]
+        for fid in (INFLUENCE_PROX_ID, INFLUENCE_DETAIL_ID, INFLUENCE_IMPACT_ID, INFLUENCE_COMMENT_ID):
+            want = cols.get(fid, [])
+            pairs = [(_local(e), bind.with_unit((e.text or "").strip(), e)) for e in blk
+                     if isinstance(e.tag, str) and _local(e) in want and (e.text or "").strip()]
+            if any(n == "EnvironmentalConditionType" and v == "Other" for n, v in pairs) or \
+                    any(n == "BodyOfWaterType" and v == "Other" for n, v in pairs):
+                pairs = [p for p in pairs if p[0].endswith("OtherDescription")]
+            pairs.sort(key=lambda p: want.index(p[0]))
+            b = binding(fid)
+            text = bind.display_value(pairs, b) if (pairs and b) else ""
+            if fid == INFLUENCE_PROX_ID and len(pairs) > 1:
+                # B-1 4.026: "Display Proximity followed by a "|" then the Distance"
+                text = " | ".join(bind.display_value([p], b) for p in pairs)
+                # D-1 Coop1 "Offsite | 1 Mile"
+                text = re.sub(r"\b1 Miles\b", "1 Mile", text)
+            if ctx.edit and want:
+                cells.append(_cell(esc(text), fid, ctx, key=key, point=want[0]))
+            else:
+                cells.append(_td(esc(text)))
+        body.append("<tr>" + "".join(cells) + "</tr>")
+    if ctx.edit:
+        body.append("<tr class='newrow'>" + _cell("", INFLUENCE_ID, ctx, new=True)
+                    + "".join(_td("") for _ in range(4)) + "</tr>")
+    if not rows and not ctx.edit:
+        return "", False
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), bool(rows) or ctx.edit
 
 
 def _amenities_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
@@ -4029,7 +4174,7 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
         b_ = binding(fid)
         dp = next((d for d in (b_.data_points if b_ else []) if d.get("mismo") == point), dp)
     attrs = (f" data-tf='{esc(fid)}' data-tk='{esc(_stable(ctx, key))}'"
-             f" data-tdp='{esc(dp.get('mismo', ''))}'")
+             f" data-tdp='{esc(dp.get('mismo', ''))}' data-k='{kind_of_point(dp)}'")
     if "VALUATION_COMMENTAR" in dp.get("xpath", "") and (commentary_category(fid) or cat):
         attrs += f" data-tcat='{esc(commentary_category(fid) or cat)}'"
     if sel:
@@ -4792,6 +4937,50 @@ def _picker(fid: str, shown: str, ordinal: int = 0, adding: bool = False, key: s
             f" role='button' aria-haspopup='listbox'>{esc(shown)}</span>")
 
 
+def kind_of_point(dp: dict) -> str:
+    """What kind of input a data point takes, from A-1's format: the editor
+    draws each kind differently so an appraiser sees, before typing, whether a
+    place wants words, an amount, a number, a date or a pick from a list."""
+    if not dp:
+        return "text"
+    kind = (dp.get("format_type") or "").strip().casefold()
+    details = (dp.get("format_details") or "").upper()
+    name = dp.get("mismo", "")
+    # the format first: a measure carries its unit list as enumerations but is
+    # typed as a number (Site Size, Finished Area)
+    if kind in ("enumerated", "boolean"):
+        return "pick"
+    if kind == "date":
+        return "date" if "DD" in details else "month" if "MM" in details else "year"
+    if kind == "amount":
+        return "amount"
+    if kind == "numeric":
+        return "percent" if name.endswith("Percent") else "year" if name.endswith("Year") else "number"
+    if dp.get("enumerations") and not kind:
+        return "pick"
+    return "text"
+
+
+@lru_cache(maxsize=4096)
+def input_kind(fid: str, point: str = "") -> str:
+    b = binding(fid)
+    points = [d for d in (b.data_points if b else []) if d.get("mismo")]
+    if point:
+        dp = next((d for d in points if d.get("mismo") == point), None)
+        return kind_of_point(dp or {})
+    # a field of several points is typed as its main value: Site Size is an
+    # area with a unit list, Proximity a distance with a direction, Contract
+    # Date a date with an "unknown" box -- the value decides, not the qualifier
+    kinds = {kind_of_point(d) for d in points
+             if not d.get("attribute") or d["attribute"].endswith("UnitOfMeasureType")}
+    if any(d.get("mismo") in ("AddressLineText", "FullName", "CompanyName") for d in points):
+        return "text"           # an address or a name, whatever lists ride along (State)
+    for k in ("amount", "date", "month", "year", "percent", "number", "pick", "text"):
+        if k in kinds:
+            return k
+    return "text"
+
+
 def _edit_attrs(item: Item, index: int = 0) -> str:
     """What an editable value needs to write itself back.
 
@@ -4806,7 +4995,8 @@ def _edit_attrs(item: Item, index: int = 0) -> str:
     from .. import parties
     name = (" data-name='1'" if parties.name_role(fid) and parties.allows_entity(fid)
             and parties.allows_person(fid) else "")
-    return f" data-fid='{esc(fid)}' contenteditable='true' spellcheck='false'{name}"
+    return (f" data-fid='{esc(fid)}' data-k='{input_kind(fid)}' contenteditable='true'"
+            f" spellcheck='false'{name}")
 
 
 def _item_html(item: Item, edit: bool = False, derived: bool = False) -> str:
@@ -5195,8 +5385,108 @@ table.tbl td .v[contenteditable],table.tbl td .v.pick{display:block;min-height:9
 table.tbl td.tickcell{cursor:pointer}
 table.tbl td.tickcell:hover{background:rgba(29,79,145,.07)}
 table.tbl tr.newrow td{border-bottom-style:dashed}
+/* a heading's placeholder, named */
+.h1 .hph{display:inline-flex;align-items:center;gap:3pt;margin-left:6pt;font-weight:400}
+.h1 .hph > i{font-size:6.5pt;color:rgba(35,31,32,.6)}
+.h1 .hph > .v{min-width:60pt}
+/* the add-row line says how a row starts, so its empty cells are not read as dead */
+body.show-gaps table.tbl tr.newrow td:nth-child(2):not([data-fid]):not([data-gc]) > span:not([class]):empty:only-child:before{content:'\\2190  choose to add a row';
+  font-size:6pt;font-style:italic;color:rgba(35,31,32,.42);white-space:nowrap}
 /* the Summary is read-only: it redisplays the rest of the report */
 .v.derived{cursor:pointer}
+
+/* ---- What each place takes, visible before anything is typed (T-260) ----
+   One look per kind of input, the same everywhere -- rows, tables and the
+   comparable grids -- so an appraiser reads the page as a form:
+     words      cream, "Type..."            numbers  green, right-aligned, "#"
+     amounts    green, "$"                  dates    violet, "MM/DD/YYYY"
+     a list     blue pill with its arrow, "Select"
+   Empty places carry the hint; answered ones keep a hairline in the same
+   colour, so what can still be changed stays visible.  Everything is a fill,
+   an inset line or a pseudo-element: nothing on the page moves. */
+.v[data-k]{--k-fill:rgba(214,158,46,.16);--k-edge:rgba(176,122,18,.60)}
+.v[data-k=amount],.v[data-k=number],.v[data-k=percent],.v[data-k=year],
+td[data-gc][data-k=amount],td[data-gc][data-k=number],td[data-gc][data-k=percent],td[data-gc][data-k=year]
+  {--k-fill:rgba(56,161,105,.14);--k-edge:rgba(39,120,75,.60)}
+.v[data-k=date],.v[data-k=month],td[data-gc][data-k=date],td[data-gc][data-k=month]
+  {--k-fill:rgba(128,90,213,.13);--k-edge:rgba(107,70,193,.60)}
+.v.pick,.v[data-k=pick],td[data-gc][data-k=pick]{--k-fill:rgba(49,130,206,.13);--k-edge:rgba(43,108,176,.65)}
+td[data-gc]{--k-fill:rgba(214,158,46,.16);--k-edge:rgba(176,122,18,.60)}
+
+/* answered: a hairline under the value in its kind's colour */
+.v[data-k]:not(:empty),.v.pick:not(:empty){box-shadow:inset 0 -0.6pt 0 var(--k-edge)}
+.v[data-k]:hover,.v.pick:hover{background:var(--k-fill)}
+/* empty: the kind's fill, outline and hint */
+body.show-gaps .v[contenteditable][data-k]:empty,
+body.show-gaps .v.pick:empty{background:var(--k-fill);box-shadow:inset 0 0 0 0.6pt var(--k-edge)}
+body.show-gaps .v[contenteditable][data-k]:empty:before,
+body.show-gaps .v.pick:empty:before{display:inline-block;width:auto;min-width:40pt;
+  font-size:6.3pt;font-style:italic;color:rgba(35,31,32,.45);padding:0 2pt;box-sizing:border-box}
+body.show-gaps .v[data-k=text]:empty:before{content:'Type\\2026'}
+body.show-gaps .v[data-k=amount]:empty:before{content:'$';text-align:right}
+body.show-gaps .v[data-k=number]:empty:before{content:'#';text-align:right}
+body.show-gaps .v[data-k=percent]:empty:before{content:'%';text-align:right}
+body.show-gaps .v[data-k=year]:empty:before{content:'YYYY';text-align:right}
+body.show-gaps .v[data-k=date]:empty:before{content:'MM/DD/YYYY'}
+body.show-gaps .v[data-k=month]:empty:before{content:'MM/YYYY'}
+body.show-gaps .v.pick:empty:before{content:'Select'}
+.v[data-k=amount],.v[data-k=number],.v[data-k=percent],.v[data-k=year]{text-align:right}
+.v[data-k=text]{cursor:text}
+/* a list is a pill with its arrow, never mistaken for a typed value */
+.v.pick{border-radius:4pt}
+.v.pick:after{border-top-color:var(--k-edge)}
+/* the boxes still to be ticked */
+body.show-gaps .bxs.untouched{background:rgba(214,158,46,.20)}
+.bxs .bx[data-pick]{box-shadow:0 0 0 0.6pt rgba(176,122,18,.55)}
+
+/* the comparable grids: every cell that can be written looks like it */
+table.grid td[data-gc]:not(.grey){background-image:linear-gradient(var(--k-fill),var(--k-fill));
+  box-shadow:inset 0 -0.6pt 0 var(--k-edge)}
+table.grid td[data-gc]:not(.grey):hover{background-image:linear-gradient(var(--k-fill),var(--k-fill)),
+  linear-gradient(var(--k-fill),var(--k-fill));box-shadow:inset 0 0 0 0.75pt var(--k-edge);cursor:cell}
+table.grid td[data-gc]:not(.grey) > span:empty:before{font-size:6pt;font-style:italic;
+  color:rgba(35,31,32,.42);content:'Add'}
+table.grid td[data-gc][data-k=amount]:not(.grey) > span:empty:before{content:'$'}
+table.grid td[data-gc][data-k=number]:not(.grey) > span:empty:before{content:'#'}
+table.grid td[data-gc][data-k=date]:not(.grey) > span:empty:before{content:'MM/DD/YYYY'}
+table.grid td[data-gc][data-k=pick]:not(.grey) > span:empty:before{content:'Select \\25BE'}
+table.grid td[data-gc][data-k=text]:not(.grey) > span:empty:before{content:'Type\\2026'}
+table.grid td[data-gc][data-k=year]:not(.grey) > span:empty:before{content:'YYYY'}
+table.grid td[data-gc][data-k=percent]:not(.grey) > span:empty:before{content:'%'}
+/* an empty adjustment prints grey; in the editor it is where the appraiser
+   types the adjustment, so it looks like it */
+table.grid td.adj[data-gc]{background-color:transparent;
+  background-image:linear-gradient(rgba(56,161,105,.14),rgba(56,161,105,.14));
+  box-shadow:inset 0 -0.6pt 0 rgba(39,120,75,.6);cursor:cell}
+table.grid td.adj[data-gc]:hover{box-shadow:inset 0 0 0 0.75pt rgba(39,120,75,.7)}
+table.grid td.adj[data-gc] > span:empty:before{content:'\\00B1 $';font-size:6pt;font-style:italic;
+  color:rgba(35,31,32,.42)}
+table.grid td.grey[data-gc]{cursor:pointer}
+/* commentary typed after its label: a wide words field, never a speck */
+.v.multiline[contenteditable]{--k-fill:rgba(214,158,46,.16);--k-edge:rgba(176,122,18,.60)}
+body.show-gaps .v.multiline[contenteditable]:empty{background:var(--k-fill);
+  box-shadow:inset 0 0 0 0.6pt var(--k-edge)}
+body.show-gaps span.v.multiline[contenteditable]:empty{display:inline-block;min-width:200pt;vertical-align:bottom}
+/* ...that keeps to its label's line: a field pushed onto a line of its own
+   would make the page taller than the one laid out */
+body.show-gaps :is(.txcb,.txcb1):has(> span.v.multiline[contenteditable]:empty){display:flex;align-items:flex-end}
+body.show-gaps :is(.txcb,.txcb1) > span.v.multiline[contenteditable]:empty{flex:1 1 60pt;min-width:60pt;max-width:200pt}
+body.show-gaps .v.multiline[contenteditable]:empty:before{font-size:6.3pt;font-style:italic;
+  color:rgba(35,31,32,.45);padding:0 2pt;display:inline-block;width:auto}
+body.show-gaps .v.multiline[contenteditable]:not([data-ph]):empty:before{content:'Type comment\\2026'}
+.v.multiline[contenteditable]:not(:empty){box-shadow:inset 0 -0.6pt 0 var(--k-edge)}
+/* a Yes / No the editor asks before a note (defects exist, sketch exists) */
+.txcq{display:flex;align-items:center;gap:8pt;font-weight:700;font-size:8pt;margin:1pt 0 2pt}
+.txcq .bxs{margin-left:0}
+.txcq .bx{width:auto;padding-right:6pt}
+.txcq .bx:after{font-family:'UAD 9',sans-serif;font-size:7pt;font-weight:400;letter-spacing:0;font-kerning:normal;
+  vertical-align:2pt;margin-left:2pt}
+.txcq .bx[data-pick=true]:after{content:'Yes'}
+.txcq .bx[data-pick=false]:after{content:'No'}
+/* a row's remove button sits beside its value, not under it */
+table.tbl td:has(> .lvdel) > .v{display:inline-block;width:calc(100% - 15pt);vertical-align:middle}
+table.tbl td > .lvdel{margin-left:2pt}
+table.grid td.grey[data-gc]:hover{box-shadow:inset 0 0 0 0.75pt rgba(176,122,18,.6)}
 """
 
 

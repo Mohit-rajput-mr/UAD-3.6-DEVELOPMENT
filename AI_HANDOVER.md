@@ -209,6 +209,20 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-06 (night) -- editor looks like a form you fill (T-260, E-140) + MH1 Site (E-139)
+- Each input kind has its own look (`data-k` from `form.input_kind`, which uses F-1/B-1 data):
+  - text: cream "Type…";
+  - list: blue pill "Select";
+  - $, # and %: green, right-aligned;
+  - dates: violet "MM/DD/YYYY".
+- The comparable grids look writable (hint per cell, "±$" adjustments).
+- Yes/No questions carry their name and captions. Heading placeholders are named. The legend
+  sits in the toolbar.
+- MH1 Site differences are closed. The B-1 Site Valuation gate was dropped because D-1 MH1
+  overrules it.
+- Next: review the remaining editor sections for anything that looks off; continue the secdiff
+  backlog listed in _work/HANDOFF.md.
+
 ### 2026-10-06 (later) -- the remaining sections against the official PDFs (E-112..E-126)
 - Dwelling Exterior: rear / defect photos placed per building (`_positional_image`,
   `_defect_section`); buildings and their units interleave; "Brick | Wood" (every block in a

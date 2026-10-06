@@ -1946,3 +1946,30 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Verified with Playwright screenshots of Assignment Information, Sales
   Comparison, Unit Interior, Site and Reconciliation on a blank case. The
   print path is unchanged (golden suite).
+
+### E-141 Editor: tick cells that would not untick, a transfer's source not editable, and blank hints
+- Symptoms:
+  - (owner) Public/Private in the utilities table could be ticked but never
+    unticked, and an empty cell looked like nothing at all;
+  - Subject Transfer History's Amount was a "Select" (the "not available"
+    reason point) and its Data Source had no control;
+  - the Certifications "Additional Scope of Work / Intended Use / Intended
+    User" answers were tiny boxes with no hint;
+  - commentary bars said only "Commentary" (or nothing).
+- Fixes:
+  - flow.py: a click on a ticked cell sends "" and clears the row. Each tick
+    cell is drawn as a hollow checkbox. E2E: tick, untick, reload; the cell
+    stays clear.
+  - `_transfer_cells`: Amount is the amount unless a reason was given. The
+    new row writes the amount point.
+  - `form._sheet_target`: when A-1's ArcRoles sheet lists several targets for
+    a section, a column of a C-1 table sources its row's block (21.005 ->
+    SALES_HISTORY) and a lone row sources its data point (21.001 ->
+    PriorSalesOrTransfersIndicator). "&" is read as "and".
+  - The cells route keeps the row as the scope for an arc-linked source and
+    reads it back through the link. Printed text is identical on 12/12.
+  - Test: test_rooms.py::test_a_transfer_rows_data_source_is_written_tied_to_that_transfer.
+  - The certification answers and commentary bars are wide fields named
+    after their field ("Add scope of work…", "Type the legal description…").
+    `body.show-gaps .v[contenteditable]:empty:before{content:''}` had blanked
+    every data-ph hint.

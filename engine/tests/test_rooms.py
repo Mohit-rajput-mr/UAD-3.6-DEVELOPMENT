@@ -251,3 +251,31 @@ def test_a_cost_line_edited_under_its_outbuilding_lands_in_that_cost_block(clien
                for c in root.iter(f"{M}IMPROVEMENT_COST_AND_DEPRECIATED_VALUE")}
     assert amounts["BARN"] == ["16000"]
     assert amounts["DWELLING"] == ["149995"] and amounts["GARAGE"] == ["15554", "9446"]
+
+
+def test_a_transfer_rows_data_source_is_written_tied_to_that_transfer(client):
+    """Subject Transfer History: each row's Data Source (21.005) is the
+    DATA_SOURCE tied to that SALES_HISTORY by arcrole (A-1's ArcRoles sheet),
+    so the editor offers it on the row and the write lands on that row."""
+    import re
+    from app import api
+    from uad.report import form
+    assert form.data_source_target("21.005") == "SALES_HISTORY"
+    assert form.data_source_target("21.001") == "PriorSalesOrTransfersIndicator"
+    cid = client.post("/api/cases", json={"template": "sf2_appraisal_v1_4", "blank": False}).json()["case_id"]
+    html = "".join(b.html for b in form.build(api.store().tree(cid), edit=True) if b.html)
+    cell = re.search(r"data-tf='21\.005' data-tk='([^']*)'", html)
+    assert cell
+    r = client.patch(f"/api/cases/{cid}/cells/21.005",
+                     json={"value": "Deed", "key": cell.group(1), "data_point": "DataSourceType"})
+    assert r.status_code == 200, r.text
+    tree = api.store().tree(cid)
+    X = "{http://www.w3.org/1999/xlink}"
+    root = tree.getroot()
+    labels = {ds.get(f"{X}label") for ds in root.iter(f"{M}DATA_SOURCE")
+              if (ds.findtext(f"{M}DataSourceType") or "") == "Deed"}
+    tied = [rel.get(f"{X}to") for rel in root.iter(f"{M}RELATIONSHIP")
+            if rel.get(f"{X}from") in labels and rel.get(f"{X}arcrole", "").endswith("IsDataSourceFor_SALES_HISTORY")]
+    assert tied, "no Deed source tied to a transfer"
+    again = "".join(b.html for b in form.build(tree, edit=True) if b.html)
+    assert re.search(r"data-tf='21\.005'[^>]*>[^<]*Deed", again)

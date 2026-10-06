@@ -1890,11 +1890,12 @@ EDIT_JS = """
     // Public / Private in a utilities row: the click sets the ownership
     var tc=t.closest('td.tickcell');
     if(tc){
-      var row=tc.parentNode, mark=tc.innerHTML;
-      send(tc,{value:tc.dataset.tval}).then(function(ok){
+      // a click on the ticked one clears it: neither Public nor Private
+      var row=tc.parentNode, on=!!tc.querySelector('svg.tick');
+      send(tc,{value:on?'':tc.dataset.tval}).then(function(ok){
         if(!ok) return;
         var svg="<span><svg class='tick' viewBox='0 0 10 10' width='9pt' height='9pt'><path d='M1 5 L4 8 L9 1' fill='none' stroke='#231f20' stroke-width='1.2'/></svg></span>";
-        [].forEach.call(row.querySelectorAll('td.tickcell'),function(c){ c.innerHTML= c===tc ? svg : '<span></span>'; });
+        [].forEach.call(row.querySelectorAll('td.tickcell'),function(c){ c.innerHTML= (c===tc && !on) ? svg : '<span></span>'; });
       });
       return;
     }

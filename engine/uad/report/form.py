@@ -509,9 +509,25 @@ def _sheet_target(fid: str) -> str:
     section = (field_entry(fid).get("locations") or [{}])[0].get("section", "") or b.section or ""
     found = {t for ref, t in _arcrole_sheet()
              if ref.startswith("Subject Property:") and " - " in ref
-             and ref.split(":", 1)[1].split(" - ", 1)[0].strip() and
-             ref.split(":", 1)[1].split(" - ", 1)[0].strip() in section}
+             and (part := ref.split(":", 1)[1].split(" - ", 1)[0].strip().replace(" & ", " and "))
+             and part in section}
+    if len(found) > 1:
+        # A-1 lists a section's sources both for a block ("Prior Sales or
+        # Transfers Data Source" -> SALES_HISTORY) and for a data point ("No
+        # Prior Sales ..." -> PriorSalesOrTransfersIndicator): a column of a
+        # C-1 table sources its row's block, a lone row its data point
+        blocks = {t for t in found if t.isupper()}
+        found = blocks if fid in _c1_table_fids() else found - blocks
     return found.pop() if len(found) == 1 else ""
+
+
+@lru_cache(maxsize=1)
+def _c1_table_fids() -> frozenset[str]:
+    import json as _json
+    c1 = _json.loads((bind.SPEC / "c1_form.json").read_text(encoding="utf-8"))
+    return frozenset(i for pg in c1.get("pages", []) for e in pg.get("elements", [])
+                     if e.get("kind") == "table"
+                     for i in re.findall(r'"(\d+\.\d{3}(?:\.\d+)?)"', _json.dumps(e.get("rows", []))))
 
 
 def _linked_sources(ctx: Ctx, b: bind.Binding, target: str):
@@ -920,8 +936,8 @@ def _fixed_text_answer(ctx: "Ctx", fid: str, printed: str) -> "Block | None":
     control = _value_control(ctx, fid, value) if ctx.edit else None
     if control is None:
         if ctx.edit:
-            control = (f"<span class='v' data-fid='{esc(fid)}' contenteditable='true'"
-                       f" spellcheck='true' data-ph='Answer'>{esc(value)}</span>")
+            control = (f"<span class='v multiline' data-fid='{esc(fid)}' contenteditable='true'"
+                       f" spellcheck='true' data-ph='Add {esc(label.lower())}\u2026'>{esc(value)}</span>")
         else:
             control = esc(value)
     return Block("text", section=printed, visible=True, fids=[fid],
@@ -1849,9 +1865,13 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     out.append(Block("text", section=printed, visible=True, fids=ids,
                                      html=f"<div class='txc'>{control}</div>"))
                     continue
+                b_ = binding(writable[0])
+                named = next((n for n in ((b_.label, b_.subsection) if b_ else ())
+                              if n and not n.startswith(("{", "["))), "commentary")
                 out.append(Block("text", section=printed, visible=True, fids=ids,
                                  html=(f"<div class='txc'><div class='v multiline' data-fid='{esc(writable[0])}'"
-                                       f" contenteditable='true' spellcheck='true' data-ph='Commentary'>"
+                                       f" contenteditable='true' spellcheck='true'"
+                                       f" data-ph='Type the {esc(named.lower())}\u2026'>"
                                        f"{_paras(value)}</div></div>")))
                 continue
             out.append(Block("text", section=printed, visible=bool(value), fids=ids,
@@ -3322,12 +3342,14 @@ def _transfer_cells(root, sh, ids: tuple[str, str, str, str]) -> list[tuple[str,
     date_node = sh.find(f"{M}OwnershipTransferDate")
     date = _shown_point(date_id, "OwnershipTransferDate", date_node)
     amount_node = sh.find(f"{M}OwnershipTransferTransactionAmount")
-    if amount_node is not None and (amount_node.text or "").strip():
+    reason = sh.find(f"{M}OwnershipTransferAmountNotAvailableReasonType")
+    if (amount_node is not None and (amount_node.text or "").strip()) or not (
+            reason is not None and (reason.text or "").strip()):
+        # the amount, unless a reason it is not available is what was given
         amount, apoint = _shown_point(amount_id, "OwnershipTransferTransactionAmount", amount_node), \
             "OwnershipTransferTransactionAmount"
         amount = re.sub(r"(\$[\d,]+)\.00\b", r"\1", amount)     # D-1: "$332,000"
     else:
-        reason = sh.find(f"{M}OwnershipTransferAmountNotAvailableReasonType")
         amount, apoint = _shown_point(amount_id, "OwnershipTransferAmountNotAvailableReasonType", reason), \
             "OwnershipTransferAmountNotAvailableReasonType"
     return [(terms, terms_id, point), (date, date_id, "OwnershipTransferDate"), (amount, amount_id, apoint)]
@@ -3346,6 +3368,10 @@ def _transfer_table_html(el: dict, ctx: Ctx, *, comparables: bool) -> tuple[str,
             cells.append(_cell(esc(text), fid, ctx, key=key, point=point) if ctx.edit else _td(esc(text)))
         src = _sources_for(root, sh, ids[3])
         lead = [_td(esc(number))] if comparables else []
+        if ctx.edit and data_source_target(ids[3]) == "SALES_HISTORY":
+            # each transfer's own source, tied to it by arcrole (A-1)
+            return ("<tr>" + "".join(lead) + "".join(cells)
+                    + _cell(esc(" | ".join(src)), ids[3], ctx, key=key, point="DataSourceType") + "</tr>")
         return ("<tr>" + "".join(lead) + "".join(cells)
                 + "<td class='lines'>" + "<br>".join(f"<span>{esc(x)}</span>" for x in src) + "</td></tr>")
 
@@ -3373,7 +3399,10 @@ def _transfer_table_html(el: dict, ctx: Ctx, *, comparables: bool) -> tuple[str,
         if ind is not None and (ind.text or "").strip() == "true":
             body += [line(sh, "") for sh in _prior_transfers(root, subj, True)]
         if ctx.edit and subj is not None and (ind is None or (ind.text or "").strip() != "false"):
-            body.append("<tr class='newrow'>" + "".join(_cell("", fid, ctx, new=True) for fid in ids[:3])
+            body.append("<tr class='newrow'>" + "".join(
+                _cell("", fid, ctx, new=True, point=pt) for fid, pt in
+                zip(ids[:3], ("OwnershipTransferTransactionType", "OwnershipTransferDate",
+                              "OwnershipTransferTransactionAmount")))
                         + _td("") + "</tr>")
     if not body:
         return "", False
@@ -5384,6 +5413,12 @@ span.v.multiline[contenteditable]{display:inline;width:auto}
 table.tbl td .v[contenteditable],table.tbl td .v.pick{display:block;min-height:9pt;min-width:0}
 table.tbl td.tickcell{cursor:pointer}
 table.tbl td.tickcell:hover{background:rgba(29,79,145,.07)}
+/* a tick cell is a checkbox: hollow until chosen, and a click on the tick clears it */
+table.tbl td.tickcell > span{display:inline-flex;align-items:center;justify-content:center;
+  width:10pt;height:10pt;border:0.8pt solid rgba(29,79,145,.55);border-radius:1.5pt;
+  background:rgba(66,133,244,.08);vertical-align:middle;box-sizing:border-box}
+table.tbl td.tickcell:hover > span{border-color:rgba(29,79,145,.9);background:rgba(66,133,244,.18)}
+table.tbl td.tickcell > span > svg.tick{width:8pt;height:8pt}
 table.tbl tr.newrow td{border-bottom-style:dashed}
 /* a heading's placeholder, named */
 .h1 .hph{display:inline-flex;align-items:center;gap:3pt;margin-left:6pt;font-weight:400}
@@ -5469,11 +5504,13 @@ body.show-gaps .v.multiline[contenteditable]:empty{background:var(--k-fill);
 body.show-gaps span.v.multiline[contenteditable]:empty{display:inline-block;min-width:200pt;vertical-align:bottom}
 /* ...that keeps to its label's line: a field pushed onto a line of its own
    would make the page taller than the one laid out */
-body.show-gaps :is(.txcb,.txcb1):has(> span.v.multiline[contenteditable]:empty){display:flex;align-items:flex-end}
+body.show-gaps :is(.txcb,.txcb1,.certans):has(> span.v.multiline[contenteditable]:empty){display:flex;align-items:flex-end}
 body.show-gaps :is(.txcb,.txcb1) > span.v.multiline[contenteditable]:empty{flex:1 1 60pt;min-width:60pt;max-width:200pt}
+body.show-gaps .certans > span.v.multiline[contenteditable]:empty{flex:1 1 60pt;min-width:60pt}
 body.show-gaps .v.multiline[contenteditable]:empty:before{font-size:6.3pt;font-style:italic;
   color:rgba(35,31,32,.45);padding:0 2pt;display:inline-block;width:auto}
 body.show-gaps .v.multiline[contenteditable]:not([data-ph]):empty:before{content:'Type comment\\2026'}
+body.show-gaps .v.multiline[contenteditable][data-ph]:empty:before{content:attr(data-ph)}
 .v.multiline[contenteditable]:not(:empty){box-shadow:inset 0 -0.6pt 0 var(--k-edge)}
 /* a Yes / No the editor asks before a note (defects exist, sketch exists) */
 .txcq{display:flex;align-items:center;gap:8pt;font-weight:700;font-size:8pt;margin:1pt 0 2pt}

@@ -740,7 +740,24 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                 edit.insert_ordered(scope, "ValuationAnalysisCategoryType").text = cat
         if scope is None:
             scope = base
-        if scope is not None:
+        from uad.report import form as _form
+        target = (_form.data_source_target(field_id)
+                  if "DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", "") else "")
+        if scope is not None and target and target != "PROPERTY":
+            # a source tied by arcrole to its row (a transfer's Data Source):
+            # the row is the scope, and the value reads back through the link
+            from uad import sources
+            written = edit.write(candidate, field_id, value, binding=binding,
+                                 data_point=dp.get("mismo", ""), scope=scope)
+            here = next(scope.iter(f"{{{bind.MISMO}}}{target}"), None)
+            have = [(ds.findtext(f"{{{bind.MISMO}}}{written.data_point}") or "").strip()
+                    for ds in (sources.linked(root, here, target) if here is not None else [])]
+            if value.strip() and value.strip() not in have:
+                raise ValueError(f"Field {field_id} could not be saved to this row. No changes were saved.")
+            arc_written = written
+        else:
+            arc_written = None
+        if arc_written is None and scope is not None:
             # write inside the nearest element on this data point's own path
             segments = [t for t in dp.get("xpath", "").strip("/").split("/") if t]
             holder = scope
@@ -749,12 +766,13 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             if holder is None:
                 raise ValueError(f"Field {field_id} does not belong to this row.")
             scope = holder
-        written = edit.write(candidate, field_id, value, binding=binding,
-                             data_point=body.get("data_point", ""), scope=scope)
-        back = bind.locate(root, binding, written.data_point, scope, 1)
-        got = (back.text or "").strip() if back is not None else ""
-        if got != written.new:
-            raise ValueError(f"Field {field_id} could not be saved to this row. No changes were saved.")
+        if arc_written is None:
+            written = edit.write(candidate, field_id, value, binding=binding,
+                                 data_point=body.get("data_point", ""), scope=scope)
+            back = bind.locate(root, binding, written.data_point, scope, 1)
+            got = (back.text or "").strip() if back is not None else ""
+            if got != written.new:
+                raise ValueError(f"Field {field_id} could not be saved to this row. No changes were saved.")
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
     st.save_tree(case_id, candidate)          # refuses a write that adds a schema error

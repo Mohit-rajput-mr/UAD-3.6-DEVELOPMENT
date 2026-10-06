@@ -2841,3 +2841,11 @@ Next:
   Rental, Cost Approach, Certifications);
 - the secdiff backlog: MH1 Sketch caption, MH1 Outbuilding details, the HBU
   line, page counts.
+- Later (E-141, T-261 done):
+  - utilities Public/Private ticks toggle off and are drawn as checkboxes;
+  - the Transfer History Amount is a $ field and each transfer's Data Source
+    is editable (arc-linked to its SALES_HISTORY);
+  - certification answers and commentary bars carry named hints;
+  - toolbar legend chips are opaque, so they read in dark mode.
+  Suite: 669 pass. Printed text is identical on 12/12 after the
+  `_sheet_target` change.

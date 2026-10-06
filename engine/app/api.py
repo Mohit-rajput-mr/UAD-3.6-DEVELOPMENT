@@ -773,6 +773,13 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             got = (back.text or "").strip() if back is not None else ""
             if got != written.new:
                 raise ValueError(f"Field {field_id} could not be saved to this row. No changes were saved.")
+            if written.new and scope is not None:
+                # a value typed is a value available (PaymentAmountAvailableIndicator)
+                for d in binding.data_points:
+                    if (d.get("mismo", "").endswith("AvailableIndicator")
+                            and d.get("mismo") != written.data_point):
+                        edit.write(candidate, field_id, "true", binding=binding,
+                                   data_point=d["mismo"], scope=scope)
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
     st.save_tree(case_id, candidate)          # refuses a write that adds a schema error

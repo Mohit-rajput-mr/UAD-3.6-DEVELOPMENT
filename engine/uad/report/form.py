@@ -1561,6 +1561,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
 
     in_grid = False
     gated = False
+    last_h1 = ""
     for el in els:
         kind = el["kind"]
         column = el.get("column", "full")
@@ -1611,6 +1612,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind == "h1":
             flush()
             t = _label_fill(el.get("title", ""), ctx)
+            last_h1 = t
             if True:
                 # a heading closes the block the last margin rule governed
                 ctx.placeholders.pop("block_shown", None)
@@ -1654,8 +1656,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             elif ctx.edit and writable and base != "Summary":
                 value = text_of(ctx, writable)
                 ctl = _picker(writable[0], value) or (
-                    f"<span class='v' data-fid='{esc(writable[0])}' contenteditable='true'"
-                    f" spellcheck='false'>{esc(value)}</span>")
+                    f"<span class='v' data-fid='{esc(writable[0])}' data-k='{input_kind(writable[0])}'"
+                    f" contenteditable='true' spellcheck='false'>{esc(value)}</span>")
                 html_ = f"<div class='h1'><span>{esc(t)}</span><span class='amt'>{ctl}</span></div>"
             blk = Block("h1", section=printed, title=t, group=2, html=html_)
             if base == "Certifications and Scope of Work" and not out:
@@ -1852,10 +1854,29 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             if any(i.endswith(".1") or i.endswith(".2") for i in ids) and (
                     report == "urar" or not [m for m in main if binding(m) is not None]):
                 continue           # exhibits are placed below from the case's images
+            if main and all(f in _lien_priority_fids() for f in main):
+                continue           # B-1: "Display as column headers" -- the lien table's heads
             value = text_of(ctx, main, " ")
             if _fixed(base) and not [f for f in main if binding(f) is not None]:
                 continue           # a slot that only carries a paragraph's rule
             writable = [f for f in main if binding(f) is not None]
+            b0 = binding(writable[0]) if writable else None
+            if (ctx.edit and b0 is not None and base != "Summary" and len(writable) == 1
+                    and b0.label in ("{No Label}", "[No Label]") and b0.subsection.startswith("[")):
+                # a tab's own title placeholder ("Unit Interior - [Structure
+                # Identifier]"), set loose before the tab in C-1: named, or it
+                # reads as a stray box
+                point = next((d["mismo"] for d in b0.data_points if d.get("mismo")), "")
+                if point == "OutbuildingType" and not value:
+                    continue          # a dwelling's unit: not an outbuilding
+                where = (field_entry(writable[0]).get("locations") or [{}])[0].get("section", "")
+                ctl = _value_control(ctx, writable[0], value) or (
+                    f"<span class='v' data-fid='{esc(writable[0])}' data-k='{input_kind(writable[0])}'"
+                    f" contenteditable='true' spellcheck='false'>{esc(value)}</span>")
+                out.append(Block("text", section=printed, visible=True, fids=ids,
+                                 html=(f"<div class='txcb'><b>{esc(where)}: {esc(bind._humanise(point))}&nbsp; </b>"
+                                       f"{ctl}</div>")))
+                continue
             if ctx.edit and writable and base != "Summary":
                 # A value under a bar is usually commentary, typed where it
                 # prints over several lines -- but not always: some are a
@@ -1867,7 +1888,7 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     continue
                 b_ = binding(writable[0])
                 named = next((n for n in ((b_.label, b_.subsection) if b_ else ())
-                              if n and not n.startswith(("{", "["))), "commentary")
+                              if n and not n.startswith(("{", "["))), last_h1 or "commentary")
                 out.append(Block("text", section=printed, visible=True, fids=ids,
                                  html=(f"<div class='txc'><div class='v multiline' data-fid='{esc(writable[0])}'"
                                        f" contenteditable='true' spellcheck='true'"
@@ -2619,6 +2640,8 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
         return "", False              # drawn with the income columns above
     if TRANSFER_TERMS_ID in ids or COMP_NUMBER_ID in ids:
         return _transfer_table_html(el, ctx, comparables=COMP_NUMBER_ID in ids)
+    if _lien_columns(el):
+        return _liens_table_html(el, ctx)
     if ctx.edit and ctx.placeholders.get("base") == "Summary":
         # B-1 ch. 01: the Summary redisplays -- its tables are read-only too
         ctx = Ctx(ctx.root, ctx.scope, ctx.folder, ctx.media, ctx.placeholders, False,
@@ -3411,6 +3434,103 @@ def _transfer_table_html(el: dict, ctx: Ctx, *, comparables: bool) -> tuple[str,
             f"{head}<tbody>{''.join(body)}</tbody></table>"), True
 
 
+@lru_cache(maxsize=1)
+def _lien_priority_fids() -> tuple[str, ...]:
+    """The fields that name a blanket financing's LienPriorityType (18.028,
+    18.037, 18.046, 18.055), in report order."""
+    return tuple(sorted((f for f in _fields() if (b := binding(f)) is not None
+                         and [d.get("mismo") for d in b.data_points] == ["LienPriorityType"]),
+                        key=lambda f: [int(x) for x in f.split(".")]))
+
+
+def _lien_columns(el: dict) -> list[tuple[str, str]]:
+    """Project Blanket Financing: a column per LienPriorityType, named by its
+    head ("Second Lien") -- B-1 18.029-18.063 "Display for each
+    LienPriorityType".  (value, priority field) per column, or [] for any
+    other table."""
+    cols = el.get("columns") or []
+    pf = _lien_priority_fids()
+    if len(cols) < 2 or not pf:
+        return []
+    by_text = {shown.casefold(): v for v, shown in choices_for(pf[0])}
+    heads = [c.get("head", "").strip().casefold() for c in cols[1:]]
+    if not heads or not all(h in by_text for h in heads):
+        return []
+    out = []
+    for n, h in enumerate(heads):
+        first = next((i for r in el["rows"] for i in (r["cells"][n + 1].get("ids") or [])
+                      if len(r.get("cells", [])) > n + 1), "")
+        key = [int(x) for x in first.split(".")] if first else []
+        below = [f for f in pf if [int(x) for x in f.split(".")] < key]
+        out.append((by_text[h], below[-1] if below else pf[n % len(pf)]))
+    return out
+
+
+def _lien_value(inst: "etree._Element", fid: str) -> str:
+    """A lien's value as the table prints it: every data point the field
+    holds, read from this lien's own block ("$600,000.00 $1,000,000.00")."""
+    b = binding(fid)
+    if b is None:
+        return ""
+    group = [(d["mismo"], (inst.findtext(f"{M}{d['mismo']}") or "").strip())
+             for d in b.data_points if d.get("mismo") and not d.get("attribute")]
+    group = [g for g in group if g[1]]
+    return bind.display_value(group, b) if group else ""
+
+
+def _liens_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    """Each column reads and writes the PROJECT_BLANKET_FINANCING of its own
+    lien priority.  B-1 18.028/.037/.046/.055: the priorities "Display as
+    column headers ... Table is dynamic.  Only display as many columns as
+    there are Liens" -- the report prints a column per lien the case holds;
+    the editor offers all four, so a lien can be added.  (D-1 Coop1 prints
+    the first lien under all four heads and "First Lien" four times below:
+    against B-1, which ranks above it.)"""
+    columns = _lien_columns(el)
+    subj = subject(ctx)
+    found = list(subj.iter(f"{M}PROJECT_BLANKET_FINANCING")) if subj is not None else []
+    by_value = {(f.findtext(f"{M}LienPriorityType") or "").strip(): f for f in found}
+    untyped = [f for v, f in by_value.items() if not v]
+    tree = ctx.root.getroottree()
+    insts = []
+    for value, _pf in columns:
+        inst = by_value.get(value)
+        if inst is None and value == "FirstLien" and untyped:
+            inst = untyped[0]               # a block not yet given its priority
+        insts.append(inst)
+
+    def holds(inst) -> bool:
+        return inst is not None and any(
+            _lien_value(inst, i) for r in el["rows"] for c in r.get("cells", [])[1:] for i in c.get("ids", []))
+
+    keep = [n for n in range(len(columns)) if ctx.edit or holds(insts[n])]
+    if not keep:
+        return "", False
+    body = []
+    for row in el["rows"]:
+        cells = row.get("cells") or []
+        tds = [_td(esc(_label_fill(cells[0].get("text", ""), ctx)))] if cells else []
+        for n in keep:
+            value, pf = columns[n]
+            fids = (cells[n + 1].get("ids") or []) if len(cells) > n + 1 else []
+            inst = insts[n]
+            text = _lien_value(inst, fids[0]) if (inst is not None and fids) else ""
+            if ctx.edit and fids:
+                if inst is not None:
+                    tds.append(_cell(esc(text), fids[0], ctx, key=tree.getpath(inst)))
+                else:
+                    shown = dict(choices_for(pf)).get(value, value)
+                    tds.append(_cell("", fids[0], ctx, sel=pf, label=shown))
+            else:
+                tds.append(_td(esc(text)))
+        body.append("<tr>" + "".join(tds) + "</tr>")
+    shown_el = dict(el, columns=[el["columns"][0]] + [el["columns"][n + 1] for n in keep])
+    colgroup, head = _colgroup(shown_el)
+    width = sum(c["x1"] - c["x0"] for c in shown_el["columns"])
+    return (f"<table class='tbl' style='width:{width:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), True
+
+
 # Appendix B-1, 23.01 Rent Schedule (pp300-303):
 #   Subject Property Rental Information: a line per unit in the rent schedule
 #   (UnitIncludedInRentScheduleIndicator), 23.01.01-23.01.10.
@@ -4114,7 +4234,9 @@ def cell_point(fid: str, container: str, instance: "etree._Element | None" = Non
     b = binding(fid)
     if b is None:
         return {}
-    points = [dp for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")]
+    points = ([dp for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")]
+              # a measure carried with its unit (12.013 "Total Area" @AreaUnitOfMeasureType)
+              or [dp for dp in b.data_points if dp.get("mismo")])
     if container:
         inside = [dp for dp in points
                   if container in [s for s in dp.get("xpath", "").strip("/").split("/") if s]]
@@ -4129,6 +4251,11 @@ def cell_point(fid: str, container: str, instance: "etree._Element | None" = Non
         meets = [dp for dp in points if _instance_ok(dp, instance)]
         if meets:
             points = meets
+    # "Monthly Payment" is the amount; its PaymentAmountAvailableIndicator
+    # says whether there is one, and follows from what is typed
+    valued = [dp for dp in points if not dp["mismo"].endswith("AvailableIndicator")]
+    if valued and len(valued) < len(points):
+        points = valued
     enumerated = [dp for dp in points if (dp.get("format_type") or "") == "Enumerated"]
     return (enumerated or points or [{}])[0]
 

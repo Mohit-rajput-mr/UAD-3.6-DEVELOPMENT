@@ -2849,3 +2849,14 @@ Next:
   - toolbar legend chips are opaque, so they read in dark mode.
   Suite: 669 pass. Printed text is identical on 12/12 after the
   `_sheet_target` change.
+- Later still (E-142, T-262 done):
+  - Project Blanket Financing has a column per lien priority. Edits land in
+    that lien's block; before this, a Second Lien edit overwrote the First
+    Lien. The print shows as many columns as there are liens (B-1, over
+    D-1 Coop1).
+  - Unlabelled stray controls are labelled or removed.
+  - Monthly Payment is $, outbuilding area is #, and commentary hints name
+    their section.
+  - Open, for the owner: rental analysis side by side (C-1) vs stacked
+    (D-1).
+  Suite: 672 pass.

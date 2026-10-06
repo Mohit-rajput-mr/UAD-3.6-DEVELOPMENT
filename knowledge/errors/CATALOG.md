@@ -1973,3 +1973,41 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
     after their field ("Add scope of work…", "Type the legal description…").
     `body.show-gaps .v[contenteditable]:empty:before{content:''}` had blanked
     every data-ph hint.
+
+### E-142 Project Blanket Financing: one column per lien (B-1 over D-1), and more stray editor controls
+- Symptoms:
+  - Editor: typing in the Second Lien column overwrote the First Lien's block
+    (one PROJECT_BLANKET_FINANCING, no LienPriorityType). Data was lost.
+  - Print: every column showed the first lien's values (D-1 Coop1 does the
+    same), plus "First Lien" four times as loose lines.
+  - Editor: four unlabelled "Select" pickers (18.028/.037/.046/.055) under
+    the lien table.
+  - Monthly Payment was a "Select" (its PaymentAmountAvailableIndicator).
+  - Unlabelled Unit Interior title placeholders (10.000-10.002) sat under
+    the Manufactured Home exhibits.
+  - Outbuilding "Total Area" (12.013) was text, with no data point.
+  - The "Indicated Value by Cost Approach" heading box had no hint.
+- Authority: B-1 18.028 says the priorities "Display as column headers in
+  bold font ... Table is dynamic. Only display as many columns as there
+  are Liens", and 18.029-18.063 are "Display for each LienPriorityType".
+  D-1 Coop1 contradicts this (its second lien, a line of credit, is printed
+  under all four heads). B-1 ranks above D-1, so B-1 is followed and the
+  deviation is recorded here.
+- Fixes:
+  - `form._liens_table_html`: each column reads and writes the block of its
+    own priority. A missing one is created with that priority (sel/label).
+    The report prints a column per lien held; the editor offers all four.
+    The priority slots never print loose.
+  - `cell_point`: an "...AvailableIndicator" yields to the value it flags,
+    and the cells route sets the indicator to true when a value is typed. A
+    measure that carries its unit attribute counts as a data point.
+  - Tab title placeholders are labelled ("Unit Interior: Structure
+    Identifier"); an empty Outbuilding Type is not offered.
+  - Commentary hints fall back to the bar they sit under.
+- Tests (test_rooms.py):
+  - test_each_lien_column_writes_its_own_blanket_financing;
+  - test_a_lien_payment_typed_marks_the_payment_available;
+  - test_an_outbuilding_area_cell_writes_its_measure.
+- Open, for the owner: C-1 p33 sets two units' rental analyses side by side
+  (as we print, T-1043). D-1 2-4 and Scenario 2 stack Subject + three
+  comparables per grid instead.

@@ -279,3 +279,65 @@ def test_a_transfer_rows_data_source_is_written_tied_to_that_transfer(client):
     assert tied, "no Deed source tied to a transfer"
     again = "".join(b.html for b in form.build(tree, edit=True) if b.html)
     assert re.search(r"data-tf='21\.005'[^>]*>[^<]*Deed", again)
+
+
+def test_each_lien_column_writes_its_own_blanket_financing(client):
+    """Project Blanket Financing: B-1 displays 18.029-18.063 "for each
+    LienPriorityType", a column per lien.  A Second Lien value is written to
+    the SecondLien block (created with its priority), never over the first."""
+    import re
+    from app import api
+    from uad.report import form
+    cid = client.post("/api/cases", json={"template": "coop1_appraisal_v1_4", "blank": True}).json()["case_id"]
+    html = "".join(b.html for b in form.build(api.store().tree(cid), edit=True) if b.html)
+
+    def cell(fid):
+        m = re.search(rf"data-tf='{re.escape(fid)}' data-tk='([^']*)'([^>]*)", html)
+        assert m, fid
+        sel = re.search(r"data-tsel='([^']*)' data-tlab='([^']*)'", m.group(2))
+        return {"key": m.group(1), **({"sel": sel.group(1), "label": sel.group(2)} if sel else {})}
+
+    for fid, value in (("18.029", "100000"), ("18.038", "50000")):
+        r = client.patch(f"/api/cases/{cid}/cells/{fid}", json={"value": value, **cell(fid)})
+        assert r.status_code == 200, r.text
+        html = "".join(b.html for b in form.build(api.store().tree(cid), edit=True) if b.html)
+    root = api.store().tree(cid).getroot()
+    liens = {(f.findtext(f"{M}LienPriorityType") or "").strip(): (f.findtext(f"{M}UPBAmount") or "")
+             for f in root.iter(f"{M}PROJECT_BLANKET_FINANCING")}
+    assert liens.get("SecondLien") == "50000", liens
+    assert "100000" in liens.values(), liens
+    # the priority fields are not offered as loose pickers under the table
+    assert "data-fid='18.037'" not in html and "data-fid='18.028'" not in html
+
+
+def test_a_lien_payment_typed_marks_the_payment_available(client):
+    import re
+    from app import api
+    from uad.report import form
+    cid = client.post("/api/cases", json={"template": "coop1_appraisal_v1_4", "blank": True}).json()["case_id"]
+    html = "".join(b.html for b in form.build(api.store().tree(cid), edit=True) if b.html)
+    m = re.search(r"data-tf='18\.033' data-tk='([^']*)' data-tdp='([^']*)' data-k='([^']*)'", html)
+    assert m and m.group(2) == "TotalPaymentAmount" and m.group(3) == "amount", m and m.groups()
+    r = client.patch(f"/api/cases/{cid}/cells/18.033", json={"value": "6364", "key": m.group(1),
+                                                              "data_point": m.group(2)})
+    assert r.status_code == 200, r.text
+    root = api.store().tree(cid).getroot()
+    pbf = next(f for f in root.iter(f"{M}PROJECT_BLANKET_FINANCING") if f.findtext(f"{M}TotalPaymentAmount"))
+    assert pbf.findtext(f"{M}PaymentAmountAvailableIndicator") == "true"
+
+
+def test_an_outbuilding_area_cell_writes_its_measure(client):
+    """12.013 Total Area holds one data point, carried with its unit
+    attribute: the cell is a number and writes the measure."""
+    import re
+    from app import api
+    from uad.report import form
+    cid = client.post("/api/cases", json={"template": "mh1_appraisal_v1_4", "blank": False}).json()["case_id"]
+    html = form.galley_html(form.build(api.store().tree(cid), edit=True), edit=True)
+    m = re.search(r"""data-tf=["']12\.013["'] data-tk=["']([^"']*)["'] data-tdp=["']([^"']*)["'] data-k=["']([^"']*)["'][^>]*?data-tscope=["']([^"']*)["']""", html)
+    assert m and m.group(2) == "StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure" and m.group(3) == "number", m and m.groups()
+    r = client.patch(f"/api/cases/{cid}/cells/12.013", json={"value": "130", "key": m.group(1),
+                                                              "data_point": m.group(2), "scope": m.group(4) or ""})
+    assert r.status_code == 200, r.text
+    root = api.store().tree(cid).getroot()
+    assert "130" in [e.text for e in root.iter(f"{M}StructureExcludingVehicleStorageAndADUUnfinishedAreaMeasure")]

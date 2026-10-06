@@ -1475,3 +1475,201 @@ test, not in a case script.
   broader rule turned SalesContractExistsIndicator into "No" and put the
   Sales Contract section into five reports the official PDFs omit it from --
   caught by test_golden).
+
+### E-112 Dwelling Exterior exhibits empty; defect photos never printed
+- Photos kept at property level (PROPERTY/INSPECTIONS/.../IMAGE) were filtered
+  out of each scoped section copy; A-1 has no IMAGE -> IMPROVEMENT link. D-1
+  2-4 holds two DwellingRear images and prints one per building, so
+  `form._positional_image` gives the n-th to the n-th copy (single -> first).
+  Defect photos (owner DEFECT, no category) go to the section of what the
+  defect's DEFECT_ContainsDefectOf_* link points at (`_defect_section`).
+  Title "Lead - Caption" printed once; category + caption joined with " - "
+  ("Property Access (Street Scene) - East", D-1 Condo2).
+
+### E-113 Several buildings: sections out of order
+- D-1 2-4 prints Building 1, its Unit 1, Building 2, its Unit 2; we printed
+  both buildings first. `form.build` interleaves each dwelling's units after
+  it when there is more than one dwelling (B-1 p377 gives the same order).
+
+### E-114 Component rows and Room Summary
+- Fixed-label rows read only the first block inside the component: two
+  EXTERIOR_WALLs printed "Brick" not "Brick | Wood" (SF2, SF5, MH2, 2-4 S2).
+  Fix: `instances(..., every=True)` per row block.
+- Noncontinuous area Room Summary printed "Family Room 1"; B-1 p175 "Count -
+  Room Type, not when zero" -> `bind.display_value` composes TotalRoomCount +
+  RoomType generically.
+
+### E-115 Market "Graph" listed every photo category
+- 17.017 is ImageCategoryType alone; it read every IMAGE. B-1: the graphs
+  listed in Market Exhibits. Fix: `_graph_categories` keeps categories filed
+  under the field's own section. SF1 now prints exactly its four graphs.
+
+### E-116 Rules read inside a unit could not see the project's facts
+- `rules.values_of` searched only the scope: 10.026 (gated on the project's
+  LandOwnedInCommonIndicator) read false inside a unit, hiding "Non-Residential
+  Use in Unit No" (Condo1, Coop1). Fix: when the scope lacks the name, the
+  nearest ancestor that has it answers, never a sibling unit's copy.
+- `field_rule_hides` skipped any rule containing "do not display" anywhere --
+  10.011's trailing "When ... = 0 checkboxes do not display" -- and could not
+  read "Display checkboxes on each instance ... when". Now the condition is cut
+  first and the prefix normalised. It also applies to template-row tables
+  (10.050 Accessibility, 27.000 Revision, 26.014, 8.041 Foundation, 10.056).
+- Validated on all 12 D-1 samples (scratchpad hidden.py): every field it hides
+  is absent from exactly those official PDFs (ADU 10/12, Accessibility 11/12,
+  Ground Rent SF1/SF2, Foundation Condo1/Coop1, Revision table 10/12).
+
+### E-117 Subject Property Amenities table printed categories in one cell, no Detail
+- The C-1 template row's category column (14.001) is not delivered; the generic
+  reader paired nothing. Fix: `form._amenities_table_html`: category from B-1's
+  14.002 lists (Other -> Miscellaneous), groups in B-1's order, category once
+  per group, a repeated name once (D-1 SF3 / MH1 "Deck" then blank), Detail
+  composed per 14.004 (area + unit, "Total Number - n", pool features "|",
+  "(Not) Attached to Manufactured Home" for ConstructionMethodType
+  Manufactured -- B-1 misspells "Atatched", D-1 prints "Attached").
+  Type names from A-1 over all 14.002 data points ("Multi-Zone HVAC"; D-1
+  prints "Multiple Zone HVAC" -- A-1 wins by the authority order).
+  Editor: each cell typed in place, x removes the AMENITY (`DELETE /rows`
+  tag AMENITY), the empty line adds one. Tests: test_site_and_defects.py,
+  test_rooms.py::test_an_amenity_is_added_in_its_category_and_removed.
+
+### E-118 Prior Sale and Transfer History: every source in the report, comparable rows scrambled
+- Subject "Data Source" listed every DATA_SOURCE; the comparable table printed
+  all comps' numbers, then all terms, then all amounts. B-1 pp284-286.
+- Fix: `form._transfer_table_html` (subject and comparable tables) and the
+  21.001 reader: with PriorSalesOrTransfersIndicator false, "None" and the
+  sources tied to that indicator; otherwise one line per prior transfer,
+  newest first, Terms = SaleType for a Sale else the transfer type, Amount
+  without cents ("$332,000"), sources tied to that SALES_HISTORY stacked in
+  A-1 enumeration order. A comparable's prior transfer is a SALES_HISTORY a
+  source is tied to; its own (grid) sale has none -- true of all 12 samples.
+  A second transfer of one comparable leaves the number blank (D-1 Condo1).
+  Tests: test_site_and_defects.py (transfer rows).
+
+### E-119 Rent Schedule printed one unit and "[Unit Identifier]"
+- B-1 23.01: a line per unit in the rent schedule; Actual Income beside
+  Opinion of Market Income, each with Rent per unit, Subtotal, Other Real
+  Property Rental Income, Subtotal, Total (D-1 2-4). Fix:
+  `form._rent_units_html` / `_rent_income_html`; C-1's two income bars are the
+  columns' own titles (RENT_INCOME_HEADS).
+
+### E-120 Rental comparables were one grid against one subject
+- A-1 pairs each rental comparable with a subject unit: one RENTAL_INFORMATION
+  per pairing, tied by RENTAL_INFORMATION_IsComparableFor_RENTAL_INFORMATION;
+  D-1 2-4 compares Unit 1 with #1-#3 and Unit 2 with #1, #4, #5 (Adjusted Rent
+  for #1 differs per unit). Fix: `comparables.rental_pairs` -> one grid per
+  subject unit; each cell is read in the innermost block its field's path runs
+  through (`_field_scope`: pairing, unit, property) -- never the whole
+  property for a unit's answer (Unit 2 prints em-dashes, not Unit 1's "No").
+  Rows "Display if Exists" print a delivered "No" (`_EXISTS`).
+- The Comparable Rental Properties strip (B-1 23.02: photo, number, address,
+  data source, lease start, actual rent) was taken for the grid and lost:
+  `form._rent_strip_html`, excluded from `_is_grid`.
+
+### E-121 The grid cell editor only knew the sales grid
+- Rental and GRM grid cells opened the editor against the sales rows, found no
+  row and did nothing -- a dead control. Fix: the grid says its kind
+  (`data-gk`), cells their block (`data-gs`); the editor fetches and writes
+  that kind; `PATCH /comparables/{n}/fields/{fid}` takes `scope` and writes in
+  the block the field's path runs through. Strip cells open the same editor
+  (rental editor rows for 23.02.01-06). Tests: test_rooms.py::
+  test_a_rental_grid_per_unit_writes_into_that_units_pairing; Chromium
+  click-through (strip rent 800 -> 815 saved; Unit 2 grid cell opens).
+
+### E-122 GRM grid: Sale Date blank, "$2,300 ~", an all-zero ADU row
+- 24.018 carries A-1's subject condition 'IF PriorSalesOrTransfersIndicator =
+  "true"'; a GRM comparable has no such indicator, so its own sale date was
+  filtered out. Fix: grid reads drop a condition whose data point the
+  property does not hold at all (`comparables._held_conditions`).
+- An estimate's "~" now leads the figure in `bind.display_value` (D-1
+  "~$2,300"), whatever A-1's data point order.
+- An if-applicable row every property answers 0 is not applicable (D-1 2-4 GRM
+  has no "Accessory Dwelling Units 0 0 0 0").
+
+### E-123 Income formula line printed bare numbers
+- C-1 p35 sets "Total Monthly Market Rent x Gross Rent Multiplier = Indicated
+  Value by Income Approach" as label rows over one three-value slot. Fix:
+  `form._formula_labels` / `_formula_html` (labels read from C-1, values under
+  them, editable in place).
+
+### E-124 Rental / GRM exhibits printed a garbled table
+- C-1 p34/p35's "Comparable #" over a photo per comparable was read as a plain
+  table (numbers in one cell plus every captioned photo of the report). Fix:
+  each comparable's photo joins the section's exhibits ("Comparable #n",
+  placeholder "Rental Comparable n" / "GRM Comparable n" as D-1).
+
+### E-125 Data sources with no B-1 target listed every source in the report
+- 18.005 Project Information Data Source printed nine sources; Cost Data
+  Source / Quality Rating / Effective Date (25.052-25.054) printed nothing.
+  A-1's ArcRoles sheet names each subject data-source target per report
+  section ("Subject Property: Project Information - Overall Project Data
+  Source" -> PROJECT, Cost Approach -> COST_APPROACH). Fix:
+  `form._sheet_target` (subject fields only, one candidate per section) and
+  `_linked_sources` accepts a target no property holds (COST_APPROACH).
+
+### E-126 Land Comparables: values grouped by column, last first
+- Fix: `form._comparable_rows_html` -- a table whose fields are one
+  comparable role's (Land Comparable) prints a line per comparable in number
+  order, each cell read in that PROPERTY (`comparables.value_for`); C-1 p36
+  packs two fields in one cell -> one per column. D-1 MH1 Site and Cost.
+
+### E-127 Sales grid: Site Characteristics, ADU and Outbuilding groups
+- "Site Characteristics | Topography" printed beside the Topography row; B-1:
+  "other than Drainage and Topography" -> `_other_than` / `_without`.
+- The ADU group (Location of ADU, ADU Interior Quality and Condition)
+  repeated the dwelling's values on reports with no ADU (SF1); B-1 repeats it
+  only "for all PROPERTY_UNITS where AccessoryDwellingUnitIndicator = true"
+  -> dropped when no property has one (`_has_adu`). Open: with ADUs (SF3,
+  SF4) the group still reads the dwelling's unit, not the ADU's -- T-1042.
+- Outbuilding rows read the whole property (the dwelling's Cooling printed
+  under "Outbuilding" on SF1, T-123). Now the group repeats per position --
+  the k-th outbuilding of every property side by side, each read inside it,
+  outbuildings in name order, ADU outbuildings left out ("ADU ... not
+  included"), the k-th adjustment of the row's type. Matches D-1 MH1 (Barn /
+  Rec Room/Garage blocks) and SF3 (Stable, Pool House, Studio). The name
+  order is what the samples show; A-1 ties no outbuilding to another.
+
+### E-128 Sales grid groups drawn once, read from the whole property
+- Unit(s) and Interior Quality and Condition printed the first unit only; the
+  Exterior group the first dwelling; ADU rows repeated the dwelling's; "Walls
+  and Ceiling" printed the flooring text; "Structure ID | Unit ID" read
+  "Unit 1 | Building 1"; the comparables' exterior condition rows were blank.
+- Fix (comparables.py): `_expand_outbuildings` repeats each group B-1 repeats
+  (_REPEATS: units, dwellings, ADUs, outbuildings), each copy read inside its
+  own block; a field over two levels is read part by part, outer first;
+  `_row_marks` takes the instance B-1's row rule names
+  ('ImprovementComponentType (FID: 8.041) = "Windows"', 'RoomType =
+  "Kitchen"'); `_rule_hides` applies a row's own "Display when" only where it
+  decides alone (no "relevant", no "Comps:"/"Subject:" split, every named
+  data point delivered) -- validated: it hides nothing any official PDF prints.
+- The harness grid-order check now judges against the spec as repeated.
+- Known limit: rows whose B-1 rule ends "AND relevant to the analysis" with
+  only "No" answers (2-4 All Rights Included, SF2 Townhouse Back to Back,
+  Condo2 Site Owned in Common) print in some samples and not others; A-1
+  carries no data point for "relevant", so they follow the data (shown when
+  told, adjusted or always).  Tested: a "condition holds -> print" rule is
+  wrong 103/122 times.
+- Tests: test_site_and_defects.py::test_sales_grid_* ; golden baseline
+  regenerated (row counts are the validated new ones).
+
+### E-129 171 H-1 rules were never executed ("review")
+- H-1 writes ~40% of its non-presence rules in a few recurring shapes. New
+  `uad/compliance_shapes.py` executes them from their own Logic text: a count
+  against the number of instances (UAD1011/1016/1019), one value against
+  another incl. ISO dates (UAD1015/1131/1206), an instance that must exist
+  with a value (UAD1038/1067/1624/1732...), "no instances ... are provided"
+  (utilities, parties), a required PROPERTY role (UAD1214/1217/1238), "A is x
+  and B is y" (UAD1215), the data-source arcrole links (UAD1183/1199-1202/
+  1209, "to each" = every target), children required per owner block
+  (FLOOR_COVERING / FlooringType ...), PostalCode / StateCode formats.
+  `compliance.evaluate` asks the shapes before marking a rule for review.
+- 107 of 171 now execute (also: bare conditions UAD1512-1515, market
+  inventory, comment length limits, party names, units per improvement).
+  Validated: none fires on any of the 12 D-1 samples, and each shape fires on
+  a sample broken the way its rule describes (tests/test_compliance_shapes.py,
+  30 tests). H-1's typo
+  "'ExteriorWallsAndTrim" is mended; a party's condition is read party by
+  party (SF1's trainee is the assistant, not the appraiser).
+- Found on the way: `rules.CLAUSE` swallowed the OR that joins two clauses
+  ('= "Dwelling" or (ImprovementType = ...') as if it listed values -- the
+  expression became "1 (" and every such rule was undecidable. Fixed; the
+  report's field_rule_hides results are unchanged (re-validated).

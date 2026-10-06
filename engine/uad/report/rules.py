@@ -37,7 +37,9 @@ ASIDE = re.compile(r"\((?:UID|FID)[^)]*\)")
 OTHER_THAN = re.compile(r"\bis\s+(?:a\s+value\s+)?other\s+than\b", re.I)
 CLAUSE = re.compile(
     r"(?P<name>[A-Za-z][\w.]*)\s*(?P<op>>=|<=|=|<>|!=|>|<|\bIs\s+Present\b|\bExists\b|\bIs\s+Not\s+Present\b)"
-    r"\s*(?P<values>\d+(?:\.\d+)?\b|(?:\"[^\"]*\"(?:\s+OR\s+)?)*)", re.I)
+    # a value list's OR is followed by another quoted value; an OR followed by
+    # "(" or a name joins two clauses ('= "Dwelling" or (ImprovementType = ...')
+    r"\s*(?P<values>\d+(?:\.\d+)?\b|(?:\"[^\"]*\"(?:\s+OR\s+(?=\"))?)*)", re.I)
 UNKNOWN = object()
 
 
@@ -157,6 +159,22 @@ def values_of(root: etree._Element, name: str,
         text = (node.text or "").strip()
         if text:
             out.append(text)
+    if out or scope is None:
+        return out
+    # Not inside this unit or structure: the name belongs to what holds it
+    # (10.026 "Display when LandOwnedInCommonIndicator = true" is the
+    # project's, read from inside a unit -- Condo1 prints "Non-Residential
+    # Use in Unit  No").  The nearest ancestor that has it answers, never a
+    # sibling unit or structure's own copy.
+    for anc in scope.iterancestors():
+        for node in anc.iter(f"{M}{name}"):
+            if any(a.tag == scope.tag and a is not scope for a in node.iterancestors()):
+                continue
+            text = (node.text or "").strip()
+            if text:
+                out.append(text)
+        if out:
+            return out
     return out
 
 

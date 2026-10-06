@@ -187,3 +187,43 @@ def test_a_blank_unit_offers_flooring_and_points_to_rooms():
     tree = templates.load("sf1_appraisal_v1_4", blank=True)
     html_ = form.galley_html(form.build(tree, edit=True), edit=True)
     assert "data-floor-add" in html_ and "Kitchens and baths are added" in html_
+
+
+def _amenities(tree):
+    return _table_text(tree, "Amenity Category")
+
+
+def test_an_amenity_is_added_in_its_category_and_removed(client):
+    from app import api
+    cid = client.post("/api/cases", json={"template": "sf1_appraisal_v1_4", "blank": False}).json()["case_id"]
+    r = client.patch(f"/api/cases/{cid}/cells/14.002",
+                     json={"value": "Gazebo", "new": True, "data_point": "AmenityType"})
+    assert r.status_code == 200, r.text
+    tree = api.store().tree(cid)
+    text = _amenities(tree)
+    # B-1 14.002 files a Gazebo under Outdoor Living, after the Porch
+    assert text.index("Outdoor Living") < text.index("Gazebo") < text.index("Whole Home")
+    am = next(a for a in bind.subject(tree.getroot()).iter(f"{M}AMENITY")
+              if a.findtext(f".//{M}AmenityType") == "Gazebo")
+    r = client.delete(f"/api/cases/{cid}/rows", params={"key": tree.getpath(am), "tag": "AMENITY"})
+    assert r.status_code == 200, r.text
+    assert "Gazebo" not in _amenities(api.store().tree(cid))
+
+
+def test_a_rental_grid_per_unit_writes_into_that_units_pairing(client):
+    from app import api
+    from uad.report import comparables
+    cid = client.post("/api/cases", json={"template": "2_to_4_unit_appraisal_v1_4", "blank": False}).json()["case_id"]
+    grids = comparables.build(api.store().tree(cid), "rental")
+    assert [g.subject_label for g in grids] == ["Subject Unit 1", "Subject Unit 2"]
+    assert grids[1].comparables == ["Comparable #1", "Comparable #4", "Comparable #5"]
+    adjusted = next(r for r in grids[1].rows if r.label == "Adjusted Rent")
+    scope = adjusted.cells[0].scope
+    assert scope
+    r = client.patch(f"/api/cases/{cid}/comparables/1/fields/{adjusted.comp_fid}",
+                     json={"kind": "rental", "value": "950", "scope": scope})
+    assert r.status_code == 200, r.text
+    again = comparables.build(api.store().tree(cid), "rental")
+    rent = lambda g: next(r for r in g.rows if r.label == "Adjusted Rent").cells[0].text
+    assert rent(again[1]) == "$950"
+    assert rent(again[0]) == "$900"          # Unit 1's pairing with #1 is untouched

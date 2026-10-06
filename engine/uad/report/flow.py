@@ -1617,16 +1617,22 @@ EDIT_JS = """
      come from is a list.  The cell shows the saved value straight away; the
      page is laid out again when it is next reloaded. */
   var gridData=null;
-  function grid(){
-    if(gridData) return Promise.resolve(gridData);
-    return json(api+'/comparables?kind=sales').then(function(d){ gridData=d; return d; });
+  var gridByKind={};
+  function grid(kind){
+    // the grid a cell belongs to: sales, rental or GRM (each has its own rows)
+    kind=kind||'sales';
+    if(kind==='sales' && gridData) return Promise.resolve(gridData);
+    if(gridByKind[kind]) return Promise.resolve(gridByKind[kind]);
+    return json(api+'/comparables?kind='+kind).then(function(d){
+      gridByKind[kind]=d; if(kind==='sales') gridData=d; return d; });
   }
   var gedit=null;
   function shutEditor(){ if(gedit){ gedit.remove(); gedit=null; } }
   function openCell(td){
     shutEditor(); shutMenu();
     var col=Number(td.dataset.gc), fid=td.dataset.gf||'', adj=td.dataset.ga||'';
-    grid().then(function(g){
+    var tbl=td.closest('table[data-gk]'), gkind=(tbl&&tbl.dataset.gk)||'sales', gscope=td.dataset.gs||'';
+    grid(gkind).then(function(g){
       var row=null;
       for(var i=0;i<g.rows.length&&!row;i++){
         var r=g.rows[i];
@@ -1664,14 +1670,15 @@ EDIT_JS = """
         inputs.forEach(function(x){
           chain=chain.then(function(){
             var input=x.el.querySelector('input,select');
-            var body=adj?{kind:'sales',adjust_type:adj,value:input.value}
-                        :{kind:'sales',data_point:x.dp,value:input.value};
+            var body=adj?{kind:gkind,adjust_type:adj,value:input.value}
+                        :{kind:gkind,data_point:x.dp,value:input.value};
+            if(gscope) body.scope=gscope;
             return putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH');
           });
         });
         chain.then(function(res){
-          gridData=null;
-          var span=td.querySelector('span');
+          gridData=null; gridByKind={};
+          var span=td.tagName==='SPAN'?td:td.querySelector('span');
           var shown=(res&&res.value)||'';
           if(span && !td.querySelector('.ca')) span.textContent=shown||(adj?'':'\u2014');
           else if(td.querySelector('.ca')) td.querySelector('.ca').textContent=shown||'\u2014';
@@ -1878,7 +1885,7 @@ EDIT_JS = """
     // a box waiting for a picture takes it straight from the file dialog
     var zone=t.closest('.exdrop');
     if(zone){ lastZone=zone; browse(zone); return; }
-    var td=t.closest('td[data-gc]');
+    var td=t.closest('td[data-gc],span[data-gc]');
     if(td && !t.closest('.gedit')){ openCell(td); return; }
     // Public / Private in a utilities row: the click sets the ownership
     var tc=t.closest('td.tickcell');

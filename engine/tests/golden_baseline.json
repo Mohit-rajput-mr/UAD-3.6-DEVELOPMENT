@@ -4,22 +4,22 @@
   "grm_blocks": 1,
   "grm_comparables": 3,
   "grm_rows": [
-   11
+   10
   ],
   "not_used_blocks": 0,
   "not_used_comparables": 0,
   "not_used_rows": [],
   "rental_blocks": 2,
-  "rental_comparables": 5,
+  "rental_comparables": 6,
   "rental_rows": [
-   17,
-   17
+   21,
+   21
   ],
-  "review": 171,
+  "review": 79,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   93
+   99
   ],
   "section_count": 27,
   "sections": [
@@ -58,22 +58,24 @@
   "grm_blocks": 1,
   "grm_comparables": 3,
   "grm_rows": [
-   11
+   10
   ],
   "not_used_blocks": 0,
   "not_used_comparables": 0,
   "not_used_rows": [],
-  "rental_blocks": 2,
-  "rental_comparables": 6,
+  "rental_blocks": 4,
+  "rental_comparables": 12,
   "rental_rows": [
+   14,
+   14,
    14,
    14
   ],
-  "review": 171,
+  "review": 83,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   66
+   90
   ],
   "section_count": 25,
   "sections": [
@@ -119,12 +121,12 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 84,
   "sales_blocks": 2,
   "sales_comparables": 4,
   "sales_rows": [
-   81,
-   81
+   63,
+   63
   ],
   "section_count": 25,
   "sections": [
@@ -170,12 +172,12 @@
    17,
    17
   ],
-  "review": 171,
+  "review": 78,
   "sales_blocks": 2,
   "sales_comparables": 4,
   "sales_rows": [
-   83,
-   83
+   71,
+   71
   ],
   "section_count": 26,
   "sections": [
@@ -222,11 +224,11 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 75,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   59
+   51
   ],
   "section_count": 26,
   "sections": [
@@ -270,11 +272,11 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 74,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   89
+   79
   ],
   "section_count": 26,
   "sections": [
@@ -318,12 +320,12 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 82,
   "sales_blocks": 2,
   "sales_comparables": 4,
   "sales_rows": [
-   82,
-   82
+   67,
+   67
   ],
   "section_count": 26,
   "sections": [
@@ -370,11 +372,11 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 79,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   77
+   64
   ],
   "section_count": 26,
   "sections": [
@@ -418,12 +420,12 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 78,
   "sales_blocks": 2,
   "sales_comparables": 5,
   "sales_rows": [
-   64,
-   64
+   56,
+   56
   ],
   "section_count": 26,
   "sections": [
@@ -467,11 +469,11 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 79,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   86
+   82
   ],
   "section_count": 26,
   "sections": [
@@ -515,11 +517,11 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 81,
   "sales_blocks": 1,
   "sales_comparables": 3,
   "sales_rows": [
-   88
+   87
   ],
   "section_count": 26,
   "sections": [
@@ -565,12 +567,12 @@
   "rental_blocks": 0,
   "rental_comparables": 0,
   "rental_rows": [],
-  "review": 171,
+  "review": 83,
   "sales_blocks": 2,
   "sales_comparables": 5,
   "sales_rows": [
-   58,
-   58
+   50,
+   50
   ],
   "section_count": 26,
   "sections": [

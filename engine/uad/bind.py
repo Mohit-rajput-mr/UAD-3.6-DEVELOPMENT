@@ -1001,8 +1001,23 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
         return ("\n" if stacked and stacked.stack else " | ").join(s for s in shown if s)
     parts: list[tuple[str, str]] = [
         v if isinstance(v, tuple) else ("", v) for v in values]
+    if any(n == "OutbuildingType" for n, _v in parts) and ("ImprovementType", "Outbuilding") in parts:
+        # B-1 Location of ADU (22.07.02 / 22.10.01): "Dwelling", or the
+        # outbuilding's own type -- D-1 SF3 "ADU/Garage", not "Outbuilding ADU/Garage"
+        parts = [p for p in parts if p != ("ImprovementType", "Outbuilding")]
     if binding.field_id in ROOF_DETAIL:
         return _roof_detail(parts, binding)
+    names = {n for n, _v in parts}
+    if {"TotalRoomCount", "RoomType"} <= names:
+        # B-1 p175 (8.048): "Room Summary - Display Room Count - Room Type in
+        # same row. If the count is zero, do not display."  D-1 Condo2:
+        # "1 - Family Room"
+        count = next(v for n, v in parts if n == "TotalRoomCount").strip()
+        rest = [p for p in parts if p[0] != "TotalRoomCount"]
+        if count in ("", "0"):
+            return ""
+        kind = display_value(rest, binding)
+        return f"{count} - {kind}" if kind else ""
     days = _days_text(parts)
     if days:
         return days
@@ -1053,6 +1068,11 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
                 shown.append(_humanise(raw))
         if shown:
             rendered.append((name, " | ".join(shown)))
+    if len(rendered) > 1 and any(text == "~" for _n, text in rendered):
+        # an estimate's "~" stands in front of the figure (D-1 2-4 GRM
+        # "~$2,300"), whatever order A-1 lists the indicator in
+        rest = [(n, t) for n, t in rendered if t != "~"]
+        return "~" + " ".join(t for _n, t in rest).strip()
     composite = composite_for([n for n, _ in rendered])
     if composite:
         return composite.join(rendered)

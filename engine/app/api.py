@@ -973,7 +973,7 @@ def add_flooring(case_id: str, request: Request, body: dict = Body(...)) -> dict
 
 
 #: repeated rows the editor may remove whole, by their own x
-REMOVABLE_ROWS = {"FLOOR_COVERING"}
+REMOVABLE_ROWS = {"FLOOR_COVERING", "AMENITY"}
 
 
 @router.delete("/cases/{case_id}/rows")
@@ -1255,6 +1255,26 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
                         if spec.subject_fid else ""),
             "cells": cells,
         })
+    if kind == "rental":
+        # the Comparable Rental Properties strip (B-1 23.02) above the grids:
+        # its address, data source, lease start and rent are entered here too
+        for label, subject_fid, comp_fid in (("Address", "23.02.01", "23.02.03"),
+                                             ("Data Source", "", "23.02.04"),
+                                             ("Lease Start Date", "", "23.02.05"),
+                                             ("Actual Rent", "", "23.02.06")):
+            rows.append({
+                "options": comparables.options_for(comp_fid), "label": label, "heading": False,
+                "always": True, "adjustable": False, "adjust_fid": "", "adjust_type": "",
+                "item_name": "", "container": "", "new_item": False,
+                "comp_points": comparables.points_for(comp_fid),
+                "subject_points": comparables.points_for(subject_fid) if subject_fid else [],
+                "subject_parts": comparables.parts_for(root, subject_fid, subject) if subject_fid else {},
+                "subject_fid": subject_fid, "comp_fid": comp_fid,
+                "subject": comparables.value_for(root, subject_fid, subject) if subject_fid else "",
+                "cells": [{"value": comparables.value_for(root, comp_fid, p_),
+                           "parts": comparables.parts_for(root, comp_fid, p_),
+                           "adjustment": "", "adjust_raw": ""} for p_ in props],
+            })
     return {
         "kind": kind, "title": title, "role": role,
         "comparables": [{"index": i + 1,
@@ -1318,6 +1338,20 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     scope = _grid_scope(candidate.getroot(), kind, number)
     if scope is None:
         raise HTTPException(404, "this case has no property for that column")
+    if body.get("scope") and not adjust_type:
+        # a rental grid drawn per subject unit: the cell names the pairing it
+        # was read in, and the value is written where the field's own path
+        # runs through it (the pairing, its unit, or the property)
+        inner = bind.find_path(candidate.getroot(), str(body["scope"]))
+        if inner is None:
+            try:
+                hit = candidate.getroot().getroottree().xpath(str(body["scope"]))
+                inner = hit[0] if hit else None
+            except etree.XPathError:
+                inner = None
+        if inner is None or (inner is not scope and scope not in list(inner.iterancestors())):
+            raise HTTPException(422, "that cell's block is not part of this column's property")
+        scope = comparables._field_scope(field_id, comparables._scopes(inner))
     try:
         if adjust_type:
             written = comparables.write_adjustment(scope, adjust_type, value)
@@ -1347,7 +1381,7 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     st.log(case_id, _actor(request), "edited",
            f"{field_id} on {'subject' if not number else f'comparable #{number}'}")
     root = candidate.getroot()
-    again = _grid_scope(root, kind, number)
+    again = scope if body.get("scope") and not adjust_type else _grid_scope(root, kind, number)
     return {"value": (comparables.adjustment_value(again, adjust_type)
                       if adjust_type
                       else comparables.value_for(root, field_id, again)),

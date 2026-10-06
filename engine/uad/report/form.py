@@ -434,9 +434,43 @@ def data_source_target(fid: str) -> str:
     text = " ".join(st.get("rule", "") for st in field_entry(fid).get("display_rules", []))
     m = _ARC_TARGET.search(re.sub(r"[_\s]+", " ", text))
     if not m:
-        return ""
+        return _sheet_target(fid)
     words = m.group(1).split()
     return words[0] if len(words) == 1 else "_".join(w.upper() for w in words)
+
+
+@lru_cache(maxsize=1)
+def _arcrole_sheet() -> list[tuple[str, str]]:
+    """A-1's ArcRoles sheet, data sources only: (report section reference,
+    target) -- "Subject Property: Project Information - Overall Project Data
+    Source" -> PROJECT."""
+    import json as _json
+    path = bind.SPEC / "supplements.json"
+    if not path.exists():
+        return []
+    rows = _json.loads(path.read_text(encoding="utf-8")).get("a1_arcroles") or []
+    rows = rows if isinstance(rows, list) else rows.get("rows", [])
+    return [(str(r.get("col1") or ""), str(r.get("col5") or "")) for r in rows[1:]
+            if r.get("col3") == "DATA_SOURCE" and r.get("col5")]
+
+
+def _sheet_target(fid: str) -> str:
+    """Where B-1's rule names no target: the one subject data-source arcrole
+    A-1 lists for the field's own section (18.005 Project Information Data
+    Source -> DATA_SOURCE_IsDataSourceFor_PROJECT; it listed every source in
+    the report).  Several candidates for a section decide nothing."""
+    b = binding(fid)
+    if b is None or not any("DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", "") for dp in b.data_points):
+        return ""
+    roles = field_entry(fid).get("roles") or []
+    if roles and "Subject Property" not in roles:
+        return ""              # a comparable's sources are tied to its PROPERTY
+    section = (field_entry(fid).get("locations") or [{}])[0].get("section", "") or b.section or ""
+    found = {t for ref, t in _arcrole_sheet()
+             if ref.startswith("Subject Property:") and " - " in ref
+             and ref.split(":", 1)[1].split(" - ", 1)[0].strip() and
+             ref.split(":", 1)[1].split(" - ", 1)[0].strip() in section}
+    return found.pop() if len(found) == 1 else ""
 
 
 def _linked_sources(ctx: Ctx, b: bind.Binding, target: str):
@@ -447,6 +481,10 @@ def _linked_sources(ctx: Ctx, b: bind.Binding, target: str):
     scope = ctx.scope if ctx.scope is not None else bind.subject(ctx.root)
     here = {e.get(f"{X}label") for e in (scope.iter() if scope is not None else ctx.root.iter())
             if isinstance(e.tag, str) and e.get(f"{X}label")}
+    # a target no property holds (COST_APPROACH sits in the valuation, not the
+    # subject: 25.052 Cost Data Source "Marshall & Swift", D-1 MH1) is the report's own
+    here |= {e.get(f"{X}label") for e in ctx.root.iter(f"{M}{target}")
+             if e.get(f"{X}label") and next(e.iterancestors(f"{M}PROPERTY"), None) is None}
     wanted = [rel.get(f"{X}from") for rel in ctx.root.iter(f"{M}RELATIONSHIP")
               if rel.get(f"{X}arcrole", "").endswith(f"DATA_SOURCE_IsDataSourceFor_{target}")
               and rel.get(f"{X}to") in here]
@@ -464,6 +502,22 @@ def _linked_sources(ctx: Ctx, b: bind.Binding, target: str):
 def _walk(ctx: Ctx, fid: str, every: bool = False):
     b = binding(fid)
     if b is None:
+        return
+    if fid == PRIOR_SOURCE_ID:
+        # B-1 p284: with no prior sales, the Data Source tied to the subject's
+        # PriorSalesOrTransfersIndicator ("None / Data Source MLS")
+        subj = bind.subject(ctx.root)
+        ind = _prior_indicator(subj) if subj is not None else None
+        if ind is None or (ind.text or "").strip() != "false":
+            return
+        X = "{http://www.w3.org/1999/xlink}"
+        label = ind.get(f"{X}label")
+        froms = [r.get(f"{X}from") for r in ctx.root.iter(f"{M}RELATIONSHIP") if label and r.get(f"{X}to") == label]
+        by = {d.get(f"{X}label"): d for d in ctx.root.iter(f"{M}DATA_SOURCE")}
+        for f in dict.fromkeys(froms):
+            ds = by.get(f)
+            if ds is not None:
+                yield from bind._walk(ctx.root, b, ds, 1)
         return
     if any("DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", "") for dp in b.data_points):
         target = data_source_target(fid)
@@ -496,10 +550,13 @@ def _walk(ctx: Ctx, fid: str, every: bool = False):
         conts = {bind.repeating_container(dp.get("xpath", "")) for dp in points}
         subject_rows = ("Subject Property" in (_fields().get(fid, {}).get("roles") or [])
                         and bool(points) and all(bind.PROPERTY_PATH in dp.get("xpath", "") for dp in points))
-        if every and "-" not in fid and ctx.scope is None and not subject_rows:
+        report_rows = bool(points) and not any(bind.PROPERTY_PATH in dp.get("xpath", "")
+                                               or "DATA_SOURCES/" in dp.get("xpath", "") for dp in points)
+        if every and "-" not in fid and ctx.scope is None and not subject_rows and not report_rows:
             # a table read for the whole report: only the subject's own blocks
             # are rows of it (a DATA_SOURCE or SALES_TRANSACTION outside the
-            # subject belongs to a comparable or another section)
+            # subject belongs to a comparable or another section); the
+            # report's own blocks (VALUATION_REVISION) are rows too
             conts = set()
         if len(conts) == 1 and "" not in conts:
             container = conts.pop()
@@ -605,6 +662,19 @@ def raw_values(ctx: Ctx, fid: str) -> list[str]:
             if (n.text or "").strip()]
 
 
+@lru_cache(maxsize=4096)
+def _graph_categories(fid: str) -> "frozenset[str] | None":
+    """Market "Graph" (17.017) is ImageCategoryType alone: B-1 lists the
+    graphs ("the display text for each type is listed in the Market Exhibits
+    subsection"), so only the categories filed under the field's own section
+    print -- not every photo's category (D-1 SF1: Absorption Rate | Median
+    Days on Market | Price Trend | Year Built of Sales)."""
+    b = binding(fid)
+    if b is None or [dp.get("mismo") for dp in b.data_points] != ["ImageCategoryType"] or not b.section:
+        return None
+    return frozenset(c for c, (sec, _cap) in image_categories().items() if sec == b.section)
+
+
 def instances(ctx: Ctx, fid: str, every: bool = False) -> list[tuple[str, list[tuple[str, str]]]]:
     """Values grouped by the repeated container each sits in, in document order.
     ``every`` reads every block of the field's repeating container (a table
@@ -613,9 +683,12 @@ def instances(ctx: Ctx, fid: str, every: bool = False) -> list[tuple[str, list[t
     groups: dict[str, list[tuple[str, str]]] = {}
     # an update / completion report's row identity (report_types.entry)
     only = field_entry(fid).get("instance") if "-" in fid else None
+    graphs = _graph_categories(fid)
     for name, node in _walk(ctx, fid, every):
         text = (node.text or "").strip()
         if not text:
+            continue
+        if graphs is not None and text not in graphs:
             continue
         if only and not bind._instance_matches(node, only):
             continue
@@ -953,11 +1026,17 @@ def field_rule_hides(ctx: "Ctx", fid: str) -> bool:
     said = []
     for st in field_entry(fid).get("display_rules", []):
         text = st.get("rule", "")
-        if not _DISPLAY_WHEN.match(text) or "do not display" in text.lower() or "@" in text:
-            continue                       # an inverse rule, or one on an attribute: not read here
+        if not _DISPLAY_WHEN.match(text):
+            continue
         # only the condition: B-1 goes on with presentation notes ("- Display
-        # Street Access Type ...", "Note: ...", "(Figure 4 - 4)")
-        text = re.split(r"\s[\u2212\u2013-]\s|\sNote:|\(Figure|\.\s", text)[0]
+        # Street Access Type ...", "Note: ...", "(Figure 4 - 4)", "When ... = 0
+        # checkboxes do not display")
+        text = re.split(r"\s[\u2212\u2013-]\s|\sNote:|\(Figure|\.\s|\sWhen\s", text)[0]
+        if "do not display" in text.lower() or "@" in text:
+            continue                       # an inverse rule, or one on an attribute: not read here
+        # "Display checkboxes on each instance of Unit Interior when ..."
+        # (10.011): what displays is said before "when"; the condition is after
+        text = _DISPLAY_WHEN.sub("Display when", text, count=1)
         d = rules.evaluate(text, ctx.root, ctx.scope)
         if not d.known:
             return False
@@ -1062,13 +1141,30 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
             sections.append(("Certifications and Scope of Work", []))
         sections[-1][1].append(el)
 
+    # More than one dwelling: each Dwelling Exterior is followed by the Unit
+    # Interiors of the units in it (D-1 2-4: Building 1, its Unit 1, Building
+    # 2, its Unit 2 -- the order B-1 p377 gives the defects table too).
+    unit_title, unit_els = next(((t, e) for t, e in sections if t.split(" - [")[0] == "Unit Interior"),
+                                ("", []))
+    interleave = len(improvements(ctx, "Dwelling")) > 1 and unit_els \
+        and section_shown(ctx, "Unit Interior") is not False
+    placed: set[str] = set()
     blocks: list[Block] = []
     for title, els in sections:
         base = title.split(" - [")[0]
         if section_shown(ctx, base) is False:
             continue
         for sctx, printed in section_instances(ctx, title):
+            if base == "Unit Interior" and sctx.scope is not None and bind.stable_path(sctx.scope) in placed:
+                continue
             blocks += _section(title, printed, els, sctx, sample=sample)
+            if interleave and base == "Dwelling Exterior" and sctx.scope is not None:
+                for uctx, uprinted in section_instances(ctx, unit_title):
+                    imp = next(uctx.scope.iterancestors(f"{M}IMPROVEMENT"), None) \
+                        if uctx.scope is not None else None
+                    if imp is sctx.scope:
+                        placed.add(bind.stable_path(uctx.scope))
+                        blocks += _section(unit_title, uprinted, unit_els, uctx, sample=sample)
     _resolve_visibility(blocks)
     return blocks
 
@@ -1239,6 +1335,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                 continue
             flush()
             t = _label_fill(el.get("title", ""), ctx)
+            if t in RENT_INCOME_HEADS:
+                continue      # the income columns carry their own headings (_rent_income_html)
             if column == "full":
                 out.append(Block("h2", section=printed, title=t, group=1,
                                  html=_h2_html(t, 540)))
@@ -1253,6 +1351,13 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     flush()
                     grid_done = True
                     grids = comparables.build(ctx.root, GRID_KINDS[base], every_row=ctx.edit)
+                    if GRID_KINDS[base] == "rental" and grids and grids[0].subject_label != "Subject Property":
+                        # a rental analysis per subject unit: two units to a line,
+                        # as C-1 p33 and D-1 2-4 / Scenario 2 set them (T-1043)
+                        for k in range(0, len(grids), 2):
+                            out.append(Block("grid", section=printed, visible=True,
+                                             html=comparables.html_pair(grids[k:k + 2], edit=ctx.edit)))
+                        grids = []
                     for n, grid in enumerate(grids):
                         # Appendix E p62: past three comparables the label and
                         # Subject columns "repeat on following pages" -- each
@@ -1375,6 +1480,14 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     flush()
                     out.append(answer)
                 continue
+        if kind == "slot" and len(ids) == 3 and _formula_labels(els, el):
+            # "Total Monthly Market Rent x Gross Rent Multiplier = Indicated
+            # Value by Income Approach" (C-1 p35): the labels C-1 sets on the
+            # line above, each value under its label (D-1 2-4 p22)
+            flush()
+            out.append(Block("table", section=printed, visible=bool(text_of(ctx, ids)), fids=ids,
+                             html=_formula_html(ctx, ids, _formula_labels(els, el))))
+            continue
         if kind == "slot":
             # a value set directly under a bar: commentary, an exhibit set, a map
             if column != "full" and run is not None:
@@ -1517,7 +1630,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
     _place_a1_only(out, base, printed, ctx)
 
     # exhibits: the section's images, under its exhibits bar
-    exhibits = _exhibits(ctx, base) if report == "urar" else (
+    exhibits = (_exhibits(ctx, base) + (_comp_photo_items(ctx, COMP_PHOTO_SECTIONS[base])
+                                        if base in COMP_PHOTO_SECTIONS else [])) if report == "urar" else (
         _kind_exhibits(ctx, report) if any(b.kind in ("h1", "tab") and b.title.endswith("Exhibits")
                                            for b in out) else [])
 
@@ -1801,6 +1915,41 @@ def _anchor_gate(ctx: Ctx, fid: str) -> bool:
     return ctx.placeholders.get("block_shown") != "0" and ctx.placeholders.get("gate") != "0"
 
 
+def _formula_labels(els: list[dict], slot: dict) -> list[dict]:
+    """The label line C-1 sets just above a three-value slot -- a formula
+    ("A x B = C") -- or nothing when the slot is not one."""
+    y = float(slot.get("y", 0))
+    page = slot.get("page")
+    line = [e for e in els if e.get("kind") == "row" and not e.get("ids") and e.get("page") == page
+            and 0 < y - float(e.get("y", 0)) < 20]
+    texts = [e.get("text", "").strip() for e in line]
+    if "\u00d7" not in texts or "=" not in texts:
+        return []
+    return sorted(line, key=lambda e: float(e.get("x0", 0)))
+
+
+def _formula_html(ctx: Ctx, ids: list[str], labels: list[dict]) -> str:
+    values = []
+    for fid in ids:
+        text = text_of(ctx, [fid])
+        if ctx.edit and binding(fid) is not None:
+            values.append(f"<span class='v' data-fid='{esc(fid)}' contenteditable='true'"
+                          f" spellcheck='false'>{esc(text)}</span>")
+        else:
+            values.append(esc(text))
+    heads, cells, n = [], [], 0
+    for e in labels:
+        t = e.get("text", "").strip()
+        if t in ("\u00d7", "="):
+            heads.append(f"<td class='op'><span>{esc(t)}</span></td>")
+            cells.append("<td class='op'></td>")
+        else:
+            heads.append(f"<td class='lab'><span>{esc(t)}</span></td>")
+            cells.append(f"<td class='val'><span>{values[n] if n < len(values) else ''}</span></td>")
+            n += 1
+    return (f"<table class='formula'><tbody><tr>{''.join(heads)}</tr><tr>{''.join(cells)}</tr></tbody></table>")
+
+
 def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
     """One paragraph of the report's own fixed wording.
 
@@ -1984,6 +2133,9 @@ def _address(ctx: Ctx) -> str:
 
 
 def _is_grid(el: dict) -> bool:
+    ids = {i for r in el.get("rows", []) for c in r.get("cells", []) for i in c.get("ids", [])}
+    if "23.02.01.1" in ids:
+        return False           # the Comparable Rental Properties strip, not the grid
     heads = " ".join(c.get("head", "") for c in el.get("columns", []))
     return "Comparable" in heads or "Subject" in heads or not heads.strip() and len(el.get("columns", [])) >= 6
 
@@ -2089,6 +2241,23 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
         return _kitchen_bath_table_html(el, ctx)
     if FEATURE_ID in ids:
         return _interior_features_table_html(el, ctx)
+    if AMENITY_CATEGORY_ID in ids and AMENITY_TYPE_ID in ids:
+        return _amenities_table_html(el, ctx)
+    if RENT_STRIP_PHOTO_ID in ids:
+        return _rent_strip_html(el, ctx)
+    use = _one_comparable_role(ids)
+    if use:
+        return _comparable_rows_html(el, ctx, use)
+    if ids & set(COMP_PHOTO_TABLES):
+        return "", False          # the comparables' photos join the section's exhibits
+    if RENT_UNIT_ID in ids:
+        return _rent_units_html(el, ctx)
+    if RENT_ACTUAL_UNIT_ID in ids:
+        return _rent_income_html(el, ctx)
+    if RENT_OTHER_ID in ids:
+        return "", False              # drawn with the income columns above
+    if TRANSFER_TERMS_ID in ids or COMP_NUMBER_ID in ids:
+        return _transfer_table_html(el, ctx, comparables=COMP_NUMBER_ID in ids)
     if ctx.edit and ctx.placeholders.get("base") == "Summary":
         # B-1 ch. 01: the Summary redisplays -- its tables are read-only too
         ctx = Ctx(ctx.root, ctx.scope, ctx.folder, ctx.media, ctx.placeholders, False,
@@ -2172,8 +2341,10 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
 
             def row_instances(fid: str, selector=selector, blocks=blocks):
                 if blocks is not None:
+                    # every block inside the row's component: two EXTERIOR_WALLs
+                    # print "Brick | Wood" (D-1 SF2, SF5, MH2)
                     for blk in blocks:
-                        yield from instances(ctx.inside(blk), fid)
+                        yield from instances(ctx.inside(blk), fid, every=True)
                     return
                 for k, g in instances(ctx, fid):
                     if selector is None or k in selector:
@@ -2267,6 +2438,11 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             continue
         # a template row: one line per instance in the case
         outer, ctx = ctx, row.get("_ctx") or ctx
+        if not ctx.edit and cells and cells[0]["ids"] and field_rule_hides(ctx, cells[0]["ids"][0]):
+            # B-1's rule for the row's leading field (10.050 Accessibility:
+            # "Display when AccessibilityFeatureType <> None ...")
+            ctx = outer
+            continue
         per_col: list[list[tuple[str, list]]] = []
         keys: list[str] = []
         # A defect is kept at property level (PROPERTY_DEFECT) and tied to the
@@ -2439,6 +2615,558 @@ def _defect_groups(rows: list[dict], ctx: Ctx) -> list[dict]:
             continue
         out += ([bar] if bar else []) + body
     return out
+
+
+# Appendix B-1, 14 Subject Property Amenities (pp283-285):
+#   14.001 Amenity Category   not delivered: each AmenityType belongs to one
+#                             category -- B-1 14.002 lists them ("When
+#                             AmenityCategoryType = OutdoorLiving, display the
+#                             amenity type (AmenityType = Balcony OR Deck ...)"),
+#                             Other is Miscellaneous; printed once per group
+#   14.002 Subject Property Amenity
+#   14.003 Material
+#   14.004 Detail   area and unit (Outdoor Living), "Total Number - n"
+#                   (Indoor Fireplace / Wood Stove), pool features "|", and
+#                   for a manufactured home "(Not) Attached to Manufactured
+#                   Home" on a second line
+# The generic reader paired the category column with nothing and printed the
+# categories in one cell with no Detail at all.
+AMENITY_CATEGORY_ID, AMENITY_TYPE_ID, AMENITY_MATERIAL_ID, AMENITY_DETAIL_ID = \
+    "14.001", "14.002", "14.003", "14.004"
+
+
+@lru_cache(maxsize=1)
+def amenity_categories() -> tuple[list[str], dict[str, str]]:
+    """(categories in B-1's order, AmenityType -> category), read from 14.002."""
+    order: list[str] = []
+    of: dict[str, str] = {}
+    for st in field_entry(AMENITY_TYPE_ID).get("display_rules", []):
+        text = st.get("rule", "").replace("\u201c", '"').replace("\u201d", '"')
+        m = re.search(r'AmenityCategoryType\s*=\s*"(\w+)"', text)
+        if not m:
+            continue
+        cat = m.group(1)
+        if cat not in order:
+            order.append(cat)
+        tail = text[text.find("AmenityType =", m.end()):] if "AmenityType =" in text[m.end():] else ""
+        for value in re.findall(r'"(\w+)"', tail):
+            of.setdefault(value.casefold(), cat)
+    return order, of
+
+
+@lru_cache(maxsize=1)
+def amenity_names() -> dict[str, str]:
+    """AmenityType -> its A-1 display text, over every data point of 14.002
+    (A-1 lists the types per category, one data point each)."""
+    out = {}
+    for dp in field_entry(AMENITY_TYPE_ID).get("data_points", []):
+        for e in dp.get("enumerations") or []:
+            if e.get("value") and e.get("display"):
+                out.setdefault(e["value"], e["display"])
+    return out
+
+
+def _amenity_category_label(cat: str) -> str:
+    shown = enumeration_rows("AmenityCategoryType").get(cat, "")
+    # A-1 marks the category "<<Does Not Display>>" as a value; the table's
+    # group label is the category's own words (D-1: "Outdoor Living")
+    return shown if shown and not bind.NO_PRINT.match(shown) else bind._humanise(cat)
+
+
+@lru_cache(maxsize=64)
+def enumeration_rows(name: str) -> dict[str, str]:
+    """A-1's enumerations sheet for one data point: value -> display text."""
+    import json as _json
+    data = _json.loads((bind.SPEC / "enumerations.json").read_text(encoding="utf-8"))
+    out = {}
+    for r in data:
+        if r.get("MISMO Data Point / Attribute Name") == name:
+            value = r.get("Supported Enumerations") or ""
+            shown = next((v for k, v in r.items() if "display" in k.casefold() and isinstance(v, str)), "")
+            out[value] = (shown or "").strip()
+    return out
+
+
+def _amenity_detail(am: "etree._Element", manufactured: bool) -> list[str]:
+    lines = []
+    area = am.find(f".//{M}AmenityAreaMeasure")
+    if area is not None and (area.text or "").strip():
+        lines.append(_area((area.text or "").strip(), area.get("AreaUnitOfMeasureType", "SquareFeet")))
+    count = (am.findtext(f".//{M}AmenityCount") or "").strip()
+    if count:
+        lines.append(f"Total Number - {count}")
+    pool = [(n.text or "").strip() for n in am.iter(f"{M}SwimmingPoolFeatureType") if (n.text or "").strip()]
+    if pool:
+        b = binding(AMENITY_DETAIL_ID)
+        lines.append(" | ".join(
+            (am.findtext(f".//{M}SwimmingPoolFeatureTypeOtherDescription") or "Other").strip() if p == "Other"
+            else (bind.display_value([("SwimmingPoolFeatureType", p)], b) if b else p) for p in pool))
+    attached = (am.findtext(f".//{M}AmenityAttachedToManufacturedHomeIndicator") or "").strip()
+    if manufactured and attached in ("true", "false"):
+        # B-1 prints "Atatched"; every D-1 manufactured home prints "Attached"
+        lines.append("Attached to Manufactured Home" if attached == "true"
+                     else "Not Attached to Manufactured Home")
+    return lines
+
+
+def _amenities_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    subj = ctx.scope if ctx.scope is not None else subject(ctx)
+    tree = ctx.root.getroottree()
+    order, of = amenity_categories()
+    manufactured = any((n.text or "").strip() in ("Manufactured", "ManufacturedHome")
+                       for n in (subj.iter(f"{M}ConstructionMethodType") if subj is not None else []))
+    rows = []
+    for n, am in enumerate(subj.iter(f"{M}AMENITY") if subj is not None else []):
+        if any(_local(a) in ("PROJECT", "PROPERTY_UNIT") for a in am.iterancestors()):
+            continue          # the project's amenities and a unit's are their own sections
+        kind = (am.findtext(f".//{M}AmenityType") or "").strip()
+        cat = (am.findtext(f".//{M}AmenityCategoryType") or "").strip() or of.get(kind.casefold(), "Miscellaneous")
+        rank = order.index(cat) if cat in order else len(order)
+        rows.append((rank, n, cat, kind, am))
+    rows.sort(key=lambda r: (r[0], r[1]))
+    type_b = binding(AMENITY_TYPE_ID)
+    mat_b = binding(AMENITY_MATERIAL_ID)
+    body, last, last_name = [], None, None
+    for _rank, _n, cat, kind, am in rows:
+        key = tree.getpath(am)
+        name = (am.findtext(f".//{M}AmenityTypeOtherDescription") or "").strip() if kind == "Other" else (
+            amenity_names().get(kind) or bind._humanise(kind))
+        mats = [(n_, (e.text or "").strip()) for e in am.iter() if isinstance(e.tag, str) for n_ in [_local(e)]
+                if n_ in ("AmenityMaterialType", "AmenityMaterialTypeOtherDescription") and (e.text or "").strip()]
+        material = bind.display_value(mats, mat_b) if (mats and mat_b) else ""
+        detail = _amenity_detail(am, manufactured)
+        cat_td = _td(esc(_amenity_category_label(cat)) if cat != last else "")
+        # D-1 SF3 / MH1: a second Deck in a row leaves the name blank
+        shown_name = name if (cat, name) != last_name or ctx.edit else ""
+        last, last_name = cat, (cat, name)
+        if ctx.edit:
+            name_td = (_cell(esc(name), AMENITY_TYPE_ID, ctx, key=key, point="AmenityType")
+                       if kind != "Other" else
+                       _cell(esc(name), AMENITY_TYPE_ID, ctx, key=key, point="AmenityTypeOtherDescription"))
+            mat_td = _cell(esc(material), AMENITY_MATERIAL_ID, ctx, key=key, point="AmenityMaterialType")
+            counted = am.find(f".//{M}AmenityCount") is not None or kind in ("IndoorFireplace", "WoodStove")
+            point = "AmenityCount" if counted else "AmenityAreaMeasure"
+            first = (am.findtext(f".//{M}AmenityCount") or "").strip() if counted else (detail[0] if (
+                detail and am.find(f".//{M}AmenityAreaMeasure") is not None) else "")
+            det_td = _cell(esc(first), AMENITY_DETAIL_ID, ctx, key=key, point=point)
+            rest = detail[1:] if (first and not counted) else [d for d in detail if not d.startswith("Total Number")]
+            if counted:
+                # the number is typed; "Total Number - " is the report's own words
+                det_td = det_td.replace("<span class='v", "<span class='lb'>Total Number - </span><span class='v", 1)
+            if rest:
+                det_td = det_td.replace("</td>", "".join(f"<br><span>{esc(x)}</span>" for x in rest) + "</td>", 1)
+            det_td = det_td.replace(
+                "</td>", f"<span class='lvdel' role='button' tabindex='0' data-row-del='AMENITY'"
+                         f" data-key='{esc(key)}' title='Remove this amenity'>&times;</span></td>", 1)
+        else:
+            name_td, mat_td = _td(esc(shown_name)), _td(esc(material))
+            det_td = "<td class='lines'>" + "<br>".join(f"<span>{esc(x)}</span>" for x in detail) + "</td>"
+        body.append("<tr>" + cat_td + name_td + mat_td + det_td + "</tr>")
+    if ctx.edit:
+        # the empty line under the table starts another amenity
+        body.append("<tr class='newrow'>" + _td("") + _cell("", AMENITY_TYPE_ID, ctx, new=True)
+                    + _td("") + _td("") + "</tr>")
+    if not rows and not ctx.edit:
+        return "", False
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), bool(rows) or ctx.edit
+
+
+# Appendix B-1, 21 Prior Sale and Transfer History (pp284-286):
+#   Subject (21.000-21.005): PriorSalesOrTransfersIndicator false -> "None"
+#   and the Data Source tied to that indicator (21.001), no table; true -> a
+#   line per prior sale or transfer.  Comparables (21.007-21.011): a line per
+#   comparable in comp-number order -- "None" and the source tied to its
+#   indicator, or each prior transfer newest first.  Transfer Terms is the
+#   SaleType when the transfer is a Sale, else the transfer type ("Deed
+#   Transfer Only").  Each transfer's sources are the DATA_SOURCEs tied to its
+#   SALES_HISTORY (DATA_SOURCE_IsDataSourceFor_SALES_HISTORY); a comparable's
+#   own current sale (the grid's) is the SALES_HISTORY no source is tied to --
+#   true of all twelve D-1 samples.  The generic reader printed every source in
+#   the report and scrambled the comparable rows.
+TRANSFER_TERMS_ID, TRANSFER_DATE_ID, TRANSFER_AMOUNT_ID, TRANSFER_SOURCE_ID = \
+    "21.002", "21.003", "21.004", "21.005"
+PRIOR_SOURCE_ID = "21.001"
+COMP_NUMBER_ID = "21.007"
+COMP_TERMS_ID, COMP_DATE_ID, COMP_AMOUNT_ID, COMP_SOURCE_ID = "21.008", "21.009", "21.010", "21.011"
+
+
+def _sources_for(root: "etree._Element", target: "etree._Element | None", fid: str) -> list[str]:
+    X = "{http://www.w3.org/1999/xlink}"
+    label = target.get(f"{X}label") if target is not None else None
+    if not label:
+        return []
+    froms = [r.get(f"{X}from") for r in root.iter(f"{M}RELATIONSHIP")
+             if r.get(f"{X}to") == label and "DATA_SOURCE_IsDataSourceFor_" in r.get(f"{X}arcrole", "")]
+    by = {d.get(f"{X}label"): d for d in root.iter(f"{M}DATA_SOURCE")}
+    b = binding(fid)
+    out = []
+    for f in dict.fromkeys(froms):
+        ds = by.get(f)
+        if ds is None or b is None:
+            continue
+        group = [(n, (ds.findtext(f"{M}{n}") or "").strip()) for n in ("DataSourceType", "DataSourceTypeOtherDescription")]
+        group = [(n, v) for n, v in group if v]
+        if group and group[0][1] == "Other" and len(group) > 1:
+            group = group[1:]
+        text = bind.display_value(group, b) if group else ""
+        if text and text not in [t for _v, t in out]:
+            out.append((group[0][1], text))
+    # stacked in A-1's enumeration order, as D-1 Condo1 prints "Assessor
+    # Record / MLS" for sources tied MLS first
+    rank = {e.get("value"): n for dp in b.data_points if dp.get("mismo") == "DataSourceType"
+            for n, e in enumerate(dp.get("enumerations") or [])} if b else {}
+    return [t for _v, t in sorted(out, key=lambda vt: rank.get(vt[0], 999))]
+
+
+def _prior_indicator(prop: "etree._Element") -> "etree._Element | None":
+    return prop.find(f"{M}PROPERTY_DETAIL/{M}PriorSalesOrTransfersIndicator")
+
+
+def _prior_transfers(root: "etree._Element", prop: "etree._Element", subject_: bool) -> list:
+    X = "{http://www.w3.org/1999/xlink}"
+    linked = {r.get(f"{X}to") for r in root.iter(f"{M}RELATIONSHIP")
+              if r.get(f"{X}arcrole", "").endswith("IsDataSourceFor_SALES_HISTORY")}
+    out = []
+    for sh in prop.iter(f"{M}SALES_HISTORY"):
+        if not subject_ and sh.get(f"{X}label") not in linked:
+            continue                      # the comparable's own sale, in the grid
+        out.append(sh)
+    out.sort(key=lambda sh: (sh.findtext(f"{M}OwnershipTransferDate") or ""), reverse=True)
+    return out
+
+
+def _transfer_cells(root, sh, ids: tuple[str, str, str, str]) -> list[tuple[str, str, str]]:
+    """(text, field, data point) for Terms, Date, Amount; Sources separately."""
+    terms_id, date_id, amount_id, _src = ids
+    kind = (sh.findtext(f"{M}OwnershipTransferTransactionType") or "").strip()
+    b = binding(terms_id)
+    if kind == "Sale" or not kind:
+        sale = (sh.findtext(f"{M}SaleType") or "").strip()
+        group = [("SaleType", sale)] + ([("SaleTypeOtherDescription", (sh.findtext(f"{M}SaleTypeOtherDescription") or "").strip())]
+                                        if sale == "Other" else [])
+        terms, point = (bind.display_value([g for g in group if g[1]], b) if b and sale else ""), "SaleType"
+    else:
+        terms, point = (bind.display_value([("OwnershipTransferTransactionType", kind)], b) if b else kind), \
+            "OwnershipTransferTransactionType"
+    date_node = sh.find(f"{M}OwnershipTransferDate")
+    date = _shown_point(date_id, "OwnershipTransferDate", date_node)
+    amount_node = sh.find(f"{M}OwnershipTransferTransactionAmount")
+    if amount_node is not None and (amount_node.text or "").strip():
+        amount, apoint = _shown_point(amount_id, "OwnershipTransferTransactionAmount", amount_node), \
+            "OwnershipTransferTransactionAmount"
+        amount = re.sub(r"(\$[\d,]+)\.00\b", r"\1", amount)     # D-1: "$332,000"
+    else:
+        reason = sh.find(f"{M}OwnershipTransferAmountNotAvailableReasonType")
+        amount, apoint = _shown_point(amount_id, "OwnershipTransferAmountNotAvailableReasonType", reason), \
+            "OwnershipTransferAmountNotAvailableReasonType"
+    return [(terms, terms_id, point), (date, date_id, "OwnershipTransferDate"), (amount, amount_id, apoint)]
+
+
+def _transfer_table_html(el: dict, ctx: Ctx, *, comparables: bool) -> tuple[str, bool]:
+    root, tree = ctx.root, ctx.root.getroottree()
+    ids = (COMP_TERMS_ID, COMP_DATE_ID, COMP_AMOUNT_ID, COMP_SOURCE_ID) if comparables else \
+        (TRANSFER_TERMS_ID, TRANSFER_DATE_ID, TRANSFER_AMOUNT_ID, TRANSFER_SOURCE_ID)
+    body: list[str] = []
+
+    def line(sh, number: str) -> str:
+        key = tree.getpath(sh)
+        cells = []
+        for text, fid, point in _transfer_cells(root, sh, ids):
+            cells.append(_cell(esc(text), fid, ctx, key=key, point=point) if ctx.edit else _td(esc(text)))
+        src = _sources_for(root, sh, ids[3])
+        lead = [_td(esc(number))] if comparables else []
+        return ("<tr>" + "".join(lead) + "".join(cells)
+                + "<td class='lines'>" + "<br>".join(f"<span>{esc(x)}</span>" for x in src) + "</td></tr>")
+
+    if comparables:
+        comps = []
+        for prop in root.iter(f"{M}PROPERTY"):
+            if prop.get("ValuationUseType") != "SalesComparable":
+                continue
+            n = (prop.findtext(f".//{M}PropertyOrdinalNumber") or "").strip()
+            comps.append((int(n) if n.isdigit() else 999, n, prop))
+        for _rank, n, prop in sorted(comps, key=lambda c: c[0]):
+            ind = _prior_indicator(prop)
+            prior = _prior_transfers(root, prop, False)
+            if (ind is not None and (ind.text or "").strip() == "false") or not prior:
+                src = _sources_for(root, ind, COMP_SOURCE_ID) if ind is not None else []
+                body.append("<tr>" + _td(esc(n)) + _td("None") + _td("") + _td("")
+                            + "<td class='lines'>" + "<br>".join(f"<span>{esc(x)}</span>" for x in src)
+                            + "</td></tr>")
+                continue
+            # a second transfer of the same comparable leaves its number blank
+            body += [line(sh, n if i == 0 else "") for i, sh in enumerate(prior)]
+    else:
+        subj = subject(ctx)
+        ind = _prior_indicator(subj) if subj is not None else None
+        if ind is not None and (ind.text or "").strip() == "true":
+            body += [line(sh, "") for sh in _prior_transfers(root, subj, True)]
+        if ctx.edit and subj is not None and (ind is None or (ind.text or "").strip() != "false"):
+            body.append("<tr class='newrow'>" + "".join(_cell("", fid, ctx, new=True) for fid in ids[:3])
+                        + _td("") + "</tr>")
+    if not body:
+        return "", False
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), True
+
+
+# Appendix B-1, 23.01 Rent Schedule (pp300-303):
+#   Subject Property Rental Information: a line per unit in the rent schedule
+#   (UnitIncludedInRentScheduleIndicator), 23.01.01-23.01.10.
+#   Actual Income (Monthly) beside Opinion of Market Income (Monthly): Rent per
+#   unit (23.01.13 / 23.01.20, "deliver as zero if the unit is not currently
+#   rented"), Subtotal (23.01.14 / 23.01.21), Other Real Property Rental
+#   Income per type (23.01.15-16 / 23.01.22-23) with its Subtotal, and the
+#   Total (23.01.18 / 23.01.25) -- D-1 2-4 prints the two side by side.  The
+#   generic reader printed the first unit only and "[Unit Identifier]".
+RENT_UNIT_ID = "23.01.01"
+RENT_UNIT_COLUMNS = ("23.01.01", "23.01.02", "23.01.03", "23.01.04", "23.01.05",
+                     "23.01.06", "23.01.07", "23.01.08", "23.01.09", "23.01.10")
+RENT_ACTUAL_UNIT_ID, RENT_OTHER_ID = "23.01.12", "23.01.15"
+#: C-1's bars over the two income tables; D-1 prints them as the columns' own
+#: bold titles "Actual Income (Monthly)" / "Opinion of Market Income (Monthly)"
+RENT_INCOME_HEADS = ("Actual Income", "Opinion of Market Income")
+
+
+def _rent_units(ctx: Ctx) -> list["etree._Element"]:
+    subj = subject(ctx)
+    units = list(subj.iter(f"{M}PROPERTY_UNIT")) if subj is not None else []
+    marked = [u for u in units if (u.findtext(f".//{M}UnitIncludedInRentScheduleIndicator") or "").strip() == "true"]
+    return marked or [u for u in units if u.find(f"{M}UNIT_RENT_SCHEDULE") is not None]
+
+
+def _rent_summary(ctx: Ctx) -> "etree._Element | None":
+    subj = subject(ctx)
+    return next(subj.iter(f"{M}RENTAL_INFORMATION_SUMMARY"), None) if subj is not None else None
+
+
+def _money(fid: str, name: str, node) -> str:
+    return re.sub(r"(\$[\d,]+)\.00\b", r"\1", _shown_point(fid, name, node))
+
+
+def _rent_units_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    tree = ctx.root.getroottree()
+    body = []
+    for unit in _rent_units(ctx):
+        key = tree.getpath(unit)
+        cells = []
+        for fid in RENT_UNIT_COLUMNS:
+            b = binding(fid)
+            name = b.data_points[0]["mismo"] if b else ""
+            node = unit.find(f".//{M}{name}") if name else None
+            text = _money(fid, name, node) if node is not None else ""
+            cells.append(_cell(esc(text), fid, ctx, key=key, point=name) if ctx.edit else _td(esc(text)))
+        body.append("<tr>" + "".join(cells) + "</tr>")
+    if not body:
+        return "", False
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), True
+
+
+def _rent_income_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    tree = ctx.root.getroottree()
+    units = _rent_units(ctx)
+    summary = _rent_summary(ctx)
+    if not units and summary is None:
+        return "", False
+
+    def amount(fid, name, node, key):
+        text = _money(fid, name, node) if node is not None else ""
+        if ctx.edit and key:
+            return _cell(esc(text), fid, ctx, key=key, point=name, td_class="amt")
+        return f"<td class='amt num'><span>{esc(text)}</span></td>"
+
+    def side(rent_fid, sub_fid, other_type_fid, other_amt_fid, other_sub_fid, total_fid, unit_point,
+             other_point, sub_point, other_sub_point, total_point) -> list[str]:
+        rows = ["<tr><td class='lab b' colspan='3'><span>Rent</span></td></tr>"]
+        for unit in units:
+            uid = (unit.findtext(f".//{M}UnitIdentifier") or "").strip()
+            rows.append(f"<tr><td class='ind'><span>{esc(uid)}</span></td><td></td>"
+                        + amount(rent_fid, unit_point, unit.find(f".//{M}{unit_point}"), tree.getpath(unit)) + "</tr>")
+        skey = tree.getpath(summary) if summary is not None else ""
+        sub = summary.find(f".//{M}{sub_point}") if summary is not None else None
+        rows.append("<tr><td></td><td class='lab r'><span>Subtotal</span></td>" + amount(sub_fid, sub_point, sub, skey) + "</tr>")
+        rows.append("<tr class='gap'><td colspan='3'></td></tr>")
+        rows.append("<tr><td class='lab b' colspan='3'><span>Other Real Property Rental Income</span></td></tr>")
+        for inc in (summary.iter(f"{M}ADDITIONAL_RENTAL_INCOME") if summary is not None else []):
+            kind = (inc.findtext(f"{M}AdditionalRentalIncomeType") or "").strip()
+            label = (inc.findtext(f"{M}AdditionalRentalIncomeTypeOtherDescription") or "").strip() if kind == "Other" \
+                else _shown_point(other_type_fid, "AdditionalRentalIncomeType", inc.find(f"{M}AdditionalRentalIncomeType"))
+            rows.append(f"<tr><td class='ind'><span>{esc(label)}</span></td><td></td>"
+                        + amount(other_amt_fid, other_point, inc.find(f"{M}{other_point}"), tree.getpath(inc)) + "</tr>")
+        osub = summary.find(f".//{M}{other_sub_point}") if summary is not None else None
+        rows.append("<tr><td></td><td class='lab r'><span>Subtotal</span></td>" + amount(other_sub_fid, other_sub_point, osub, skey) + "</tr>")
+        tot = summary.find(f".//{M}{total_point}") if summary is not None else None
+        rows.append("<tr><td></td><td class='lab r'><span>Total</span></td>" + amount(total_fid, total_point, tot, skey) + "</tr>")
+        return rows
+
+    left = side("23.01.13", "23.01.14", "23.01.15", "23.01.16", "23.01.17", "23.01.18",
+                "UnitMonthlyActualRentAmount", "MonthlyActualAdditionalIncomeAmount",
+                "TotalMonthlyActualRentAmount", "TotalMonthlyActualAdditionalIncomeAmount",
+                "TotalMonthlyActualIncomeAmount")
+    right = side("23.01.20", "23.01.21", "23.01.22", "23.01.23", "23.01.24", "23.01.25",
+                 "UnitMonthlyMarketRentAmount", "MonthlyEstimatedAdditionalIncomeAmount",
+                 "TotalMonthlyMarketRentAmount", "TotalMonthlyEstimatedAdditionalIncomeAmount",
+                 "TotalMonthlyEstimatedIncomeAmount")
+    width = el["x1"] - el["x0"]
+    half = (width - 12) / 2
+    cols = (f"<colgroup><col style='width:{half * .5:.2f}pt'><col style='width:{half * .25:.2f}pt'>"
+            f"<col style='width:{half * .25:.2f}pt'></colgroup>")
+
+    def table(title, rows):
+        return (f"<table class='tbl nohead rent' style='width:{half:.2f}pt'>{cols}<tbody>"
+                f"<tr><td class='lab b' colspan='3'><span>{esc(title)}</span></td></tr>{''.join(rows)}</tbody></table>")
+    return (f"<div class='rentcols' style='display:flex;gap:12pt;width:{width:.2f}pt'>"
+            + table("Actual Income (Monthly)", left) + table("Opinion of Market Income (Monthly)", right)
+            + "</div>"), True
+
+
+# Appendix B-1, 23.02 Comparable Rental Properties: the subject and every
+# rental comparable side by side, six to a line -- photo, "Comparable #n",
+# address (23.02.01 / 23.02.03), "Data Source:" (23.02.04), "Lease Start
+# Date:" (23.02.05, if exists) and "Actual Rent:" (23.02.06).  The grid
+# reader took the photo row for a grid and dropped the strip.
+RENT_STRIP_PHOTO_ID = "23.02.01.1"
+RENT_STRIP_FIELDS = (("23.02.04", "Data Source:"), ("23.02.05", "Lease Start Date:"),
+                     ("23.02.06", "Actual Rent:"))
+
+
+def _rent_strip_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    from . import comparables as _comps
+    root = ctx.root
+    props = _comps.properties(root, "RentalComparable")
+    if not props:
+        return "", False
+    subj = subject(ctx)
+    images = _images(ctx)
+
+    def photo(prop, whose: str) -> str:
+        src = ""
+        if prop is subj:
+            src = _photo_for(ctx, "Subject Property")[0]
+        else:
+            im = next((i for i in images if i["owner"] is not None and i["owner"] is prop
+                       and i["category"] in ("PropertyPhoto", "")), None)
+            if im is None:
+                im = next((i for i in images if i["owner"] is not None and _local(i["owner"]) == "PROPERTY"
+                           and i["node"] in list(prop.iter(f"{M}IMAGE"))), None)
+            src = _data_uri(im["path"]) if im else ""
+        return (f"<img class='cp' src='{src}' alt=''>" if src else
+                f"<span class='cp empty'><i>This is where the {esc(whose)} photo would display.</i></span>")
+
+    def cell(prop, number: int) -> str:
+        whose = "Subject Property" if number == 0 else f"Rental Comparable {number}"
+        head = "Subject Property" if number == 0 else f"Comparable #{number}"
+        address = _comps.value_for(root, "23.02.01" if number == 0 else "23.02.03", prop)
+        lines = [f"<div class='rsh'>{esc(head)}</div>"]
+
+        def editable(fid: str, text: str) -> str:
+            if not ctx.edit:
+                return esc(text)
+            return (f"<span class='v' data-gc='{number}' data-gf='{esc(fid)}'"
+                    f" tabindex='0' role='button'>{esc(text) or '&nbsp;'}</span>")
+        lines.append(f"<div class='rsa'>{editable('23.02.01' if number == 0 else '23.02.03', address)}</div>")
+        if number:
+            for fid, label in RENT_STRIP_FIELDS:
+                text = _comps.value_for(root, fid, prop)
+                if not text and fid == "23.02.05" and not ctx.edit:
+                    continue                                  # "Display if exists"
+                lines.append(f"<div class='rsf'><span class='lb'>{esc(label)}</span> {editable(fid, text)}</div>")
+        return f"<td class='rs'>{photo(prop, whose)}{''.join(lines)}</td>"
+
+    cols = [(subj, 0)] + [(p, _comps._number_of(p) or n) for n, p in enumerate(props, start=1)]
+    width = el["x1"] - el["x0"]
+    per = 6
+    rows = []
+    for start in range(0, len(cols), per):
+        chunk = cols[start:start + per]
+        rows.append("<tr>" + "".join(cell(p, n) if p is not None else "<td></td>" for p, n in chunk)
+                    + "<td></td>" * (per - len(chunk)) + "</tr>")
+    colgroup = "".join(f"<col style='width:{width / per:.2f}pt'>" for _ in range(per))
+    kind = " data-gk='rental'" if ctx.edit else ""
+    return (f"<table class='rstrip'{kind} style='width:{width:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"<tbody>{''.join(rows)}</tbody></table>"), True
+
+
+# The exhibits of the rental and GRM sections (C-1 p34 / p35): a cell per
+# comparable -- "Comparable #" (23.05.03 / 24.008) over its photo
+# (23.02.03.1 / 24.009.1) -- as D-1 2-4 prints "Comparable #1 ... #5" and
+# "Comparable #1 ... #3".  Read as a plain table it printed the numbers in
+# one cell and every captioned photo of the report beside them.
+COMP_PHOTO_TABLES = {"23.05.03": ("RentalComparable", "Rental Comparable"),
+                     "24.008": ("GrossRentMultiplierComparable", "GRM Comparable")}
+COMP_PHOTO_SECTIONS = {"Rental Information": COMP_PHOTO_TABLES["23.05.03"],
+                       "Income Approach": COMP_PHOTO_TABLES["24.008"]}
+
+
+def _comp_photo_items(ctx: Ctx, role: tuple[str, str]) -> list[dict]:
+    from . import comparables as _comps
+    props = _comps.properties(ctx.root, role[0])
+    images = _images(ctx)
+    items = []
+    for n, prop in enumerate(props, start=1):
+        number = _comps._number_of(prop) or n
+        mine = [i for i in images if i["node"] in set(prop.iter(f"{M}IMAGE"))]
+        im = next((i for i in mine if i["category"] == "PropertyPhoto"), mine[0] if mine else None)
+        items.append({"src": _data_uri(im["path"]) if im else "", "title": f"Comparable #{number}",
+                      "caption": "", "category": "PropertyPhoto", "layout": "photo",
+                      "placeholder": f"{role[1]} {number}"})
+    return items
+
+
+def _one_comparable_role(ids: set) -> str:
+    """The ValuationUseType when every field of a table is one comparable
+    role's alone (Land Comparables 4.107-4.114 / 25.042-25.049)."""
+    roles = set()
+    for fid in ids:
+        r = tuple(field_entry(fid).get("roles") or [])
+        if r:
+            roles.add(r)       # a data-source field carries no role: it goes with the rest
+    if len(roles) != 1:
+        return ""
+    only = next(iter(roles))
+    if len(only) != 1 or only[0] in ("Subject Property",) or only[0] not in ROLE_USE:
+        return ""
+    if only[0] in ("Sales Comparable", "Rental Comparable", "Gross Rent Multiplier Comparable"):
+        return ""              # those have their own grids and tables
+    return ROLE_USE[only[0]]
+
+
+def _comparable_rows_html(el: dict, ctx: Ctx, use: str) -> tuple[str, bool]:
+    """A line per comparable of that role, in comparable-number order, each
+    cell read inside that comparable's PROPERTY (D-1 MH1 Land Comparables:
+    "1  123 Water Front Dr ... MLS 238183040 ... 01/01/2018  $200,000").  Read
+    as a plain table it grouped the values by column, last comparable first,
+    and listed every data source in the report."""
+    from . import comparables as _comps
+    props = _comps.properties(ctx.root, use)
+    if not props:
+        return ("", False) if not ctx.edit else ("", False)
+    tree = ctx.root.getroottree()
+    cells_ids = [list(c.get("ids") or []) for c in el["rows"][0]["cells"]]
+    flat = [i for ids_ in cells_ids for i in ids_]
+    if len(flat) == len(el["columns"]) and any(len(x) != 1 for x in cells_ids):
+        # C-1 p36 packs "#" and the address into one cell: a field per column
+        cells_ids = [[i] for i in flat]
+    body = []
+    for n, prop in enumerate(props, start=1):
+        line = []
+        for ids_ in cells_ids:
+            fid = ids_[0] if ids_ else ""
+            text = _comps.value_for(ctx.root, fid, prop) if fid else ""
+            if ctx.edit and fid:
+                line.append(_cell(esc(text), fid, ctx, key=tree.getpath(prop)))
+            else:
+                line.append("<td class='lines'>" + "<br>".join(f"<span>{esc(x)}</span>" for x in text.split("\n"))
+                            + "</td>" if "\n" in text else _td(esc(text)))
+        body.append("<tr>" + "".join(line) + "</tr>")
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), True
 
 
 # Appendix B-1, 10 Unit Interior, "Level and Room Detail" (p195):
@@ -3166,9 +3894,17 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     for im in _images(ctx):
         sec, caption = cats.get(im["category"], ("", ""))
         owner = im["owner"]
+        defect_of = None
         if not im["category"] and owner is not None:
             sec = {"PROPERTY_UNIT": "Unit Interior", "AMENITY": "Subject Property Amenities",
                    "CAR_STORAGE": "Vehicle Storage", "DEFECT": ""}.get(_local(owner), "")
+            if _local(owner) == "DEFECT":
+                # a defect's photo prints in the section of what the defect is
+                # in (D-1 2-4: "Apparent Defects, Damages, Deficiencies - Roof"
+                # under each building's Dwelling Exterior Exhibits), found by
+                # its DEFECT_ContainsDefectOf_* link
+                defect_of = _relations(ctx.root).get(owner.get(f"{XLINK}label"))
+                sec = _defect_section(defect_of)
         if im["category"] in ("PropertyPhoto",):
             continue
         if im["category"] == "SalesComparableMap":
@@ -3182,7 +3918,11 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             # outbuilding, so only the images inside it belong to it -- without
             # this every unit prints every unit's photographs.
             tree = ctx.scope.getroottree()
-            if not tree.getpath(im["node"]).startswith(tree.getpath(ctx.scope) + "/"):
+            if defect_of is not None:
+                if defect_of is not ctx.scope:
+                    continue
+            elif not tree.getpath(im["node"]).startswith(tree.getpath(ctx.scope) + "/") \
+                    and not _positional_image(ctx, im, cats):
                 continue
         title = im["caption"] or caption
         lead = _owner_title(im["node"])
@@ -3199,7 +3939,10 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             # display" pictures, which are exactly what gets replaced.
             src = _data_uri(Path(fill["path"]))
         out.append({"src": src, "title": caption or title,
-                    "caption": im["caption"] if caption else "",
+                    # with a lead the caption is already part of the title (D-1
+                    # SF1: "Apparent Defects, Damages, Deficiencies - Roof -
+                    # Damaged Flashing", printed once)
+                    "caption": im["caption"] if caption and not lead else "",
                     "location": im["location"], "category": im["category"],
                     "layout": layout_of(im["category"]),
                     "media_id": fill.get("media_id", "") if fill else "",
@@ -3229,6 +3972,51 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             out.append({"src": "", "title": str(slot.get("caption") or ""), "caption": "",
                         "slot": str(slot["id"]), "named": True})
     return out
+
+
+def _defect_section(target: "etree._Element | None") -> str:
+    """The report section a defect belongs to, from what its link points at."""
+    if target is None:
+        return "Site"
+    kind = _local(target)
+    if kind == "IMPROVEMENT":
+        return "Outbuilding" if _find_text(target, "ImprovementType") == "Outbuilding" else "Dwelling Exterior"
+    return {"PROPERTY": "Site", "PROPERTY_UNIT": "Unit Interior", "CAR_STORAGE": "Vehicle Storage",
+            "AMENITY": "Subject Property Amenities"}.get(kind, "")
+
+
+def _positional_image(ctx: Ctx, im: dict, cats: dict) -> bool:
+    """A photo kept at property level (PROPERTY/INSPECTIONS/.../IMAGE) that
+    belongs to a section drawn once per structure.  A-1 gives no link from the
+    IMAGE to its IMPROVEMENT; the D-1 2-4 sample holds two DwellingRear images
+    (2-4_Dwelling1Rear, 2-4_Dwelling2Rear) and prints one under each
+    building, so the n-th such photo is the n-th copy's, and a single one is
+    the first copy's (SF1, Condo1: "Dwelling Exterior Exhibits / Dwelling
+    Rear").  With more photos than copies nothing is assigned."""
+    node = im["node"]
+    if any(_local(a) in ("IMPROVEMENT", "PROPERTY_UNIT") for a in node.iterancestors()):
+        return False
+    kind = _local(ctx.scope)
+    if kind not in ("IMPROVEMENT", "PROPERTY_UNIT"):
+        return False
+    subj = subject(ctx)
+    if subj is None:
+        return False
+    if kind == "IMPROVEMENT":
+        imp_type = _find_text(ctx.scope, "ImprovementType")
+        copies = [e for e in subj.iter(f"{M}IMPROVEMENT") if _find_text(e, "ImprovementType") == imp_type]
+    else:
+        copies = list(subj.iter(f"{M}PROPERTY_UNIT"))
+    if ctx.scope not in copies:
+        return False
+    same = [e for e in subj.iter(f"{M}IMAGE")
+            if (e.findtext(f"{M}ImageCategoryType") or "").strip() == im["category"]
+            and not any(_local(a) in ("IMPROVEMENT", "PROPERTY_UNIT") for a in e.iterancestors())]
+    if node not in same or len(same) > len(copies):
+        # more photos than copies (MH1: three OutbuildingExhibit images, two
+        # outbuildings) -- position says nothing about which is whose
+        return False
+    return same.index(node) == copies.index(ctx.scope)
 
 
 #: B-3 p30: the text each kind of completion-report image is titled with,
@@ -3391,7 +4179,7 @@ def _exhibits_html(items: list[dict], section: str = "", edit: bool = False) -> 
     cells = []
     number = SECTION_NUMBER.get(section, 0)
     for it in items:
-        what = re.sub(r' *[(].*', '', it['title'] or 'exhibit')
+        what = it.get("placeholder") or re.sub(r' *[(].*', '', it['title'] or 'exhibit')
         img = (f"<img src='{it['src']}' alt=''>" if it["src"] else
                f"<div class='ph'>{CAMERA}<span>This is where the {esc(what)} photo would display.</span></div>")
         slot, media = it.get("slot", ""), it.get("media_id", "")
@@ -3405,8 +4193,9 @@ def _exhibits_html(items: list[dict], section: str = "", edit: bool = False) -> 
             # the caption
             raw = it.get("raw_caption") or ""
             named_by_category = it["title"] if it["title"] != raw else ""
+            sep = " - " if (named_by_category and raw and not it.get("caption") == "") else " "
             cap = ("<div class='cap'>"
-                   + (f"<b class='capcat'>{esc(named_by_category)}</b> " if named_by_category else "")
+                   + (f"<b class='capcat'>{esc(named_by_category)}</b>{sep}" if named_by_category else "")
                    + f"<b class='capedit' contenteditable='true' spellcheck='false'"
                      f" data-ph='{'+ name' if named_by_category else 'Exhibit Name'}' data-image='{esc(image_key)}'>"
                      f"{esc(raw)}</b></div>")
@@ -3425,7 +4214,9 @@ def _exhibits_html(items: list[dict], section: str = "", edit: bool = False) -> 
         else:
             cap = f"<div class='cap'><b>{esc(it['title'])}</b>"
             if it.get("caption") and it["caption"] != it["title"]:
-                cap += f" {esc(it['caption'])}"
+                # D-1 Condo2: "Property Access (Street Scene) - East",
+                # "Noncontinuous Area - Bonus Room"
+                cap += f" - {esc(it['caption'])}"
             cap += "</div>"
         extra = ""
         if edit and (not it["src"] or (it.get("location") and not media)):
@@ -3714,7 +4505,10 @@ def _resolve_visibility(blocks: list[Block]) -> None:
                 continue
             vis = False
             for other in blocks[i + 1:]:
-                if other.group >= level:
+                if other.group >= level or other.section != blk.section:
+                    # a heading answers for its own section only: the scope of
+                    # work's paragraphs (C-1 p40) do not make an empty
+                    # Supplemental Information print (D-1 SF5 has none)
                     break
                 if other.visible and not other.decoration:
                     vis = True
@@ -4161,6 +4955,7 @@ table.tbl tr.sub td{{background:#a7a9ac;color:#fff;font-weight:700;border-right:
 table.tbl td.num{{text-align:right}}
 table.tbl .tick{{font-size:11pt;line-height:9pt}}
 table.tbl tr.tot td.bar{{background:#a7a9ac;color:#fff;font-weight:700;text-align:right;border:0}}
+table.formula{{border-collapse:collapse;margin:4pt 0 6pt 36pt}}table.formula td{{padding:0 8pt;text-align:center;font-size:9pt;line-height:12pt}}table.formula td.lab{{font-style:italic}}table.formula td.op{{padding:0 4pt}}table.rstrip{{border-collapse:collapse;table-layout:fixed;margin:6pt 0}}table.rstrip td.rs{{vertical-align:top;padding:0 4pt 6pt 0;font-size:8pt;line-height:10pt}}table.rstrip .cp{{display:block;width:100%;height:58pt;object-fit:cover;margin-bottom:4pt}}table.rstrip .cp.empty{{display:flex;align-items:center;justify-content:center;text-align:center;background:#f1f1f2;font-size:7pt;line-height:9pt;padding:0 4pt;box-sizing:border-box}}table.rstrip .rsh{{font-weight:700}}table.rstrip .rsf .lb{{font-weight:400}}table.tbl.rent td{{border:0}}table.tbl.rent td.lab.b{{font-weight:700}}table.tbl.rent td.ind > span{{padding-left:8pt}}table.tbl.rent td.lab.r,table.tbl.rent td.amt{{text-align:right}}table.tbl.rent tr.gap td{{height:8pt}}
 table.tbl tr.tot td.amt,table.tbl tr.tot td.lab{{padding-right:4pt}}
 table.tbl tr.tot td.amt > span,table.tbl tr.tot td.lab > span{{display:inline;top:var(--cell-text)}}
 table.tbl tr.tot td.blank{{border:0}}

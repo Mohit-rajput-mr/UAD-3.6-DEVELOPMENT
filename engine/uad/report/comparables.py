@@ -444,7 +444,18 @@ def _by_field_id() -> dict[str, Any]:
 # point (RoomType); which room each means is spelled by its own label, exactly
 # as the utilities rows are ("Gas" is a UtilityType).  So the label is matched
 # against the data point's own A-1 enumeration and used to pick the instance.
+#: B-1 names the instance a description row reads ('Display when
+#: (ImprovementComponentType = "WallsAndCeiling")', 'RoomType = "Kitchen"'):
+#: Overall Flooring and Walls and Ceiling read the same data point and are
+#: told apart only by this (D-1 SF3 printed the flooring text twice)
+_RULE_MARK = re.compile(r'\b(ImprovementComponentType|RoomType)(?:\s*\([^)]*\))?\s*=\s*["\u201c]([A-Za-z]+)["\u201d]')
+
+
 def _row_marks(row: "GridRow | None", binding) -> dict[str, str]:
+    if row is not None and row.rules:
+        found = dict(_RULE_MARK.findall(row.rules))
+        if found:
+            return found
     if row is None or not row.data_point or not row.data_point.endswith("Type"):
         return {}
     wanted = [w for w in re.split(r"[^A-Za-z]+", row.label.casefold()) if w]
@@ -469,6 +480,8 @@ def _read(root: etree._Element, binding, scope: etree._Element | None,
     """The elements a grid cell reads: the first instance of its block, or --
     where B-1 stacks them ("a separate line for each street", each vehicle
     storage, each view) -- every instance."""
+    if scope is not None:
+        binding = _held_conditions(binding, scope)
     composite = bind.composite_for([dp.get("mismo", "") for dp in binding.data_points])
     if not (composite and composite.stack):
         yield from bind._walk(root, binding, scope, 1, marks)
@@ -480,8 +493,30 @@ def _read(root: etree._Element, binding, scope: etree._Element | None,
         yield from nodes
 
 
+def _held_conditions(binding, scope: etree._Element):
+    """The binding with any A-1 condition dropped whose data point this
+    property does not hold at all.  GRM Sale Date (24.018) carries the
+    subject's 'IF PriorSalesOrTransfersIndicator = "true"'; a GRM comparable
+    has no such indicator, so the condition hid its own sale date (D-1 2-4
+    prints 02/24/2019)."""
+    changed = False
+    points = []
+    for dp in binding.data_points:
+        req = dp.get("requires") or {}
+        keep = {k: v for k, v in req.items()
+                if k.startswith(("@", "__")) or next(scope.iter(f"{{{bind.MISMO}}}{k}"), None) is not None}
+        if keep != req:
+            dp = dict(dp, requires=keep)
+            changed = True
+        points.append(dp)
+    if not changed:
+        return binding
+    return bind.Binding(binding.field_id, binding.section, binding.subsection, binding.label, points)
+
+
 def value_for(root: etree._Element, field_id: str,
-              scope: etree._Element | None, row: "GridRow | None" = None) -> str:
+              scope: etree._Element | None, row: "GridRow | None" = None,
+              binding=None) -> str:
     """One grid cell: the value of a field read within one property.
 
     Areas carry their unit and whole dollars drop their cents, exactly as they
@@ -495,7 +530,7 @@ def value_for(root: etree._Element, field_id: str,
             text, _adjust = named_value(scope, named, row.item_name)
             return text
         return ""
-    binding = binding_of(field_id)
+    binding = binding or binding_of(field_id)
     if binding is None:
         return ""
     groups = []
@@ -520,6 +555,8 @@ def value_for(root: etree._Element, field_id: str,
         rank = {tree.getpath(e): n for n, e in enumerate(root.iter())}
         groups = sorted(merged.items(), key=lambda kv: rank.get(kv[0], 0))
     shown = bind.display_value([g for _k, g in groups], binding)
+    if shown == "$0.00":
+        return "$0"                  # D-1 2-4: an unrented unit's Rent Per Finished Area
     return bind.trim_cents(shown, binding.label)
 
 
@@ -527,6 +564,10 @@ def value_for(root: etree._Element, field_id: str,
 # the samples leave such a row out of the grid rather than print a column of
 # negatives (B-1 states each row's rule this way: display when <> "None").
 SILENT = {"", "none", "no", "false", "not applicable"}
+# ...except where the workbook says the row displays "if Exists": a delivered
+# "No" exists (D-1 2-4 prints Furnished / Rent Control / Rent Concessions "No"
+# for every rental comparable)
+_EXISTS = re.compile(r"display\s+if\s+exists", re.I)
 
 
 def _told(value: str) -> bool:
@@ -632,6 +673,7 @@ class Cell:
     text: str = ""
     adjustment: str = ""
     dash: bool = False             # empty, and B-1 says this cell prints an em-dash
+    scope: str = ""                # the block the value was read in, when not the property
 
 
 @dataclass
@@ -652,6 +694,7 @@ class BuiltRow:
     line_item: str = ""            # the ComparableAdjustmentType it is kept as
     item_name: str = ""            # the identifier, which is the row's label
     new_item: bool = False         # the empty template that starts another
+    subject_scope: str = ""        # the subject block read (a rental unit), when not the property
 
     @property
     def empty(self) -> bool:
@@ -665,6 +708,8 @@ class Grid:
     title: str
     comparables: list[str]
     rows: list[BuiltRow] = field(default_factory=list)
+    subject_label: str = "Subject Property"
+    numbers: list[int] = field(default_factory=list)   # each column's comparable number
 
     def to_json(self) -> dict[str, Any]:
         return {"kind": self.kind, "title": self.title,
@@ -927,12 +972,308 @@ def specs(root: etree._Element, kind: str = "sales", *,
     return out
 
 
+X = "{http://www.w3.org/1999/xlink}"
+
+
+def rental_pairs(root: etree._Element) -> list[tuple[etree._Element, list[tuple[etree._Element, etree._Element]]]]:
+    """Each subject unit's rental comparables, as A-1 ties them: a
+    comparable keeps one RENTAL_INFORMATION per subject unit it is compared
+    with, linked by RENTAL_INFORMATION_IsComparableFor_RENTAL_INFORMATION to
+    that unit's own.  D-1 2-4 compares Unit 1 with #1-#3 and Unit 2 with #1,
+    #4, #5 -- with a different Adjusted Rent for #1 in each.  Returns
+    [(subject RENTAL_INFORMATION, [(comparable PROPERTY, its RENTAL_INFORMATION)])]
+    in the subject's unit order; empty when nothing is linked."""
+    links = [(r.get(f"{X}from"), r.get(f"{X}to")) for r in root.iter(f"{{{bind.MISMO}}}RELATIONSHIP")
+             if r.get(f"{X}arcrole", "").endswith("RENTAL_INFORMATION_IsComparableFor_RENTAL_INFORMATION")]
+    if not links:
+        return []
+    by = {e.get(f"{X}label"): e for e in root.iter(f"{{{bind.MISMO}}}RENTAL_INFORMATION") if e.get(f"{X}label")}
+    subject = bind.subject(root)
+    if subject is None:
+        return []
+    out = []
+    for ri in subject.iter(f"{{{bind.MISMO}}}RENTAL_INFORMATION"):
+        label = ri.get(f"{X}label")
+        comps = []
+        for frm, to in links:
+            if to != label or frm not in by:
+                continue
+            cri = by[frm]
+            prop = next((a for a in cri.iterancestors(f"{{{bind.MISMO}}}PROPERTY")), None)
+            if prop is not None:
+                comps.append((prop, cri))
+        if comps:
+            order = {id(p): n for n, p in enumerate(properties(root, "RentalComparable"))}
+            comps.sort(key=lambda pc: _number_of(pc[0]) or order.get(id(pc[0]), 99))
+            out.append((ri, comps))
+    return out
+
+
+def _number_of(prop: etree._Element) -> int:
+    n = ordinal_node(prop)
+    text = (n.text or "").strip() if n is not None else ""
+    return int(text) if text.isdigit() else 0
+
+
+def _scopes(block: etree._Element) -> list[etree._Element]:
+    """The pairing's RENTAL_INFORMATION, the unit holding it, the property:
+    a comparison ("Similar", Adjusted Rent) is the pairing's, bedrooms the
+    unit's, the site and neighborhood the property's."""
+    out = [block]
+    unit = next(block.iterancestors(f"{{{bind.MISMO}}}PROPERTY_UNIT"), None)
+    if unit is not None:
+        out.append(unit)
+    prop = next(block.iterancestors(f"{{{bind.MISMO}}}PROPERTY"), None)
+    if prop is not None:
+        out.append(prop)
+    return out
+
+
+def _field_scope(fid: str, scopes: list) -> "etree._Element | None":
+    """The block a field is read in: the innermost of the pairing, its unit
+    and its property that the field's own path runs through.  A unit's
+    answer is never looked for in the whole property -- that finds another
+    unit's (D-1 2-4: Unit 2 is not rented, and prints em-dashes, not Unit 1's
+    "No")."""
+    binding = binding_of(fid)
+    paths = [dp.get("xpath", "") for dp in (binding.data_points if binding else [])]
+    for sc in scopes[:-1]:
+        name = etree.QName(sc).localname
+        if any(f"/{name}/" in f"/{p}" for p in paths):
+            return sc
+    return scopes[-1] if scopes else None
+
+
+def _dp_scope(dp: dict, scopes: list):
+    path = "/" + dp.get("xpath", "")
+    for sc in scopes[:-1]:
+        if f"/{etree.QName(sc).localname}/" in path:
+            return sc
+    return scopes[-1]
+
+
+def _layered(root, fid: str, scopes: list, row) -> tuple[str, etree._Element | None]:
+    binding = binding_of(fid)
+    if binding is not None and len(scopes) > 1 and not (row is not None and row.container):
+        levels: dict[int, tuple] = {}
+        for dp in binding.data_points:
+            sc = _dp_scope(dp, scopes)
+            levels.setdefault(scopes.index(sc), (sc, []))[1].append(dp)
+        if len(levels) > 1:
+            # one field over two levels -- "Structure ID | Unit ID" is the
+            # building's identifier and the unit's: each read where it is, the
+            # outer first, as D-1 2-4 prints "Building 1 | Unit 1"
+            parts = []
+            for _n, (sc, dps) in sorted(levels.items(), key=lambda kv: -kv[0]):
+                one = bind.Binding(binding.field_id, binding.section, binding.subsection, binding.label, dps)
+                text = value_for(root, fid, sc, row, binding=one)
+                if text:
+                    parts.append(text)
+            return " | ".join(parts), (scopes[0] if parts else None)
+    sc = _field_scope(fid, scopes)
+    if sc is None:
+        return "", None
+    text = value_for(root, fid, sc, row)
+    return text, (sc if text else None)
+
+
+def _layered_raw(root, fid: str, scopes: list) -> list[str]:
+    sc = _field_scope(fid, scopes)
+    return raw_for(root, fid, sc) if sc is not None else []
+
+
+_OTHER_THAN = re.compile(r"other than ([A-Za-z ]+?)\)", re.I)
+
+
+def _other_than(rules: str) -> set[str]:
+    m = _OTHER_THAN.search(rules or "")
+    if not m:
+        return set()
+    return {w.strip().casefold() for w in re.split(r"\band\b|,", m.group(1)) if w.strip()}
+
+
+def _without(text: str, drop: set[str]) -> str:
+    return " | ".join(p for p in (text or "").split(" | ") if p.strip().casefold() not in drop) if text else text
+
+
+def _has_adu(root: etree._Element, props: list) -> bool:
+    for prop in props:
+        if prop is None:
+            continue
+        for n in prop.iter(f"{{{bind.MISMO}}}AccessoryDwellingUnitIndicator"):
+            if (n.text or "").strip() == "true":
+                return True
+    return False
+
+
+def _outbuildings(prop) -> list[etree._Element]:
+    """A property's outbuildings in the order D-1 MH1 prints them -- by their
+    name (Barn before Rec Room/Garage), the k-th of every property side by
+    side: A-1 ties no outbuilding to another, and the sample pairs them by
+    position (#1's Barn with the subject's Barn, its Workshop with the Rec
+    Room/Garage)."""
+    if prop is None:
+        return []
+    out = []
+    for imp in prop.iter(f"{{{bind.MISMO}}}IMPROVEMENT"):
+        if (imp.findtext(f".//{{{bind.MISMO}}}ImprovementType") or "").strip() != "Outbuilding":
+            continue
+        if any((u.findtext(f".//{{{bind.MISMO}}}AccessoryDwellingUnitIndicator") or "").strip() == "true"
+               for u in imp.iter(f"{{{bind.MISMO}}}PROPERTY_UNIT")):
+            continue        # "ADU ... not included" (the group's own heading; D-1 SF3)
+        kind = (imp.findtext(f".//{{{bind.MISMO}}}OutbuildingType") or "").strip()
+        other = (imp.findtext(f".//{{{bind.MISMO}}}OutbuildingTypeOtherDescription") or "").strip()
+        out.append(((other if kind == "Other" and other else bind._humanise(kind)).casefold(), imp))
+    return [imp for _name, imp in sorted(out, key=lambda t: t[0])]
+
+
+def _units(prop, adu: bool) -> list[etree._Element]:
+    """A property's living units (adu False) or ADUs (adu True), in document order."""
+    if prop is None:
+        return []
+    out = []
+    for u in prop.iter(f"{{{bind.MISMO}}}PROPERTY_UNIT"):
+        flag = (u.findtext(f".//{{{bind.MISMO}}}AccessoryDwellingUnitIndicator") or "").strip() == "true"
+        if flag == adu:
+            out.append(u)
+    return out
+
+
+def _dwellings(prop) -> list[etree._Element]:
+    if prop is None:
+        return []
+    return [imp for imp in prop.iter(f"{{{bind.MISMO}}}IMPROVEMENT")
+            if (imp.findtext(f".//{{{bind.MISMO}}}ImprovementType") or "").strip() == "Dwelling"]
+
+
+def _unit_scopes(unit, prop) -> list:
+    imp = next(unit.iterancestors(f"{{{bind.MISMO}}}IMPROVEMENT"), None)
+    return [x for x in (unit, imp, prop) if x is not None]
+
+
+def _ob_scopes(prop, k) -> list:
+    """The block a repeated group's row is read in, for one property.  ``k``
+    is (kind, position): an outbuilding, a living unit, an ADU or a dwelling."""
+    kind, n = k if isinstance(k, tuple) else ("ob", k)
+    if kind == "ob":
+        obs = _outbuildings(prop)
+        return [obs[n]] if n < len(obs) else []
+    if kind in ("unit", "adu"):
+        units = _units(prop, kind == "adu")
+        return _unit_scopes(units[n], prop) if n < len(units) else []
+    if kind == "dwelling":
+        ds = _dwellings(prop)
+        return [ds[n], prop] if n < len(ds) else []
+    return []
+
+
+#: the grid groups B-1 repeats, what each repeats over, and the rows that
+#: belong only to some of its copies
+_REPEATS = (("Unit(s)", "unit"), ("Exterior Quality and Condition", "dwelling"),
+            ("Interior Quality and Condition", "unit"), ("ADU Interior Quality and Condition", "adu"))
+
+
+def _expand_outbuildings(spec: list, props: list) -> list:
+    """The spec with each repeating group drawn once per position, as D-1
+    prints them: 2-4 "Building 1 | Unit 1" then "Building 2 | Unit 2" in
+    Unit(s) and Interior Quality and Condition, "Building 1" / "Building 2"
+    in Exterior; SF3 its ADU's own Unit(s) lines under "Location of ADU";
+    MH1 each outbuilding.  Rows read inside that unit, dwelling or
+    outbuilding only."""
+    out: list = []
+    i = 0
+    while i < len(spec):
+        row = spec[i]
+        if not row.heading:
+            out.append((row, None))
+            i += 1
+            continue
+        end = next((j for j in range(i + 1, len(spec)) if spec[j].heading), len(spec))
+        group = spec[i + 1:end]
+        label = row.label.strip()
+        kind = next((k for name, k in _REPEATS if label == name), None)
+        if label.startswith("Outbuilding ("):
+            kind = "ob"
+        out.append((row, None))
+        if kind is None:
+            out += [(r, None) for r in group]
+        elif kind == "ob":
+            n = max((len(_outbuildings(p)) for p in props), default=0)
+            for k in range(n):
+                out += [(r, ("ob", k)) for r in group]
+        elif kind == "unit":
+            n = max((len(_units(p, False)) for p in props), default=0)
+            body = [r for r in group if r.label.strip() != "Location of ADU"]
+            for k in range(max(n, 1)):
+                out += [(r, ("unit", k)) for r in body]
+            if label == "Unit(s)":
+                # each ADU's own lines, under its location (D-1 SF3)
+                m = max((len(_units(p, True)) for p in props), default=0)
+                adu_body = [r for r in group if r.label.strip() != "Structure ID | Unit ID"]
+                for k in range(m):
+                    out += [(r, ("adu", k)) for r in adu_body]
+        elif kind == "adu":
+            m = max((len(_units(p, True)) for p in props), default=0)
+            for k in range(m):
+                out += [(r, ("adu", k)) for r in group]
+        else:
+            n = max((len(_dwellings(p)) for p in props), default=0)
+            for k in range(max(n, 1)):
+                out += [(r, (kind, k)) for r in group]
+        i = end
+    return out
+
+
+def _nth_adjustment(root, row, prop, k) -> str:
+    """The k-th adjustment of the row's type: one per outbuilding, unit or
+    dwelling it repeats over."""
+    k = k[1] if isinstance(k, tuple) else k
+    if not row.adjust_type:
+        return adjustment_for(root, row, prop)
+    found = [n for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT")
+             if (n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentType") or "").strip() == row.adjust_type]
+    if k >= len(found):
+        return ""
+    amount = (found[k].findtext(f"{{{bind.MISMO}}}ComparableAdjustmentAmount") or "").strip()
+    binding = binding_of(row.adjust_fid)
+    if not amount:
+        return ""
+    return bind.display_value([[("ComparableAdjustmentAmount", amount)]], binding) if binding else amount
+
+
+_ROW_WHEN = re.compile(r"Display (?:row )?when (.+?)(?:\.\s|\.$|$| Repeat| Subject| Display| When)")
+_ROW_NAMES = re.compile(r"\b([A-Z][A-Za-z]+(?:Type|Indicator|Count|Code))\b")
+
+
+def _rule_hides(row, root, subject) -> bool:
+    """B-1's "Display when ..." for a grid row, where it decides alone: no
+    "relevant to the analysis" (the appraiser's call) and every data point it
+    names delivered in the document (AmenityCategoryType never is).  Checked
+    against all twelve D-1 samples: it hides Structure ID | Unit ID with one
+    unit (10/12), Dwelling Style / Structure Design by attachment, and the
+    Exterior Quality and Condition rows where the homeowner does not maintain
+    the exterior (Condo1, Coop1) -- each absent from the official PDF."""
+    text = row.rules or ""
+    if text.lstrip().startswith("Comps:") or "Subject:" in text or "\u2026" in text:
+        return False           # a comparable's condition, or one split by side
+    m = _ROW_WHEN.search(text)
+    if not m or "elevant" in m.group(1).lower() or subject is None:
+        return False           # "relevant to the analysis" (B-1 once spells it "elevant")
+    names = _ROW_NAMES.findall(m.group(1))
+    if not names or any(next(root.iter(f"{{{bind.MISMO}}}{n}"), None) is None for n in names):
+        return False
+    from . import rules as _rules
+    d = _rules.evaluate("Display when " + m.group(1), root, subject)
+    return d.known and not d.shown
+
+
 def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = False) -> list[Grid]:
     """The grid for a case, in blocks of three comparables as the form prints.
 
     More than three comparables do not widen the page -- the samples repeat the
     grid, three at a time, which is why the measured geometry has exactly three
-    comparable columns.
+    comparable columns.  A rental grid whose comparables are tied to subject
+    units (rental_pairs) is drawn once per unit, as D-1 2-4 does.
     """
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     _sheet, role, title = SHEETS[kind]
@@ -941,37 +1282,63 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
         return []
     subject = bind.subject(root)
     spec = specs(root, kind, every_row=every_row)
+    tree_ = root.getroottree()
+
+    plans: list[tuple[str, list[etree._Element], list[tuple[etree._Element, list]]]] = []
+    pairs = rental_pairs(root) if kind == "rental" else []
+    if pairs:
+        for sri, comp_pairs in pairs:
+            unit = next(sri.iterancestors(f"{{{bind.MISMO}}}PROPERTY_UNIT"), None)
+            uid = (unit.findtext(f".//{{{bind.MISMO}}}UnitIdentifier") or "").strip() if unit is not None else ""
+            columns = [(p, _scopes(cri)) for p, cri in comp_pairs]
+            for start in range(0, len(columns), per_block):
+                plans.append((f"Subject {uid}".strip(), _scopes(sri), columns[start:start + per_block]))
+    else:
+        columns = [(p, [p]) for p in comps]
+        for start in range(0, len(columns), per_block):
+            plans.append(("Subject Property", [subject] if subject is not None else [], columns[start:start + per_block]))
 
     grids: list[Grid] = []
-    for start in range(0, len(comps), per_block):
-        block = comps[start:start + per_block]
-        grid = Grid(kind=kind, title=title,
-                    comparables=[f"Comparable #{start + i + 1}"
-                                 for i in range(len(block))])
-        for row in spec:
+    for subject_label, subject_scopes, block in plans:
+        numbers = [_number_of(p) or comps.index(p) + 1 for p, _sc in block]
+        grid = Grid(kind=kind, title=title, comparables=[f"Comparable #{n}" for n in numbers],
+                    subject_label=subject_label, numbers=numbers)
+        all_cols_base = [c for _l, _s, b in plans for c in b]
+        ruled_labels: set[str] = set()
+        for row, ob in _expand_outbuildings(spec, [subject] + comps):
             if row.heading:
                 grid.rows.append(BuiltRow(row.label, True, "", []))
                 continue
-            subject_text = (value_for(root, row.subject_fid, subject, row)
-                            if row.subject_fid else "")
+            if ob is None:
+                row_subject_scopes, row_block, all_cols = subject_scopes, block, all_cols_base
+            else:
+                # the ob-th outbuilding of each property, read inside it only:
+                # the dwelling's cooling is not an outbuilding's (T-123)
+                row_subject_scopes = _ob_scopes(subject, ob)
+                row_block = [(p, _ob_scopes(p, ob)) for p, _sc in block]
+                all_cols = [(p, _ob_scopes(p, ob)) for p, _sc in all_cols_base]
+            subject_text, sscope = (_layered(root, row.subject_fid, row_subject_scopes, row)
+                                    if row.subject_fid and row_subject_scopes else ("", None))
             cells = []
-            for prop in block:
-                text = value_for(root, row.comp_fid, prop, row) if row.comp_fid else ""
-                adj = adjustment_for(root, row, prop)
-                cells.append(Cell(text=text, adjustment=adj))
+            for prop, scopes in row_block:
+                text, used = _layered(root, row.comp_fid, scopes, row) if (row.comp_fid and scopes) else ("", None)
+                adj = adjustment_for(root, row, prop) if ob is None else _nth_adjustment(root, row, prop, ob)
+                cells.append(Cell(text=text, adjustment=adj,
+                                  scope=tree_.getpath(scopes[0]) if (pairs and scopes) else ""))
             built = BuiltRow(row.label, False, subject_text, cells,
                              adjustable=bool(row.adjustable),
                              subject_fid=row.subject_fid, comp_fid=row.comp_fid,
                              adjust_type=row.adjust_type, adjust_fid=row.adjust_fid,
                              line_item=row.container, item_name=row.item_name,
-                             new_item=row.new_item)
+                             new_item=row.new_item,
+                             subject_scope=tree_.getpath(subject_scopes[0]) if (pairs and subject_scopes) else "")
             # an empty cell prints an em-dash only where B-1's sentence for the
             # row says so (dashes.py); every other empty cell stays blank
             empty = [not subject_text] + [not c.text for c in cells]
             if not subject_text:
                 built.subject_dash = dashes.decide(
                     row.dash_subject, dashes.Cell(root, subject, True, empty, 0))
-            for n, (prop, cell) in enumerate(zip(block, cells), start=1):
+            for n, ((prop, _sc), cell) in enumerate(zip(block, cells), start=1):
                 if not cell.text:
                     cell.dash = dashes.decide(
                         row.dash_comp, dashes.Cell(root, prop, False, empty, n))
@@ -979,15 +1346,20 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
             # relevant.  "None" is an answer, not a fact about the property,
             # so a row every property answers "None" is not printed -- which is
             # how the samples drop Hazard Zone, Functional Issues and the rest.
-            subject_raw = raw_for(root, row.subject_fid, subject) if row.subject_fid else []
+            subject_raw = (_layered_raw(root, row.subject_fid, row_subject_scopes)
+                           if row.subject_fid and row_subject_scopes else [])
             # whether a row prints is judged across every comparable, not only
             # the block of three it is drawn in: D-1 MH2's fourth comparable is
             # pending, and its contract price puts the Contract Price row (with
             # dashes for the other three) in the first block too
             comp_raw: list[str] = []
             if row.comp_fid:
-                for prop in comps:
-                    comp_raw += raw_for(root, row.comp_fid, prop)
+                for _prop, scopes in all_cols:
+                    if scopes:
+                        comp_raw += _layered_raw(root, row.comp_fid, scopes)
+            if ob is not None and not every_row and not subject_text and not any(
+                    c.text or c.adjustment for c in cells):
+                continue                  # nothing in this outbuilding position
             adjusted = any(c.adjustment for c in cells) or any(
                 adjustment_for(root, row, prop) for prop in comps)
             # (in the editor every row stays, so it can be answered)
@@ -1004,14 +1376,54 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                     continue
                 grid.rows.append(built)
                 continue
-            if not every_row and not ((row.always and not row.named) or adjusted
-                                      or any(map(_told, comp_raw))
-                                      or ((row.if_applicable or row.named) and any(map(_told, subject_raw)))):
+            exists = row.if_relevant and _EXISTS.search(row.rules or "") and bool(comp_raw)
+            shown_row = ((row.always and not row.named) or adjusted or exists
+                         or any(map(_told, comp_raw))
+                         or ((row.if_applicable or row.named) and any(map(_told, subject_raw))))
+            all_zero = (row.if_applicable and not row.always and not adjusted
+                        and bool(comp_raw + subject_raw)
+                        and all(v.strip() == "0" for v in comp_raw + subject_raw))
+            ruled_out = _rule_hides(row, root, subject) or row.label.strip() in ruled_labels
+            if ruled_out and row.label.strip() == "Structure ID | Unit ID":
+                # B-1 states the condition on the Unit(s) row (22.07.01); the
+                # Interior Quality and Condition row (22.09.02) repeats it
+                ruled_labels.add(row.label.strip())
+            if not every_row and (not shown_row or all_zero or ruled_out):
                 # a named row prints for the name it carries, not because its
                 # template always prints: a Wet Bar with no value in any column
-                # is not a comparison line (D-1 SF3 p19-20)
+                # is not a comparison line (D-1 SF3 p19-20).  A count every
+                # property answers 0 is not applicable either (D-1 2-4 GRM:
+                # no "Accessory Dwelling Units 0 0 0 0")
                 continue
             grid.rows.append(built)
+        # B-1 (Site Characteristics): "other than Drainage and Topography" --
+        # those have rows of their own (D-1 SF1 prints "Topography  Rolling"
+        # and no "Site Characteristics  Topography")
+        others = {row_.label.strip(): _other_than(row_.rules) for row_ in spec if _other_than(row_.rules)}
+        kept_rows = []
+        for r in grid.rows:
+            drop = others.get(r.label.strip())
+            if drop and not r.heading:
+                r.subject = _without(r.subject, drop)
+                for c in r.cells:
+                    c.text = _without(c.text, drop)
+                if not every_row and not r.subject and not any(c.text or c.adjustment for c in r.cells):
+                    continue
+            kept_rows.append(r)
+        grid.rows = kept_rows
+        if not every_row and not _has_adu(root, [subject] + comps):
+            # B-1: "Repeat Interior Quality and Condition for all PROPERTY_UNITS
+            # where AccessoryDwellingUnitIndicator = true" -- with none, the
+            # ADU group does not print (it repeated the dwelling's, D-1 SF1)
+            out_rows, skipping = [], False
+            for r in grid.rows:
+                if r.heading:
+                    skipping = r.label.strip().startswith("ADU Interior")
+                    if skipping:
+                        continue
+                if not skipping and r.label.strip() != "Location of ADU":
+                    out_rows.append(r)
+            grid.rows = out_rows
         # A heading with nothing under it is not printed.
         pruned: list[BuiltRow] = []
         for i, r in enumerate(grid.rows):
@@ -1083,17 +1495,22 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
         cols.append(f"<col style='width:{g['desc']:.2f}pt'>")
         cols.append(f"<col style='width:{g['adj']:.2f}pt'>")
 
-    head = ["<tr class='tch'><th></th><th><span>Subject Property</span></th>"]
+    head = [f"<tr class='tch'><th></th><th><span>{_esc(grid.subject_label)}</span></th>"]
+
+    def number_of(i: int) -> int:
+        # a rental grid drawn per subject unit compares #1, #4, #5 (D-1 2-4)
+        return grid.numbers[i - 1] if len(grid.numbers) >= i else start + i - 1
     for i, name in enumerate(grid.comparables, start=1):
-        attrs = f" data-compmenu='{start + i - 1}'" if edit else ""
+        attrs = f" data-compmenu='{number_of(i)}'" if edit else ""
         head.append(f"<th colspan='2'{attrs}><span>{_esc(name)}</span></th>")
     head.append("</tr>")
 
-    def gattr(col: int, fid: str = "", adjust: str = "") -> str:
+    def gattr(col: int, fid: str = "", adjust: str = "", scope: str = "") -> str:
         if not edit or not (fid or adjust):
             return ""
         return (f" data-gc='{col}'" + (f" data-gf='{_esc(fid)}'" if fid else "")
-                + (f" data-ga='{_esc(adjust)}'" if adjust else ""))
+                + (f" data-ga='{_esc(adjust)}'" if adjust else "")
+                + (f" data-gs='{_esc(scope)}'" if scope else ""))
 
     body = []
     repeat = ""
@@ -1131,10 +1548,10 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
         sub = (_photo_cell(photos.get(0), row.subject, 0, edit) if (address and first)
                else _esc(sub_text))
         cells.append(f"<td class='v sub{align}{' grey' if subject_grey else ''}'"
-                     f"{gattr(0, row.subject_fid)}><span>{sub}</span></td>")
+                     f"{gattr(0, row.subject_fid, scope=row.subject_scope)}><span>{sub}</span></td>")
         plain = [cells[0], f"<td class='v sub left'><span>{_esc(sub_text)}</span></td>"]
         for i, cell in enumerate(row.cells, start=1):
-            number = start + i - 1
+            number = number_of(i)
             shown = cell.text or (EM_DASH if cell.dash else "")
             text = (_photo_cell(photos.get(number), cell.text, number, edit) if (address and first)
                     else _esc(shown))
@@ -1143,10 +1560,10 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
                 # nothing can be adjusted on this row, so the value has the
                 # width of the whole comparable column (Appendix E, Type 2)
                 cells.append(f"<td class='v comp{align}{grey}' colspan='2'"
-                             f"{gattr(number, row.comp_fid)}><span>{text}</span></td>")
+                             f"{gattr(number, row.comp_fid, scope=cell.scope)}><span>{text}</span></td>")
                 plain.append(f"<td class='v comp left' colspan='2'><span>{_esc(shown)}</span></td>")
                 continue
-            cells.append(f"<td class='v comp{align}{grey}'{gattr(number, row.comp_fid)}>"
+            cells.append(f"<td class='v comp{align}{grey}'{gattr(number, row.comp_fid, scope=cell.scope)}>"
                          f"<span>{text}</span></td>")
             adj = _esc(cell.adjustment)
             gaf = f" data-gaf='{_esc(row.adjust_fid)}'" if (edit and row.adjust_fid) else ""
@@ -1156,9 +1573,65 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
             repeat = "<tr class='tca'>" + "".join(plain) + "</tr>"
         body.append("<tr>" + "".join(cells) + "</tr>")
 
-    return (f"<table class='grid' style='width:{width:.2f}pt'><colgroup>" + "".join(cols) + "</colgroup>"
+    kind_attr = f" data-gk='{_esc(grid.kind)}'" if edit else ""
+    return (f"<table class='grid'{kind_attr} style='width:{width:.2f}pt'><colgroup>" + "".join(cols) + "</colgroup>"
             "<thead>" + "".join(head) + repeat + "</thead>"
             "<tbody>" + "".join(body) + "</tbody></table>")
+
+
+def html_pair(grids: list["Grid"], *, edit: bool = False) -> str:
+    """Two subject units' rental analyses side by side (C-1 p33: "Subject
+    [Unit Identifier] | # # #" twice to a line; D-1 2-4 "Subject Unit 1 #1 #2
+    #3 | Subject Unit 2 #1 #4 #5").  One label column; a row prints when
+    either unit's grid prints it."""
+    labels: list[tuple[str, bool]] = []
+    for g in grids:
+        for r in g.rows:
+            key = (r.label, r.heading)
+            if key not in labels:
+                labels.append(key)
+    by = [{(r.label, r.heading): r for r in g.rows} for g in grids]
+    width, label_w = 540.0, 100.0
+    per = (width - label_w) / (4 * len(grids))
+    cols = f"<col style='width:{label_w:.2f}pt'>" + "".join(
+        f"<col style='width:{per:.2f}pt'>" for _ in range(4 * len(grids)))
+
+    def attrs(col: int, fid: str, scope: str) -> str:
+        if not edit or not fid:
+            return ""
+        return f" data-gc='{col}' data-gf='{_esc(fid)}'" + (f" data-gs='{_esc(scope)}'" if scope else "")
+
+    top = ["<tr class='tch'><th></th>"]
+    sub = ["<tr class='tch2'><th></th>"]
+    for g in grids:
+        top.append("<th><span>Subject</span></th><th colspan='3'><span>Comparables</span></th>")
+        sub.append(f"<th><span>{_esc(g.subject_label.replace('Subject ', ''))}</span></th>"
+                   + "".join(f"<th><span>#{n}</span></th>" for n in g.numbers))
+        sub.append("".join("<th></th>" for _ in range(3 - len(g.numbers))))
+    head = "".join(top) + "</tr>" + "".join(sub) + "</tr>"
+    body = []
+    n_cols = 1 + 4 * len(grids)
+    for label, heading in labels:
+        if heading:
+            body.append(f"<tr class='sca-sub'><td colspan='{n_cols}'><span>{_esc(label)}</span></td></tr>")
+            continue
+        cells = [f"<td class='lbl'><span>{_esc(label)}</span></td>"]
+        for g, rows in zip(grids, by):
+            r = rows.get((label, False))
+            if r is None:
+                cells.append("<td></td>" * 4)
+                continue
+            sub_text = r.subject or (EM_DASH if r.subject_dash else "")
+            cells.append(f"<td class='v sub'{attrs(0, r.subject_fid, r.subject_scope)}><span>{_esc(sub_text)}</span></td>")
+            for i, c in enumerate(r.cells):
+                shown = c.text or (EM_DASH if c.dash else "")
+                number = g.numbers[i] if i < len(g.numbers) else i + 1
+                cells.append(f"<td class='v comp'{attrs(number, r.comp_fid, c.scope)}><span>{_esc(shown)}</span></td>")
+            cells.append("<td></td>" * (3 - len(r.cells)))
+        body.append("<tr>" + "".join(cells) + "</tr>")
+    kind_attr = " data-gk='rental'" if edit else ""
+    return (f"<table class='grid rentpair'{kind_attr} style='width:{width:.2f}pt'><colgroup>{cols}</colgroup>"
+            f"<thead>{head}</thead><tbody>{''.join(body)}</tbody></table>")
 
 
 def kind_of(grid: "Grid") -> str:

@@ -2775,3 +2775,17 @@ read every block (`instances(every=True)`, subject-limited); defect tables in Su
 Reconciliation expand per structure via `form._defect_groups`. Trap: a control byte in a
 regex silently disables it -- grep for `\x08` when a rule "should" match and does not.
 Known failing tests unchanged: test_autofill condo1/mh1, test_golden pdf-text.
+
+## 2026-10-06 (later) -- current position
+Per-section drawers now cover Amenities, Transfer History, Rent Schedule, the rental strip,
+per-unit rental grids, land comparables and the income formula (CATALOG E-112..E-126). Traps:
+(1) `_resolve_visibility` now stops at a section boundary -- a heading answers for its own
+section only; (2) grid cells carry `data-gk` / `data-gs`, and the write route honours `scope`;
+(3) `comparables._field_scope` never falls back past a unit to the whole property.
+Scratchpad tools used to measure: scorecard.py (section text vs official PDF; noisy where the
+PDF segmenter mislabels), show.py (block dump), hidden.py (what field_rule_hides hides).
+
+### 2026-10-06 — compliance shapes + grid repetition landed
+- `uad/compliance_shapes.py` decides 107 of 171 H-1 "review" rules by sentence shape; none faults a D-1 sample (tests/test_compliance_shapes.py). BLOCK_WITHOUT skips when the data point is absent (CR1/CR2 crashed on an empty owner tag).
+- Full suite: 562 pass; only the 3 known failures remain (autofill condo1/mh1, golden pdf-text).
+- Harness 87 pass / 0 fail / 21 gap — every gap is fonts (Myriad licence) or page count vs D-1 (±1–4 pages). Page count is the next layout target.

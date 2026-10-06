@@ -237,7 +237,12 @@ def check_grid(sections: list[urar.Section], tree) -> Result:
     spec = comparables.specs(root, "sales")
     known = {r.label for r in spec}
     always = {r.label for r in spec if r.always and not r.heading}
-    expected = [r.label for r in spec]
+    # B-1 repeats some groups -- Unit(s) and Interior Quality and Condition per
+    # unit, Exterior per dwelling, the ADU lines per ADU, Outbuilding per
+    # outbuilding (D-1 2-4, SF3, MH1) -- so the order is the spec as repeated
+    from uad import bind as _bind
+    props = [_bind.subject(root)] + comparables.properties(root, "SalesComparable")
+    expected = [r.label for r, _k in comparables._expand_outbuildings(spec, props)]
 
     problems = []
     for grid in drawn:

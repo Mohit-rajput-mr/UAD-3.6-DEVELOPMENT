@@ -209,6 +209,37 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-06 (later) -- the remaining sections against the official PDFs (E-112..E-126)
+- Dwelling Exterior: rear / defect photos placed per building (`_positional_image`,
+  `_defect_section`); buildings and their units interleave; "Brick | Wood" (every block in a
+  component row); Room Summary "1 - Family Room"; captions "Category - Caption".
+- Unit Interior: Corner Unit "No"; rules read outside the unit (`rules.values_of` climbs);
+  `field_rule_hides` reads "Display checkboxes ... when" and applies to template tables --
+  validated on 12/12 samples (ADU, Accessibility, Ground Rent, Foundation, Revision table).
+- Amenities drawer (category from B-1 14.002, Detail composed, add / remove rows).
+- Prior Sale and Transfer History drawer (subject and comparables, B-1 pp284-286).
+- Rental Information: rent schedule per unit with Actual / Market income columns; the
+  comparables strip; one rental grid per subject unit (A-1 pairing arcrole), scoped writes.
+- Grid editor now works for rental and GRM grids (it was hard-wired to sales: dead control).
+- GRM: Sale Date, "~$2,300", no all-zero ADU row; the income formula line; comparable photo
+  exhibits for rental and GRM.
+- Data sources tied by A-1's ArcRoles sheet (Project, Cost Approach); Land Comparables a line
+  each; every revision prints; an empty Supplemental Information no longer prints.
+- Evidence: tests/test_site_and_defects.py (~40), test_rooms.py (amenity, rental scoped write);
+  Chromium click-through of the rental strip and per-unit grid editors.
+- Sales grid (E-127/E-128): groups repeat per unit / dwelling / ADU / outbuilding and read
+  inside their own block; rule-named instances (Walls and Ceiling vs Flooring); validated row
+  rules. Row labels now match every official grid except rows B-1 leaves to "relevant to the
+  analysis" (no A-1 data point records relevance -- see CATALOG E-128 "Known limit").
+- Compliance (E-129): `uad/compliance_shapes.py` executes H-1 rules by sentence shape; 107 of
+  the 171 "review" rules now run (none faults a D-1 sample; each fires on a broken copy --
+  tests/test_compliance_shapes.py). 64 remain (arithmetic across instances, multi-role
+  inspection rules, arcrole uniqueness) -- T-1044. `rules.CLAUSE` no longer swallows a
+  clause-joining OR. Rental analysis now two units to a line (T-1043). Harness 88/0/20.
+- Next: the 64 H-1 rules still for review (T-1044); page counts vs D-1 (harness 'package'
+  gaps); the editor's usability items (B15 gate hints, B16 photo category).
+
+
 ### 2026-10-06 -- tables read every block; Site and Reconciliation fidelity (E-102..E-111)
 - K&B / Interior Features / levels drawers; "+ Add flooring" and row delete; arcrole data
   sources written with their link (`uad/sources.py`); unit defects read at property level.

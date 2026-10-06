@@ -912,7 +912,17 @@ def evaluate(tree, *, include_ok: bool = False, rule_set: list[Rule] | None = No
                     section=rule.section, subsection=rule.subsection,
                     label=rule.label, path=rule.target_path, logic=rule.logic)
         if not rule.executable:
-            out.append(Finding(status=REVIEW, reason=rule.reason, **base))
+            # a rule H-1 writes in one of the recurring non-presence shapes
+            # (a count against instances, one value against another, an
+            # instance that must exist, a format) is executed by its shape
+            from . import compliance_shapes
+            decided = compliance_shapes.decide(root, rule)
+            if decided is None:
+                out.append(Finding(status=REVIEW, reason=rule.reason, **base))
+            elif decided:
+                out.append(Finding(status=FINDING, reason="", **base))
+            elif include_ok:
+                out.append(Finding(status=OK, reason="", **base))
             continue
 
         checker = EXTENDED.get(rule.kind)

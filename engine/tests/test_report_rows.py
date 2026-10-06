@@ -45,12 +45,15 @@ def _table_with(key: str, label: str):
 
 
 # ---------------------------------------------------------------- clipped IDs
-def test_c1_ids_clipped_by_the_pdf_are_completed():
-    """C-1's text layer keeps "4.06" for 4.069 where a table runs to the page
-    edge.  Each is completed to the one A-1 ID it can only be."""
+def test_c1_ids_are_read_whole():
+    """The "clipped" IDs ("4.06" for 4.069) were the extractor's: the shifted
+    subset writes "9" as \x1c, which str.strip() took for whitespace.  Read
+    whole, C-1 holds no clipped ID and the mend has nothing to complete --
+    and the Manufactured Home rows (9.000-9.002, 9.010-9.011) have theirs."""
     raw = json.loads((form.SPEC / "c1_form.json").read_text(encoding="utf-8"))
-    changed = dict(form._complete_clipped_ids(raw))
-    assert changed == {"4.00": "4.009", "4.05": "4.058", "4.06": "4.069", "20.00": "20.009"}
+    assert dict(form._complete_clipped_ids(raw)) == {}
+    placed = {i for p in raw["pages"] for e in p["elements"] for i in e.get("ids") or []}
+    assert {"9.000", "9.001", "9.002", "9.010", "9.011", "4.009", "20.009"} <= placed
 
 
 def test_a_completed_id_is_the_field_the_row_is_named_for():
@@ -229,3 +232,15 @@ def test_roof_detail_lists_materials_then_the_estimated_age_on_its_own_line():
     binding = bind.binding_for("8.033")
     parts = [("RoofObservableIndicator", "false"), ("RoofMaterialType", "Asphalt")]
     assert bind.display_value(parts, binding) == "(Unobservable)"
+
+
+def test_c1_questions_hold_their_own_ids():
+    """A Yes / No question's ID can sit under its line in the answer column
+    (9.007, 16.004) or start inside its box above the commentary heading
+    (20.002); each belongs to the question."""
+    raw = json.loads((form.SPEC / "c1_form.json").read_text(encoding="utf-8"))
+    checks = [(e["text"][:30], e.get("ids")) for p in raw["pages"] for e in p["elements"] if e["kind"] == "check"]
+    assert ("Have there been any modificati", ["9.007"]) in checks
+    assert ("Is the highest and best use of", ["16.004"]) in checks
+    assert ("Does this appear to be an arm’", ["20.002"]) in checks
+    assert not [t for t, ids in checks if not ids]

@@ -499,6 +499,16 @@ def _linked_sources(ctx: Ctx, b: bind.Binding, target: str):
                 yield name, node
 
 
+
+def _image_categories(fid: str) -> set[str]:
+    """The image categories A-1 allows in this field's table (the slot list
+    on its ".1" column), or nothing when A-1 narrows none."""
+    from .. import uadmap
+    family = fid.rsplit(".", 1)[0] if fid.count(".") >= 2 else fid
+    narrowed = uadmap.point("ImageCategoryType").get("slots", {}).get(family + ".1")
+    return set(narrowed or ())
+
+
 def _walk(ctx: Ctx, fid: str, every: bool = False):
     b = binding(fid)
     if b is None:
@@ -581,6 +591,14 @@ def _walk(ctx: Ctx, fid: str, every: bool = False):
                     if path not in seen:
                         seen.add(path)
                         blocks.append((path, block))
+            if container == "IMAGE":
+                # an image table takes only the categories A-1 names for its
+                # category column (7.002.1: Floor Plan, Sketch) -- the RESNET
+                # exhibit's caption is not a sketch's
+                allowed = _image_categories(fid)
+                if allowed:
+                    blocks = [(p, blk) for p, blk in blocks
+                              if (blk.findtext(f".//{M}ImageCategoryType") or "").strip() in allowed]
             order = {bind.stable_path(e): n for n, e in enumerate(ctx.root.iter(f"{M}{container}"))}
             for _path, block in sorted(blocks, key=lambda pb: order.get(pb[0], 0)):
                 yield from bind._walk(ctx.root, b, block, 1)
@@ -1042,6 +1060,20 @@ def field_rule_hides(ctx: "Ctx", fid: str) -> bool:
             return False
         said.append(d.shown)
     return bool(said) and not any(said)
+
+
+# B-1 4.039: "When there is only 1 view, (Primary) does not display"
+_ALONE = re.compile(r"When there is only (?:1|one) \w+,?\s+(\([^)]+\)) does not display", re.I)
+
+
+@lru_cache(maxsize=2048)
+def alone_hidden(fid: str) -> str:
+    """The modifier B-1 drops from a table row when the row is the only one."""
+    for st in field_entry(fid).get("display_rules", []):
+        m = _ALONE.search(st.get("rule", ""))
+        if m:
+            return m.group(1)
+    return ""
 
 
 _ZERO_RULE = re.compile(r"\bif\s+(?:the\s+value\s+is\s+)?zero,?\s+do\s+not\s+display", re.I)
@@ -2492,6 +2524,8 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             continue
         rows_html = []
         order_by: list[tuple] = []
+        lead: list[bool] = []
+        modifiers = [next((alone_hidden(f) for f in c["ids"] if alone_hidden(f)), "") for c in cells]
         for key in keys:
             line = []
             has = False
@@ -2504,6 +2538,9 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                     for k, g in instances(read, fid, every=True):
                         if k == key and b is not None:
                             t = bind.display_value(g, b)
+                            alone = alone_hidden(fid) if len(keys) == 1 else ""
+                            if alone and t.endswith(" " + alone):
+                                t = t[: -len(alone) - 1]
                             if t and t not in texts:
                                 texts.append(t)
                 v = " | ".join(texts)
@@ -2514,6 +2551,10 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             if has:
                 rows_html.append("<tr>" + "".join(line) + "</tr>")
                 order_by.append(tuple(shown_cells[:2]))
+                lead.append(any(m and m.casefold() in v for m, v in zip(modifiers, shown_cells)))
+        if any(lead) and not ctx.edit:
+            # B-1 4.039: "The primary view must be in the first row"
+            rows_html = [h for _l, h in sorted(zip(lead, rows_html), key=lambda p: not p[0])]
         if ddd and not ctx.edit and len(rows_html) > 1:
             # every D-1 sample lists defects by Feature, then Location (2-4:
             # Appliances/Kitchen, Cabinetry/Full Bathroom, Cabinetry/Kitchen,

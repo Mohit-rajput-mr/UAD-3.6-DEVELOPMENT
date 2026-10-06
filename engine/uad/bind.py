@@ -1073,10 +1073,18 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
         # "~$2,300"), whatever order A-1 lists the indicator in
         rest = [(n, t) for n, t in rendered if t != "~"]
         return "~" + " ".join(t for _n, t in rest).strip()
+    if len(rendered) > 1 and any(_MODIFIER.match(t) for _n, t in rendered):
+        # a parenthesised modifier follows what it qualifies -- B-1 4.039
+        # "(Primary) displays to the right of the view"; D-1 Condo2 "Golf
+        # Course (Primary)" -- whatever order the XML writes them in
+        rendered = sorted(rendered, key=lambda nt: bool(_MODIFIER.match(nt[1])))
     composite = composite_for([n for n, _ in rendered])
     if composite:
         return composite.join(rendered)
     return " ".join(text for _n, text in rendered).strip()
+
+
+_MODIFIER = re.compile(r"^\([^()]+\)$")
 
 
 # B-1 8.033 (p171): "When true, display RoofMaterialType. When false, display

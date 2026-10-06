@@ -1705,3 +1705,46 @@ test, not in a case script.
 - Test: tests/test_compliance_checks.py (78 tests). No check fires on any of
   the 12 D-1 samples, and each fires on a sample broken the way its rule says.
 - Golden review counts fell by about 32 per sample; fatal and warning are unchanged.
+
+### E-131 The Sketch section printed the RESNET exhibit's caption
+- Symptom: SF1's Sketch printed "RESNET HERS Score" as a one-cell table. SF1
+  has no sketch; the caption belongs to its Energy Efficient exhibit.
+- Cause: once tables read every block (E-102), the 7.002 image table took the
+  caption of every IMAGE under the subject.
+- Fix: an image table keeps only the categories A-1 names for its ".1"
+  column (`form._image_categories`; for 7.002.1 that is FloorPlan and
+  SubjectPropertyImprovementSketch).
+- Known gap: D-1 SF1 draws a Sketch placeholder although its XML holds no
+  sketch image. We print nothing; there is no data to show.
+- Test: test_site_and_defects.py::test_the_sketch_table_takes_only_sketches_and_floor_plans.
+
+### E-132 "(Primary)" printed before the view and with a single view
+- B-1 4.039 says: "(Primary) displays to the right of the view ... The primary
+  view must be in the first row. When there is only 1 view, (Primary) does not
+  display". We printed "(Primary) Residential" for SF1's only view and put
+  coop1's primary view second.
+- Fix: in `bind.display_value` a parenthesised modifier follows what it
+  qualifies. The table drawer reads B-1's "When there is only 1 ..., (X) does
+  not display" (`form.alone_hidden`) and moves the row carrying the modifier
+  to the top.
+- Matches D-1: "Golf Course (Primary)", "Parking Lot (Primary)" first, "Lake (Primary)".
+- Test: test_site_and_defects.py::test_the_primary_view_follows_b1.
+
+### E-133 C-1 extraction lost IDs written in the shifted font ("9" = \x1c)
+- Symptom: the MH2/MH1 Manufactured Home section printed Manufacturer Name,
+  Year Installed and Moved Since *after* the commentary, and Date of
+  Manufacture and HUD Data Plate Attached out of place. The modifications
+  question printed a bare "No". The "clipped" IDs 4.06 / 4.05 / 4.00 / 20.00
+  needed a mend (`_complete_clipped_ids`).
+- Cause: one C-1 subset font writes digits 29 code points down, so "9" is
+  \x1c, and Python's `str.strip()` counts \x1c-\x1f as whitespace. The
+  extractor skipped every span that was a bare encoded "9" before decoding it.
+- Fix: test the *decoded* text for blank (`extract_c1_form._marks`). That
+  recovers 9.000-9.002, 9.008-9.011, 4.099, and the full 4.009 / 4.059 / 4.069
+  / 20.009, so the clipped-ID mend now changes nothing.
+- Also: a Yes/No question's ID may sit just under its line in the answer
+  column (9.007, 16.004), or start inside its box above a commentary heading
+  (20.002). Both now attach to the question.
+- Test: test_report_rows.py::test_c1_ids_are_read_whole,
+  ::test_c1_questions_hold_their_own_ids. Full suite and harness unchanged
+  (87/0/21).

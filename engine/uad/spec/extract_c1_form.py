@@ -205,7 +205,10 @@ def _marks(page) -> list[FieldMark]:
         for line in block.get("lines", []):
             for s in line["spans"]:
                 colour = "#%06x" % s["color"]
-                if colour in (INK, "#ffffff", "#77787b", GREY_RULE) or not s["text"].strip():
+                # decode before testing for blank: the shifted subset writes
+                # "9" as \x1c, which str.strip() counts as whitespace (C-1 p13
+                # lost 9.000-9.002 and 9.010-9.011 to it)
+                if colour in (INK, "#ffffff", "#77787b", GREY_RULE) or not _decode(s["text"]).strip():
                     continue
                 x0, y0, x1, y1 = s["bbox"]
                 if y0 < BODY_TOP - 22 or x0 < 0 or x0 > 612:
@@ -578,6 +581,18 @@ def extract_page(layout_page, ids_page, number: int) -> dict:
                         continue
                 if e.get("x0", 0) > best_x:
                     target, best_x = e, e.get("x0", 0)
+            inside = next((e for e in labelled if e["kind"] == "check" and not e.get("ids")
+                           and e["y"] <= m.y0 <= e["y1"] and e.get("x0", 0) <= m.x0 < COL_SPLIT), None)
+            if inside is not None:
+                # a mark that starts inside a question's own box is the
+                # question's, not the commentary heading's below it (20.002
+                # "arm's length" went to "Non-Arm's Length Commentary")
+                target = inside
+        if target is None and m.x0 > 540:
+            # the Yes / No column: a question's ID can sit just under its
+            # line (9.007 modifications, 16.004 highest and best use)
+            target = next((e for e in labelled if e["kind"] == "check" and not e.get("ids")
+                           and e["y1"] - 2 <= m.y0 <= e["y1"] + 14), None)
         if target is not None:
             target.setdefault("ids", [])
             target["ids"] += m.ids

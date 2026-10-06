@@ -264,3 +264,19 @@ def test_sales_grid_repeats_units_dwellings_and_adus():
     assert beds == ["5", "0"]                      # the dwelling's, then the ADU's own
     flooring = next(r for r in g3.rows if r.label.strip() == "Walls and Ceiling")
     assert flooring.subject.startswith("Standard 8-9 Ft.")             # not the flooring text
+
+
+def test_the_sketch_table_takes_only_sketches_and_floor_plans():
+    # SF1 holds no sketch: its RESNET exhibit's caption must not print as one
+    printed = _text("sf1_appraisal_v1_4", "Sketch")
+    assert "RESNET" not in printed
+    # A-1 narrows the table's category column to these two
+    assert form._image_categories("7.002.2") == {"FloorPlan", "SubjectPropertyImprovementSketch"}
+
+
+@pytest.mark.parametrize("key,expected", [
+    ("sf1_appraisal_v1_4", "Residential Full Neutral"),                       # one view: no "(Primary)"
+    ("coop1_appraisal_v1_4", "Parking Lot (Primary) Full Neutral City Street"),  # primary first, marked after
+])
+def test_the_primary_view_follows_b1(key, expected):
+    assert expected in _text(key, "Site")

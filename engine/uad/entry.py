@@ -26,6 +26,9 @@ UNIT_WORDS = [
     (r"feet|foot|ft\.?|'", "Feet"),
     (r"met(er|re)s?|m\.?", "Meters"),
 ]
+# B-1 p350: Total Depreciation is delivered "as a positive number" and only
+# printed negative -- "$(9,000)" typed back from the report stays 9000
+POSITIVE_ONLY = {"DepreciationTotalAmount"}
 # when nothing is typed and A-1 allows several units, the one US appraisals use
 PREFERRED = ("SquareFeet", "Miles", "Feet", "CubicFeet")
 
@@ -179,6 +182,8 @@ def normalize(dp: dict, value: str, current_unit: str = "") -> tuple[str, str]:
         if number is None:
             what = "an amount, e.g. 1,250" if kind == "amount" else "a number, e.g. 1,250"
             raise ValueError(f"\"{value.strip()}\" is not {what}. No changes were saved.")
+        if dp.get("mismo") in POSITIVE_ONLY:
+            number = number.lstrip("-")
         return number, unit
     if kind == "date":
         date = _date(text, details)

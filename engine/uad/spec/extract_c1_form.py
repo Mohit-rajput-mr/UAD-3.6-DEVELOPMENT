@@ -412,7 +412,12 @@ def extract_page(layout_page, ids_page, number: int) -> dict:
                  and s.bold and s.size >= 8.5 and not s.wing and s.colour == INK
                  and not any(r.colour == GREY_RULE and abs(r.y - s.y1) < 2.2
                              and r.x0 - 1 <= s.x0 and r.x1 > s.x0 + 20
-                             and r.y < t.top - 3 for r in rules)]
+                             and r.y < t.top - 3 for r in rules)
+                 # nor above a heading bar between it and the table: C-1 p36
+                 # "Commentary on Effective Age" sits over the outbuilding
+                 # table's "Depreciated Cost - Outbuilding" bar, not in it
+                 and not any(e["kind"] in ("h1", "tab") and s.y1 <= e["y"] + 1 and e["y"] < t.top
+                             for e in elements)]
         if heads:
             # the heading block is contiguous: stop at the first gap of a line
             heads.sort(key=lambda s: -s.y1)
@@ -573,6 +578,11 @@ def extract_page(layout_page, ids_page, number: int) -> dict:
             for e in labelled:
                 top = e["y"] - (13 if e["kind"] == "check" else 4)
                 if not (top <= my <= e["y1"] + 3) or e.get("x0", 0) > m.x0 + 2:
+                    continue
+                if e["kind"] == "head" and m.y0 < e["y"] - 1:
+                    # an ID that starts above a label is the label above's
+                    # (C-1 p36: 25.021 sits under "Commentary on Remaining
+                    # Economic Life", over "Commentary on Effective Age")
                     continue
                 side_e = e.get("column", "full")
                 if side_e in ("left", "right"):

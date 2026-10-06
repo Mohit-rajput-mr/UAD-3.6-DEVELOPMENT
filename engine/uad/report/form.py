@@ -550,10 +550,31 @@ def _image_categories(fid: str) -> set[str]:
     return set(narrowed or ())
 
 
+def _arc_linked(scope: etree._Element, xpath: str) -> etree._Element | None:
+    """The block an arc ties to a scope, when the field lives there and not
+    inside the scope: a dwelling's IMPROVEMENT_COST_AND_DEPRECIATED_VALUE is
+    under COST_APPROACH, tied to the IMPROVEMENT by
+    IMPROVEMENT_COST_AND_DEPRECIATED_VALUE_IsAssociatedWith_IMPROVEMENT."""
+    label = scope.get(f"{XLINK}label")
+    segs = [x for x in xpath.strip("/").split("/") if x]
+    if not label or _local(scope) in segs:
+        return None
+    root = scope.getroottree().getroot()
+    froms = {r.get(f"{XLINK}from") for r in root.iter(f"{M}RELATIONSHIP") if r.get(f"{XLINK}to") == label}
+    if not froms:
+        return None
+    return next((e for e in root.iter() if isinstance(e.tag, str)
+                 and e.get(f"{XLINK}label") in froms and _local(e) in segs), None)
+
+
 def _walk(ctx: Ctx, fid: str, every: bool = False):
     b = binding(fid)
     if b is None:
         return
+    if ctx.scope is not None and _local(ctx.scope) == "IMPROVEMENT" and b.data_points:
+        linked = _arc_linked(ctx.scope, b.data_points[0].get("xpath", ""))
+        if linked is not None:
+            ctx = ctx.inside(linked)
     if fid == PRIOR_SOURCE_ID:
         # B-1 p284: with no prior sales, the Data Source tied to the subject's
         # PriorSalesOrTransfersIndicator ("None / Data Source MLS")
@@ -596,7 +617,10 @@ def _walk(ctx: Ctx, fid: str, every: bool = False):
         # Repairs): one field ID for the column, one row per block.  A-1's
         # convention -- a field ID per repeat, the ordinal picking the block --
         # would read only the first repair.
-        points = [dp for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")
+        # a unit attribute is its element's (25.025 the area "@AreaUnitOf-
+        # MeasureType"): the element is still read in every block
+        points = [dp for dp in b.data_points if dp.get("mismo")
+                  and (not dp.get("attribute") or dp["attribute"].endswith("UnitOfMeasureType"))
                   and "PARTIES/PARTY/" not in dp.get("xpath", "")]
         conts = {bind.repeating_container(dp.get("xpath", "")) for dp in points}
         subject_rows = ("Subject Property" in (_fields().get(fid, {}).get("roles") or [])
@@ -817,6 +841,8 @@ def shown_pairs(ctx: Ctx, fid: str) -> list[tuple[str, str]]:
             text = bind.display_value(group, b)
         if text and not per:
             text = re.sub(r"(\$[\d,]+)\.00\b", r"\1", text)
+        if text and not ctx.edit:
+            text = b1_value(fid, text)
         if text:
             stable = ""
             if key.startswith("/"):
@@ -1124,6 +1150,29 @@ def italic_rule_holds(ctx: "Ctx", text: str) -> bool | None:
     return None
 
 
+#: B-1 Cost Approach (pp348-351), written as bullets the field extraction
+#: does not carry: "Display "years" following the number" (25.019, 25.020)
+#: and Total Depreciation "If not 0, display as a negative number" (25.016,
+#: 25.034) -- D-1 MH1 "45 years", "$(9,000)"
+YEARS_FIDS = {"25.019", "25.020"}
+NEGATIVE_FIDS = {"25.016", "25.034"}
+#: the cost line's amount: "If multiple areas, display the area with the
+#: highest dollar amount first" (B-1 p348)
+COST_LINE_AMOUNT = {"25.009", "25.027"}
+
+
+def b1_value(fid: str, text: str) -> str:
+    if not text:
+        return text
+    if fid in YEARS_FIDS and re.fullmatch(r"[\d.,]+(?:\s*-\s*[\d.,]+)?", text):
+        return f"{text} years"
+    if fid in NEGATIVE_FIDS:
+        m = re.fullmatch(r"\$?([\d,]+(?:\.\d+)?)", text)
+        if m and m.group(1).strip("0,.") != "":
+            return f"$({m.group(1)})"
+    return text
+
+
 #: B-1 p220 (12.010 outbuilding utilities): "For multiple utilities, display
 #: alphabetically with each on a new row" -- the one list B-1 orders; the
 #: others keep the case's order, which D-1 follows (19 of 28 multi-value lists;
@@ -1279,6 +1328,8 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
         if label.startswith("Total Estimated Cost of Items") and cost_to_repair_type(ctx) != "TotalCost":
             values = []
         suffix = next((x for x in (_paren_suffix(ctx, f) for f in el.get("ids", [])) if x), "")
+        if ctx.edit and values and set(ids) & YEARS_FIDS and not suffix:
+            suffix = "years"      # printed after the number, never typed (B-1 p351)
         item = Item("row", style=style, label=label, values=values,
                     level=LEVEL.get(style, 0),
                     visible=bool(values) or ctx.edit, fids=ids, suffix=suffix if values else "")
@@ -1352,6 +1403,9 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
         for sctx, printed in section_instances(ctx, title):
             if base == "Unit Interior" and sctx.scope is not None and bind.stable_path(sctx.scope) in placed:
                 continue
+            if base == "Cost Approach":
+                blocks += _cost_approach(title, printed, els, sctx, sample=sample)
+                continue
             blocks += _section(title, printed, els, sctx, sample=sample)
             if interleave and base == "Dwelling Exterior" and sctx.scope is not None:
                 for uctx, uprinted in section_instances(ctx, unit_title):
@@ -1362,6 +1416,40 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
                         blocks += _section(unit_title, uprinted, unit_els, uctx, sample=sample)
     _resolve_visibility(blocks)
     return blocks
+
+
+def _cost_approach(title: str, printed: str, els: list[dict], ctx: Ctx, *, sample: bool) -> list[Block]:
+    """The Cost Approach with a "Depreciated Cost" block per improvement.
+
+    C-1 draws one dwelling block (25.005-25.022) and one outbuilding block
+    (25.023-25.036); B-1 repeats them per dwelling and per outbuilding, each
+    reading the IMPROVEMENT_COST_AND_DEPRECIATED_VALUE its arc ties to that
+    improvement.  Read once for the whole report, D-1 MH1's dwelling table
+    carried the barn's and the garage's cost lines too."""
+    def at(fid: str) -> int:
+        return next((n for n, e in enumerate(els) if e.get("kind") == "h1" and fid in (e.get("ids") or [])), -1)
+    d0, o0 = at("25.005"), at("25.023")
+    o1 = next((n for n in range(o0 + 1, len(els)) if els[n].get("kind") == "h1"), len(els)) if o0 >= 0 else -1
+    if d0 < 0 or o0 < d0 or o1 < 0:
+        return _section(title, printed, els, ctx, sample=sample)
+    out = _section(title, printed, els[:d0], ctx, sample=sample)
+
+    def costed(imp) -> bool:
+        return _arc_linked(imp, "IMPROVEMENT_COST_AND_DEPRECIATED_VALUE") is not None
+
+    dwellings = [imp for imp in improvements(ctx, "Dwelling") if costed(imp)]
+    for imp in dwellings:
+        sid = _find_text(imp, "StructureIdentifier") if len(dwellings) > 1 else ""
+        out += _section(title, printed, els[d0:o0], ctx.inside(imp, structure=sid), sample=sample)
+    sheds = []
+    for imp in improvements(ctx, "Outbuilding"):
+        if costed(imp):
+            kind = _find_text(imp, "OutbuildingTypeOtherDescription") or bind._humanise(_find_text(imp, "OutbuildingType"))
+            sheds.append((kind, imp))
+    for kind, imp in sorted(sheds, key=lambda p: p[0]):
+        out += _section(title, printed, els[o0:o1], ctx.inside(imp, outbuilding=kind), sample=sample)
+    out += _section(title, printed, els[o1:], ctx, sample=sample)
+    return out
 
 
 def _build_kind(kind: str, ctx: Ctx, *, sample: bool) -> list[Block]:
@@ -1508,7 +1596,10 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     out.append(Block("h1", section=printed, title=t, group=2, visible=False,
                                      html=_h1_html(t, el.get("note", ""), "")))
                     continue
-            extra = text_of(ctx, ids) if ids and base == "Cost Approach" else ""
+            # the heading's own value ("Indicated Value by Cost Approach
+            # $459,495"), unless its placeholder already holds it ("... -
+            # Outbuilding - [Outbuilding Type]" printed "Barn Barn")
+            extra = text_of(ctx, ids) if ids and base == "Cost Approach" and "[" not in el.get("title", "") else ""
             html_ = _h1_html(t, el.get("note", ""), extra)
             writable = [f for f in ids if binding(f) is not None]
             if ctx.edit and writable and base != "Summary":
@@ -2487,7 +2578,10 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     for row in rows_in:
         if row.get("bar"):
             text = row.get("_title") or _label_fill(row.get("text", ""), ctx)
-            if row.get("align") == "right" and row.get("ids"):
+            alone = len(el.get("rows") or []) == 1
+            if (row.get("align") == "right" or alone) and row.get("ids"):
+                # a bar that is the whole table is a label and its value
+                # (25.041 "Opinion of Site Value  $250,000", D-1 MH1)
                 total = text_of(ctx, row["ids"])
                 # A Total is a plain Amount data point like any line item
                 # above it (Appendix A-1 gives it its own Report Field ID),
@@ -2495,7 +2589,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 # but the editor exposes it as soon as the table does --
                 # B-1's Usability chapter: "Perform calculations ...
                 # Allow users to override system calculations."
-                if (total and any_data) or ctx.edit:
+                if (total and (any_data or alone)) or ctx.edit:
                     n = len(cols)
                     # widths repeated on the cells: a row whose cells carry no
                     # border is otherwise re-measured by the browser and the
@@ -2513,6 +2607,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                     body.append("<tr class='tot'>" + blanks
                                 + f"<td class='bar lab'{_w(n - 2)}><span>{esc(text)}</span></td>"
                                 + amt_cell + "</tr>")
+                    any_data = any_data or (alone and bool(total))
                 continue
             pending_bar = (f"<tr class='sub'><td colspan='{len(cols)}'>"
                            f"<span>{esc(text)}</span></td></tr>")
@@ -2630,7 +2725,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 v = " | ".join(vals)
                 has = has or bool(v)
                 if v and not ctx.edit and ids:
-                    v = with_label_prefix(ids[0], v)
+                    v = b1_value(ids[0], with_label_prefix(ids[0], v))
                 if ctx.edit:
                     texts.append(("__cell__", _cell(esc(v), ids[0], ctx, key=key, sel=sel, label=label,
                                                     cat=row_cat)))
@@ -2701,11 +2796,13 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
         rows_html = []
         order_by: list[tuple] = []
         lead: list[bool] = []
+        amounts: list[float] = []
         modifiers = [next((alone_hidden(f) for f in c["ids"] if alone_hidden(f)), "") for c in cells]
         for key in keys:
             line = []
             has = False
             shown_cells: list[str] = []
+            amount = 0.0
             linked = _defect_targets(ctx, key) if ddd else []
             for c, groups in zip(cells, per_col):
                 parts = [g for k, g in groups if k == key]
@@ -2715,20 +2812,29 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                     for k, g in instances(read, fid, every=True):
                         if (k == key or (linked and _within(ctx, k, linked))) and b is not None:
                             t = bind.display_value(g, b)
+                            if not ctx.edit:
+                                t = b1_value(fid, t)
                             alone = alone_hidden(fid) if len(keys) == 1 else ""
                             if alone and t.endswith(" " + alone):
                                 t = t[: -len(alone) - 1]
                             if t and t not in texts:
                                 texts.append(t)
-                v = " | ".join(texts)
+                # C-1 sets "@" between the area and its price (25.007 @ 25.008)
+                v = (" @ " if (c.get("text") or "").strip() == "@" else " | ").join(texts)
                 has = has or bool(v)
                 shown_cells.append(v.casefold())
+                if set(c["ids"]) & COST_LINE_AMOUNT:
+                    amount = -float(re.sub(r"[^\d.]", "", v) or 0)
                 line.append(_cell(esc(v), c["ids"][0], ctx, key=key) if (ctx.edit and c["ids"])
                             else _td(esc(v)))
             if has:
                 rows_html.append("<tr>" + "".join(line) + "</tr>")
                 order_by.append(tuple(shown_cells[:2]))
                 lead.append(any(m and m.casefold() in v for m, v in zip(modifiers, shown_cells)))
+                amounts.append(amount)
+        if any(amounts) and not ctx.edit and len(rows_html) > 1:
+            # B-1 p348: "display the area with the highest dollar amount first"
+            rows_html = [h for _a, h in sorted(zip(amounts, rows_html), key=lambda p: p[0])]
         if any(lead) and not ctx.edit:
             # B-1 4.039: "The primary view must be in the first row"
             rows_html = [h for _l, h in sorted(zip(lead, rows_html), key=lambda p: not p[0])]
@@ -3931,11 +4037,18 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
     if new:
         attrs += " data-tnew='1'"
     if ctx.scope is not None:
-        attrs += f" data-tscope='{esc(bind.stable_path(ctx.scope))}'"
+        # a cost line is written into the cost block its arc ties to the
+        # dwelling or outbuilding, as it is read (_walk, _arc_linked)
+        target = (_arc_linked(ctx.scope, dp.get("xpath", "")) if _local(ctx.scope) == "IMPROVEMENT" else None)
+        attrs += f" data-tscope='{esc(bind.stable_path(target if target is not None else ctx.scope))}'"
     if point_choices(dp):
         inner = f"<span class='v pick'{attrs} tabindex='0' role='button'>{text}</span>"
     else:
         inner = f"<span class='v'{attrs} contenteditable='true' spellcheck='false'>{text}</span>"
+    if fid in NEGATIVE_FIDS and not point_choices(dp) and b1_value(fid, text or "") != (text or ""):
+        # shown as printed; typed back it is stored positive (entry.POSITIVE_ONLY)
+        inner = (f"<span class='v'{attrs} contenteditable='true' spellcheck='false'>"
+                 f"{b1_value(fid, text)}</span>")
     if text and label_prefix(fid):
         # B-1's own words before the value print in the editor too, outside
         # what is typed ("Greatest Number of Units Owned - " 2)

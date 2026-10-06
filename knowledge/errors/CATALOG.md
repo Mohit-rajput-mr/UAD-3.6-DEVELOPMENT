@@ -1851,3 +1851,33 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - secdiff totals: Project Information missing 56 -> 34, Amenities 11 -> 9;
   nothing worse. Tests: test_project_and_amenity_values_print_as_d1,
   test_b1_alphabetical_list.
+
+### E-138 Cost Approach: one Depreciated Cost block per improvement
+- Symptom (D-1 MH1): the dwelling's cost table carried the barn's and the
+  garage's cost lines. No outbuilding blocks printed. "1,568 Sq. Ft. |
+  $95.66", depreciation "$9,000", "Remaining Economic Life 45", and the
+  outbuilding table printed inside the "Commentary on Effective Age".
+- Fixes:
+  - `form._cost_approach` repeats C-1's dwelling block (25.005-25.022) per
+    dwelling and its outbuilding block (25.023-25.036) per outbuilding, by
+    name, scoped to the IMPROVEMENT. `_walk` follows
+    IMPROVEMENT_COST_AND_DEPRECIATED_VALUE_IsAssociatedWith_IMPROVEMENT
+    (`_arc_linked`) to read the improvement's own cost block. Editor cells
+    write there too (data-tscope = the linked block; tested through the API).
+  - C-1 extraction: a table's column heads no longer reach above an h1 bar
+    (the outbuilding table took "Commentary on Effective Age" as its head).
+    An ID that starts above a label belongs to the label above it (25.021 /
+    25.022). A one-row bar with an ID prints as label + value (25.041
+    "Opinion of Site Value").
+  - The every-block reader includes unit-attribute points (25.025's second
+    area, "200 Sq. Ft.").
+  - B-1 pp348-351 bullets (not in the per-field rules):
+    - "@" between the area and its price;
+    - "years" after 25.019 / 25.020;
+    - Total Depreciation "if not 0, display as a negative number" ("$(9,000)"),
+      stored positive whatever is typed (`entry.POSITIVE_ONLY`);
+    - the highest-dollar line first.
+- Result: the secdiff Cost Approach for MH1 and MH2 is down to footer IDs and
+  "Set Up" vs "Setup". Tests:
+  test_rooms.py::test_a_cost_line_edited_under_its_outbuilding_lands_in_that_cost_block;
+  editor parity holds on all 12.

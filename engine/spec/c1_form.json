@@ -32649,8 +32649,38 @@
      "style": "TXC-B"
     },
     {
-     "kind": "table",
      "y": 338.87603759765625,
+     "y1": 350.02703857421875,
+     "x0": 40.0,
+     "x1": 160.60902404785156,
+     "column": "left",
+     "text": "Commentary on Effective Age",
+     "bold": true,
+     "italic": false,
+     "size": 9.0,
+     "lines": 1,
+     "ids": [
+      "25.022"
+     ],
+     "kind": "prose",
+     "style": "TXC-B"
+    },
+    {
+     "kind": "h1",
+     "y": 362.8,
+     "y1": 377.8,
+     "x0": 36.0,
+     "x1": 576.0,
+     "column": "full",
+     "title": "Depreciated Cost - Outbuilding - [Outbuilding Type]",
+     "note": "",
+     "ids": [
+      "25.023"
+     ]
+    },
+    {
+     "kind": "table",
+     "y": 380.3,
      "y1": 480.1,
      "x0": 36.0,
      "x1": 378.0,
@@ -32659,7 +32689,7 @@
       {
        "x0": 36.0,
        "x1": 152.0,
-       "head": "Commentary on Effective Age"
+       "head": ""
       },
       {
        "x0": 152.0,
@@ -32913,30 +32943,6 @@
         }
        ]
       }
-     ]
-    },
-    {
-     "kind": "slot",
-     "y": 349.57159423828125,
-     "y1": 358.49957275390625,
-     "x0": 157.53729248046875,
-     "x1": 181.60438537597656,
-     "column": "left",
-     "ids": [
-      "25.022"
-     ]
-    },
-    {
-     "kind": "h1",
-     "y": 362.8,
-     "y1": 377.8,
-     "x0": 36.0,
-     "x1": 576.0,
-     "column": "full",
-     "title": "Depreciated Cost - Outbuilding - [Outbuilding Type]",
-     "note": "",
-     "ids": [
-      "25.023"
      ]
     },
     {

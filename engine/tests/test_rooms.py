@@ -227,3 +227,27 @@ def test_a_rental_grid_per_unit_writes_into_that_units_pairing(client):
     rent = lambda g: next(r for r in g.rows if r.label == "Adjusted Rent").cells[0].text
     assert rent(again[1]) == "$950"
     assert rent(again[0]) == "$900"          # Unit 1's pairing with #1 is untouched
+
+
+def test_a_cost_line_edited_under_its_outbuilding_lands_in_that_cost_block(client):
+    """The Cost Approach draws a Depreciated Cost block per improvement, each
+    reading the cost block its IsAssociatedWith arc ties to it; an edit in
+    the Barn's block writes the Barn's cost, not the dwelling's or garage's."""
+    import re
+    from app import api
+    from uad.report import form
+    cid = client.post("/api/cases", json={"template": "mh1_appraisal_v1_4", "blank": False}).json()["case_id"]
+    blocks = form.build(api.store().tree(cid), edit=True)
+    i = next(n for n, b in enumerate(blocks) if b.kind == "h1" and b.title.endswith("Outbuilding - Barn"))
+    table = next(b for b in blocks[i:] if b.kind == "table")
+    cell = re.search(r"data-tf='25\.027' data-tk='([^']*)'[^>]*data-tscope='([^']*)'", table.html)
+    assert cell, table.html[:400]
+    r = client.patch(f"/api/cases/{cid}/cells/25.027",
+                     json={"value": "16000", "key": cell.group(1), "scope": cell.group(2)})
+    assert r.status_code == 200, r.text
+    root = api.store().tree(cid).getroot()
+    X = "{http://www.w3.org/1999/xlink}"
+    amounts = {c.get(f"{X}label").rsplit("_", 1)[-1]: [e.text for e in c.iter(f"{M}ReplacementOrReproductionCostAmount")]
+               for c in root.iter(f"{M}IMPROVEMENT_COST_AND_DEPRECIATED_VALUE")}
+    assert amounts["BARN"] == ["16000"]
+    assert amounts["DWELLING"] == ["149995"] and amounts["GARAGE"] == ["15554", "9446"]

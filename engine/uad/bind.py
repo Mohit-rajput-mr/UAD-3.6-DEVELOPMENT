@@ -590,7 +590,8 @@ def _walk(root: etree._Element, binding: Binding,
             # counts the instances that meet it, not every ROLE in the
             # document -- counting all of them read the Lender's role for the
             # appraiser's ASC identifier and found nothing.
-            yield from _walk_marked(root, name, xpath, explicit, container, ordinal, scope)
+            yield from _walk_marked(root, name, xpath, explicit, container, ordinal, scope,
+                                    stated=set() if dp.get("requires_from") else set(dp.get("requires") or {}))
             continue
         base = scope_for(root, xpath, scope, ordinal)
         if base is None:
@@ -683,7 +684,7 @@ def inspection_service(root: etree._Element) -> etree._Element | None:
     return None
 
 
-def _walk_marked(root, name, xpath, marks, container, ordinal, scope=None):
+def _walk_marked(root, name, xpath, marks, container, ordinal, scope=None, stated=frozenset()):
     base = root if scope is None else scope
     if scope is None and PROPERTY_PATH in xpath:
         found = subject(root)
@@ -691,6 +692,14 @@ def _walk_marked(root, name, xpath, marks, container, ordinal, scope=None):
     segments = _tail(xpath)
     instances: list = []
     hits: dict = {}
+    # a condition A-1 states for the point (not one inferred from its
+    # context) whose data point sits inside this same repeating block must be
+    # met in *this* instance: 18.071 Unit Transfer Fees reads the ASSOCIATION_CHARGE whose
+    # OwnershipTransferFeeIndicator is "true" -- SF1 has none, and the climb
+    # that tolerates a missing mark printed its dues ($34) as the fee
+    from . import uadmap
+    own = [k for k in marks if k in stated and k != "PartyRoleType"
+           and any(f"/{container}/" in p.get("xpath", "") for p in uadmap.placements(k))]
     for node in base.iter(f"{{{MISMO}}}{name}"):
         if segments and not _matches(node, segments):
             continue
@@ -699,6 +708,8 @@ def _walk_marked(root, name, xpath, marks, container, ordinal, scope=None):
         inst = node
         while inst is not None and etree.QName(inst).localname != container:
             inst = inst.getparent()
+        if inst is not None and any(inst.find(f".//{{{MISMO}}}{k}") is None for k in own):
+            continue
         # by address, never by id(): lxml builds a fresh proxy on each access,
         # so id() is not stable and two instances can share one -- which made
         # a second render of the same document drop a row the first one drew

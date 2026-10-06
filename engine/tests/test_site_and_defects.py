@@ -329,3 +329,14 @@ def test_static_notes_and_labels_follow_b1(key, section, present, absent):
 def test_outbuildings_print_by_name():
     tabs = [t for t in _tabs("mh1_appraisal_v1_4") if t.startswith("Outbuilding")]
     assert tabs == ["Outbuilding - Barn", "Outbuilding - Rec Room/Garage"]
+
+
+@pytest.mark.parametrize("key,expected", [
+    ("sf1_appraisal_v1_4", None),          # no transfer fee block: no row (D-1 SF1 prints none)
+    ("condo1_appraisal_v1_4", "None"),     # indicator false
+    ("coop1_appraisal_v1_4", "$3,000"),    # the fee's own block, not the dues
+])
+def test_unit_transfer_fees_read_their_own_charge(key, expected):
+    text = _text(key, "Project Information")
+    m = re.search(r"Unit Transfer Fees (\S+)", text)
+    assert (m.group(1) if m else None) == expected

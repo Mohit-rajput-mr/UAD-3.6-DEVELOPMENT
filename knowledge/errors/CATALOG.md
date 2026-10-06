@@ -1809,3 +1809,18 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Outbuilding sections by name** (Barn before Rec Room/Garage), as the grid.
 - Tests: test_site_and_defects.py::test_static_notes_and_labels_follow_b1,
   ::test_outbuildings_print_by_name. Suite 648 pass; harness 87/0/21.
+
+### E-136 A stated condition was met by a different block's value
+- Symptom: SF1 printed "Unit Transfer Fees $34", its monthly dues. 18.071
+  reads AssociationChargeAmount where OwnershipTransferFeeIndicator = "true".
+  SF1 has no such charge, and `_instance_matches` lets a mark it cannot find
+  through, so the dues block matched.
+- Fix (`bind._walk_marked`): a condition the data point *states* (its own
+  `requires`, not one inherited via requires_from or inferred from the A-1
+  context) on a point A-1 places inside the same repeating block must be
+  present in that instance. Context-inferred marks keep the tolerant
+  behaviour, which a newly written Alternate Address relies on.
+- Validated: SF1 prints no row, Condo1 "None", Coop1 "$3,000"; all golden
+  shapes unchanged (the first, wider version dropped MH2's Contract Price
+  grid row and was narrowed).
+- Test: test_site_and_defects.py::test_unit_transfer_fees_read_their_own_charge.

@@ -340,3 +340,26 @@ def test_unit_transfer_fees_read_their_own_charge(key, expected):
     text = _text(key, "Project Information")
     m = re.search(r"Unit Transfer Fees (\S+)", text)
     assert (m.group(1) if m else None) == expected
+
+
+@pytest.mark.parametrize("key,section,present", [
+    # every utility of the dues charge (a condition on the outer block is not one on the list)
+    ("condo1_appraisal_v1_4", "Project Information", ["Utilities Included Sanitary Sewer Water"]),
+    # B-1: 'Display "Greatest Number of Units Owned-" and value'
+    ("condo1_appraisal_v1_4", "Project Information", ["Greatest Number of Units Owned - 2"]),
+    ("coop1_appraisal_v1_4", "Project Information", ["Prior Use: Apartment"]),
+    # B-1 18.012: ownership "in () next to Amenity Type"
+    ("condo1_appraisal_v1_4", "Project Information", ["Unit Storage (Assigned)"]),
+    # an amenity's defect is titled by the amenity its arc names
+    ("condo1_appraisal_v1_4", "Subject Property Amenities",
+     ["Recommended Action Balcony Adjacent to Living Room", "Apparent Defects, Damages, Deficiencies - Balcony"]),
+])
+def test_project_and_amenity_values_print_as_d1(key, section, present):
+    text = _text(key, section)
+    for p in present:
+        assert p in text, p
+
+
+def test_b1_alphabetical_list():
+    ctx = form.Ctx(templates.load("sf3_appraisal_v1_4").getroot())
+    assert [t for t, _k in form.shown_pairs(ctx, "12.010")] == ["Electricity", "Sanitary Sewer", "Water"]

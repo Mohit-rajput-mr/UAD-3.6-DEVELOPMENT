@@ -663,8 +663,11 @@ def _walk(ctx: Ctx, fid: str, every: bool = False):
         base = ctx.scope if ctx.scope is not None else (
             bind.subject(ctx.root) if bind.PROPERTY_PATH in principal.get("xpath", "") else ctx.root)
         seen = set()
+        needs = {k: v for k, v in (principal.get("requires") or {}).items() if not k.startswith(("@", "__"))}
         for node in (base.iter(f"{M}{principal['mismo']}") if base is not None else []):
             if not bind._matches(node, segs):
+                continue
+            if needs and not bind._instance_matches(node, needs):
                 continue
             block = node.getparent()
             while block is not None and _local(block) != container:
@@ -798,8 +801,20 @@ def shown_pairs(ctx: Ctx, fid: str) -> list[tuple[str, str]]:
     out = []
     per = "Per " in (b.label or "")
     tree = ctx.root.getroottree()
-    for key, group in instances(ctx, fid):
-        text = bind.display_value(group, b)
+    groups = instances(ctx, fid)
+    principal = printed_point(fid)
+    paren = _bracketed_beside(fid)
+    if fid in ALPHABETICAL and len(groups) > 1:
+        groups = sorted(groups, key=lambda g: re.sub(r"[^a-z0-9]", "", bind.display_value(g[1], b).lower()))
+    for key, group in groups:
+        own = [p for p in group if p[0] == principal or p[0].endswith("OtherDescription")]
+        rest = [p for p in group if p not in own]
+        if paren and principal and rest and bind.display_value(rest, b):
+            # B-1 18.012: the ownership "Display in () next to Amenity Type"
+            main = bind.display_value(own, b)
+            text = f"{main} ({bind.display_value(rest, b)})" if main else bind.display_value(rest, b)
+        else:
+            text = bind.display_value(group, b)
         if text and not per:
             text = re.sub(r"(\$[\d,]+)\.00\b", r"\1", text)
         if text:
@@ -1107,6 +1122,45 @@ def italic_rule_holds(ctx: "Ctx", text: str) -> bool | None:
         subj = bind.subject(ctx.root)
         return rule["value"] in rules.values_of(ctx.root, rule["name"], subj)
     return None
+
+
+#: B-1 p220 (12.010 outbuilding utilities): "For multiple utilities, display
+#: alphabetically with each on a new row" -- the one list B-1 orders; the
+#: others keep the case's order, which D-1 follows (19 of 28 multi-value lists;
+#: neither A-1's enumeration order, 18, nor alphabetical, 23, fits all)
+ALPHABETICAL = {"12.010"}
+
+
+@lru_cache(maxsize=2048)
+def _bracketed_beside(fid: str) -> bool:
+    """B-1 says a second value of the field prints in brackets beside the
+    first: 18.012 "Display in () next to Amenity Type"."""
+    return any(re.search(r"Display in \(\) next to", st.get("rule", ""), re.I)
+               for st in field_entry(fid).get("display_rules", []))
+
+
+# B-1 18.066-18.068: 'Display "Greatest Number of Units Owned-" and value'
+_PREFIX = re.compile(r'Display\s+[“"](?P<text>[^”"]+)[”"]\s+and\s+(?:the\s+)?value', re.I)
+
+
+@lru_cache(maxsize=2048)
+def label_prefix(fid: str) -> str:
+    for st in field_entry(fid).get("display_rules", []):
+        m = _PREFIX.search(st.get("rule", ""))
+        if m:
+            return m["text"].strip()
+    return ""
+
+
+def with_label_prefix(fid: str, value: str) -> str:
+    """The value as B-1 prints it with its own words before it: D-1 Condo1
+    "Greatest Number of Units Owned - 2", Coop1 "Prior Use: Apartment"."""
+    prefix = label_prefix(fid)
+    if not prefix:
+        return value
+    if prefix.endswith("-"):
+        return f"{prefix[:-1].rstrip()} - {value}"
+    return f"{prefix} {value}"
 
 
 _PAREN = re.compile(r"^When (?P<cond>[^:]+):.*?Display (?P<text>\([^)]+\)) in parenthesis on the right", re.I)
@@ -2575,6 +2629,8 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                             vals.append(t)
                 v = " | ".join(vals)
                 has = has or bool(v)
+                if v and not ctx.edit and ids:
+                    v = with_label_prefix(ids[0], v)
                 if ctx.edit:
                     texts.append(("__cell__", _cell(esc(v), ids[0], ctx, key=key, sel=sel, label=label,
                                                     cat=row_cat)))
@@ -2650,13 +2706,14 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             line = []
             has = False
             shown_cells: list[str] = []
+            linked = _defect_targets(ctx, key) if ddd else []
             for c, groups in zip(cells, per_col):
                 parts = [g for k, g in groups if k == key]
                 texts = []
                 for fid in c["ids"]:
                     b = binding(fid)
                     for k, g in instances(read, fid, every=True):
-                        if k == key and b is not None:
+                        if (k == key or (linked and _within(ctx, k, linked))) and b is not None:
                             t = bind.display_value(g, b)
                             alone = alone_hidden(fid) if len(keys) == 1 else ""
                             if alone and t.endswith(" " + alone):
@@ -3676,6 +3733,31 @@ def _relations(root: etree._Element) -> dict[str, etree._Element]:
     return out
 
 
+def _defect_targets(ctx: Ctx, key: str) -> list:
+    """What the DEFECT a table row reads is a defect of, by its
+    DEFECT_ContainsDefectOf_* arc: the amenities table's Feature is the
+    AMENITY's type (D-1 Condo1 "Balcony"), not a value of the defect."""
+    if not key.startswith("/"):
+        return []
+    hit = ctx.root.getroottree().xpath(key)
+    el = hit[0] if hit else None
+    while el is not None and _local(el) != "DEFECT":
+        el = el.getparent()
+    label = el.get(f"{XLINK}label") if el is not None else None
+    if not label:
+        return []
+    want = {r.get(f"{XLINK}to") for r in ctx.root.iter(f"{M}RELATIONSHIP")
+            if r.get(f"{XLINK}from") == label and "DEFECT_ContainsDefectOf_" in (r.get(f"{XLINK}arcrole") or "")}
+    return [e for e in ctx.root.iter() if isinstance(e.tag, str) and e.get(f"{XLINK}label") in want]
+
+
+def _within(ctx: Ctx, key: str, targets: list) -> bool:
+    if not key.startswith("/"):
+        return False
+    hit = ctx.root.getroottree().xpath(key)
+    return bool(hit) and any(hit[0] is t or t in hit[0].iterancestors() for t in targets)
+
+
 def _no_defects(ctx: Ctx, el: dict) -> bool:
     """B-1: a section's DDD shows "None" when its DefectsExistIndicator is
     false -- and the Summary's, which gathers six of them, only "when all
@@ -3854,6 +3936,11 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
         inner = f"<span class='v pick'{attrs} tabindex='0' role='button'>{text}</span>"
     else:
         inner = f"<span class='v'{attrs} contenteditable='true' spellcheck='false'>{text}</span>"
+    if text and label_prefix(fid):
+        # B-1's own words before the value print in the editor too, outside
+        # what is typed ("Greatest Number of Units Owned - " 2)
+        words = with_label_prefix(fid, "\x00").split("\x00")[0]
+        inner = f"<span class='pre'>{esc(words)}</span>{inner}"
     classes = ([td_class] if td_class else []) + (
         ["num"] if re.match(r"^-?\$[\d,]", text or "") else [])
     cls = f" class='{' '.join(classes)}'" if classes else ""
@@ -4045,6 +4132,15 @@ def _owner_title(img: "etree._Element") -> str:
                    else enum_label("DefectComponentLabelType", t))
         # a vehicle storage's or an amenity's defect is titled by its type
         holder = next((a for a in owner.iterancestors() if _local(a) in ("CAR_STORAGE", "AMENITY")), None)
+        if holder is None and owner.get(f"{XLINK}label"):
+            # kept at property level and tied by its arc (D-1 Condo1:
+            # "Apparent Defects, Damages, Deficiencies - Balcony")
+            root = owner.getroottree().getroot()
+            want = {r.get(f"{XLINK}to") for r in root.iter(f"{M}RELATIONSHIP")
+                    if r.get(f"{XLINK}from") == owner.get(f"{XLINK}label")
+                    and (r.get(f"{XLINK}arcrole") or "").endswith(("_AMENITY", "_CAR_STORAGE"))}
+            holder = next((e for e in root.iter(f"{M}AMENITY", f"{M}CAR_STORAGE")
+                           if e.get(f"{XLINK}label") in want), None)
         if holder is not None:
             name = "CarStorageType" if _local(holder) == "CAR_STORAGE" else "AmenityType"
             feature = enum_label(name, (holder.findtext(f".//{M}{name}") or "").strip()) or feature
@@ -4518,6 +4614,14 @@ def printed_point(fid: str, shown: str = "") -> str:
 
 
 @lru_cache(maxsize=4096)
+@lru_cache(maxsize=1)
+def _c1_row_fields() -> frozenset[str]:
+    """Field IDs C-1 sets as a labelled row (not a table cell)."""
+    data = json.loads((SPEC / "c1_form.json").read_text(encoding="utf-8"))
+    return frozenset(i for p in data["pages"] for e in p["elements"]
+                     if e.get("kind") == "row" for i in e.get("ids") or [])
+
+
 def repeats_as_list(fid: str) -> bool:
     """A single enumerated data point inside a block A-1 repeats: the field
     takes several values, one instance each."""
@@ -4527,11 +4631,24 @@ def repeats_as_list(fid: str) -> bool:
     if enum:
         principal = printed_point(fid) or enum[0]["mismo"]
         enum = [dp for dp in enum if dp["mismo"] == principal][:1]
-    if len(enum) != 1 or enum[0].get("requires"):
+    if len(enum) != 1:
         return False
+    rep = bind.repeating_container(enum[0].get("xpath", ""))
+    if enum[0].get("requires"):
+        # a condition on the block around the list is not a condition on the
+        # list (18.013 Utilities Included: the AssociationDues charge's
+        # utilities -- D-1 Condo1 "Sanitary Sewer | Water"); one on the
+        # repeating block itself picks an instance and is not a list.  Only
+        # for a field C-1 draws as a row: a table's cells (walls, roof) are
+        # read a row per block by their own drawer
+        from .. import uadmap
+        if fid not in _c1_row_fields() or any(
+                f"/{rep}/" in pl.get("xpath", "") for k in enum[0]["requires"]
+                for pl in uadmap.placements(k)):
+            return False
     # the value's own element is what repeats (PROJECT_AMENITY/AmenityType),
     # not merely a block somewhere above it
-    return bind.repeating_container(enum[0].get("xpath", "")) == enum[0].get("container")
+    return rep == enum[0].get("container")
 
 
 def _picker(fid: str, shown: str, ordinal: int = 0, adding: bool = False, key: str = "") -> str:

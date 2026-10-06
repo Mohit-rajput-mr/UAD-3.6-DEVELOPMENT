@@ -1824,3 +1824,30 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   shapes unchanged (the first, wider version dropped MH2's Contract Price
   grid row and was narrowed).
 - Test: test_site_and_defects.py::test_unit_transfer_fees_read_their_own_charge.
+
+### E-137 Project lists, B-1 value wording and amenity defects
+- **Utilities Included (18.013)** printed only the first utility. The list's
+  condition (AssociationChargeType = AssociationDues) is on the outer charge,
+  not on the repeating utility block, so it is still a list.
+  `repeats_as_list` allows such a condition, only for fields C-1 draws as a
+  row (component tables have their own drawers: allowing it for them
+  worsened Dwelling Exterior 37 -> 112 missing words). The list reader
+  honours the condition.
+- **B-1 words before a value:** 'Display "Greatest Number of Units Owned-"
+  and value' / 'Display "Prior Use:" and value' (18.066-18.068). Printed as D-1
+  does ("... Owned - 2"), and shown in the editor outside the typed value
+  (`label_prefix`, `with_label_prefix`).
+- **18.012 ownership "in () next to Amenity Type":** "Unit Storage
+  (Assigned)" (`_bracketed_beside`). An "Other" amenity keeps its
+  description ("Snow Removal", "Theater").
+- **List order:** measured on all 28 multi-value lists in D-1: the case's
+  order fits 19, A-1 enumeration order 18, alphabetical 23 (none fits all).
+  B-1 orders only 12.010 ("display alphabetically", p220), so that list is
+  sorted and the rest keep the case's order. Known exceptions: Condo1's
+  amenities, and 17.017 graph categories.
+- **Amenity defects:** the Feature column and the photo caption follow the
+  defect's DEFECT_ContainsDefectOf_AMENITY / _CAR_STORAGE arc (D-1 Condo1
+  "Balcony"; caption "Apparent Defects, Damages, Deficiencies - Balcony").
+- secdiff totals: Project Information missing 56 -> 34, Amenities 11 -> 9;
+  nothing worse. Tests: test_project_and_amenity_values_print_as_d1,
+  test_b1_alphabetical_list.

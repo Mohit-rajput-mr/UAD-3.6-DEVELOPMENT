@@ -295,8 +295,10 @@ def section_shown(ctx: "Ctx", section: str) -> bool | None:
     rule = section_rules().get(section)
     if not rule:
         return None
-    decided = rules.evaluate(rule, ctx.root)
-    return decided.shown if decided.known else None
+    # read against the subject when the rule's data points are the subject's:
+    # D-1 2-4's comparable 2 has no mitigation feature ("None"), the subject
+    # has impact resistant glass, and the section prints
+    return _evaluate_section_rule(rule, ctx.root)
 
 
 #: sections whose own questions switch them on (B-1: "displays when one or
@@ -305,6 +307,45 @@ def section_shown(ctx: "Ctx", section: str) -> bool | None:
 #: them on the report when the answers are No
 SELF_GATED = {"Disaster Mitigation", "Energy Efficient and Green Features", "Sales Contract",
               "Revision History", "Supplemental Information"}
+
+
+_SOME_TRUE = re.compile(r"displays when one or more of the (\w+) .*? is .true", re.I)
+_COUNT_WORD = {"two": 2, "three": 3, "four": 4, "five": 5}
+
+
+def print_gate(ctx: "Ctx", section: str) -> bool | None:
+    """B-1's rule for a section that its own questions switch on, applied to
+    the printed report (the editor keeps the section to be answered).
+
+    Disaster Mitigation's rule names its data point and is read as written.
+    Energy Efficient and Green Features says "displays when one or more of the
+    three energy efficient or green features is true": the three are the
+    section's own ...ExistsIndicator points (6.000, 6.004, 6.010) -- D-1 Condo1
+    and 2-4 answer all three false and print no such section."""
+    if section not in SELF_GATED:
+        return None
+    path = SPEC / "section_display.json"
+    data = json.loads(path.read_text(encoding="utf-8")).get("sections", {}) if path.exists() else {}
+    for rule in [r["text"] for r in data.get(section, {}).get("displays", [])]:
+        m = _SOME_TRUE.search(rule)
+        if m:
+            number = next((n for n, name in bind.SECTIONS if name == section), None)
+            points = sorted({dp["mismo"] for fid, f in _fields().items()
+                             if fid.split(".")[0] == str(number) and fid.count(".") == 1
+                             for dp in f.get("data_points", [])
+                             if dp.get("mismo", "").endswith("ExistsIndicator")})
+            if len(points) != _COUNT_WORD.get(m.group(1).lower(), -1):
+                return None
+            subj = bind.subject(ctx.root)
+            answers = [v for n in points for v in rules.values_of(ctx.root, n, subj)]
+            if "true" in answers:
+                return True
+            return False if answers else None
+        if section == "Disaster Mitigation":
+            decided = _evaluate_section_rule(rule, ctx.root)
+            if decided is not None:
+                return decided
+    return None
 
 
 @lru_cache(maxsize=1)
@@ -1185,6 +1226,8 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
     for title, els in sections:
         base = title.split(" - [")[0]
         if section_shown(ctx, base) is False:
+            continue
+        if not ctx.edit and print_gate(ctx, base) is False:
             continue
         for sctx, printed in section_instances(ctx, title):
             if base == "Unit Interior" and sctx.scope is not None and bind.stable_path(sctx.scope) in placed:

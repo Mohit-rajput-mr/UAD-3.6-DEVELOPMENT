@@ -1748,3 +1748,22 @@ test, not in a case script.
 - Test: test_report_rows.py::test_c1_ids_are_read_whole,
   ::test_c1_questions_hold_their_own_ids. Full suite and harness unchanged
   (87/0/21).
+
+### E-134 Energy Efficient and Disaster Mitigation printed against their B-1 rules
+- Symptom: Condo1 and 2-4 printed Energy Efficient and Green Features with
+  all three answers "None". 2-4 printed no Disaster Mitigation, though its
+  subject has impact resistant glass.
+- Causes: (1) both sections are SELF_GATED. The editor keeps them so their
+  questions can be answered, but nothing applied the rule in print.
+  (2) `section_shown`'s fallback read the rule against the whole document,
+  so comparable 2's DisasterMitigationFeatureType "None" decided the
+  subject's section.
+- Fix: `form.print_gate` applies B-1's rule when printing. The EEGF prose
+  "one or more of the three ... features is true" reads the section's own
+  ...ExistsIndicator points, and only when their count is the three B-1
+  names. Disaster Mitigation is read as written, against the subject (the
+  fallback now uses `_evaluate_section_rule`).
+- Validated: the set of printed sections matches the official tabs on all 12
+  D-1 samples (scratchpad secset.py; only the Certifications tab name differs
+  in detection).
+- Test: test_site_and_defects.py::test_self_gated_sections_print_by_their_b1_rule.

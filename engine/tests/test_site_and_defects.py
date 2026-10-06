@@ -280,3 +280,20 @@ def test_the_sketch_table_takes_only_sketches_and_floor_plans():
 ])
 def test_the_primary_view_follows_b1(key, expected):
     assert expected in _text(key, "Site")
+
+
+def _sections(key):
+    return {b.section.split(" - ")[0] for b in form.build(templates.load(key)) if b.kind == "tab" and b.visible}
+
+
+@pytest.mark.parametrize("key,energy,disaster", [
+    # what each D-1 PDF prints (validated on all 12 against the official tabs)
+    ("sf1_appraisal_v1_4", True, False),
+    ("condo1_appraisal_v1_4", False, False),            # all three indicators false
+    ("condo2_appraisal_v1_4", True, True),
+    ("2_to_4_unit_appraisal_v1_4", False, True),         # comparable 2's "None" is not the subject's
+])
+def test_self_gated_sections_print_by_their_b1_rule(key, energy, disaster):
+    tabs = _sections(key)
+    assert ("Energy Efficient and Green Features" in tabs) is energy
+    assert ("Disaster Mitigation" in tabs) is disaster

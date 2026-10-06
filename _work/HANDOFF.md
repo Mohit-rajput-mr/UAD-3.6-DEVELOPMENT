@@ -2791,3 +2791,25 @@ PDF segmenter mislabels), show.py (block dump), hidden.py (what field_rule_hides
 - Harness 87 pass / 0 fail / 21 gap — every gap is fonts (Myriad licence) or page count vs D-1 (±1–4 pages). Page count is the next layout target.
 - Later the same day: `uad/compliance_checks.py` executes the last 64 H-1 rules (one function per Message ID), so all 171 that used to read "for review" now decide. tests/test_compliance_checks.py has 78 tests. Golden review counts dropped to 0-4 per sample; fatal and warning are unchanged. T-1044 is done.
 - Page-by-page comparison against D-1 (scratchpad tool, pages per tab) found three print defects, now fixed (E-131..E-133): the Sketch section printed the RESNET caption; "(Primary)" was misplaced; and C-1 extraction dropped IDs written as \x1c, which broke the MH section layout and three Yes/No questions. Page counts still differ by 1-3 pages per sample. The causes are measurement (our Subject Property runs about 2 lines longer) and D-1 placeholders for images the sample XML does not hold (SF1 Sketch).
+
+## 2026-10-06 (late) -- current position (web platform / engine)
+Comparing the report to the D-1 PDFs section by section, using the official PDFs' own white section tabs
+(scratchpad tools secdiff.py, italics.py, secset.py, pages.py; method in CATALOG E-135). Landed and deployed:
+- E-134: Energy Efficient / Disaster Mitigation follow B-1 in print (section sets match 12/12).
+- E-135: A-1 enumeration text per Report Location; inspection dates; italic notes validated 12/12.
+- E-136: a stated condition is met inside its own block.
+- E-137: project lists, the "Greatest Number of Units Owned - 2" wording, amenity defects linked by arc.
+- E-138: Cost Approach blocks per improvement (arc-linked cost blocks); B-1 cost presentation.
+Traps:
+(1) `bind.enumeration_texts` must be used for display text; never build a value->text dict straight
+from `enumerations`.
+(2) `_inherit_requires` / `_context_requires` in build_index: a borrowed condition must not
+contradict the row's own IF.
+(3) Edits in scoped blocks write where the arc points (`_arc_linked`).
+Next from the secdiff list:
+- MH1 Site influence rows;
+- the MH1 Sketch caption ("Sketch does not represent actual dimensions");
+- MH1 Outbuilding details (Recreation Room, Exhibits);
+- the HBU "Is the present use..." line;
+- page counts.
+Device check in the cloud container: WinTOTAL items FAIL by design (no TOTAL here); the engine needs none of them.

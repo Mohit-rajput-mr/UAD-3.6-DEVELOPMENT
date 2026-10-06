@@ -2860,3 +2860,6 @@ Next:
   - Open, for the owner: rental analysis side by side (C-1) vs stacked
     (D-1).
   Suite: 672 pass.
+- Rental analysis layout is now the appraiser's choice per report (E-143,
+  T-1045). The default is stacked, as D-1 prints it; side by side follows
+  C-1. The switch sits on top of the grid in the editor.

@@ -180,10 +180,28 @@ def test_rent_schedule_lists_every_unit_with_subtotals():
 def test_rental_comparables_strip_and_a_grid_per_unit():
     text = _text("2_to_4_unit_appraisal_v1_4", "Rental Information")
     assert "Comparable #1 8275 Youngish St Surfside, HI 12345 Data Source: MLS 142332 Lease Start Date: 09/2019 Actual Rent: $925" in text
-    # two units to a line (C-1 p33): Unit 1 with #1-#3, Unit 2 with #1, #4, #5
-    assert "Subject Comparables Subject Comparables Unit 1 #1 #2 #3 Unit 2 #1 #4 #5" in text
+    # by default each unit's analysis stands in its own grid, one under the
+    # next (D-1 2-4): Unit 1 with #1-#3, then Unit 2 with #1, #4, #5
+    assert "Subject Unit 1 Comparable #1 Comparable #2 Comparable #3" in text
+    assert "Subject Unit 2 Comparable #1 Comparable #4 Comparable #5" in text
+
+
+def test_the_rental_analysis_layout_is_the_appraisers_choice(tmp_path):
+    """editor.json "rentalLayout": "paired" sets two units to a line (C-1
+    p33); the editor offers the switch, the report never prints it."""
+    import json
+    (tmp_path / "editor.json").write_text(json.dumps({"rentalLayout": "paired"}))
+    tree = templates.load("2_to_4_unit_appraisal_v1_4")
+    printed = " ".join(html.unescape(re.sub(r"<[^>]+>", " ", b.html or "")) for b in form.build(tree, folder=tmp_path)
+                       if b.visible and b.section.startswith("Rental Information"))
+    printed = re.sub(r"\s+", " ", printed)
+    assert "Subject Comparables Subject Comparables Unit 1 #1 #2 #3 Unit 2 #1 #4 #5" in printed
     # Unit 2 is not rented: its own answers, not Unit 1's
-    assert "Furnished No No No No — No No No" in text
+    assert "Furnished No No No No — No No No" in printed
+    assert "layoutsw" not in printed
+    edited = "".join(b.html or "" for b in form.build(tree, folder=tmp_path, edit=True))
+    assert "data-pref='rentalLayout' data-val='paired'" in edited and "lso on' role='button' tabindex='0' aria-pressed='true' data-pref='rentalLayout' data-val='paired'" in edited
+    assert form.rental_layout(None) == "stacked"
 
 
 def test_grm_grid_and_formula_as_the_sample_prints():

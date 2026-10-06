@@ -1169,7 +1169,7 @@ def set_prefs(case_id: str, body: dict = Body(...)) -> dict:
     merged = {**get_prefs(case_id), **body}
     _prefs_path(case_id).write_text(json.dumps(merged, indent=1),
                                     encoding="utf-8")
-    if {"exhibitSlots", "fills"} & set(body):
+    if {"exhibitSlots", "fills", "rentalLayout"} & set(body):
         renderer().changed(case_id)       # the form draws these
     return merged
 

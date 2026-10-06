@@ -1527,6 +1527,35 @@ def _fixed(base: str) -> bool:
     return base in FIXED_TEXT or base.startswith("Certifications")
 
 
+RENTAL_LAYOUTS = ("stacked", "paired")
+
+
+def rental_layout(folder: "Path | None") -> str:
+    """How a report with rental comparables paired to subject units lays the
+    analyses out -- the appraiser's choice, kept with the case (editor.json
+    "rentalLayout"): "stacked", one grid under the next as D-1 2-4 and
+    Scenario 2 print them (the default), or "paired", two units to a line as
+    C-1 p33 draws them.  B-1 sets neither."""
+    if folder is None:
+        return RENTAL_LAYOUTS[0]
+    try:
+        import json as _json
+        chosen = _json.loads((Path(folder) / "editor.json").read_text(encoding="utf-8")).get("rentalLayout")
+    except (OSError, ValueError, AttributeError):
+        chosen = None
+    return chosen if chosen in RENTAL_LAYOUTS else RENTAL_LAYOUTS[0]
+
+
+def _rental_layout_switch(layout: str) -> str:
+    opts = (("stacked", "One unit under the next"), ("paired", "Units side by side"))
+    return ("<div class='layoutsw' role='group' aria-label='Rental analysis layout'>"
+            "<span class='lsl'>Rental analysis</span>"
+            + "".join(f"<span class='lso{' on' if v == layout else ''}' role='button' tabindex='0'"
+                      f" aria-pressed='{'true' if v == layout else 'false'}' data-pref='rentalLayout'"
+                      f" data-val='{v}'>{esc(t)}</span>" for v, t in opts)
+            + "</div>")
+
+
 #: subsections B-1 switches on and off by a stated condition (not carried by
 #: the per-field rules, which are per field ID)
 SUBSECTION_RULES: dict[str, str] = {
@@ -1688,20 +1717,30 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     flush()
                     grid_done = True
                     grids = comparables.build(ctx.root, GRID_KINDS[base], every_row=ctx.edit)
-                    if GRID_KINDS[base] == "rental" and grids and grids[0].subject_label != "Subject Property":
-                        # a rental analysis per subject unit: two units to a line,
-                        # as C-1 p33 and D-1 2-4 / Scenario 2 set them (T-1043)
+                    paired = (GRID_KINDS[base] == "rental" and grids
+                              and grids[0].subject_label != "Subject Property")
+                    layout = rental_layout(ctx.folder)
+                    # the appraiser's choice, per report (B-1 sets neither), set
+                    # on top of the first grid so the two keep together
+                    switch = (_rental_layout_switch(layout)
+                              if paired and ctx.edit and len(grids) > 1 else "")
+                    if paired and layout == "paired":
+                        # two subject units' analyses to a line, as C-1 p33
+                        # draws them (T-1043)
                         for k in range(0, len(grids), 2):
                             out.append(Block("grid", section=printed, visible=True,
-                                             html=comparables.html_pair(grids[k:k + 2], edit=ctx.edit)))
+                                             html=(switch if k == 0 else "")
+                                             + comparables.html_pair(grids[k:k + 2], edit=ctx.edit)))
                         grids = []
+                    # otherwise each unit's analysis stands in its own grid, one
+                    # under the next, as D-1 2-4 and Scenario 2 print them
                     for n, grid in enumerate(grids):
                         # Appendix E p62: past three comparables the label and
                         # Subject columns "repeat on following pages" -- each
                         # block opens a page and prints its own photos (D-1
                         # SF2 p15, Condo2, MH2, SF5).
                         out.append(Block("grid", section=printed,
-                                         html=_grid_html(grid, ctx, first=True),
+                                         html=(switch if n == 0 else "") + _grid_html(grid, ctx, first=True),
                                          visible=True,
                                          new_page=n > 0 and base == "Sales Comparison Approach"))
                     if ctx.edit:
@@ -5547,6 +5586,12 @@ table.tbl td.tickcell > span{display:inline-flex;align-items:center;justify-cont
 table.tbl td.tickcell:hover > span{border-color:rgba(29,79,145,.9);background:rgba(66,133,244,.18)}
 table.tbl td.tickcell > span > svg.tick{width:8pt;height:8pt}
 table.tbl tr.newrow td{border-bottom-style:dashed}
+/* a per-report layout choice (rental analysis) -- the editor's, never printed */
+.layoutsw{display:flex;align-items:center;gap:4pt;margin:2pt 0 4pt;font-size:7pt}
+.layoutsw .lsl{color:rgba(35,31,32,.6);margin-right:2pt}
+.layoutsw .lso{padding:1.5pt 6pt;border-radius:8pt;cursor:pointer;
+  box-shadow:inset 0 0 0 0.6pt rgba(43,108,176,.6);background:rgba(66,133,244,.06)}
+.layoutsw .lso.on{background:rgba(43,108,176,.85);color:#fff}
 /* a heading's placeholder, named */
 .h1 .hph{display:inline-flex;align-items:center;gap:3pt;margin-left:6pt;font-weight:400}
 .h1 .hph > i{font-size:6.5pt;color:rgba(35,31,32,.6)}

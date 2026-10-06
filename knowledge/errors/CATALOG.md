@@ -2011,3 +2011,22 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Open, for the owner: C-1 p33 sets two units' rental analyses side by side
   (as we print, T-1043). D-1 2-4 and Scenario 2 stack Subject + three
   comparables per grid instead.
+
+### E-143 Rental analysis layout: the appraiser's choice per report (owner: "make it dynamic")
+- C-1 p33 draws two subject units' rental analyses side by side. D-1 2-4 and
+  Scenario 2 print one grid under the next. B-1 sets neither.
+- `form.rental_layout(folder)` reads editor.json "rentalLayout":
+  - "stacked" (the default, as D-1 prints): one grid per unit, "Subject
+    Unit 1 | Comparable #1 #2 #3", each with its own paired comparables;
+  - "paired": `comparables.html_pair`, two units to a line.
+- The editor shows a two-way switch on top of the first rental grid, only
+  when two or more units have paired comparables. It is never printed. A
+  click saves the pref, and the API marks the render changed; the render key
+  includes rentalLayout for every output kind.
+- Tests:
+  - test_site_and_defects.py::test_rental_comparables_strip_and_a_grid_per_unit
+    (stacked);
+  - test_the_rental_analysis_layout_is_the_appraisers_choice (paired, switch
+    state, never printed).
+  - E2E: click "Units side by side", the pref is saved, and after reload the
+    side-by-side grid shows with the switch on.

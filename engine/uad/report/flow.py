@@ -1880,6 +1880,16 @@ EDIT_JS = """
       });
       return;
     }
+    // a per-report layout choice: saved with the case, the report laid out again
+    var sw=t.closest('.layoutsw .lso[data-pref]');
+    if(sw){
+      if(sw.classList.contains('on')) return;
+      var body={}; body[sw.dataset.pref]=sw.dataset.val;
+      [].forEach.call(sw.parentNode.querySelectorAll('.lso'),function(o){
+        o.classList.toggle('on',o===sw); o.setAttribute('aria-pressed',o===sw?'true':'false'); });
+      putJSON(api+'/prefs',body,'PUT').then(function(){ reloadHere(); });
+      return;
+    }
     var th=t.closest('th[data-compmenu]');
     if(th){ e.preventDefault(); openCompMenu(th); return; }
     // a box waiting for a picture takes it straight from the file dialog

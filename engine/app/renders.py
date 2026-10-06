@@ -153,6 +153,8 @@ class Renderer:
             # must agree on the key, or each layout looks stale to the next
             m = {**m, "path": Path(str(m.get("path", ""))).name}
             h.update(json.dumps(m, sort_keys=True, default=str).encode())
+        # a layout the appraiser chose prints in every kind of output
+        h.update(str(self._prefs(case_id).get("rentalLayout", "")).encode())
         if kind == "form":
             prefs = self._prefs(case_id)
             h.update(json.dumps({"slots": prefs.get("exhibitSlots"), "fills": prefs.get("fills"),

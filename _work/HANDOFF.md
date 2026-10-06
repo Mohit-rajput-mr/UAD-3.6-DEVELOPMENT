@@ -2768,3 +2768,10 @@ RoofObservableIndicator = false" -- implement as a composer in `bind.display_val
 `main` auto-deploys to Vercel. This session pushed the branch; `main` is fast-forwarded only after
 the full suite shows no new failure (known failing: test_cells sf1, test_autofill condo1/mh1,
 test_golden::test_the_pdf_is_text_not_a_picture; golden_baseline.json was regenerated deliberately).
+
+## 2026-10-06 -- current position
+See AI_HANDOVER.md section 5 (top entry) and CATALOG E-102..E-111. Template-row tables now
+read every block (`instances(every=True)`, subject-limited); defect tables in Summary /
+Reconciliation expand per structure via `form._defect_groups`. Trap: a control byte in a
+regex silently disables it -- grep for `\x08` when a rule "should" match and does not.
+Known failing tests unchanged: test_autofill condo1/mh1, test_golden pdf-text.

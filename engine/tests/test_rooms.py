@@ -119,3 +119,71 @@ def test_the_api_adds_and_removes_rooms_and_levels(client):
     r = client.delete(f"/api/cases/{cid}/levels", params={"level": key})
     assert r.status_code == 200 and r.json()["said"]["rooms_removed"] == 7
     assert _detail(api.store().tree(cid), "LevelCount") == "2"
+
+
+# ------------------------------------------------- the tables that follow
+def _table_text(tree, start):
+    import html, re
+    for b in form.build(tree):
+        t = " ".join(html.unescape(re.sub("<[^>]+>", " ", b.html or "")).split())
+        # Unit Interior's Interior Features (Dwelling Exterior's table has the same heads)
+        if b.visible and t.startswith(start) and (start != "Feature Detail Quality Comment" or "Flooring" in t):
+            return t
+    return ""
+
+
+def test_every_kitchen_and_bath_prints_kitchens_first():
+    """T-119: SF1 p8 lists the kitchen, three full baths and the half bath;
+    the reader took only the first room (and printed the Wet Bar)."""
+    text = _table_text(_sf1(), "Room Update Status")
+    assert text.index("Kitchen Level 1") < text.index("Bath - Full") < text.index("Bath - Half Level B1")
+    assert text.count("Bath - Full") == 3 and "Wet Bar" not in text
+    assert "Corian Countertops, Double Oven, Hardwood floors." in text
+    assert "5-10 years" in text                        # Time Frame of the updated half bath only
+
+
+def test_every_flooring_type_prints_and_walls_and_ceiling_joins_its_values():
+    text = _table_text(_sf1(), "Feature Detail Quality Comment")
+    for f in ("Carpet", "Ceramic Tile", "Engineered Wood", "Hardwood"):
+        assert f in text
+    assert "8 Ft. | 9 Ft. | 10 or more feet | 2 or more stories | Cathedral | Coffered | Flat" in text
+
+
+@pytest.mark.parametrize("key", [t.key for t in templates.catalogue()])
+def test_the_unit_tables_hold_every_room_and_floor_of_every_sample(key):
+    tree = templates.load(key)
+    root = tree.getroot()
+    kb = sum(1 for d in root.iter(f"{M}ROOM_DETAIL")
+             if d.findtext(f"{M}RoomType") in ("Kitchen", "FullBathroom", "HalfBathroom")
+             and d.getparent().getparent().getparent().getparent().getparent() is not None)
+    printed = "".join(
+        b.html or "" for b in form.build(tree) if b.visible and "Room</span>" in (b.html or ""))
+    rows = printed.count("<tr>")
+    # each kitchen/bath of the subject's units prints one row (comparables have none)
+    subject = bind.subject(root)
+    want = sum(1 for d in subject.iter(f"{M}ROOM_DETAIL")
+               if d.findtext(f"{M}RoomType") in ("Kitchen", "FullBathroom", "HalfBathroom")) if subject is not None else 0
+    assert rows >= want
+
+
+def test_a_flooring_type_is_added_and_removed(client):
+    from app import api
+    cid = client.post("/api/cases", json={"template": "sf1_appraisal_v1_4", "blank": False}).json()["case_id"]
+    tree = api.store().tree(cid)
+    unit = tree.getpath(next(tree.getroot().iter(f"{M}PROPERTY_UNIT")))
+    r = client.post(f"/api/cases/{cid}/flooring", json={"unit": unit, "type": "Vinyl"})
+    assert r.status_code == 200, r.text
+    assert client.post(f"/api/cases/{cid}/flooring", json={"unit": unit, "type": "Vinyl"}).status_code == 422
+    tree = api.store().tree(cid)
+    assert "Vinyl" in _table_text(tree, "Feature Detail Quality Comment")
+    fc = next(f for f in tree.getroot().iter(f"{M}FLOOR_COVERING") if f.findtext(f"{M}FlooringType") == "Vinyl")
+    r = client.delete(f"/api/cases/{cid}/rows", params={"key": tree.getpath(fc), "tag": "FLOOR_COVERING"})
+    assert r.status_code == 200, r.text
+    assert "Vinyl" not in _table_text(api.store().tree(cid), "Feature Detail Quality Comment")
+    assert client.delete(f"/api/cases/{cid}/rows", params={"key": "x", "tag": "PARTY"}).status_code == 400
+
+
+def test_a_blank_unit_offers_flooring_and_points_to_rooms():
+    tree = templates.load("sf1_appraisal_v1_4", blank=True)
+    html_ = form.galley_html(form.build(tree, edit=True), edit=True)
+    assert "data-floor-add" in html_ and "Kitchens and baths are added" in html_

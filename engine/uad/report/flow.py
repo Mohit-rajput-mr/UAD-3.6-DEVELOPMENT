@@ -1532,7 +1532,58 @@ EDIT_JS = """
       place(list,el); menu=list;
     });
   }
+  function floorPick(el){
+    shut(); shutMenu();
+    fetch('/api/fields/10.045/options?dp=FlooringType').then(function(r){return r.json();}).then(function(d){
+      var list=document.createElement('div'); list.className='picklist';
+      (d.options||[]).forEach(function(o){
+        if(!o.value) return;
+        var row=document.createElement('div'); row.textContent=o.label;
+        row.addEventListener('mousedown',function(ev){
+          ev.preventDefault(); ev.stopPropagation();
+          if(o.value==='Other'){ otherFloor(list,el); return; }
+          shutMenu(); addFloor(el,o.value,'');
+        });
+        list.appendChild(row);
+      });
+      place(list,el); menu=list;
+    });
+  }
+  function addFloor(el,type,other){
+    going(el.closest('tr'));
+    json(api+'/flooring',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({unit:el.dataset.unit,type:type,other:other||''})})
+      .then(roomsDone).catch(roomsFail);
+  }
+  function otherFloor(list,el){
+    list.innerHTML='';
+    var box=document.createElement('div'); box.className='otherbox';
+    box.innerHTML='<label>Describe the flooring</label><input type="text" maxlength="50"><div class="ob">'
+      +'<button type="button" class="no">Cancel</button><button type="button" class="go">Add</button></div>';
+    var input=box.querySelector('input');
+    list.appendChild(box);
+    box.addEventListener('mousedown',function(ev){ ev.stopPropagation(); });
+    var go=function(){
+      var text=input.value.trim();
+      if(!text){ input.focus(); input.classList.add('need'); return; }
+      shutMenu(); addFloor(el,'Other',text);
+    };
+    box.querySelector('.go').onclick=go;
+    box.querySelector('.no').onclick=function(){ shutMenu(); };
+    input.addEventListener('keydown',function(ev){ if(ev.key==='Enter'){ ev.preventDefault(); go(); } });
+    setTimeout(function(){ input.focus(); },0);
+  }
   function roomAction(t){
+    if(t.hasAttribute('data-floor-add')) return floorPick(t);
+    if(t.hasAttribute('data-row-del')){
+      return ask('The row and everything typed in it are removed.',{title:'Remove this row?',ok:'Remove',danger:true})
+        .then(function(ok){
+          if(!ok) return;
+          going(t.closest('tr'));
+          return json(api+'/rows?key='+encodeURIComponent(t.dataset.key)+'&tag='+encodeURIComponent(t.dataset.rowDel),
+            {method:'DELETE'}).then(roomsDone).catch(roomsFail);
+        });
+    }
     if(t.hasAttribute('data-room-add')) return roomPick(t);
     if(t.hasAttribute('data-room-inc')) return addRoom(t,t.dataset.rtype,t.dataset.other);
     if(t.hasAttribute('data-room-dec')){
@@ -1550,7 +1601,7 @@ EDIT_JS = """
         });
     }
   }
-  var ROOM_SEL='[data-room-add],[data-room-inc],[data-room-dec],[data-level-del]';
+  var ROOM_SEL='[data-room-add],[data-room-inc],[data-room-dec],[data-level-del],[data-floor-add],[data-row-del]';
   document.addEventListener('mousedown',function(e){
     var t=e.target.closest&&e.target.closest(ROOM_SEL);
     if(!t) return;

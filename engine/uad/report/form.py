@@ -422,10 +422,54 @@ ROLE_USE = {"Sales Comparable": "SalesComparable", "Land Comparable": "LandCompa
 commentary_category = bind.commentary_category
 
 
-def _walk(ctx: Ctx, fid: str):
+_ARC_TARGET = re.compile(r"DATA\s*SOURCE\s*n?\s*,?\s*to\s+([A-Za-z][A-Za-z ]*?[A-Za-z])\s*(?:\bn\b|$)")
+
+
+@lru_cache(maxsize=1024)
+def data_source_target(fid: str) -> str:
+    """What a data-source field's sources are tied to, as B-1 states it: "An
+    arcrole is required for each data source from DATA SOURCE n to PROPERTY
+    UNIT AREA n" (10.009) -> PROPERTY_UNIT_AREA; "... to MARKET TREND"
+    (17.018) -> MARKET_TREND.  Empty when the rule names none."""
+    text = " ".join(st.get("rule", "") for st in field_entry(fid).get("display_rules", []))
+    m = _ARC_TARGET.search(re.sub(r"[_\s]+", " ", text))
+    if not m:
+        return ""
+    words = m.group(1).split()
+    return words[0] if len(words) == 1 else "_".join(w.upper() for w in words)
+
+
+def _linked_sources(ctx: Ctx, b: bind.Binding, target: str):
+    """The DATA_SOURCEs a DATA_SOURCE_IsDataSourceFor_<target> relationship
+    ties to something inside this copy of the section (its unit, its
+    property), and the data points of the field read from each."""
+    X = "{http://www.w3.org/1999/xlink}"
+    scope = ctx.scope if ctx.scope is not None else bind.subject(ctx.root)
+    here = {e.get(f"{X}label") for e in (scope.iter() if scope is not None else ctx.root.iter())
+            if isinstance(e.tag, str) and e.get(f"{X}label")}
+    wanted = [rel.get(f"{X}from") for rel in ctx.root.iter(f"{M}RELATIONSHIP")
+              if rel.get(f"{X}arcrole", "").endswith(f"DATA_SOURCE_IsDataSourceFor_{target}")
+              and rel.get(f"{X}to") in here]
+    by_label = {ds.get(f"{X}label"): ds for ds in ctx.root.iter(f"{M}DATA_SOURCE")}
+    names = [dp.get("mismo") for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")]
+    for label in dict.fromkeys(wanted):
+        ds = by_label.get(label)
+        if ds is None:
+            continue
+        for name in names:
+            for node in ds.iter(f"{M}{name}"):
+                yield name, node
+
+
+def _walk(ctx: Ctx, fid: str, every: bool = False):
     b = binding(fid)
     if b is None:
         return
+    if any("DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", "") for dp in b.data_points):
+        target = data_source_target(fid)
+        if target and target != "PROPERTY":
+            yield from _linked_sources(ctx, b, target)
+            return
     category = commentary_category(fid)
     comment = any(dp.get("mismo") in ("ValuationCommentText", "ValueMarketabilityImpactType")
                   and "VALUATION_COMMENTAR" in dp.get("xpath", "") for dp in b.data_points)
@@ -442,7 +486,7 @@ def _walk(ctx: Ctx, fid: str):
                 if isinstance(node.tag, str) and _local(node) in names and (node.text or "").strip():
                     yield _local(node), node
         return
-    if "-" in fid and ctx.scope is None:
+    if ("-" in fid or every) and (ctx.scope is None or every):
         # An update / completion report's table column (C-3 Itemized List of
         # Repairs): one field ID for the column, one row per block.  A-1's
         # convention -- a field ID per repeat, the ordinal picking the block --
@@ -450,12 +494,25 @@ def _walk(ctx: Ctx, fid: str):
         points = [dp for dp in b.data_points if dp.get("mismo") and not dp.get("attribute")
                   and "PARTIES/PARTY/" not in dp.get("xpath", "")]
         conts = {bind.repeating_container(dp.get("xpath", "")) for dp in points}
+        subject_rows = ("Subject Property" in (_fields().get(fid, {}).get("roles") or [])
+                        and bool(points) and all(bind.PROPERTY_PATH in dp.get("xpath", "") for dp in points))
+        if every and "-" not in fid and ctx.scope is None and not subject_rows:
+            # a table read for the whole report: only the subject's own blocks
+            # are rows of it (a DATA_SOURCE or SALES_TRANSACTION outside the
+            # subject belongs to a comparable or another section)
+            conts = set()
         if len(conts) == 1 and "" not in conts:
             container = conts.pop()
             blocks, seen = [], set()
+            base = ctx.scope if ctx.scope is not None else ctx.root
+            if ctx.scope is None and subject_rows:
+                # the subject's table: a comparable's site influences are its own
+                base = bind.subject(ctx.root)
+                if base is None:
+                    return
             for dp in points:
                 segs = bind._tail(dp.get("xpath", ""))
-                for node in ctx.root.iter(f"{M}{dp['mismo']}"):
+                for node in base.iter(f"{M}{dp['mismo']}"):
                     if segs and not bind._matches(node, segs):
                         continue
                     block = node.getparent()
@@ -503,6 +560,35 @@ def _walk(ctx: Ctx, fid: str):
                 continue
             seen.add(path)
             yield from bind._walk(ctx.root, b, block, 1)
+        if seen:
+            return
+        # The field gathers data points from several kinds of block (Site
+        # Influence Proximity 4.026: an ENVIRONMENTAL_CONDITION's, a
+        # BODY_OF_WATER's, a SITE_INFLUENCE's) and the case holds none of the
+        # principal's: the others are read as any field's are -- the 2-4
+        # sample's "Busy Roadway | Bordering | Adverse" printed blank.
+        # Every block of each other kind is read, so a second influence keeps
+        # its own proximity.
+        taken: list[etree._Element] = []
+        for dp in b.data_points:
+            if dp is principal or not dp.get("mismo") or dp.get("attribute"):
+                continue
+            cont = bind.repeating_container(dp.get("xpath", ""))
+            segs_ = bind._tail(dp.get("xpath", ""))
+            if not cont:
+                continue
+            for node in (base.iter(f"{M}{dp['mismo']}") if base is not None else []):
+                if not bind._matches(node, segs_):
+                    continue
+                block = node.getparent()
+                while block is not None and _local(block) != cont:
+                    block = block.getparent()
+                if block is None or any(block is t or t in block.iterancestors() or block in t.iterancestors()
+                                        for t in taken):
+                    continue
+                taken.append(block)
+                one = bind.Binding(b.field_id, b.section, b.subsection, b.label, [dp])
+                yield from bind._walk(ctx.root, one, block, 1)
         return
     for name, node in bind._walk(ctx.root, b, ctx.scope, 1):
         if comment and name in ("ValuationCommentText", "ValueMarketabilityImpactType"):
@@ -519,13 +605,15 @@ def raw_values(ctx: Ctx, fid: str) -> list[str]:
             if (n.text or "").strip()]
 
 
-def instances(ctx: Ctx, fid: str) -> list[tuple[str, list[tuple[str, str]]]]:
-    """Values grouped by the repeated container each sits in, in document order."""
+def instances(ctx: Ctx, fid: str, every: bool = False) -> list[tuple[str, list[tuple[str, str]]]]:
+    """Values grouped by the repeated container each sits in, in document order.
+    ``every`` reads every block of the field's repeating container (a table
+    whose rows are blocks: the defects), not the ordinal's one."""
     order: list[str] = []
     groups: dict[str, list[tuple[str, str]]] = {}
     # an update / completion report's row identity (report_types.entry)
     only = field_entry(fid).get("instance") if "-" in fid else None
-    for name, node in _walk(ctx, fid):
+    for name, node in _walk(ctx, fid, every):
         text = (node.text or "").strip()
         if not text:
             continue
@@ -854,6 +942,43 @@ class Block:
 LEVEL = {"TXR-B": 0, "TX-B": 0, "TXR": 0, "TXR-I": 1, "TXR-II": 2, "CK1": 0, "CK-1I": 1}
 
 
+_DISPLAY_WHEN = re.compile(r"^\s*display\b[^.]*?\bwhen\b", re.I)
+
+
+def field_rule_hides(ctx: "Ctx", fid: str) -> bool:
+    """A field's B-1 display rule says, against this document, that it does
+    not display: every statement that is a "Display ... when <data point
+    comparison>" decides false, read inside the section copy's scope.  A rule
+    that decides nothing (prose, an unparsed form) never hides anything."""
+    said = []
+    for st in field_entry(fid).get("display_rules", []):
+        text = st.get("rule", "")
+        if not _DISPLAY_WHEN.match(text) or "do not display" in text.lower() or "@" in text:
+            continue                       # an inverse rule, or one on an attribute: not read here
+        # only the condition: B-1 goes on with presentation notes ("- Display
+        # Street Access Type ...", "Note: ...", "(Figure 4 - 4)")
+        text = re.split(r"\s[\u2212\u2013-]\s|\sNote:|\(Figure|\.\s", text)[0]
+        d = rules.evaluate(text, ctx.root, ctx.scope)
+        if not d.known:
+            return False
+        said.append(d.shown)
+    return bool(said) and not any(said)
+
+
+_ZERO_RULE = re.compile(r"\bif\s+(?:the\s+value\s+is\s+)?zero,?\s+do\s+not\s+display", re.I)
+
+
+@lru_cache(maxsize=2048)
+def hides_zero(fid: str) -> bool:
+    """B-1 states it per field: "If zero, do not display the row"."""
+    return any(_ZERO_RULE.search(st.get("rule", "")) for st in field_entry(fid).get("display_rules", []))
+
+
+def _is_zero(text: str) -> bool:
+    m = re.search(r"-?\d[\d,]*(?:\.\d+)?", text or "")
+    return bool(m) and float(m.group(0).replace(",", "")) == 0
+
+
 def _label_fill(label: str, ctx: Ctx) -> str:
     """Resolve the bracketed placeholders C-1 prints in a label."""
     subs = {"[Structure Identifier]": ctx.placeholders.get("structure", ""),
@@ -876,6 +1001,10 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
             return Item("head", style=style, label=label, level=LEVEL.get(style, 0))
         pairs = shown_pairs(ctx, ids[0]) if len(ids) == 1 else []
         values = [t for t, _k in pairs] if len(ids) == 1 else [text_of(ctx, ids)] if text_of(ctx, ids) else []
+        if values and len(ids) == 1 and hides_zero(ids[0]) and all(_is_zero(v) for v in values):
+            values, pairs = [], []        # B-1: "If zero, do not display the row" (10.004, 10.007)
+        if values and not ctx.edit and len(ids) == 1 and field_rule_hides(ctx, ids[0]):
+            values, pairs = [], []        # B-1's own "Display when ..." for the field is false
         if label.startswith("Total Estimated Cost of Items") and cost_to_repair_type(ctx) != "TotalCost":
             values = []
         item = Item("row", style=style, label=label, values=values,
@@ -887,6 +1016,8 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
         return Item("head", style=style, label=label, level=LEVEL.get(style, 0))
     if kind == "check":
         value = checkbox(ctx, ids[0], label) if ids else None
+        if not ctx.edit and ids and field_rule_hides(ctx, ids[0]):
+            value = None          # B-1's own rule for the field says it does not display
         return Item("check", style=style, label=label, checked=value,
                     yes_no=el.get("yes_no", False), level=LEVEL.get(style, 0),
                     visible=value is not None or (ctx.edit and bool(ids)),
@@ -1630,7 +1761,7 @@ AGENCIES = {"FHA": ("FHA", "Mortgagee", "HUD"), "USDA": ("USDA",), "VA": ("VA",)
 def _agency_ok(ctx: Ctx, text: str) -> bool:
     got = {v for v in rules.values_of(ctx.root, "GovernmentAgencyAppraisalType")}
     for agency, words in AGENCIES.items():
-        if any(re.search(rf"{w}", text) for w in words):
+        if any(re.search(rf"\b{w}\b", text) for w in words):
             return agency in got
     return True
 
@@ -1951,8 +2082,13 @@ def _label_blocks(ctx: Ctx, fid: str, label: str) -> list[etree._Element] | None
 
 
 def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
-    if any(LEVEL_ID in c.get("ids", []) for row in el["rows"] for c in row.get("cells", [])):
+    ids = {i for row in el["rows"] for c in row.get("cells", []) for i in c.get("ids", [])}
+    if LEVEL_ID in ids:
         return _levels_table_html(el, ctx)
+    if KB_ROOM_ID in ids:
+        return _kitchen_bath_table_html(el, ctx)
+    if FEATURE_ID in ids:
+        return _interior_features_table_html(el, ctx)
     if ctx.edit and ctx.placeholders.get("base") == "Summary":
         # B-1 ch. 01: the Summary redisplays -- its tables are read-only too
         ctx = Ctx(ctx.root, ctx.scope, ctx.folder, ctx.media, ctx.placeholders, False,
@@ -1970,9 +2106,12 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     category = ctx.placeholders.get("section", "")
     claimed: set[str] = set()
 
-    for row in el["rows"]:
+    rows_in = el["rows"]
+    if ctx.scope is None and any("Recommended Action" in c.get("head", "") for c in cols):
+        rows_in = _defect_groups(rows_in, ctx)
+    for row in rows_in:
         if row.get("bar"):
-            text = _label_fill(row.get("text", ""), ctx)
+            text = row.get("_title") or _label_fill(row.get("text", ""), ctx)
             if row.get("align") == "right" and row.get("ids"):
                 total = text_of(ctx, row["ids"])
                 # A Total is a plain Amount data point like any line item
@@ -2127,12 +2266,23 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                                              for t in texts) + "</tr>")
             continue
         # a template row: one line per instance in the case
+        outer, ctx = ctx, row.get("_ctx") or ctx
         per_col: list[list[tuple[str, list]]] = []
         keys: list[str] = []
+        # A defect is kept at property level (PROPERTY_DEFECT) and tied to the
+        # unit, dwelling or amenity it is in by an arcrole; inside a section
+        # copy scoped to one unit the rows are read for the property and then
+        # kept to this unit's by _defect_ok (Condo1 / SF1 Unit Interior).
+        read = ctx
+        if (any("Recommended Action" in c.get("head", "") for c in cols) and ctx.scope is not None
+                and _local(ctx.scope) != "PROPERTY"):
+            prop = next((a for a in ctx.scope.iterancestors() if _local(a) == "PROPERTY"), None)
+            if prop is not None:
+                read = ctx.inside(prop)
         for c in cells:
             groups = []
             for fid in c["ids"]:
-                groups += instances(ctx, fid)
+                groups += instances(read, fid, every=True)
             per_col.append(groups)
             for k, _g in groups:
                 if k not in keys:
@@ -2162,27 +2312,39 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                     body.append(pending_bar)
                     pending_bar = None
                 body += rows_html
+            ctx = outer
             continue
         rows_html = []
+        order_by: list[tuple] = []
         for key in keys:
             line = []
             has = False
+            shown_cells: list[str] = []
             for c, groups in zip(cells, per_col):
                 parts = [g for k, g in groups if k == key]
                 texts = []
                 for fid in c["ids"]:
                     b = binding(fid)
-                    for k, g in instances(ctx, fid):
+                    for k, g in instances(read, fid, every=True):
                         if k == key and b is not None:
                             t = bind.display_value(g, b)
                             if t and t not in texts:
                                 texts.append(t)
                 v = " | ".join(texts)
                 has = has or bool(v)
+                shown_cells.append(v.casefold())
                 line.append(_cell(esc(v), c["ids"][0], ctx, key=key) if (ctx.edit and c["ids"])
                             else _td(esc(v)))
             if has:
                 rows_html.append("<tr>" + "".join(line) + "</tr>")
+                order_by.append(tuple(shown_cells[:2]))
+        if ddd and not ctx.edit and len(rows_html) > 1:
+            # every D-1 sample lists defects by Feature, then Location (2-4:
+            # Appliances/Kitchen, Cabinetry/Full Bathroom, Cabinetry/Kitchen,
+            # Doors, Walls and Ceiling -- not the XML's order); B-1 states no
+            # order, so this follows the samples.  The editor keeps the case's
+            # own order, so a row does not jump while it is typed into.
+            rows_html = [h for _o, h in sorted(zip(order_by, rows_html), key=lambda p: p[0])]
         if rows_html:
             any_data = True
         if ctx.edit and any(c["ids"] and _repeats(c["ids"][0]) for c in cells):
@@ -2195,6 +2357,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 body.append(pending_bar)
                 pending_bar = None
             body += rows_html
+        ctx = outer
     if not any_data:
         if any("Recommended Action" in c.get("head", "") for c in cols) and _no_defects(ctx, el):
             if not ctx.edit:
@@ -2207,6 +2370,75 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     cls = "tbl" + ("" if has_head else " nohead")
     return (f"<table class='{cls}' style='width:{width:.2f}pt'><colgroup>{colgroup}</colgroup>"
             f"{head}<tbody>{''.join(body)}</tbody></table>"), True
+
+
+def _defect_groups(rows: list[dict], ctx: Ctx) -> list[dict]:
+    """The Summary / Reconciliation defect table, one group per structure.
+
+    B-1 (Reconciliation p377): "Display sections within the table in the
+    following order -- Site; Dwelling Exterior (all defects for each
+    dwelling), Unit Interior (repeat for each living unit, with defects, in
+    Dwelling); Outbuilding (each), Unit Interior (each ADU in it); Vehicle
+    Storage; Subject Property Amenities".  C-1 draws one bar per kind with
+    [Structure Identifier] / [Unit Identifier] in it; the D-1 2-4 sample
+    prints "Dwelling Exterior - Building 1", its "Unit Interior - Building 1 -
+    Unit 1", then Building 2 and its unit -- the titles the sections
+    themselves carry (section_instances).  Each group's rows are read inside
+    that structure or unit, so _defect_ok keeps each defect to its own."""
+    pairs: list[tuple[dict, list[dict]]] = []
+    for row in rows:
+        if row.get("bar") and not (row.get("align") == "right" and row.get("ids")):
+            pairs.append((row, []))
+        elif pairs:
+            pairs[-1][1].append(row)
+        else:
+            pairs.append(({}, [row]))
+    if not any("[" in (bar.get("text") or "") for bar, _ in pairs):
+        return rows
+
+    def kind(bar: dict) -> str:
+        return (bar.get("text") or "").split(" - ")[0].strip()
+
+    units = section_instances(ctx, "Unit Interior")
+    unit_ctx = [(c, t) for c, t in units if c.scope is not None]
+
+    def owner(c: Ctx):
+        return next((a for a in c.scope.iterancestors(f"{M}IMPROVEMENT")), None)
+
+    def group(bar: dict, body: list[dict], c: Ctx, title: str) -> list[dict]:
+        return [dict(bar, _title=title, _ctx=c)] + [dict(r, _ctx=c) for r in body]
+
+    out: list[dict] = []
+    done: set[int] = set()
+    for n, (bar, body) in enumerate(pairs):
+        if n in done:
+            continue
+        k = kind(bar)
+        if k in ("Dwelling Exterior", "Outbuilding"):
+            # each structure, then the units inside it
+            inner = next((m for m, (b2, _) in enumerate(pairs) if m > n and kind(b2) == "Unit Interior"
+                          and m not in done), None)
+            if inner is not None:
+                done.add(inner)
+            for c, title in section_instances(ctx, k):
+                if c.scope is None:
+                    continue
+                out += group(bar, body, c, title)
+                if inner is not None:
+                    b2, body2 = pairs[inner]
+                    for uc, ut in unit_ctx:
+                        if owner(uc) is c.scope:
+                            out += group(b2, body2, uc, ut)
+            continue
+        if k == "Unit Interior":
+            for uc, ut in unit_ctx:
+                imp = owner(uc)
+                if (imp is not None and _find_text(imp, "ImprovementType") == "Outbuilding") \
+                        == ("[Outbuilding Type]" in (bar.get("text") or "")):
+                    out += group(bar, body, uc, ut)
+            continue
+        out += ([bar] if bar else []) + body
+    return out
 
 
 # Appendix B-1, 10 Unit Interior, "Level and Room Detail" (p195):
@@ -2385,6 +2617,155 @@ def _levels_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     head = "<thead><tr>" + "".join(f"<th><span>{esc(c.get('head', ''))}</span></th>" for c in cols) + "</tr></thead>"
     return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
             f"{head}<tbody>{''.join(body)}</tbody></table>"), bool(levels)
+
+
+KB_ROOM_ID, KB_UPDATE_ID, KB_TIME_ID, KB_QUALITY_ID, KB_COND_ID, KB_COMMENT_ID = (
+    "10.037", "10.038", "10.039", "10.040", "10.041", "10.042")
+FEATURE_ID, FEATURE_DETAIL_ID, FEATURE_QUALITY_ID, FEATURE_COND_ID, FEATURE_COMMENT_ID = (
+    "10.044", "10.045", "10.046", "10.047", "10.048")
+#: B-1 p199: "Kitchen always displays first ... Bath - Full and Bath - Half
+#: ... display after Kitchen(s)"
+KB_ORDER = {"Kitchen": 0, "FullBathroom": 1, "HalfBathroom": 2}
+UPDATED = ("FullyUpdated", "PartiallyUpdated")      # B-1 10.039: Time Frame shows for these
+
+
+def _unit(ctx: Ctx) -> "etree._Element | None":
+    """The living unit a Unit Interior copy stands for."""
+    if ctx.scope is not None and _local(ctx.scope) == "PROPERTY_UNIT":
+        return ctx.scope
+    node = ctx.scope
+    while node is not None and _local(node) != "PROPERTY_UNIT":
+        node = node.getparent()
+    if node is not None:
+        return node
+    subject = bind.subject(ctx.root)
+    return subject.find(f".//{M}PROPERTY_UNIT") if subject is not None else None
+
+
+def _colgroup(el: dict) -> tuple[str, str]:
+    cols = el["columns"]
+    colgroup = "".join(f"<col style='width:{(c['x1'] - c['x0']):.2f}pt'>" for c in cols)
+    head = "<thead><tr>" + "".join(f"<th><span>{esc(c.get('head', ''))}</span></th>" for c in cols) + "</tr></thead>"
+    return colgroup, head
+
+
+def _kitchen_bath_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    """B-1 10.037-10.042: a row for each kitchen and bath of the unit, kitchens
+    first, the level under the room's name; Time Frame only when the room was
+    updated.  The rooms themselves are added in Level and Room Detail."""
+    unit = _unit(ctx)
+    tree = ctx.root.getroottree()
+    rooms = []
+    for room in (unit.findall(f"{M}ROOMS/{M}ROOM") if unit is not None else []):
+        kind = (room.findtext(f"{M}ROOM_DETAIL/{M}RoomType") or "").strip()
+        if kind in KB_ORDER:
+            rooms.append((KB_ORDER[kind], len(rooms), room))
+    rooms.sort(key=lambda r: (r[0], r[1]))
+    body = []
+    for _rank, _n, room in rooms:
+        d = room.find(f"{M}ROOM_DETAIL")
+        key = tree.getpath(room)
+        name = _shown_point(KB_ROOM_ID, "RoomType", d.find(f"{M}RoomType"))
+        level = _shown_point(LEVEL_ID, "LevelType", d.find(f"{M}LevelType"))
+        room_td = f"<td class='lines'><span>{esc(name)}</span>" + (
+            f"<br><span>{esc(level)}</span>" if level else "") + "</td>"
+        update = d.findtext(f"{M}RoomUpdateStatusType", "").strip()
+        cells = []
+        for fid, point, shows in ((KB_UPDATE_ID, "RoomUpdateStatusType", True),
+                                  (KB_TIME_ID, "RoomUpdatedTimeframeType", update in UPDATED),
+                                  (KB_QUALITY_ID, "RoomQualityDescription", True),
+                                  (KB_COND_ID, "RoomConditionStatusType", True),
+                                  (KB_COMMENT_ID, "RoomConditionAdditionalDescription", True)):
+            text = _shown_point(fid, point, d.find(f"{M}{point}")) if shows else ""
+            cells.append(_cell(esc(text), fid, ctx, key=key, point=point) if ctx.edit and (shows or fid == KB_TIME_ID)
+                         else _td(esc(text)))
+        body.append("<tr>" + room_td + "".join(cells) + "</tr>")
+    if ctx.edit and not rooms:
+        body.append(f"<tr class='hint'><td colspan='{len(el['columns'])}'><span class='hintx'>"
+                    "Kitchens and baths are added with “+ Add room” in Level and Room Detail.</span></td></tr>")
+    if not rooms and not ctx.edit:
+        return "", False
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), bool(rooms) or ctx.edit
+
+
+def _interior_features_table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
+    """B-1 10.044-10.048: a row for each flooring type (Flooring named on the
+    first), then Walls and Ceiling -- heights then styles, "|"-separated --
+    then any Other feature."""
+    unit = _unit(ctx)
+    tree = ctx.root.getroottree()
+    comps = unit.findall(f"{M}INTERIOR_COMPONENTS/{M}INTERIOR_COMPONENT") if unit is not None else []
+
+    def ctype(c):
+        return (c.findtext(f"{M}INTERIOR_COMPONENT_DETAIL/{M}ImprovementComponentType") or "").strip()
+    order = {"Flooring": 0, "WallsAndCeiling": 1}
+    comps = sorted(comps, key=lambda c: order.get(ctype(c), 2))
+    body, any_row = [], False
+
+    def tail(node_key: str, holder, names) -> list[str]:
+        out = []
+        for fid, point in zip((FEATURE_QUALITY_ID, FEATURE_COND_ID, FEATURE_COMMENT_ID), names):
+            node = holder.find(f"{M}{point}") if holder is not None else None
+            text = _shown_point(fid, point, node)
+            out.append(_cell(esc(text), fid, ctx, key=node_key, point=point) if ctx.edit else _td(esc(text)))
+        return out
+    names = ("ImprovementComponentQualityDescription", "ImprovementComponentConditionStatusType",
+             "ImprovementComponentConditionDescription")
+    for comp in comps:
+        kind = ctype(comp)
+        detail = comp.find(f"{M}INTERIOR_COMPONENT_DETAIL")
+        if kind == "Flooring":
+            label = _shown_point(FEATURE_ID, "ImprovementComponentType", detail.find(f"{M}ImprovementComponentType"))
+            coverings = comp.findall(f"{M}FLOOR_COVERINGS/{M}FLOOR_COVERING")
+            for n, fc in enumerate(coverings):
+                key = tree.getpath(fc)
+                ftype = (fc.findtext(f"{M}FlooringType") or "").strip()
+                shown_ = (fc.findtext(f"{M}FlooringTypeOtherDescription") or "").strip() if ftype == "Other" else \
+                    _shown_point(FEATURE_DETAIL_ID, "FlooringType", fc.find(f"{M}FlooringType"))
+                detail_td = (_cell(esc(shown_), FEATURE_DETAIL_ID, ctx, key=key, point="FlooringType")
+                             if ctx.edit and ftype != "Other" else _td(esc(shown_)))
+                if ctx.edit:
+                    detail_td = detail_td.replace(
+                        "</td>", f"<span class='lvdel' role='button' tabindex='0' data-row-del='FLOOR_COVERING'"
+                                 f" data-key='{esc(key)}' title='Remove this flooring'>&times;</span></td>", 1)
+                body.append("<tr>" + _td(esc(label) if n == 0 else "") + detail_td
+                            + "".join(tail(key, fc, names)) + "</tr>")
+                any_row = True
+            if ctx.edit:
+                body.append(f"<tr class='newrow'>{_td(esc(label) if not coverings else '')}"
+                            f"<td colspan='{len(el['columns']) - 1}'><span class='rmadd' role='button' tabindex='0'"
+                            f" data-floor-add data-unit='{esc(tree.getpath(unit))}'>+ Add flooring</span></td></tr>")
+        elif kind == "WallsAndCeiling":
+            heights = [_shown_point(FEATURE_DETAIL_ID, "ApproximateCeilingHeightType", h)
+                       for h in comp.iter(f"{M}ApproximateCeilingHeightType")]
+            styles = []
+            for st in comp.iter(f"{M}CEILING_STYLE"):
+                v = (st.findtext(f"{M}CeilingStyleType") or "").strip()
+                styles.append((st.findtext(f"{M}CeilingStyleTypeOtherDescription") or "").strip() if v == "Other"
+                              else _shown_point(FEATURE_DETAIL_ID, "CeilingStyleType", st.find(f"{M}CeilingStyleType")))
+            label = _shown_point(FEATURE_ID, "ImprovementComponentType", detail.find(f"{M}ImprovementComponentType"))
+            key = tree.getpath(comp)
+            body.append("<tr>" + _td(esc(label)) + _td(esc(" | ".join(x for x in heights + styles if x)))
+                        + "".join(tail(key, detail, names)) + "</tr>")
+            any_row = True
+        elif kind:
+            label = (detail.findtext(f"{M}ImprovementComponentTypeOtherDescription") or "").strip() or \
+                _shown_point(FEATURE_ID, "ImprovementComponentType", detail.find(f"{M}ImprovementComponentType"))
+            more = (detail.findtext(f"{M}ImprovementComponentTypeAdditionalDescription") or "").strip()
+            key = tree.getpath(comp)
+            body.append("<tr>" + _td(esc(label)) + _td(esc(more)) + "".join(tail(key, detail, names)) + "</tr>")
+            any_row = True
+    if ctx.edit and unit is not None and not any(ctype(c) == "Flooring" for c in comps):
+        body.insert(0, f"<tr class='newrow'>{_td('Flooring')}<td colspan='{len(el['columns']) - 1}'>"
+                       f"<span class='rmadd' role='button' tabindex='0' data-floor-add"
+                       f" data-unit='{esc(tree.getpath(unit))}'>+ Add flooring</span></td></tr>")
+    if not any_row and not ctx.edit:
+        return "", False
+    colgroup, head = _colgroup(el)
+    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+            f"{head}<tbody>{''.join(body)}</tbody></table>"), any_row or ctx.edit
 
 
 DEFECT_TARGETS = {"Site": None, "Dwelling Exterior": "IMPROVEMENT",
@@ -2723,6 +3104,61 @@ def media_category(m: dict) -> str:
     return ""
 
 
+@lru_cache(maxsize=4096)
+def enum_label(mismo: str, value: str) -> str:
+    """What A-1 prints for an enumerated value (its display text)."""
+    if not value:
+        return ""
+    for entry in _fields().values():
+        for dp in entry.get("data_points") or []:
+            if dp.get("mismo") != mismo:
+                continue
+            for e in dp.get("enumerations") or []:
+                if e.get("value") == value:
+                    return bind.answer_label(value, e.get("display") or value)
+    return bind.answer_label(value, bind._humanise(value))
+
+
+DEFECT_LEAD = "Apparent Defects, Damages, Deficiencies"
+
+
+def _owner_title(img: "etree._Element") -> str:
+    """The bold heading B-1 puts over a photo, from the block it is in."""
+    owner = next((a for a in img.iterancestors()
+                  if _local(a) in ("ROOM", "INTERIOR_COMPONENT", "DEFECT", "CAR_STORAGE", "AMENITY")), None)
+    if owner is None:
+        return ""
+    kind = _local(owner)
+
+    def val(path: str) -> str:
+        return (owner.findtext(path) or "").strip()
+    if kind == "ROOM":
+        room = val(f"{M}ROOM_DETAIL/{M}RoomType")
+        name = val(f"{M}ROOM_DETAIL/{M}RoomTypeOtherDescription") if room == "Other" else enum_label("RoomType", room)
+        level = enum_label("LevelType", val(f"{M}ROOM_DETAIL/{M}LevelType"))
+        return " - ".join(x for x in (level, name) if x)
+    if kind == "INTERIOR_COMPONENT":
+        t = val(f"{M}INTERIOR_COMPONENT_DETAIL/{M}ImprovementComponentType")
+        return (val(f"{M}INTERIOR_COMPONENT_DETAIL/{M}ImprovementComponentTypeOtherDescription") if t == "Other"
+                else enum_label("ImprovementComponentType", t))
+    if kind == "DEFECT":
+        t = val(f".//{M}DefectComponentLabelType")
+        feature = (val(f".//{M}DefectComponentLabelTypeOtherDescription") if t == "Other"
+                   else enum_label("DefectComponentLabelType", t))
+        # a vehicle storage's or an amenity's defect is titled by its type
+        holder = next((a for a in owner.iterancestors() if _local(a) in ("CAR_STORAGE", "AMENITY")), None)
+        if holder is not None:
+            name = "CarStorageType" if _local(holder) == "CAR_STORAGE" else "AmenityType"
+            feature = enum_label(name, (holder.findtext(f".//{M}{name}") or "").strip()) or feature
+        return f"{DEFECT_LEAD} - {feature}" if feature else DEFECT_LEAD
+    if kind == "CAR_STORAGE":
+        return enum_label("CarStorageType", val(f".//{M}CarStorageType"))
+    if kind == "AMENITY":
+        t = val(f".//{M}AmenityType")
+        return val(f".//{M}AmenityTypeOtherDescription") if t == "Other" else enum_label("AmenityType", t)
+    return ""
+
+
 def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     cats = image_categories()
     out = []
@@ -2749,6 +3185,12 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             if not tree.getpath(im["node"]).startswith(tree.getpath(ctx.scope) + "/"):
                 continue
         title = im["caption"] or caption
+        lead = _owner_title(im["node"])
+        if lead:
+            # B-1 (10.033, 10.044.1, 10.056, 12.020.1, 13.001.1, 14.002.1 ...):
+            # what the photo is of, in bold, then its own caption
+            title = " - ".join(x for x in (lead, im["caption"]) if x)
+            caption = title
         src = _data_uri(im["path"])
         fill = filled.get(im["location"]) if im["location"] else None
         if fill is not None:
@@ -3686,6 +4128,7 @@ td.rooms .rm > span:first-child{{flex:1}}
 .rmadd{{display:inline-block;margin-top:2pt;font-size:7.5pt;font-weight:700;border:0.5pt solid #231f20;border-radius:2pt;
   padding:0 4pt;cursor:pointer;user-select:none}}
 .rmadd:hover{{background:#e6e7e8}}
+tr.hint td .hintx{{font-style:italic;color:#6d6e71;font-size:8pt}}
 .sg{{display:flex;justify-content:space-between;padding:4pt 0 6pt 4pt}}
 .sgl{{width:250pt}}.sgrt{{width:264pt}}
 .sgrole{{font-weight:700;line-height:11pt}}

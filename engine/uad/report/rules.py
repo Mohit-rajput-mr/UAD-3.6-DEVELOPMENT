@@ -36,8 +36,8 @@ ALWAYS = re.compile(r"^\s*always\s+displays?\b", re.I)
 ASIDE = re.compile(r"\((?:UID|FID)[^)]*\)")
 OTHER_THAN = re.compile(r"\bis\s+(?:a\s+value\s+)?other\s+than\b", re.I)
 CLAUSE = re.compile(
-    r"(?P<name>[A-Za-z][\w.]*)\s*(?P<op>=|<>|!=|\bIs\s+Present\b|\bExists\b|\bIs\s+Not\s+Present\b)"
-    r"\s*(?P<values>(?:\"[^\"]*\"(?:\s+OR\s+)?)*)", re.I)
+    r"(?P<name>[A-Za-z][\w.]*)\s*(?P<op>>=|<=|=|<>|!=|>|<|\bIs\s+Present\b|\bExists\b|\bIs\s+Not\s+Present\b)"
+    r"\s*(?P<values>\d+(?:\.\d+)?\b|(?:\"[^\"]*\"(?:\s+OR\s+)?)*)", re.I)
 UNKNOWN = object()
 
 
@@ -171,6 +171,16 @@ def _clause(root, scope, name: str, op: str, values: list[str]) -> bool:
         return any(v in values for v in got)
     if op in ("<>", "!="):
         return bool(got) and all(v not in values for v in got)
+    if op in (">", "<", ">=", "<=") and values:
+        # "AccessoryDwellingUnitTotalCount > 0" (B-1 10.011): numbers compared
+        try:
+            bound = float(values[0])
+            nums = [float(v) for v in got]
+        except ValueError:
+            return False
+        test = {">": lambda a: a > bound, "<": lambda a: a < bound,
+                ">=": lambda a: a >= bound, "<=": lambda a: a <= bound}[op]
+        return any(test(n) for n in nums)
     return False
 
 
@@ -199,7 +209,8 @@ def evaluate(rule: str, root: etree._Element,
         between = body[last:m.start()]
         for word in re.findall(r"\bAND\b|\bOR\b|\(|\)", between, re.I):
             tokens.append(word.upper() if word.isalpha() else word)
-        values = re.findall(r"\"([^\"]*)\"", m.group("values") or "")
+        raw = m.group("values") or ""
+        values = re.findall(r"\"([^\"]*)\"", raw) or ([raw.strip()] if re.match(r"^\d", raw.strip()) else [])
         tokens.append("1" if _clause(root, scope, m.group("name"), m.group("op"), values) else "0")
         last = m.end()
     for word in re.findall(r"\bAND\b|\bOR\b|\(|\)", body[last:], re.I):

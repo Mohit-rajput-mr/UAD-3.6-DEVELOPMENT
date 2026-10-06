@@ -162,3 +162,83 @@ def room_types() -> list[tuple[str, str]]:
     """The room types A-1 allows on a level (10.033), as (value, shown)."""
     from .report import form
     return list(form.choices_for("10.033"))
+
+
+# ---------------------------------------------------------------- flooring
+# B-1 10.044-10.049: Interior Features has a row for each flooring type in the
+# unit ("When there are multiple types of flooring in the unit, each flooring
+# type displays on a separate row"), each a FLOOR_COVERING inside the unit's
+# INTERIOR_COMPONENT whose ImprovementComponentType is "Flooring".
+def flooring_component(unit: etree._Element, *, create: bool = False) -> etree._Element | None:
+    for comp in unit.findall(f"{M}INTERIOR_COMPONENTS/{M}INTERIOR_COMPONENT"):
+        if (comp.findtext(f"{M}INTERIOR_COMPONENT_DETAIL/{M}ImprovementComponentType") or "").strip() == "Flooring":
+            return comp
+    if not create:
+        return None
+    holder = unit.find(f"{M}INTERIOR_COMPONENTS")
+    if holder is None:
+        holder = edit.insert_ordered(unit, "INTERIOR_COMPONENTS")
+    comp = etree.SubElement(holder, f"{M}INTERIOR_COMPONENT")
+    detail = edit.insert_ordered(comp, "INTERIOR_COMPONENT_DETAIL")
+    edit.insert_ordered(detail, "ImprovementComponentType").text = "Flooring"
+    return comp
+
+
+def add_flooring(unit: etree._Element, flooring_type: str, other: str = "") -> etree._Element:
+    if not flooring_type:
+        raise ValueError("choose a flooring type")
+    if flooring_type == "Other" and not other.strip():
+        raise ValueError("describe the flooring: with Other, only the description prints")
+    comp = flooring_component(unit, create=True)
+    holder = comp.find(f"{M}FLOOR_COVERINGS")
+    if holder is None:
+        holder = edit.insert_ordered(comp, "FLOOR_COVERINGS")
+    for fc in holder.findall(f"{M}FLOOR_COVERING"):
+        same = (fc.findtext(f"{M}FlooringType") or "").strip() == flooring_type and (
+            flooring_type != "Other"
+            or (fc.findtext(f"{M}FlooringTypeOtherDescription") or "").strip().casefold() == other.strip().casefold())
+        if same:
+            raise ValueError("that flooring is already listed for this unit")
+    fc = etree.SubElement(holder, f"{M}FLOOR_COVERING")
+    edit.insert_ordered(fc, "FlooringType").text = flooring_type
+    if flooring_type == "Other":
+        edit.insert_ordered(fc, "FlooringTypeOtherDescription").text = other.strip()
+    return fc
+
+
+def remove_block(root: etree._Element, key: str, tag: str) -> None:
+    """Remove one repeated block (a FLOOR_COVERING row) and any holder it
+    leaves empty."""
+    node = bind.find_path(root, key)
+    if node is None:
+        try:
+            hit = root.getroottree().xpath(key)
+            node = hit[0] if hit else None
+        except etree.XPathError:
+            node = None
+    while node is not None and _local(node) != tag:
+        node = node.getparent()
+    if node is None:
+        raise KeyError("that row is no longer in the report; reload it")
+    holder = node.getparent()
+    holder.remove(node)
+    if not len(holder):
+        holder.getparent().remove(holder)
+
+
+def unit_at(root: etree._Element, key: str) -> etree._Element:
+    node = bind.find_path(root, key) if key else None
+    if node is None and key:
+        try:
+            hit = root.getroottree().xpath(key)
+            node = hit[0] if hit else None
+        except etree.XPathError:
+            node = None
+    while node is not None and _local(node) != "PROPERTY_UNIT":
+        node = node.getparent()
+    if node is None:
+        subject = bind.subject(root)
+        node = subject.find(f".//{M}PROPERTY_UNIT") if subject is not None else None
+    if node is None:
+        raise KeyError("the report has no living unit yet")
+    return node

@@ -209,6 +209,20 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-06 -- tables read every block; Site and Reconciliation fidelity (E-102..E-111)
+- K&B / Interior Features / levels drawers; "+ Add flooring" and row delete; arcrole data
+  sources written with their link (`uad/sources.py`); unit defects read at property level.
+- Two regexes held a raw backspace byte instead of `\b` (commentary categories, agency gate):
+  Site Influence / View / Water Frontage / Sketch commentary now print.
+- Template-row tables read every block of the subject; Site Influence proximity / impact print.
+- Summary / Reconciliation defects grouped per structure and unit (B-1 p377), rows by Feature
+  then Location; matches the official 2-4, SF1, Condo1, MH1 PDFs. Corner Unit prints "No".
+- Evidence: tests/test_site_and_defects.py (8), test_rooms.py (23); suite only the 3 known
+  failures; harness 87/0/21. Scorecard (scratchpad tool) missing 5364 -> ~5190.
+- Next: scorecard-driven fidelity (Summary 763 missing, Market 293, Dwelling Exterior 253,
+  Outbuilding 208, Amenities 193, Rental 188), then the 171 unexecuted H-1 rules (T-1034).
+
+
 **Restricted Appraisal Update and Completion Report — live in the editor
 (2026-10-05, E-089..E-097, T-1036).** A case's kind is its own `DocumentType`
 (ValuationUpdate / ValuationCompletion); `Case.to_json()["kind"]` mirrors it

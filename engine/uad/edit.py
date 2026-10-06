@@ -334,6 +334,16 @@ def write(tree, field_id: str, value: str, *, data_point: str = "",
             and any("LowRange" in d["mismo"] for d in days)):
         return _write_days(tree, field_id, value, binding, days, ordinal, scope)
     dp = choose_data_point(binding, data_point)
+    if "DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", ""):
+        # a source tied by arcrole to what it sources (Area Data Source to the
+        # unit's area, 10.009): written with its link (uad/sources.py)
+        from .report import form as _form
+        target = _form.data_source_target(field_id)
+        if target and target != "PROPERTY":
+            from . import sources
+            old, new = sources.write(root, target, dp["mismo"], value.strip(), scope)
+            return Written(field_id=field_id, data_point=dp["mismo"], path=dp.get("xpath", ""),
+                           old=old, new=new, created=[])
     if not data_point:
         # One data point, several parties it may belong to (the AMC fee: the
         # client's, or a non-client lender/AMC's): the party the document has.

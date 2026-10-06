@@ -959,6 +959,35 @@ def remove_level(case_id: str, request: Request, level: str = Query(...)) -> dic
     return _rooms_change(case_id, request, fn, "level removed")
 
 
+@router.post("/cases/{case_id}/flooring")
+def add_flooring(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Another flooring type in a unit's Interior Features (B-1 10.045: one row
+    per flooring type)."""
+    _case_or_404(case_id)
+    unit_key, kind, other = str(body.get("unit") or ""), str(body.get("type") or ""), str(body.get("other") or "")
+
+    def fn(root, rooms):
+        rooms.add_flooring(rooms.unit_at(root, unit_key), kind, other)
+        return {}
+    return _rooms_change(case_id, request, fn, f"flooring added: {other or kind}")
+
+
+#: repeated rows the editor may remove whole, by their own x
+REMOVABLE_ROWS = {"FLOOR_COVERING"}
+
+
+@router.delete("/cases/{case_id}/rows")
+def remove_row(case_id: str, request: Request, key: str = Query(...), tag: str = Query(...)) -> dict:
+    _case_or_404(case_id)
+    if tag not in REMOVABLE_ROWS:
+        raise HTTPException(400, f"{tag} rows are not removed this way")
+
+    def fn(root, rooms):
+        rooms.remove_block(root, key, tag)
+        return {}
+    return _rooms_change(case_id, request, fn, f"{tag.lower()} row removed")
+
+
 @router.get("/cases/{case_id}/structure")
 def get_structure(case_id: str) -> dict:
     """Dwellings with their units, outbuildings, and the counts read from them."""

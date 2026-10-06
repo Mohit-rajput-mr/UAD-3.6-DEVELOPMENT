@@ -1399,3 +1399,79 @@ test, not in a case script.
   asks its description), x on a level. Tests: tests/test_rooms.py (7) and a
   Chromium click-through (Bedroom added on Level 2 -> Total Bedrooms 5 -> 6).
 
+
+### E-102 Kitchen/bath and Interior Features tables read only the first block
+- The K&B table (10.034-10.043) printed one row and the Wet Bar amenity; the
+  Interior Features table (10.044-10.049) printed one flooring. B-1: "each
+  flooring type displays on a separate row"; K&B rows are each Kitchen /
+  Full / Half bath ROOM, Time Frame only when Fully/Partially Updated.
+- Fix: dedicated drawers in form.py (`_kitchen_bath_table_html`,
+  `_interior_features_table_html`) that walk every block (`_walk(every=True)`,
+  `instances(..., every=True)`); editor "+ Add flooring" and x per floor row
+  (`rooms.add_flooring`, `/flooring`, `DELETE /rows`). Test: test_rooms.py.
+
+### E-103 A typed Area Data Source vanished
+- A-1 ties DATA_SOURCE to its target by a DATA_SOURCE_IsDataSourceFor_<T>
+  relationship; the reader took the first DATA_SOURCE, the writer wrote one
+  with no link, so it read back as nothing on any unit the template had not
+  pre-linked. Fix: `form.data_source_target` reads the target from B-1's rule
+  text; `uad/sources.py` writes / removes the source and its link;
+  `edit.write` routes such fields there. Test: test_rooms.py (data source).
+
+### E-104 Unit interior defects missing (SF1, Condo1, 2-4 per unit)
+- Defect tables in the template-row path were read inside the unit scope,
+  first block only. Fix: read at PROPERTY level, every DEFECT, filtered by
+  its DEFECT_ContainsDefectOf_* link.
+
+### E-105 Zero rows, numeric rules and per-field "Display when" rules
+- `_is_zero` failed on "Sq. Ft." values; numeric comparators in B-1 rules
+  (`>`, `<`, `>=`, `<=`) were not parsed (the empty-match alternative came
+  first). `field_rule_hides` now applies a field's own display rule to check
+  and row items in print view, skipping inverse "do not display" rules and
+  "@attribute" conditions and truncating trailing notes (" - ", "Note:",
+  "(Figure", ". "). Validated: across the 12 D-1 samples it hides only 3.007
+  where the official PDFs omit it.
+
+### E-106 Exhibit captions named the photo, not what it shows
+- B-1: an exhibit's title comes from its owning block (ROOM, INTERIOR_COMPONENT,
+  DEFECT, CAR_STORAGE, AMENITY). Fix: `form._owner_title` + `enum_label`.
+
+### E-107 Two regexes held literal backspace characters instead of \b
+- `bind.commentary_categories` and `form._agency_ok` were written with a
+  raw 0x08 byte where `\b` was meant, so neither ever matched: Site
+  Influence / View / Water Frontage / Project Factors / Sketch commentary
+  had no category (never printed), and the FHA/USDA/VA certification gate
+  was a no-op. Fix: `\b` restored; B-1's misspelt category
+  "EnergyEfficiencyAndGreenFeatures" mended to A-1's enumeration.
+  Lesson: grep the tree for control bytes (`grep -rlP "\x08" --include=*.py`).
+  Test: tests/test_site_and_defects.py.
+
+### E-108 Site Influence Proximity / Impact printed blank
+- 4.026 / 4.028 gather data points from ENVIRONMENTAL_CONDITION,
+  BODY_OF_WATER and SITE_INFLUENCE; the list reader only looked for the
+  first (principal) one. Fix: when the principal has no blocks, every
+  block of each other kind is read (`form._walk`). 2-4: "Busy Roadway |
+  Bordering | Adverse" as D-1 prints it.
+
+### E-109 Template-row tables read only the first block
+- A table whose template row is one field ID per column printed one row
+  (2-4 Scenario 2 lost "Residential"). Fix: template rows read every block
+  (`instances(every=True)`), limited to the subject's own blocks when the
+  field is the subject's (a comparable's SITE_INFLUENCE / DATA_SOURCE is
+  not a row of it).
+
+### E-110 Summary / Reconciliation defect tables were not grouped by structure
+- B-1 p377: Site; each Dwelling Exterior then its Unit Interiors; each
+  Outbuilding then its ADUs; Vehicle Storage; Amenities. C-1 draws one bar
+  per kind with [Structure Identifier] / [Unit Identifier]. Fix:
+  `form._defect_groups` expands the bars per structure / unit using the
+  sections' own titles (`section_instances`), each read inside its scope.
+  Rows list by Feature then Location in print (all D-1 samples; B-1 states
+  no order -- recorded as sample-derived). Matches 2-4, SF1, Condo1, MH1.
+
+### E-111 Corner Unit printed nothing for "false"
+- A-1 gives CornerUnitIndicator "false" a blank display; every condo / co-op
+  D-1 prints "No". Fix: `bind.FALSE_PRINTS_NO` (only that indicator: a
+  broader rule turned SalesContractExistsIndicator into "No" and put the
+  Sales Contract section into five reports the official PDFs omit it from --
+  caught by test_golden).

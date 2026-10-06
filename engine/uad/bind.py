@@ -458,6 +458,15 @@ def commentary_categories() -> dict[str, str]:
              if r.get("MISMO Data Point / Attribute Name") == "ValuationAnalysisCategoryType"}
     key = {_squash(e): e for e in enums}
     key.update({_squash(e).rstrip("s"): e for e in enums})
+    if enums:
+        # B-1 misspells one category ("EnergyEfficiencyAndGreenFeatures"); the
+        # value written must be A-1's enumeration, as every D-1 sample has it
+        import difflib
+        for fid, cat in list(data.items()):
+            if cat not in enums:
+                near = difflib.get_close_matches(cat, sorted(enums), n=1, cutoff=0.85)
+                if near:
+                    data[fid] = near[0]
     for fid, entry in _index().items():
         if fid in data:
             continue
@@ -467,7 +476,7 @@ def commentary_categories() -> dict[str, str]:
             label = loc.get("label", "")
             if label in (NO_LABEL, ""):
                 label = loc.get("subsection", "")
-            stem = _squash(re.sub(r"(Commentary|Analysis of|Analysis|Reconciliation of)", "", label))
+            stem = _squash(re.sub(r"\b(Commentary|Analysis of|Analysis|Reconciliation of)\b", "", label))
             for cand in (stem, stem.rstrip("s"), "site" + stem, stem.replace("view", "siteview")):
                 if cand in key:
                     data[fid] = key[cand]
@@ -961,6 +970,14 @@ def answer_label(value: str, printed: str = "") -> str:
     return _humanise(v) if v else ""
 
 
+# A-1 leaves "false" blank for Corner Unit (10.019 / 22.07.04 / 22.07.22),
+# yet every D-1 condo and co-op prints "Corner Unit  No" in Unit Interior and
+# the grid.  Only indicators the samples show printing "No" are listed: the
+# other blank "false"s (SalesContractExistsIndicator, the "~" / "(Shared)" /
+# "10 or More" modifiers) really print nothing.
+FALSE_PRINTS_NO = {"CornerUnitIndicator"}
+
+
 def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -> str:
     """The text the page shows for a field.
 
@@ -1026,6 +1043,8 @@ def display_value(values: list[str] | list[tuple[str, str]], binding: Binding) -
         for raw in raws:
             if raw in options:
                 text = options[raw]
+                if not text and raw == "false" and name in FALSE_PRINTS_NO:
+                    text = "No"
                 if text:                     # blank means "does not display"
                     shown.append(text)
             elif kind and kind.casefold() not in ("enumerated", "boolean"):

@@ -2159,3 +2159,28 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   unit, which split the grids. Use explicit `is None`.
 - Tests: tests/test_setup.py::test_rental_comparables_are_paired_with_subject_units_and_the_grids_follow.
 - E2E: unticking #1 for Unit 2 changed its grid from #1, #4, #5 to #4, #5.
+
+### E-148 Hard-to-see hints and cursor; the rent schedule's subtotal went stale
+- Owner (2026-10-07):
+  - placeholders were too light, and the blinking cursor was barely visible
+    when typing;
+  - the rent schedule showed $123 + $13 with a Subtotal of $32.
+- Visibility (EDIT_CSS):
+  - hints are darker (rgba .66) and larger (6.6 to 6.8pt);
+  - the field being typed in is white, with a 1.2pt blue edge and a 3.5pt
+    soft glow, and caret-color #0b57d0;
+  - its hint steps aside on focus, so the caret is not hidden behind the
+    text;
+  - an open picker gets the same ring.
+- Rent totals:
+  - B-1 23.01.14/17/18/21/24/25 are "Calculated" sums.
+  - `uad/rent_math.py` recomputes them on every save, beside grid_math. It
+    changes nothing in the three D-1 samples (validator validated).
+  - The editor shows them read-only (td.calc, Σ).
+  - The page re-adds them the moment a rent is saved, and mirrors that rent
+    into every place that shows it (the Rent Schedule and the Actual Income
+    column).
+  - Rows for unnamed units read "Unit n".
+- Tests: tests/test_setup.py rent-schedule tests (4).
+- E2E: typed 123 and 13; within 1.5s the Actual Income column showed $123
+  and $13 and the totals $136, $0, $136.

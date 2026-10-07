@@ -346,10 +346,14 @@ class Store:
             # adjusted price, per unit / bedroom / area): kept current on every
             # edit, from every route, so they cannot go stale (B4).  An import
             # is taken as it is.
-            from uad import grid_math
+            from uad import grid_math, rent_math
             try:
                 grid_math.recompute(tree)
             except Exception:              # arithmetic never blocks a save
+                pass
+            try:
+                rent_math.recompute(tree)  # the rent schedule's sums (B-1 23.01.14-25)
+            except Exception:
                 pass
         if not allow_invalid and path.exists():
             from collections import Counter

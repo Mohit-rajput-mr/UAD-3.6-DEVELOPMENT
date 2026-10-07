@@ -181,3 +181,33 @@ def test_rental_comparables_are_paired_with_subject_units_and_the_grids_follow(c
     grids = [(g.subject_label, g.numbers) for g in comparables.build(tree, "rental")]
     assert grids == [("Subject Unit 1", [1, 2, 3]), ("Subject Unit 2", [1, 3])]
     assert not schema.validate(tree)
+
+
+@pytest.mark.parametrize("sample", ["condo2_appraisal_v1_4", "2_to_4_unit_appraisal_v1_4",
+                                    "2_to_4_unit_scenario_2_appraisal_v1_2"])
+def test_the_rent_schedule_totals_match_what_the_samples_deliver(sample):
+    """B-1 23.01.14-25 are calculated sums; recomputing them changes nothing
+    in the three D-1 samples that have a rent schedule (validate the validator)."""
+    from copy import deepcopy
+    from uad import rent_math, templates
+    assert rent_math.recompute(deepcopy(templates.load(sample))) == []
+
+
+def test_the_rent_schedule_subtotal_follows_the_rents(client):
+    """Owner: $123 and $13 entered, Subtotal shown $32 -- a stored value gone
+    stale.  It is the sum, kept current on every save."""
+    import re
+    from app import api
+    cid = client.post("/api/cases", json={"blank": True, "setup": {
+        "property_type": "two_to_four_unit", "units": 2, "approaches": {"rent": True}}}).json()["case_id"]
+    html = form.galley_html(form.build(api.store().tree(cid), edit=True), edit=True)
+    cells = [dict(re.findall(r"""data-(\w+)=["']([^"']*)["']""", t))
+             for t in re.findall(r"""<span class=["']v["'] data-tf=["']23\.01\.04["'][^>]*>""", html)]
+    for a, v in zip(cells, ("123", "13")):
+        r = client.patch(f"/api/cases/{cid}/cells/23.01.04", json={
+            "value": v, "key": a.get("tk", ""), "data_point": a["tdp"], "scope": a.get("tscope", "")})
+        assert r.status_code == 200, r.text
+    M = "{http://www.mismo.org/residential/2009/schemas}"
+    root = api.store().tree(cid).getroot()
+    assert [e.text for e in root.iter(f"{M}TotalMonthlyActualRentAmount")][0] == "136"
+    assert [e.text for e in root.iter(f"{M}TotalMonthlyActualIncomeAmount")][0] == "136"

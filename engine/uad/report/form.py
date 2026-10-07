@@ -3666,6 +3666,10 @@ def _rent_units_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             f"{head}<tbody>{''.join(body)}</tbody></table>"), True
 
 
+#: the rent schedule's totals B-1 marks "Calculated" (uad/rent_math.py)
+RENT_CALCULATED = {"23.01.14", "23.01.17", "23.01.18", "23.01.21", "23.01.24", "23.01.25"}
+
+
 def _rent_income_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     tree = ctx.root.getroottree()
     units = _rent_units(ctx)
@@ -3675,16 +3679,25 @@ def _rent_income_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
 
     def amount(fid, name, node, key):
         text = _money(fid, name, node) if node is not None else ""
-        if ctx.edit and key:
+        if ctx.edit and key and fid not in RENT_CALCULATED:
             return _cell(esc(text), fid, ctx, key=key, point=name, td_class="amt")
+        if ctx.edit and fid in RENT_CALCULATED:
+            # B-1 "Calculated" (uad/rent_math.py): shown, never typed
+            return (f"<td class='amt num calc' data-calc='{name}' title='Calculated from the rents above'>"
+                    f"<span>{esc(text) or '&mdash;'}</span></td>")
         return f"<td class='amt num'><span>{esc(text)}</span></td>"
 
     def side(rent_fid, sub_fid, other_type_fid, other_amt_fid, other_sub_fid, total_fid, unit_point,
              other_point, sub_point, other_sub_point, total_point) -> list[str]:
         rows = ["<tr><td class='lab b' colspan='3'><span>Rent</span></td></tr>"]
-        for unit in units:
+        for n, unit in enumerate(units, start=1):
             uid = (unit.findtext(f".//{M}UnitIdentifier") or "").strip()
-            rows.append(f"<tr><td class='ind'><span>{esc(uid)}</span></td><td></td>"
+            if not uid and ctx.edit:
+                # which unit a rent is for, before the unit is named
+                uid_html = f"<span class='unnamed'>Unit {n}</span>"
+            else:
+                uid_html = f"<span>{esc(uid)}</span>"
+            rows.append(f"<tr><td class='ind'>{uid_html}</td><td></td>"
                         + amount(rent_fid, unit_point, unit.find(f".//{M}{unit_point}"), tree.getpath(unit)) + "</tr>")
         skey = tree.getpath(summary) if summary is not None else ""
         sub = summary.find(f".//{M}{sub_point}") if summary is not None else None
@@ -5473,12 +5486,12 @@ EDIT_CSS = """
   font-size:8pt;line-height:11pt;color:#231f20}
 .picklist div:hover,.picklist div.on{background:#2b6cb0;color:#fff}
 .picklist div.clear{color:#6a6a66;font-style:italic}
-.v.pick.adding:empty:before{content:attr(data-ph);width:auto;color:#a7a9ac;font-style:italic}
+.v.pick.adding:empty:before{content:attr(data-ph);width:auto;color:#6b6b70;font-style:italic}
 body.show-gaps .v.pick.adding:empty{background:none}
 .addrlines{display:inline-flex;flex-direction:column}
 .addr2{display:block}
 .v.addrpart[contenteditable]{min-width:10pt}
-.v.addrpart[contenteditable]:empty:before{content:attr(data-ph);width:auto;color:#a7a9ac;font-style:italic}
+.v.addrpart[contenteditable]:empty:before{content:attr(data-ph);width:auto;color:#6b6b70;font-style:italic}
 .namekind{position:absolute;z-index:60;display:flex;border:0.6pt solid #231f20;background:#fff;
   font-size:6.5pt;font-weight:700;border-radius:1pt;overflow:hidden}
 .namekind span{padding:1pt 5pt;cursor:pointer;color:#231f20}
@@ -5636,9 +5649,9 @@ table.grid th[data-compmenu]{cursor:pointer}
 .gedit .err{color:#9b1c1c;font-size:7pt;margin-top:3pt}
 /* commentary: several lines, typed where it prints */
 .v.multiline[contenteditable]{display:block;width:100%;box-sizing:border-box;min-height:11pt;white-space:pre-wrap}
-.v.multiline[contenteditable]:empty:before{content:attr(data-ph);width:auto;color:#a7a9ac;font-style:italic}
+.v.multiline[contenteditable]:empty:before{content:attr(data-ph);width:auto;color:#6b6b70;font-style:italic}
 span.v.multiline[contenteditable]{display:inline;width:auto}
-.v.multiline:empty:before{content:attr(data-ph);color:#a7a9ac;font-style:italic}
+.v.multiline:empty:before{content:attr(data-ph);color:#6b6b70;font-style:italic}
 /* table cells: the value is typed or picked where it prints */
 table.tbl td .v[contenteditable],table.tbl td .v.pick{display:block;min-height:9pt;min-width:0}
 table.tbl td.tickcell{cursor:pointer}
@@ -5650,6 +5663,10 @@ table.tbl td.tickcell > span{display:inline-flex;align-items:center;justify-cont
 table.tbl td.tickcell:hover > span{border-color:rgba(29,79,145,.9);background:rgba(66,133,244,.18)}
 table.tbl td.tickcell > span > svg.tick{width:8pt;height:8pt}
 table.tbl tr.newrow td{border-bottom-style:dashed}
+/* a calculated total: read, not typed */
+td.calc{background:rgba(35,31,32,.04);color:#231f20;font-weight:600}
+.unnamed{color:rgba(35,31,32,.6);font-style:italic}
+td.calc span:after{content:' \03a3';font-size:6pt;color:rgba(35,31,32,.66);font-weight:400}
 /* rental comparables against subject units (editor only) */
 .rpairs{border:0.8pt solid rgba(43,108,176,.45);border-radius:4pt;padding:4pt 6pt 5pt;margin:2pt 0 6pt;background:rgba(66,133,244,.04)}
 .rpairs .rph{font-size:7.5pt;font-weight:700;margin-bottom:3pt}
@@ -5682,7 +5699,7 @@ table.tbl tr.newrow td{border-bottom-style:dashed}
 .h1 .hph > .v{min-width:60pt}
 /* the add-row line says how a row starts, so its empty cells are not read as dead */
 body.show-gaps table.tbl tr.newrow td:nth-child(2):not([data-fid]):not([data-gc]) > span:not([class]):empty:only-child:before{content:'\\2190  choose to add a row';
-  font-size:6pt;font-style:italic;color:rgba(35,31,32,.42);white-space:nowrap}
+  font-size:6.6pt;font-style:italic;color:rgba(35,31,32,.66);white-space:nowrap}
 /* the Summary is read-only: it redisplays the rest of the report */
 .v.derived{cursor:pointer}
 
@@ -5712,7 +5729,7 @@ body.show-gaps .v[contenteditable][data-k]:empty,
 body.show-gaps .v.pick:empty{background:var(--k-fill);box-shadow:inset 0 0 0 0.6pt var(--k-edge)}
 body.show-gaps .v[contenteditable][data-k]:empty:before,
 body.show-gaps .v.pick:empty:before{display:inline-block;width:auto;min-width:40pt;
-  font-size:6.3pt;font-style:italic;color:rgba(35,31,32,.45);padding:0 2pt;box-sizing:border-box}
+  font-size:6.8pt;font-style:italic;color:rgba(35,31,32,.66);padding:0 2pt;box-sizing:border-box}
 body.show-gaps .v[data-k=text]:empty:before{content:'Type\\2026'}
 body.show-gaps .v[data-k=amount]:empty:before{content:'$';text-align:right}
 body.show-gaps .v[data-k=number]:empty:before{content:'#';text-align:right}
@@ -5737,7 +5754,7 @@ table.grid td[data-gc]:not(.grey){background-image:linear-gradient(var(--k-fill)
 table.grid td[data-gc]:not(.grey):hover{background-image:linear-gradient(var(--k-fill),var(--k-fill)),
   linear-gradient(var(--k-fill),var(--k-fill));box-shadow:inset 0 0 0 0.75pt var(--k-edge);cursor:cell}
 table.grid td[data-gc]:not(.grey) > span:empty:before{font-size:6pt;font-style:italic;
-  color:rgba(35,31,32,.42);content:'Add'}
+  color:rgba(35,31,32,.66);content:'Add'}
 table.grid td[data-gc][data-k=amount]:not(.grey) > span:empty:before{content:'$'}
 table.grid td[data-gc][data-k=number]:not(.grey) > span:empty:before{content:'#'}
 table.grid td[data-gc][data-k=date]:not(.grey) > span:empty:before{content:'MM/DD/YYYY'}
@@ -5752,7 +5769,7 @@ table.grid td.adj[data-gc]{background-color:transparent;
   box-shadow:inset 0 -0.6pt 0 rgba(39,120,75,.6);cursor:cell}
 table.grid td.adj[data-gc]:hover{box-shadow:inset 0 0 0 0.75pt rgba(39,120,75,.7)}
 table.grid td.adj[data-gc] > span:empty:before{content:'\\00B1 $';font-size:6pt;font-style:italic;
-  color:rgba(35,31,32,.42)}
+  color:rgba(35,31,32,.66)}
 table.grid td.grey[data-gc]{cursor:pointer}
 /* commentary typed after its label: a wide words field, never a speck */
 .v.multiline[contenteditable]{--k-fill:rgba(214,158,46,.16);--k-edge:rgba(176,122,18,.60)}
@@ -5765,7 +5782,7 @@ body.show-gaps :is(.txcb,.txcb1,.certans):has(> span.v.multiline[contenteditable
 body.show-gaps :is(.txcb,.txcb1) > span.v.multiline[contenteditable]:empty{flex:1 1 60pt;min-width:60pt;max-width:200pt}
 body.show-gaps .certans > span.v.multiline[contenteditable]:empty{flex:1 1 60pt;min-width:60pt}
 body.show-gaps .v.multiline[contenteditable]:empty:before{font-size:6.3pt;font-style:italic;
-  color:rgba(35,31,32,.45);padding:0 2pt;display:inline-block;width:auto}
+  color:rgba(35,31,32,.66);padding:0 2pt;display:inline-block;width:auto}
 body.show-gaps .v.multiline[contenteditable]:not([data-ph]):empty:before{content:'Type comment\\2026'}
 body.show-gaps .v.multiline[contenteditable][data-ph]:empty:before{content:attr(data-ph)}
 .v.multiline[contenteditable]:not(:empty){box-shadow:inset 0 -0.6pt 0 var(--k-edge)}
@@ -5781,6 +5798,17 @@ body.show-gaps .v.multiline[contenteditable][data-ph]:empty:before{content:attr(
 table.tbl td:has(> .lvdel) > .v{display:inline-block;width:calc(100% - 15pt);vertical-align:middle}
 table.tbl td > .lvdel{margin-left:2pt}
 table.grid td.grey[data-gc]:hover{box-shadow:inset 0 0 0 0.75pt rgba(176,122,18,.6)}
+/* the field being typed in is unmistakable: white, a strong blue edge and
+   glow, a blue caret -- and its hint steps aside so the blinking caret is
+   not hidden behind it (owner 2026-10-07: "I rarely see the I line") */
+.v[contenteditable]{caret-color:#0b57d0}
+.v[contenteditable]:focus,body.show-gaps .v[contenteditable]:focus{outline:none!important;
+  background:#fff!important;background-image:none!important;
+  box-shadow:0 0 0 1.2pt #1d6ce0,0 0 0 3.5pt rgba(29,108,224,.22)!important;border-radius:2pt}
+.v[contenteditable]:focus:empty:before,body.show-gaps .v[contenteditable]:focus:empty:before{content:''!important;
+  min-width:0!important;width:0!important;padding:0!important}
+body.show-gaps .v[contenteditable]:focus:empty{min-width:40pt}
+.v.pick.open,.v.pick:focus{box-shadow:0 0 0 1.2pt #1d6ce0,0 0 0 3.5pt rgba(29,108,224,.22)!important}
 """
 
 

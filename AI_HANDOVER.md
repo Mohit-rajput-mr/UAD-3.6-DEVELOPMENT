@@ -209,6 +209,14 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-07 (later) -- rentals per unit, instant adds, visibility, rent totals (E-146..E-148)
+- Multi-family: the panel "Which rental comparable is compared with which subject unit"
+  (uad/rentals.py, /rentals/pairs) gives each unit its own rental grid.
+- Adds show at once (optimistic ghost rows); one picker open at a time; the not-used address is typed.
+- Hints darker; the focused field is white with a blue ring and a blue caret.
+- Rent schedule totals are calculated (uad/rent_math.py on save, flow.py rentTotals live) and read-only.
+- Next: picker sweeps for single_family / cooperative / manufactured; the owner's visual review.
+
 ### 2026-10-07 -- setup page first, rental for multi-family, dropdowns, signature, typing (E-144, E-145)
 - New report asks what is being appraised (5 kinds, units, approaches) and starts on that D-1
   structure. "Report setup" in the editor changes it later.

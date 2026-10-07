@@ -2905,3 +2905,9 @@ Open:
   comparable is compared with which subject unit" (uad/rentals.py,
   /rentals/pairs). Each unit gets its own grid. Comparable building unit
   counts go in the GRM grid. Suite: 688 pass.
+- Visibility and rent totals (E-148, T-267): editor hints darker and larger,
+  the field being typed in turns white with a blue edge and glow, the caret
+  is blue, the hint hides on focus. Rent schedule totals (23.01.14/17/18/21/
+  24/25) are calculated by uad/rent_math.py on every save (cases.save_tree)
+  and re-added client-side (flow.py rentTotals) so they show at once; the
+  total cells are read-only (td.calc). Suite: 692 pass.

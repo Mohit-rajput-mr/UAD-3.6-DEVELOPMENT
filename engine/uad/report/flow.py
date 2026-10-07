@@ -830,6 +830,34 @@ EDIT_JS = """
   },true);
   /* A table cell writes into the row it prints in; everything else by field. */
   var inflight=[];
+  /* The rent schedule's sums (B-1 23.01.14-25, uad/rent_math.py) follow a
+     rent at once: every place that shows the same unit's rent shows the new
+     one, and the totals are added up here as the server adds them. */
+  var RENT_POINTS={UnitMonthlyActualRentAmount:1,UnitMonthlyMarketRentAmount:1,
+                   MonthlyActualAdditionalIncomeAmount:1,MonthlyEstimatedAdditionalIncomeAmount:1};
+  function money(n){ return '$'+n.toLocaleString('en-US',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2}); }
+  function rentTotals(el,shown){
+    var dp=el.dataset.tdp, key=el.dataset.tk||'';
+    if(key&&shown) [].forEach.call(document.querySelectorAll('[data-tdp="'+dp+'"]'),function(o){
+      if(o!==el&&(o.dataset.tk||'')===key&&document.activeElement!==o){ o.textContent=shown; o.dataset.was=shown; }
+    });
+    function sum(point){
+      var seen={}, total=0, any=false;
+      [].forEach.call(document.querySelectorAll('[data-tdp="'+point+'"]'),function(o){
+        var k=o.dataset.tk||Math.random(); if(seen[k]) return; seen[k]=1;
+        var v=parseFloat((o.textContent||'').replace(/[^0-9.-]/g,''));
+        if(!isNaN(v)){ total+=v; any=true; }
+      });
+      return {total:total,any:any};
+    }
+    var a=sum('UnitMonthlyActualRentAmount'), m=sum('UnitMonthlyMarketRentAmount'),
+        oa=sum('MonthlyActualAdditionalIncomeAmount'), om=sum('MonthlyEstimatedAdditionalIncomeAmount');
+    var put=function(point,v){ [].forEach.call(document.querySelectorAll('td.calc[data-calc="'+point+'"] span'),function(s){ s.textContent=money(v); }); };
+    if(a.any||oa.any){ put('TotalMonthlyActualRentAmount',a.total); put('TotalMonthlyActualAdditionalIncomeAmount',oa.total);
+      put('TotalMonthlyActualIncomeAmount',a.total+oa.total); }
+    if(m.any||om.any){ put('TotalMonthlyMarketRentAmount',m.total); put('TotalMonthlyEstimatedAdditionalIncomeAmount',om.total);
+      put('TotalMonthlyEstimatedIncomeAmount',m.total+om.total); }
+  }
   function send(el,body){
     var p=sendNow(el,body);
     inflight.push(p);
@@ -883,6 +911,7 @@ EDIT_JS = """
            && document.activeElement!==el){
           el.textContent=res.d.value; el.dataset.was=res.d.value;
         }
+        if(el.dataset.tdp && RENT_POINTS[el.dataset.tdp]) rentTotals(el,res.d&&res.d.value);
         if(res.d && res.d.kind) el.dataset.kind=res.d.kind;
         if(res.d && res.d.case && el.dataset.fid==='2.003'){
           el.title=res.d.case==='A'?'Same party as the borrower (B-1 Case A)'

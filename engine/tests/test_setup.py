@@ -158,3 +158,26 @@ def test_a_not_used_comparables_address_is_typed_whole_and_stored_as_parts(clien
     assert "742 Evergreen Ter" in [e.text for e in root.iter(f"{M}AddressLineText")]
     assert "Springfield" in [e.text for e in root.iter(f"{M}CityName")]
     assert not schema.validate(api.store().tree(cid))
+
+
+def test_rental_comparables_are_paired_with_subject_units_and_the_grids_follow(client):
+    """A multi-family report: each rental comparable is compared with chosen
+    subject units (RENTAL_INFORMATION_IsComparableFor_RENTAL_INFORMATION), and
+    each unit gets its own rental analysis.  A comparable added is compared
+    with every unit until unticked; the owner's path -- a single-family
+    report made 2-unit -- had no pairing at all and one unnamed grid."""
+    from app import api
+    from uad.report import comparables
+    cid = client.post("/api/cases", json={"blank": True}).json()["case_id"]
+    client.patch(f"/api/cases/{cid}/fields/3.005", json={"value": "2"})
+    for _ in range(3):
+        assert client.post(f"/api/cases/{cid}/comparables", json={"kind": "rental"}).status_code == 200
+    m = client.get(f"/api/cases/{cid}/rentals/pairs").json()
+    assert m["units"] == ["Unit 1", "Unit 2"]
+    assert [c["paired"] for c in m["comparables"]] == [[True, True]] * 3
+    r = client.put(f"/api/cases/{cid}/rentals/pairs", json={"comparable": 2, "unit": 2, "on": False})
+    assert r.status_code == 200 and r.json()["comparables"][1]["paired"] == [True, False]
+    tree = api.store().tree(cid)
+    grids = [(g.subject_label, g.numbers) for g in comparables.build(tree, "rental")]
+    assert grids == [("Subject Unit 1", [1, 2, 3]), ("Subject Unit 2", [1, 3])]
+    assert not schema.validate(tree)

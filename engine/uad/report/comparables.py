@@ -1287,9 +1287,10 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
     plans: list[tuple[str, list[etree._Element], list[tuple[etree._Element, list]]]] = []
     pairs = rental_pairs(root) if kind == "rental" else []
     if pairs:
-        for sri, comp_pairs in pairs:
+        for k, (sri, comp_pairs) in enumerate(pairs, start=1):
             unit = next(sri.iterancestors(f"{{{bind.MISMO}}}PROPERTY_UNIT"), None)
             uid = (unit.findtext(f".//{{{bind.MISMO}}}UnitIdentifier") or "").strip() if unit is not None else ""
+            uid = uid or f"Unit {k}"         # a unit not yet named is still told apart
             columns = [(p, _scopes(cri)) for p, cri in comp_pairs]
             for start in range(0, len(columns), per_block):
                 plans.append((f"Subject {uid}".strip(), _scopes(sri), columns[start:start + per_block]))

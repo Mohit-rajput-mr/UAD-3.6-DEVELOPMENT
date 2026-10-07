@@ -1598,10 +1598,41 @@ def add_comparable(case_id: str, request: Request,
     if problem:
         raise HTTPException(409, problem)
     added = comparables.add_property(tree, role)
+    if kind == "rental":
+        # compared with every subject unit until the appraiser says otherwise
+        from uad import rentals
+        rentals.pair_new_comparable(tree.getroot())
     st.save_tree(case_id, tree)
     st.invalidate(case_id, _actor(request), "a comparable was added")
     st.log(case_id, _actor(request), "added a comparable", f"{role} #{added}")
     return {"added": added, "kind": kind}
+
+
+@router.get("/cases/{case_id}/rentals/pairs")
+def get_rental_pairs(case_id: str) -> dict:
+    """Which rental comparable is compared with which subject unit (uad/rentals.py)."""
+    _case_or_404(case_id)
+    from uad import rentals
+    return rentals.matrix(store().tree(case_id).getroot())
+
+
+@router.put("/cases/{case_id}/rentals/pairs")
+def put_rental_pair(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Compare rental comparable #comparable with subject unit #unit, or stop."""
+    _case_or_404(case_id)
+    from uad import rentals
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    try:
+        rentals.set_pair(tree.getroot(), int(body.get("comparable") or 0), int(body.get("unit") or 0),
+                         bool(body.get("on")))
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "rental pairing changed")
+    st.log(case_id, _actor(request), "rental pairing",
+           f"comparable #{body.get('comparable')} {'with' if body.get('on') else 'not with'} unit {body.get('unit')}")
+    return rentals.matrix(tree.getroot())
 
 
 @router.delete("/cases/{case_id}/comparables/{number}")

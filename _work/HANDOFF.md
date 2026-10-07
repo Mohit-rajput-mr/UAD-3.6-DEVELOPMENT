@@ -2901,3 +2901,7 @@ Open:
   - Changing the type of a filled report is now schema-clean in all 20
     directions (the inspection SERVICE stands aside / is carried whole).
   Suite: 687 pass.
+- Multi-family rentals (E-147, T-1047): the editor panel "Which rental
+  comparable is compared with which subject unit" (uad/rentals.py,
+  /rentals/pairs). Each unit gets its own grid. Comparable building unit
+  counts go in the GRM grid. Suite: 688 pass.

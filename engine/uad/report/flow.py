@@ -2054,6 +2054,18 @@ EDIT_JS = """
       });
       return;
     }
+    // a rental comparable compared with a subject unit, or not: ticked at
+    // once, saved in the background, the unit's grid follows
+    var rp=t.closest('.rpairs .rpx');
+    if(rp){
+      e.preventDefault();
+      var on=!rp.classList.contains('on'), ab=rp.dataset.rpair.split(',');
+      rp.classList.toggle('on',on); rp.setAttribute('aria-checked',on?'true':'false'); rp.textContent=on?'\u2713':'';
+      putJSON(api+'/rentals/pairs',{comparable:+ab[0],unit:+ab[1],on:on},'PUT')
+        .then(function(){ reloadHere(); })
+        .catch(function(err){ rp.classList.toggle('on',!on); rp.textContent=on?'':'\u2713'; say(err.message); });
+      return;
+    }
     // a per-report layout choice: saved with the case, the report laid out again
     var sw=t.closest('.layoutsw .lso[data-pref]');
     if(sw){

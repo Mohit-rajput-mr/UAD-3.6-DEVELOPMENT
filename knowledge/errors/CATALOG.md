@@ -2129,3 +2129,33 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   target (tests/test_setup.py).
 - E2E: row count 5→6 right after the click; the address saved without
   error; one list open after two quick clicks.
+
+### E-147 Multi-family rentals: which comparable is compared with which subject unit
+- Owner (2026-10-07): "If it's multi-family rental, how can I put each unit,
+  and say how many units each rental has ... dynamic per unit."
+- What the spec says:
+  - Subject units come from the unit count (Report setup, or 3.005). Each
+    has its own Unit Interior and Rent Schedule line (23.01: identifier,
+    rented, occupancy, rent ...).
+  - A rental comparable is one rented unit: its unit number is part of its
+    address (23.02.03 AddressUnitIdentifier). B-1 23.03.24 draws it "for
+    each rental comparable being compared to the subject unit".
+  - How many units a comparable building has is the GRM grid's 24.001 /
+    24.012 Units Excluding ADUs and 24.002 / 24.013 ADUs.
+- Cause: the pairing is data (a comparable's RENTAL_INFORMATION per unit,
+  RENTAL_INFORMATION_IsComparableFor_RENTAL_INFORMATION), and nothing let
+  the appraiser set it. A single-family report made 2-unit had no pairing
+  and one unnamed grid.
+- Fixes:
+  - `uad/rentals.py` (matrix, set_pair, pair_new_comparable) and
+    `GET/PUT /cases/{id}/rentals/pairs`.
+  - A rental comparable added is paired with every unit.
+  - The editor panel "Which rental comparable is compared with which
+    subject unit" sits above the rental analysis. A tick applies at once and
+    the grids follow.
+  - An unnamed unit's grid is titled "Subject Unit n".
+- Trap: an lxml element with no children is falsy. `a or b` between
+  elements chose the wrong RENTAL_INFORMATION and made a second one per
+  unit, which split the grids. Use explicit `is None`.
+- Tests: tests/test_setup.py::test_rental_comparables_are_paired_with_subject_units_and_the_grids_follow.
+- E2E: unticking #1 for Unit 2 changed its grid from #1, #4, #5 to #4, #5.

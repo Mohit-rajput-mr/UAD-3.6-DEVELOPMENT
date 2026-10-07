@@ -1546,6 +1546,32 @@ def rental_layout(folder: "Path | None") -> str:
     return chosen if chosen in RENTAL_LAYOUTS else RENTAL_LAYOUTS[0]
 
 
+def _rental_pairs_html(ctx: "Ctx") -> str:
+    """The editor's matrix of rental comparables against subject units."""
+    from .. import rentals
+    m = rentals.matrix(ctx.root)
+    units = m["units"]
+    if len(units) < 2:
+        return ""
+    head = "".join(f"<th>{esc(u)}</th>" for u in units)
+    rows = []
+    for c in m["comparables"]:
+        cells = "".join(
+            f"<td><span class='rpx{' on' if on else ''}' role='checkbox' tabindex='0'"
+            f" aria-checked='{'true' if on else 'false'}' data-rpair='{c['number']},{j + 1}'>"
+            f"{'&#x2713;' if on else ''}</span></td>" for j, on in enumerate(c["paired"]))
+        rows.append(f"<tr><td class='rpn'>Comparable #{c['number']}"
+                    f"<span>{esc(c['address'])}</span></td>{cells}</tr>")
+    body = "".join(rows) or (f"<tr><td colspan='{len(units) + 1}' class='rpempty'>No rental comparables yet"
+                             " &mdash; add them with <b>+ Add Rental Comparable</b>.</td></tr>")
+    return ("<div class='rpairs'><div class='rph'>Which rental comparable is compared with which subject unit</div>"
+            f"<table><thead><tr><th></th>{head}</tr></thead><tbody>{body}</tbody></table>"
+            f"<div class='rpnote'>{len(units)} subject units (set in Report setup) &mdash; each gets its own rental"
+            " analysis below with the comparables ticked here. A comparable is one rented unit: put its unit"
+            " number in its address (e.g. &ldquo;1776 Whitecrest Rd Unit 2&rdquo;). The number of units in a"
+            " comparable building goes in the Income Approach grid (Units Excluding ADUs).</div></div>")
+
+
 def _rental_layout_switch(layout: str) -> str:
     opts = (("stacked", "One unit under the next"), ("paired", "Units side by side"))
     return ("<div class='layoutsw' role='group' aria-label='Rental analysis layout'>"
@@ -1724,6 +1750,12 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     # on top of the first grid so the two keep together
                     switch = (_rental_layout_switch(layout)
                               if paired and ctx.edit and len(grids) > 1 else "")
+                    if ctx.edit and GRID_KINDS[base] == "rental":
+                        # which comparable is compared with which subject unit
+                        # (uad/rentals.py) -- the grids below follow it
+                        switch = _rental_pairs_html(ctx) + switch
+                        if not grids:
+                            out.append(Block("text", section=printed, visible=True, html=switch))
                     if paired and layout == "paired":
                         # two subject units' analyses to a line, as C-1 p33
                         # draws them (T-1043)
@@ -5618,6 +5650,20 @@ table.tbl td.tickcell > span{display:inline-flex;align-items:center;justify-cont
 table.tbl td.tickcell:hover > span{border-color:rgba(29,79,145,.9);background:rgba(66,133,244,.18)}
 table.tbl td.tickcell > span > svg.tick{width:8pt;height:8pt}
 table.tbl tr.newrow td{border-bottom-style:dashed}
+/* rental comparables against subject units (editor only) */
+.rpairs{border:0.8pt solid rgba(43,108,176,.45);border-radius:4pt;padding:4pt 6pt 5pt;margin:2pt 0 6pt;background:rgba(66,133,244,.04)}
+.rpairs .rph{font-size:7.5pt;font-weight:700;margin-bottom:3pt}
+.rpairs table{border-collapse:collapse;font-size:7pt}
+.rpairs th{font-weight:600;padding:1pt 8pt;text-align:center}
+.rpairs td{padding:1.5pt 8pt;border-top:0.5pt solid rgba(0,0,0,.08);text-align:center}
+.rpairs td.rpn{text-align:left;font-weight:600}
+.rpairs td.rpn span{font-weight:400;color:rgba(35,31,32,.6);margin-left:5pt}
+.rpairs .rpx{display:inline-flex;align-items:center;justify-content:center;width:10pt;height:10pt;
+  border:0.8pt solid rgba(29,79,145,.6);border-radius:2pt;cursor:pointer;color:#fff;font-size:7pt;line-height:1}
+.rpairs .rpx.on{background:#1d4f91;border-color:#1d4f91}
+.rpairs .rpx:hover{box-shadow:0 0 0 2pt rgba(66,133,244,.25)}
+.rpairs .rpnote{font-size:6.5pt;color:rgba(35,31,32,.65);margin-top:3pt;line-height:1.35}
+.rpairs .rpempty{text-align:left;color:rgba(35,31,32,.65)}
 /* the signature: signed here, drawn above the line */
 .sgsign{display:inline-flex;align-items:center;justify-content:center;min-width:150pt;height:24pt;
   border:1pt dashed rgba(43,108,176,.7);border-radius:4pt;background:rgba(66,133,244,.08);

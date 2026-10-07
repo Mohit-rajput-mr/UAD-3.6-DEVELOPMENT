@@ -177,6 +177,30 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .rf-bar .k{color:var(--ink-2)}
 .rf-bar .k:before{content:'+ ';font-weight:300}
 .rf-note{font-size:12.5px;color:var(--muted);max-width:50ch}
+/* Report setup: the kind of property and the approaches, stated first */
+.su-veil{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.55);display:grid;place-items:center;padding:16px;overflow:auto}
+.su{width:min(880px,100%);background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45);padding:26px 26px 20px}
+.su h2{margin:2px 0 4px;font:600 22px/1.2 var(--sans)}
+.su .lede{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:70ch}
+.su h3{font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px}
+.su-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.su-type{border:1.5px solid var(--line-2);border-radius:14px;padding:14px 14px 12px;cursor:pointer;background:var(--surface-2);
+  text-align:left;color:var(--ink);font:inherit;display:flex;flex-direction:column;gap:6px;min-height:104px}
+.su-type b{font-size:15px}
+.su-type span{font-size:12px;color:var(--muted);line-height:1.35}
+.su-type:hover{border-color:var(--line-3)}
+.su-type[aria-checked=true]{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.22);background:color-mix(in srgb,#3b82f6 10%,var(--surface-2))}
+.su-units{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px}
+.su-units button{min-width:44px;padding:7px 0;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface-2);color:var(--ink);font:600 14px var(--sans);cursor:pointer}
+.su-units button[aria-pressed=true]{border-color:#3b82f6;background:color-mix(in srgb,#3b82f6 16%,var(--surface-2))}
+.su-appr{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.su-appr label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;font-size:13.5px}
+.su-appr label small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.su-appr input{margin-top:3px;width:16px;height:16px;accent-color:#3b82f6}
+.su-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap}
+.su-foot .note{font-size:12.5px;color:var(--muted);max-width:52ch}
+.su-foot .acts{display:flex;gap:8px}
 /* the key to the report's input colours (form.EDIT_CSS, T-260) */
 .rf-key{display:inline-flex;gap:6px;flex-wrap:wrap}
 .rf-key i{font-style:italic;font-size:11px;padding:2px 7px;border-radius:3px;color:#2b2b2b;white-space:nowrap}
@@ -697,11 +721,90 @@ function importFiles(files){
   x.onerror=()=>{ bar.hidden=true; out.innerHTML='<div class="ib-err">The connection failed; nothing was imported.</div>'; };
   x.send(fd);
 }
+/* Report setup: before a word is filled, the appraiser says what kind of
+   property this is and which approaches the report develops.  The report
+   takes that shape (uad/setup.py): a 2- to 4-unit report gets its units, the
+   Rental Information and Income Approach sections; a condominium or co-op its
+   Project Information; a manufactured home its own section. */
+const SU_TYPES=[
+  ['single_family','Single family','One dwelling unit, with or without ADUs.'],
+  ['two_to_four_unit','2–4 unit (multi-family)','Two, three or four living units. Adds rent schedule and income.'],
+  ['condominium','Condominium','A unit in a condominium project. Adds Project Information.'],
+  ['cooperative','Cooperative (co-op)','Shares in a co-op corporation. Adds project and blanket financing.'],
+  ['manufactured','Manufactured home','A HUD-code home on a permanent foundation. Adds its own section.']];
+const SU_DEFAULTS={single_family:{cost:false,income:false,rent:false},two_to_four_unit:{cost:false,income:true,rent:true},
+  condominium:{cost:false,income:false,rent:false},cooperative:{cost:false,income:false,rent:false},
+  manufactured:{cost:true,income:false,rent:false}};
+function setupScreen(cur,{creating}={}){
+  return new Promise(resolve=>{
+    let kind=(cur&&cur.property_type)||'', units=(cur&&cur.units>1)?cur.units:2;
+    let appr=Object.assign({},(cur&&cur.approaches)||{});
+    const veil=document.createElement('div'); veil.className='su-veil';
+    veil.innerHTML=`<div class="su" role="dialog" aria-modal="true" aria-labelledby="su-t">
+      <span class="eyebrow">${creating?'New report · step 1 of 1':'Report setup'}</span>
+      <h2 id="su-t">What are you appraising?</h2>
+      <p class="lede">Choose the property type. The report adds exactly the sections that type needs, and you can change it later from <b>Report setup</b>. Everything already entered is kept.</p>
+      <h3>Property type</h3>
+      <div class="su-types" role="radiogroup" aria-label="Property type">${SU_TYPES.map(([k,n,d])=>
+        `<button type="button" class="su-type" role="radio" aria-checked="false" data-k="${k}"><b>${n}</b><span>${d}</span></button>`).join('')}</div>
+      <div class="su-units" id="su-units" hidden><span>Living units (excluding ADUs):</span>
+        ${[2,3,4].map(n=>`<button type="button" data-n="${n}" aria-pressed="false">${n}</button>`).join('')}</div>
+      <h3>Approaches and sections</h3>
+      <div class="su-appr">
+        <label><input type="checkbox" checked disabled><span>Sales Comparison Approach<small>Always developed.</small></span></label>
+        <label><input type="checkbox" data-a="rent"><span>Rental Information<small>Rent schedule and comparable rentals.</small></span></label>
+        <label><input type="checkbox" data-a="income"><span>Income Approach<small>Gross rent multiplier.</small></span></label>
+        <label><input type="checkbox" data-a="cost"><span>Cost Approach<small>Site value and depreciated cost.</small></span></label>
+      </div>
+      <div class="su-foot"><span class="note" id="su-note">Pick a property type to continue.</span>
+        <div class="acts"><button class="btn" id="su-cancel">Cancel</button>
+        <button class="btn primary" id="su-ok" disabled>${creating?'Create report':'Apply'}</button></div></div></div>`;
+    document.body.appendChild(veil);
+    const q=x=>veil.querySelector(x);
+    const paint=()=>{
+      veil.querySelectorAll('.su-type').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.k===kind)));
+      q('#su-units').hidden=kind!=='two_to_four_unit';
+      veil.querySelectorAll('#su-units button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.n===units)));
+      veil.querySelectorAll('input[data-a]').forEach(i=>{ i.checked=!!appr[i.dataset.a]; });
+      q('#su-ok').disabled=!kind;
+      const nm=(SU_TYPES.find(t=>t[0]===kind)||[])[1];
+      q('#su-note').textContent=kind?`${nm}${kind==='two_to_four_unit'?' · '+units+' units':''} — `+
+        ['Sales Comparison'].concat(appr.rent?['Rental Information']:[],appr.income?['Income']:[],appr.cost?['Cost']:[]).join(', '):'Pick a property type to continue.';
+    };
+    veil.querySelectorAll('.su-type').forEach(b=>b.onclick=()=>{
+      if(kind!==b.dataset.k){ kind=b.dataset.k; appr=Object.assign({},SU_DEFAULTS[kind]); } paint(); });
+    veil.querySelectorAll('#su-units button').forEach(b=>b.onclick=()=>{ units=+b.dataset.n; paint(); });
+    veil.querySelectorAll('input[data-a]').forEach(i=>i.onchange=()=>{ appr[i.dataset.a]=i.checked; paint(); });
+    const close=v=>{ veil.remove(); document.removeEventListener('keydown',esc_); resolve(v); };
+    const esc_=e=>{ if(e.key==='Escape') close(null); };
+    document.addEventListener('keydown',esc_);
+    q('#su-cancel').onclick=()=>close(null);
+    q('#su-ok').onclick=()=>close({property_type:kind,units:kind==='two_to_four_unit'?units:1,approaches:appr});
+    paint(); (q('.su-type[aria-checked=true]')||q('.su-type')).focus();
+  });
+}
 async function newCase(template,blank,name){
+  const choice=template?null:await setupScreen(null,{creating:true});
+  if(!template&&!choice) return;
   const body={blank:blank!==false,name:name||''}; if(template) body.template=template;
+  if(choice) body.setup=choice;          // starts on that kind's own structure
   const r=await api('/cases',{method:'POST',body:JSON.stringify(body)});
-  if(!r.ok){ toast('The report could not be created.',5000); return; }
+  if(!r.ok){ toast('The report could not be created'+((r.data&&r.data.detail)?': '+r.data.detail:'.'),5000); return; }
   openCase(r.data.case_id);
+}
+async function reportSetup(){
+  const cur=await api('/cases/'+S.caseId+'/setup');
+  if(!cur.ok){ toast('The report setup could not be read.',4000); return; }
+  const choice=await setupScreen(cur.data);
+  if(!choice) return;
+  toast('Applying the report setup…',2500);
+  const s=await api('/cases/'+S.caseId+'/setup',{method:'PUT',body:JSON.stringify(choice)});
+  if(!s.ok){ UADDialog.alert((s.data&&s.data.detail)||'The setup could not be applied.',{title:'Report setup'}); return; }
+  const lost=s.data.not_placed||[];
+  toast('Report setup applied — its sections follow.',4000);
+  if(lost.length) UADDialog.alert(['These answers have no place in the new shape of the report:'].concat(lost).join('\n'),
+    {title:'Some answers were not carried',eyebrow:'Report setup'});
+  S.dirty=false; await refresh(); swapFrame('form');
 }
 /* A new report is the same document every time, so its layout is too.  While
    the list is on screen the server is asked whether that layout is already
@@ -1124,6 +1227,7 @@ function drawReportForm(w){
         Mark what is unanswered</label>
       <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
         Mark what was imported</label>
+      <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
       <button class="addbtn" id="rf-maps" title="The Sales Comparison Map, drawn by the Location Map tool from the subject and the comparables">Generate map</button>
       <button class="addbtn" id="rf-market">Import market charts</button>
       <button class="addbtn primary" id="rf-auto" title="Enter the case: the server writes the whole document while the report is filled in on screen, section by section">Fill the report</button>
@@ -1149,6 +1253,7 @@ function drawReportForm(w){
     if(file) await fillFromFile(file);
   };
   $('#rf-market').onclick=()=>marketImport();
+  $('#rf-setup').onclick=()=>reportSetup();
   $('#rf-maps').onclick=async()=>{
     const b=$('#rf-maps'); b.disabled=true; b.textContent='Drawing the map…';
     const r=await api(`/cases/${S.caseId}/maps`,{method:'POST'});

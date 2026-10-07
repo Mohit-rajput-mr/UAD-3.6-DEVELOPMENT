@@ -1,0 +1,100 @@
+"""Report setup (uad/setup.py): the property type and the approaches, stated
+first, decide the report's sections -- and a 2- to 4-unit report has its
+Rental Information and Income Approach (owner, 2026-10-07)."""
+import pytest
+
+from uad import schema
+from uad.report import form
+
+
+@pytest.fixture
+def client(tmp_path):
+    from fastapi.testclient import TestClient
+    from app import api
+    from app.access import sign_in
+    from app.cases import Store
+    from app.main import app
+    api.STORE = Store(tmp_path / "cases")
+    api.RENDERER = None
+    api.LAYOUTS = None
+    with TestClient(app) as c:
+        sign_in(c)
+        yield c
+
+
+def _tabs(cid):
+    from app import api
+    return [b.section for b in form.build(api.store().tree(cid), edit=True) if b.kind == "tab"]
+
+
+@pytest.mark.parametrize("kind,units,approaches,want,unit_tabs", [
+    ("single_family", 1, {}, set(), 1),
+    ("two_to_four_unit", 3, {"rent": True, "income": True}, {"Rental Information", "Income Approach"}, 3),
+    ("condominium", 1, {}, {"Project Information"}, 1),
+    ("cooperative", 1, {}, {"Project Information"}, 1),
+    ("manufactured", 1, {"cost": True}, {"Manufactured Home", "Cost Approach"}, 1),
+])
+def test_a_new_report_starts_as_the_kind_chosen(client, kind, units, approaches, want, unit_tabs):
+    from app import api
+    r = client.post("/api/cases", json={"blank": True, "setup": {
+        "property_type": kind, "units": units, "approaches": approaches}})
+    assert r.status_code == 200, r.text
+    cid = r.json()["case_id"]
+    got = client.get(f"/api/cases/{cid}/setup").json()
+    assert got["property_type"] == kind and got["units"] == units
+    tabs = _tabs(cid)
+    optional = {"Rental Information", "Income Approach", "Cost Approach", "Project Information", "Manufactured Home"}
+    assert {t for t in tabs if t in optional} == want
+    assert sum(t.startswith("Unit Interior") for t in tabs) == unit_tabs
+    assert not schema.validate(api.store().tree(cid))
+
+
+def test_two_units_typed_in_a_single_family_report_bring_the_rental_sections(client):
+    """The owner's case: a single-family report made multi-family by its unit
+    count.  The 2-4 structure develops a rent schedule and income approach;
+    the single-family report's "false" carried across switched them off."""
+    cid = client.post("/api/cases", json={"blank": True}).json()["case_id"]
+    r = client.patch(f"/api/cases/{cid}/fields/3.005", json={"value": "2"})
+    assert r.status_code == 200 and r.json()["reshaped"]["property_type"] == "two_to_four_unit"
+    tabs = _tabs(cid)
+    assert "Rental Information" in tabs and "Income Approach" in tabs
+
+
+def test_the_setup_switches_sections_on_and_off_in_an_open_report(client):
+    cid = client.post("/api/cases", json={"blank": True}).json()["case_id"]
+    r = client.put(f"/api/cases/{cid}/setup", json={"property_type": "two_to_four_unit", "units": 2,
+                                                       "approaches": {"rent": True, "income": True}})
+    assert r.status_code == 200 and r.json()["reshaped"]
+    assert {"Rental Information", "Income Approach"} <= set(_tabs(cid))
+    r = client.put(f"/api/cases/{cid}/setup", json={"property_type": "two_to_four_unit", "units": 2,
+                                                       "approaches": {"rent": False, "income": False, "cost": True}})
+    tabs = set(_tabs(cid))
+    assert "Rental Information" not in tabs and "Income Approach" not in tabs and "Cost Approach" in tabs
+    # back to single family: the co-op / project answers never linger
+    client.put(f"/api/cases/{cid}/setup", json={"property_type": "cooperative"})
+    client.put(f"/api/cases/{cid}/setup", json={"property_type": "single_family"})
+    assert client.get(f"/api/cases/{cid}/setup").json()["property_type"] == "single_family"
+    assert "Project Information" not in _tabs(cid)
+
+
+def test_a_defect_added_in_a_units_table_is_that_units(client):
+    """The owner's "dropdowns don't work": a defect row picked in a unit's (or
+    a building's) own table was refused -- the DEFECT was built inside the
+    unit.  It lives under the PROPERTY, tied to the unit by arcrole (D-1 2-4)."""
+    import collections
+    import re
+    from app import api
+    cid = client.post("/api/cases", json={"blank": True, "setup": {
+        "property_type": "two_to_four_unit", "units": 2, "approaches": {"rent": True}}}).json()["case_id"]
+    html = form.galley_html(form.build(api.store().tree(cid), edit=True), edit=True)
+    for fid, value in (("10.057", "FullBathroom"), ("8.060", "Completion")):
+        tag = next(t for t in re.findall(r"""<span class=["']v pick["'] data-tf=["']%s["'][^>]*>""" % re.escape(fid), html)
+                   if "data-tnew" in t)
+        attrs = dict(re.findall(r"""data-(\w+)=["']([^"']*)["']""", tag))
+        r = client.patch(f"/api/cases/{cid}/cells/{fid}", json={
+            "value": value, "key": "", "data_point": attrs["tdp"], "new": True, "scope": attrs["tscope"]})
+        assert r.status_code == 200, r.text
+    blocks = form.build(api.store().tree(cid))
+    where = collections.Counter(b.section for b in blocks if b.visible and "Full Bathroom" in (b.html or ""))
+    assert where == {"Unit Interior": 1, "Reconciliation": 1}, where
+    assert not schema.validate(api.store().tree(cid))

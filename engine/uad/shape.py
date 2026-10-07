@@ -100,12 +100,50 @@ def reshape(current: etree._ElementTree, template: str) -> Reshaped:
     source = current.getroot()
     target = templates.load(template, blank=True)
     delivery.stamp_software(target.getroot())
+    from . import setup
+    developed = setup.approaches(target.getroot())     # the structure's own, before the carry
     steps = autofill.plan(target, source)
     done = autofill.apply(target, steps, source)
     from . import structure
+    setup.keep_approaches(source, target.getroot(), developed)   # a carried "false" never switches one off
+    _own_inspection_service(target.getroot())
     structure.tidy(target.getroot())      # links, identifiers and counts follow the new tree
     return Reshaped(template=template, property_type=templates.get(template).property_type,
                     tree=target, carried=done["written"], failed=done["failed"])
+
+
+def _own_inspection_service(root: etree._Element) -> None:
+    """A property data report carried from one structure into another lands
+    beside the VALUATION in its SERVICE -- which the subschema refuses (a
+    SERVICE holds one or the other).  It goes where D-1 Condo1 keeps it: a
+    SERVICE of its own, before the valuation's.  When the new structure has
+    one already, the carried report takes its place if that one is empty."""
+    from . import bind, edit
+    M_ = f"{{{bind.MISMO}}}"
+    for svc in list(root.iter(f"{M_}SERVICE")):
+        insp = svc.find(f"{M_}INSPECTION_SERVICE")
+        if insp is None or svc.find(f"{M_}VALUATION") is None:
+            continue
+        holder = svc.getparent()
+        # the new structure's own inspection SERVICE (blanking may have left
+        # it without its INSPECTION_SERVICE): any SERVICE that is not a valuation
+        own = next((o for o in holder.findall(f"{M_}SERVICE")
+                    if o is not svc and o.find(f"{M_}VALUATION") is None), None)
+        if own is not None:
+            there = own.find(f"{M_}INSPECTION_SERVICE")
+            if there is None:
+                own.insert(0, insp)
+            elif "".join(there.itertext()).strip():
+                svc.remove(insp)            # the new structure's own report stays
+            else:
+                own.replace(there, insp)
+            continue
+        own = etree.Element(f"{M_}SERVICE")
+        holder.insert(list(holder).index(svc), own)
+        own.append(insp)
+        detail, _ = edit.ensure_path(own, ["SERVICE_DETAIL"])
+        if detail.find(f"{M_}ServiceType") is None:
+            edit.insert_ordered(detail, "ServiceType").text = "Inspection"
 
 
 def needed(before: dict[str, str], after: dict[str, str]) -> bool:

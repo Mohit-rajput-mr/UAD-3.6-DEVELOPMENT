@@ -2030,3 +2030,44 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
     state, never printed).
   - E2E: click "Units side by side", the pref is saved, and after reload the
     side-by-side grid shows with the switch on.
+
+### E-144 Multi-family showed no Rental section; no way to state the property type; unit defects refused
+- Symptoms (owner, 2026-10-07):
+  - Making the report multi-family did not bring up Rental Information.
+  - There was no first page for choosing the property type.
+  - "The dropdowns don't work".
+- Causes:
+  - B-1 shows Rental Information, Income Approach and Cost Approach when
+    RentScheduleIndicator / IncomeApproachIndicator / CostApproachIndicator
+    = "true", and all three are "FID: Not on report". The editor offered no
+    place to set them. When a single-family report was reshaped to 2-4, the
+    single-family report's "false" was carried over the 2-4 structure's own
+    "true".
+  - A defect row added in a unit's or building's own table built
+    DOCUMENT_SETS/... inside the PROPERTY_UNIT. The schema refused it, so
+    every such pick failed: 8.060, 10.056-10.060, 26.031, 26.039. Found by an
+    E2E sweep that opened pickers across a 2-4 report and recorded refused
+    saves: 75 ok, 12 failed before the fix.
+- Fixes:
+  - `uad/setup.py` and `GET/PUT /api/cases/{id}/setup`: the property type
+    (single family, 2-4 with 2/3/4 units, condominium, cooperative,
+    manufactured) plus the approaches.
+    - A new report starts directly on that kind's D-1 structure
+      (`POST /cases` with `setup`), with nothing carried. All five kinds give
+      the right sections and pass the schema.
+    - An open report is reshaped as by an answer. Moving to a non-project
+      kind clears the carried project answers.
+  - `shape.reshape` keeps an approach on if the old report had it or the new
+    structure develops it; the structure's own values are read before the
+    carry.
+  - A carried property-data-report INSPECTION_SERVICE goes into the
+    structure's own inspection SERVICE.
+  - The cells route creates a unit or building defect under the PROPERTY and
+    ties it with DEFECT_ContainsDefectOf_<TAG>.
+- UI: the "What are you appraising?" screen opens on New report. The editor
+  toolbar has "Report setup".
+- Tests: tests/test_setup.py (8).
+- Open: changing an existing filled report into a condominium leaves schema
+  findings from the condo structure's separate inspection SERVICE (PARTIES
+  order) and VALUATION_SOFTWARE_SYSTEM. This is the old reshape path; a new
+  report is clean.

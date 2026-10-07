@@ -150,6 +150,16 @@ def create_case(request: Request, body: dict = Body(...)) -> dict:
     # One "New report": the report is shaped by what the appraiser enters, not
     # by picking a form.  A caller may still name a template (tests, imports).
     template = body.get("template") or NEW_REPORT
+    chosen = body.get("setup") if isinstance(body.get("setup"), dict) else None
+    from uad import setup
+    if chosen and not body.get("template"):
+        # the report setup page: start on the official structure of the kind
+        # the appraiser chose, so nothing has to be carried across
+        try:
+            template, _det = setup._target(str(chosen.get("property_type", "")),
+                                           int(chosen.get("units") or 1))
+        except (KeyError, ValueError) as exc:
+            raise HTTPException(422, str(exc))
     try:
         case = store().create(template=template,
                               name=body.get("name", "") or (NEW_NAME if not body.get("template") else ""),
@@ -157,6 +167,18 @@ def create_case(request: Request, body: dict = Body(...)) -> dict:
                               actor=_actor(request))
     except KeyError:
         raise HTTPException(404, f"no template {template}")
+    if chosen:
+        st = store()
+        try:
+            tree, _t, notes, _f = setup.apply(st.tree(case.case_id), case.template,
+                                              str(chosen.get("property_type", "")),
+                                              int(chosen.get("units") or 1),
+                                              dict(chosen.get("approaches") or {}))
+        except (KeyError, ValueError) as exc:
+            raise HTTPException(422, str(exc))
+        st.save_tree(case.case_id, tree)
+        st.log(case.case_id, _actor(request), "setup", "; ".join(notes) or "approaches stated")
+        case = st.get(case.case_id)
     return case.to_json()
 
 
@@ -645,6 +667,26 @@ def _new_instance(root, dp: dict, base):
     parent, _ = edit.ensure_path(holder, upto)
     return edit.insert_ordered(parent, container)
 
+def _new_defect(root, dp: dict, owner):
+    """A new DEFECT under the owner's PROPERTY, linked to the owner (a
+    PROPERTY_UNIT, IMPROVEMENT, CAR_STORAGE or AMENITY) by arcrole."""
+    from uad import sources
+    M_, XL = f"{{{bind.MISMO}}}", "{http://www.w3.org/1999/xlink}"
+    prop = next((a for a in owner.iterancestors(f"{M_}PROPERTY")), None) or bind.subject(root)
+    defect = _new_instance(root, dp, prop)
+    if defect is None:
+        raise ValueError("the defect row could not be created")
+    tag = etree.QName(owner).localname
+    if not owner.get(f"{XL}label"):
+        owner.set(f"{XL}label", edit._free_label(root, tag))
+    defect.set(f"{XL}label", edit._free_label(root, f"DEFECT_{tag}"))
+    rel = edit.insert_ordered(sources._relationships(root), "RELATIONSHIP")
+    rel.set(f"{XL}arcrole", f"urn:fdc:mismo.org:2009:residential/DEFECT_ContainsDefectOf_{tag}")
+    rel.set(f"{XL}from", defect.get(f"{XL}label"))
+    rel.set(f"{XL}to", owner.get(f"{XL}label"))
+    return defect
+
+
 def _instance_count(root, binding, data_point: str, scope) -> tuple[int, str]:
     """How many instances of this field's repeating container exist, and its tag."""
     node = bind.locate(root, binding, data_point, scope, 1)
@@ -713,6 +755,15 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             if node is None:
                 raise ValueError("the row could not be created")
             scope = bind.find_path(root, bind.instance_of(node))
+        elif body.get("new") and "/DEFECTS/DEFECT/" in dp.get("xpath", "") \
+                and base is not None and etree.QName(base).localname == "DEFECT":
+            scope = base                  # the row is that defect already
+        elif body.get("new") and "/DEFECTS/DEFECT/" in dp.get("xpath", "") \
+                and base is not None and etree.QName(base).localname != "PROPERTY":
+            # a defect row in a unit's, building's or garage's own table: the
+            # DEFECT lives under the PROPERTY and is tied to what it is in by
+            # DEFECT_ContainsDefectOf_<it> (D-1 2-4), which is how it is read
+            scope = _new_defect(root, dp, base)
         elif body.get("new"):
             scope = _new_instance(root, dp, base)
             if scope is None:
@@ -1105,6 +1156,38 @@ def _reshape_if_needed(case_id: str, case, before_tree, after_tree):
     if not template or template == case.template:
         return None
     return shape.reshape(after_tree, template)
+
+
+@router.get("/cases/{case_id}/setup")
+def get_setup(case_id: str) -> dict:
+    """The report's setup: its property type, units and approaches (uad/setup.py)."""
+    _case_or_404(case_id)
+    from uad import setup
+    return setup.current(store().tree(case_id).getroot())
+
+
+@router.put("/cases/{case_id}/setup")
+def put_setup(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """State the property type (rebuilding the report on its structure, every
+    value carried) and the approaches developed -- B-1's "Not on report"
+    indicators that show Rental Information, Income and Cost Approach."""
+    case = _case_or_404(case_id)
+    st = store()
+    from uad import setup
+    try:
+        tree, template, notes, failed = setup.apply(
+            st.tree(case_id), case.template, str(body.get("property_type", "")),
+            int(body.get("units") or 1), dict(body.get("approaches") or {}))
+    except (KeyError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree, allow_invalid=template is not None)
+    if template is not None:
+        st.set_shape(case_id, template, templates.get(template).property_type)
+    st.invalidate(case_id, _actor(request), "report setup changed")
+    st.log(case_id, _actor(request), "setup", "; ".join(notes) or "approaches stated")
+    return {**setup.current(tree.getroot()), "notes": notes,
+            "not_placed": [f.get("label") or f.get("fid") for f in failed][:20],
+            "reshaped": template is not None, "state": st.get(case_id).state}
 
 
 @router.post("/cases/{case_id}/fields")

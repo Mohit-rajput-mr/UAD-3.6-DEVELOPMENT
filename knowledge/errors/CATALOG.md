@@ -2071,3 +2071,31 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   findings from the condo structure's separate inspection SERVICE (PARTIES
   order) and VALUATION_SOFTWARE_SYSTEM. This is the old reshape path; a new
   report is clean.
+
+### E-145 Signature taken where it prints; lists that can be typed into
+- Owner's complaints:
+  - "In the signature section it should ask for the signature input." The
+    line held only the name and a hint-less date box.
+  - "Most adjustments don't need dropdowns, just put text or number." Grid
+    and report lists could only be clicked through.
+- Signature:
+  - The editor shows "Sign here" on each signer's line.
+  - The pad offers Draw (pointer or finger), Type (the name set in a
+    handwritten face) or Upload.
+  - It saves a PNG as case media: category "signature", section 29,
+    caption "Signature <n>". Saving again replaces it; "Remove" deletes it.
+  - `_signature_html` draws it above the line in the editor, the preview and
+    the PDF. It is never shown as an exhibit (excluded in the media-exhibit
+    loop). The date, ID, state and expiry controls carry their kind hints.
+- Typeable lists:
+  - Grid lists (`field()`) have a "Type to find…" box. Typing narrows the
+    choices; Enter saves the first match.
+  - Text that matches nothing saves as the field's "Other", with the words
+    as its OtherDescription. The server still refuses an invalid
+    enumeration (verified: MortgageType "sim" gives 422 when sent raw).
+  - Report pickers with more than 6 choices open with a search box; Enter
+    picks the first visible choice.
+- E2E:
+  - sign (type) → save → reload: img.sgimg in the editor and in the preview;
+    media [["signature","Signature 1"]];
+  - type "sim" in Financing Type → saved as Other: sim.

@@ -994,9 +994,26 @@ EDIT_JS = """
         var here=(el.textContent||'').trim();
         var rows=[{value:'',label:'\\u2014 not answered \\u2014',clear:true}]
           .concat(d.options||[]);
+        // typed, not only picked: the list narrows as the appraiser types
+        var find=document.createElement('input'); find.type='text'; find.className='pfind';
+        find.placeholder='Type to find\u2026'; find.autocomplete='off';
+        find.addEventListener('mousedown',function(ev){ ev.stopPropagation(); });
+        find.addEventListener('input',function(){
+          var t=find.value.trim().toLowerCase();
+          [].forEach.call(list.querySelectorAll('div[data-pv]'),function(r){
+            r.hidden=!!t&&r.textContent.toLowerCase().indexOf(t)<0; });
+        });
+        find.addEventListener('keydown',function(ev){
+          if(ev.key==='Escape'){ ev.preventDefault(); shut(); return; }
+          if(ev.key!=='Enter') return;
+          ev.preventDefault();
+          var hit=[].filter.call(list.querySelectorAll('div[data-pv]'),function(r){ return !r.hidden&&!r.classList.contains('clear'); })[0];
+          if(hit) hit.dispatchEvent(new MouseEvent('mousedown',{bubbles:true,cancelable:true}));
+        });
+        if((d.options||[]).length>6){ list.appendChild(find); setTimeout(function(){ find.focus(); },0); }
         rows.forEach(function(o){
           var row=document.createElement('div');
-          row.textContent=o.label;
+          row.textContent=o.label; row.dataset.pv=o.value;
           if(o.clear) row.className='clear';
           if(o.label===here||o.value===here) row.className='on';
           row.addEventListener('mousedown',function(ev){
@@ -1249,6 +1266,90 @@ EDIT_JS = """
      editor's state until a picture goes in, and the report is laid out again
      so everything below moves down to make room. */
   var slotChain=null;       // a new box's name waits until the box is saved
+  /* ------------------------------------------------ the signature
+     The signer signs where the signature prints: drawn with the mouse or a
+     finger, typed and set in a hand, or a picture of it.  It is kept with the
+     case as an image (category "signature") and drawn above the line. */
+  function signaturePad(btn){
+    var n=btn.dataset.signer||'1', old=btn.dataset.media||'';
+    if(!document.getElementById('sgpad-style')){
+      var st=document.createElement('style'); st.id='sgpad-style';
+      st.textContent='.sgveil{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif}'
+        +'.sgpanel{background:#fff;color:#111;border-radius:12px;padding:16px 18px;width:min(640px,94vw);box-shadow:0 20px 60px rgba(0,0,0,.35)}'
+        +'.sgpanel h4{margin:0 0 10px;font-size:16px}.sgtabs{display:flex;gap:6px;margin-bottom:10px}'
+        +'.sgtabs button{border:1px solid #ccd;background:#f4f5f8;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px}'
+        +'.sgtabs button.on{background:#1d4f91;color:#fff;border-color:#1d4f91}'
+        +'.sgcanvas{display:block;width:100%;height:180px;border:1px dashed #9aa;border-radius:8px;background:#fff;touch-action:none;cursor:crosshair}'
+        +'.sgtype{width:100%;box-sizing:border-box;font-size:15px;padding:8px;border:1px solid #ccd;border-radius:8px;margin-bottom:8px}'
+        +'.sgfoot{display:flex;justify-content:space-between;gap:8px;margin-top:12px;align-items:center}'
+        +'.sgfoot .r{display:flex;gap:8px}.sgfoot button{border:1px solid #ccd;background:#fff;border-radius:8px;padding:7px 14px;cursor:pointer;font-size:13px}'
+        +'.sgfoot button.go{background:#111;color:#fff;border-color:#111}.sgfoot button.rm{color:#b42318;border-color:#f2b8b5}'
+        +'.sgnote{font-size:12px;color:#667}';
+      document.head.appendChild(st);
+    }
+    var veil=document.createElement('div'); veil.className='sgveil';
+    veil.innerHTML='<div class="sgpanel" role="dialog" aria-modal="true"><h4>Signature</h4>'
+      +'<div class="sgtabs"><button type="button" data-t="draw" class="on">Draw</button><button type="button" data-t="type">Type</button><button type="button" data-t="file">Upload</button></div>'
+      +'<input class="sgtype" type="text" placeholder="Type your full name" hidden>'
+      +'<canvas class="sgcanvas" width="1200" height="360"></canvas>'
+      +'<div class="sgfoot"><span class="sgnote">Sign in the box with your mouse or finger.</span><div class="r">'
+      +(old?'<button type="button" class="rm">Remove</button>':'')
+      +'<button type="button" class="clr">Clear</button><button type="button" class="no">Cancel</button><button type="button" class="go">Save signature</button></div></div></div>';
+    document.body.appendChild(veil);
+    var cv=veil.querySelector('canvas'), cx=cv.getContext('2d'), typed=veil.querySelector('.sgtype'), note=veil.querySelector('.sgnote');
+    var inked=false, mode='draw', drawing=false;
+    function blank(){ cx.clearRect(0,0,cv.width,cv.height); inked=false; }
+    cx.lineCap='round'; cx.lineJoin='round'; cx.lineWidth=5; cx.strokeStyle='#0b1f4a';
+    function pt(e){ var r=cv.getBoundingClientRect(); return [(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height]; }
+    cv.addEventListener('pointerdown',function(e){ if(mode!=='draw') return; drawing=true; cv.setPointerCapture(e.pointerId); var p=pt(e); cx.beginPath(); cx.moveTo(p[0],p[1]); });
+    cv.addEventListener('pointermove',function(e){ if(!drawing) return; var p=pt(e); cx.lineTo(p[0],p[1]); cx.stroke(); inked=true; });
+    cv.addEventListener('pointerup',function(){ drawing=false; });
+    function setType(){
+      blank(); var t=typed.value.trim(); if(!t) return;
+      cx.fillStyle='#0b1f4a'; var size=150;
+      do{ cx.font='italic '+size+'px "Brush Script MT","Segoe Script","Lucida Handwriting",cursive'; size-=6; }
+      while(cx.measureText(t).width>cv.width-60 && size>40);
+      cx.textBaseline='middle'; cx.fillText(t,30,cv.height/2); inked=true;
+    }
+    typed.addEventListener('input',setType);
+    function tab(t){
+      mode=t; veil.querySelectorAll('.sgtabs button').forEach(function(b){ b.classList.toggle('on',b.dataset.t===t); });
+      typed.hidden=t!=='type'; blank();
+      note.textContent={draw:'Sign in the box with your mouse or finger.',type:'Your name, set in a handwritten style.',file:'A picture of your signature (PNG or JPEG).'}[t];
+      if(t==='type'){ typed.focus(); setType(); }
+      if(t==='file'){
+        var inp=document.createElement('input'); inp.type='file'; inp.accept='image/*';
+        inp.onchange=function(){ var f=inp.files[0]; if(!f) return; var img=new Image();
+          img.onload=function(){ blank(); var k=Math.min(cv.width/img.width,cv.height/img.height);
+            cx.drawImage(img,(cv.width-img.width*k)/2,(cv.height-img.height*k)/2,img.width*k,img.height*k); inked=true; };
+          img.src=URL.createObjectURL(f); };
+        inp.click();
+      }
+    }
+    veil.querySelectorAll('.sgtabs button').forEach(function(b){ b.onclick=function(){ tab(b.dataset.t); }; });
+    function close(){ veil.remove(); }
+    veil.querySelector('.no').onclick=close;
+    veil.querySelector('.clr').onclick=function(){ blank(); typed.value=''; };
+    var rm=veil.querySelector('.rm');
+    if(rm) rm.onclick=function(){
+      json(api+'/media/'+old,{method:'DELETE'}).then(function(){ close(); tell({uad:'media'}); reloadHere(); });
+    };
+    veil.querySelector('.go').onclick=function(){
+      if(!inked){ note.textContent='Sign first — draw, type or upload your signature.'; return; }
+      cv.toBlob(function(blob){
+        var fd=new FormData(); fd.append('file',blob,'signature-'+n+'.png');
+        json(api+'/media?category=signature&section=29&caption='+encodeURIComponent('Signature '+n),{method:'POST',body:fd})
+          .then(function(){ return old?json(api+'/media/'+old,{method:'DELETE'}).catch(function(){}):null; })
+          .then(function(){ close(); tell({uad:'media'}); reloadHere(); })
+          .catch(function(err){ note.textContent='The signature could not be saved: '+err.message; });
+      },'image/png');
+    };
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest && e.target.closest('.sgsign');
+    if(b){ e.preventDefault(); signaturePad(b); }
+  });
+
   function slots(){ return json(api+'/prefs').then(function(p){ return p.exhibitSlots||[]; }); }
   function saveSlots(list){ return putJSON(api+'/prefs',{exhibitSlots:list}); }
 
@@ -1669,7 +1770,14 @@ EDIT_JS = """
         var chain=Promise.resolve(null);
         inputs.forEach(function(x){
           chain=chain.then(function(){
-            var input=x.el.querySelector('input,select');
+            var input=x.el.querySelector('input[type=hidden]')||x.el.querySelector('input,select');
+            var typedOther=(input.dataset&&input.dataset.typed)||'';
+            if(typedOther){
+              // words that match no choice: the field's Other, described
+              var desc=inputs.filter(function(y){ return /OtherDescription$/.test(y.dp); })[0];
+              var di=desc&&desc.el.querySelector('input');
+              if(di&&!di.value) di.value=typedOther;
+            }
             var body=adj?{kind:gkind,adjust_type:adj,value:input.value}
                         :{kind:gkind,data_point:x.dp,value:input.value};
             if(gscope) body.scope=gscope;
@@ -1696,6 +1804,7 @@ EDIT_JS = """
       place(box,td);
       gedit=box;
       var first=box.querySelector('input[type=text],.gpick'); if(first) first.focus();
+      if(first&&first.select) first.select();
     }).catch(function(e3){ say('The grid could not be read: '+e3.message); });
   }
   /* Typing a street offers real addresses; picking one fills the city,
@@ -1786,6 +1895,28 @@ EDIT_JS = """
         list.children[i].scrollIntoView({block:'nearest'});
       });
       mark();
+      // typed, not only picked: the list narrows to what is typed and the
+      // first match is the answer; text that matches nothing goes to "Other"
+      // with the words as its description, where the field has one
+      var q=document.createElement('input'); q.type='text'; q.className='gq';
+      q.placeholder='Type to find\u2026'; q.autocomplete='off';
+      var other=options.filter(function(o){ return /^other$/i.test(o.value)||/^other$/i.test(o.label); })[0];
+      q.addEventListener('input',function(){
+        var t=q.value.trim().toLowerCase(), first=null;
+        [].forEach.call(list.children,function(r){
+          if(r.classList.contains('clear')){ r.hidden=!!t; return; }
+          var hit=!t||r.textContent.toLowerCase().indexOf(t)>=0||String(r.dataset.value).toLowerCase().indexOf(t)>=0;
+          r.hidden=!hit; if(hit&&!first) first=r;
+        });
+        if(!t){ mark(); return; }
+        el.value=first?first.dataset.value:(other?other.value:el.value);
+        el.dataset.typed=first?'':q.value.trim();
+        mark();
+      });
+      q.addEventListener('keydown',function(ev){
+        if(ev.key==='ArrowDown'){ ev.preventDefault(); list.focus(); }
+      });
+      wrap.appendChild(q);
       wrap.appendChild(list);
       setTimeout(function(){ var on=list.querySelector('.on'); if(on) on.scrollIntoView({block:'nearest'}); },0);
     }else{

@@ -2456,14 +2456,24 @@ def _signature_html(ctx: Ctx, els: list[dict]) -> str:
         # appraiser's contact name, entered under Assignment Information.
         if ctx.edit and n == 0 and fid:
             control = _value_control(ctx, fid, text)
-            return control or (f"<span class='v' data-fid='{esc(fid)}' contenteditable='true'"
-                               f" spellcheck='false'>{esc(text)}</span>")
+            return control or (f"<span class='v' data-fid='{esc(fid)}' data-k='{input_kind(fid)}'"
+                               f" contenteditable='true' spellcheck='false'>{esc(text)}</span>")
         return esc(text)
     out = []
     for n in range(max(len(roles), len(names), 1)):
         role = roles[n] if n < len(roles) else ""
         name = names[n] if n < len(names) else ""
         date = dates[n] if n < len(dates) else (dates[0] if dates and n == 0 else "")
+        # the signer's own signature, kept with the case (category
+        # "signature", caption "Signature <n>"), drawn above the line
+        mine = [m for m in ctx.media if m.get("category") == "signature"
+                and (m.get("caption") or "").strip() == f"Signature {n + 1}"]
+        src = _data_uri(Path(mine[-1]["path"])) if mine else ""
+        sig = f"<img class='sgimg' alt='Signature' src='{src}'>" if src else esc(name)
+        if ctx.edit:
+            sig += (f"<span class='sgsign{' has' if src else ''}' role='button' tabindex='0'"
+                    f" data-signer='{n + 1}' data-media='{esc(mine[-1].get('media_id', '')) if mine else ''}'>"
+                    f"{'Change signature' if src else '&#x270D; Sign here'}</span>")
         right = "".join(
             f"<div class='sgr'><span>{esc(label)}</span>"
             f"<span>{value(fid, v[n] if n < len(v) else '', n)}</span></div>"
@@ -2471,7 +2481,7 @@ def _signature_html(ctx: Ctx, els: list[dict]) -> str:
         out.append(
             "<div class='sg'><div class='sgl'>"
             f"<div class='sgrole'>{esc(_role_display(role) if role else '')}</div>"
-            f"<div class='sgline'><span class='sgname'>{esc(name)}</span><span class='sgdate'>{value(date_f, date, n)}</span></div>"
+            f"<div class='sgline'><span class='sgname'>{sig}</span><span class='sgdate'>{value(date_f, date, n)}</span></div>"
             f"<div class='sgcap'><span>{esc(name)}</span><span>Date of Signature and Report</span></div>"
             f"</div><div class='sgrt'>{right}</div></div>")
     return "".join(out)
@@ -4670,8 +4680,8 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     for m in ctx.media:
         # The subject's front photo and a comparable's thumbnail have slots of
         # their own; filing them under a section does not make them exhibits.
-        if m.get("category") in ("subject", "comparable") or m.get("fills"):
-            continue
+        if m.get("category") in ("subject", "comparable", "signature") or m.get("fills"):
+            continue                       # (a signature prints on its line)
         category = media_category(m)
         home = ("Sketch" if category in SKETCH else
                 "Sales Comparison Approach" if category == "SalesComparableMap" else
@@ -5533,6 +5543,10 @@ table.grid th[data-compmenu]{cursor:pointer}
 .gedit input,.gedit select{width:100%;font:inherit;font-size:8pt;padding:1pt 2pt;
   border:0.6pt solid #9a9a95;box-sizing:border-box}
 .gedit .gpick{max-height:84pt;overflow-y:auto;border:0.6pt solid #9a9a95;outline:none;background:#fff}
+.gedit .gq{display:block;width:100%;box-sizing:border-box;margin:0 0 2pt;padding:2pt 3pt;font:inherit;font-size:7pt;
+  border:0.6pt solid #1d4f91;border-radius:2pt;outline:none}
+.picklist .pfind{display:block;width:calc(100% - 4pt);box-sizing:border-box;margin:2pt;padding:2pt 3pt;font:inherit;
+  font-size:7pt;border:0.6pt solid #1d4f91;border-radius:2pt;outline:none}
 .gedit .gpick:focus{border-color:#231f20}
 .gedit .gpick div{padding:1.4pt 5pt;white-space:nowrap;cursor:pointer;font-size:7.5pt;line-height:9pt}
 .gedit .gpick div:hover{background:#e6e7e8}
@@ -5586,6 +5600,12 @@ table.tbl td.tickcell > span{display:inline-flex;align-items:center;justify-cont
 table.tbl td.tickcell:hover > span{border-color:rgba(29,79,145,.9);background:rgba(66,133,244,.18)}
 table.tbl td.tickcell > span > svg.tick{width:8pt;height:8pt}
 table.tbl tr.newrow td{border-bottom-style:dashed}
+/* the signature: signed here, drawn above the line */
+.sgsign{display:inline-flex;align-items:center;justify-content:center;min-width:150pt;height:24pt;
+  border:1pt dashed rgba(43,108,176,.7);border-radius:4pt;background:rgba(66,133,244,.08);
+  color:#1d4f91;font-size:8pt;font-weight:600;cursor:pointer}
+.sgsign:hover{background:rgba(66,133,244,.18)}
+.sgsign.has{min-width:0;height:auto;padding:1pt 5pt;margin-left:6pt;font-size:6.5pt;font-weight:400;border-style:solid}
 /* a per-report layout choice (rental analysis) -- the editor's, never printed */
 .layoutsw{display:flex;align-items:center;gap:4pt;margin:2pt 0 4pt;font-size:7pt}
 .layoutsw .lsl{color:rgba(35,31,32,.6);margin-right:2pt}
@@ -5850,7 +5870,9 @@ tr.hint td .hintx{{font-style:italic;color:#6d6e71;font-size:8pt}}
 .sg{{display:flex;justify-content:space-between;padding:4pt 0 6pt 4pt}}
 .sgl{{width:250pt}}.sgrt{{width:264pt}}
 .sgrole{{font-weight:700;line-height:11pt}}
-.sgline{{display:flex;justify-content:space-between;border-bottom:0.5pt solid #231f20;padding:2pt 0 1pt}}
+.sgline{{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:0.5pt solid #231f20;padding:2pt 0 1pt;min-height:30pt}}
+.sgname{{position:relative;display:flex;align-items:flex-end;min-height:28pt}}
+.sgimg{{display:block;max-height:30pt;max-width:170pt;object-fit:contain}}
 .sgdate{{padding-right:28pt;align-self:flex-end}}
 .sgcap{{display:flex;justify-content:space-between;line-height:11pt}}
 .sgr{{display:flex;border-bottom:0.5pt solid #939598;line-height:11pt}}

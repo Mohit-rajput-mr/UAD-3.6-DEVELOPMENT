@@ -102,8 +102,44 @@ def reshape(current: etree._ElementTree, template: str) -> Reshaped:
     delivery.stamp_software(target.getroot())
     from . import setup
     developed = setup.approaches(target.getroot())     # the structure's own, before the carry
+    # A structure that keeps its property data report in a SERVICE of its own
+    # before the valuation's (D-1 Condo1) would take the carried valuation
+    # into that first SERVICE -- two VALUATIONs.  It stands aside during the
+    # carry and goes back where it was.
+    from . import bind as _bind
+    M_ = f"{{{_bind.MISMO}}}"
+    aside = []
+    for svc in list(target.getroot().iter(f"{M_}SERVICE")):
+        if svc.find(f"{M_}VALUATION") is None:
+            holder = svc.getparent()
+            aside.append((holder, list(holder).index(svc), svc))
+            holder.remove(svc)
+    # the old report's own property data report SERVICE is carried whole,
+    # never by position into the new valuation
+    from copy import deepcopy
+    source = deepcopy(source.getroottree()).getroot()
+    carried_insp = []
+    for svc in list(source.iter(f"{M_}SERVICE")):
+        if svc.find(f"{M_}VALUATION") is None and svc.find(f"{M_}INSPECTION_SERVICE") is not None:
+            carried_insp.append(svc)
+            svc.getparent().remove(svc)
     steps = autofill.plan(target, source)
     done = autofill.apply(target, steps, source)
+    for holder, index, svc in reversed(aside):
+        holder.insert(index, svc)
+    for svc in carried_insp:
+        valuation = next((v for v in target.getroot().iter(f"{M_}SERVICE")
+                          if v.find(f"{M_}VALUATION") is not None), None)
+        if valuation is None:
+            break
+        holder = valuation.getparent()
+        own = next((o for o in holder.findall(f"{M_}SERVICE") if o.find(f"{M_}VALUATION") is None), None)
+        if own is not None and "".join(own.itertext()).strip():
+            continue                     # the new structure's own report stays
+        if own is not None:
+            holder.replace(own, svc)
+        else:
+            holder.insert(list(holder).index(valuation), svc)
     from . import structure
     setup.keep_approaches(source, target.getroot(), developed)   # a carried "false" never switches one off
     _own_inspection_service(target.getroot())

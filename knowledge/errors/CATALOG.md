@@ -2099,3 +2099,33 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   - sign (type) → save → reload: img.sgimg in the editor and in the preview;
     media [["signature","Signature 1"]];
   - type "sim" in Financing Type → saved as Other: sim.
+
+### E-146 Editor feel: instant adds, one list at a time, typed addresses, clean Yes/No boxes; type changes schema-clean
+- Owner (2026-10-07, screenshots):
+  - "Adding…" waits; additions should look instant and save in the
+    background;
+  - the Additional Properties Analyzed Not Used address was a "Unit" list;
+  - its dates showed "—w";
+  - several lists were open at once;
+  - Yes/No boxes looked doubled and offset.
+- Fixes:
+  - "+ Add a property analyzed but not used" clones an empty row at once.
+    The row is inert until the laid-out report swaps in with its key.
+    "+ Add Comparable" confirms at once. A signature shows on its line at
+    once.
+  - A whole-address cell is one typed field (`_cell` for an
+    `edit.is_address` binding: data-tdp='', text). The cells route splits it
+    with `edit.split_address` and echoes the whole address.
+  - Empty editable cells in the comparable-rows drawer are blank, not "—".
+  - Picker lists are cached per field, and only the last click's list
+    opens; closing cancels a list still loading.
+  - Yes/No boxes: the outline around the 12pt cell sat offset from the
+    Wingdings glyph and drew a second box. Removed; an unanswered pair's
+    glyphs are amber instead.
+- Changing a filled report's type: the new structure's inspection-only
+  SERVICE stands aside during the carry, and the old report's inspection
+  SERVICE is carried whole in front of the valuation. All 40 changes (5
+  kinds × 4 targets, filled and blank) are schema-clean and classify as the
+  target (tests/test_setup.py).
+- E2E: row count 5→6 right after the click; the address saved without
+  error; one list open after two quick clicks.

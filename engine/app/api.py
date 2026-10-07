@@ -719,6 +719,7 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
     root = candidate.getroot()
     value = str(body.get("value", ""))
     key = str(body.get("key") or "")
+    parts = None
     base = None
     if body.get("scope"):
         base = bind.find_path(root, str(body["scope"]))
@@ -826,6 +827,14 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             if holder is None:
                 raise ValueError(f"Field {field_id} does not belong to this row.")
             scope = holder
+        parts = (edit.split_address(value, binding)
+                 if arc_written is None and not body.get("data_point") and edit.is_address(binding) else None)
+        if parts:
+            # a whole address typed into one cell: stored as its parts
+            for dp_name, part in parts.items():
+                written = edit.write(candidate, field_id, part, binding=binding,
+                                     data_point=dp_name, scope=scope)
+            arc_written = written
         if arc_written is None:
             written = edit.write(candidate, field_id, value, binding=binding,
                                  data_point=body.get("data_point", ""), scope=scope)
@@ -848,6 +857,8 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
     new_key = bind.stable_path(scope) if scope is not None else ""
     shown = bind.trim_cents(bind.display_value([(written.data_point, written.new)], binding),
                             binding.label) if written.new else ""
+    if parts:
+        shown = value.strip()                # the address as typed, now stored as its parts
     return {"value": shown, "key": new_key, "state": st.get(case_id).state}
 
 

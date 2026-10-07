@@ -553,6 +553,8 @@ EDIT_JS = """
     +"to{box-shadow:0 0 0 6pt rgba(35,31,32,0)}}"
     +".agent-on{animation:agentpulse .5s ease-out}"
     // shown at once, saved behind: a slim moving line until the layout lands
+    +".uad-ghost{pointer-events:none;opacity:.85}"
+    +".uad-done{color:#1f7a3a!important;border-color:#1f7a3a!important}"
     +".uad-pending{position:relative}"
     +".uad-pending:after{content:'';position:absolute;left:0;right:0;bottom:0;height:2pt;z-index:6;"
     +"background:linear-gradient(90deg,#9a9aa0,#f4f4f5,#9a9aa0);background-size:200% 100%;"
@@ -948,6 +950,7 @@ EDIT_JS = """
   var openList=null, openOn=null;
 
   function shut(){
+    pickSeq++;                     // a list still loading does not open after this
     if(openList) openList.remove();
     if(openOn) openOn.classList.remove('open');
     openList=openOn=null;
@@ -983,12 +986,22 @@ EDIT_JS = """
     });
     setTimeout(function(){ input.focus(); },0);
   }
+  // a field's choices are fetched once and kept: the second list opens at once
+  var optCache={}, pickSeq=0;
+  function optionsFor(el){
+    var url='/api/fields/'+(el.dataset.fid||el.dataset.tf)+'/options'+(el.dataset.tdp?'?dp='+encodeURIComponent(el.dataset.tdp):'');
+    if(!optCache[url]) optCache[url]=fetch(url).then(function(r){return r.json();})
+      .catch(function(e){ delete optCache[url]; throw e; });
+    return optCache[url];
+  }
   function openPicker(el){
     if(openOn===el){ shut(); return; }
     shut();
-    fetch('/api/fields/'+(el.dataset.fid||el.dataset.tf)+'/options'+(el.dataset.tdp?'?dp='+encodeURIComponent(el.dataset.tdp):''))
-      .then(function(r){return r.json();})
+    var ticket=++pickSeq;          // only the last click's list opens
+    optionsFor(el)
       .then(function(d){
+        if(ticket!==pickSeq) return;
+        if(openList) openList.remove();
         var list=document.createElement('div');
         list.className='picklist';
         var here=(el.textContent||'').trim();
@@ -1336,12 +1349,20 @@ EDIT_JS = """
     };
     veil.querySelector('.go').onclick=function(){
       if(!inked){ note.textContent='Sign first — draw, type or upload your signature.'; return; }
+      // on the line at once; saved in the background
+      var spot=btn.parentNode, shown=spot.querySelector('img.sgimg');
+      if(!shown){ shown=document.createElement('img'); shown.className='sgimg'; shown.alt='Signature';
+        [].slice.call(spot.childNodes).forEach(function(c){ if(c!==btn) c.remove(); });
+        spot.insertBefore(shown,btn); }
+      shown.src=cv.toDataURL('image/png');
+      btn.textContent='Change signature'; btn.classList.add('has');
+      veil.style.display='none';
       cv.toBlob(function(blob){
         var fd=new FormData(); fd.append('file',blob,'signature-'+n+'.png');
         json(api+'/media?category=signature&section=29&caption='+encodeURIComponent('Signature '+n),{method:'POST',body:fd})
           .then(function(){ return old?json(api+'/media/'+old,{method:'DELETE'}).catch(function(){}):null; })
           .then(function(){ close(); tell({uad:'media'}); reloadHere(); })
-          .catch(function(err){ note.textContent='The signature could not be saved: '+err.message; });
+          .catch(function(err){ veil.style.display=''; note.textContent='The signature could not be saved: '+err.message; });
       },'image/png');
     };
   }
@@ -1961,11 +1982,15 @@ EDIT_JS = """
     var more=t.closest('.compadd');
     if(more){
       e.preventDefault();
-      more.textContent='Adding\u2026'; more.classList.add('uad-pending');
+      // answered at once: the comparable is added in the background and the
+      // grid with its new column swaps in when it is laid out
+      var was=more.textContent;
+      more.textContent='\u2713 '+was.replace(/^\\+\\s*Add\\s*/,'')+' added';
+      more.classList.add('uad-done');
       json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
                               body:JSON.stringify({kind:more.dataset.kind||'sales'})})
         .then(function(){ tell({uad:'media'}); reloadHere(); })
-        .catch(function(err){ say(err.message); });
+        .catch(function(err){ more.textContent=was; more.classList.remove('uad-done'); say(err.message); });
       return;
     }
     /* Additional Properties Analyzed Not Used: A-1 22.17, a list the
@@ -1973,11 +1998,29 @@ EDIT_JS = """
     var nuadd=t.closest('.nuadd');
     if(nuadd){
       e.preventDefault();
-      nuadd.textContent='Adding…'; nuadd.classList.add('uad-pending');
+      // the new row is on the page at once; it is saved in the background and
+      // takes its own key when the laid-out report swaps in (until then it is
+      // shown, not typed into, so nothing lands in another row)
+      var ghost=null, blk=nuadd.closest('.blk');
+      var holder=blk;
+      while(holder && !(holder.querySelector&&holder.querySelector('table.tbl tbody tr'))) holder=holder.previousElementSibling;
+      var last=holder&&[].slice.call(holder.querySelectorAll('table.tbl tbody tr')).pop();
+      if(last){
+        ghost=last.cloneNode(true);
+        [].forEach.call(ghost.querySelectorAll('td'),function(td,i){
+          var span=td.querySelector('span')||td;
+          if(i===0){ var n=parseInt((last.cells[0].textContent||'0').trim(),10); span.textContent=isNaN(n)?'':String(n+1); return; }
+          [].forEach.call(td.querySelectorAll('[contenteditable]'),function(c){ c.removeAttribute('contenteditable'); });
+          [].forEach.call(td.querySelectorAll('.v'),function(v){ v.textContent=''; v.removeAttribute('data-tk'); });
+          [].forEach.call(td.querySelectorAll('.lvdel'),function(x){ x.remove(); });
+        });
+        ghost.classList.add('uad-pending','uad-ghost');
+        last.parentNode.appendChild(ghost);
+      }
       json(api+'/comparables',{method:'POST',headers:{'Content-Type':'application/json'},
                               body:JSON.stringify({kind:'not_used'})})
         .then(function(){ reloadHere(); })
-        .catch(function(err){ say(err.message); });
+        .catch(function(err){ if(ghost) ghost.remove(); say(err.message); });
       return;
     }
     var lidrop=t.closest('.lidrop');

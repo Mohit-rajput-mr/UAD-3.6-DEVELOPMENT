@@ -3826,7 +3826,9 @@ def _comparable_rows_html(el: dict, ctx: Ctx, use: str) -> tuple[str, bool]:
             fid = ids_[0] if ids_ else ""
             text = _comps.value_for(ctx.root, fid, prop) if fid else ""
             if ctx.edit and fid:
-                line.append(_cell(esc(text), fid, ctx, key=tree.getpath(prop)))
+                if text.strip() in ("\u2014", "-"):
+                    text = ""          # an empty answer is typed into, not appended to "—"
+                line.append(_cell(esc(text.replace("\n", ", ")), fid, ctx, key=tree.getpath(prop)))
             else:
                 line.append("<td class='lines'>" + "<br>".join(f"<span>{esc(x)}</span>" for x in text.split("\n"))
                             + "</td>" if "\n" in text else _td(esc(text)))
@@ -4346,6 +4348,13 @@ def _container_of(ctx: "Ctx", key: str, sel: str, fid: str) -> str:
     return ""
 
 
+@lru_cache(maxsize=2048)
+def _is_address_field(fid: str) -> bool:
+    from .. import edit as _edit
+    b = binding(fid)
+    return bool(b) and _edit.is_address(b)
+
+
 def _stable(ctx: "Ctx", key: str) -> str:
     """The instance key (a getpath) as a stable, tag-named address."""
     if not key:
@@ -4373,6 +4382,16 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
     and the row's label, so the first value typed creates the instance with
     its type; the empty line under a repeating table creates a new one.
     """
+    b_addr = binding(fid)
+    if b_addr is not None and not point and _is_address_field(fid):
+        # a whole postal address is typed into one place and stored as its
+        # parts (edit.split_address) -- its first part, the unit designator,
+        # was offered as a "Unit" list
+        attrs = (f" data-tf='{esc(fid)}' data-tk='{esc(_stable(ctx, key))}' data-tdp='' data-k='text'"
+                 + (f" data-tsel='{esc(sel)}' data-tlab='{esc(label)}'" if sel else "")
+                 + (" data-tnew='1'" if new else "")
+                 + (f" data-tscope='{esc(bind.stable_path(ctx.scope))}'" if ctx.scope is not None else ""))
+        return f"<td><span class='v'{attrs} contenteditable='true' spellcheck='false'>{text}</span></td>"
     dp = cell_point(fid, _container_of(ctx, key, sel, fid), _instance_el(ctx, key))
     if point:
         # the cell names its own data point (Area: finished or unfinished)
@@ -5405,7 +5424,7 @@ EDIT_CSS = """
 .v.saving{background:rgba(29,79,145,.20)}
 .v.failed{background:rgba(190,60,60,.18);box-shadow:0 0 0 0.75pt rgba(190,60,60,.7)}
 .bx[data-pick]{cursor:pointer;border-radius:1pt}
-.bx[data-pick]:hover{background:rgba(29,79,145,.18)}
+.bx[data-pick]:hover{color:#1d4f91}
 /* an enumerated value keeps the row's face and colour; the list is drawn
    inside the page so it scales with it */
 .v.pick{display:inline-block;min-width:14pt;cursor:pointer;outline:none;
@@ -5450,8 +5469,7 @@ body.show-gaps .v.pick:empty{background:rgba(214,158,46,.20);
   box-shadow:inset 0 0 0 0.6pt rgba(180,120,20,.55)}
 body.show-gaps .v[contenteditable]:empty:before,
 body.show-gaps .v.pick:empty:before{content:'';display:inline-block;width:46pt}
-body.show-gaps .bxs.untouched{background:rgba(214,158,46,.20);
-  box-shadow:inset 0 0 0 0.6pt rgba(180,120,20,.55);border-radius:1pt}
+
 /* What a file brought in.  The amber above says "nobody has answered this";
    the green here says "this arrived with the import" -- the two never apply
    to the same control, because a field an import filled is not empty.  The
@@ -5663,8 +5681,9 @@ body.show-gaps .v.pick:empty:before{content:'Select'}
 .v.pick{border-radius:4pt}
 .v.pick:after{border-top-color:var(--k-edge)}
 /* the boxes still to be ticked */
-body.show-gaps .bxs.untouched{background:rgba(214,158,46,.20)}
-.bxs .bx[data-pick]{box-shadow:0 0 0 0.6pt rgba(176,122,18,.55)}
+/* the box is the glyph itself: an unanswered pair is drawn in amber, no
+   second outline around the cell (it sat offset from the glyph) */
+body.show-gaps .bxs.untouched .bx[data-pick]{color:#b07a12}
 
 /* the comparable grids: every cell that can be written looks like it */
 table.grid td[data-gc]:not(.grey){background-image:linear-gradient(var(--k-fill),var(--k-fill));

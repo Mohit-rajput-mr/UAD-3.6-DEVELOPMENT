@@ -122,3 +122,39 @@ def test_a_fixed_rows_second_answer_goes_in_the_row_its_first_made(client):
     comps = [c for c in api.store().tree(cid).getroot().iter(f"{M}STRUCTURE_COMPONENT")
              if (c.findtext(f".//{M}ImprovementComponentType") or "") == "Foundation"]
     assert len(comps) == 1
+
+
+@pytest.mark.parametrize("sample,kind", [
+    ("condo1_appraisal_v1_4", "single_family"),        # its own property data report SERVICE carried whole
+    ("2_to_4_unit_appraisal_v1_4", "condominium"),     # into a structure with a separate inspection SERVICE
+    ("sf1_appraisal_v1_4", "condominium"),
+    ("coop1_appraisal_v1_4", "manufactured"),
+])
+def test_a_filled_report_changes_kind_and_stays_schema_valid(sample, kind):
+    from uad import delivery, setup, shape, templates
+    base = templates.load(sample)
+    delivery.stamp_software(base.getroot())
+    tree, _t, _n, failed = setup.apply(base, sample, kind, 1, {})
+    assert shape.property_type(tree.getroot()) == kind
+    assert not schema.validate(tree), [e.message[:120] for e in schema.validate(tree)]
+
+
+def test_a_not_used_comparables_address_is_typed_whole_and_stored_as_parts(client):
+    """Additional Properties Analyzed Not Used: the address column offered a
+    "Unit" list (its first data point); it is one typed field, stored as the
+    parts A-1 defines, and an empty cell is blank -- not "—" to type after."""
+    import re
+    from app import api
+    cid = client.post("/api/cases", json={"blank": True, "setup": {"property_type": "single_family"}}).json()["case_id"]
+    html = form.galley_html(form.build(api.store().tree(cid), edit=True), edit=True)
+    tag = re.search(r"""<span class=["']v["'] data-tf=["']([\d.]+)["'] data-tk=["']([^"']+)["'] data-tdp=["']["'] data-k=["']text["']""", html)
+    assert tag, "no whole-address cell"
+    r = client.patch(f"/api/cases/{cid}/cells/{tag.group(1)}",
+                     json={"value": "742 Evergreen Ter, Springfield, VA 22150", "key": tag.group(2)})
+    assert r.status_code == 200, r.text
+    assert r.json()["value"] == "742 Evergreen Ter, Springfield, VA 22150"
+    M = "{http://www.mismo.org/residential/2009/schemas}"
+    root = api.store().tree(cid).getroot()
+    assert "742 Evergreen Ter" in [e.text for e in root.iter(f"{M}AddressLineText")]
+    assert "Springfield" in [e.text for e in root.iter(f"{M}CityName")]
+    assert not schema.validate(api.store().tree(cid))

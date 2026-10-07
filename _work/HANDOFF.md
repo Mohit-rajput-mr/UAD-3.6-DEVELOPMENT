@@ -2893,3 +2893,11 @@ Open:
   clean.
 - Long sweeps outlive the login session (401s after about 20 min); log in
   again per kind.
+- Later (E-146, T-266):
+  - instant adds (not-used rows, comparables, signature);
+  - one dropdown at a time, with cached choices;
+  - the not-used address is typed whole;
+  - Yes/No boxes are clean squares.
+  - Changing the type of a filled report is now schema-clean in all 20
+    directions (the inspection SERVICE stands aside / is carried whole).
+  Suite: 687 pass.

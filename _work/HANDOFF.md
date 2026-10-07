@@ -2863,3 +2863,33 @@ Next:
 - Rental analysis layout is now the appraiser's choice per report (E-143,
   T-1045). The default is stacked, as D-1 prints it; side by side follows
   C-1. The switch sits on top of the grid in the editor.
+
+## 2026-10-07 -- current position (owner's round: setup page, rental, dropdowns, signature, typing)
+Landed (CATALOG E-144, E-145; T-263, T-1046, T-264, T-265 done):
+- New report opens "What are you appraising?" (index.html `setupScreen`):
+  - single family / 2-4 (2, 3 or 4 units) / condominium / cooperative /
+    manufactured, plus Rental, Income and Cost;
+  - the report starts on that kind's D-1 structure (`POST /cases`
+    {setup}) and is schema-clean;
+  - "Report setup" in the editor changes an open report
+    (`PUT /cases/{id}/setup` → uad/setup.py).
+- Rental, Income and Cost follow B-1's "Not on report" indicators. A
+  reshape keeps an approach on if either side had it.
+- Dropdowns:
+  - unit and building defect rows are created under the PROPERTY and tied by
+    DEFECT_ContainsDefectOf_*;
+  - a fixed row's second answer reuses the row its first answer made.
+  - E2E picker sweep tool: scratchpad/e2e_picks.py `<scratch> <kind>
+    <count>`. It logs refused saves. Its "ui" timeouts and "row no longer in
+    the report" come from the sweep not reloading; checked.
+- Signature: "Sign here" opens a draw / type / upload pad. The signature is
+  media category "signature", caption "Signature n", printed on the line.
+- Lists take typing: filter, Enter picks; unmatched text becomes Other with
+  a description.
+Open:
+- Changing an existing filled report INTO a condominium leaves schema
+  findings: the condo structure's separate inspection SERVICE (PARTIES
+  order) and VALUATION_SOFTWARE_SYSTEM. Old reshape path; new reports are
+  clean.
+- Long sweeps outlive the login session (401s after about 20 min); log in
+  again per kind.

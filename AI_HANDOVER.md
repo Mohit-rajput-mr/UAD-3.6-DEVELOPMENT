@@ -209,6 +209,14 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-07 -- setup page first, rental for multi-family, dropdowns, signature, typing (E-144, E-145)
+- New report asks what is being appraised (5 kinds, units, approaches) and starts on that D-1
+  structure. "Report setup" in the editor changes it later.
+- Unit and building defect pickers save (they were refused). Fixed-row second answers save.
+- Signature pad (draw / type / upload) prints on the signature line. Lists can be typed into.
+- Next: fix reshape INTO condominium (schema findings); re-run the picker sweep per kind (fresh
+  login each); continue the owner's visual review.
+
 ### 2026-10-06 (night) -- editor looks like a form you fill (T-260, E-140) + MH1 Site (E-139)
 - Each input kind has its own look (`data-k` from `form.input_kind`, which uses F-1/B-1 data):
   - text: cream "Type…";

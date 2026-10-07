@@ -749,12 +749,21 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             want = next((v for v, shown in report_form.choices_for(str(body["sel"]))
                          if label in (v.casefold(), shown.casefold())), str(body["label"]))
             n, _tag = _instance_count(root, sel_binding, sel_dp["mismo"], base)
-            made = edit.write(candidate, str(body["sel"]), want, ordinal=n + 1,
-                              binding=sel_binding, scope=base)
-            node = bind.locate(root, sel_binding, made.data_point, base, n + 1)
-            if node is None:
-                raise ValueError("the row could not be created")
-            scope = bind.find_path(root, bind.instance_of(node))
+            # a row of this kind already made (the row's first answer, saved
+            # before the page knew its key): the value goes in that one
+            scope = None
+            for k in range(1, n + 1):
+                there = bind.locate(root, sel_binding, sel_dp["mismo"], base, k)
+                if there is not None and (there.text or "").strip() == want:
+                    scope = bind.find_path(root, bind.instance_of(there))
+                    break
+            if scope is None:
+                made = edit.write(candidate, str(body["sel"]), want, ordinal=n + 1,
+                                  binding=sel_binding, scope=base)
+                node = bind.locate(root, sel_binding, made.data_point, base, n + 1)
+                if node is None:
+                    raise ValueError("the row could not be created")
+                scope = bind.find_path(root, bind.instance_of(node))
         elif body.get("new") and "/DEFECTS/DEFECT/" in dp.get("xpath", "") \
                 and base is not None and etree.QName(base).localname == "DEFECT":
             scope = base                  # the row is that defect already

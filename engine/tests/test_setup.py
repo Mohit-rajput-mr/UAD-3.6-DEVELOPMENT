@@ -98,3 +98,27 @@ def test_a_defect_added_in_a_units_table_is_that_units(client):
     where = collections.Counter(b.section for b in blocks if b.visible and "Full Bathroom" in (b.html or ""))
     assert where == {"Unit Interior": 1, "Reconciliation": 1}, where
     assert not schema.validate(api.store().tree(cid))
+
+
+def test_a_fixed_rows_second_answer_goes_in_the_row_its_first_made(client):
+    """Dwelling Exterior features: Foundation's material creates the row; its
+    condition, sent before the page has the row's key, goes in that row --
+    it was refused ("the row could not be created") until the page reloaded."""
+    import re
+    from app import api
+    cid = client.post("/api/cases", json={"blank": True, "setup": {"property_type": "condominium"}}).json()["case_id"]
+    html = form.galley_html(form.build(api.store().tree(cid), edit=True), edit=True)
+    cells = [dict(re.findall(r"""data-(\w+)=["']([^"']*)["']""", t))
+             for t in re.findall(r"""<span class=["']v pick["'] data-tf=["']8\.0(?:29|31)["'][^>]*>""", html)]
+    found = [a for a in cells if a.get("tlab") == "Foundation"]
+    assert len(found) == 2
+    for a in found:
+        value = client.get(f"/api/fields/{a['tf']}/options", params={"dp": a["tdp"]}).json()["options"][0]["value"]
+        r = client.patch(f"/api/cases/{cid}/cells/{a['tf']}", json={
+            "value": value, "key": a.get("tk", ""), "data_point": a["tdp"], "sel": a["tsel"],
+            "label": a["tlab"], "scope": a.get("tscope", "")})
+        assert r.status_code == 200, r.text
+    M = "{http://www.mismo.org/residential/2009/schemas}"
+    comps = [c for c in api.store().tree(cid).getroot().iter(f"{M}STRUCTURE_COMPONENT")
+             if (c.findtext(f".//{M}ImprovementComponentType") or "") == "Foundation"]
+    assert len(comps) == 1

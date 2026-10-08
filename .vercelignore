@@ -14,3 +14,6 @@ MATERIALS/
 **/*.jpeg
 **/*.png
 !engine/app/ui/**
+
+# owner's competitor screenshots: reference only, never deployed
+Competitors 3.6 software features pics/

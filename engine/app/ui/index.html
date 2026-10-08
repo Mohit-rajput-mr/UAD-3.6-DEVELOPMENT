@@ -178,99 +178,108 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .rf-bar .k:before{content:'+ ';font-weight:300}
 .rf-note{font-size:12.5px;color:var(--muted);max-width:50ch}
 /* Report setup: the kind of property and the approaches, stated first.
-   Drawn in the platform's own language (owner 2026-10-08: the first version
-   "does not match the entire web UI"): the sheet with the silver edge over a
-   blurred veil, the editorial headline with its grey second line, "+"
-   labels, monochrome ink for selection, mono numerals. */
+   Square and ruled, like the report it sets up (owner 2026-10-08: "too much
+   circular or curved corner design ... prefer squarish, semantic"): no
+   rounded corner anywhere, the choices drawn as one ruled grid of cells,
+   each section a fieldset with its legend, square checkboxes, monochrome
+   ink for what is chosen. */
 .su-veil{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:28px 16px;
-  background:rgba(5,5,6,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);animation:sufade .16s ease-out}
+  background:rgba(5,5,6,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:sufade .14s ease-out}
 @keyframes sufade{from{opacity:0}}
-.su{position:relative;display:flex;flex-direction:column;width:min(1000px,100%);max-height:100%;border-radius:22px;padding:0;border:1px solid transparent;color:var(--ink);
-  background:var(--glass) padding-box,linear-gradient(var(--surface),var(--surface)) padding-box,var(--chrome) border-box;
-  box-shadow:var(--shadow-lg);animation:pop2 .2s ease-out;overflow:hidden}
-[data-theme=light] .su{background:#fff padding-box,linear-gradient(135deg,#d6d6d8,#f3f3f3 45%,#cdcdcf) border-box}
-.su-body{position:relative;overflow-y:auto;padding:28px 32px 26px;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
-.su:before{content:'';position:absolute;inset:0 0 auto;height:180px;pointer-events:none;
-  background:radial-gradient(600px 160px at 18% 0,var(--hover),transparent 70%)}
-.su-x{position:absolute;top:22px;right:22px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;
-  border:1px solid var(--line-2);border-radius:10px;background:transparent;color:var(--muted);font:300 20px/1 var(--sans)}
-.su-x:hover{color:var(--ink);border-color:var(--line-3);background:var(--hover)}
-.su-top{display:flex;align-items:center;gap:14px;padding-right:48px}
-.su h2{margin:14px 0 0;font:500 32px/1.08 var(--sans);letter-spacing:-.04em;max-width:22ch}
-.su h2 em{display:block;font-style:normal;color:var(--faint)}
-.su .lede{margin:14px 0 0;color:var(--muted);font-size:13.5px;max-width:66ch}
+.su,.su *{border-radius:0!important}
+.su{position:relative;display:flex;flex-direction:column;width:min(1000px,100%);max-height:100%;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line-3);box-shadow:var(--shadow-lg);animation:pop2 .16s ease-out}
+.su .su-head{display:flex;align-items:stretch;gap:0;padding:0;height:auto;z-index:auto;border-bottom:1px solid var(--line-2);flex:none;
+  background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.su-head .ht{flex:1;padding:22px 28px 20px}
+.su-head .eyebrow{font-size:10.5px}
+.su h2{margin:12px 0 0;font:500 28px/1.1 var(--sans);letter-spacing:-.035em}
+.su h2 em{font-style:normal;color:var(--faint)}
+.su .lede{margin:10px 0 0;color:var(--muted);font-size:13px;max-width:72ch}
 .su .lede b{color:var(--ink-2);font-weight:500}
-.su-sec{margin-top:24px}
-.su-sec .k{display:flex;align-items:center;gap:9px;color:var(--ink-2);margin-bottom:12px}
-.su-sec .k:before{content:'+';font:300 17px/1 var(--sans);letter-spacing:0;color:var(--ink)}
-.su-sec .k i{font-style:normal;margin-left:auto;letter-spacing:.04em;text-transform:none;font:400 12px/1 var(--sans);color:var(--faint)}
-.su-types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.su-x{flex:none;width:64px;display:grid;place-items:center;cursor:pointer;border:0;border-left:1px solid var(--line-2);
+  background:transparent;color:var(--muted);font:300 26px/1 var(--sans)}
+.su-x:hover{color:var(--ink);background:var(--hover)}
+.su-body{overflow-y:auto;padding:0 28px 26px;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.su fieldset{border:0;margin:24px 0 0;padding:0;min-width:0}
+.su legend{display:flex;width:100%;align-items:baseline;gap:12px;padding:0 0 10px;font:500 10.5px/1 var(--sans);
+  letter-spacing:.17em;text-transform:uppercase;color:var(--ink-2)}
+.su legend .lx{font:500 11px/1 var(--mono);letter-spacing:0;color:var(--faint)}
+.su legend i{margin-left:auto;font:400 12px/1 var(--sans);letter-spacing:0;text-transform:none;font-style:normal;color:var(--faint)}
+/* the five kinds: one ruled grid */
+.su-types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line-2);border-right:0;border-bottom:0}
 @media (max-width:900px){.su-types{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.su-types{grid-template-columns:1fr}.su-body{padding:22px 18px}.su h2{font-size:27px}.su-type{min-height:0}}
-.su-type{appearance:none;position:relative;display:flex;flex-direction:column;gap:0;min-height:182px;padding:15px 15px 13px;cursor:pointer;
-  text-align:left;color:var(--ink);font:inherit;border-radius:16px;border:1px solid var(--line);background:var(--glass);
-  transition:border-color .15s,background .15s,transform .15s,box-shadow .15s}
-.su-type:hover{border-color:var(--line-3);transform:translateY(-1px)}
-.su-type:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px}
+@media (max-width:520px){.su-types{grid-template-columns:1fr}}
+.su-type{appearance:none;position:relative;display:flex;flex-direction:column;min-height:176px;padding:14px 14px 12px;cursor:pointer;
+  text-align:left;color:var(--ink);font:inherit;background:transparent;border:0;
+  border-right:1px solid var(--line-2);border-bottom:1px solid var(--line-2);transition:background .12s}
+.su-type:hover{background:var(--hover)}
+.su-type:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
 .su-type .tn{display:flex;align-items:center;justify-content:space-between;font:500 11px/1 var(--mono);color:var(--faint)}
-.su-type .rd{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-3);display:grid;place-items:center;transition:border-color .15s}
-.su-type .rd:after{content:'';width:8px;height:8px;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .15s}
-.su-type .ic{margin:14px 0 14px;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
-  border:1px solid var(--line-2);color:var(--ink-2);background:var(--sunk);transition:background .15s,color .15s,border-color .15s}
-.su-type .ic svg{width:22px;height:22px}
-.su-type b{font-weight:500;font-size:15.5px;letter-spacing:-.02em;line-height:1.2}
+.su-type .rd{width:13px;height:13px;border:1.5px solid var(--line-3);display:grid;place-items:center}
+.su-type .rd:after{content:'';width:7px;height:7px;background:var(--btn-ink);transform:scale(0);transition:transform .12s}
+.su-type .ic{margin:16px 0 14px;color:var(--ink-2);display:block;line-height:0}
+.su-type .ic svg{width:26px;height:26px}
+.su-type b{font-weight:500;font-size:15px;letter-spacing:-.02em;line-height:1.2}
 .su-type .ds{margin-top:6px;font-size:12.5px;line-height:1.45;color:var(--muted)}
-.su-type .tg{font-style:normal;margin-top:auto;padding-top:14px;font:500 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
-.su-type[aria-checked=true]{border-color:var(--ink);background:var(--surface-2);box-shadow:0 0 0 1px var(--ink),var(--shadow)}
-.su-type[aria-checked=true] .rd{border-color:var(--ink)}
+.su-type .tg{font-style:normal;margin-top:auto;padding-top:12px;font:500 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
+.su-type[aria-checked=true]{background:var(--btn);color:var(--btn-ink)}
+.su-type[aria-checked=true] .tn,.su-type[aria-checked=true] .tg{color:color-mix(in srgb,var(--btn-ink) 60%,transparent)}
+.su-type[aria-checked=true] .ds{color:color-mix(in srgb,var(--btn-ink) 72%,transparent)}
+.su-type[aria-checked=true] .ic{color:var(--btn-ink)}
+.su-type[aria-checked=true] .rd{border-color:var(--btn-ink);background:transparent}
 .su-type[aria-checked=true] .rd:after{transform:scale(1)}
-.su-type[aria-checked=true] .ic{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
-.su-type[aria-checked=true] .tn{color:var(--ink)}
-.su-units{display:flex;align-items:center;gap:16px;margin-top:12px;padding:12px 14px 12px 16px;border:1px solid var(--line);border-radius:14px;
-  background:var(--glass);animation:pop2 .16s ease-out}
+.su-type[aria-checked=true]:focus-visible{outline-color:var(--good)}
+@media (max-width:520px){.su-type{display:grid;grid-template-columns:auto 1fr auto;column-gap:14px;align-items:center;min-height:0}
+  .su-type .tn{grid-column:3;grid-row:1;font-size:0}.su-type .ic{grid-column:1;grid-row:1/span 2;margin:0}
+  .su-type b{grid-column:2;grid-row:1}.su-type .ds{grid-column:2/4;grid-row:2;margin-top:4px}.su-type .tg{display:none}}
+/* living units: a row of the same grid */
+.su-units{display:flex;align-items:stretch;border:1px solid var(--line-2);border-top:0}
+.su-units .ul{flex:1;padding:12px 14px}
 .su-units .ul b{display:block;font-weight:500;font-size:13.5px}
 .su-units .ul small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
-.su-seg{display:inline-flex;margin-left:auto;padding:3px;border-radius:11px;border:1px solid var(--line-2);background:var(--sunk)}
-.su-seg button{appearance:none;min-width:48px;padding:8px 0;border:0;border-radius:8px;background:transparent;color:var(--muted);
-  font:500 13px/1 var(--mono);cursor:pointer;transition:background .12s,color .12s}
-.su-seg button:hover{color:var(--ink)}
+.su-seg{display:flex}
+.su-seg button{appearance:none;width:58px;border:0;border-left:1px solid var(--line-2);background:transparent;color:var(--muted);
+  font:500 15px/1 var(--mono);cursor:pointer;transition:background .12s,color .12s}
+.su-seg button:hover{color:var(--ink);background:var(--hover)}
 .su-seg button[aria-pressed=true]{background:var(--btn);color:var(--btn-ink)}
-.su-appr{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--glass)}
-@media (max-width:720px){.su-appr{grid-template-columns:1fr}}
-.su-appr label{display:flex;align-items:center;gap:14px;padding:15px 16px;cursor:pointer;border-top:1px solid var(--line);transition:background .12s}
-.su-appr label:nth-child(-n+2){border-top:0}
-.su-appr label:nth-child(even){border-left:1px solid var(--line)}
-@media (max-width:720px){.su-appr label:nth-child(2){border-top:1px solid var(--line)}.su-appr label:nth-child(even){border-left:0}}
+/* approaches: a ruled list, a square checkbox per line */
+.su-appr{border:1px solid var(--line-2)}
+.su-appr label{display:grid;grid-template-columns:18px 1fr auto;gap:14px;align-items:center;padding:12px 14px;cursor:pointer;
+  border-top:1px solid var(--line-2);transition:background .12s;position:relative}
+.su-appr label:first-child{border-top:0}
 .su-appr label:hover{background:var(--hover)}
 .su-appr label.fixed{cursor:default}
 .su-appr label.fixed:hover{background:none}
-.su-appr .an{flex:1;min-width:0}
 .su-appr .an b{display:block;font-weight:500;font-size:13.5px}
-.su-appr .an small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.su-appr .an small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
 .su-appr input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
-.su-sw{flex:none;width:36px;height:21px;border-radius:999px;border:1px solid var(--line-3);background:var(--sunk);position:relative;transition:background .15s,border-color .15s}
-.su-sw:after{content:'';position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:var(--muted);transition:transform .15s,background .15s}
-.su-appr input:checked+.su-sw{background:var(--btn);border-color:var(--btn)}
-.su-appr input:checked+.su-sw:after{transform:translateX(15px);background:var(--btn-ink)}
-.su-appr input:focus-visible+.su-sw{outline:1.5px solid var(--ink);outline-offset:2px}
-.su-appr .always{flex:none;font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
-  padding:6px 9px;border-radius:999px;border:1px solid var(--line-2)}
-.su-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;flex:none;margin:0;padding:16px 32px;border-radius:0 0 22px 22px;
-  border-top:1px solid var(--line);background:var(--bg-2)}
-@media (max-width:720px){.su-foot .chips,.su-foot .inc{display:none}}
-@media (max-width:520px){.su-foot{padding:14px 18px}.su-foot .acts{width:100%}.su-foot .acts .btn{flex:1}
-  .su-type{display:grid;grid-template-columns:auto 1fr auto;column-gap:14px;align-items:center;padding:14px;min-height:0}
-  .su-type .tn{grid-column:3;grid-row:1}.su-type .tn{font-size:0}.su-type .ic{grid-column:1;grid-row:1/span 3;margin:0}
-  .su-type b{grid-column:2;grid-row:1}.su-type .ds{grid-column:2/4;grid-row:2;margin-top:4px}.su-type .tg{display:none}}
-.su-foot .sum{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:0;flex:1}
-.su-foot .sum .k{margin-right:6px}
-.su-foot .note{font-size:13px;color:var(--muted)}
+.su-cb{width:16px;height:16px;border:1.5px solid var(--line-3);display:grid;place-items:center;background:transparent;transition:background .12s,border-color .12s}
+.su-cb:after{content:'';width:8px;height:4px;border:2px solid var(--btn-ink);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.su-appr input:checked~.su-cb,.su-appr label.fixed .su-cb{background:var(--btn);border-color:var(--btn)}
+.su-appr input:checked~.su-cb:after,.su-appr label.fixed .su-cb:after{opacity:1}
+.su-appr label.fixed .su-cb{opacity:.55}
+.su-appr input:focus-visible~.su-cb{outline:2px solid var(--ink);outline-offset:2px}
+.su-appr .st{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.su-appr input:checked~.st,.su-appr label.fixed .st{color:var(--ink)}
+.su-appr .st:before{content:'Not included'}
+.su-appr input:checked~.st:before{content:'Included'}
+.su-appr label.fixed .st:before{content:'Always'}
+/* the footer: what the report will hold, and the two actions */
+.su-foot{display:flex;align-items:stretch;flex:none;border-top:1px solid var(--line-2);background:var(--bg-2)}
+.su-foot .sum{flex:1;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:14px 28px}
+.su-foot .note{font-size:13px;color:var(--muted);margin-right:6px}
 .su-foot .note b{color:var(--ink);font-weight:500}
-.su-foot .chips span{color:var(--ink-2)}
-.su-foot .acts{display:flex;gap:8px}
-.su-foot .btn{padding:10px 16px;font-size:13.5px}
+.su-foot .chips span{border-radius:0!important;color:var(--ink-2)}
+.su-foot .acts{display:flex}
+.su-foot .btn{border:0;border-left:1px solid var(--line-2);padding:0 26px;font-size:13.5px;min-height:56px}
+.su-foot .btn.primary{border-left-color:var(--btn)}
 .su-foot .btn.primary .ar{transition:transform .15s}
 .su-foot .btn.primary:not([disabled]):hover .ar{transform:translateX(3px)}
+@media (max-width:720px){.su-foot .chips,.su-foot .inc{display:none}}
+@media (max-width:520px){.su-head .ht{padding:18px}.su .lede{display:none}.su h2 em{display:block}.su-x{width:52px}.su-body{padding:0 18px 20px}.su h2{font-size:24px}
+  .su-foot{flex-wrap:wrap}.su-foot .sum{padding:12px 18px;flex-basis:100%}.su-foot .acts{flex:1;border-top:1px solid var(--line-2)}
+  .su-foot .acts .btn{flex:1}.su-foot .acts .btn:first-child{border-left:0}}
 /* the key to the report's input colours (form.EDIT_CSS, T-260) */
 .rf-key{display:inline-flex;gap:6px;flex-wrap:wrap}
 .rf-key i{font-style:italic;font-size:11px;padding:2px 7px;border-radius:3px;color:#2b2b2b;white-space:nowrap}
@@ -819,26 +828,30 @@ function setupScreen(cur,{creating}={}){
     let kind=(cur&&cur.property_type)||'', units=(cur&&cur.units>1)?cur.units:2;
     let appr=Object.assign({},(cur&&cur.approaches)||{});
     const veil=document.createElement('div'); veil.className='su-veil';
-    veil.innerHTML=`<div class="su" role="dialog" aria-modal="true" aria-labelledby="su-t">
-      <div class="su-body"><button type="button" class="su-x" id="su-x" aria-label="Close">&times;</button><div class="su-top"><span class="eyebrow">${creating?'New report':'Report setup'}</span></div>
-      <h2 id="su-t">What are you appraising?<em>The report takes that shape.</em></h2>
-      <p class="lede">Each property type adds exactly the sections UAD 3.6 asks of it. You can change this later from <b>Report setup</b> — everything already entered is kept.</p>
-      <div class="su-sec"><div class="k">Property type<i>Choose one</i></div>
+    veil.innerHTML=`<form class="su" role="dialog" aria-modal="true" aria-labelledby="su-t" onsubmit="return false">
+      <header class="su-head"><div class="ht"><span class="eyebrow">${creating?'New report':'Report setup'}</span>
+        <h2 id="su-t">What are you appraising? <em>The report takes that shape.</em></h2>
+        <p class="lede">Each property type adds exactly the sections UAD 3.6 asks of it. You can change this later from <b>Report setup</b> — everything already entered is kept.</p></div>
+        <button type="button" class="su-x" id="su-x" aria-label="Close">&times;</button></header>
+      <div class="su-body">
+      <fieldset><legend><span class="lx">A</span>Property type<i>Choose one</i></legend>
         <div class="su-types" role="radiogroup" aria-label="Property type">${SU_TYPES.map(([k,n,d,t],i)=>
           `<button type="button" class="su-type" role="radio" aria-checked="false" tabindex="-1" data-k="${k}">
             <span class="tn">0${i+1}<i class="rd"></i></span>
-            <i class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${SU_ICONS[k]}</svg></i>
+            <i class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">${SU_ICONS[k]}</svg></i>
             <b>${n}</b><span class="ds">${d}</span><em class="tg">${t}</em></button>`).join('')}</div>
         <div class="su-units" id="su-units" hidden><div class="ul"><b>Living units</b><small>Not counting accessory dwelling units. Each unit gets its own rent schedule line and rental grid.</small></div>
-          <div class="su-seg" role="group" aria-label="Living units">${[2,3,4].map(n=>`<button type="button" data-n="${n}" aria-pressed="false">${n}</button>`).join('')}</div></div></div>
-      <div class="su-sec"><div class="k">Approaches and sections<i>Defaults follow the property type</i></div>
+          <div class="su-seg" role="group" aria-label="Living units">${[2,3,4].map(n=>`<button type="button" data-n="${n}" aria-pressed="false">${n}</button>`).join('')}</div></div>
+      </fieldset>
+      <fieldset><legend><span class="lx">B</span>Approaches and sections<i>Defaults follow the property type</i></legend>
         <div class="su-appr">
-          <label class="fixed"><span class="an"><b>Sales Comparison Approach</b><small>Always developed.</small></span><span class="always">Always</span></label>
-          ${SU_APPR.map(([a,n,d])=>`<label><span class="an"><b>${n}</b><small>${d}</small></span><input type="checkbox" data-a="${a}"><i class="su-sw" aria-hidden="true"></i></label>`).join('')}
-        </div></div></div>
-      <div class="su-foot"><div class="sum"><span class="note" id="su-note">Choose a property type to continue.</span><span class="chips" id="su-chips"></span></div>
-        <div class="acts"><button class="btn" id="su-cancel">Cancel</button>
-        <button class="btn primary" id="su-ok" disabled>${creating?'Create report':'Apply setup'} <span class="ar" aria-hidden="true">&rarr;</span></button></div></div></div>`;
+          <label class="fixed"><i class="su-cb" aria-hidden="true"></i><span class="an"><b>Sales Comparison Approach</b><small>Developed in every report.</small></span><span class="st"></span></label>
+          ${SU_APPR.map(([a,n,d])=>`<label><input type="checkbox" data-a="${a}"><i class="su-cb" aria-hidden="true"></i><span class="an"><b>${n}</b><small>${d}</small></span><span class="st"></span></label>`).join('')}
+        </div></fieldset>
+      </div>
+      <footer class="su-foot"><div class="sum"><span class="note" id="su-note">Choose a property type to continue.</span><span class="chips" id="su-chips"></span></div>
+        <div class="acts"><button type="button" class="btn" id="su-cancel">Cancel</button>
+        <button type="button" class="btn primary" id="su-ok" disabled>${creating?'Create report':'Apply setup'} <span class="ar" aria-hidden="true">&rarr;</span></button></div></footer></form>`;
     document.body.appendChild(veil);
     const q=x=>veil.querySelector(x), types=[...veil.querySelectorAll('.su-type')];
     const paint=()=>{

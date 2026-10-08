@@ -1025,7 +1025,7 @@ EDIT_JS = """
   }
   function openPicker(el){
     if(openOn===el){ shut(); return; }
-    shut();
+    shut(); shutEditor(); shutMenu();   // one list or editor open at a time
     var ticket=++pickSeq;          // only the last click's list opens
     optionsFor(el)
       .then(function(d){
@@ -1777,13 +1777,22 @@ EDIT_JS = """
     return json(api+'/comparables?kind='+kind).then(function(d){
       gridByKind[kind]=d; if(kind==='sales') gridData=d; return d; });
   }
-  var gedit=null;
-  function shutEditor(){ if(gedit){ gedit.remove(); gedit=null; } }
+  var gedit=null, cellSeq=0;
+  /* one editor at a time: opening another closes it, and an editor whose
+     grid was still loading when a later cell was clicked never opens
+     (owner 2026-10-08: two cell editors stood open side by side) */
+  function shutEditor(){
+    cellSeq++;
+    [].forEach.call(document.querySelectorAll('.gedit'),function(b){ b.remove(); });
+    gedit=null;
+  }
   function openCell(td){
-    shutEditor(); shutMenu();
+    shutEditor(); shutMenu(); shut();
+    var seq=cellSeq;
     var col=Number(td.dataset.gc), fid=td.dataset.gf||'', adj=td.dataset.ga||'';
     var tbl=td.closest('table[data-gk]'), gkind=(tbl&&tbl.dataset.gk)||'sales', gscope=td.dataset.gs||'';
     grid(gkind).then(function(g){
+      if(seq!==cellSeq) return;
       var row=null;
       for(var i=0;i<g.rows.length&&!row;i++){
         var r=g.rows[i];
@@ -1882,7 +1891,7 @@ EDIT_JS = """
     return all[i+(dir==='back'?-1:1)]||null;
   }
   function typeInCell(td){
-    shutEditor(); shutMenu();
+    shutEditor(); shutMenu(); shut();
     var sp=cellSpan(td), before=sp.textContent;
     var shownEmpty=/^[\u2014\-]?$/.test(before.trim());
     td.classList.add('ginl');

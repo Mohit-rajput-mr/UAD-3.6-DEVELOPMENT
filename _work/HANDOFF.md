@@ -2925,3 +2925,11 @@ Open:
   (data-gin, flow.py typeInCell: Enter down, Tab right, Esc restore);
   adjustment save returns the printed "$(2,500)"; EDIT_CSS final block makes
   fields square, darker, larger. Preview/PDF/ZIP unaffected (EDIT_CSS only).
+- Setup dialog made square and ruled (T-269, 2026-10-08): the owner rejected
+  rounded corners. `.su,.su *{border-radius:0}`; types are one ruled grid
+  (selected = inverted ink cell); sections are fieldsets A/B; approaches are
+  square checkboxes with Included / Not included. Note the app's global
+  `header{}` rule leaks into the dialog's <header>; `.su .su-head` resets it.
+- One editor or list open at a time (2026-10-08): flow.py `shutEditor` bumps
+  `cellSeq`, so a cell editor whose grid was still loading never opens after
+  a later click; openPicker / openCell / typeInCell close each other.

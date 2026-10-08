@@ -2911,3 +2911,11 @@ Open:
   24/25) are calculated by uad/rent_math.py on every save (cases.save_tree)
   and re-added client-side (flow.py rentTotals) so they show at once; the
   total cells are read-only (td.calc). Suite: 692 pass.
+- Setup dialog redesign (T-268, 2026-10-08): the owner rejected the first
+  "What are you appraising?" dialog as off-brand. It is now drawn in the
+  shell's own language (index.html `.su*` CSS, `setupScreen`): chrome-edged
+  glass sheet, headline with grey second line, "+" labels, monochrome ink
+  selection (no blue), numbered cards with line icons, a segmented unit
+  control, switches, and a pinned footer listing the sections the report will
+  include. Hooks unchanged (`.su-type[data-k]`, `#su-units button[data-n]`,
+  `input[data-a]`, `#su-ok`, `#su-note`), so scratchpad e2e scripts still run.

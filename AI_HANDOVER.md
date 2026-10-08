@@ -209,6 +209,10 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-08 -- setup dialog redesigned to the platform's theme (T-268)
+- "What are you appraising?" now uses the shell's glass sheet, "+" labels, ink selection, icons,
+  switches and a pinned footer. Same element hooks as before.
+
 ### 2026-10-07 (later) -- rentals per unit, instant adds, visibility, rent totals (E-146..E-148)
 - Multi-family: the panel "Which rental comparable is compared with which subject unit"
   (uad/rentals.py, /rentals/pairs) gives each unit its own rental grid.

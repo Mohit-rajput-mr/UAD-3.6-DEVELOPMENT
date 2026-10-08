@@ -177,30 +177,100 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .rf-bar .k{color:var(--ink-2)}
 .rf-bar .k:before{content:'+ ';font-weight:300}
 .rf-note{font-size:12.5px;color:var(--muted);max-width:50ch}
-/* Report setup: the kind of property and the approaches, stated first */
-.su-veil{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.55);display:grid;place-items:center;padding:16px;overflow:auto}
-.su{width:min(880px,100%);background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:18px;
-  box-shadow:0 30px 80px rgba(0,0,0,.45);padding:26px 26px 20px}
-.su h2{margin:2px 0 4px;font:600 22px/1.2 var(--sans)}
-.su .lede{color:var(--muted);font-size:13.5px;margin:0 0 18px;max-width:70ch}
-.su h3{font:600 12px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px}
-.su-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.su-type{border:1.5px solid var(--line-2);border-radius:14px;padding:14px 14px 12px;cursor:pointer;background:var(--surface-2);
-  text-align:left;color:var(--ink);font:inherit;display:flex;flex-direction:column;gap:6px;min-height:104px}
-.su-type b{font-size:15px}
-.su-type span{font-size:12px;color:var(--muted);line-height:1.35}
-.su-type:hover{border-color:var(--line-3)}
-.su-type[aria-checked=true]{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.22);background:color-mix(in srgb,#3b82f6 10%,var(--surface-2))}
-.su-units{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px}
-.su-units button{min-width:44px;padding:7px 0;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface-2);color:var(--ink);font:600 14px var(--sans);cursor:pointer}
-.su-units button[aria-pressed=true]{border-color:#3b82f6;background:color-mix(in srgb,#3b82f6 16%,var(--surface-2))}
-.su-appr{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
-.su-appr label{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;cursor:pointer;font-size:13.5px}
-.su-appr label small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
-.su-appr input{margin-top:3px;width:16px;height:16px;accent-color:#3b82f6}
-.su-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap}
-.su-foot .note{font-size:12.5px;color:var(--muted);max-width:52ch}
+/* Report setup: the kind of property and the approaches, stated first.
+   Drawn in the platform's own language (owner 2026-10-08: the first version
+   "does not match the entire web UI"): the sheet with the silver edge over a
+   blurred veil, the editorial headline with its grey second line, "+"
+   labels, monochrome ink for selection, mono numerals. */
+.su-veil{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:28px 16px;
+  background:rgba(5,5,6,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);animation:sufade .16s ease-out}
+@keyframes sufade{from{opacity:0}}
+.su{position:relative;display:flex;flex-direction:column;width:min(1000px,100%);max-height:100%;border-radius:22px;padding:0;border:1px solid transparent;color:var(--ink);
+  background:var(--glass) padding-box,linear-gradient(var(--surface),var(--surface)) padding-box,var(--chrome) border-box;
+  box-shadow:var(--shadow-lg);animation:pop2 .2s ease-out;overflow:hidden}
+[data-theme=light] .su{background:#fff padding-box,linear-gradient(135deg,#d6d6d8,#f3f3f3 45%,#cdcdcf) border-box}
+.su-body{position:relative;overflow-y:auto;padding:28px 32px 26px;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.su:before{content:'';position:absolute;inset:0 0 auto;height:180px;pointer-events:none;
+  background:radial-gradient(600px 160px at 18% 0,var(--hover),transparent 70%)}
+.su-x{position:absolute;top:22px;right:22px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;
+  border:1px solid var(--line-2);border-radius:10px;background:transparent;color:var(--muted);font:300 20px/1 var(--sans)}
+.su-x:hover{color:var(--ink);border-color:var(--line-3);background:var(--hover)}
+.su-top{display:flex;align-items:center;gap:14px;padding-right:48px}
+.su h2{margin:14px 0 0;font:500 32px/1.08 var(--sans);letter-spacing:-.04em;max-width:22ch}
+.su h2 em{display:block;font-style:normal;color:var(--faint)}
+.su .lede{margin:14px 0 0;color:var(--muted);font-size:13.5px;max-width:66ch}
+.su .lede b{color:var(--ink-2);font-weight:500}
+.su-sec{margin-top:24px}
+.su-sec .k{display:flex;align-items:center;gap:9px;color:var(--ink-2);margin-bottom:12px}
+.su-sec .k:before{content:'+';font:300 17px/1 var(--sans);letter-spacing:0;color:var(--ink)}
+.su-sec .k i{font-style:normal;margin-left:auto;letter-spacing:.04em;text-transform:none;font:400 12px/1 var(--sans);color:var(--faint)}
+.su-types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+@media (max-width:900px){.su-types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.su-types{grid-template-columns:1fr}.su-body{padding:22px 18px}.su h2{font-size:27px}.su-type{min-height:0}}
+.su-type{appearance:none;position:relative;display:flex;flex-direction:column;gap:0;min-height:182px;padding:15px 15px 13px;cursor:pointer;
+  text-align:left;color:var(--ink);font:inherit;border-radius:16px;border:1px solid var(--line);background:var(--glass);
+  transition:border-color .15s,background .15s,transform .15s,box-shadow .15s}
+.su-type:hover{border-color:var(--line-3);transform:translateY(-1px)}
+.su-type:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px}
+.su-type .tn{display:flex;align-items:center;justify-content:space-between;font:500 11px/1 var(--mono);color:var(--faint)}
+.su-type .rd{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-3);display:grid;place-items:center;transition:border-color .15s}
+.su-type .rd:after{content:'';width:8px;height:8px;border-radius:50%;background:var(--ink);transform:scale(0);transition:transform .15s}
+.su-type .ic{margin:14px 0 14px;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  border:1px solid var(--line-2);color:var(--ink-2);background:var(--sunk);transition:background .15s,color .15s,border-color .15s}
+.su-type .ic svg{width:22px;height:22px}
+.su-type b{font-weight:500;font-size:15.5px;letter-spacing:-.02em;line-height:1.2}
+.su-type .ds{margin-top:6px;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.su-type .tg{font-style:normal;margin-top:auto;padding-top:14px;font:500 10.5px/1 var(--mono);letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
+.su-type[aria-checked=true]{border-color:var(--ink);background:var(--surface-2);box-shadow:0 0 0 1px var(--ink),var(--shadow)}
+.su-type[aria-checked=true] .rd{border-color:var(--ink)}
+.su-type[aria-checked=true] .rd:after{transform:scale(1)}
+.su-type[aria-checked=true] .ic{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.su-type[aria-checked=true] .tn{color:var(--ink)}
+.su-units{display:flex;align-items:center;gap:16px;margin-top:12px;padding:12px 14px 12px 16px;border:1px solid var(--line);border-radius:14px;
+  background:var(--glass);animation:pop2 .16s ease-out}
+.su-units .ul b{display:block;font-weight:500;font-size:13.5px}
+.su-units .ul small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.su-seg{display:inline-flex;margin-left:auto;padding:3px;border-radius:11px;border:1px solid var(--line-2);background:var(--sunk)}
+.su-seg button{appearance:none;min-width:48px;padding:8px 0;border:0;border-radius:8px;background:transparent;color:var(--muted);
+  font:500 13px/1 var(--mono);cursor:pointer;transition:background .12s,color .12s}
+.su-seg button:hover{color:var(--ink)}
+.su-seg button[aria-pressed=true]{background:var(--btn);color:var(--btn-ink)}
+.su-appr{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--glass)}
+@media (max-width:720px){.su-appr{grid-template-columns:1fr}}
+.su-appr label{display:flex;align-items:center;gap:14px;padding:15px 16px;cursor:pointer;border-top:1px solid var(--line);transition:background .12s}
+.su-appr label:nth-child(-n+2){border-top:0}
+.su-appr label:nth-child(even){border-left:1px solid var(--line)}
+@media (max-width:720px){.su-appr label:nth-child(2){border-top:1px solid var(--line)}.su-appr label:nth-child(even){border-left:0}}
+.su-appr label:hover{background:var(--hover)}
+.su-appr label.fixed{cursor:default}
+.su-appr label.fixed:hover{background:none}
+.su-appr .an{flex:1;min-width:0}
+.su-appr .an b{display:block;font-weight:500;font-size:13.5px}
+.su-appr .an small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.su-appr input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.su-sw{flex:none;width:36px;height:21px;border-radius:999px;border:1px solid var(--line-3);background:var(--sunk);position:relative;transition:background .15s,border-color .15s}
+.su-sw:after{content:'';position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:var(--muted);transition:transform .15s,background .15s}
+.su-appr input:checked+.su-sw{background:var(--btn);border-color:var(--btn)}
+.su-appr input:checked+.su-sw:after{transform:translateX(15px);background:var(--btn-ink)}
+.su-appr input:focus-visible+.su-sw{outline:1.5px solid var(--ink);outline-offset:2px}
+.su-appr .always{flex:none;font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  padding:6px 9px;border-radius:999px;border:1px solid var(--line-2)}
+.su-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;flex:none;margin:0;padding:16px 32px;border-radius:0 0 22px 22px;
+  border-top:1px solid var(--line);background:var(--bg-2)}
+@media (max-width:720px){.su-foot .chips,.su-foot .inc{display:none}}
+@media (max-width:520px){.su-foot{padding:14px 18px}.su-foot .acts{width:100%}.su-foot .acts .btn{flex:1}
+  .su-type{display:grid;grid-template-columns:auto 1fr auto;column-gap:14px;align-items:center;padding:14px;min-height:0}
+  .su-type .tn{grid-column:3;grid-row:1}.su-type .tn{font-size:0}.su-type .ic{grid-column:1;grid-row:1/span 3;margin:0}
+  .su-type b{grid-column:2;grid-row:1}.su-type .ds{grid-column:2/4;grid-row:2;margin-top:4px}.su-type .tg{display:none}}
+.su-foot .sum{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:0;flex:1}
+.su-foot .sum .k{margin-right:6px}
+.su-foot .note{font-size:13px;color:var(--muted)}
+.su-foot .note b{color:var(--ink);font-weight:500}
+.su-foot .chips span{color:var(--ink-2)}
 .su-foot .acts{display:flex;gap:8px}
+.su-foot .btn{padding:10px 16px;font-size:13.5px}
+.su-foot .btn.primary .ar{transition:transform .15s}
+.su-foot .btn.primary:not([disabled]):hover .ar{transform:translateX(3px)}
 /* the key to the report's input colours (form.EDIT_CSS, T-260) */
 .rf-key{display:inline-flex;gap:6px;flex-wrap:wrap}
 .rf-key i{font-style:italic;font-size:11px;padding:2px 7px;border-radius:3px;color:#2b2b2b;white-space:nowrap}
@@ -727,60 +797,76 @@ function importFiles(files){
    Rental Information and Income Approach sections; a condominium or co-op its
    Project Information; a manufactured home its own section. */
 const SU_TYPES=[
-  ['single_family','Single family','One dwelling unit, with or without ADUs.'],
-  ['two_to_four_unit','2–4 unit (multi-family)','Two, three or four living units. Adds rent schedule and income.'],
-  ['condominium','Condominium','A unit in a condominium project. Adds Project Information.'],
-  ['cooperative','Cooperative (co-op)','Shares in a co-op corporation. Adds project and blanket financing.'],
-  ['manufactured','Manufactured home','A HUD-code home on a permanent foundation. Adds its own section.']];
+  ['single_family','Single family','One dwelling unit, with or without accessory dwelling units.','1 unit'],
+  ['two_to_four_unit','2–4 unit','Two, three or four living units. Adds the rent schedule and income.','Multi-family'],
+  ['condominium','Condominium','A unit in a condominium project. Adds Project Information.','Project'],
+  ['cooperative','Cooperative','Shares in a co-op corporation. Adds project and blanket financing.','Co-op'],
+  ['manufactured','Manufactured home','A HUD-code home on a permanent foundation. Adds its own section.','HUD-code']];
+/* line icons, drawn on a 24 grid in the header's stroke weight */
+const SU_ICONS={
+  single_family:'<path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/>',
+  two_to_four_unit:'<path d="M2.5 11.5 8 7l5.5 4.5"/><path d="M4 10.3V20h8V10.3"/><path d="M10.5 9 16 4.5l5.5 4.5"/><path d="M12 7.8V20h8V9.6"/><path d="M6.5 20v-3.5h3V20M14.5 13h3"/>',
+  condominium:'<rect x="5" y="3.5" width="14" height="16.5" rx="1"/><path d="M8.5 7.5h2M13.5 7.5h2M8.5 11h2M13.5 11h2M8.5 14.5h2M13.5 14.5h2M10.5 20v-2.5h3V20"/>',
+  cooperative:'<path d="M3 20h18"/><path d="M4.5 20V9l7.5-4.5L19.5 9v11"/><path d="M8 20v-7h8v7M8 9.5h8"/><path d="M12 13v7"/>',
+  manufactured:'<path d="M3 15.5V9.5l3-3h12l3 3v6"/><path d="M2.5 15.5h19"/><path d="M7 15.5v-4h3.5v4M14 10.5h3.5v2.5H14z"/><circle cx="7" cy="18" r="1.5"/><circle cx="17" cy="18" r="1.5"/>'};
 const SU_DEFAULTS={single_family:{cost:false,income:false,rent:false},two_to_four_unit:{cost:false,income:true,rent:true},
   condominium:{cost:false,income:false,rent:false},cooperative:{cost:false,income:false,rent:false},
   manufactured:{cost:true,income:false,rent:false}};
+const SU_APPR=[['rent','Rental Information','Rent schedule and comparable rentals.'],
+  ['income','Income Approach','Gross rent multiplier.'],['cost','Cost Approach','Site value and depreciated cost.']];
 function setupScreen(cur,{creating}={}){
   return new Promise(resolve=>{
     let kind=(cur&&cur.property_type)||'', units=(cur&&cur.units>1)?cur.units:2;
     let appr=Object.assign({},(cur&&cur.approaches)||{});
     const veil=document.createElement('div'); veil.className='su-veil';
     veil.innerHTML=`<div class="su" role="dialog" aria-modal="true" aria-labelledby="su-t">
-      <span class="eyebrow">${creating?'New report · step 1 of 1':'Report setup'}</span>
-      <h2 id="su-t">What are you appraising?</h2>
-      <p class="lede">Choose the property type. The report adds exactly the sections that type needs, and you can change it later from <b>Report setup</b>. Everything already entered is kept.</p>
-      <h3>Property type</h3>
-      <div class="su-types" role="radiogroup" aria-label="Property type">${SU_TYPES.map(([k,n,d])=>
-        `<button type="button" class="su-type" role="radio" aria-checked="false" data-k="${k}"><b>${n}</b><span>${d}</span></button>`).join('')}</div>
-      <div class="su-units" id="su-units" hidden><span>Living units (excluding ADUs):</span>
-        ${[2,3,4].map(n=>`<button type="button" data-n="${n}" aria-pressed="false">${n}</button>`).join('')}</div>
-      <h3>Approaches and sections</h3>
-      <div class="su-appr">
-        <label><input type="checkbox" checked disabled><span>Sales Comparison Approach<small>Always developed.</small></span></label>
-        <label><input type="checkbox" data-a="rent"><span>Rental Information<small>Rent schedule and comparable rentals.</small></span></label>
-        <label><input type="checkbox" data-a="income"><span>Income Approach<small>Gross rent multiplier.</small></span></label>
-        <label><input type="checkbox" data-a="cost"><span>Cost Approach<small>Site value and depreciated cost.</small></span></label>
-      </div>
-      <div class="su-foot"><span class="note" id="su-note">Pick a property type to continue.</span>
+      <div class="su-body"><button type="button" class="su-x" id="su-x" aria-label="Close">&times;</button><div class="su-top"><span class="eyebrow">${creating?'New report':'Report setup'}</span></div>
+      <h2 id="su-t">What are you appraising?<em>The report takes that shape.</em></h2>
+      <p class="lede">Each property type adds exactly the sections UAD 3.6 asks of it. You can change this later from <b>Report setup</b> — everything already entered is kept.</p>
+      <div class="su-sec"><div class="k">Property type<i>Choose one</i></div>
+        <div class="su-types" role="radiogroup" aria-label="Property type">${SU_TYPES.map(([k,n,d,t],i)=>
+          `<button type="button" class="su-type" role="radio" aria-checked="false" tabindex="-1" data-k="${k}">
+            <span class="tn">0${i+1}<i class="rd"></i></span>
+            <i class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${SU_ICONS[k]}</svg></i>
+            <b>${n}</b><span class="ds">${d}</span><em class="tg">${t}</em></button>`).join('')}</div>
+        <div class="su-units" id="su-units" hidden><div class="ul"><b>Living units</b><small>Not counting accessory dwelling units. Each unit gets its own rent schedule line and rental grid.</small></div>
+          <div class="su-seg" role="group" aria-label="Living units">${[2,3,4].map(n=>`<button type="button" data-n="${n}" aria-pressed="false">${n}</button>`).join('')}</div></div></div>
+      <div class="su-sec"><div class="k">Approaches and sections<i>Defaults follow the property type</i></div>
+        <div class="su-appr">
+          <label class="fixed"><span class="an"><b>Sales Comparison Approach</b><small>Always developed.</small></span><span class="always">Always</span></label>
+          ${SU_APPR.map(([a,n,d])=>`<label><span class="an"><b>${n}</b><small>${d}</small></span><input type="checkbox" data-a="${a}"><i class="su-sw" aria-hidden="true"></i></label>`).join('')}
+        </div></div></div>
+      <div class="su-foot"><div class="sum"><span class="note" id="su-note">Choose a property type to continue.</span><span class="chips" id="su-chips"></span></div>
         <div class="acts"><button class="btn" id="su-cancel">Cancel</button>
-        <button class="btn primary" id="su-ok" disabled>${creating?'Create report':'Apply'}</button></div></div></div>`;
+        <button class="btn primary" id="su-ok" disabled>${creating?'Create report':'Apply setup'} <span class="ar" aria-hidden="true">&rarr;</span></button></div></div></div>`;
     document.body.appendChild(veil);
-    const q=x=>veil.querySelector(x);
+    const q=x=>veil.querySelector(x), types=[...veil.querySelectorAll('.su-type')];
     const paint=()=>{
-      veil.querySelectorAll('.su-type').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.k===kind)));
+      types.forEach(b=>{ const on=b.dataset.k===kind; b.setAttribute('aria-checked',String(on)); b.tabIndex=(on||(!kind&&b===types[0]))?0:-1; });
       q('#su-units').hidden=kind!=='two_to_four_unit';
       veil.querySelectorAll('#su-units button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.n===units)));
       veil.querySelectorAll('input[data-a]').forEach(i=>{ i.checked=!!appr[i.dataset.a]; });
       q('#su-ok').disabled=!kind;
       const nm=(SU_TYPES.find(t=>t[0]===kind)||[])[1];
-      q('#su-note').textContent=kind?`${nm}${kind==='two_to_four_unit'?' · '+units+' units':''} — `+
-        ['Sales Comparison'].concat(appr.rent?['Rental Information']:[],appr.income?['Income']:[],appr.cost?['Cost']:[]).join(', '):'Pick a property type to continue.';
+      const secs=['Sales Comparison'].concat(appr.rent?['Rental Information']:[],appr.income?['Income']:[],appr.cost?['Cost']:[]);
+      q('#su-note').innerHTML=kind?`<b>${nm}${kind==='two_to_four_unit'?' · '+units+' units':''}</b><span class="inc"> — includes</span>`:'Choose a property type to continue.';
+      q('#su-chips').innerHTML=kind?secs.map(x=>`<span>${x}</span>`).join(''):'';
     };
-    veil.querySelectorAll('.su-type').forEach(b=>b.onclick=()=>{
-      if(kind!==b.dataset.k){ kind=b.dataset.k; appr=Object.assign({},SU_DEFAULTS[kind]); } paint(); });
+    const pick=b=>{ if(kind!==b.dataset.k){ kind=b.dataset.k; appr=Object.assign({},SU_DEFAULTS[kind]); } paint(); b.focus(); };
+    types.forEach((b,i)=>{
+      b.onclick=()=>pick(b);
+      b.onkeydown=e=>{ const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];
+        if(d){ e.preventDefault(); pick(types[(i+d+types.length)%types.length]); } };
+    });
     veil.querySelectorAll('#su-units button').forEach(b=>b.onclick=()=>{ units=+b.dataset.n; paint(); });
     veil.querySelectorAll('input[data-a]').forEach(i=>i.onchange=()=>{ appr[i.dataset.a]=i.checked; paint(); });
     const close=v=>{ veil.remove(); document.removeEventListener('keydown',esc_); resolve(v); };
-    const esc_=e=>{ if(e.key==='Escape') close(null); };
+    const esc_=e=>{ if(e.key==='Escape') close(null); else if(e.key==='Enter'&&kind&&e.target.tagName!=='BUTTON'){ q('#su-ok').click(); } };
     document.addEventListener('keydown',esc_);
-    q('#su-cancel').onclick=()=>close(null);
+    veil.addEventListener('mousedown',e=>{ if(e.target===veil) close(null); });
+    q('#su-cancel').onclick=()=>close(null); q('#su-x').onclick=()=>close(null);
     q('#su-ok').onclick=()=>close({property_type:kind,units:kind==='two_to_four_unit'?units:1,approaches:appr});
-    paint(); (q('.su-type[aria-checked=true]')||q('.su-type')).focus();
+    paint(); (q('.su-type[aria-checked=true]')||types[0]).focus();
   });
 }
 async function newCase(template,blank,name){

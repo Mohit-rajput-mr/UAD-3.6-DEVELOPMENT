@@ -829,3 +829,49 @@ def test_the_package_is_exactly_what_b1_allows(client, case, monkeypatch, tmp_pa
             for i in root.iter(f"{M}IMAGE")}
     assert refs == {"PropertyPhoto": "\\\\Images\\front.png", "DwellingFront": "\\\\Images\\front.png"}
     assert zf.read("appraisal.pdf").startswith(b"%PDF")
+
+
+def test_an_area_cell_is_typed_not_picked():
+    """Owner 2026-10-08: 'Finished Area Above Grade (Nonstandard)' opened a
+    list holding only 'Sq. Ft.'.  The area is a number whose unit sits in
+    @AreaUnitOfMeasureType; the unit's one-item enumeration was offered as the
+    cell's choices and the number itself had no input."""
+    from uad.report import comparables
+    for fid in ("22.07.30", "22.07.32", "22.07.36", "22.14.17", "22.05.25"):
+        pts = comparables.points_for(fid)
+        assert len(pts) == 1 and not pts[0]["options"], fid
+        assert comparables.options_for(fid) == [], fid
+        assert comparables.typed_in_place(fid) == pts[0]["data_point"]
+    # several parts, or a real list, keep the cell editor
+    assert comparables.typed_in_place("22.01.17") == ""      # address
+    assert comparables.typed_in_place("22.08.19") == ""      # foundation list
+
+
+def test_an_area_typed_in_the_grid_is_stored_in_square_feet(client, case):
+    r = client.patch(f"/api/cases/{case}/comparables/1/fields/22.07.30",
+                     json={"value": "1850", "kind": "sales",
+                           "data_point": "UnitStandardAboveGradeFinishedAreaMeasure"})
+    assert r.status_code == 200, r.text
+    assert r.json()["value"].startswith("1,850")
+    xml = client.get(f"/api/cases/{case}/mismo.xml").text
+    assert re.search(r'<UnitStandardAboveGradeFinishedAreaMeasure AreaUnitOfMeasureType="SquareFeet">1850<', xml)
+
+
+def test_grid_cells_of_one_typed_value_are_typed_in_place(client, case):
+    html = client.get(f"/api/cases/{case}/layout/form/galley").text
+    assert "data-gin='UnitStandardAboveGradeFinishedAreaMeasure'" in html
+    assert "data-gin='adjustment'" in html
+    # the address cell is six parts: it keeps its editor
+    assert not re.search(r"data-gf='22\.01\.17'[^>]*data-gin", html)
+
+
+def test_a_saved_adjustment_comes_back_as_the_report_prints_it(client, case):
+    row = [r for r in grid(client, case)["rows"]
+           if r.get("adjustable") and r.get("adjust_type")][0]
+    r = client.patch(f"/api/cases/{case}/comparables/1/fields/adjustment",
+                     json={"value": "-2500", "kind": "sales",
+                           "adjust_type": row["adjust_type"]})
+    assert r.status_code == 200, r.text
+    again = [x for x in grid(client, case)["rows"] if x["label"] == row["label"]][0]
+    assert r.json()["value"] == again["cells"][0]["adjustment"]
+    assert "2,500" in r.json()["value"]

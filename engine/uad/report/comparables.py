@@ -1512,7 +1512,12 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
         from . import form as _form
         # the input the cell takes, drawn as the editor draws it elsewhere
         k = "amount" if adjust else _form.input_kind(fid)
-        return (f" data-gc='{col}' data-k='{k}'" + (f" data-gf='{_esc(fid)}'" if fid else "")
+        # one typed value -- an adjustment, a price, an area, a count -- is
+        # typed where it prints; a cell of several parts or a list opens its
+        # editor (owner 2026-10-08: "no dropdown for a field we know")
+        point = "adjustment" if adjust else typed_in_place(fid)
+        inline = f" data-gin='{_esc(point)}'" if point else ""
+        return (f" data-gc='{col}' data-k='{k}'{inline}" + (f" data-gf='{_esc(fid)}'" if fid else "")
                 + (f" data-ga='{_esc(adjust)}'" if adjust else "")
                 + (f" data-gs='{_esc(scope)}'" if scope else ""))
 
@@ -1770,12 +1775,19 @@ def points_for(field_id: str) -> list[dict]:
     binding = binding_of(field_id)
     if binding is None:
         return []
+    # A value with a unit -- "1,850" with @AreaUnitOfMeasureType -- is still
+    # typed: its enumeration lists the unit, which the write fills in
+    # (entry.normalize: square feet unless the appraiser types another).  It
+    # was dropped as an attribute, leaving the cell nothing but a one-item
+    # "Sq. Ft." list and no way to enter the area (owner 2026-10-08).
+    from .. import entry
     unique = {d["mismo"]: d for d in binding.data_points
-              if d.get("mismo") and not d.get("attribute")}
+              if d.get("mismo") and (not d.get("attribute") or entry.unit_attribute(d))}
     return [{"data_point": d["mismo"],
              "format": d.get("format_type", ""),
              "definition": d.get("definition", ""),
-             "options": [{"value": o["value"], "label": o.get("display") or o["value"]}
+             "options": [] if entry.unit_attribute(d) else
+                        [{"value": o["value"], "label": o.get("display") or o["value"]}
                          for o in d.get("enumerations", []) if o.get("value")]}
             for d in unique.values()]
 
@@ -1794,11 +1806,27 @@ def parts_for(root: etree._Element, field_id: str,
     return out
 
 
+@lru_cache(maxsize=None)
+def typed_in_place(field_id: str) -> str:
+    """The data point a grid cell is typed into where it prints, or ''.
+
+    One data point, no list to choose from and not a Yes/No: an amount, a
+    number, a date, words.  Everything else keeps the cell editor."""
+    pts = points_for(field_id)
+    if len(pts) != 1 or pts[0]["options"] or pts[0]["format"].casefold() == "boolean":
+        return ""
+    return pts[0]["data_point"]
+
+
 def options_for(field_id: str) -> list[dict]:
     """The enumerated values a grid cell accepts, for the editor's dropdown."""
     binding = binding_of(field_id)
     if binding is None:
         return []
+    from .. import entry
+    points = [d for d in binding.data_points if d.get("mismo")]
+    if points and all(entry.unit_attribute(d) for d in points):
+        return []                       # the units of a typed measure, not choices
     return [{"value": o["value"], "label": o.get("display") or o["value"]}
             for o in binding.enumerations if o.get("value")]
 

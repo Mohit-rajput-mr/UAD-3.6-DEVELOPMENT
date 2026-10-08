@@ -1857,6 +1857,78 @@ EDIT_JS = """
       if(first&&first.select) first.select();
     }).catch(function(e3){ say('The grid could not be read: '+e3.message); });
   }
+  /* One typed value -- an adjustment, a price, an area, a count, a date --
+     is typed where it prints: the click puts the caret in the cell, Enter
+     or Tab saves and moves on, Escape puts it back.  The unit is the
+     field's own (dollars, square feet), so nothing is asked about it.  The
+     value shows at once; the save runs behind it (owner 2026-10-08). */
+  function cellSpan(td){
+    if(td.tagName==='SPAN') return td;
+    var sp=td.querySelector('.ca')||td.querySelector(':scope > span');
+    if(!sp){ sp=document.createElement('span'); td.appendChild(sp); }
+    return sp;
+  }
+  function nextCell(td,dir){
+    var all=[].slice.call(document.querySelectorAll('td[data-gin],span[data-gin]'));
+    var i=all.indexOf(td);
+    if(dir==='down'){
+      var tr=td.closest('tr'), col=td.dataset.gc, adj=!!td.dataset.ga;
+      for(var r=tr&&tr.nextElementSibling;r;r=r.nextElementSibling){
+        var hit=[].filter.call(r.querySelectorAll('td[data-gin]'),function(c){ return c.dataset.gc===col&&!!c.dataset.ga===adj; })[0];
+        if(hit) return hit;
+      }
+      return null;
+    }
+    return all[i+(dir==='back'?-1:1)]||null;
+  }
+  function typeInCell(td){
+    shutEditor(); shutMenu();
+    var sp=cellSpan(td), before=sp.textContent;
+    var shownEmpty=/^[\u2014\-]?$/.test(before.trim());
+    td.classList.add('ginl');
+    sp.contentEditable='true'; sp.spellcheck=false;
+    if(shownEmpty) sp.textContent='';
+    sp.focus();
+    var rg=document.createRange(); rg.selectNodeContents(sp);
+    var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(rg);
+    var done=false;
+    function finish(save,move){
+      if(done) return; done=true;
+      sp.removeAttribute('contenteditable'); td.classList.remove('ginl');
+      sp.removeEventListener('keydown',keys); sp.removeEventListener('blur',blur);
+      var typed=sp.textContent.trim();
+      var was=shownEmpty?'':before.trim();
+      if(!save||typed===was){ sp.textContent=before; }
+      else saveCell(td,sp,typed,before);
+      if(move){ var nx=nextCell(td,move); if(nx) setTimeout(function(){ typeInCell(nx); },0); }
+    }
+    function keys(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); finish(true,'down'); }
+      else if(ev.key==='Tab'){ ev.preventDefault(); finish(true,ev.shiftKey?'back':'next'); }
+      else if(ev.key==='Escape'){ ev.preventDefault(); finish(false); }
+    }
+    function blur(){ finish(true); }
+    sp.addEventListener('keydown',keys); sp.addEventListener('blur',blur);
+  }
+  function saveCell(td,sp,typed,before){
+    var col=Number(td.dataset.gc), fid=td.dataset.gf||'', adj=td.dataset.ga||'';
+    var tbl=td.closest('table[data-gk]'), gkind=(tbl&&tbl.dataset.gk)||'sales';
+    var body=adj?{kind:gkind,adjust_type:adj,value:typed}:{kind:gkind,data_point:td.dataset.gin,value:typed};
+    if(td.dataset.gs) body.scope=td.dataset.gs;
+    sp.textContent=typed; td.classList.add('gsaving'); td.classList.remove('gfail','grey');
+    putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH').then(function(res){
+      td.classList.remove('gsaving');
+      var shown=(res&&res.value)||'';
+      sp.textContent=shown||(adj?'':'\u2014');
+      td.classList.toggle('grey',!!adj&&!shown);
+      gridData=null; gridByKind={};
+      tell({uad:'saved'});
+    }).catch(function(e){
+      td.classList.remove('gsaving'); td.classList.add('gfail');
+      sp.textContent=before;
+      say(e.message||'The value could not be saved.');
+    });
+  }
   /* Typing a street offers real addresses; picking one fills the city,
      state and ZIP beside it.  They are suggestions: every part stays
      editable, and nothing is saved until Save. */
@@ -2111,7 +2183,8 @@ EDIT_JS = """
     var zone=t.closest('.exdrop');
     if(zone){ lastZone=zone; browse(zone); return; }
     var td=t.closest('td[data-gc],span[data-gc]');
-    if(td && !t.closest('.gedit')){ openCell(td); return; }
+    if(td && td.classList.contains('ginl')) return;
+    if(td && !t.closest('.gedit')){ if(td.dataset.gin) typeInCell(td); else openCell(td); return; }
     // Public / Private in a utilities row: the click sets the ownership
     var tc=t.closest('td.tickcell');
     if(tc){

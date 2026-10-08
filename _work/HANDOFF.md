@@ -2919,3 +2919,9 @@ Open:
   control, switches, and a pinned footer listing the sections the report will
   include. Hooks unchanged (`.su-type[data-k]`, `#su-units button[data-n]`,
   `input[data-a]`, `#su-ok`, `#su-note`), so scratchpad e2e scripts still run.
+- Edit mode readability and no needless lists (E-149, T-1048, 2026-10-08):
+  area cells were un-typeable (only a "Sq. Ft." list) -- fixed in
+  comparables.points_for/options_for; one-value grid cells are typed in place
+  (data-gin, flow.py typeInCell: Enter down, Tab right, Esc restore);
+  adjustment save returns the printed "$(2,500)"; EDIT_CSS final block makes
+  fields square, darker, larger. Preview/PDF/ZIP unaffected (EDIT_CSS only).

@@ -2184,3 +2184,31 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Tests: tests/test_setup.py rent-schedule tests (4).
 - E2E: typed 123 and 13; within 1.5s the Actual Income column showed $123
   and $13 and the totals $136, $0, $136.
+
+### E-149 -- An area cell offered a "Sq. Ft." list and no way to type the area; grid values opened a popup (2026-10-08)
+- Symptom (owner): "Finished Area Above Grade (Nonstandard)" opened a list
+  holding only "Sq. Ft."; adjustments opened an "Adjustment" popup; "too many
+  dropdowns for fields whose unit we know".
+- Cause: an area is one data point whose unit sits in
+  `@AreaUnitOfMeasureType`. `comparables.points_for` dropped every
+  attribute-carrying point, and `options_for` returned the unit's
+  enumeration, so the editor offered the unit as the cell's only choice.
+- Mechanism:
+  - `points_for` keeps a point whose attribute is a unit
+    (`entry.unit_attribute`) with no options;
+  - `options_for` returns nothing when every point is a unit-carrying measure;
+  - the write fills in the unit (`entry.normalize`: square feet unless the
+    appraiser types another, e.g. "120 sf").
+- Typing in place: `comparables.typed_in_place(fid)` names the single typed
+  data point of a cell (no list, not Yes/No). Edit-mode cells carry
+  `data-gin` (the point, or `adjustment`). flow.py `typeInCell` puts the caret
+  in the cell: Enter saves and moves down, Tab moves right, Escape restores.
+  The value shows at once and the save runs behind it. Cells of several
+  parts (address, data source) and real lists keep the editor.
+- The adjustment save returns the printed form ("$(2,500)"), not the raw amount.
+- Edit-mode look: square boxes, deeper fills, solid edges, 7.6pt darker
+  hints, a larger Yes/No. Only in EDIT_CSS: preview, PDF and ZIP are
+  untouched (golden tests).
+- Tests: tests/test_workflow.py (4 new).
+- E2E: GLA "1850" → "1,850 Sq. Ft."; "120 sf" → "120 Sq. Ft."; adjustment
+  "-2500" → "$(2,500)"; "abc" refused with a message.

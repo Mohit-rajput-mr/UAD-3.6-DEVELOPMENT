@@ -1510,9 +1510,15 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
            f"{field_id} on {'subject' if not number else f'comparable #{number}'}")
     root = candidate.getroot()
     again = scope if body.get("scope") and not adjust_type else _grid_scope(root, kind, number)
-    return {"value": (comparables.adjustment_value(again, adjust_type)
-                      if adjust_type
-                      else comparables.value_for(root, field_id, again)),
+    if adjust_type:
+        # shown as the report prints it ("-$2,500"), not as stored
+        printed = next((r for r in comparables.rows(kind)
+                        if r.adjust_type == adjust_type and r.adjust_fid), None)
+        shown = (comparables.adjustment_for(root, printed, again) if printed is not None
+                 else comparables.adjustment_value(again, adjust_type))
+    else:
+        shown = comparables.value_for(root, field_id, again)
+    return {"value": shown,
             "state": st.get(case_id).state}
 
 

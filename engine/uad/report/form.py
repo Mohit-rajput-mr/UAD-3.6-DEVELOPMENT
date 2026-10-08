@@ -5809,6 +5809,55 @@ table.grid td.grey[data-gc]:hover{box-shadow:inset 0 0 0 0.75pt rgba(176,122,18,
   min-width:0!important;width:0!important;padding:0!important}
 body.show-gaps .v[contenteditable]:focus:empty{min-width:40pt}
 .v.pick.open,.v.pick:focus{box-shadow:0 0 0 1.2pt #1d6ce0,0 0 0 3.5pt rgba(29,108,224,.22)!important}
+
+/* ---- Editing mode reads as a form to fill (owner 2026-10-08: "too light,
+   not squarish, should look much bigger -- it is an editing mode").  Square
+   boxes with a solid edge, a deeper fill, larger and darker hints, and a
+   little more height.  Only the editor carries this sheet: the preview, the
+   PDF and the ZIP are drawn without it, exactly to Appendix C-1. */
+.v[data-k],.v.pick{--k-fill:rgba(214,158,46,.26);--k-edge:rgba(150,98,8,.85)}
+.v[data-k=amount],.v[data-k=number],.v[data-k=percent],.v[data-k=year],
+td[data-gc][data-k=amount],td[data-gc][data-k=number],td[data-gc][data-k=percent],td[data-gc][data-k=year]
+  {--k-fill:rgba(56,161,105,.24);--k-edge:rgba(28,105,62,.85)}
+.v[data-k=date],.v[data-k=month],td[data-gc][data-k=date],td[data-gc][data-k=month]
+  {--k-fill:rgba(128,90,213,.22);--k-edge:rgba(92,58,176,.85)}
+.v.pick,.v[data-k=pick],td[data-gc][data-k=pick]{--k-fill:rgba(49,130,206,.22);--k-edge:rgba(30,90,160,.9)}
+td[data-gc]:not([data-k=amount]):not([data-k=number]):not([data-k=percent]):not([data-k=year]):not([data-k=date]):not([data-k=month]):not([data-k=pick])
+  {--k-fill:rgba(214,158,46,.26);--k-edge:rgba(150,98,8,.85)}
+.v[contenteditable][data-k],.v.pick,.v.multiline[contenteditable]{border-radius:0!important;min-height:10.5pt;
+  padding:0.8pt 2.5pt;box-sizing:border-box;vertical-align:middle}
+.v.pick{padding-right:9pt}
+.v.pick:after{right:2.5pt;border-width:3pt;margin-top:-1.2pt}
+body.show-gaps .v[contenteditable][data-k]:empty,body.show-gaps .v.pick:empty,
+body.show-gaps .v.multiline[contenteditable]:empty{background:var(--k-fill);box-shadow:inset 0 0 0 0.9pt var(--k-edge);border-radius:0}
+.v[data-k]:not(:empty),.v.pick:not(:empty),.v.multiline[contenteditable]:not(:empty){box-shadow:inset 0 0 0 0.6pt var(--k-edge)}
+body.show-gaps .v[contenteditable][data-k]:empty:before,body.show-gaps .v.pick:empty:before,
+body.show-gaps .v.multiline[contenteditable]:empty:before{font-size:7.6pt;font-style:normal;font-weight:500;
+  color:rgba(35,31,32,.82);padding:0 1pt;min-width:44pt;line-height:9pt}
+table.tbl td .v[contenteditable],table.tbl td .v.pick{min-height:10.5pt}
+/* tick cells: a real checkbox, square, solid */
+table.tbl td.tickcell > span{width:11pt;height:11pt;border:1pt solid rgba(20,70,140,.9);border-radius:0;background:#fff}
+table.tbl td.tickcell:hover > span{background:rgba(66,133,244,.2)}
+.txcq{gap:12pt;font-size:8.5pt}
+.txcq .wd{font-size:14pt;line-height:12pt;letter-spacing:0;margin-right:0}
+.txcq .bx{width:auto;padding-right:10pt;line-height:12pt}
+.txcq .bx:after{font-size:8pt!important;font-weight:600!important;color:#231f20;vertical-align:2.5pt!important}
+body.show-gaps .bxs.untouched .bx[data-pick]{color:#8a5a00}
+/* the comparable grids: each writable cell a square box with a solid edge */
+table.grid td[data-gc]:not(.grey){background-image:linear-gradient(var(--k-fill),var(--k-fill));
+  box-shadow:inset 0 0 0 0.7pt var(--k-edge)}
+table.grid td[data-gc]:not(.grey) > span:empty:before{font-size:7pt;font-style:normal;font-weight:500;color:rgba(35,31,32,.8)}
+table.grid td.adj[data-gc]{background-image:linear-gradient(rgba(56,161,105,.24),rgba(56,161,105,.24));
+  box-shadow:inset 0 0 0 0.7pt rgba(28,105,62,.85)}
+table.grid td.adj[data-gc] > span:empty:before{font-size:7pt;font-style:normal;font-weight:500;color:rgba(35,31,32,.8)}
+table.grid td[data-gin]{cursor:text}
+/* a grid cell being typed in: white, the blue ring, a blue caret */
+table.grid td.ginl,table.grid td.ginl:not(.grey){background:#fff!important;background-image:none!important;
+  box-shadow:inset 0 0 0 1.4pt #1d6ce0,0 0 0 2.5pt rgba(29,108,224,.25)!important;position:relative;z-index:3}
+table.grid td.ginl > span{outline:none;caret-color:#0b57d0;display:block;min-height:8pt}
+table.grid td.ginl > span:empty:before{content:''!important}
+table.grid td.gsaving{opacity:.7}
+table.grid td.gfail{box-shadow:inset 0 0 0 1.2pt #c53030!important}
 """
 
 

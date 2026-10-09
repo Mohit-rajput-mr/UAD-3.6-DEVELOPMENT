@@ -20,12 +20,29 @@ MESSAGE = ("Page layout, the printed preview and the PDF need Chromium (Playwrig
            "editing, the Review Master and the MISMO XML work here.")
 
 
-try:                                                    # pragma: no cover - depends on the host
-    from playwright.sync_api import sync_playwright     # noqa: F401
-    AVAILABLE = True
-except ImportError:                                     # pragma: no cover
-    AVAILABLE = False
+# Which browser drives the renderer, in order:
+#   * Playwright and its own Chromium, where installed (development, tests);
+#   * the Edge / Chrome already on the machine, over the DevTools protocol
+#     (uad/report/cdp.py) -- the desktop edition, which ships no browser;
+#   * none: a serverless host.  Everything but layout and PDF still works.
+# URAR_BROWSER_DRIVER=cdp chooses the system browser even with Playwright
+# installed (so the desktop path can be tested on a development machine).
+import os as _os
 
+from . import cdp as _cdp
+
+DRIVER = ""
+if _os.environ.get("URAR_BROWSER_DRIVER", "").lower() != "cdp":
+    try:                                                # pragma: no cover - depends on the host
+        from playwright.sync_api import sync_playwright  # noqa: F401
+        DRIVER = "playwright"
+    except ImportError:                                 # pragma: no cover
+        pass
+if not DRIVER and _cdp.available():
+    sync_playwright = _cdp.sync_playwright              # noqa: F811
+    DRIVER = "cdp"
+AVAILABLE = bool(DRIVER)
+if not AVAILABLE:                                       # pragma: no cover
     def sync_playwright():                              # type: ignore[no-redef]
         raise BrowserUnavailable(MESSAGE)
 

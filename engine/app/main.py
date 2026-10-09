@@ -54,6 +54,9 @@ app = FastAPI(title="UAD 3.6 Report Platform", docs_url="/api/docs",
 ACCESS = Access()
 api.STORE = Store(WORK)
 app.include_router(api.router)
+from app import download as _download                          # noqa: E402
+app.include_router(_download.router)        # Download product (the desktop edition)
+app.include_router(_download.page_router)   # ... and its public page, /download
 # ------------------------------------------------------------- case vault
 # The browser keeps a copy of each case (app/ui/vault.js) so a case survives
 # the server copy that held it -- the norm on a serverless host, where several
@@ -187,8 +190,13 @@ async def _schema_regression(request, exc):
     return JSONResponse({"detail": str(exc)}, status_code=422)
 # Every change to a case queues a fresh layout in the background, so the page
 # is ready before the appraiser switches to it.
-api.STORE.listeners = [] if ON_VERCEL else [lambda case_id: api.renderer().changed(case_id),
-                                           lambda case_id: api.mapper().changed(case_id)]
+# Where the appraiser's own browser lays the report out (a serverless host, the
+# desktop edition) the server never needs its own layout, so none is queued --
+# on one PC each would cost a headless browser run after every change.
+from uad.report import browser as _browser                       # noqa: E402
+api.STORE.listeners = [] if ON_VERCEL else (
+    ([lambda case_id: api.renderer().changed(case_id)] if _browser.server_layout() else [])
+    + [lambda case_id: api.mapper().changed(case_id)])
 
 
 @app.on_event("startup")
@@ -202,6 +210,8 @@ def prewarm() -> None:
             api.mapper().retire(case.case_id)
         except Exception:
             pass
+    if not _browser.server_layout():
+        return
     for case in api.store().list()[:4]:
         api.renderer().request(case.case_id)
 
@@ -210,6 +220,13 @@ if Path(fonts.ASSETS).exists():       # the licensed Myriad Pro files are not re
               StaticFiles(directory=str(fonts.ASSETS)), name="fonts")
 if UI.exists():
     app.mount("/ui", StaticFiles(directory=str(UI)), name="ui")
+
+
+# the desktop edition: the app window's way in and activation (app/desktop.py);
+# registered before the gate, so the gate is checked first
+if os.environ.get("URAR_DESKTOP") == "1":
+    from app import desktop as _desktop                         # noqa: E402
+    _desktop.install(app, ACCESS)
 
 
 @app.middleware("http")

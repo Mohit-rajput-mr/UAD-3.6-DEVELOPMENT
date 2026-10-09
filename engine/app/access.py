@@ -47,7 +47,14 @@ COOKIE = "urar_access"
 # the gate page's own typeface (SIL OFL, engine/app/ui/fonts/OFL-Geist.txt) --
 # public files, nothing behind the passcode
 OPEN_PATHS = ("/healthz", "/access", "/ui/fonts/Geist-Variable.woff2",
-              "/ui/fonts/GeistMono-Variable.woff2")
+              "/ui/fonts/GeistMono-Variable.woff2", "/ui/icon.svg",
+              # the desktop app window's one-time way in (app/desktop.py; the
+              # route exists only in the desktop edition and checks its token)
+              "/desktop/unlock",
+              # Download product: a licence holder needs the key, not this
+              # office's passcode (app/download.py checks and throttles it)
+              "/download", "/ui/download.js")
+OPEN_PREFIXES = ("/api/desktop/",)
 CONFIG = Path(__file__).resolve().parent / "access.json"
 ITERATIONS = 600_000            # OWASP 2023 guidance for PBKDF2-HMAC-SHA256
 SESSION_HOURS = 12
@@ -185,6 +192,9 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;
 .bt b{display:block;font:500 18px/1 var(--sans);letter-spacing:-.02em}
 .bt span{display:block;margin-top:4px;font:500 9.5px/1 var(--sans);letter-spacing:.2em;color:var(--muted)}
 .top .r{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.top .dlink{margin-left:auto;margin-right:18px;padding:9px 14px;border:1px solid rgba(255,255,255,.26);color:var(--ink);
+ text-decoration:none;font:600 12.5px/1 var(--sans)}
+.top .dlink:hover{background:var(--ink);color:var(--bg)}
 .top .r:before{content:'';width:6px;height:6px;border-radius:50%;background:#4fd1a5;box-shadow:0 0 0 4px rgba(79,209,165,.15)}
 main{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;
  width:min(100%,1180px);margin:0 auto;padding:56px 40px}
@@ -220,7 +230,7 @@ button:active{transform:translateY(1px)}
  <path d="M520 10 C 600 140, 700 220, 760 240" fill="none" stroke="url(#chrome)" stroke-width="14" stroke-linecap="round" opacity=".6"/>
 </svg>
 <div class="top"><div class="brand"><span class="logo">U</span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span></div>
-  <span class="r">Passcode protected</span></div>
+  <a class="dlink" href="/download">Download product &rarr;</a><span class="r">Passcode protected</span></div>
 <main>
   <div><span class="lbl">For U.S. appraisers &middot; URAR</span>
     <h1>Appraisal workspace.<span>One document, checked as you go.</span></h1>
@@ -250,7 +260,8 @@ def gate_page(error: bool = False, throttled: bool = False) -> HTMLResponse:
 
 def guard(access: Access, request: Request) -> Response | None:
     """The response to send instead of the page, or None to let it through."""
-    if access.granted(request) or request.url.path in OPEN_PATHS:
+    if (access.granted(request) or request.url.path in OPEN_PATHS
+            or request.url.path.startswith(OPEN_PREFIXES)):
         return None
     if request.url.path.startswith("/api/"):
         return JSONResponse({"error": "locked"}, status_code=401)

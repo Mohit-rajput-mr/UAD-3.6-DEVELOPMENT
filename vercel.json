@@ -4,7 +4,7 @@
     "api/index.py": {
       "maxDuration": 60,
       "memory": 1024,
-      "includeFiles": "{engine/**,specs/official/**/*_Appraisal_v1.*.xml,specs/official/**/*_AppraisalUpdate_v1.*.xml,specs/official/**/*_CompletionReport_v1.*.xml,specs/official/GSE_UAD_3.6.0_v1.3 (1)/**/*.xsd}",
+      "includeFiles": "{engine/**,specs/official/**/*_Appraisal_v1.*.xml,specs/official/**/*_AppraisalUpdate_v1.*.xml,specs/official/**/*_CompletionReport_v1.*.xml,specs/official/GSE_UAD_3.6.0_v1.3 (1)/**/*.xsd,downloads/desktop/**}",
       "excludeFiles": "{engine/tests/**,engine/**/__pycache__/**}"
     }
   },

@@ -2212,3 +2212,60 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Tests: tests/test_workflow.py (4 new).
 - E2E: GLA "1850" → "1,850 Sq. Ft."; "120 sf" → "120 Sq. Ft."; adjustment
   "-2500" → "$(2,500)"; "abc" refused with a message.
+
+### E-150 -- A report opened on a shared layout waited 12 s for its images (2026-10-09)
+- Symptom: measured with Playwright against the browser-layout server
+  (the web's path). Reopening a filled report took 15–19 s, with every page
+  image arriving after about 12 s. Every new blank report opens the same way.
+- Cause: a layout kept for identical content (renders/layouts, shared by
+  key) names images under its own case's asset folder. The new case had no
+  such files, and each of the ~18 image requests rebuilt the whole report
+  (`client_galley`) in parallel to recreate them.
+- Mechanism (`api.render_asset`):
+  - assets are content-addressed, so an identical file is first looked for
+    in any case's `_render/assets/` and copied;
+  - only if none exists is the report rebuilt, once, under a per-case lock.
+- Evidence: reload went from 15–19 s to 3.6 s.
+  `tests/test_desktop.py::test_a_shared_layout_finds_its_images_without_rebuilding`.
+
+### E-151 -- Opening a report built the whole report twice at the same moment (2026-10-09)
+- Cause: two calls fire together when a report opens, `GET /cases/{id}` and
+  `GET /cases/{id}/review`. Both need `sections_present`, a full `form.build`
+  of over a second. `Store._memo` had no lock, so both computed it in
+  parallel and the open took twice the CPU.
+- Mechanism: a per-(name, case) lock in `_memo`. One thread computes the
+  result and the rest wait for it.
+- Related: the rail's `fields?slim=1` no longer runs the H-1 rules it never
+  shows (`findings=False`, saving 0.25–0.45 s per version).
+- Evidence: `test_a_per_version_result_is_computed_once_when_asked_together`.
+  A first open of a filled SF1 report went from 8.6 s to 5.7 s.
+
+### E-152 -- The blank-report warm-up competed with the report being opened (2026-10-09)
+- Cause: the home page lays out a hidden blank report so that new reports
+  open at once. Opening an existing report while that ran split the CPU
+  between the two layouts.
+- Mechanism: `openCase` calls `stopWarm()`, which cancels the warm-up
+  frame. The warm-up never starts while a report is open.
+
+### E-153 -- The desktop edition: PDF without Playwright, and two build traps (2026-10-09)
+- PDF without Playwright: `uad/report/cdp.py` drives the system Edge/Chrome
+  over the DevTools protocol, and `browser.py` chooses Playwright, then the
+  system browser, then none.
+  - Equivalence on SF1 was exact: 230 measured blocks, page bottoms, and 20
+    PDF pages, text and pixels.
+  - Chromium's printToPDF tags PDFs by default, which made the file 2.4×
+    larger. `generateTaggedPDF: false` matches Playwright.
+  - As root on Linux, Chromium needs `--no-sandbox`. It is never added on
+    Windows or macOS.
+- Build trap 1: a file-writing step turned the text `괶` in
+  installer.nsi into the character 괶. Icons are now `icon.ico`, and a test
+  asserts the NSIS script is plain ASCII.
+- Build trap 2: `build.py` packs only git-tracked files, so new files must
+  be `git add`-ed before building. This is deliberate: it keeps case
+  material and licensed fonts out of the installer.
+- Wine quirk: `pythonw.exe` with redirected stdio fails to start under Wine
+  ("init_sys_streams"). It is fine on a terminal and on Windows, where a
+  shortcut passes no handles.
+- Mechanism and evidence: `desktop/README.md`, `tests/test_desktop.py`
+  (16 tests). Wine 9 runs of the real installer and app: wrong key refused,
+  right key installs, app serves, activation, uninstall keeps reports.

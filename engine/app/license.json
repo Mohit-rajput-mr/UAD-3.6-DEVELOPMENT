@@ -1,0 +1,7 @@
+{
+  "algorithm": "pbkdf2_sha256",
+  "iterations": 600000,
+  "salt": "3c8e6175d932b6fecf0674b3e4f5689c",
+  "check": "d3c73841ab67b12aa43a12715cc5882d2fef5adf1a1b96cc3ba9a75639a725e1",
+  "ticket": "f7b9f021ae631f8e6be8aca4ef8afc3a64511a5f37a1031d66e29c6fe74a6e43"
+}

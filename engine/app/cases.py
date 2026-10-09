@@ -708,14 +708,25 @@ class Store:
         return (case_id, stat.st_mtime_ns, stat.st_size)
 
     def _memo(self, name: str, case_id: str, compute):
-        """A result that depends only on the document, kept until it changes."""
+        """A result that depends only on the document, kept until it changes.
+
+        Computed once even when asked for at the same moment: opening a report
+        asks for the case, its review and its fields together, and each needs
+        the sections the report prints (a full build, over a second) -- without
+        the per-key lock every request built it again in parallel."""
         cache = self.__dict__.setdefault("_memos", {})
         key = (name,) + self._version(case_id)
-        if key not in cache:
-            for old in [k for k in cache if k[0] == name and k[1] == case_id]:
-                cache.pop(old, None)
-            cache[key] = compute()
-        return cache[key]
+        if key in cache:
+            return cache[key]
+        locks = self.__dict__.setdefault("_memo_locks", {})
+        with self._lock:
+            gate = locks.setdefault((name, case_id), threading.Lock())
+        with gate:
+            if key not in cache:
+                for old in [k for k in list(cache) if k[0] == name and k[1] == case_id]:
+                    cache.pop(old, None)
+                cache[key] = compute()
+            return cache[key]
 
     def review(self, case_id: str, include_review: bool = True):
         return self._memo(f"review:{include_review}", case_id,

@@ -2933,3 +2933,56 @@ Open:
 - One editor or list open at a time (2026-10-08): flow.py `shutEditor` bumps
   `cellSeq`, so a cell editor whose grid was still loading never opens after
   a later click; openPicker / openCell / typeInCell close each other.
+
+## 2026-10-09 -- speed, and the desktop edition (T-1049, T-1050; E-150..E-153)
+
+Owner: "the form is slow ... make this entire 3.6 faster in web ... create a
+desktop application with a Download product button and licence key ... this
+software needs to run locally".
+
+Speed. Measured with Playwright against a browser-layout server, which is
+the web's path; the live site cannot be reached from the agent container
+because the proxy denies vercel.app.
+- First open of a filled SF1 report: 8.6 s → 5.7 s.
+- Reopen: 15–19 s → 3.6 s.
+- An open from a kept layout: 0.45 s.
+
+The fixes:
+- shared-layout images found by digest (E-150);
+- `_memo` computes once (E-151);
+- the slim field list skips H-1 (E-151);
+- the warm-up stops when a report opens (E-152);
+- no background server re-layout where the browser lays out
+  (`main.py` listeners).
+
+Desktop edition (`desktop/`, README there):
+- `launcher.py` runs the server in-process on 127.0.0.1 and opens an Edge
+  `--app` window.
+- `app/desktop.py` handles the one-time window key and activation.
+- `app/license.py` holds the PBKDF2 verifier for the licence key, in
+  `license.json`; the key is in no file.
+- `uad/report/cdp.py` drives the system Edge for the PDF and ZIP, giving
+  output identical to Playwright.
+- `build.py` + `installer.nsi` give a 24 MB per-user NSIS installer that
+  checks the key before installing.
+
+Download product:
+- the header button and the public `/download` page, which needs no
+  passcode, both use `ui/download.js`;
+- `app/download.py` turns the key into a ticket and serves parts under 4 MB
+  from `downloads/desktop/` (the vercel.json includeFiles);
+- reports stay behind the passcode.
+
+Checked against Vercel: repository files are not served statically (they
+get the gate's 401), so the installer parts are reachable only through the
+ticket route.
+
+Traps:
+- build only after `git add` of new files;
+- keep installer.nsi ASCII;
+- `pythonw` under Wine needs a terminal;
+- a wrong licence key answers 403, never 401, because the editor reloads
+  on 401.
+
+Not yet verified: a run on a physical Windows PC (Edge window, Edge-made
+PDF), and the live download after deploy.

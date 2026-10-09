@@ -209,6 +209,17 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-09 -- faster editor; desktop edition for Windows with Download product (T-1049, T-1050)
+- Opening is faster (8.6 → 5.7 s first open, 15–19 → 3.6 s reopen): E-150..E-152 in the CATALOG.
+- `desktop/`: a per-user installer (24 MB) that asks for the licence key first; the app runs locally in
+  an Edge window; the PDF comes from the system Edge (`uad/report/cdp.py`, output identical to Playwright).
+- Download product: the header button and the public `/download` page; the key gives a ticket; the
+  installer is served in parts.
+- The licence key lives only as a verifier (`engine/app/license.json`); change it with
+  `python engine/app/license.py set-key`.
+- Next: confirm on a real Windows PC; code-signing certificate to silence SmartScreen; the competitor
+  screenshots, once uploaded (the folder `Competitors 3.6 software features pics/` is still empty).
+
 ### 2026-10-08 -- setup dialog redesigned to the platform's theme (T-268)
 - "What are you appraising?" now uses the shell's glass sheet, "+" labels, ink selection, icons,
   switches and a pinned footer. Same element hooks as before.

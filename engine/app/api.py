@@ -22,6 +22,7 @@ import json
 import re
 import mimetypes
 import shutil
+import threading
 import zipfile
 from copy import deepcopy
 from datetime import datetime, timezone
@@ -529,10 +530,13 @@ def case_fields(case_id: str, section: int | None = Query(None),
     # every field and the H-1 rules over the whole document cost about a
     # second; the answer depends on the document alone, so it is made once per
     # version of it, not on every open of the editor
-    full = store()._memo(f"fields:{section}:{only_filled}", case_id,
-                         lambda: _case_fields(case_id, section, only_filled))
     if slim is not True:                 # also when called directly, with the Query default
-        return full
+        return store()._memo(f"fields:{section}:{only_filled}", case_id,
+                             lambda: _case_fields(case_id, section, only_filled))
+    # the rail shows which fields hold a value, never the findings: skip the
+    # H-1 run (a quarter of a second on every version of the document)
+    full = store()._memo(f"fields-slim:{section}:{only_filled}", case_id,
+                         lambda: _case_fields(case_id, section, only_filled, findings=False))
     # what the editor's rail needs: each section and which of its fields hold
     # a value -- a few kilobytes instead of two megabytes of field definitions
     return {"sections": [{"number": sec["number"], "name": sec["name"], "tab": sec["tab"],
@@ -541,11 +545,12 @@ def case_fields(case_id: str, section: int | None = Query(None),
                          for sec in full["sections"]]}
 
 
-def _case_fields(case_id: str, section: int | None, only_filled: bool) -> dict:
+def _case_fields(case_id: str, section: int | None, only_filled: bool,
+                 findings: bool = True) -> dict:
     from uad import report_types
     tree = store().tree(case_id)
     root = tree.getroot()
-    findings = report_types.evaluate(tree)        # H-1, or H-2 / H-3 by the document's kind
+    findings = report_types.evaluate(tree) if findings else []   # H-1, or H-2 / H-3 by kind
     by_field: dict[str, list[dict]] = {}
     for f in findings:
         if f.status == compliance.FINDING and f.field_id:
@@ -2380,6 +2385,9 @@ def font_asset(name: str) -> Response:
                     headers={"Cache-Control": "public, max-age=31536000, immutable"})
 
 
+_ASSET_LOCKS: dict[str, "threading.Lock"] = {}
+
+
 @router.get("/cases/{case_id}/asset/{name}")
 def render_asset(case_id: str, name: str) -> Response:
     """A photograph or font a rendered page references, named by its digest --
@@ -2389,17 +2397,28 @@ def render_asset(case_id: str, name: str) -> Response:
         raise HTTPException(404, "no such asset")
     path = renderer().assets(case_id) / name
     if not path.is_file():
-        # Written by a render on another instance (serverless) or cleared:
-        # the assets are content-addressed, so laying the case out again
-        # writes the same files under the same names.
         _case_or_404(case_id)
-        for kind in renders.KINDS:
-            if path.is_file():
-                break
-            try:
-                renderer().client_galley(case_id, kind)
-            except Exception:
-                pass
+        # Content-addressed: a page laid out for another report with the same
+        # content (every new report opens on the shared layout of the blank
+        # one) names files that report's render wrote.  Same name, same bytes.
+        twin = next(iter(sorted(store().root.glob(f"*/_render/assets/{name}"))), None) \
+            if hasattr(store(), "root") else None
+        if twin is not None and twin.is_file():
+            renders._write_once(path, twin.read_bytes())
+    if not path.is_file():
+        # Written by a render on another instance (serverless) or cleared:
+        # laying the case out again writes the same files under the same
+        # names.  A page asks for all its images at once; one request lays it
+        # out, the rest wait and then find the file -- before this lock every
+        # image rebuilt the whole report at the same moment (12 s on SF1).
+        with _ASSET_LOCKS.setdefault(case_id, threading.Lock()):
+            for kind in renders.KINDS:
+                if path.is_file():
+                    break
+                try:
+                    renderer().client_galley(case_id, kind)
+                except Exception:
+                    pass
     if not path.is_file():
         raise HTTPException(404, "no such asset")
     kind = {"ttf": "font/ttf", "otf": "font/otf", "svg": "image/svg+xml",

@@ -20,6 +20,7 @@ show.
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 import re
 from dataclasses import dataclass, field, replace
 from functools import lru_cache
@@ -1755,6 +1756,48 @@ def reorder(tree, role: str, order: list[int]) -> dict[int, int]:
     mapping = {was(prop): new for new, prop in enumerate(final, start=1)}
     renumber(tree, role, final)
     return mapping
+
+
+def copy_property(tree, role: str, number: int) -> int:
+    """Add a copy of comparable #number as the last one of its kind.
+
+    Everything the comparable holds is copied: its own elements and every
+    relationship that points into it -- its data sources, and for a rental or
+    a 2-4 unit sale the subject unit it is compared with.  Each identifier
+    inside the copy is minted afresh (an ``xlink:label`` names one element in
+    the whole document), and the copied relationships point at the new ones.
+    Photographs are not copied: they are of the original property.
+    """
+    root = tree.getroot() if hasattr(tree, "getroot") else tree
+    found = properties(root, role)
+    if not 1 <= number <= len(found):
+        raise IndexError(f"no comparable #{number}")
+    src = found[number - 1]
+    dup = deepcopy(src)
+    taken = {e.get(f"{{{XLINK}}}label") for e in root.iter() if isinstance(e.tag, str)}
+    renamed: dict[str, str] = {}
+    for node in dup.iter():
+        old = node.get(f"{{{XLINK}}}label") if isinstance(node.tag, str) else None
+        if not old:
+            continue
+        n = 2
+        while f"{old}_COPY{n}" in taken:
+            n += 1
+        new = f"{old}_COPY{n}"
+        taken.add(new)
+        renamed[old] = new
+        node.set(f"{{{XLINK}}}label", new)
+    last = found[-1]
+    last.addnext(dup)
+    ordinal_node(dup, create=True).text = str(len(found) + 1)
+    for rel in list(root.iter(f"{{{bind.MISMO}}}RELATIONSHIP")):
+        a, b = rel.get(f"{{{XLINK}}}from"), rel.get(f"{{{XLINK}}}to")
+        if a in renamed or b in renamed:
+            twin = deepcopy(rel)
+            twin.set(f"{{{XLINK}}}from", renamed.get(a, a))
+            twin.set(f"{{{XLINK}}}to", renamed.get(b, b))
+            rel.addnext(twin)
+    return len(found) + 1
 
 
 def _drop_relationships(root: etree._Element, label: str) -> None:

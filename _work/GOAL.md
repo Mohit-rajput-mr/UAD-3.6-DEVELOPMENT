@@ -74,6 +74,14 @@ family, condominium, 2-4 unit.
 - **Do not control the owner's PC** (no desktop/computer-use clicking). Work in
   WinTOTAL only through the MOD (`total-bridge/`, CDP on :8088). What only the
   desktop can do (open or reopen a report), ask the owner to do.
+- **Square, ruled design; no rounded corners** (owner, 2026-10-08, after the
+  setup dialog: "too much circular or curved corner design … I prefer
+  squarish, semantic design"). Cards, buttons, pills and fields in the
+  application are square; status dots stay round. Edit mode may make fields
+  bigger and darker; the preview, PDF and ZIP keep the official form as C-1
+  draws it.
+- **No needless dropdowns** (owner, 2026-10-08): where the unit is known
+  ($ for adjustments, sq ft for GLA) the appraiser types the number in place.
 - **Keep TASKS.md and HANDOFF.md current as work lands**, because several agents
   share this folder in sessions that cannot see each other and a session can end
   on a credit limit.

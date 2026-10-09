@@ -4,8 +4,7 @@
    installer arrives in parts of under 4 MB (a serverless answer's limit),
    each checked against its SHA-256, and is saved as one file. */
 (function(){
-  var CSS=`border:1px solid var(--line-3);background:var(--btn);color:var(--btn-ink);font:600 12.5px/1 var(--sans);letter-spacing:.01em}
-.dlv{position:fixed;inset:0;z-index:85;display:flex;align-items:center;justify-content:center;padding:28px 16px;
+  var CSS=`.dlv{position:fixed;inset:0;z-index:85;display:flex;align-items:center;justify-content:center;padding:28px 16px;
   background:rgba(5,5,6,.66);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .dl,.dl *{border-radius:0!important}
 .dl{width:min(620px,100%);max-height:100%;overflow-y:auto;background:var(--surface);border:1px solid var(--line-3);

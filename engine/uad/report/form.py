@@ -5461,19 +5461,19 @@ def galley_html(blocks: list[Block], edit: bool = False) -> str:
 # the page that prints, to the point.
 EDIT_CSS = """
 .v[contenteditable]{outline:none;min-width:14pt;display:inline-block;
-  border-radius:1pt;transition:background-color .1s}
+  border-radius:0;transition:background-color .1s}
 .v[contenteditable]:hover{background:rgba(29,79,145,.07)}
 .v[contenteditable]:focus{background:rgba(29,79,145,.13);
   box-shadow:0 0 0 0.75pt rgba(29,79,145,.55)}
 .v[contenteditable]:empty:before{content:'';display:inline-block;width:40pt}
 .v.saving{background:rgba(29,79,145,.20)}
 .v.failed{background:rgba(190,60,60,.18);box-shadow:0 0 0 0.75pt rgba(190,60,60,.7)}
-.bx[data-pick]{cursor:pointer;border-radius:1pt}
+.bx[data-pick]{cursor:pointer;border-radius:0}
 .bx[data-pick]:hover{color:#1d4f91}
 /* an enumerated value keeps the row's face and colour; the list is drawn
    inside the page so it scales with it */
 .v.pick{display:inline-block;min-width:14pt;cursor:pointer;outline:none;
-  border-radius:1pt;position:relative;padding-right:7pt}
+  border-radius:0;position:relative;padding-right:7pt}
 .v.pick:after{content:'';position:absolute;right:1.5pt;top:50%;
   margin-top:-1pt;border:2.5pt solid transparent;border-top-color:#8c9299}
 .v.pick:hover{background:rgba(29,79,145,.07)}
@@ -5493,7 +5493,7 @@ body.show-gaps .v.pick.adding:empty{background:none}
 .v.addrpart[contenteditable]{min-width:10pt}
 .v.addrpart[contenteditable]:empty:before{content:attr(data-ph);width:auto;color:#6b6b70;font-style:italic}
 .namekind{position:absolute;z-index:60;display:flex;border:0.6pt solid #231f20;background:#fff;
-  font-size:6.5pt;font-weight:700;border-radius:1pt;overflow:hidden}
+  font-size:6.5pt;font-weight:700;border-radius:0;overflow:hidden}
 .namekind span{padding:1pt 5pt;cursor:pointer;color:#231f20}
 .namekind span.on{background:#231f20;color:#fff}
 .picklist .otherbox{padding:4pt 6pt;background:#fff;cursor:default}
@@ -5522,7 +5522,7 @@ body.show-gaps .v.pick:empty:before{content:'';display:inline-block;width:46pt}
    it green is how an appraiser knows the import reached the fields behind
    it.  Marked only while the toggle is on, and never printed. */
 body.show-imported .imported{box-shadow:inset 0 0 0 0.8pt rgba(31,122,60,.85);
-  background:rgba(47,158,79,.11);border-radius:1pt}
+  background:rgba(47,158,79,.11);border-radius:0}
 body.show-imported .bx.imported,body.show-imported .bxs.imported{
   box-shadow:inset 0 0 0 0.8pt rgba(31,122,60,.9);background:rgba(47,158,79,.14)}
 body.show-imported td.imported,body.show-imported .v.imported{
@@ -5537,7 +5537,7 @@ body.show-imported td.imported,body.show-imported .v.imported{
 .exaddrow{display:flex;justify-content:flex-end;margin:2pt 0 4pt}
 .exadd,.compadd,.nuadd{display:inline-block;border:0.75pt solid #231f20;color:#231f20;
   background:#fff;cursor:pointer;font-weight:700;font-size:7pt;line-height:1;
-  border-radius:1pt;padding:3pt 7pt;white-space:nowrap}
+  border-radius:0;padding:3pt 7pt;white-space:nowrap}
 .exadd:hover,.exadd:focus,.compadd:hover,.compadd:focus,
 .nuadd:hover,.nuadd:focus{background:#231f20;color:#fff;outline:none}
 /* Additional Properties Analyzed Not Used: several reasons stack inside the
@@ -5571,12 +5571,12 @@ figure.ex .cap{position:relative;z-index:3}
 /* the location map is loaded inside its own box */
 .maploader{position:absolute;left:50%;bottom:22pt;transform:translateX(-50%);z-index:5;
   border:0.75pt solid #231f20;background:#fff;color:#231f20;font-weight:700;font-size:7pt;
-  line-height:1;padding:3pt 8pt;border-radius:1pt;cursor:pointer;white-space:nowrap}
+  line-height:1;padding:3pt 8pt;border-radius:0;cursor:pointer;white-space:nowrap}
 .mapbar{position:absolute;left:50%;bottom:22pt;transform:translateX(-50%);z-index:5;display:flex;gap:4pt}
 .mapbar .maploader{position:static;transform:none}
 .mapbar:has(.maploader.loaded){bottom:auto;top:10pt;left:auto;right:12pt;transform:none}
 .mapedit{border:0.75pt solid #231f20;background:#fff;color:#231f20;font-weight:700;font-size:7pt;
-  line-height:1;padding:3pt 8pt;border-radius:1pt;cursor:pointer;white-space:nowrap}
+  line-height:1;padding:3pt 8pt;border-radius:0;cursor:pointer;white-space:nowrap}
 .mapedit:hover,.mapedit:focus{background:#231f20;color:#fff;outline:none}
 figure.mapediting .mapbar,figure.maploading .mapbar{display:none}
 .mapframe{position:absolute;left:6pt;top:6pt;width:528pt;height:564pt;border:0;z-index:6;background:#fff}
@@ -5607,9 +5607,9 @@ table.grid th[data-compmenu]{cursor:pointer}
   border:0.6pt solid #9a9a95;box-sizing:border-box}
 .gedit .gpick{max-height:84pt;overflow-y:auto;border:0.6pt solid #9a9a95;outline:none;background:#fff}
 .gedit .gq{display:block;width:100%;box-sizing:border-box;margin:0 0 2pt;padding:2pt 3pt;font:inherit;font-size:7pt;
-  border:0.6pt solid #1d4f91;border-radius:2pt;outline:none}
+  border:0.6pt solid #1d4f91;border-radius:0;outline:none}
 .picklist .pfind{display:block;width:calc(100% - 4pt);box-sizing:border-box;margin:2pt;padding:2pt 3pt;font:inherit;
-  font-size:7pt;border:0.6pt solid #1d4f91;border-radius:2pt;outline:none}
+  font-size:7pt;border:0.6pt solid #1d4f91;border-radius:0;outline:none}
 .gedit .gpick:focus{border-color:#231f20}
 .gedit .gpick div{padding:1.4pt 5pt;white-space:nowrap;cursor:pointer;font-size:7.5pt;line-height:9pt}
 .gedit .gpick div:hover{background:#e6e7e8}
@@ -5623,14 +5623,14 @@ table.grid th[data-compmenu]{cursor:pointer}
 .pageside{position:absolute;z-index:50;width:210px;display:flex;flex-direction:column;gap:6px;
   font:12px/1.3 Arial,Helvetica,sans-serif}
 .pageside button{font:inherit;font-weight:700;padding:7px 10px;border:1px solid #231f20;background:#fff;
-  color:#231f20;cursor:pointer;border-radius:3px;text-align:center;width:110px}
+  color:#231f20;cursor:pointer;border-radius:0;text-align:center;width:110px}
 .pageside button.pgsave{background:#231f20;color:#fff}
 .pageside button:hover{background:#231f20;color:#fff}
 .pageside button.pgsave:hover{background:#fff;color:#231f20}
 .pageside button:disabled{opacity:.6;cursor:progress}
 .pageside.ok button.pgsave{background:#2f855a;border-color:#2f855a;color:#fff}
 .savecheck{background:#fff;border:1px solid #231f20;box-shadow:0 3px 12px rgba(0,0,0,.3);padding:8px;
-  border-radius:3px;max-height:380px;overflow-y:auto}
+  border-radius:0;max-height:380px;overflow-y:auto}
 .savecheck .sch{font-weight:700;margin-bottom:6px}
 .savecheck .sci{display:block;padding:4px 6px;margin:0 0 4px;border-left:3px solid;cursor:pointer;
   text-decoration:none;color:#231f20;font-size:11px}
@@ -5658,7 +5658,7 @@ table.tbl td.tickcell{cursor:pointer}
 table.tbl td.tickcell:hover{background:rgba(29,79,145,.07)}
 /* a tick cell is a checkbox: hollow until chosen, and a click on the tick clears it */
 table.tbl td.tickcell > span{display:inline-flex;align-items:center;justify-content:center;
-  width:10pt;height:10pt;border:0.8pt solid rgba(29,79,145,.55);border-radius:1.5pt;
+  width:10pt;height:10pt;border:0.8pt solid rgba(29,79,145,.55);border-radius:0;
   background:rgba(66,133,244,.08);vertical-align:middle;box-sizing:border-box}
 table.tbl td.tickcell:hover > span{border-color:rgba(29,79,145,.9);background:rgba(66,133,244,.18)}
 table.tbl td.tickcell > span > svg.tick{width:8pt;height:8pt}
@@ -5668,7 +5668,7 @@ td.calc{background:rgba(35,31,32,.04);color:#231f20;font-weight:600}
 .unnamed{color:rgba(35,31,32,.6);font-style:italic}
 td.calc span:after{content:' \03a3';font-size:6pt;color:rgba(35,31,32,.66);font-weight:400}
 /* rental comparables against subject units (editor only) */
-.rpairs{border:0.8pt solid rgba(43,108,176,.45);border-radius:4pt;padding:4pt 6pt 5pt;margin:2pt 0 6pt;background:rgba(66,133,244,.04)}
+.rpairs{border:0.8pt solid rgba(43,108,176,.45);border-radius:0;padding:4pt 6pt 5pt;margin:2pt 0 6pt;background:rgba(66,133,244,.04)}
 .rpairs .rph{font-size:7.5pt;font-weight:700;margin-bottom:3pt}
 .rpairs table{border-collapse:collapse;font-size:7pt}
 .rpairs th{font-weight:600;padding:1pt 8pt;text-align:center}
@@ -5676,21 +5676,21 @@ td.calc span:after{content:' \03a3';font-size:6pt;color:rgba(35,31,32,.66);font-
 .rpairs td.rpn{text-align:left;font-weight:600}
 .rpairs td.rpn span{font-weight:400;color:rgba(35,31,32,.6);margin-left:5pt}
 .rpairs .rpx{display:inline-flex;align-items:center;justify-content:center;width:10pt;height:10pt;
-  border:0.8pt solid rgba(29,79,145,.6);border-radius:2pt;cursor:pointer;color:#fff;font-size:7pt;line-height:1}
+  border:0.8pt solid rgba(29,79,145,.6);border-radius:0;cursor:pointer;color:#fff;font-size:7pt;line-height:1}
 .rpairs .rpx.on{background:#1d4f91;border-color:#1d4f91}
 .rpairs .rpx:hover{box-shadow:0 0 0 2pt rgba(66,133,244,.25)}
 .rpairs .rpnote{font-size:6.5pt;color:rgba(35,31,32,.65);margin-top:3pt;line-height:1.35}
 .rpairs .rpempty{text-align:left;color:rgba(35,31,32,.65)}
 /* the signature: signed here, drawn above the line */
 .sgsign{display:inline-flex;align-items:center;justify-content:center;min-width:150pt;height:24pt;
-  border:1pt dashed rgba(43,108,176,.7);border-radius:4pt;background:rgba(66,133,244,.08);
+  border:1pt dashed rgba(43,108,176,.7);border-radius:0;background:rgba(66,133,244,.08);
   color:#1d4f91;font-size:8pt;font-weight:600;cursor:pointer}
 .sgsign:hover{background:rgba(66,133,244,.18)}
 .sgsign.has{min-width:0;height:auto;padding:1pt 5pt;margin-left:6pt;font-size:6.5pt;font-weight:400;border-style:solid}
 /* a per-report layout choice (rental analysis) -- the editor's, never printed */
 .layoutsw{display:flex;align-items:center;gap:4pt;margin:2pt 0 4pt;font-size:7pt}
 .layoutsw .lsl{color:rgba(35,31,32,.6);margin-right:2pt}
-.layoutsw .lso{padding:1.5pt 6pt;border-radius:8pt;cursor:pointer;
+.layoutsw .lso{padding:1.5pt 6pt;border-radius:0;cursor:pointer;
   box-shadow:inset 0 0 0 0.6pt rgba(43,108,176,.6);background:rgba(66,133,244,.06)}
 .layoutsw .lso.on{background:rgba(43,108,176,.85);color:#fff}
 /* a heading's placeholder, named */
@@ -5741,7 +5741,7 @@ body.show-gaps .v.pick:empty:before{content:'Select'}
 .v[data-k=amount],.v[data-k=number],.v[data-k=percent],.v[data-k=year]{text-align:right}
 .v[data-k=text]{cursor:text}
 /* a list is a pill with its arrow, never mistaken for a typed value */
-.v.pick{border-radius:4pt}
+.v.pick{border-radius:0}
 .v.pick:after{border-top-color:var(--k-edge)}
 /* the boxes still to be ticked */
 /* the box is the glyph itself: an unanswered pair is drawn in amber, no
@@ -5804,7 +5804,7 @@ table.grid td.grey[data-gc]:hover{box-shadow:inset 0 0 0 0.75pt rgba(176,122,18,
 .v[contenteditable]{caret-color:#0b57d0}
 .v[contenteditable]:focus,body.show-gaps .v[contenteditable]:focus{outline:none!important;
   background:#fff!important;background-image:none!important;
-  box-shadow:0 0 0 1.2pt #1d6ce0,0 0 0 3.5pt rgba(29,108,224,.22)!important;border-radius:2pt}
+  box-shadow:0 0 0 1.2pt #1d6ce0,0 0 0 3.5pt rgba(29,108,224,.22)!important;border-radius:0}
 .v[contenteditable]:focus:empty:before,body.show-gaps .v[contenteditable]:focus:empty:before{content:''!important;
   min-width:0!important;width:0!important;padding:0!important}
 body.show-gaps .v[contenteditable]:focus:empty{min-width:40pt}
@@ -5858,6 +5858,19 @@ table.grid td.ginl > span{outline:none;caret-color:#0b57d0;display:block;min-hei
 table.grid td.ginl > span:empty:before{content:''!important}
 table.grid td.gsaving{opacity:.7}
 table.grid td.gfail{box-shadow:inset 0 0 0 1.2pt #c53030!important}
+/* H-1 problems on their own fields (editor's "Show problems"): fatal red,
+   warning amber -- an outline, so nothing on the page moves */
+.mk-fatal{outline:1.5pt solid #d92d20!important;outline-offset:0}
+.mk-warn{outline:1.5pt solid #d98a00!important;outline-offset:0}
+td.mk-fatal,td.mk-warn{outline-offset:-1.5pt}
+.v.mk-fatal:focus,.v.mk-warn:focus{outline:none!important}
+/* how much of a comment's length is used (A-1 / XSD maximum) */
+td.v.neg > span{color:#b42318!important}
+td.v.pos > span{color:#067647!important}
+.lencount{position:absolute;z-index:98;padding:1pt 4pt;background:#231f20;color:#fff;
+  font:600 6.5pt/1.3 Arial,Helvetica,sans-serif;pointer-events:none;white-space:nowrap}
+.lencount.near{background:#b26a00}
+.lencount.over{background:#c53030}
 """
 
 

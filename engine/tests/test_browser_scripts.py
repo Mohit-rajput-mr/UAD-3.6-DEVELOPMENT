@@ -46,6 +46,7 @@ def _sources():
     yield "OVERFLOW_JS", ["(" + flow.OVERFLOW_JS + ")"]
     yield "dialog.js", [(UI / "dialog.js").read_text(encoding="utf-8")]
     yield "vault.js", [(UI / "vault.js").read_text(encoding="utf-8")]
+    yield "download.js", [(UI / "download.js").read_text(encoding="utf-8")]
     yield "index.html", _scripts((UI / "index.html").read_text(encoding="utf-8"))
 
 
@@ -67,3 +68,32 @@ def test_no_browser_dialogs_in_the_editor():
         for m in re.finditer(r"(?<![\w.])(alert|confirm|prompt)\(", text):
             found.append(f"{name}: {m.group(0)}")
     assert not found, found
+
+
+def _stylesheets():
+    from app import download
+    from uad.report import form
+    html = (UI / "index.html").read_text(encoding="utf-8")
+    for i, m in enumerate(re.finditer(r"<style[^>]*>(.*?)</style>", html, re.S)):
+        yield f"index.html style {i}", m.group(1)
+    for m in re.finditer(r"<style[^>]*>(.*?)</style>", download.PAGE, re.S):
+        yield "download page", m.group(1)
+    yield "EDIT_CSS", form.EDIT_CSS
+    js = (UI / "download.js").read_text(encoding="utf-8")
+    yield "download.js", re.search(r"var CSS=`(.*?)`;", js, re.S).group(1)
+
+
+@pytest.mark.parametrize("name,css", list(_stylesheets()), ids=lambda x: x if isinstance(x, str) and len(x) < 40 else "")
+def test_stylesheets_close_every_rule(name, css):
+    """E-155: one rule that lost its closing line (``.dlbtn{...cursor:pointer;``)
+    swallowed every rule after it, so the shipped editor drew the report frame
+    at 300 x 150 px and the inspector unstyled.  A browser never reports that;
+    this does.  Comments and strings are left out of the count."""
+    text = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    text = re.sub(r"'(?:[^'\\\n]|\\.)*'|\"(?:[^\"\\\n]|\\.)*\"", "''", text)
+    depth, line = 0, 1
+    for ch in text:
+        line += ch == "\n"
+        depth += (ch == "{") - (ch == "}")
+        assert depth >= 0, f"{name}: a closing brace with no rule open, near line {line}"
+    assert depth == 0, f"{name}: {depth} rule(s) never closed"

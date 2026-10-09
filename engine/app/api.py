@@ -33,7 +33,7 @@ from fastapi import APIRouter, Body, File, HTTPException, Query, Request, Upload
 from fastapi.responses import HTMLResponse, JSONResponse, Response, StreamingResponse
 from lxml import etree
 
-from uad import (bind, compliance, delivery, edit, extra, integrity, maps, market, parties, review, schema,
+from uad import (bind, compliance, conditions, delivery, edit, extra, integrity, maps, market, parties, review, schema,
                  templates)
 from uad.report import comparables, flow, paginate, urar
 from uad.report import form as report_form
@@ -1282,6 +1282,83 @@ def set_prefs(case_id: str, body: dict = Body(...)) -> dict:
     return merged
 
 
+# ------------------------------------------------------------ field guidance
+@router.get("/cases/{case_id}/guide/{field_id}")
+def field_guide(case_id: str, field_id: str) -> dict:
+    """What the specifications say about one field, and how it stands now.
+
+    A-1 gives each data point's definition, format and whether it is required
+    ('R'), required under a condition ('CR', with the condition) or optional;
+    H-1 gives the rules that check it.  Each rule carries its live status for
+    this report: failing (a finding on this field), to be read by the
+    appraiser (a rule H-1 leaves to judgement), or met."""
+    _case_or_404(case_id)
+    try:
+        pf = edit.field(field_id)
+    except KeyError:
+        raise HTTPException(404, f"no field {field_id}")
+    b = pf.binding
+    points, seen = [], set()
+    for d in b.data_points:
+        name = d.get("mismo") or ""
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        details = str(d.get("format_details") or "")
+        cond, scope = conditions.read(d.get("conditionality_details") or "")
+        fmt = d.get("format_type") or ""
+        points.append({
+            "name": name, "label": conditions.words(name), "definition": d.get("definition") or "",
+            "format": fmt, "max": int(details) if fmt == "String" and details.isdigit() else None,
+            "required": d.get("conditionality") or "",
+            "condition": cond, "scope": scope,
+            "values": len([e for e in d.get("enumerations") or [] if e.get("value")]),
+        })
+    # required within its block when the only condition was the block itself
+    for p in points:
+        if p["required"] == "CR" and not p["condition"]:
+            p["required"] = "R"
+        elif p["required"] == "CR" and p["condition"] == "there is one":
+            p["required"] = "O"
+    req = [p["required"] for p in points]
+    requirement = ("R" if "R" in req else "CR" if "CR" in req else "O" if req else "")
+    multi = len(points) > 1
+    when = sorted({(f"{p['label']}: " if multi else "") + "when " + p["condition"]
+                         for p in points if p["required"] == "CR" and p["condition"]})
+    names = {p["name"] for p in points}
+
+    def norm(label: str) -> str:
+        return re.sub(r"\s*\(%\w+%\)", "", label or "").strip().casefold()
+    own = norm(b.label)
+    # the rule must be about this field, not only the same data point --
+    # AddressLineText is checked for the subject, every comparable, ...
+    mine = [r for r in compliance.rules() if r.data_point in names and norm(r.label) == own]
+    codes = {r.message_id for r in mine}
+    # a finding is filed under one field; a value printed twice (the Summary's
+    # 1.001 repeats Reconciliation's 26.007) fails in both places
+    failing = {}
+    for i in store().review(case_id).to_json()["items"]:
+        if i.get("severity") not in ("Fatal", "Warning"):
+            continue
+        if i.get("field_id") == field_id or (i["code"] in codes and norm(i.get("label")) == own):
+            failing.setdefault(i["code"], i)
+    rules = []
+    for r in mine:
+        status = ("fail" if r.message_id in failing
+                  else "read" if not r.executable or r.severity == "Review" else "ok")
+        rules.append({"id": r.message_id, "severity": r.severity, "text": r.text, "status": status})
+    order = {"fail": 0, "read": 1, "ok": 2}
+    rules.sort(key=lambda x: (order[x["status"]], x["id"]))
+    maxes = [p["max"] for p in points if p["max"]]
+    scope = sorted({x for p in points if p["required"] in ("R", "CR") for x in p["scope"]})
+    return {"field_id": field_id, "label": b.label, "section": b.section,
+            "subsection": getattr(b, "subsection", "") or "",
+            "requirement": requirement, "conditions": when, "scope": scope,
+            "max": max(maxes) if maxes else None, "points": points, "rules": rules,
+            "problems": [{"code": i["code"], "severity": i["severity"], "message": i["message"]}
+                         for i in failing.values()]}
+
+
 # --------------------------------------------------------------- review master
 @router.get("/cases/{case_id}/review")
 def case_review(case_id: str, include_review: bool = Query(True)) -> dict:
@@ -1678,6 +1755,86 @@ def remove_comparable(case_id: str, number: int, request: Request,
     st.invalidate(case_id, _actor(request), "a comparable was removed")
     st.log(case_id, _actor(request), "removed a comparable", f"{role} #{number}")
     return {"removed": number, "remaining": left, "kind": kind}
+
+
+@router.post("/cases/{case_id}/comparables/{number}/copy")
+def copy_comparable(case_id: str, number: int, request: Request,
+                    kind: str = Query("sales")) -> dict:
+    """Copy a comparable to a new last one (WinTOTAL's "Copy Comp"): every
+    value and data source, freshly identified; not its photographs."""
+    _case_or_404(case_id)
+    st = store()
+    if kind not in comparables.SHEETS:
+        raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    _sheet, role, _title = comparables.SHEETS[kind]
+    tree = deepcopy(st.tree(case_id))
+    problem = comparables.limit_problem(kind, len(_labels(tree, kind)) + 1)
+    if problem:
+        raise HTTPException(409, problem)
+    try:
+        added = comparables.copy_property(tree, role, number)
+    except IndexError as exc:
+        raise HTTPException(404, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "a comparable was copied")
+    st.log(case_id, _actor(request), "copied a comparable", f"{role} #{number} -> #{added}")
+    return {"added": added, "from": number, "kind": kind}
+
+
+@router.get("/cases/{case_id}/smartadjust")
+def smartadjust_suggest(case_id: str, profile: str = Query(""), rates: str = Query("")) -> dict:
+    """Adjustments suggested from the owner's rate profile (uad/smartadjust.py),
+    each beside the adjustment the grid holds now.  ``rates`` (JSON) overrides
+    single rates for this report.  Nothing is written."""
+    _case_or_404(case_id)
+    from uad import smartadjust
+    try:
+        override = json.loads(rates) if rates else {}
+    except ValueError:
+        raise HTTPException(422, "rates must be JSON")
+    tree = store().tree(case_id)
+    p = smartadjust.profile_for(tree, profile, override if isinstance(override, dict) else {})
+    cols = smartadjust.suggest(tree, p)
+    prices = {}
+    for c in comparables.build(tree, "sales", per_block=99)[:1]:
+        for r in c.rows:
+            if r.label.strip() in ("Sale Price", "List Price"):
+                for i, cell in enumerate(r.cells, start=1):
+                    v = re.sub(r"[^0-9.]", "", cell.text or "")
+                    if v and (r.label.strip() == "Sale Price" or i not in prices):
+                        prices[i] = float(v)
+    return {"profile": p.to_json(), "profiles": list(smartadjust.PROFILES),
+            "rate_keys": smartadjust.RATE_KEYS,
+            "comparables": [{**c.to_json(), "price": prices.get(c.number)} for c in cols]}
+
+
+@router.post("/cases/{case_id}/smartadjust")
+def smartadjust_apply(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Write the suggestions the appraiser accepted:
+    {"picks": [{"comparable": n, "adjust_type": t, "amount": a}]}."""
+    _case_or_404(case_id)
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    root = tree.getroot()
+    allowed = {r.adjust_type for r in comparables.rows("sales") if r.adjust_type and r.adjust_fid}
+    written = []
+    for pick in body.get("picks") or []:
+        try:
+            n, kind, amount = int(pick["comparable"]), str(pick["adjust_type"]), int(round(float(pick["amount"])))
+        except (KeyError, TypeError, ValueError):
+            raise HTTPException(422, f"not a suggestion: {pick!r}")
+        if kind not in allowed:
+            raise HTTPException(422, f"{kind} is not an adjustment row of the sales grid")
+        scope = _grid_scope(root, "sales", n)
+        if scope is None:
+            raise HTTPException(404, f"no comparable #{n}")
+        comparables.write_adjustment(scope, kind, str(amount))
+        written.append(f"#{n} {kind} {amount}")
+    if written:
+        st.save_tree(case_id, tree)
+        st.invalidate(case_id, _actor(request), "suggested adjustments accepted")
+        st.log(case_id, _actor(request), "accepted suggested adjustments", "; ".join(written))
+    return {"written": len(written)}
 
 
 @router.post("/cases/{case_id}/comparables/order")

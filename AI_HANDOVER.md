@@ -209,6 +209,31 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-09 (later) -- WinTOTAL-inspired editor features; a shipped CSS break fixed (T-1051..T-1054, T-270; E-155..E-157)
+- The owner uploaded 36 screenshots of their WinTOTAL UAD 3.6 (`Competitors 3.6 software features pics/`;
+  they hold **real case data**: keep them out of anything that ships; `.vercelignore` excludes them).
+  Inventory and our status per feature: `knowledge/competitors/WINTOTAL_UAD36.md`.
+- Built and verified in Chromium (create → click → type → save → XML):
+  - **Field guidance** in the inspector: on focus, the field's A-1 requirement (Required / Required when
+    / Optional, with its scope "for the Appraiser Supervisor"), conditions as sentences
+    (`uad/conditions.py` reads all 568 A-1 conditions), definition and format, and every H-1 rule on
+    the field with its live status. `GET /api/cases/{id}/guide/{fid}`. Agrees with Review Master on
+    all 12 D-1 samples (`tests/test_field_guide.py`).
+  - **Show problems** (toolbar): outlines every field an H-1 rule faults; clears once fixed.
+  - **Comment library** (toolbar): saved snippets, click or Alt+1..9 inserts at the caret.
+  - **Counter** on comments, from the field's A-1 String length.
+- **E-155:** the desktop commit shipped `index.html` with an unclosed CSS rule. The report frame was
+  drawn at 300 × 150 px and the inspector was unstyled on the live site. Fixed; every stylesheet is
+  now brace-checked by a test.
+- **Square shell:** the owner's standing preference (square, ruled, no pills or rounded cards) is
+  applied shell-wide by one rule at the end of `index.html`'s style, and to the editor's own controls in
+  `EDIT_CSS`. The printed form is untouched.
+- Next (all in TASKS.md): T-1055 grid move/copy + coloured net totals; T-1056 section Add list;
+  T-1057 Show/Hide optional sections (stash, schema-valid both ways); T-1058 Include in Rent
+  Schedule per unit; T-1059 SmartAdjust from the 18 North rates; T-1060 legal description photo;
+  T-1061 additional certifications. Rebuild the desktop installer after each shipped change
+  (`git add` first, then `python desktop/build.py`, then commit `downloads/desktop/`).
+
 ### 2026-10-09 -- faster editor; desktop edition for Windows with Download product (T-1049, T-1050)
 - Opening is faster (8.6 → 5.7 s first open, 15–19 → 3.6 s reopen): E-150..E-152 in the CATALOG.
 - `desktop/`: a per-user installer (24 MB) that asks for the licence key first; the app runs locally in

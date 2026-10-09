@@ -2281,3 +2281,68 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   pymupdf blocked.
 - Watch: the installer is the bundle's elastic part. At over ~40 MB, serve
   it from its own small function instead.
+
+### E-155 -- One unclosed CSS rule unstyled half the editor on the live site (2026-10-09)
+- Symptom: in the shipped editor the report frame was drawn at the browser's
+  default 300 × 150 px, the Save / Save & Next buttons sat loose, and the
+  inspector was unstyled. Clicks in the frame hit the wrong field, because a
+  145 × 18 px field became 7 × 1 px.
+- Cause: moving the Download dialog's CSS from `index.html` into
+  `ui/download.js` filtered lines by prefix. `.dlbtn{…` spans two lines, so
+  its second line (with the closing brace) went to `download.js`. In
+  `index.html` the rule never closed and swallowed every rule after it. In
+  `download.js` the stray line began the stylesheet. Browsers report neither.
+- Mechanism: `tests/test_browser_scripts.py::test_stylesheets_close_every_rule`
+  counts braces in every stylesheet: each `<style>` in `index.html`, the
+  `/download` page, `EDIT_CSS`, and the dialog CSS in `download.js`. It
+  ignores comments and strings. It fails on the shipped files (checked) and
+  passes on the repaired ones. Never move CSS by line filters; move whole
+  rules.
+
+### E-156 -- Field guidance: A-1's condition language and twin fields (2026-10-09)
+- A-1 writes 568 distinct conditions in a small language. It has
+  parentheses, `OR` between clauses, `OR` inside a value list
+  (`= "Pending" OR "SettledSale"`), `>`, `Is (Not) Present`, `Exists`,
+  `Included In … Approach`, and shared lists (`A AND B AND C Are Not
+  Present`). Splitting on `AND` printed half of them as raw syntax.
+- Mechanism: `uad/conditions.py`, a recursive-descent reader.
+  - `OR` before a quoted value continues the value list; before anything
+    else it joins conditions.
+  - Top-level `@ValuationUseType` / `PartyRoleType` / `ServiceType` clauses
+    become the field's *scope* ("for the Appraiser Supervisor", "for each
+    Sales Comparable"), not a condition. A field required in a block that
+    may be absent is shown "Required for …", never "always required".
+  - Test: all 568 A-1 conditions read with no parenthesis, quote, operator,
+    keyword or CamelCase name left.
+- A finding is filed under one field, but some values print twice (the
+  Summary's 1.001 repeats Reconciliation's 26.007). The guidance counts a
+  finding as this field's when it is filed here, or when it is one of this
+  field's own H-1 rules (same data point and same label) filed on its twin.
+- Rules are matched by data point **and** label. Matching by data point
+  alone showed the subject's address rules on the comparable rows.
+- Validated against all 12 D-1 samples:
+  `tests/test_field_guide.py::test_guidance_agrees_with_review_master_on_every_sample`.
+  A rule shown failing is a Review Master finding, and every Fatal or
+  Warning filed under a field shows in its guidance.
+
+### E-157 -- A test compared parties by `id()` of lxml elements (2026-10-09)
+- Symptom: `test_autofill::…holding_everything_the_case_holds` failed for
+  condo1 and one other scenario on unchanged code. It had passed the day
+  before. It compared the Appraiser at `PARTY[3]` with the Lender there.
+- Cause: `_by_role` keyed each party by `id(party)`. lxml builds element
+  proxies on demand and frees them, so the `id()` taken while indexing is
+  not the `id()` of the proxy met later. The role lookup missed silently,
+  and parties were compared by position. Whether it missed depended on
+  memory layout. The autofill itself was right.
+- Mechanism: parties are keyed by `getelementpath()`. Never key lxml
+  elements by `id()` unless the elements are held alive in the same
+  structure.
+
+### E-158 -- A PDF test demanded the licensed font on a machine without it (2026-10-09)
+- Symptom: `test_golden::test_the_pdf_is_text_not_a_picture` failed in a
+  container without the licensed Myriad Pro files. The PDF embedded the
+  committed substitute (`UADSubstitute-*`), which is what that machine
+  should embed.
+- Mechanism: the test asks `fonts.substituted()` which face this machine
+  draws and requires that face embedded. It still fails on a system fallback
+  face or Type3 glyphs.

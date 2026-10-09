@@ -569,7 +569,7 @@ EDIT_JS = """
     +"[data-uitheme=dark],[data-uitheme=dark] body{background:#19191c!important}"
     // Save / Save & Next beside each page are the editor's controls, not the report's
     +".pageside button{font-family:'Geist','Inter','Segoe UI',-apple-system,Roboto,Arial,sans-serif;font-weight:500;"
-    +"border-radius:10px;border:1px solid rgba(0,0,0,.18);background:#fff;color:#0b0b0c;transition:opacity .12s,background .12s}"
+    +"border-radius:0;border:1px solid rgba(0,0,0,.18);background:#fff;color:#0b0b0c;transition:opacity .12s,background .12s}"
     +".pageside button.pgsave{background:#0b0b0c;border-color:#0b0b0c;color:#fff}"
     +".pageside button:hover{background:#f2f2f2;color:#0b0b0c}"
     +".pageside button.pgsave:hover{background:#0b0b0c;color:#fff;opacity:.86}"
@@ -1609,6 +1609,34 @@ EDIT_JS = """
     shutMenu();
     var n=Number(th.dataset.compmenu);
     var list=document.createElement('div'); list.className='picklist';
+    // how many sales comparables the grid shows (one header cell each)
+    var count=0;
+    document.querySelectorAll('th[data-compmenu]').forEach(function(h){ count=Math.max(count,Number(h.dataset.compmenu)||0); });
+    function item(text,run){
+      var r=document.createElement('div'); r.textContent=text;
+      r.addEventListener('mousedown',function(ev){ ev.preventDefault(); shutMenu(); run(); });
+      list.appendChild(r);
+    }
+    // WinTOTAL moves a comparable left / right and copies it; the number is
+    // what the whole report refers to it by, so a move renumbers the photos,
+    // the transfer history and the map with it (api /comparables/order)
+    function swap(to){
+      var order=[]; for(var i=1;i<=count;i++) order.push(i);
+      order[n-1]=to; order[to-1]=n;
+      going(th);
+      json(api+'/comparables/order',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({kind:'sales',order:order})})
+        .then(function(){ tell({uad:'media'}); tell({uad:'saved'}); reloadHere(); })
+        .catch(function(err){ say(err.message); });
+    }
+    if(n>1) item('\u2190 Move left (becomes #'+(n-1)+')',function(){ swap(n-1); });
+    if(n<count) item('Move right (becomes #'+(n+1)+') \u2192',function(){ swap(n+1); });
+    item('Copy as Comparable #'+(count+1),function(){
+      going(th);
+      json(api+'/comparables/'+n+'/copy?kind=sales',{method:'POST'})
+        .then(function(){ tell({uad:'saved'}); reloadHere(); })
+        .catch(function(err){ say(err.message); });
+    });
     var row=document.createElement('div'); row.textContent='Remove Comparable #'+n;
     row.addEventListener('mousedown',function(ev){
       ev.preventDefault(); shutMenu();
@@ -2254,6 +2282,119 @@ EDIT_JS = """
     e.preventDefault();
     upload(lastZone,files);
   });
+
+  /* ------------------------------------------------ guidance, problems, comments
+     (from the owner's look at WinTOTAL's UAD 3.6 editor, 2026-10-09; see
+     knowledge/competitors/WINTOTAL_UAD36.md)
+     * Focusing a field asks what A-1 and H-1 say about it (/guide) and hands
+       it to the editor's side panel, live: each H-1 rule passing or failing.
+     * A comment shows how much of its length it has used.
+     * The H-1 problems of the report are outlined on their own fields --
+       fatal red, warning amber -- when the editor asks for it.
+     * The comment library inserts a saved text where the caret is. */
+  var guideCache={}, lastEditable=null, lastRange=null, counter=null;
+  function fidOf(el){
+    var hit=el.closest&&el.closest('[data-fid],td[data-gf]');
+    if(!hit) return '';
+    return hit.dataset.fid||hit.dataset.gf||'';
+  }
+  function guide(fid){
+    if(guideCache[fid]) return Promise.resolve(guideCache[fid]);
+    return fetch(api+'/guide/'+encodeURIComponent(fid)).then(function(r){ return r.ok?r.json():null; })
+      .then(function(g){ if(g) guideCache[fid]=g; return g; }).catch(function(){ return null; });
+  }
+  function showCount(el,max){
+    if(!max){ hideCount(); return; }
+    if(!counter){ counter=document.createElement('div'); counter.className='lencount'; document.body.appendChild(counter); }
+    var n=(el.innerText||'').trimEnd().length;
+    counter.textContent=n.toLocaleString()+' / '+max.toLocaleString();
+    counter.className='lencount'+(n>max?' over':n>max*0.9?' near':'');
+    var r=el.getBoundingClientRect();
+    counter.style.left=(window.scrollX+r.right-counter.offsetWidth)+'px';
+    counter.style.top=(window.scrollY+r.bottom+2)+'px';
+    counter.hidden=false;
+  }
+  function hideCount(){ if(counter) counter.hidden=true; }
+  document.addEventListener('focusin',function(e){
+    var el=e.target; if(!el.closest) return;
+    var fid=fidOf(el); if(!fid) return;
+    if(el.isContentEditable) lastEditable=el;
+    guide(fid).then(function(g){
+      if(!g) return;
+      tell({uad:'guide',guide:g});
+      if(document.activeElement===el && el.classList.contains('multiline')) showCount(el,g.max);
+    });
+  });
+  document.addEventListener('focusout',function(e){
+    if(e.target&&e.target.classList&&e.target.classList.contains('multiline')) setTimeout(hideCount,120);
+    var sel=window.getSelection();
+    if(sel&&sel.rangeCount&&e.target===lastEditable) lastRange=sel.getRangeAt(0).cloneRange();
+  });
+  document.addEventListener('input',function(e){
+    var el=e.target;
+    if(el.classList&&el.classList.contains('multiline')){
+      var g=guideCache[fidOf(el)]; if(g) showCount(el,g.max);
+    }
+  });
+  function insertText(text){
+    var el=lastEditable;
+    if(!el||!document.body.contains(el)){ say('Click into a comment first, then insert.'); return; }
+    el.focus();
+    var sel=window.getSelection();
+    if(lastRange&&el.contains(lastRange.startContainer)){ sel.removeAllRanges(); sel.addRange(lastRange); }
+    else{ var rg=document.createRange(); rg.selectNodeContents(el); rg.collapse(false); sel.removeAllRanges(); sel.addRange(rg); }
+    document.execCommand('insertText',false,text);
+    commit(el);
+  }
+  function snippets(){
+    try{ return JSON.parse(localStorage.getItem('uad-snippets')||'[]'); }catch(e){ return []; }
+  }
+  // Alt+1 ... Alt+9: the comment library's entries, at the caret
+  document.addEventListener('keydown',function(e){
+    if(!e.altKey||e.ctrlKey||e.metaKey) return;
+    var n='123456789'.indexOf(e.key); if(n<0) return;
+    var el=e.target; if(!el.isContentEditable) return;
+    var s=snippets()[n]; if(!s) return;
+    e.preventDefault(); lastEditable=el;
+    var sel=window.getSelection(); if(sel.rangeCount) lastRange=sel.getRangeAt(0).cloneRange();
+    insertText(s.text);
+  });
+  function mark(items,on){
+    [].forEach.call(document.querySelectorAll('.mk-fatal,.mk-warn'),function(x){
+      x.classList.remove('mk-fatal','mk-warn'); if(x.dataset.mkt){ x.removeAttribute('title'); delete x.dataset.mkt; } });
+    if(!on) return;
+    (items||[]).forEach(function(it){
+      var fid=it[0], cls=it[1]==='Fatal'?'mk-fatal':'mk-warn';
+      var sel='.v[data-fid="'+fid+'"],.bxs .bx[data-fid="'+fid+'"],td[data-gf="'+fid+'"]';
+      [].forEach.call(document.querySelectorAll(sel),function(x){
+        if(x.classList.contains('mk-fatal')) return;
+        x.classList.remove('mk-warn'); x.classList.add(cls);
+        if(!x.title){ x.title=it[2]||''; x.dataset.mkt='1'; }
+      });
+    });
+  }
+  window.addEventListener('message',function(e){
+    var m=e.data||{};
+    if(m.uad==='marks'){ guideCache={}; mark(m.items,m.on); }   // a new review: guidance is asked again
+    if(m.uad==='insert') insertText(m.text||'');
+  });
+  /* ------------------------------------------------- adjustment colours
+     A negative adjustment or net total reads red, a positive one green, in
+     the editor only (WinTOTAL colours its net adjustment; the printed form
+     stays black as C-1 draws it).  Kept current as cells are typed and saved. */
+  function tint(){
+    document.querySelectorAll("td.v.adj, td[data-gin='SalePriceNetTotalAdjustmentAmount']").forEach(function(td){
+      var t=(td.textContent||'').trim();
+      var num=Number(t.replace(/[^0-9.]/g,''));
+      var neg=t.indexOf('(')>=0||t.charAt(0)==='-';
+      td.classList.toggle('neg',!!num&&neg);
+      td.classList.toggle('pos',!!num&&!neg);
+    });
+  }
+  var tintSoon=null;
+  new MutationObserver(function(){ clearTimeout(tintSoon); tintSoon=setTimeout(tint,150); })
+    .observe(document.body,{subtree:true,childList:true,characterData:true});
+  tint();
 })();
 </script>"""
 

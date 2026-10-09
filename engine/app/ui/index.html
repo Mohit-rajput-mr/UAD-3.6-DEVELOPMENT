@@ -281,8 +281,49 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 @media (max-width:520px){.su-head .ht{padding:18px}.su .lede{display:none}.su h2 em{display:block}.su-x{width:52px}.su-body{padding:0 18px 20px}.su h2{font-size:24px}
   .su-foot{flex-wrap:wrap}.su-foot .sum{padding:12px 18px;flex-basis:100%}.su-foot .acts{flex:1;border-top:1px solid var(--line-2)}
   .su-foot .acts .btn{flex:1}.su-foot .acts .btn:first-child{border-left:0}}
+/* field guidance (inspector) */
+.gd .gd-h{display:flex;align-items:baseline;gap:10px;justify-content:space-between}
+.gd .gd-h b{font-size:15px;font-weight:500;letter-spacing:-.01em}
+.gd .gd-h code{font:500 11px/1 var(--mono);color:var(--faint)}
+.gd .gd-s{font-size:12px;color:var(--muted);margin:3px 0 10px}
+.gd-badge{display:inline-block;font:600 10.5px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:6px 8px;border:1px solid}
+.gd-badge.req{color:var(--good);border-color:color-mix(in srgb,var(--good) 45%,transparent);background:var(--good-soft)}
+.gd-badge.cond{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent);background:var(--warn-soft)}
+.gd-badge.opt{color:var(--muted);border-color:var(--line-2)}
+.gd-scope{margin-left:8px;font-size:12px;color:var(--ink-2)}
+.gd-cond{margin:8px 0 0;padding-left:16px;font-size:12.5px;color:var(--ink-2)}
+.gd-prob{margin-top:12px;border-left:2px solid var(--bad);padding-left:10px;font-size:12.5px}
+.gd-prob .bad{color:var(--bad)} .gd-prob .warn{color:var(--warn)}
+.gd-prob code{font:500 11px/1 var(--mono)}
+.gd .gd-k{margin:14px 0 6px;font:500 10px/1 var(--sans);letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.gd-pts{margin:0;padding-left:16px;font-size:12.5px;color:var(--ink-2)}
+.gd-pts li{margin-bottom:6px}.gd-pts small{display:block;color:var(--faint);font:500 11px/1.4 var(--mono)}
+.gd-rules{list-style:none;margin:0;padding:0;font-size:12px}
+.gd-rules li{display:grid;grid-template-columns:16px 64px 1fr;gap:6px;padding:6px 0;border-top:1px solid var(--line)}
+.gd-rules li i{font-style:normal;font-weight:700}
+.gd-rules li.fail i,.gd-rules li.fail code{color:var(--bad)}
+.gd-rules li.read i{color:var(--warn)}
+.gd-rules li.ok i{color:var(--good)}
+.gd-rules code{font:500 11px/1.5 var(--mono);color:var(--muted)}
+.gd-rules span{color:var(--ink-2)}
+.gd-none{font-size:12px;color:var(--faint);margin:4px 0 0}
+/* comment library */
+.libpop{position:fixed;z-index:90;width:min(420px,calc(100vw - 16px));max-height:70vh;overflow:auto;background:var(--surface);
+  border:1px solid var(--line-3);box-shadow:var(--shadow-lg);padding:12px 14px 14px}
+.libpop .lh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.libpop .lx{border:0;background:none;color:var(--muted);font-size:20px;cursor:pointer}
+.libpop .li{display:grid;grid-template-columns:44px 1fr 24px;gap:6px;align-items:start;border-top:1px solid var(--line);padding:6px 0}
+.libpop .lk{font:500 10.5px/1.8 var(--mono);color:var(--faint)}
+.libpop .lt{all:unset;cursor:pointer;font-size:12.5px;line-height:1.45;color:var(--ink);white-space:pre-wrap}
+.libpop .lt:hover{text-decoration:underline}
+.libpop .ld{border:0;background:none;color:var(--faint);cursor:pointer;font-size:16px}
+.libpop .ld:hover{color:var(--bad)}
+.libpop textarea{width:100%;margin-top:10px;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:8px;font:inherit;font-size:12.5px;resize:vertical}
+.libpop .lb{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.libpop .le{font-size:12px;color:var(--muted);margin:6px 0 0}
 /* Download product (the dialog itself: ui/download.js) */
 .dlbtn{appearance:none;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;flex:none;cursor:pointer;
+  border:1px solid var(--line-3);background:var(--btn);color:var(--btn-ink);font:600 12.5px/1 var(--sans);letter-spacing:.01em}
 .dlbtn:hover{opacity:.88}
 @media (max-width:760px){.dlbtn span{display:none}.dlbtn{padding:0 11px}}
 /* the key to the report's input colours (form.EDIT_CSS, T-260) */
@@ -545,6 +586,13 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 /* the map, the market charts and the URAR import belong to a URAR; an
    update or completion report (body.kind-other) has nothing for them to fill */
 body.kind-other #rf-maps,body.kind-other #rf-market,body.kind-other #rf-auto{display:none!important}
+/* The owner's standing preference (2026-10-08): square and ruled, no rounded
+   cards, pills or buttons -- the setup dialog set the pattern.  Status dots
+   and the spinner stay round: a dot is a dot.  The report frame is its own
+   document and keeps the form's own look. */
+body *,body *:before,body *:after{border-radius:0!important}
+header .stat span:before,.rf-agent-dot,.rf-busy:before,.verdict:before,.glass .gh .k:before,.state:before,
+.uadd li:before{border-radius:50%!important}
 </style>
 </head>
 <body>
@@ -592,6 +640,7 @@ document.addEventListener('click',e=>{
    its SHA-256, and is saved as one file.  In the desktop edition itself the
    button is hidden and the window checks in, so the app stops with it. */
 const DESKTOP={info:null};
+try{ S.showMarks=localStorage.getItem('uad-marks')==='1'; }catch(_){ }
 (async()=>{
   try{
     const r=await fetch('/api/desktop/info'); if(!r.ok) return;
@@ -1066,6 +1115,7 @@ async function refresh(){
     return;
   }
   S.case=c.data; S.sections=f.data.sections; S.review=rv.data; S.media=m.data;
+  postMarks();
   EDITOR.keep(caseId,{case:c.data,sections:f.data.sections,review:rv.data,media:m.data,prefs:S.prefs});
   if(S.section===null&&S.sections.length) S.section=S.sections[0].number;
   drawRail(); drawHead(); drawWork(); drawInsp();
@@ -1195,7 +1245,7 @@ window.addEventListener('message',e=>{
   if(!f||e.source!==f.contentWindow) return;
   if(m.uad==='fresh'){ swapFrame('form'); return; }
   if(m.uad==='relayout'){ checkFresh('form'); return; }
-  if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove();
+  if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove(); postMarks();
     // what the report actually prints, as laid out -- not a guess from the data
     if(m.sections){ S.printed=m.sections; drawRail(); }
     sendGoto(); }
@@ -1341,12 +1391,13 @@ function drawReportForm(w){
   if(!window.__uadFormListener){
     window.__uadFormListener=true;
     window.addEventListener('message',e=>{
-      if(e.data&&e.data.uad==='saved'){S.dirty=true;}
+      if(e.data&&e.data.uad==='saved'){S.dirty=true; reviewSoon();}
+      if(e.data&&e.data.uad==='guide'){ S.guide=e.data.guide; renderGuide(); }
       if(e.data&&e.data.uad==='saved-sections'){
         S.prefs=S.prefs||{}; S.prefs.savedSections=S.prefs.savedSections||{};
         const now=new Date().toISOString();
         (e.data.sections||[]).forEach(n=>{S.prefs.savedSections[n]=now;});
-        api('/cases/'+S.caseId+'/review').then(rv=>{ if(rv&&rv.ok){S.review=rv.data;} drawRail(); markRail(); });
+        api('/cases/'+S.caseId+'/review').then(rv=>{ if(rv&&rv.ok){S.review=rv.data;} drawRail(); markRail(); postMarks(); });
       }
     });
   }
@@ -1361,6 +1412,9 @@ function drawReportForm(w){
       <span class="spacer" style="flex:1"></span>
       <label class="rf-toggle"><input type="checkbox" id="rf-gaps" checked>
         Mark what is unanswered</label>
+      <label class="rf-toggle" title="Outline every field an H-1 rule faults: fatal in red, warning in amber"><input type="checkbox" id="rf-marks">
+        Show problems</label>
+      <button class="addbtn" id="rf-lib" title="Saved comments: insert one where the caret is (Alt+1 … Alt+9)">Comment library</button>
       <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
         Mark what was imported</label>
       <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
@@ -1399,6 +1453,13 @@ function drawReportForm(w){
       await refreshMedia(); checkFresh('form');
     }else toast('The map could not be drawn: '+(((r&&r.data&&r.data.problems)||[]).join('; ')||'unknown error'),8000);
   };
+  $('#rf-marks').checked=S.showMarks;
+  $('#rf-marks').onchange=e=>{
+    S.showMarks=e.target.checked;
+    try{ localStorage.setItem('uad-marks',S.showMarks?'1':'0'); }catch(_){}
+    postMarks();
+  };
+  $('#rf-lib').onclick=e=>{ e.stopPropagation(); commentLibrary($('#rf-lib')); };
   $('#rf-gaps').onchange=e=>{
     const f=$('#rf'); if(!f||!f.contentWindow)return;
     f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
@@ -2104,7 +2165,110 @@ const NARROW=()=>window.matchMedia('(max-width:1240px)').matches;
 
 function drawInsp(){
   const b=$('#insp');
-  if(b&&!NARROW()) fillSignoff(b);
+  if(!b||NARROW()) return;
+  if(!$('#insp-sign')) b.innerHTML='<div id="insp-guide"></div><div id="insp-sign"></div>';
+  renderGuide();
+  fillSignoff($('#insp-sign'));
+}
+
+/* ------------------------------------------------ field guidance
+   What UAD 3.6 asks of the field being filled, from the specifications
+   themselves (A-1: required or when, definition, format; H-1: every rule on
+   the field), with each rule's live status for this report.  WinTOTAL shows a
+   static note; this is checked as you type (knowledge/competitors). */
+const REQ={R:['Required','req'],CR:['Required when','cond'],O:['Optional','opt']};
+function renderGuide(){
+  const box=$('#insp-guide'); if(!box) return;
+  const g=S.guide;
+  if(!g){ box.innerHTML=`<div class="panelhead k">Field guidance</div>
+    <div class="panelblock gd"><span class="empty" style="padding:0">Click any field in the report to see what UAD 3.6 asks of it, and whether it passes.</span></div>`; return; }
+  const req=REQ[g.requirement]||['Not in A-1','opt'];
+  const icon={fail:'✕',read:'!',ok:'✓'};
+  const rules=g.rules.length?`<ul class="gd-rules">${g.rules.map(r=>`<li class="${r.status}" title="${esc(r.severity)}"><i>${icon[r.status]}</i><code>${esc(r.id)}</code><span>${esc(r.text)}</span></li>`).join('')}</ul>`
+    :'<p class="gd-none">No H-1 rule checks this field on its own.</p>';
+  const pts=g.points.slice(0,4).map(p=>`<li><b>${esc(p.label)}</b>${p.definition?` — ${esc(p.definition)}`:''}
+      <small>${esc(p.format)}${p.max?` · up to ${p.max.toLocaleString()} characters`:''}${p.values?` · ${p.values} official values`:''}</small></li>`).join('');
+  box.innerHTML=`<div class="panelhead k">Field guidance</div>
+    <div class="panelblock gd">
+      <div class="gd-h"><b>${esc(g.label)}</b><code>${esc(g.field_id)}</code></div>
+      <div class="gd-s">${esc(g.section)}</div>
+      <span class="gd-badge ${req[1]}">${req[0]}</span>${(g.scope||[]).length?`<span class="gd-scope">for ${esc(g.scope.join(' and '))}</span>`:''}
+      ${g.conditions.length?`<ul class="gd-cond">${g.conditions.map(c=>`<li>${esc(c)}</li>`).join('')}</ul>`:''}
+      ${g.problems.length?`<div class="gd-prob">${g.problems.map(p=>`<div class="${p.severity==='Fatal'?'bad':'warn'}"><code>${esc(p.code)}</code> ${esc(p.message)}</div>`).join('')}</div>`:''}
+      <div class="gd-k">What it is</div><ul class="gd-pts">${pts}</ul>
+      ${g.points.length>4?`<p class="gd-none">and ${g.points.length-4} more parts</p>`:''}
+      <div class="gd-k">H-1 checks</div>${rules}
+    </div>`;
+}
+/* after an edit, the review is asked again once typing pauses: the outlines,
+   the counts and the open guidance follow the report as it is */
+function reviewSoon(){
+  clearTimeout(S.revT);
+  S.revT=setTimeout(async()=>{
+    const id=S.caseId;
+    const rv=await apiRaw('/cases/'+id+'/review');
+    if(!rv||!rv.ok||S.caseId!==id) return;
+    S.review=rv.data; drawRail(); markRail(); postMarks();
+    const sign=$('#insp-sign'); if(sign&&!NARROW()) fillSignoff(sign);
+    if(S.guide){
+      const g=await apiRaw('/cases/'+id+'/guide/'+encodeURIComponent(S.guide.field_id));
+      if(g&&g.ok&&S.caseId===id&&S.guide&&S.guide.field_id===g.data.field_id){ S.guide=g.data; renderGuide(); }
+    }
+  },1500);
+}
+/* the H-1 problems, outlined on their own fields when "Show problems" is on */
+function postMarks(){
+  const f=$('#rf'); if(!f||!f.contentWindow||!S.review) return;
+  const items=(S.review.items||[]).filter(i=>i.field_id&&(i.severity==='Fatal'||i.severity==='Warning'))
+    .map(i=>[i.field_id,i.severity,i.message]);
+  try{ f.contentWindow.postMessage({uad:'marks',items,on:!!S.showMarks},'*'); }catch(_){}
+}
+
+/* ------------------------------------------------ comment library
+   Saved comments, inserted where the caret is in the report (or Alt+1 … 9
+   while typing).  Kept in this browser -- on the desktop edition, in its own
+   window profile. */
+const LIB={
+  get(){ try{ return JSON.parse(localStorage.getItem('uad-snippets')||'[]'); }catch(_){ return []; } },
+  set(a){ try{ localStorage.setItem('uad-snippets',JSON.stringify(a.slice(0,60))); }catch(_){} }
+};
+function commentLibrary(anchor){
+  let pop=$('#libpop'); if(pop){ pop.remove(); return; }
+  pop=document.createElement('div'); pop.id='libpop'; pop.className='libpop';
+  const draw=()=>{
+    const list=LIB.get();
+    pop.innerHTML=`<div class="lh"><span class="k">Comment library</span><button class="lx" aria-label="Close">&times;</button></div>
+      <div class="ll">${list.length?list.map((s,i)=>`<div class="li"><span class="lk">${i<9?'Alt+'+(i+1):''}</span>
+        <button class="lt" data-i="${i}" title="Insert at the caret">${esc(s.text.length>140?s.text.slice(0,140)+'…':s.text)}</button>
+        <button class="ld" data-d="${i}" aria-label="Delete">&times;</button></div>`).join('')
+        :'<p class="le">No saved comments yet. Type one below, or select text in a comment and choose “Save selection”.</p>'}</div>
+      <textarea id="lib-new" rows="3" placeholder="A comment you use often…"></textarea>
+      <div class="lb"><button class="addbtn" id="lib-sel">Save selection</button><button class="addbtn primary" id="lib-add">Save comment</button></div>
+      <p class="le">Click into a comment in the report first; then click a saved comment to insert it there.</p>`;
+    pop.querySelector('.lx').onclick=()=>pop.remove();
+    pop.querySelectorAll('.lt').forEach(b=>b.onclick=()=>{
+      const t=LIB.get()[+b.dataset.i]; const f=$('#rf');
+      if(t&&f&&f.contentWindow) f.contentWindow.postMessage({uad:'insert',text:t.text},'*');
+    });
+    pop.querySelectorAll('.ld').forEach(b=>b.onclick=()=>{ const a=LIB.get(); a.splice(+b.dataset.d,1); LIB.set(a); draw(); });
+    pop.querySelector('#lib-add').onclick=()=>{
+      const t=pop.querySelector('#lib-new').value.trim(); if(!t) return;
+      const a=LIB.get(); a.push({text:t}); LIB.set(a); draw();
+    };
+    pop.querySelector('#lib-sel').onclick=()=>{
+      let t=''; try{ t=String($('#rf').contentWindow.getSelection()||'').trim(); }catch(_){}
+      if(!t){ toast('Select some text in a comment first.',3000); return; }
+      const a=LIB.get(); a.push({text:t}); LIB.set(a); draw();
+    };
+  };
+  draw();
+  document.body.appendChild(pop);
+  const r=anchor.getBoundingClientRect();
+  pop.style.top=(r.bottom+6)+'px';
+  pop.style.left=Math.max(8,Math.min(window.innerWidth-pop.offsetWidth-8,r.right-pop.offsetWidth))+'px';
+  setTimeout(()=>document.addEventListener('mousedown',function off(e){
+    if(!pop.contains(e.target)&&e.target!==anchor){ pop.remove(); document.removeEventListener('mousedown',off); }
+  }),0);
 }
 
 function fillSignoff(b){

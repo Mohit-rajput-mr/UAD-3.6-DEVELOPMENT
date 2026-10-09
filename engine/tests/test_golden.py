@@ -106,8 +106,12 @@ def test_the_pdf_is_text_not_a_picture(tmp_path):
     assert "Type3" not in kinds, (
         f"Chromium emitted Type3 glyphs instead of an embedded font: {kinds}")
     names = {f[3] for f in page.get_fonts(full=True)}
-    assert any("Myriad" in n for n in names), (
-        f"the report's own typeface is not embedded: {names}")
+    # the licensed Myriad Pro where this machine has it, otherwise the
+    # committed open-licence substitute -- never a system fallback face
+    from uad.report import fonts
+    face = "UADSubstitute" if "MyriadPro-Regular" in fonts.substituted() else "Myriad"
+    assert any(face in n for n in names), (
+        f"the report's own typeface ({face}) is not embedded: {names}")
 
 
 def test_the_summary_display_lines_match_the_sample_width(tmp_path):

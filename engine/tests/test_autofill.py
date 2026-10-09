@@ -67,7 +67,6 @@ def _findings(tree) -> list:
 
 
 M = "{http://www.mismo.org/residential/2009/schemas}"
-PARTY_AT = re.compile(re.escape(f"{M}PARTY") + r"(?:\[(\d+)\])?")
 
 
 def _by_role(root) -> dict[int, str]:
@@ -79,13 +78,18 @@ def _by_role(root) -> dict[int, str]:
     turn on it -- but *which* party holds a value certainly is, which is why
     the index is replaced by the party's roles rather than dropped.
     """
+    tree = root.getroottree()
     out = {}
-    for holder in {id(p.getparent()): p.getparent() for p in root.iter(f"{M}PARTY")}.values():
+    holders = {tree.getelementpath(p.getparent()): p.getparent() for p in root.iter(f"{M}PARTY")}
+    for holder in holders.values():
         for n, party in enumerate(holder.findall(f"{M}PARTY"), start=1):
             roles = "+".join(sorted((r.text or "").strip()
                                     for r in party.iter(f"{M}PartyRoleType")
                                     if (r.text or "").strip()))
-            out[id(party)] = roles or f"#{n}"
+            # keyed by where the party is, never by id(): lxml makes element
+            # proxies on demand and frees them, so an id() can match another
+            # party or none at all (E-157)
+            out[tree.getelementpath(party)] = roles or f"#{n}"
     return out
 
 
@@ -101,8 +105,11 @@ def _values(tree) -> dict[str, str]:
         party = node
         while party is not None and etree.QName(party).localname != "PARTY":
             party = party.getparent()
-        if party is not None and id(party) in roles:
-            path = PARTY_AT.sub(f"{M}PARTY[{roles[id(party)]}]", path, count=1)
+        if party is not None:
+            at = root.getroottree().getelementpath(party)
+            if at in roles and path.startswith(at):
+                cut = at.rfind(f"{M}PARTY")
+                path = f"{at[:cut]}{M}PARTY[{roles[at]}]{path[len(at):]}"
         out[path] = node.text.strip()
     return out
 

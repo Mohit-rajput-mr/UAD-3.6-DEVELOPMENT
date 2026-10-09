@@ -2990,3 +2990,49 @@ PDF), and the live download after deploy.
   (E-154; PyMuPDF dropped from the web requirements). Live checks via Vercel:
   `/api/desktop/info` says available, version 1.0.0, 24,133,807 bytes;
   `/download` opens without the passcode; a part without a ticket gets 403.
+
+## 2026-10-09 (later) -- current position: WinTOTAL-inspired editor features (T-1051..T-1054, T-270; E-155..E-157)
+
+The owner's 36 WinTOTAL screenshots are inventoried in
+`knowledge/competitors/WINTOTAL_UAD36.md`. The screenshots hold real case
+data; `.vercelignore` keeps them out of the deploy, and `desktop/build.py`
+packs only `engine/`, the runtime specification files and the launcher.
+
+Built (verified in Chromium, `_work`-free e2e in the session scratchpad):
+- Field guidance in the inspector. `GET /api/cases/{id}/guide/{fid}`; A-1's
+  condition language is read by `uad/conditions.py`. `tests/test_field_guide.py`
+  covers 26 cases, including agreement with Review Master on the 12 D-1
+  samples.
+- Show problems: `postMarks()` in `index.html` sends the H-1 fatal/warning
+  field ids into the frame; `mark()` in `flow.EDIT_JS` outlines them.
+  `reviewSoon()` (1.5 s after a save) refreshes the counts, the rail, the
+  outlines, sign-off and the open guidance.
+- Comment library: `LIB` / `commentLibrary()` in `index.html`, kept in
+  localStorage `uad-snippets` (per browser / desktop profile). The frame
+  inserts at the last caret with `execCommand('insertText')` and commits it
+  like typing. Alt+1..9 inserts as well.
+- Comment counter: `.lencount` from the guide's `max` (A-1 String length).
+
+Fixed:
+- E-155: an unclosed CSS rule from the desktop commit unstyled the editor on
+  the live site (frame 300 × 150 px). It is now brace-checked by a test.
+- E-157: `test_autofill` keyed lxml parties by `id()`, which failed or passed
+  depending on memory layout. Parties are now keyed by element path.
+
+Square shell: one rule at the end of `index.html`'s style; status dots stay
+round. `EDIT_CSS` editor controls are square too; the printed form is untouched.
+
+Traps:
+- `field_guide` has a local named `when`, not `conditions`. That name is the
+  module now; shadowing it raised UnboundLocalError.
+- The library popover stays open while the appraiser clicks into the report.
+  Clicking "Comment library" again closes it.
+
+Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
+- T-1055 built: comparable menu Move left / Move right (POST /comparables/order,
+  which renumbers photos, history and map) and Copy (POST
+  /comparables/{n}/copy, `comparables.copy_property`: fresh xlink labels,
+  relationships duplicated, no photos). Editor-only tint: `td.v.neg` red,
+  `td.v.pos` green, on adjustments and Net Adjustment Total (a debounced
+  MutationObserver in EDIT_JS keeps it current). Chromium e2e: move swapped
+  #1/#2, copy made #4 = #1, schema 0, fatal 0.

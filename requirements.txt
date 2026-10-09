@@ -3,9 +3,12 @@
 # a browser, so page layout and PDF answer 503 there (engine/uad/report/browser.py).
 # Locally, for PDF:  pip install playwright && playwright install chromium
 # The WinTOTAL MOD (total-bridge) has its own list: setup/requirements.txt.
+# PyMuPDF is not here: the web platform never imports it (only the spec
+# extractors, uad/ingest and the golden tests do -- pip install pymupdf for
+# those), and at ~60 MB installed it pushed the function past Vercel's 225 MB
+# once the desktop installer joined the bundle (downloads/desktop/).
 fastapi>=0.110
 python-multipart>=0.0.9
 lxml>=5.0
 Pillow>=10.0
 fontTools>=4.50
-pymupdf>=1.24

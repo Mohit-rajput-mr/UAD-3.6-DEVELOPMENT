@@ -2269,3 +2269,15 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Mechanism and evidence: `desktop/README.md`, `tests/test_desktop.py`
   (16 tests). Wine 9 runs of the real installer and app: wrong key refused,
   right key installs, app serves, activation, uninstall keeps reports.
+
+### E-154 -- The Vercel build failed when the installer joined the bundle (2026-10-09)
+- Symptom: `LAMBDA_SIZE_EXCEEDED`. The bundle was 244.07 MB against a 225 MB
+  maximum once `downloads/desktop/**` (24 MB) was added to `includeFiles`.
+  The failed build was never promoted, so production stayed on the previous
+  version.
+- Mechanism: PyMuPDF (65 MB installed) is out of the root `requirements.txt`.
+  The web platform never imports it; only the spec extractors, `uad/ingest`
+  and the golden tests do. The app was checked to import and serve with
+  pymupdf blocked.
+- Watch: the installer is the bundle's elastic part. At over ~40 MB, serve
+  it from its own small function instead.

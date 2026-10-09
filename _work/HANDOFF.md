@@ -3057,3 +3057,7 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - Trap: `tests/test_certifications.py` already exists (the Certifications
   pages vs the official PDFs). New certification tests are in
   `test_additional_certifications.py`.
+- Desktop installer rebuilt as 1.1.0 (24.2 MB, 7 parts, sha256 30b8077d…):
+  carries the field guidance, SmartAdjust, comparable move/copy,
+  certifications and the E-160 layout fix. The build pipeline is unchanged
+  from the Wine-verified 1.0.0; test_desktop 15/15. Not re-run under Wine.

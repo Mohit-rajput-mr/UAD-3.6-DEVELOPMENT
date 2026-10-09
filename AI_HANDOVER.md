@@ -228,11 +228,23 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 - **Square shell:** the owner's standing preference (square, ruled, no pills or rounded cards) is
   applied shell-wide by one rule at the end of `index.html`'s style, and to the editor's own controls in
   `EDIT_CSS`. The printed form is untouched.
-- Next (all in TASKS.md): T-1055 grid move/copy + coloured net totals; T-1056 section Add list;
-  T-1057 Show/Hide optional sections (stash, schema-valid both ways); T-1058 Include in Rent
-  Schedule per unit; T-1059 SmartAdjust from the 18 North rates; T-1060 legal description photo;
-  T-1061 additional certifications. Rebuild the desktop installer after each shipped change
-  (`git add` first, then `python desktop/build.py`, then commit `downloads/desktop/`).
+- Also built the same day, each tested on the 12 samples and in Chromium:
+  - T-1055: comparable menu Move left / right and Copy, plus editor-only red/green adjustments.
+  - T-1059: SmartAdjust panel (the owner's 18 North / multi-family rates, editable; nothing is written
+    until Apply).
+  - T-1061: additional certifications. They could not be saved at all before (E-159).
+- **E-160 (important):** the client layout sometimes measured a half-loaded galley, so a report did
+  not refresh after an edit or came out cut short. Fixed in `CLIENT_LAYOUT_HTML` `frame()`. It hit web
+  and desktop alike.
+- Desktop installer rebuilt as **1.1.0** (`downloads/desktop/`). Full suite 807 passed, 9 skipped.
+- Next (in TASKS.md):
+  - T-1056 section Add list;
+  - T-1057 Show/Hide optional sections (stash, schema-valid both ways);
+  - T-1058 Include in Rent Schedule per unit;
+  - T-1060 legal description photo. A-1 3.031.2 is an IMAGE with ImageCategoryType
+    "LegalDescription"; it needs the exhibit path to write that category, and B-1's print placement.
+  Rebuild the installer after shipped changes (`git add` first, then `python desktop/build.py`, then
+  commit `downloads/desktop/`).
 
 ### 2026-10-09 -- faster editor; desktop edition for Windows with Download product (T-1049, T-1050)
 - Opening is faster (8.6 → 5.7 s first open, 15–19 → 3.6 s reopen): E-150..E-152 in the CATALOG.

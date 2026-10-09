@@ -34,6 +34,6 @@ Status legend:
 | 15 | Legal description as Text or Photo. | todo (T-1060) | |
 | 16 | Sketch page with area table; "+ Add Page (Alt+A)". | have, partly | Ours takes the sketch as an exhibit; no sketcher (WinTOTAL launches its own). |
 | 17 | Grid cell pop-up for compound values (Contract Date Known + Date). | have | Our cell editor for multi-part cells. |
-| 18 | Additional appraiser certifications: Add (Alt+A) / Remove (Alt+R). | todo (T-1061) | |
+| 18 | Additional appraiser certifications: Add (Alt+A) / Remove (Alt+R). | **built** (T-1061) | Numbered as printed, the next number always open to type, x removes; type and indicators kept by `uad/certifications.py`. Before this they could not be saved at all (E-159). |
 | 19 | Help banner, chat support, Order / Workfile / E&O / Timeline tabs. | skip | Business-office features outside the report; the owner runs those elsewhere. |
 | 20 | PDF / XML delivery. | **better** | Ours validates the ZIP against the GSE subschema and B-1 package rules before export; the desktop edition prints the PDF locally. |

@@ -2346,3 +2346,46 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Mechanism: the test asks `fonts.substituted()` which face this machine
   draws and requires that face embedded. It still fails on a system fallback
   face or Type3 glyphs.
+
+### E-159 -- Additional certifications could not be saved at all (2026-10-09)
+- Symptom: typing in 29.053 (appraiser) or 29.062 (supervisor) answered
+  "could not be saved to its matching report field", on filled and blank
+  reports alike. No appraiser could add a certification.
+- Cause: both fields share one A-1 path
+  (`SCOPE_OF_WORK/VALUATION_REPORT_ADDITIONAL_CERTIFICATIONS/...`). What
+  tells them apart (`ValuationAdditionalCertificationIncludedByType`) and
+  the indicators that make the text required are not on the form, so the
+  general writer had no way to pick or create the right instance.
+- Mechanism: `uad/certifications.py` keeps the list, each entry's type and
+  both indicators on every change. `PATCH /cases/{id}/certifications/{by}`
+  writes entry #ordinal; one past the last adds, empty text removes. The
+  form prints them numbered; the editor keeps the next number open, and x
+  removes one (WinTOTAL's Add / Remove).
+- With none added, print keeps an invisible empty line: it is what hides
+  the "cannot be contrary" note, as the official reports do.
+  `tests/test_certifications.py` (the official comparison) caught the
+  first version, which dropped it.
+- Length: 360 characters, read from A-1, not assumed.
+- Tests: `tests/test_additional_certifications.py` (add / edit / remove on all
+  12 samples: schema 0, no new H-1 finding, the supervisor's untouched).
+
+### E-160 -- The browser measured a half-loaded galley, so layouts came out short (2026-10-09)
+- Symptom: after an edit the report sometimes never refreshed, or showed a
+  report missing its last blocks (cut off in Certifications, no Signature).
+  It was intermittent: about 1 round in 4-7 under repeated edits.
+- Cause: `frame()` in the client-layout page attached the measuring iframe
+  before setting `srcdoc`. Chrome fires `load` for the initial about:blank
+  on attach, so the promise resolved on that. 120 ms later MEASURE ran on
+  however much of the ~900 KB galley had been parsed. The planner then laid
+  out a short report. `flow.trusted` refused to share it (length mismatch),
+  so the damage stayed in that browser, but that browser showed it.
+- Mechanism: `srcdoc` is set before attaching, and only a load whose
+  document is `about:srcdoc` counts. The page counts the galley's blocks
+  with DOMParser and measures again (up to 3 times) if the measurement is
+  short. An image that never answers no longer holds the pass up (8 s).
+- Evidence: a repeat harness (save, wait for the new layout) went from a
+  stuck round within 4-7 rounds to 36 of 36 rounds, at 3.4-5.0 s each.
+  `tests/test_additional_certifications.py::test_the_layout_never_measures_a_half_loaded_galley`
+  pins the order.
+- This affected every client-laid-out report (web and desktop), not only
+  certifications.

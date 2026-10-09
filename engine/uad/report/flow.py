@@ -918,6 +918,9 @@ EDIT_JS = """
                   :res.d.case==='B'?'Same party as the seller (B-1 Case B)':'';
         }
         if(window.parent!==window) window.parent.postMessage({uad:'saved'},'*');
+        // a line added to or taken from a numbered list (the additional
+        // certifications): the numbering moves, so the page is laid out again
+        if(res.d && res.d.relayout){ reloadHere(); return true; }
         // the answer changed what kind of property this is: the report has
         // been rebuilt on that shape (uad/shape.py) and the editor reloads it
         if(res.d && res.d.reshaped && window.parent!==window)
@@ -2395,6 +2398,20 @@ EDIT_JS = """
   new MutationObserver(function(){ clearTimeout(tintSoon); tintSoon=setTimeout(tint,150); })
     .observe(document.body,{subtree:true,childList:true,characterData:true});
   tint();
+  /* --------------------------------------- additional certifications
+     x beside a certification removes it (WinTOTAL's Alt+R); the next number
+     is always open to type a new one into (uad/certifications.py). */
+  document.addEventListener('click',function(e){
+    var x=e.target.closest&&e.target.closest('.certx'); if(!x) return;
+    e.preventDefault();
+    var v=x.parentNode.querySelector('.v[data-route]'); if(!v) return;
+    ask('It is taken out of the report and its XML; the ones after it move up.',
+        {title:'Remove certification '+v.dataset.ordinal+'?',ok:'Remove',danger:true}).then(function(ok){
+      if(!ok) return;
+      v.textContent=''; v.dataset.was='';
+      send(v,{value:''});
+    });
+  });
 })();
 </script>"""
 

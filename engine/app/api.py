@@ -1282,6 +1282,30 @@ def set_prefs(case_id: str, body: dict = Body(...)) -> dict:
     return merged
 
 
+# ---------------------------------------------- additional certifications
+@router.patch("/cases/{case_id}/certifications/{by}")
+def set_certification(case_id: str, by: str, request: Request, body: dict = Body(...)) -> dict:
+    """Write additional certification #ordinal of the appraiser or the
+    supervisor (uad/certifications.py): one past the last adds one, empty
+    text removes it, and the party's indicator follows the list."""
+    _case_or_404(case_id)
+    from uad import certifications
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    before = len(certifications.listed(tree.getroot(), by)) if by in certifications.INDICATOR else 0
+    try:
+        count = certifications.set_text(tree.getroot(), by, int(body.get("ordinal") or 1),
+                                        str(body.get("value", "")))
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "additional certifications changed")
+    st.log(case_id, _actor(request), "edited", f"additional certification #{body.get('ordinal')} ({by})")
+    # a line added or taken away moves the numbering: the page is laid out again
+    return {"value": str(body.get("value", "")).strip(), "count": count, "relayout": count != before,
+            "state": st.get(case_id).state}
+
+
 # ------------------------------------------------------------ field guidance
 @router.get("/cases/{case_id}/guide/{field_id}")
 def field_guide(case_id: str, field_id: str) -> dict:
@@ -2422,17 +2446,26 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
   function say(t,bad){document.getElementById('say').textContent=t;
     if(bad){document.getElementById('msg').className='msg err';}}
   function frame(html){
+    // The srcdoc is set before the frame is attached, and only its own load is
+    // taken (E-160): attached first, Chrome fires load for the initial
+    // about:blank, and the measurement then ran 120 ms later on however much
+    // of the galley had been parsed -- a report cut short at a random block.
     return new Promise(function(res,rej){
       var f=document.createElement('iframe'); f.className='m';
+      var done=false;
       f.onload=function(){
         var d=f.contentDocument;
+        if(done||!d||d.URL!=='about:srcdoc') return;
+        done=true;
         (d.fonts?d.fonts.ready:Promise.resolve()).then(function(){
           var imgs=Array.prototype.slice.call(d.images);
-          return Promise.all(imgs.map(function(i){return i.complete?0:new Promise(function(r){i.onload=i.onerror=r;});}));
+          // an image that never answers must not hold the layout up
+          return Promise.race([Promise.all(imgs.map(function(i){return i.complete?0:new Promise(function(r){i.onload=i.onerror=r;});})),
+                               new Promise(function(r){setTimeout(r,8000);})]);
         }).then(function(){setTimeout(function(){res(f);},120);}).catch(rej);
       };
-      document.body.appendChild(f);
       f.srcdoc=html;
+      document.body.appendChild(f);
     });
   }
   function run(fn,f){return fn.call(f.contentWindow);}  // the scripts read document via `document`
@@ -2442,7 +2475,7 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
       headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
       .then(function(r){if(!r.ok) return r.text().then(function(t){throw new Error(t);}); return r.json();});
   }
-  var measured, caps={}, attempt=0, last=null, KEY='client';
+  var measured, caps={}, attempt=0, last=null, KEY='client', BLOCKS=0, REMEASURE=0;
   /* The last layout this browser made of this report is kept (IndexedDB), so
      opening or reloading the report shows it at once.  When the case has
      changed since, the kept one is shown all the same and the editor lays the
@@ -2471,9 +2504,17 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
     fetch('/api/cases/'+CASE+'/layout/'+KIND+'/galley').then(function(r){
       if(!r.ok) throw new Error('the report could not be prepared ('+r.status+')');
       KEY=r.headers.get('X-Render-Key')||'client'; return r.text();
-    }).then(frame).then(function(f){
+    }).then(function(html){
+      // how many blocks the galley holds, so a short measurement is caught
+      try{ BLOCKS=new DOMParser().parseFromString(html,'text/html').querySelectorAll('#galley > .blk').length; }catch(e){ BLOCKS=0; }
+      return frame(html);
+    }).then(function(f){
       say('Measuring every block against Appendix C-1...');
       measured=inFrame(String(MEASURE),f); f.remove();
+      if(BLOCKS&&measured.length!==BLOCKS){
+        if(++REMEASURE<3) return layout();
+        throw new Error('the report was measured short ('+measured.length+' of '+BLOCKS+' blocks)');
+      }
       return pass();
     }).catch(function(e){ say('The report could not be laid out: '+e.message, true); });
   }

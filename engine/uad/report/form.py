@@ -387,6 +387,10 @@ def _subject_point(name: str) -> bool:
 # ---------------------------------------------------------------------------
 # Reading the case
 # ---------------------------------------------------------------------------
+#: additional certification fields -> whose (uad/certifications.FIELDS)
+_CERT_FIELDS = {"29.053": "Appraiser", "29.062": "AppraiserSupervisor"}
+
+
 @dataclass
 class Ctx:
     root: etree._Element
@@ -1852,6 +1856,34 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                 continue
             out.append(Block("italic", section=printed, html=f"<div class='txci'>{esc(text)}</div>",
                              decoration=True, fids=ids))
+            continue
+        if kind == "prose" and any(i in _CERT_FIELDS for i in ids):
+            # Additional certifications (29.053 appraiser, 29.062 supervisor):
+            # C-1 lays out "1."; each one the party added prints numbered after
+            # it, and the editor keeps the next number open to type into
+            # (uad/certifications.py: the list, its type and indicator)
+            from .. import certifications
+            flush()
+            fid = next(i for i in ids if i in _CERT_FIELDS)
+            by = _CERT_FIELDS[fid]
+            items = certifications.texts(ctx.root, by)
+            if not items and not ctx.edit:
+                # nothing added: an empty line as before, which also hides the
+                # "cannot be contrary" note above it (the official reports)
+                out.append(Block("prose", section=printed, visible=False, fids=ids,
+                                 html="<div class='txcb'><b>1.&nbsp; </b></div>"))
+                continue
+            for n, text in enumerate(items + ([""] if ctx.edit else []), start=1):
+                if ctx.edit:
+                    drop = ("" if not text else
+                            f"<span class='certx' role='button' tabindex='0' title='Remove certification {n}'>&#215;</span>")
+                    body = (f"<span class='v multiline' data-fid='{esc(fid)}' data-route='certifications/{by}'"
+                            f" data-ordinal='{n}' contenteditable='true' spellcheck='true'"
+                            f" data-ph='{'Type an additional certification' if not text else ''}\u2026'>{esc(text)}</span>{drop}")
+                else:
+                    body = esc(text)
+                out.append(Block("prose", section=printed, visible=bool(text) or ctx.edit, fids=ids,
+                                 html=f"<div class='txcb'><b>{n}.&nbsp; </b>{body}</div>"))
             continue
         if kind == "prose":
             label = _label_fill(el.get("text", ""), ctx)
@@ -5865,6 +5897,8 @@ table.grid td.gfail{box-shadow:inset 0 0 0 1.2pt #c53030!important}
 td.mk-fatal,td.mk-warn{outline-offset:-1.5pt}
 .v.mk-fatal:focus,.v.mk-warn:focus{outline:none!important}
 /* how much of a comment's length is used (A-1 / XSD maximum) */
+.txcb .certx{margin-left:4pt;color:#8a1c1c;cursor:pointer;font-weight:700}
+.txcb .certx:hover{color:#d92d20}
 td.v.neg > span{color:#b42318!important}
 td.v.pos > span{color:#067647!important}
 .lencount{position:absolute;z-index:98;padding:1pt 4pt;background:#231f20;color:#fff;

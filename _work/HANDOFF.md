@@ -3045,3 +3045,15 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   404 on the open case as "the report is gone" and goes home.
   Chromium e2e: panel lists 3 comparables; GLA rate 100 recalculated to
   $(25,800); applying it left the grid holding $(25,800).
+- T-1061 built (E-159): additional certifications. They could not be saved
+  at all before. `uad/certifications.py` plus PATCH /certifications/{by};
+  form.py prints them numbered; the editor keeps the next one open, and
+  `.certx` removes. The response's `relayout` makes the frame re-lay out
+  (sendNow handles `res.d.relayout`).
+- E-160 fixed: the client-layout `frame()` measured a half-parsed galley
+  (load of about:blank). This was the cause of the occasional report that
+  never refreshed after an edit, or came out cut short. Harness: 36/36
+  rounds swapped in 3.4-5.0 s.
+- Trap: `tests/test_certifications.py` already exists (the Certifications
+  pages vs the official PDFs). New certification tests are in
+  `test_additional_certifications.py`.

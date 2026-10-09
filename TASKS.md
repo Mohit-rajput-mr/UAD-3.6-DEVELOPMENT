@@ -150,7 +150,7 @@ python engine/tasks.py add "Title" --area render --note "asked 2026-09-16"
 | T-999 | open | bridge | Owner direction 2026-09-28 late: NEXT CASE IS SINGLE FAMILY, not multi-family -- supersedes T-997's multi-family-only priority; finish the 5 SF D-1 samples and the SF1 proof package first |  |
 | T-1061 | open | editor | Additional appraiser certifications Add/Remove (WinTOTAL row 18) |  |
 | T-1060 | open | editor | Legal description as Text or Photo (WinTOTAL row 15) |  |
-| T-1059 | partial | editor | SmartAdjust: suggest adjustments from the owner's 18 North rates, shown for acceptance, never written silently (WinTOTAL row 9) | backend done: uad/smartadjust.py + GET/POST /smartadjust; tests/test_smartadjust.py 28 pass (18 North derivation cases, 12 samples take every suggestion, schema 0); UI panel next (2026-10-09) |
+| T-1059 | done | editor | SmartAdjust: suggest adjustments from the owner's 18 North rates, shown for acceptance, never written silently (WinTOTAL row 9) | tests/test_smartadjust.py 28 pass (18 North derivation cases; 12 samples take every suggestion, schema 0); Chromium e2e: rate change recalculated, applied GLA -25,800 saved to the grid (2026-10-09) |
 | T-1058 | open | editor | Per-unit 'Include in Rent Schedule' switch and unit reorder in the Structure view (WinTOTAL row 5) |  |
 | T-1057 | open | editor | Show/Hide optional sections: stash the section's data out of the MISMO document and restore it, schema-valid both ways (WinTOTAL row 7) |  |
 | T-1056 | open | editor | Side-panel 'Add' list per section that jumps to and opens the existing add-row controls (WinTOTAL row 6) |  |

@@ -1825,10 +1825,11 @@ def smartadjust_apply(case_id: str, request: Request, body: dict = Body(...)) ->
             raise HTTPException(422, f"not a suggestion: {pick!r}")
         if kind not in allowed:
             raise HTTPException(422, f"{kind} is not an adjustment row of the sales grid")
-        scope = _grid_scope(root, "sales", n)
-        if scope is None:
-            raise HTTPException(404, f"no comparable #{n}")
-        comparables.write_adjustment(scope, kind, str(amount))
+        props = comparables.properties(root, comparables.SHEETS["sales"][1])
+        if not 1 <= n <= len(props):
+            # 422, not 404: the editor reads a 404 on a case as "the report is gone"
+            raise HTTPException(422, f"no comparable #{n}")
+        comparables.write_adjustment(props[n - 1], kind, str(amount))
         written.append(f"#{n} {kind} {amount}")
     if written:
         st.save_tree(case_id, tree)

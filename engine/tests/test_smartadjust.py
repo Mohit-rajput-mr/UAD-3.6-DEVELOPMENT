@@ -149,5 +149,5 @@ def test_apply_refuses_what_is_not_a_suggestion(tmp_path, monkeypatch):
     assert e.value.status_code == 422
     with pytest.raises(HTTPException) as e:
         api.smartadjust_apply(cid, req, {"picks": [{"comparable": 9, "adjust_type": "SiteSize", "amount": 1}]})
-    assert e.value.status_code == 404
+    assert e.value.status_code == 422          # a 404 would send the editor home
     store.conn.close()

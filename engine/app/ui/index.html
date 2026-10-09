@@ -307,6 +307,37 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .gd-rules code{font:500 11px/1.5 var(--mono);color:var(--muted)}
 .gd-rules span{color:var(--ink-2)}
 .gd-none{font-size:12px;color:var(--faint);margin:4px 0 0}
+/* SmartAdjust */
+.sadj-ov{position:fixed;inset:0;z-index:88;display:flex;align-items:center;justify-content:center;padding:24px 16px;
+  background:rgba(5,5,6,.66);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.sadj{width:min(980px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line-3);
+  box-shadow:var(--shadow-lg);color:var(--ink)}
+.sadj-h{display:flex;justify-content:space-between;gap:16px;padding:18px 22px 14px;border-bottom:1px solid var(--line-2)}
+.sadj-h h3{margin:8px 0 4px;font:500 22px/1.1 var(--sans);letter-spacing:-.03em}
+.sadj-h p{margin:0;color:var(--muted);font-size:13px;max-width:68ch}
+.sadj-x{width:44px;border:0;border-left:1px solid var(--line-2);background:none;color:var(--muted);font:300 24px/1 var(--sans);cursor:pointer}
+.sadj-b{overflow:auto;padding:14px 22px 18px}
+.sadj-p{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px;font-size:13px;color:var(--ink-2)}
+.sadj-p select{margin-left:8px;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:inherit}
+.sadj-p details{flex:1;min-width:260px}.sadj-p summary{cursor:pointer;color:var(--ink)}
+.sadj-rates{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:10px}
+.sadj-rates label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:var(--muted)}
+.sadj-rates input{background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:500 13px/1 var(--mono)}
+.sadj-rb{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}.sadj-rb small{color:var(--faint)}
+.sadj-c{border:1px solid var(--line-2);margin-bottom:12px}
+.sadj-ch{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line-2);background:var(--bg-2);font-size:13px}
+.sadj-ch span{font:500 12px/1.4 var(--mono);color:var(--ink-2)}.sadj-ch span.over{color:var(--warn)}
+.sadj table{width:100%;border-collapse:collapse;font-size:12.5px}
+.sadj th{text-align:left;font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:8px 12px;border-bottom:1px solid var(--line)}
+.sadj td{padding:7px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.sadj td.num,.sadj th.num{text-align:right;font-family:var(--mono)}
+.sadj td.num small{display:block;font:400 10.5px/1.3 var(--sans);color:var(--faint)}
+.sadj td.neg{color:var(--bad)}.sadj td.pos{color:var(--good)}
+.sadj tr.same td{opacity:.55}
+.sadj td input{width:16px;height:16px;accent-color:var(--ink)}
+.sadj-f{display:flex;align-items:center;gap:10px;justify-content:flex-end;padding:12px 22px;border-top:1px solid var(--line-2)}
+.sadj-n{margin-right:auto;font-size:12.5px;color:var(--muted)}
+.sadj-wait{color:var(--muted);font-size:13px;padding:6px 12px}
 /* comment library */
 .libpop{position:fixed;z-index:90;width:min(420px,calc(100vw - 16px));max-height:70vh;overflow:auto;background:var(--surface);
   border:1px solid var(--line-3);box-shadow:var(--shadow-lg);padding:12px 14px 14px}
@@ -1415,6 +1446,7 @@ function drawReportForm(w){
       <label class="rf-toggle" title="Outline every field an H-1 rule faults: fatal in red, warning in amber"><input type="checkbox" id="rf-marks">
         Show problems</label>
       <button class="addbtn" id="rf-lib" title="Saved comments: insert one where the caret is (Alt+1 … Alt+9)">Comment library</button>
+      <button class="addbtn" id="rf-sadj" title="Sales grid adjustments suggested from your rate profile; you choose which to apply">SmartAdjust</button>
       <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
         Mark what was imported</label>
       <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
@@ -1460,6 +1492,7 @@ function drawReportForm(w){
     postMarks();
   };
   $('#rf-lib').onclick=e=>{ e.stopPropagation(); commentLibrary($('#rf-lib')); };
+  $('#rf-sadj').onclick=()=>smartAdjust();
   $('#rf-gaps').onchange=e=>{
     const f=$('#rf'); if(!f||!f.contentWindow)return;
     f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
@@ -2269,6 +2302,84 @@ function commentLibrary(anchor){
   setTimeout(()=>document.addEventListener('mousedown',function off(e){
     if(!pop.contains(e.target)&&e.target!==anchor){ pop.remove(); document.removeEventListener('mousedown',off); }
   }),0);
+}
+
+/* ------------------------------------------------ SmartAdjust (T-1059)
+   Adjustments suggested from the owner's rate profile (uad/smartadjust.py),
+   each beside what the grid holds now.  Nothing is written until the
+   appraiser applies the ones ticked; blanks are ticked to start with, a figure
+   the appraiser already entered is not. */
+const money=n=>(n<0?'$('+Math.abs(n).toLocaleString()+')':'$'+n.toLocaleString());
+const RATE_LABEL={gla:'GLA $/sq ft',gla_threshold:'GLA threshold sq ft',site:'Site $/sq ft',site_threshold:'Site threshold sq ft',
+  age:'Age $/year',age_threshold:'Age threshold years',bedroom:'Bedroom $',half_bath:'Half bath $',basement:'Finished basement $',
+  garage:'Garage space $',outdoor:'Outdoor living $',exposure:'Exposure (share of list)',design:'Design step $',cooling:'Cooling $'};
+function smartAdjust(){
+  const old=$('#sadj-ov'); if(old) old.remove();
+  const ov=document.createElement('div'); ov.id='sadj-ov'; ov.className='sadj-ov';
+  ov.innerHTML=`<div class="sadj" role="dialog" aria-modal="true" aria-label="Suggested adjustments">
+    <div class="sadj-h"><div><span class="k">SmartAdjust</span><h3>Suggested adjustments</h3>
+      <p>From your rate profile, against what each comparable's grid prints. Tick what to apply; nothing changes until you do.</p></div>
+      <button class="sadj-x" aria-label="Close">&times;</button></div>
+    <div class="sadj-b"><p class="sadj-wait">Calculating…</p></div>
+    <div class="sadj-f"><span class="sadj-n"></span><button class="btn" id="sadj-cancel">Close</button><button class="btn primary" id="sadj-go" disabled>Apply</button></div></div>`;
+  document.body.appendChild(ov);
+  const body=ov.querySelector('.sadj-b'), go=ov.querySelector('#sadj-go');
+  const close=()=>{ ov.remove(); document.removeEventListener('keydown',onKey); };
+  const onKey=e=>{ if(e.key==='Escape') close(); };
+  document.addEventListener('keydown',onKey);
+  ov.querySelector('.sadj-x').onclick=close; ov.querySelector('#sadj-cancel').onclick=close;
+  ov.addEventListener('mousedown',e=>{ if(e.target===ov) close(); });
+  let prof='', rates={}, data=null;
+  const count=()=>{ const n=body.querySelectorAll('input.pick:checked').length;
+    ov.querySelector('.sadj-n').textContent=n?n+' to apply':'Nothing ticked'; go.disabled=!n;
+    go.textContent=n?'Apply '+n:'Apply'; };
+  async function load(){
+    body.innerHTML='<p class="sadj-wait">Calculating…</p>';
+    const q=new URLSearchParams({profile:prof,rates:JSON.stringify(rates)});
+    const r=await api('/cases/'+S.caseId+'/smartadjust?'+q);
+    if(!r||!r.ok){ body.innerHTML=`<p class="sadj-wait">${esc((r&&r.data&&r.data.detail)||'The suggestions could not be worked out.')}</p>`; return; }
+    data=r.data; prof=data.profile.name; draw();
+  }
+  function draw(){
+    const p=data.profile;
+    const head=`<div class="sadj-p"><label>Profile <select id="sadj-prof">${data.profiles.map(n=>`<option${n===p.name?' selected':''}>${esc(n)}</option>`).join('')}</select></label>
+      <details><summary>Rates</summary><div class="sadj-rates">${data.rate_keys.map(k=>`<label><span>${esc(RATE_LABEL[k]||k)}</span>
+        <input type="number" step="any" data-rate="${k}" value="${p[k]}"></label>`).join('')}</div>
+        <div class="sadj-rb"><small>${esc(p.source)}</small><button class="btn" id="sadj-re">Recalculate</button></div></details></div>`;
+    const cols=data.comparables.map(c=>{
+      const pct=v=>c.price?(100*v/c.price).toFixed(1)+'%':'—';
+      const rows=c.lines.map((l,i)=>{
+        const blank=!l.current||l.current==='$0';
+        const same=l.current.replace(/[$,()]/g,'')===String(Math.abs(l.amount))&&((l.current.indexOf('(')>=0)===(l.amount<0));
+        const tick=l.amount!==0&&blank;
+        return `<tr class="${same?'same':''}"><td>${esc(l.label)}</td><td>${esc(l.subject)}</td><td>${esc(l.comparable)}</td>
+          <td class="num ${l.amount<0?'neg':l.amount>0?'pos':''}" title="${esc(l.basis)}">${money(l.amount)}<small>${esc(l.basis)}</small></td>
+          <td class="num">${esc(l.current||'—')}</td>
+          <td><input type="checkbox" class="pick" data-c="${c.number}" data-t="${esc(l.adjust_type)}" data-a="${l.amount}" ${same?'disabled':tick?'checked':''}
+            aria-label="Apply ${esc(l.label)} to comparable ${c.number}"></td></tr>`;}).join('');
+      // the customary guidelines: net within 15 %, gross within 25 % of the price
+      const over=c.price&&(Math.abs(c.net)>.15*c.price||c.gross>.25*c.price);
+      return `<section class="sadj-c"><div class="sadj-ch"><b>Comparable #${c.number}</b>
+        <span${over?' class="over" title="Past the 15 % net / 25 % gross guideline: support it in the narrative"':''}>Net ${money(c.net)} · ${pct(c.net)} &nbsp; Gross ${money(c.gross)} · ${pct(c.gross)}${over?' &nbsp;! over guideline':''}</span></div>
+        ${c.lines.length?`<table><thead><tr><th>Row</th><th>Subject</th><th>Comparable</th><th class="num">Suggested</th><th class="num">In the grid</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
+          :'<p class="sadj-wait">Nothing in this profile applies to this comparable.</p>'}</section>`;
+    }).join('');
+    body.innerHTML=head+(cols||'<p class="sadj-wait">This report has no sales comparables yet.</p>');
+    body.querySelector('#sadj-prof').onchange=e=>{ prof=e.target.value; rates={}; load(); };
+    body.querySelector('#sadj-re').onclick=()=>{ rates={}; body.querySelectorAll('input[data-rate]').forEach(i=>{ rates[i.dataset.rate]=i.value; }); load(); };
+    body.querySelectorAll('input.pick').forEach(i=>i.onchange=count);
+    count();
+  }
+  go.onclick=async()=>{
+    const picks=[...body.querySelectorAll('input.pick:checked')].map(i=>({comparable:+i.dataset.c,adjust_type:i.dataset.t,amount:+i.dataset.a}));
+    if(!picks.length) return;
+    go.disabled=true; go.textContent='Applying…';
+    const r=await api('/cases/'+S.caseId+'/smartadjust',{method:'POST',body:JSON.stringify({picks})});
+    if(!r||!r.ok){ toast('Not applied: '+((r&&r.data&&r.data.detail)||'unknown error'),6000); count(); return; }
+    toast(r.data.written+' adjustment'+(r.data.written===1?'':'s')+' applied',3000);
+    S.dirty=true; checkFresh('form'); reviewSoon(); load();
+  };
+  load();
 }
 
 function fillSignoff(b){

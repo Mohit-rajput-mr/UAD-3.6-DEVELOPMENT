@@ -3036,3 +3036,12 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   `td.v.pos` green, on adjustments and Net Adjustment Total (a debounced
   MutationObserver in EDIT_JS keeps it current). Chromium e2e: move swapped
   #1/#2, copy made #4 = #1, schema 0, fatal 0.
+- T-1059 built: SmartAdjust. `uad/smartadjust.py` reads the grid as it
+  prints (`comparables.build`, rows by ComparableAdjustmentType, per-unit rows
+  summed) and applies the owner's profiles (18 North; multi-family on 2-4
+  units). GET /smartadjust (profile, rates JSON) suggests; POST /smartadjust
+  {picks} writes via `write_adjustment` and `save_tree` re-sums the totals.
+  A missing comparable answers 422, never 404: `apiRaw` in index.html treats a
+  404 on the open case as "the report is gone" and goes home.
+  Chromium e2e: panel lists 3 comparables; GLA rate 100 recalculated to
+  $(25,800); applying it left the grid holding $(25,800).

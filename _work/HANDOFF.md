@@ -2986,3 +2986,7 @@ Traps:
 
 Not yet verified: a run on a physical Windows PC (Edge window, Edge-made
 PDF), and the live download after deploy.
+- Deployed 2026-10-09 (aee90bf). The first build failed with LAMBDA_SIZE_EXCEEDED
+  (E-154; PyMuPDF dropped from the web requirements). Live checks via Vercel:
+  `/api/desktop/info` says available, version 1.0.0, 24,133,807 bytes;
+  `/download` opens without the passcode; a part without a ticket gets 403.

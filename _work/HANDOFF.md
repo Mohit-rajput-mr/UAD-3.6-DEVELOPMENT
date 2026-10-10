@@ -3314,3 +3314,47 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - Next: the full-suite re-run, then main. Then the open tasks this sandbox
   can do (`python engine/tasks.py next`); the bridge/TOTAL and case tasks
   need the owner's Windows PC.
+
+## 2026-10-10 (late night) -- parallel sessions: the coordination pipeline (`engine/agents.py`)
+- Three sessions now work at once:
+  - **sleepy-hypatia** is the lead and holds production: the owner's
+    desktop rebuild brief.
+  - **keen-turing** (this one): engine-side checks T-510/T-909/T-910,
+    T-1075, the T-1079/T-1080 parsers, T-127.
+  - **ecstatic-bohr**: pagination and page counts vs D-1.
+  The owner merged PR #3 (sleepy-hypatia) and PR #2 (keen-turing) into
+  main. main is byte-identical to the merged tree keen-turing tested (full
+  suite 904 passed). The one failure was the Summary test's capture
+  running into page 2's editable footer; fixed in 1aea977, on main.
+- **The pipeline**, so sessions that cannot message each other decide and
+  work in parallel:
+  - `_work/agents/<branch>.json`: each session's own status (focus,
+    claims, T-/E- number block, messages, answers). A session writes only
+    its own file, so merges never conflict over them.
+  - `python engine/agents.py` (sync) fetches every branch and reports:
+    - unread messages, from the status files and from each branch's
+      `_work/AGENTS_BOARD.md`;
+    - tasks claimed twice;
+    - T-/E- numbers used for two different things;
+    - files changed on two branches.
+    `next` lists unclaimed work, `claim` refuses a task another branch
+    holds, and `post`/`ack` carry messages; `--push` publishes.
+  - `tasks.py add` numbers from the branch's block, ending the T-125 /
+    E-163 kind of collision.
+  - `.claude/settings.json` has a SessionStart hook: every Claude session
+    starts with the sync. `AGENTS.md` points every other agent at the same
+    steps.
+  - Tests: `tests/test_agents.py` (6). Two of them are built on the real
+    T-125 / E-163 collision.
+- **This session's status**: claims T-510, T-909, T-910, T-1075, T-1079,
+  T-1080, T-127; blocks T-1100..T-1149, E-170..E-179. Messages: to
+  sleepy-hypatia (the split, the merge, the tool) and to ecstatic-bohr
+  (welcome, split agreed, merged tree verified).
+- **Next here**: T-510 / T-909 / T-910 from B-1's Usability supplement:
+  - item 6: no "See attached addendum" in commentary;
+  - item 10 example 1: a Subject to Completion / Inspection / Repair action
+    rules out "As Is";
+  - item 10 example 2: what C1 requires.
+  Item 9 (prohibited / veiled language) cites the GSE Selling Guides, which
+  are not in the repo: ask the owner for them rather than invent a word
+  list.

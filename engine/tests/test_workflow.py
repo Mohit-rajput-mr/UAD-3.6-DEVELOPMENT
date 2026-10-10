@@ -455,11 +455,14 @@ def _q(html: str) -> str:
 
 
 def _section_html(html: str, number: int) -> str:
-    """Everything the editor stamped as belonging to one section."""
+    """Everything the editor stamped as belonging to one section -- up to the
+    next section's piece or the next page, whose running footer (the
+    reference IDs, typed where they print: T-919) is page furniture, not the
+    section's."""
     import re
     html = _q(html)
     return "".join(m.group(0) for m in re.finditer(
-        r'<div data-secn="%d"[^>]*>.*?(?=<div data-secn=|$)' % number, html, re.S))
+        r'<div data-secn="%d"[^>]*>.*?(?=<div data-secn=|<div class="page"|$)' % number, html, re.S))
 
 
 def test_the_summary_is_never_editable(client, case):

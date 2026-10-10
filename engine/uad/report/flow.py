@@ -380,18 +380,23 @@ class Meta:
     # (D-2 AU1, D-3 CR1/CR2, A-2/A-3 HF.001).
     header_on_first: bool = False
     kind: str = "urar"
+    # the footer's reference IDs as the editor offers them: each that applies,
+    # filled or not (uad/references.py, T-919)
+    editable: list[dict] = field(default_factory=list)
 
     @classmethod
     def from_case(cls, tree) -> "Meta":
         from . import urar
-        from .. import report_types
+        from .. import references, report_types
         m = urar.Meta.from_case(tree)
         kind = report_types.kind_of(tree)
+        root = tree.getroot() if hasattr(tree, "getroot") else tree
+        offered = references.editable(root)
         if kind == report_types.URAR:
-            return cls(m.version, m.issuer, m.form_date, m.references)
+            return cls(m.version, m.issuer, m.form_date, m.references, editable=offered)
         number = m.version.rsplit("#", 1)[-1] or "1"
         return cls(f"{report_types.version_label(kind)}{number}", m.issuer, m.form_date,
-                   m.references, report_types.title(kind), True, kind)
+                   m.references, report_types.title(kind), True, kind, editable=offered)
 
 
 from functools import lru_cache
@@ -409,20 +414,28 @@ def text_width(text: str, face: str, size: float) -> float:
     return sum(hmtx[cmap[ord(c)]][0] for c in text if ord(c) in cmap) / upm * size
 
 
-def _furniture(meta: Meta, n: int, total: int) -> str:
+def _furniture(meta: Meta, n: int, total: int, edit: bool = False) -> str:
     head = "" if n == 1 and not meta.header_on_first else (
         f"<div class='hdr-l'>{form.esc(meta.title)}</div>"
         f"<div class='hdr-r'>Page {n} of {total}</div><div class='hdr-rule'></div>")
     refs = []
     y = 947.1
+    # the editor offers every reference that applies, to be typed where it
+    # prints; the report prints those that hold a value
+    rows = ([(r["label"], r["value"], r["field"]) for r in meta.editable] if edit
+            else [(label, value, "") for label, value in meta.references])
     # Appendix E FTR-R: identifiers align left, the longest ending on the
     # measure; labels align right one em (measured 11.9 pt) before them.
-    value_x = 576.0 - max((text_width(v, "MyriadPro-Regular", 8.0)
-                           for _l, v in meta.references), default=30.3)
+    value_x = 576.0 - max((max(text_width(v, "MyriadPro-Regular", 8.0), 40.0 if edit else 0)
+                           for _l, v, _f in rows), default=30.3)
     label_right = 612.0 - (value_x - 9.7)
-    for label, value in meta.references:
+    for label, value, fid in rows:
+        shown = form.esc(value)
+        if edit:
+            shown = (f"<span class='v' contenteditable='true' spellcheck='false'"
+                     f" data-route='references/{fid}' data-k='text'>{shown}</span>")
         refs.append(f"<div class='refl' style='top:{y:.1f}pt;right:{label_right:.2f}pt'>{form.esc(label)}</div>"
-                    f"<div class='refv' style='top:{y:.1f}pt;left:{value_x:.2f}pt'>{form.esc(value)}</div>")
+                    f"<div class='refv' style='top:{y:.1f}pt;left:{value_x:.2f}pt'>{shown}</div>")
         y += 9.0
     foot = ("<div class='ftr-rule'></div><div class='ftr'>"
             f"<div class='f1'>{form.esc(meta.version)}</div>"
@@ -2634,7 +2647,7 @@ def render(pages: list[Page], meta: Meta, *, embed_fonts: bool = True,
         band = "band first" if n == 1 and not meta.header_on_first else "band"
         pieces = "".join(_stamp(p, meta.kind) if edit else p.html for p in pg.pieces)
         body.append(f"<div class='page' data-page='{n}'><div class='hi'><div class='hz'>"
-                    f"{_furniture(meta, n, total)}"
+                    f"{_furniture(meta, n, total, edit)}"
                     f"<div class='{band}'>{pieces}</div></div></div></div>")
     return (f"<!doctype html><html><head><meta charset='utf-8'>"
             f"<title>{form.esc(meta.title)}</title><style>"

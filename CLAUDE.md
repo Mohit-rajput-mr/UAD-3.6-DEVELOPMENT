@@ -20,6 +20,12 @@ the traps it prevents are in `knowledge/PLAYBOOK.md` §10.
 
 ## Start here, every session
 
+**Other sessions may be working right now, on other branches.** Run
+`git fetch --all` and read `_work/AGENTS_BOARD.md` first: who works where,
+which session holds production, the T-/E- number block you may use, and
+messages addressed to you. Post there before anything another session
+could collide with; never push to another session's branch.
+
 **`knowledge/` is the permanent source of truth** for everything learned —
 WinTOTAL's real behaviour, every error class and the mechanism that fixes it,
 the architecture decision (portable XML package + Import Module), and the

@@ -1336,6 +1336,30 @@ def set_optional_section(case_id: str, number: int, request: Request,
     return {"sections": _optional_state(case_id), "relayout": True, "state": st.get(case_id).state}
 
 
+# ---------------------------------------------- footer reference IDs (T-919)
+@router.patch("/cases/{case_id}/references/{field}")
+def set_reference(case_id: str, field: str, request: Request, body: dict = Body(...)) -> dict:
+    """Write one of the footer's reference IDs (HF.005-HF.008) where A-1 puts
+    it (uad/references.py); every page's footer follows."""
+    _case_or_404(case_id)
+    from uad import references
+    try:
+        references.by_field(field)
+    except KeyError:
+        raise HTTPException(422, f"{field} is not one of the footer's reference IDs.")
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    before = references.read(tree.getroot(), field)
+    try:
+        value = references.write(tree.getroot(), field, str(body.get("value", "")))
+    except ValueError as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), f"{field} changed")
+    st.log(case_id, _actor(request), "edited", f"{field} {before!r} -> {value!r}")
+    return {"value": value, "relayout": True, "state": st.get(case_id).state}
+
+
 # ---------------------------------------------- additional certifications
 @router.patch("/cases/{case_id}/certifications/{by}")
 def set_certification(case_id: str, by: str, request: Request, body: dict = Body(...)) -> dict:

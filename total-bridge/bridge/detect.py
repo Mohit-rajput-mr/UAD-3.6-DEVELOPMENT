@@ -254,8 +254,25 @@ def _build_dir(build: str) -> Path:
     return known[-1]
 
 
+def _version(p: Path) -> list[int]:
+    return [int(x) for x in p.name.split(".")]
+
+
 def _json(build_dir: Path, name: str):
+    """A table extracted from one WinTOTAL build.  Not every capture recorded
+    every table (3886 and 3894 have no configuration.json, defaults.json or
+    uid_map.json; their DIFF_FROM_ notes show the controls, validators and
+    MISMO placements unchanged), so a table a capture lacks is read from the
+    newest earlier capture that has it -- not silently taken as empty, which
+    left every unstated switch unreported (T-1017)."""
     p = build_dir / name
+    if not p.exists() and re.match(r"\d+\.\d+\.\d+\.\d+$", build_dir.name):
+        earlier = sorted((b for b in build_dir.parent.iterdir()
+                          if b.is_dir() and re.match(r"\d+\.\d+\.\d+\.\d+$", b.name)
+                          and _version(b) < _version(build_dir) and (b / name).exists()),
+                         key=_version)
+        if earlier:
+            p = earlier[-1] / name
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
 
 

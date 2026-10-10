@@ -209,6 +209,18 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-10 -- rent schedule units, legal description image, Add list; eight unit rules checked (T-1058, T-1060, T-1056; E-161)
+- **T-1058:** a switch over the Rent Schedule chooses which units it lists
+  (A-1 UnitIncludedInRentScheduleIndicator; H-1 UAD1159). Setup includes every unit.
+- **T-1060:** the legal description can be an image (B-1 pp121-122). It prints full width under the bar
+  (Appendix E p38), clears UAD1043 and is delivered as IMAGE "LegalDescription".
+- **E-161 (important):** 8 required dwelling-unit rules (bedrooms, baths, quality and condition
+  ratings, defects…) never fired. The H-1 tokenizer swallowed a ")" and `selects` was over-applied.
+  Fixed and validated on all 12 samples (`tests/test_rule_parsing.py`).
+- **T-1056:** the inspector's **Add to <section>** list names every add control in the current
+  section by its table ("Row: Site Influence") and opens it (`tests/test_add_list.py`).
+- Next: T-1057 Show/Hide optional sections (stash, schema-valid both ways); then rebuild the installer.
+
 ### 2026-10-09 (later) -- WinTOTAL-inspired editor features; a shipped CSS break fixed (T-1051..T-1054, T-270; E-155..E-157)
 - The owner uploaded 36 screenshots of their WinTOTAL UAD 3.6 (`Competitors 3.6 software features pics/`;
   they hold **real case data**: keep them out of anything that ships; `.vercelignore` excludes them).
@@ -238,11 +250,8 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   and desktop alike.
 - Desktop installer rebuilt as **1.1.0** (`downloads/desktop/`). Full suite 807 passed, 9 skipped.
 - Next (in TASKS.md):
-  - T-1056 section Add list;
-  - T-1057 Show/Hide optional sections (stash, schema-valid both ways);
-  - T-1058 Include in Rent Schedule per unit;
-  - T-1060 legal description photo. A-1 3.031.2 is an IMAGE with ImageCategoryType
-    "LegalDescription"; it needs the exhibit path to write that category, and B-1's print placement.
+  - T-1056, T-1058, T-1060: done 2026-10-10 (above);
+  - T-1057 Show/Hide optional sections (stash, schema-valid both ways).
   Rebuild the installer after shipped changes (`git add` first, then `python desktop/build.py`, then
   commit `downloads/desktop/`).
 

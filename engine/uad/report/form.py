@@ -5970,6 +5970,7 @@ td.mk-fatal,td.mk-warn{outline-offset:-1.5pt}
 /* how much of a comment's length is used (A-1 / XSD maximum) */
 .txcb .certx{margin-left:4pt;color:#8a1c1c;cursor:pointer;font-weight:700}
 .txcb .certx:hover{color:#d92d20}
+.addflash{outline:2pt solid #1d6ce0!important;outline-offset:1pt;transition:outline-color .6s}
 td.v.neg > span{color:#b42318!important}
 td.v.pos > span{color:#067647!important}
 .lencount{position:absolute;z-index:98;padding:1pt 4pt;background:#231f20;color:#fff;

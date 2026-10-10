@@ -3087,3 +3087,24 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     mode "+ Attach the legal description as an image" (`.ldadd`) appears when
     there is none.
   - Remove and rename use the existing DELETE/PATCH /images.
+- T-1056 built: the inspector's "Add to <section>" list (WinTOTAL row 6).
+  - The frame (`collectAdds` in flow.py EDIT_JS) lists every Add control:
+    `.exadd`, `.compadd`, `.nuadd`, `.rmadd`, `.ldadd`, each table's
+    `tr.newrow`, and the open certification line. Each entry carries its
+    `data-secn` and is named by its table's heading ("Row: Site Influence",
+    "Add Exhibit — Site Exhibits").
+  - The parent (`renderAdds` in index.html) shows the current section's
+    entries. A click sends `add-go`; the frame scrolls there, flashes the
+    control and opens it.
+  - Trap: headings in the paginated page are `div.blk.solid > div.h1 > span`,
+    not `.blk.h1`. `headingFor` reads the inner `.h1 > span:first-child` /
+    `.h2`.
+  - Trap: a pick cell opens on **mousedown**, not click, and any scroll shuts
+    an open list. `addGo` therefore waits 120 ms after `scrollIntoView`, then
+    dispatches mousedown for `.v.pick` and the room controls, and click() for
+    everything else.
+  - Test: `tests/test_add_list.py` (Chromium, sf1 sample: Site's five row
+    labels plus the exhibit, and add-go opens the new row's list). Chromium
+    e2e against the dev server: the list follows the rail
+    (Site → Dwelling Exterior).
+- Next: T-1057 Show/Hide optional sections.

@@ -1924,7 +1924,7 @@ EDIT_JS = """
   function typeInCell(td){
     shutEditor(); shutMenu(); shut();
     var sp=cellSpan(td), before=sp.textContent;
-    var shownEmpty=/^[\u2014\-]?$/.test(before.trim());
+    var shownEmpty=/^[\u2014-]?$/.test(before.trim());
     td.classList.add('ginl');
     sp.contentEditable='true'; sp.spellcheck=false;
     if(shownEmpty) sp.textContent='';
@@ -2380,7 +2380,63 @@ EDIT_JS = """
     var m=e.data||{};
     if(m.uad==='marks'){ guideCache={}; mark(m.items,m.on); }   // a new review: guidance is asked again
     if(m.uad==='insert') insertText(m.text||'');
+    if(m.uad==='add-go') addGo(m.i);
   });
+  /* ------------------------------------------------- the "Add" list
+     Every place the report takes another line -- an exhibit, a comparable, a
+     room, a row at the foot of a table, the next certification -- listed for
+     the side panel by section (WinTOTAL's per-section "+ Add" buttons), so
+     the appraiser can see what can be added and go straight to it. */
+  var ADDS=[];
+  function headingFor(el){
+    var b=el.closest('.blk');
+    for(var n=0;b&&n<40;n++){
+      var p=b.previousElementSibling;
+      if(!p){ var pg=b.closest('.page'); pg=pg&&pg.previousElementSibling;
+        while(pg&&!pg.querySelector('.blk')) pg=pg.previousElementSibling;
+        p=pg?[].slice.call(pg.querySelectorAll('.blk')).pop():null; }
+      b=p;
+      var hd=b&&b.querySelector(':scope > .h1 > span:first-child, :scope > .h2');
+      if(hd){
+        var t=(hd.textContent||'').replace(/[(]continued[)]/i,'').trim();
+        if(t) return t;
+      }
+    }
+    return '';
+  }
+  function collectAdds(){
+    ADDS=[]; var out=[];
+    [].forEach.call(document.querySelectorAll(".exadd,.compadd,.nuadd,.rmadd,.ldadd,tr.newrow,[data-route^='certifications/']"),function(el){
+      if(el.matches("[data-route^='certifications/']")&&(el.textContent||'').trim()) return;   // only the open line
+      var host=el.closest('[data-secn]'), secn=host?Number(host.dataset.secn):0;
+      var h=headingFor(el), label;
+      if(el.matches('tr.newrow')) label='Row: '+(h||'table');
+      else if(el.matches("[data-route^='certifications/']"))
+        label=el.dataset.route.indexOf('Supervisor')>0?'Supervisory appraiser certification':'Additional appraiser certification';
+      else{
+        label=(el.textContent||'').replace(/^[+] */,'').trim();
+        if(el.matches('.exadd,.rmadd')&&h) label+=' \u2014 '+h;
+      }
+      ADDS.push(el); out.push({i:ADDS.length-1,secn:secn,label:label});
+    });
+    tell({uad:'adds',items:out});
+  }
+  function addGo(i){
+    var el=ADDS[i]; if(!el||!el.isConnected) return;
+    el.scrollIntoView({block:'center'});
+    el.classList.add('addflash'); setTimeout(function(){ el.classList.remove('addflash'); },1400);
+    var target=el.matches('tr.newrow')?el.querySelector('[contenteditable],.v'):el;
+    if(!target) return;
+    // after the scroll has fired (a scroll shuts any open list); a pick list
+    // and the room controls open on mousedown, everything else on click
+    setTimeout(function(){
+      if(target.isContentEditable){ target.focus(); return; }
+      if(target.matches('.v.pick,'+ROOM_SEL))
+        target.dispatchEvent(new MouseEvent('mousedown',{bubbles:true,cancelable:true,view:window}));
+      else target.click();
+    },120);
+  }
+  setTimeout(collectAdds,200);
   /* ------------------------------------------------- adjustment colours
      A negative adjustment or net total reads red, a positive one green, in
      the editor only (WinTOTAL colours its net adjustment; the printed form

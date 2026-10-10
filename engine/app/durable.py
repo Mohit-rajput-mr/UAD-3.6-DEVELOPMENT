@@ -231,6 +231,31 @@ class Durable:
                                     "application/zip")
             self._etags[case_id] = etag
 
+    # ---------------------------------------------------------- outputs
+    # What a case produces rather than holds -- the PDF a browser's layout was
+    # drawn into, a built package -- is kept beside the bundle, never inside it
+    # (the bundle is rewritten on every change), one current copy per name.
+    def put_output(self, case_id: str, name: str, data: bytes, content_type: str,
+                   *, replace: str = "") -> None:
+        """Keep ``name``; with ``replace`` (a name prefix), drop the older
+        outputs that share it, so one current version is kept.  The newest is
+        written before any old one goes, so a reader always finds one."""
+        if not self.on:
+            return
+        self.backend.put(f"cases/{case_id}/out/{name}", data, content_type)
+        if replace:
+            prefix = f"cases/{case_id}/out/{replace}"
+            stale = [b["url"] for b in self.backend.list(prefix)
+                     if b.get("url") and b.get("pathname") != f"cases/{case_id}/out/{name}"]
+            if stale:
+                self.backend.delete(stale)
+
+    def get_output(self, case_id: str, name: str) -> bytes | None:
+        if not self.on:
+            return None
+        status, data, _ = self.backend.get(f"cases/{case_id}/out/{name}")
+        return data if status == 200 else None
+
     def forget(self, case_id: str) -> None:
         if not self.on:
             return

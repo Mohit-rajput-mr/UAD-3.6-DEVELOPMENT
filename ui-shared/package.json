@@ -1,0 +1,25 @@
+{
+  "name": "uad36-ui-shared",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Screens shared by the web and desktop editions of UAD 3.6 Form Filler (decision D2, _work/DESKTOP_REBUILD_PLAN.md). Built output is committed under engine/app/ui/, so neither Vercel nor the desktop build needs Node.",
+  "type": "module",
+  "scripts": {
+    "build:sketch": "vite build --config vite.sketch.config.ts",
+    "build": "npm run build:sketch",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "konva": "10.7.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-konva": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "typescript": "6.0.3",
+    "vite": "8.3.1"
+  }
+}

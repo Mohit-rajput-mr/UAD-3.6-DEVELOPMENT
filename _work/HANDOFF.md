@@ -3153,6 +3153,130 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - Next: from WinTOTAL's inventory, the remaining **todo** rows in
   knowledge/competitors/WINTOTAL_UAD36.md; a real-Windows check of 1.2.0.
 
+## 2026-10-10 (later) -- current position: the live site makes the PDF and the ZIP (B5, T-1033; E-163, E-164)
+- The live site (Vercel, no Chromium) answered 503 for `report.pdf`, so
+  `package.zip` failed with it: no deliverable could leave the live site.
+- Built `engine/uad/report/pdfdraw.py`:
+  - `DISPLAY_JS` runs in the laid-out pages: glyph x per character, baseline
+    per run (a probe in the same face), boxes and borders (pseudo-element
+    bars, collapsed table borders), pictures (object-fit, clip) and the SVG
+    ticks, in points.
+  - `write` draws the PDF with fontTools, Pillow and zlib (embedded subset
+    TrueType with ToUnicode, TJ placement).
+  - `check_text` checks the words against the server's own pages.
+- API: `POST /cases/{id}/report.pdf` (gzip allowed).
+  - The server's pages for the key come from the shared layout, or are
+    rebuilt from the browser's numbers (`flow.trusted`). The PDF is kept at
+    `_render/pdf/<key>.pdf|.html` and in the shared store
+    (`Durable.put_output`).
+  - With no server layout, `GET report.pdf` serves it (`?part=n` for
+    pieces) or answers 409 `{draw:true}`.
+  - The package uses it (`_build_package`). `POST /cases/{id}/package` plus
+    `GET /package/part/{n}?sha=` hand the ZIP over in 3.5 MB parts.
+- Editor: on a host without server layout (`GET /api/host` serverLayout
+  false), Open PDF and Export ZIP run `drawPdf`: hidden preview frame,
+  display script, POST, parts. Server-layout hosts (local, Docker, desktop)
+  keep the plain links and Chromium printing.
+- Evidence:
+  - All 12 D-1 samples vs Chromium's PDF of the same pages: same pages, same
+    characters per page, glyphs within 0.01 pt across and 0.13 pt down,
+    every picture.
+  - `tests/test_client_pdf.py`, 12 tests: 3 samples vs Chromium; scaled
+    preview invariance; forgery refused; writer units; e2e editor with
+    `browser.server_layout` forced False (draw 20 pages, parts, 422/409
+    refusals, ZIP in parts holding the same PDF, state exported).
+  - Manual e2e against `app/main.py` with `URAR_CLIENT_LAYOUT=1`: draw in
+    5.5 s, `report.pdf` 200.
+- E-164, a trap worth knowing: `app/ui/vault.js` treats any 409 with
+  `"stale": true` as "this server copy is behind". It restores the case,
+  and the restore deletes the case folder. The PDF route says `changed`.
+  Never use `stale` in a case route's answer for anything else.
+- Not verified: the live site itself (this container cannot open
+  vercel.app). The owner should click Open PDF and Export ZIP there once
+  `main` carries this.
+- Known limits (CATALOG E-163):
+  - Geometry is the browser's.
+  - SVG `<img>` charts are raster in this PDF.
+  - Characters outside the report faces and the fallback are named, not
+    drawn.
+- Next:
+  - Confirm on the live site.
+  - From the open list: B15 gated-field hints (T-258), B16 photo category,
+    page counts vs D-1 (harness gaps), T-120 / T-121 fidelity items.
+
+
+## 2026-10-10 (night) -- current position: worksheet inside the comparable grid (T-1085, partial)
+- **What it is:** the owner's addendum, which replaces DR §11. The full
+  text is in `_work/owner/2026-10-10-desktop-rebuild/ADDENDUM_11_WORKSHEET_IN_GRID.md`.
+- **Engine (`uad/worksheet.py`):**
+  - `sheet()` lines carry `s_val`/`c_val`/`manual`/`instance`, and the sheet
+    carries `whole` (the building gate on a 2-4 unit report);
+  - `apply()` remembers the worksheet in `worksheets.json`; `recalc()`
+    rewrites applied rows after any save, except manual lines;
+  - `marks()` feeds the grid icons and the hover math, and now also marks a
+    cell typed on a row no worksheet has filled. Basis strings use "×".
+- **Positional per-unit adjustments (`comparables.py`):** the k-th
+  COMPARABLE_ADJUSTMENT of a type is the k-th row drawn. This fixed SF3's
+  ADU row, which now prints $(1,840) $18,560 $(6,440) as the official PDF does.
+- **API:**
+  - set_field, set_fields, the table write and the grid PATCH return
+    `recalculated`;
+  - the grid PATCH takes `instance` and marks a typed adjustment manual;
+  - POST /worksheets/{kind} takes `release`.
+- **Editor:**
+  - flow.py adds the icons, Ctrl+J, hover math, manual styling, the
+    recalc flash, and Esc → `ws-esc`;
+  - index.html has the docked drawer (`worksheets()`, `wsCompute`, `WSD`)
+    and replaces the modal.
+- **Evidence:** tests/test_worksheet.py passes 22/22, including the
+  preview, PDF, XML and ZIP. The JS syntax is checked with node.
+- **Not verified yet:** the Chromium e2e and harness 12 (the owner stopped
+  the run to ask about Vercel).
+- **Vercel facts measured 2026-10-10:**
+  - account rajputmohit192003@gmail.com (Hobby), project `uad36-form-filler`;
+  - Blob store `uad36-cases` holds 26 MB in 74 files, and there are 8
+    deployments;
+  - so the "10 GB" the owner sees is not this app's storage. It is likely
+    data transfer, or the account's other 16 projects. Usage could not be
+    read: billing/charges answered 404 on Hobby.
+- **Leftovers on that project:** env vars `UAD_P1..P7` and `UAD_BUILD`, a
+  temporary patch that is no longer needed. The owner can delete them; no
+  agent has.
+
+### 2026-10-10 (night, later) -- live on the new Vercel account; phase 1 relaunched; a parallel session
+- **Live:** project `uad` on the owner's new Vercel account
+  (mohitrajputjigsaw04, team `mohit-teams`) at https://uad36.vercel.app.
+  `uad.vercel.app` belongs to another account. Blob store `uad-cases`.
+  Production = this branch, deployed by API (dpl_GMrAr83…); pushes make
+  previews. See DEPLOY_VERCEL.md "Live deployments".
+- **Why "too big for Vercel":** the Python function bundles the whole
+  checkout (1.3 GB tracked). The old project only built because a
+  build-script env var pruned folders. `.vercelignore` now keeps ~84 MB, so
+  a fresh project builds as is. Verified by serving exactly the kept files
+  with VERCEL=1, and by the live deploy, READY in 70 s.
+- **T-1085:** `tests/test_worksheet_grid.py` (Chromium) passes 3/3. Harness
+  12 and the full suite are running. After them, `tasks.py done T-1085`.
+- **Phase 1** (T-509, T-506, T-1070, T-1071, T-1072, T-416, T-1074, T-125,
+  T-1066):
+  - the first workflow was cut off by the session restart; only T-509 and
+    T-506 had partial work. Their diffs are saved in
+    `.claude/wf-partial/partial-{1,2}.patch` (git-ignored);
+  - relaunched as workflow `dr-phase1-bugfix` (one agent per task, each in
+    its own worktree, patches to `.claude/wf-partial/<T-id>.patch`). The
+    lead applies, reviews and records.
+- **Parallel session:** branch `claude/keen-turing-3r26sh` (from main
+  c6b6c62) did T-120 utility row headers, T-121, T-919 footer IDs and the
+  dwelling front photos. Its ids collide with this branch:
+  - **T-125** = their "MH1/MH2 site exhibit titles" vs this branch's DR §8
+    checkbox centring;
+  - **E-163** = their "second building's front photo" vs this branch's
+    "live site could not make the PDF".
+  Whoever merges renumbers the incoming one (next free T-/E- number) and
+  fixes its references. The branches overlap in api.py, flow.py, form.py
+  and delivery.py: expect conflicts there.
+- **T-1085 done:** full suite 891 passed / 0 failed / 10 skipped (11 min,
+  with test_worksheet_grid run on its own: 3/3), harness 88/0/20.
+
 ## 2026-10-10 (later) -- registry triage; utility rows, dwelling fronts, footer IDs (T-120, E-167, T-919, T-1017)
 - Status: committed to `claude/keen-turing-3r26sh` only, **not merged to
   main**. Every new test passes, and the full suite (848 passed, 9 skipped)

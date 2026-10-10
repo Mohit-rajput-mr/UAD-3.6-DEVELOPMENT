@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UAD 3.6 Form Filler</title>
-<link rel="icon" href="/ui/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/ui/brand/app-icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/ui/brand/app-icon-192.png">
 <script>
 /* the theme is set before the first paint, so the page never flashes the other one */
 try{document.documentElement.dataset.theme=localStorage.getItem('uad-theme')||'dark';}
@@ -73,8 +74,11 @@ header{display:flex;align-items:center;gap:22px;padding:0 24px;min-width:0;z-ind
   border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 86%,transparent);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 header .brand{display:flex;align-items:center;gap:12px;flex:none}
-header .logo{width:32px;height:32px;display:grid;place-items:center;background:var(--ink);color:var(--bg);
-  font:800 16px/1 var(--sans);letter-spacing:-.04em;flex:none}
+header .logo{width:32px;height:32px;display:grid;place-items:center;flex:none}
+/* the owner's mark (brand/): white on the dark theme, black on the light one */
+.logo img{height:30px;width:auto;display:block}
+.logo .mk-b,[data-theme=light] .logo .mk-w{display:none}
+[data-theme=light] .logo .mk-b{display:block}
 header .bt b{display:block;font:500 17px/1 var(--sans);letter-spacing:-.02em}
 header .bt span{display:block;margin-top:4px;font:500 9px/1 var(--sans);letter-spacing:.2em;color:var(--muted)}
 header .backhome{appearance:none;width:34px;height:34px;flex:none;cursor:pointer;display:grid;place-items:center;padding:0;
@@ -322,37 +326,61 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .secsw-note{margin:0;font-size:12px;line-height:1.45;color:var(--muted)}
 .railitem.off .t{color:var(--faint)}
 .railitem.off .t:after{content:'left out';display:block;font:500 10px/1.2 var(--mono);letter-spacing:.04em;color:var(--faint)}
-/* SmartAdjust */
-.sadj-ov{position:fixed;inset:0;z-index:88;display:flex;align-items:center;justify-content:center;padding:24px 16px;
-  background:rgba(5,5,6,.66);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.sadj{width:min(980px,100%);max-height:100%;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line-3);
-  box-shadow:var(--shadow-lg);color:var(--ink)}
-.sadj-h{display:flex;justify-content:space-between;gap:16px;padding:18px 22px 14px;border-bottom:1px solid var(--line-2)}
-.sadj-h h3{margin:8px 0 4px;font:500 22px/1.1 var(--sans);letter-spacing:-.03em}
-.sadj-h p{margin:0;color:var(--muted);font-size:13px;max-width:68ch}
-.sadj-x{width:44px;border:0;border-left:1px solid var(--line-2);background:none;color:var(--muted);font:300 24px/1 var(--sans);cursor:pointer}
-.sadj-b{overflow:auto;padding:14px 22px 18px}
-.sadj-p{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px;font-size:13px;color:var(--ink-2)}
-.sadj-p select{margin-left:8px;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:inherit}
-.sadj-p details{flex:1;min-width:260px}.sadj-p summary{cursor:pointer;color:var(--ink)}
-.sadj-rates{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:10px}
-.sadj-rates label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:var(--muted)}
-.sadj-rates input{background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:500 13px/1 var(--mono)}
-.sadj-rb{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}.sadj-rb small{color:var(--faint)}
-.sadj-c{border:1px solid var(--line-2);margin-bottom:12px}
-.sadj-ch{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line-2);background:var(--bg-2);font-size:13px}
-.sadj-ch span{font:500 12px/1.4 var(--mono);color:var(--ink-2)}.sadj-ch span.over{color:var(--warn)}
-.sadj table{width:100%;border-collapse:collapse;font-size:12.5px}
-.sadj th{text-align:left;font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding:8px 12px;border-bottom:1px solid var(--line)}
-.sadj td{padding:7px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
-.sadj td.num,.sadj th.num{text-align:right;font-family:var(--mono)}
-.sadj td.num small{display:block;font:400 10.5px/1.3 var(--sans);color:var(--faint)}
-.sadj td.neg{color:var(--bad)}.sadj td.pos{color:var(--good)}
-.sadj tr.same td{opacity:.55}
-.sadj td input{width:16px;height:16px;accent-color:var(--ink)}
-.sadj-f{display:flex;align-items:center;gap:10px;justify-content:flex-end;padding:12px 22px;border-top:1px solid var(--line-2)}
-.sadj-n{margin-right:auto;font-size:12.5px;color:var(--muted)}
-.sadj-wait{color:var(--muted);font-size:13px;padding:6px 12px}
+/* Adjustment worksheet drawer (DR §11, addendum): docked where the inspector
+   sits, so the report and its grid stay in view while rates are typed. */
+:root{--ws-w:min(470px,44vw)}
+.wsdock{display:none}
+body.ws-open main#shell:not(.launcher){grid-template-columns:var(--rail-w) minmax(0,1fr) var(--ws-w)}
+body.ws-open aside.inspector{display:none}
+body.ws-open .wsdock{display:flex;flex-direction:column;min-height:0;background:var(--bg-2);border-left:1px solid var(--line);overflow:hidden}
+.wsd-h{display:flex;justify-content:space-between;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--line-2)}
+.wsd-h h3{margin:6px 0 2px;font:500 18px/1.15 var(--sans);letter-spacing:-.02em}
+.wsd-h p{margin:0;color:var(--muted);font-size:12px;line-height:1.4}
+.wsd-h .tick{display:inline-block;margin-top:4px;padding:2px 7px;border:1px solid var(--good);color:var(--good);font:500 11px/1.3 var(--mono)}
+.wsd-x{width:36px;height:36px;flex:none;border:0;background:none;color:var(--muted);font:300 24px/1 var(--sans);cursor:pointer}
+.wsd-x:hover{color:var(--ink)}
+.wsd-b{flex:1;min-height:0;overflow:auto;padding:12px 16px 16px;scrollbar-width:thin}
+.wsd-back{appearance:none;border:0;background:none;color:var(--muted);font:500 12px/1 var(--sans);padding:0;margin-bottom:8px;cursor:pointer}
+.wsd-back:hover{color:var(--ink)}
+.wsd-prof{display:flex;flex-direction:column;gap:8px;padding:10px 12px;margin-bottom:12px;border:1px solid var(--line-2);background:var(--surface);font-size:12.5px;color:var(--ink-2)}
+.wsd-prof .row{display:flex;gap:8px;align-items:center}
+.wsd-prof select{flex:1;min-width:0;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:inherit}
+.wsd-prof summary{cursor:pointer;color:var(--muted)}
+.wsd-rates{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.wsd-rates label{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--muted)}
+.wsd-rates input{background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:5px 7px;font:500 12.5px/1 var(--mono)}
+.wsd-rb{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.wsd-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.wsd-row{appearance:none;display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;padding:9px 6px;border:0;
+  border-bottom:1px solid var(--line);background:none;color:var(--ink-2);font:inherit;font-size:13px;cursor:pointer}
+.wsd-row:hover{background:var(--hover);color:var(--ink)}
+.wsd-row small{color:var(--faint);font:500 10.5px/1.3 var(--mono)}
+.wsd-row .wsi-l{color:#2f9e5b;font:600 13px/1 var(--sans)}
+.wsd-row.on .wsi-l{font:500 11px/1.3 var(--mono)}
+.wsd-params{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px;font-size:11.5px;color:var(--muted)}
+.wsd-params label{display:flex;flex-direction:column;gap:4px;min-width:0}
+.wsd-params input,.wsd-params select{width:100%;min-width:0;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:500 13px/1 var(--mono)}
+.wsd-subj{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 10px;font-size:12px;color:var(--muted)}
+.wsd-subj b{color:var(--ink);font:500 12.5px/1.3 var(--mono)}
+.wsd-c{border:1px solid var(--line-2);margin-bottom:10px;background:var(--surface)}
+.wsd-ch{display:flex;justify-content:space-between;gap:10px;padding:7px 10px;border-bottom:1px solid var(--line-2);font-size:12.5px}
+.wsd-ch span{font:500 11.5px/1.4 var(--mono);color:var(--ink-2)}
+.wsd-c table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12px}
+.wsd-c th{text-align:right;font:500 9.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding:6px 8px;border-bottom:1px solid var(--line)}
+.wsd-c th:first-child{text-align:left}
+.wsd-c td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wsd-c td:first-child{text-align:left;font-family:var(--sans);color:var(--muted)}
+.wsd-c td.neg{color:var(--bad)}.wsd-c td.pos{color:var(--good)}
+.wsd-c td input.wsd-amt{width:100%;text-align:right;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:3px 5px;font:500 12px/1 var(--mono)}
+.wsd-c tr.man td input.wsd-amt{border-color:#c98a1a;box-shadow:inset 0 0 0 1px #c98a1a}
+.wsd-c tr.basis td{padding-top:0;font:400 10.5px/1.35 var(--sans);color:var(--faint);text-align:left;white-space:normal}
+.wsd-man{display:inline-flex;gap:6px;align-items:center;color:#c98a1a;font:500 10.5px/1.3 var(--mono)}
+.wsd-man button{appearance:none;border:0;background:none;padding:0;color:var(--ink-2);text-decoration:underline;font:inherit;cursor:pointer}
+.wsd-cf{display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;padding:6px 10px;font:500 11px/1.4 var(--mono);color:var(--ink-2)}
+.wsd-cf .over{color:var(--warn)}
+.wsd-f{display:flex;align-items:center;gap:8px;justify-content:flex-end;padding:10px 16px;border-top:1px solid var(--line-2)}
+.wsd-n{margin-right:auto;font-size:12px;color:var(--muted)}
+.wsd-wait{color:var(--muted);font-size:13px;padding:6px 0}
 /* comment library */
 .libpop{position:fixed;z-index:90;width:min(420px,calc(100vw - 16px));max-height:70vh;overflow:auto;background:var(--surface);
   border:1px solid var(--line-3);box-shadow:var(--shadow-lg);padding:12px 14px 14px}
@@ -645,7 +673,7 @@ header .stat span:before,.rf-agent-dot,.rf-busy:before,.verdict:before,.glass .g
 <header>
   <div class="brand">
     <button class="backhome" id="backhome" hidden title="All reports">&lsaquo;</button>
-    <span class="logo">U</span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span>
+    <span class="logo"><img class="mk-w" src="/ui/brand/mark-white.png" alt=""><img class="mk-b" src="/ui/brand/mark-black.png" alt=""></span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span>
   </div>
   <div class="topline"><nav class="nav" id="nav"></nav><span class="crumb" id="crumb"></span>
     <span class="spacer"></span><span class="stat" id="stat"></span></div>
@@ -763,7 +791,7 @@ function setNav(items){
   const first=n.querySelector('a'); if(first) first.classList.add('on');
 }
 async function showLaunch(){
-  S.caseId=null; setRoute(false);
+  wsClose(); S.caseId=null; setRoute(false);
   $('#shell').className='launcher';
   const back=$('#backhome'); if(back) back.hidden=true;
   setCrumb(''); const st=$('#stat'); if(st) st.innerHTML='';
@@ -1116,7 +1144,7 @@ function followRoute(){
 }
 window.addEventListener('popstate',followRoute);
 async function openCase(id){
-  stopWarm();
+  stopWarm(); wsClose();
   const fresh=(route()||{}).caseId!==id;
   if(fresh) S.section=null;          // a report opened from the list starts at its top
   S.caseId=id; S.view='report';
@@ -1475,7 +1503,8 @@ function drawReportForm(w){
       <label class="rf-toggle" title="Outline every field an H-1 rule faults: fatal in red, warning in amber"><input type="checkbox" id="rf-marks">
         Show problems</label>
       <button class="addbtn" id="rf-lib" title="Saved comments: insert one where the caret is (Alt+1 … Alt+9)">Comment library</button>
-      <button class="addbtn" id="rf-sadj" title="Sales grid adjustments suggested from your rate profile; you choose which to apply">SmartAdjust</button>
+      <button class="addbtn" id="rf-sadj" title="Adjustment worksheets: $ per unit, threshold and rounding for a grid row; OK fills every comparable">Worksheets</button>
+      <button class="addbtn" id="rf-sketch" title="Draw the floor plan: areas, walls, rooms; Save to report fills the unit areas, levels and rooms and adds the Sketch exhibit">Sketch</button>
       <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
         Mark what was imported</label>
       <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
@@ -1521,7 +1550,8 @@ function drawReportForm(w){
     postMarks();
   };
   $('#rf-lib').onclick=e=>{ e.stopPropagation(); commentLibrary($('#rf-lib')); };
-  $('#rf-sadj').onclick=()=>smartAdjust();
+  $('#rf-sadj').onclick=()=>worksheets();
+  $('#rf-sketch').onclick=()=>openSketch();
   $('#rf-gaps').onchange=e=>{
     const f=$('#rf'); if(!f||!f.contentWindow)return;
     f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
@@ -2388,84 +2418,391 @@ function renderAdds(){
   });
 }
 
-/* ------------------------------------------------ SmartAdjust (T-1059)
-   Adjustments suggested from the owner's rate profile (uad/smartadjust.py),
-   each beside what the grid holds now.  Nothing is written until the
-   appraiser applies the ones ticked; blanks are ticked to start with, a figure
-   the appraiser already entered is not. */
-const money=n=>(n<0?'$('+Math.abs(n).toLocaleString()+')':'$'+n.toLocaleString());
-const RATE_LABEL={gla:'GLA $/sq ft',gla_threshold:'GLA threshold sq ft',site:'Site $/sq ft',site_threshold:'Site threshold sq ft',
-  age:'Age $/year',age_threshold:'Age threshold years',bedroom:'Bedroom $',half_bath:'Half bath $',basement:'Finished basement $',
-  garage:'Garage space $',outdoor:'Outdoor living $',exposure:'Exposure (share of list)',design:'Design step $',cooling:'Cooling $'};
-function smartAdjust(){
-  const old=$('#sadj-ov'); if(old) old.remove();
-  const ov=document.createElement('div'); ov.id='sadj-ov'; ov.className='sadj-ov';
-  ov.innerHTML=`<div class="sadj" role="dialog" aria-modal="true" aria-label="Suggested adjustments">
-    <div class="sadj-h"><div><span class="k">SmartAdjust</span><h3>Suggested adjustments</h3>
-      <p>From your rate profile, against what each comparable's grid prints. Tick what to apply; nothing changes until you do.</p></div>
-      <button class="sadj-x" aria-label="Close">&times;</button></div>
-    <div class="sadj-b"><p class="sadj-wait">Calculating…</p></div>
-    <div class="sadj-f"><span class="sadj-n"></span><button class="btn" id="sadj-cancel">Close</button><button class="btn primary" id="sadj-go" disabled>Apply</button></div></div>`;
+/* ------------------------------------------------ Sketch (DR §9)
+   The built-in sketch panel (ui/sketch, built from ui-shared/src/sketch) over
+   the whole window.  Save to report there writes the units' areas, levels and
+   rooms and the Sketch exhibit; the report then lays itself out again. */
+function openSketch(){
+  if($('#sketch-ov')) return;
+  const ov=document.createElement('div'); ov.id='sketch-ov'; ov.className='sketch-ov';
+  ov.innerHTML=`<iframe title="Sketch" src="/ui/sketch/index.html?case=${S.caseId}"></iframe>`;
   document.body.appendChild(ov);
-  const body=ov.querySelector('.sadj-b'), go=ov.querySelector('#sadj-go');
-  const close=()=>{ ov.remove(); document.removeEventListener('keydown',onKey); };
-  const onKey=e=>{ if(e.key==='Escape') close(); };
-  document.addEventListener('keydown',onKey);
-  ov.querySelector('.sadj-x').onclick=close; ov.querySelector('#sadj-cancel').onclick=close;
-  ov.addEventListener('mousedown',e=>{ if(e.target===ov) close(); });
-  let prof='', rates={}, data=null;
-  const count=()=>{ const n=body.querySelectorAll('input.pick:checked').length;
-    ov.querySelector('.sadj-n').textContent=n?n+' to apply':'Nothing ticked'; go.disabled=!n;
-    go.textContent=n?'Apply '+n:'Apply'; };
-  async function load(){
-    body.innerHTML='<p class="sadj-wait">Calculating…</p>';
-    const q=new URLSearchParams({profile:prof,rates:JSON.stringify(rates)});
-    const r=await api('/cases/'+S.caseId+'/smartadjust?'+q);
-    if(!r||!r.ok){ body.innerHTML=`<p class="sadj-wait">${esc((r&&r.data&&r.data.detail)||'The suggestions could not be worked out.')}</p>`; return; }
-    data=r.data; prof=data.profile.name; draw();
-  }
-  function draw(){
-    const p=data.profile;
-    const head=`<div class="sadj-p"><label>Profile <select id="sadj-prof">${data.profiles.map(n=>`<option${n===p.name?' selected':''}>${esc(n)}</option>`).join('')}</select></label>
-      <details><summary>Rates</summary><div class="sadj-rates">${data.rate_keys.map(k=>`<label><span>${esc(RATE_LABEL[k]||k)}</span>
-        <input type="number" step="any" data-rate="${k}" value="${p[k]}"></label>`).join('')}</div>
-        <div class="sadj-rb"><small>${esc(p.source)}</small><button class="btn" id="sadj-re">Recalculate</button></div></details></div>`;
-    const cols=data.comparables.map(c=>{
-      const pct=v=>c.price?(100*v/c.price).toFixed(1)+'%':'—';
-      const rows=c.lines.map((l,i)=>{
-        const blank=!l.current||l.current==='$0';
-        const same=l.current.replace(/[$,()]/g,'')===String(Math.abs(l.amount))&&((l.current.indexOf('(')>=0)===(l.amount<0));
-        const tick=l.amount!==0&&blank;
-        return `<tr class="${same?'same':''}"><td>${esc(l.label)}</td><td>${esc(l.subject)}</td><td>${esc(l.comparable)}</td>
-          <td class="num ${l.amount<0?'neg':l.amount>0?'pos':''}" title="${esc(l.basis)}">${money(l.amount)}<small>${esc(l.basis)}</small></td>
-          <td class="num">${esc(l.current||'—')}</td>
-          <td><input type="checkbox" class="pick" data-c="${c.number}" data-t="${esc(l.adjust_type)}" data-a="${l.amount}" ${same?'disabled':tick?'checked':''}
-            aria-label="Apply ${esc(l.label)} to comparable ${c.number}"></td></tr>`;}).join('');
-      // the customary guidelines: net within 15 %, gross within 25 % of the price
-      const over=c.price&&(Math.abs(c.net)>.15*c.price||c.gross>.25*c.price);
-      return `<section class="sadj-c"><div class="sadj-ch"><b>Comparable #${c.number}</b>
-        <span${over?' class="over" title="Past the 15 % net / 25 % gross guideline: support it in the narrative"':''}>Net ${money(c.net)} · ${pct(c.net)} &nbsp; Gross ${money(c.gross)} · ${pct(c.gross)}${over?' &nbsp;! over guideline':''}</span></div>
-        ${c.lines.length?`<table><thead><tr><th>Row</th><th>Subject</th><th>Comparable</th><th class="num">Suggested</th><th class="num">In the grid</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
-          :'<p class="sadj-wait">Nothing in this profile applies to this comparable.</p>'}</section>`;
-    }).join('');
-    body.innerHTML=head+(cols||'<p class="sadj-wait">This report has no sales comparables yet.</p>');
-    body.querySelector('#sadj-prof').onchange=e=>{ prof=e.target.value; rates={}; load(); };
-    body.querySelector('#sadj-re').onclick=()=>{ rates={}; body.querySelectorAll('input[data-rate]').forEach(i=>{ rates[i.dataset.rate]=i.value; }); load(); };
-    body.querySelectorAll('input.pick').forEach(i=>i.onchange=count);
-    count();
-  }
-  go.onclick=async()=>{
-    const picks=[...body.querySelectorAll('input.pick:checked')].map(i=>({comparable:+i.dataset.c,adjust_type:i.dataset.t,amount:+i.dataset.a}));
-    if(!picks.length) return;
-    go.disabled=true; go.textContent='Applying…';
-    const r=await api('/cases/'+S.caseId+'/smartadjust',{method:'POST',body:JSON.stringify({picks})});
-    if(!r||!r.ok){ toast('Not applied: '+((r&&r.data&&r.data.detail)||'unknown error'),6000); count(); return; }
-    toast(r.data.written+' adjustment'+(r.data.written===1?'':'s')+' applied',3000);
-    S.dirty=true; checkFresh('form'); reviewSoon(); load();
+  const f=ov.querySelector('iframe');
+  const on=e=>{
+    if(e.source!==f.contentWindow||!e.data) return;
+    if(e.data.uad==='sketch-saved'){ toast('Sketch saved to the report — the areas, levels, rooms and the Sketch exhibit',4000); S.dirty=true; checkFresh('form'); reviewSoon(); refreshMedia(); }
+    if(e.data.uad==='sketch-close'){ window.removeEventListener('message',on); ov.remove(); }
   };
-  load();
+  window.addEventListener('message',on);
 }
 
+/* ------------------------------------------------ Adjustment worksheets (DR §11)
+   Owner's addendum 2026-10-10: the worksheet lives in the comparable grid.
+   Every adjustable row carries a green (+) (flow.py, "adjustment worksheets");
+   it, Ctrl+J in the row, or the Worksheets list opens this drawer, docked
+   where the inspector sits so the grid stays in view.  Rate, threshold and
+   rounding; every comparable's subject value, comparable value, difference,
+   $ adjustment, line % and adjusted price, worked out here as the numbers are
+   typed (the same arithmetic as uad/worksheet.line_amount); OK writes all
+   comparables, Cancel or Esc writes nothing.  A line typed by hand is the
+   appraiser's ("manual") until "Use worksheet" hands it back.  Rate profiles:
+   the two built in (18 North, Multi-family) plus the appraiser's own, kept in
+   this browser / desktop profile; the last one used opens next time.  A
+   signed report opens read only. */
+const money=n=>(n<0?'$('+Math.abs(n).toLocaleString()+')':'$'+n.toLocaleString());
+const WS_RATE_LABEL={gla:'GLA $/sq ft',gla_threshold:'GLA threshold sq ft',site:'Site $/sq ft',site_threshold:'Site threshold sq ft',
+  age:'Age $/year',age_threshold:'Age threshold years',bedroom:'Bedroom $',full_bath:'Full bath $ (half = ½)',
+  garage:'Garage space $',basement:'Finished basement $ (present)',outdoor:'Outdoor living $',exposure:'Market exposure % of list',
+  design:'Design step $',cooling:'Cooling $',gla_nonstd:'Above grade nonstandard $/sq ft',gla_unfin:'Above grade unfinished $/sq ft',
+  below_fin:'Below grade finished $/sq ft',below_nonstd:'Below grade nonstandard $/sq ft',below_unfin:'Below grade unfinished $/sq ft',
+  rounding:'Rounding step $'};
+const WS_STORE={
+  get(k,d){ try{ const v=localStorage.getItem('uad-ws-'+k); return v?JSON.parse(v):d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem('uad-ws-'+k,JSON.stringify(v)); }catch(e){} }};
+const WS_SHORT={'sq ft':'sf',year:'yr',bedroom:'bed','full bath':'bath',space:'space',present:'',basement:'',step:'step'};
+const wsNum=t=>{ const m=/-?\d[\d,]*(?:\.\d+)?|-?\.\d+/.exec(String(t||'')); return m?parseFloat(m[0].replace(/,/g,'')):null; };
+const wsRound=(x,step)=>{ step=step||1; return Math.floor(x/step+0.5)*step; };
+const wsG=n=>(+n).toLocaleString('en-US',{maximumFractionDigits:10});
+function wsRateLabel(k,rate){
+  if(k.percent) return `${wsG(rate)}% of list`;
+  const u=WS_SHORT[k.unit]??k.unit; return '$'+wsG(rate)+(u?'/'+u:'');
+}
+/** One line: (subject − comparable) × rate; 0 at or under the threshold (the
+ *  building's difference on a 2-4 unit report); null when nothing differs. */
+function wsLineAmount(k,diff,p,building){
+  if(!diff) return [null,'no difference'];
+  const gate=Math.abs(building!=null?building:diff);
+  if(p.threshold&&gate<=p.threshold) return [0,`within the ${wsG(p.threshold)} ${k.unit} threshold`];
+  let basis=`${diff>0?'+':''}${wsG(diff)} ${k.unit} × $${wsG(p.rate)}`;
+  if(p.rounding&&p.rounding!=1) basis+=`, rounded to ${wsG(p.rounding)}`;
+  return [wsRound(diff*p.rate,p.rounding),basis];
+}
+/** The whole sheet at these numbers: what OK would write, comparable by comparable. */
+function wsCompute(d,p,overrides,released){
+  const k=d.kind;
+  return d.comparables.map(c=>{
+    const diffs=c.lines.map(l=>l.diff), building=diffs.reduce((t,v)=>t+(v||0),0);
+    const lines=c.lines.map(l=>{
+      const key=c.number+'_'+l.unit, cur=wsNum(l.current);
+      let amount, basis, manual=l.manual&&!released.has(key);
+      if(key in overrides){ amount=overrides[key]; basis='typed by the appraiser'; manual=true; }
+      else if(manual){ amount=l.current?Math.round(cur||0):null; basis='typed by the appraiser — the worksheet leaves it as it is'; }
+      else if(k.percent){
+        amount=l.at_list&&l.listed?-wsRound(l.listed*p.rate/100,1):null;
+        basis=l.at_list&&l.listed?`−${wsG(p.rate)}% of the list price $${Math.round(l.listed).toLocaleString()}`:'a settled sale: no market exposure adjustment';
+      }else if(l.diff==null){ amount=null; basis='no value to compare'; }
+      else{ [amount,basis]=wsLineAmount(k,l.diff,p,d.whole?building:null); if(amount==null&&cur) amount=0; }
+      return Object.assign({},l,{key,amount,basis,manual,manualBefore:l.manual});
+    });
+    const contrib=lines.map(l=>l.amount!=null?l.amount:(wsNum(l.current)||0));
+    const mine=lines.reduce((t,l)=>t+(l.amount||0),0);
+    const net=c.others_net==null?null:c.others_net+contrib.reduce((t,v)=>t+v,0);
+    const gross=c.others_gross==null?null:c.others_gross+contrib.reduce((t,v)=>t+Math.abs(v),0);
+    return Object.assign({},c,{lines,net,gross,
+      linePct:c.price?Math.round(mine/c.price*1000)/10:null,
+      adjusted:c.price&&net!=null?c.price+net:null});
+  });
+}
+function wsFrame(msg){ const f=$('#rf'); try{ f&&f.contentWindow&&f.contentWindow.postMessage(msg,'*'); }catch(_){} }
+var WSD=null;                                     // the open drawer's state
+function wsClose(){
+  if(!WSD) return;
+  document.removeEventListener('keydown',WSD.onKey,true);
+  WSD=null; document.body.classList.remove('ws-open');
+  const dock=$('#wsdock'); if(dock) dock.innerHTML='';
+  wsFrame({uad:'ws-focus',type:''});
+}
+async function worksheets(openKind,opts){
+  if(!S.caseId) return;
+  let dock=$('#wsdock');
+  if(!dock){ dock=document.createElement('aside'); dock.id='wsdock'; dock.className='wsdock';
+    dock.setAttribute('aria-label','Adjustment worksheet'); $('#shell').appendChild(dock); }
+  if(WSD) document.removeEventListener('keydown',WSD.onKey,true);
+  document.body.classList.add('ws-open');
+  dock.innerHTML=`<div class="wsd-h"><div><span class="k">Adjustment worksheet</span><h3 id="wsd-title">Worksheets</h3>
+      <p id="wsd-sub"></p><span id="wsd-tick"></span></div>
+      <button class="wsd-x" aria-label="Close the worksheet (Esc)" title="Close (Esc)">&times;</button></div>
+    <div class="wsd-b" id="wsd-b"><p class="wsd-wait">Loading…</p></div>
+    <div class="wsd-f"><span class="wsd-n" id="wsd-note"></span>
+      <button class="btn" id="wsd-cancel">Cancel</button><button class="btn primary" id="wsd-ok" disabled>OK — fill all comparables</button></div>`;
+  const st=WSD={kind:null,params:null,overrides:{},released:new Set(),data:null,info:null,inst:(opts&&opts.inst)||0,
+    onKey:e=>{ if(e.key==='Escape'&&WSD===st&&!document.querySelector('.uadd-back')){ e.preventDefault(); wsClose(); } }};
+  document.addEventListener('keydown',st.onKey,true);
+  const body=dock.querySelector('#wsd-b'), ok=dock.querySelector('#wsd-ok'), note=dock.querySelector('#wsd-note');
+  dock.querySelector('.wsd-x').onclick=wsClose; dock.querySelector('#wsd-cancel').onclick=wsClose;
+  const r=await api(`/cases/${S.caseId}/worksheets`);
+  if(WSD!==st) return;
+  if(!r||!r.ok){ body.innerHTML=`<p class="wsd-wait">${esc((r&&r.data&&r.data.detail)||'The worksheets could not be read.')}</p>`; return; }
+  const info=st.info=r.data, signed=info.signed;
+  const own=WS_STORE.get('profiles',{});                       // the appraiser's own profiles
+  const all=()=>{
+    const out=Object.fromEntries(info.profiles.map(p=>[p.name,p]));
+    if(info.last_profile&&info.last_profile.name&&!out[info.last_profile.name]) out[info.last_profile.name]=info.last_profile;
+    return Object.assign(out,own);
+  };
+  let profName=WS_STORE.get('last','')||(info.last_profile&&info.last_profile.name)||info.default;
+  if(!all()[profName]) profName=info.default;
+  let prof=Object.assign({},all()[profName]);
+  const kindsBy=Object.fromEntries(info.kinds.map(k=>[k.key,k]));
+  const typeKind=t=>{ const ks=info.kinds.filter(k=>k.adjust_type===t); return (ks.find(k=>info.applied[k.key])||ks[0]||{}).key; };
+  note.textContent=signed?'Signed report: read only, nothing is written.':'';
+  const profBlock=()=>`<div class="wsd-prof"><div class="row"><span>Profile</span><select id="wsd-prof" aria-label="Rate profile">${Object.keys(all()).map(n=>`<option${n===profName?' selected':''}>${esc(n)}</option>`).join('')}</select>
+      <button class="btn" id="wsd-all" ${signed?'disabled':''} title="Apply every rate this profile carries to every comparable">Adjust all</button></div>
+    <details><summary>Rates in this profile</summary><div class="wsd-rates">${info.rate_keys.map(k=>`<label><span>${esc(WS_RATE_LABEL[k]||k)}</span>
+      <input type="number" step="any" data-rate="${k}" value="${prof[k]??0}"></label>`).join('')}</div>
+      <div class="wsd-rb"><button class="btn" id="wsd-saveprof">Save as profile…</button>${own[profName]?'<button class="btn" id="wsd-delprof">Delete</button>':''}</div></details></div>`;
+  function wireProf(){
+    body.querySelector('#wsd-prof').onchange=e=>{ profName=e.target.value; prof=Object.assign({},all()[profName]); WS_STORE.set('last',profName);
+      if(st.kind) fromProfile(); render(); };
+    body.querySelectorAll('input[data-rate]').forEach(i=>i.oninput=()=>{ prof[i.dataset.rate]=parseFloat(i.value)||0; if(st.kind){ fromProfile(); drawSheet(true); } });
+    body.querySelector('#wsd-saveprof').onclick=async()=>{
+      const name=await UADDialog.prompt('A name for these rates.',{title:'Save rate profile',placeholder:'e.g. Suburban SF 2026',ok:'Save'});
+      if(!name) return; own[name]=Object.assign({},prof,{name}); WS_STORE.set('profiles',own); profName=name; WS_STORE.set('last',name); render(); toast('Profile saved'); };
+    const del=body.querySelector('#wsd-delprof');
+    if(del) del.onclick=()=>{ delete own[profName]; WS_STORE.set('profiles',own); profName=info.default; prof=Object.assign({},all()[profName]); if(st.kind) fromProfile(); render(); };
+    body.querySelector('#wsd-all').onclick=async()=>{
+      if(!await UADDialog.confirm(`Every rate in “${profName}” is applied to every comparable. Rows the profile has no rate for, and adjustments typed by hand, are left alone.`,{title:'Adjust all',ok:'Adjust all'})) return;
+      const res=await api(`/cases/${S.caseId}/worksheets/all`,{method:'POST',body:JSON.stringify({profile:prof})});
+      if(!res||!res.ok){ toast('Not applied: '+((res&&res.data&&(res.data.error||res.data.detail))||'unknown error'),6000); return; }
+      WS_STORE.set('last',profName);
+      const n=res.data.applied.reduce((t,a)=>t+a.written,0);
+      toast(`${n} adjustment line(s) written from ${profName}`,4000);
+      afterWrite(); wsClose(); };
+  }
+  function fromProfile(){
+    const k=st.data.kind;
+    st.params={rate:+(prof[k.rate]||0),threshold:k.threshold?+(prof[k.threshold]||0):0,rounding:+(prof.rounding||1)||1};
+  }
+  function render(){ if(st.kind&&st.data) drawSheet(); else drawList(); }
+  function drawList(){
+    dock.querySelector('#wsd-title').textContent='Worksheets';
+    dock.querySelector('#wsd-sub').textContent='Every adjustable row of the sales grid. Pick one, or use Adjust all with a profile.';
+    dock.querySelector('#wsd-tick').innerHTML='';
+    ok.disabled=true;
+    body.innerHTML=profBlock()+`<div class="wsd-list">${info.kinds.map(k=>{ const a=info.applied[k.key];
+      return `<button class="wsd-row${a?' on':''}" data-k="${k.key}"><span>${esc(k.title)}${k.per_unit?' <small>per unit</small>':''}</span>
+        <span class="wsi-l">${a?'✓ '+esc(a.label||''):'⊕'}</span></button>`; }).join('')||'<p class="wsd-wait">This report’s sales grid has no row a worksheet adjusts.</p>'}</div>`;
+    wireProf();
+    body.querySelectorAll('.wsd-row').forEach(b=>b.onclick=()=>open(b.dataset.k,0));
+  }
+  async function open(key,inst){
+    st.kind=kindsBy[key]; st.inst=inst||0; st.overrides={}; st.released=new Set(); st.data=null;
+    if(!st.kind){ drawList(); return; }
+    dock.querySelector('#wsd-title').textContent=st.kind.title;
+    body.innerHTML='<p class="wsd-wait">Working it out…</p>';
+    const applied=info.applied[key];
+    const q=new URLSearchParams({profile:JSON.stringify(prof),
+      rate:applied?applied.rate:'',threshold:applied?applied.threshold:'',rounding:applied?applied.rounding:''});
+    const res=await api(`/cases/${S.caseId}/worksheets/${key}?${q}`);
+    if(WSD!==st||st.kind.key!==key) return;
+    if(!res||!res.ok){ body.innerHTML=`<p class="wsd-wait">${esc((res&&res.data&&res.data.detail)||'This worksheet could not be worked out.')}</p>`; ok.disabled=true; return; }
+    st.data=res.data; st.params=Object.assign({},res.data.params);
+    wsFrame({uad:'ws-focus',type:st.kind.adjust_type,scroll:!(opts&&opts.fromGrid)});
+    drawSheet();
+  }
+  function drawSheet(keepInputs){
+    const d=st.data, k=d.kind, p=st.params, applied=info.applied[k.key];
+    dock.querySelector('#wsd-sub').textContent=k.note||'(Subject − comparable) × rate; $0 at or under the threshold; rounded to the step.';
+    dock.querySelector('#wsd-tick').innerHTML=applied?`<span class="tick" title="Applied ${esc(applied.at||'')}">✓ ${esc(applied.label||'')}</span>`:'';
+    const comps=wsCompute(d,p,st.overrides,st.released);
+    const pct=(v,c)=>c.price&&v!=null?(Math.round(1000*v/c.price)/10)+'%':'—';
+    const fmtDiff=v=>v==null?'—':(v>0?'+':'')+wsG(Math.round(v*100)/100);
+    const cards=comps.map(c=>{
+      const rows=c.lines.map(l=>{
+        const typed=l.key in st.overrides;
+        return `<tr class="${l.manual?'man':''}"><td title="${esc(l.label||'')}">${esc(l.label||(d.units>1?'Line '+l.unit:''))}</td>
+          <td title="${esc(l.subject||'')}">${esc(k.percent?'':(d.subject[l.unit-1]||{}).value||'—')}</td>
+          <td title="${esc(l.comparable||'')}">${esc(l.comparable||'—')}</td>
+          <td>${k.percent?'':fmtDiff(l.diff)}</td>
+          <td><input class="wsd-amt" data-key="${l.key}" inputmode="numeric" aria-label="Adjustment, comparable ${c.number}${l.label?' '+esc(l.label):''}"
+            value="${typed?st.overrides[l.key]:(l.amount==null?'':l.amount)}" placeholder="—" ${signed?'readonly':''} title="${esc(l.basis)}"></td></tr>
+          <tr class="basis"><td colspan="5">${l.manual?`<span class="wsd-man">manual${!signed?` · <button data-rel="${l.key}" data-inst="${l.instance}" data-comp="${c.number}">Use worksheet</button>`:''}</span> `:''}${esc(l.basis)}${l.current?` · now ${esc(l.current)}`:''}</td></tr>`;
+      }).join('');
+      const over=c.price&&c.net!=null&&(Math.abs(c.net)>.15*c.price||c.gross>.25*c.price);
+      return `<section class="wsd-c" data-comp="${c.number}"><div class="wsd-ch"><b>Comparable ${c.number}</b>
+          <span>${c.price?esc((c.at_list?'List ':'Price ')+money(Math.round(c.price))):''}</span></div>
+        <table><colgroup><col style="width:17%"><col style="width:22%"><col style="width:22%"><col style="width:14%"><col style="width:25%"></colgroup>
+          <thead><tr><th></th><th>Subject</th><th>Comp</th><th>Diff.</th><th>$ Adj.</th></tr></thead><tbody>${rows}</tbody></table>
+        <div class="wsd-cf"><span>Line ${c.linePct==null?'—':c.linePct+'%'}</span><span>Adjusted ${c.adjusted==null?'—':money(Math.round(c.adjusted))}</span>
+          <span${over?' class="over" title="Past the 15 % net / 25 % gross guideline: support it in the narrative"':''}>Net ${pct(c.net,c)} · Gross ${pct(c.gross,c)}</span></div></section>`;
+    }).join('');
+    const subj=d.subject.map(s=>`<span>${s.label?esc(s.label)+': ':'Subject: '}<b>${esc(s.value||'—')}</b></span>`).join('');
+    const params=`<div class="wsd-params">
+        <label>${k.percent?'% of list':'$ / '+esc(k.unit)}<input type="number" step="any" id="wsd-rate" value="${p.rate}"></label>
+        <label>Threshold${k.percent?'':' ('+esc(k.unit)+')'}<input type="number" step="any" id="wsd-thr" value="${p.threshold}" ${k.percent?'disabled':''}></label>
+        <label>Rounding<select id="wsd-round" ${k.percent?'disabled':''}>${[...new Set([1,10,50,100,250,500,1000,+p.rounding])].sort((a,b)=>a-b).map(v=>`<option value="${v}"${v==p.rounding?' selected':''}>${v}</option>`).join('')}</select></label></div>`;
+    if(keepInputs&&body.querySelector('#wsd-cards')){
+      body.querySelector('#wsd-cards').innerHTML=cards;
+      if(document.activeElement&&document.activeElement.id!=='wsd-rate') body.querySelector('#wsd-rate').value=p.rate;
+      if(document.activeElement&&document.activeElement.id!=='wsd-thr') body.querySelector('#wsd-thr').value=p.threshold;
+    }else{
+      body.innerHTML=`<button class="wsd-back" id="wsd-back">‹ All worksheets</button>`+params+profBlock()+
+        `<div class="wsd-subj">${subj}</div><div id="wsd-cards">${cards}</div>`;
+      body.querySelector('#wsd-back').onclick=()=>{ st.kind=null; st.data=null; wsFrame({uad:'ws-focus',type:''}); drawList(); };
+      const num=el=>{ const v=parseFloat(el.value); return isNaN(v)?0:v; };
+      body.querySelector('#wsd-rate').oninput=e=>{ st.params.rate=num(e.target); drawSheet(true); };
+      body.querySelector('#wsd-thr').oninput=e=>{ st.params.threshold=num(e.target); drawSheet(true); };
+      body.querySelector('#wsd-round').onchange=e=>{ st.params.rounding=num(e.target)||1; drawSheet(true); };
+      wireProf();
+    }
+    body.querySelectorAll('.wsd-amt').forEach(i=>i.onchange=()=>{
+      const v=i.value.trim(); const n=v?Math.round(parseFloat(v.replace(/[$,\s]/g,'').replace(/^\((.*)\)$/,'-$1'))):NaN;
+      if(!v) delete st.overrides[i.dataset.key]; else if(!isNaN(n)) st.overrides[i.dataset.key]=n;
+      drawSheet(true); });
+    body.querySelectorAll('button[data-rel]').forEach(b=>b.onclick=()=>{ delete st.overrides[b.dataset.rel]; st.released.add(b.dataset.rel); drawSheet(true); });
+    ok.disabled=signed;
+  }
+  function afterWrite(){
+    S.dirty=true; checkFresh('form'); reviewSoon();
+    wsFrame({uad:'ws-marks'});
+  }
+  ok.onclick=async()=>{
+    if(!st.kind||!st.data||signed) return;
+    ok.disabled=true; ok.textContent='Writing…';
+    const release=[];
+    st.data.comparables.forEach(c=>c.lines.forEach(l=>{ if(st.released.has(c.number+'_'+l.unit)) release.push({comp:c.number,instance:l.instance}); }));
+    const res=await api(`/cases/${S.caseId}/worksheets/${st.kind.key}`,{method:'POST',
+      body:JSON.stringify({rate:st.params.rate,threshold:st.params.threshold,rounding:st.params.rounding,profile:prof,
+        overrides:st.overrides,release})});
+    ok.textContent='OK — fill all comparables';
+    if(!res||!res.ok){ toast('Not written: '+((res&&res.data&&(res.data.error||res.data.detail))||'unknown error'),6000); ok.disabled=false; return; }
+    WS_STORE.set('last',profName);
+    toast(`${st.kind.title}: ${res.data.written} line(s) written at ${res.data.rate_label}`,3000);
+    afterWrite(); wsClose();
+  };
+  const want=openKind&&kindsBy[openKind]?openKind:(opts&&opts.type?typeKind(opts.type):'');
+  if(want) open(want,st.inst); else drawList();
+}
+window.addEventListener('message',e=>{
+  const m=e.data||{}; const f=$('#rf');
+  if(!f||e.source!==f.contentWindow) return;
+  if(m.uad==='ws-esc'){ if(WSD&&!document.querySelector('.uadd-back')) wsClose(); return; }
+  if(m.uad!=='worksheet') return;
+  worksheets(m.kind||'',{type:m.type||'',inst:m.inst||0,fromGrid:true});
+});
+
+/* ------------------------------------------------ PDF without a server browser
+   A serverless host (the live site) has no Chromium to print with.  This
+   browser lays the report out in a hidden frame, the same way it lays out the
+   preview, reports where it drew every glyph, rule and picture
+   (pdfdraw.DISPLAY_JS, served at /api/report/display.js), and the server draws
+   the PDF from that after checking the words against its own pages.  Files
+   over 4.5 MB (the most a serverless function answers) come down in parts. */
+let HOST=null;
+async function hostInfo(){
+  if(!HOST){ const r=await apiRaw('/host'); HOST=(r&&r.ok)?r.data:{serverLayout:true}; }
+  return HOST;
+}
+async function gzipped(text){
+  if(!window.CompressionStream) return null;
+  try{ const st=new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'));
+    return await new Response(st).arrayBuffer(); }catch(e){ return null; }
+}
+async function fetchParts(url,parts,size,type){
+  if(parts<=1){ const r=await fetch(url); if(!r.ok) throw new Error('download failed ('+r.status+')'); return await r.blob(); }
+  const out=[];
+  for(let n=0;n<parts;n++){
+    const r=await fetch(url+(url.includes('?')?'&':'?')+'part='+n);
+    if(!r.ok) throw new Error('part '+(n+1)+' of '+parts+' failed ('+r.status+')');
+    out.push(await r.blob());
+  }
+  const b=new Blob(out,{type});
+  if(size&&b.size!==size) throw new Error('the download arrived incomplete');
+  return b;
+}
+function pdfFrame(caseId){
+  return new Promise((done,fail)=>{
+    const f=document.createElement('iframe');
+    f.setAttribute('aria-hidden','true'); f.tabIndex=-1;
+    f.style.cssText='position:fixed;left:-12000px;top:0;width:900px;height:1400px;border:0';
+    let data=null, timer=null;
+    const end=()=>{ window.removeEventListener('message',on); clearTimeout(timer); };
+    const on=e=>{
+      if(e.source!==f.contentWindow||!e.data) return;
+      if(e.data.uad==='layout-data') data=e.data;
+      if(e.data.uad==='frame-ready'&&!e.data.stale){ end(); done({f,key:e.data.key,data}); }
+    };
+    window.addEventListener('message',on);
+    timer=setTimeout(()=>{ end(); f.remove(); fail(new Error('the report took too long to lay out')); },180000);
+    f.src=`/api/cases/${caseId}/preview?t=${Date.now()}`;
+    document.body.appendChild(f); WARM_FRAMES.add(f.contentWindow);
+  });
+}
+async function drawPdf(again){
+  const id=S.caseId;
+  toast('Drawing the PDF from this browser’s layout…',4000);
+  barStart();
+  let fr=null;
+  try{
+    const [src,laid]=await Promise.all([fetch('/api/report/display.js').then(r=>r.text()),pdfFrame(id)]);
+    fr=laid;
+    const w=fr.f.contentWindow, d=w.document;
+    if(d.fonts) await d.fonts.ready;
+    await Promise.all(Array.from(d.images).map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r;})));
+    const display=w.eval('('+src+')()');
+    const body=JSON.stringify({key:fr.key,display,
+      measured:fr.data&&fr.data.key===fr.key?fr.data.measured:undefined,
+      caps:fr.data&&fr.data.key===fr.key?fr.data.caps:undefined});
+    const zipped=await gzipped(body);
+    const r=await fetch(`/api/cases/${id}/report.pdf`,{method:'POST',
+      headers:zipped?{'Content-Type':'application/json','Content-Encoding':'gzip'}:{'Content-Type':'application/json'},
+      body:zipped||body});
+    const res=await r.json().catch(()=>({error:'the server did not answer ('+r.status+')'}));
+    if(!r.ok&&!(r.status===409&&res.changed&&!again))
+      throw new Error(res.error||res.detail||('the PDF could not be drawn ('+r.status+')'));
+    if(r.ok){
+      const lost=Object.keys(res.missing_glyphs||{});
+      if(lost.length) UADDialog.alert(`These characters have no glyph in the report's typefaces and are left out of the PDF: ${lost.join(' ')}`,
+        {title:'Some characters could not be drawn',eyebrow:'PDF'});
+      return res;
+    }
+  }finally{ barStop(); if(fr) fr.f.remove(); }
+  return await drawPdf(true);           // the report changed while it was laid out: once more
+}
+async function openPdf(){
+  // opened now, inside the click, so a pop-up blocker lets it through
+  const win=window.open('','_blank');
+  try{
+    const res=await drawPdf();
+    const blob=await fetchParts(`/api/cases/${S.caseId}/report.pdf`,res.parts,res.size,'application/pdf');
+    const url=URL.createObjectURL(blob);
+    if(win) win.location=url; else { const a=document.createElement('a'); a.href=url; a.download='appraisal.pdf'; a.click(); }
+    toast(`PDF drawn — ${res.pages} pages`);
+    setTimeout(()=>URL.revokeObjectURL(url),120000);
+  }catch(e){
+    if(win) win.close();
+    UADDialog.alert(e.message,{title:'The PDF could not be made',eyebrow:'PDF'});
+  }
+}
+async function exportZip(){
+  try{
+    await drawPdf();
+    barStart();
+    let r;
+    try{ r=await apiRaw(`/cases/${S.caseId}/package`,{method:'POST',body:'{}'}); }finally{ barStop(); }
+    if(!r||!r.ok){
+      const d=(r&&r.data)||{};
+      await UADDialog.alert([d.error||'The package could not be built.'].concat(d.reasons||[]).join('\n'),
+        {title:'This case cannot be exported yet',eyebrow:'Delivery package'});
+      return;
+    }
+    const p=r.data;
+    const parts=[];
+    for(let n=0;n<p.parts;n++){
+      const q=await fetch(`/api/cases/${S.caseId}/package/part/${n}?sha=${p.sha256}`);
+      if(!q.ok) throw new Error('part '+(n+1)+' of '+p.parts+' failed ('+q.status+')');
+      parts.push(await q.blob());
+    }
+    const zip=new Blob(parts,{type:'application/zip'});
+    if(zip.size!==p.size) throw new Error('the package arrived incomplete');
+    const url=URL.createObjectURL(zip), a=document.createElement('a');
+    a.href=url; a.download=p.name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),120000);
+    toast('Package exported'); refresh();
+  }catch(e){
+    UADDialog.alert(e.message,{title:'The package could not be exported',eyebrow:'Delivery package'});
+  }
+}
 function fillSignoff(b){
   if(!b)return;
   const rep=S.review,c=S.case;
@@ -2488,7 +2825,7 @@ function fillSignoff(b){
       <button class="btn block" id="rev">Move to review</button>
       <button class="btn block primary" id="sign" ${ready&&c.can.includes('signed')?'':'disabled'}>Sign off</button>
       <a class="btn block" id="zip" href="/api/cases/${S.caseId}/package.zip">Export ZIP</a>
-      <a class="btn block" href="/api/cases/${S.caseId}/report.pdf" target="_blank">Open PDF</a>
+      <a class="btn block" id="openpdf" href="/api/cases/${S.caseId}/report.pdf" target="_blank">Open PDF</a>
       <a class="btn block" href="/api/cases/${S.caseId}/mismo.xml" target="_blank">Open MISMO XML</a>
       <a class="btn block" href="/api/cases/${S.caseId}/portable.xml" download
          title="The whole appraisal in one UAD 3.6 XML, pictures inside: import it anywhere this software runs">Download portable XML</a>
@@ -2536,6 +2873,11 @@ function fillSignoff(b){
   });
 
   $$('#back').onclick=showLaunch;
+  /* Where the server cannot print (the live site), the PDF is drawn from this
+     browser's layout and both downloads come in parts (owner's test B5). */
+  hostInfo();
+  $$('#openpdf').onclick=e=>{ if(!HOST||HOST.serverLayout) return; e.preventDefault(); openPdf(); };
+  $$('#zip').onclick=e=>{ if(!HOST||HOST.serverLayout) return; e.preventDefault(); exportZip(); };
   for(const [id,kind,what] of [['#mkru','update','Restricted Appraisal Update'],['#mkcr','completion','Completion Report']]){
     const bt=$$(id); if(!bt) continue;
     bt.onclick=async()=>{

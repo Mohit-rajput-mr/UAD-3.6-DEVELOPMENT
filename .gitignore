@@ -38,3 +38,7 @@ _work/cases/
 desktop/.cache/
 desktop/build/
 desktop/dist/
+
+# agent worktrees (local only)
+.claude/worktrees/
+.claude/wf-partial/

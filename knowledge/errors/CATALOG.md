@@ -2438,6 +2438,122 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   Leaving a section out now also moves its other answers out of the XML.
   The D-1 samples that don't print it hold only the question.
 
+### E-163 -- The live site could not make the PDF, so it could not deliver at all (2026-10-10)
+- Symptom: on Vercel `report.pdf` answered 503 and `package.zip` failed with
+  it (owner's section test B5). Every layout already ran in the appraiser's
+  browser; only the print step needed Chromium on the server.
+- Cause: the PDF came only from `flow.to_pdf` (Playwright / CDP). A
+  serverless function cannot start a browser, and a browser page cannot print
+  to a file a script can read.
+- Mechanism: `uad/report/pdfdraw.py`.
+  - `DISPLAY_JS` runs in the laid-out pages and reports, in points, each
+    glyph's x (per character, so kerning and letter spacing are the
+    browser's own), each run's baseline (measured with a probe in the same
+    face), filled boxes and borders (collapsed table borders straddle the
+    line; `::before`/`::after` bars), pictures with object-fit and clip, and
+    the inline SVG ticks. Computed lengths are calibrated against the
+    screen, because browsers disagree on whether CSS zoom is included; a
+    page shown smaller is drawn at full size while it is read.
+  - `write` makes the PDF with fontTools, Pillow and zlib only. The report's
+    own TTFs are embedded and subset (Type 0 / CIDFontType2, Identity-H,
+    ToUnicode), glyphs are placed with TJ adjustments, JPEG goes in as is,
+    an 8-bit RGB PNG passes through with PNG predictors, and EXIF
+    orientation is honoured.
+  - `check_text`: the server's own pages for the key (the shared layout, or
+    rebuilt from the browser's numbers with `flow.trusted`) must contain
+    every character the browser drew, page by page and in order. Pictures
+    are read from the case's own asset files. A small inline data: picture
+    is accepted only when the server's page holds that exact URI. An SVG
+    picture (a market chart) is rasterised by the browser at 4 px/pt.
+  - API: `POST /cases/{id}/report.pdf` (gzip allowed) keeps the PDF under
+    `_render/pdf/<key>` and in the shared store
+    (`Durable.put_output`, `cases/<id>/out/pdf-<key>.zip`). On a host
+    without server layout, `GET report.pdf` and the package use it, or answer
+    409 `draw`. `POST /cases/{id}/package` plus
+    `GET .../package/part/{n}` and `report.pdf?part=n` hand files over in
+    3.5 MB parts: a serverless function answers at most 4.5 MB.
+  - Editor: Open PDF and Export ZIP lay the preview out in a hidden frame,
+    run the script, post it and fetch the parts (`drawPdf`, `openPdf`,
+    `exportZip` in `index.html`).
+- Validated: all 12 D-1 samples match Chromium's own PDF of the same pages:
+  same page count, the same characters on every page, glyphs within 0.01 pt
+  across and 0.13 pt down (Chromium snaps baselines to its 3x grid), and
+  every picture. Pixel difference is below 0.1 % per page; SF2's speckled
+  plat map resamples to 1.3 %. `tests/test_client_pdf.py` (12 tests) runs 3
+  samples against Chromium, plus forgery refusals, the writer's units, and
+  the editor end to end with the server forced to the no-Chromium path: draw,
+  parts, refusals, and the ZIP holding that same PDF.
+- Known limits:
+  - The browser decides geometry. The words are the server's, but their
+    placement is the appraiser's own browser's.
+  - A character outside the report faces and the Source Sans 3 fallback is
+    left out and named to the appraiser.
+  - SVG `<img>` pictures are raster in the PDF (vector in Chromium's).
+
+### E-164 -- A refusal marked "stale" made the case vault restore the case over itself (2026-10-10)
+- Symptom: found while building E-163. After a refused PDF request, the
+  drawn PDF had vanished from the case folder.
+- Cause: `app/ui/vault.js` reads any 409 whose body says `"stale": true` as
+  "this server copy holds an older revision". It then restores the case from
+  the browser's copy, `replace=True`, which deletes the case folder first.
+  The new route's "the report changed while it was laid out" answer used
+  that same word.
+- Mechanism: the route answers `"changed": true`. A comment at `_draw_pdf`
+  says why. The editor retries once on `changed`.
+- Test: `tests/test_client_pdf.py::test_the_editor_draws_the_pdf_and_exports_the_zip_in_parts`
+  (a refused request leaves the drawn PDF in place).
+- Rule: in an API answer to a vault-wrapped request (any `/api/cases/<id>`
+  route), `stale` is reserved for the vault protocol.
+
+### E-165 -- A 2-4 unit / ADU report showed the first unit's adjustment on every unit's line (2026-10-10)
+- Symptom: on SF3, the ADU's Finished Area Above Grade line printed the
+  dwelling's adjustments. The official PDF prints $(1,840), $18,560 and
+  $(6,440) there.
+- Cause: `comparables.build` read a per-unit row's adjustment with
+  `_nth_adjustment(..., ob)`, the outbuilding index, which is 0 for every
+  unit and ADU line. A-1 keeps one COMPARABLE_ADJUSTMENT per type per line,
+  in the order the lines are drawn (units, then ADUs).
+- Mechanism: positional instances. Each expanded row of a type gets
+  `instance` = its running count in drawing order. Reading uses the k-th
+  adjustment of that type, and writing uses
+  `comparables.write_nth_adjustment(prop, type, k, value)`, which creates the
+  preceding blocks and keeps a type's blocks together. The editor sends
+  `instance` (`data-gai`) with every adjustment cell it saves.
+- Test: `tests/test_worksheet.py::test_the_adu_row_reads_its_own_adjustment`
+  and `::test_per_unit_lines_are_positional_as_the_samples_keep_them`.
+
+### E-166 -- Adjustments filled by a worksheet went stale, and a hand-typed one was overwritten (2026-10-10)
+- Symptom (owner's addendum to DR §11): after OK, changing a comparable's
+  area left its adjustment at the old figure. Re-applying a worksheet wrote
+  over amounts the appraiser had typed.
+- Cause: a worksheet was a one-shot write with no memory of its rate, and
+  nothing recorded which cells were the appraiser's own.
+- Mechanism:
+  - `uad/worksheet.py` remembers each applied worksheet (rate, threshold,
+    rounding, profile) in `worksheets.json` beside the case, so it travels
+    with the bundle.
+  - `Store.save_tree` runs `worksheet.recalc`, which recomputes every
+    applied row on the document as it now stands, and every write route
+    returns `recalculated`. The editor lays the page out again and flashes
+    the moved cells.
+  - An adjustment typed in the grid, or in the drawer, is marked manual
+    (`type|comp label|instance`, so it follows the comparable when the
+    comparables are reordered) and is never overwritten. "Use worksheet"
+    releases it.
+  - `marks()` gives the grid its (+) / "✓ $75/sf" icons and each cell's
+    arithmetic as its title.
+- Test:
+  - `tests/test_worksheet.py::test_an_applied_worksheet_follows_its_values_and_spares_a_typed_one`
+    and `::test_the_deliverables_carry_what_the_worksheet_wrote` (preview,
+    PDF, mismo.xml and ZIP);
+  - `tests/test_worksheet_grid.py` (Chromium): icons on SF / condo / 2-4,
+    including new comps and units and after a re-render; drawer preview
+    equals the server; OK, Esc, Ctrl+J; recalc in the grid; signed is read
+    only.
+- Spec note: the UAD 3.6 rental and GRM grids define no adjustment rows (0
+  of 26 / 0 of 14). The icons therefore apply to the sales grid and its
+  per-unit/ADU lines.
+
 ### E-167 -- A second building showed the first building's front photo; an extra front photo never printed (2026-10-10)
 - Symptom 1: D-1 2-4 printed 2-4_Dwelling1Front atop both buildings'
   Dwelling Exterior. Building 2's own 2-4_Dwelling2Front never showed.

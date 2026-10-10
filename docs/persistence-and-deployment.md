@@ -42,7 +42,7 @@ So a reload is instant.
 
 | Target | How | Notes |
 |---|---|---|
-| **Vercel** (live) | Pushing to GitHub `main` deploys production (`api/index.py`, `vercel.json`) | No browser, so layout runs in the user's browser and the PDF is 503. The `UAD_BUILD` env var is the build-time prune step that keeps the function under 225 MB; keep it. See `DEPLOY_VERCEL.md`. |
+| **Vercel** (live) | Pushing to GitHub `main` deploys production (`api/index.py`, `vercel.json`) | No browser, so layout runs in the user's browser and the PDF is drawn from that layout (`uad/report/pdfdraw.py`, E-163); PDF and ZIP download in parts under the 4.5 MB response limit. The `UAD_BUILD` env var is the build-time prune step that keeps the function under 225 MB; keep it. See `DEPLOY_VERCEL.md`. |
 | **Docker** | `docker build -t uad36 . && docker run -p 8765:8765 -v uad36-cases:/data uad36` | Chromium is included, so the server lays out the report and prints the PDF. See `DEPLOY_DOCKER.md`. |
 | **Local** | `python engine/app/main.py` | `http://127.0.0.1:8765` |
 

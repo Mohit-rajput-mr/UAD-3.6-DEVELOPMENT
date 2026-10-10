@@ -1316,7 +1316,11 @@ EDIT_JS = """
   });
   function putJSON(url,body,method){
     return json(url,{method:method||'PUT',headers:{'Content-Type':'application/json'},
-                     body:JSON.stringify(body)});
+                     body:JSON.stringify(body)}).then(function(res){
+      // an applied adjustment worksheet followed the change: show its new figures
+      if(res&&res.recalculated&&res.recalculated.length) tell({uad:'relayout'});
+      return res;
+    });
   }
 
   /* ------------------------------------------------ exhibit boxes (slots)
@@ -1884,6 +1888,7 @@ EDIT_JS = """
             }
             var body=adj?{kind:gkind,adjust_type:adj,value:input.value}
                         :{kind:gkind,data_point:x.dp,value:input.value};
+            if(adj&&td.dataset&&td.dataset.gai) body.instance=Number(td.dataset.gai);
             if(gscope) body.scope=gscope;
             return putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH');
           });
@@ -1968,6 +1973,7 @@ EDIT_JS = """
     var col=Number(td.dataset.gc), fid=td.dataset.gf||'', adj=td.dataset.ga||'';
     var tbl=td.closest('table[data-gk]'), gkind=(tbl&&tbl.dataset.gk)||'sales';
     var body=adj?{kind:gkind,adjust_type:adj,value:typed}:{kind:gkind,data_point:td.dataset.gin,value:typed};
+    if(adj&&td.dataset.gai) body.instance=Number(td.dataset.gai);   // its own unit's adjustment
     if(td.dataset.gs) body.scope=td.dataset.gs;
     sp.textContent=typed; td.classList.add('gsaving'); td.classList.remove('gfail','grey');
     putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH').then(function(res){
@@ -2468,6 +2474,96 @@ EDIT_JS = """
   new MutationObserver(function(){ clearTimeout(tintSoon); tintSoon=setTimeout(tint,150); })
     .observe(document.body,{subtree:true,childList:true,characterData:true});
   tint();
+  /* ------------------------------------- adjustment worksheets (DR §11)
+     Every adjustable row of the sales grid that has a worksheet -- GLA, site,
+     age, beds, baths, garage, the area rows, basement, outdoor living,
+     cooling, design, market exposure, and each unit's line on a 2-4 unit
+     report -- carries a small green (+) in its label, put there whenever the
+     grid is drawn (a new comparable or unit included).  The (+), or Ctrl+J in
+     the row, opens the worksheet beside the report.  An applied row shows a
+     tick and its rate ("$75/sf"); an adjustment cell's title is its
+     arithmetic; one typed by hand is marked manual; one the worksheet just
+     recalculated (a value it rests on changed) flashes once. */
+  var WS={rows:{},cells:{},recalc:null}, wsLast=null;
+  function wsLoad(){
+    if(!document.querySelector('table.grid[data-gk="sales"]')) return;
+    fetch(api+'/worksheets/marks').then(function(r){ return r.ok?r.json():null; })
+      .then(function(d){ if(d){ WS=d; wsMark(); wsFlash(); } }).catch(function(){});
+  }
+  function wsSet(el,prop,val){ if(el[prop]!==val) el[prop]=val; }
+  function wsMark(){
+    document.querySelectorAll('table.grid[data-gk="sales"] tbody tr').forEach(function(tr){
+      var adj=tr.querySelector('td.v.adj[data-ga]'); var lbl=tr.querySelector('td.lbl');
+      if(!adj||!lbl) return;
+      var type=adj.dataset.ga, row=WS.rows&&WS.rows[type];
+      var icon=lbl.querySelector('.wsi');
+      if(!row){ if(icon) icon.remove(); return; }
+      if(!icon){ icon=document.createElement('span'); icon.className='wsi'; icon.setAttribute('role','button'); icon.tabIndex=0; lbl.appendChild(icon); }
+      if(icon.dataset.kind!==row.kind) icon.dataset.kind=row.kind;
+      if(icon.dataset.type!==type) icon.dataset.type=type;
+      var inst=adj.dataset.gai||'0'; if(icon.dataset.inst!==inst) icon.dataset.inst=inst;
+      if(icon.classList.contains('on')!==!!row.applied) icon.classList.toggle('on',!!row.applied);
+      wsSet(icon,'textContent',row.applied?'\u2713 '+row.label:'\u2295');
+      wsSet(icon,'title',row.applied?(row.title+' worksheet at '+row.label+' \u2014 open it (or Ctrl+J)')
+                                    :('Open the '+row.title+' worksheet (or Ctrl+J in this row)'));
+      tr.querySelectorAll('td.v.adj[data-ga]').forEach(function(td){
+        var c=WS.cells&&WS.cells[type+'|'+td.dataset.gc+'|'+(td.dataset.gai||'0')];
+        if(td.classList.contains('wsmanual')!==!!(c&&c.manual)) td.classList.toggle('wsmanual',!!(c&&c.manual));
+        var t=c?(c.manual?'Typed by hand \u2014 the worksheet leaves it as it is':c.basis):'';
+        if(t) wsSet(td,'title',t); else if(td.hasAttribute('title')&&td.dataset.wst) td.removeAttribute('title');
+        if(t) td.dataset.wst='1';
+      });
+    });
+  }
+  function wsFlash(){
+    var r=WS.recalc; if(!r||!r.at) return;
+    var k='uad-wsflash-'+id, seen='';
+    try{ seen=sessionStorage.getItem(k)||''; }catch(e){}
+    if(seen>=r.at) return;
+    try{ sessionStorage.setItem(k,r.at); }catch(e){}
+    if(!seen) return;            // first look at this report: nothing to point at
+    (r.cells||[]).forEach(function(c){
+      var td=document.querySelector('td.v.adj[data-ga="'+c.adjust_type+'"][data-gc="'+c.comp+'"]'+
+        (c.instance?'[data-gai="'+c.instance+'"]':''));
+      if(td){ td.classList.remove('wsflash'); void td.offsetWidth; td.classList.add('wsflash'); }
+    });
+  }
+  function wsOpen(type,inst){
+    var row=WS.rows&&WS.rows[type];
+    tell({uad:'worksheet',kind:row?row.kind:'',type:type||'',inst:Number(inst||0)});
+  }
+  document.addEventListener('click',function(e){
+    var i=e.target.closest&&e.target.closest('.wsi'); if(!i) return;
+    e.preventDefault(); e.stopPropagation(); wsOpen(i.dataset.type,i.dataset.inst);
+  },true);
+  document.addEventListener('keydown',function(e){
+    var i=e.target.closest&&e.target.closest('.wsi');
+    if(i&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); wsOpen(i.dataset.type,i.dataset.inst); return; }
+    if(e.key==='Escape'&&!e.defaultPrevented&&!(e.target.isContentEditable||/^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName||''))){
+      tell({uad:'ws-esc'}); return;          // Esc in the report closes an open worksheet
+    }
+    if((e.ctrlKey||e.metaKey)&&(e.key==='j'||e.key==='J')){
+      e.preventDefault();
+      var at=(document.activeElement&&document.activeElement.closest&&document.activeElement.closest('tr'))||wsLast;
+      var adj=at&&at.querySelector&&at.querySelector('td.v.adj[data-ga]');
+      wsOpen(adj?adj.dataset.ga:'',adj?adj.dataset.gai:0);
+    }
+  });
+  document.addEventListener('focusin',function(e){ var tr=e.target.closest&&e.target.closest('table.grid tr'); if(tr) wsLast=tr; });
+  document.addEventListener('mousedown',function(e){ var tr=e.target.closest&&e.target.closest('table.grid tr'); if(tr) wsLast=tr; });
+  window.addEventListener('message',function(e){
+    var m=e.data||{};
+    if(m.uad==='ws-focus'){
+      document.querySelectorAll('tr.wsrow').forEach(function(t){ t.classList.remove('wsrow'); });
+      if(m.type) document.querySelectorAll('td.v.adj[data-ga="'+m.type+'"]').forEach(function(td){ td.closest('tr').classList.add('wsrow'); });
+      var first=document.querySelector('tr.wsrow'); if(first&&m.scroll) first.scrollIntoView({block:'center',behavior:'smooth'});
+    }
+    if(m.uad==='ws-marks') wsLoad();
+  });
+  var wsSoon=null;
+  new MutationObserver(function(){ clearTimeout(wsSoon); wsSoon=setTimeout(wsMark,180); })
+    .observe(document.body,{subtree:true,childList:true});
+  wsLoad();
   /* --------------------------------------- additional certifications
      x beside a certification removes it (WinTOTAL's Alt+R); the next number
      is always open to type a new one into (uad/certifications.py). */

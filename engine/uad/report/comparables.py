@@ -669,6 +669,52 @@ def write_adjustment(prop: etree._Element, adjust_type: str, value: str):
     return edit.Written("", "ComparableAdjustmentAmount", "", old, text, [])
 
 
+def write_nth_adjustment(prop: etree._Element, adjust_type: str, k: int, value: str):
+    """Set the k-th (0-based) adjustment of a type on one comparable: one per
+    unit, ADU, dwelling or outbuilding the row repeats over, in the order the
+    grid draws them (``build``'s ``instance``). Blocks before it are created
+    empty when missing, so the positions stay as the grid reads them."""
+    from .. import edit
+    if k <= 0:
+        found = [n for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT")
+                 if (n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentType") or "").strip() == adjust_type]
+        if not found:
+            return write_adjustment(prop, adjust_type, value)
+    text = value.strip()
+    found = [n for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT")
+             if (n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentType") or "").strip() == adjust_type]
+    if len(found) <= k and not text:
+        return edit.Written("", "ComparableAdjustmentAmount", "", "", "", [])
+    while len(found) <= k:
+        comparable, _ = edit.ensure_path(prop, ["COMPARABLE"])
+        holder, _ = edit.ensure_path(comparable, ["COMPARABLE_ADJUSTMENTS"])
+        node = edit.insert_ordered(holder, "COMPARABLE_ADJUSTMENT")
+        if found:                        # keep the type's blocks together, in order
+            found[-1].addnext(node)
+        kind = edit.insert_ordered(node, "ComparableAdjustmentType")
+        kind.text = adjust_type
+        found.append(node)
+    target = found[k]
+    amount = target.find(f"{{{bind.MISMO}}}ComparableAdjustmentAmount")
+    old = (amount.text or "").strip() if amount is not None else ""
+    if not text:
+        if amount is not None:
+            target.remove(amount)
+    else:
+        if amount is None:
+            amount = edit.insert_ordered(target, "ComparableAdjustmentAmount")
+        amount.text = text
+    return edit.Written("", "ComparableAdjustmentAmount", "", old, text, [])
+
+
+def nth_adjustment_value(prop: etree._Element, adjust_type: str, k: int) -> str:
+    found = [n for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT")
+             if (n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentType") or "").strip() == adjust_type]
+    if k >= len(found):
+        return ""
+    return (found[k].findtext(f"{{{bind.MISMO}}}ComparableAdjustmentAmount") or "").strip()
+
+
 @dataclass
 class Cell:
     text: str = ""
@@ -696,6 +742,12 @@ class BuiltRow:
     item_name: str = ""            # the identifier, which is the row's label
     new_item: bool = False         # the empty template that starts another
     subject_scope: str = ""        # the subject block read (a rental unit), when not the property
+    # A row drawn once per unit, ADU, dwelling or outbuilding: which one
+    # ("unit 1", "adu 1", ...), and which of the comparable's adjustments of
+    # this type it shows -- they are positional, in the order the grid draws
+    # the rows (D-1 2-4: unit 1 then unit 2; SF3: the dwelling then its ADU).
+    group: str = ""
+    instance: int = -1
 
     @property
     def empty(self) -> bool:
@@ -1302,6 +1354,7 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
 
     grids: list[Grid] = []
     for subject_label, subject_scopes, block in plans:
+        position: dict[str, int] = {}     # adjustments of a type, in drawing order
         numbers = [_number_of(p) or comps.index(p) + 1 for p, _sc in block]
         grid = Grid(kind=kind, title=title, comparables=[f"Comparable #{n}" for n in numbers],
                     subject_label=subject_label, numbers=numbers)
@@ -1321,10 +1374,15 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                 all_cols = [(p, _ob_scopes(p, ob)) for p, _sc in all_cols_base]
             subject_text, sscope = (_layered(root, row.subject_fid, row_subject_scopes, row)
                                     if row.subject_fid and row_subject_scopes else ("", None))
+            instance = -1
+            if ob is not None and row.adjust_type:
+                instance = position.get(row.adjust_type, 0)
+                position[row.adjust_type] = instance + 1
             cells = []
             for prop, scopes in row_block:
                 text, used = _layered(root, row.comp_fid, scopes, row) if (row.comp_fid and scopes) else ("", None)
-                adj = adjustment_for(root, row, prop) if ob is None else _nth_adjustment(root, row, prop, ob)
+                adj = adjustment_for(root, row, prop) if ob is None else _nth_adjustment(
+                    root, row, prop, instance if instance >= 0 else ob)
                 cells.append(Cell(text=text, adjustment=adj,
                                   scope=tree_.getpath(scopes[0]) if (pairs and scopes) else ""))
             built = BuiltRow(row.label, False, subject_text, cells,
@@ -1333,7 +1391,9 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                              adjust_type=row.adjust_type, adjust_fid=row.adjust_fid,
                              line_item=row.container, item_name=row.item_name,
                              new_item=row.new_item,
-                             subject_scope=tree_.getpath(subject_scopes[0]) if (pairs and subject_scopes) else "")
+                             subject_scope=tree_.getpath(subject_scopes[0]) if (pairs and subject_scopes) else "",
+                             group=f"{ob[0]} {ob[1] + 1}" if isinstance(ob, tuple) else "",
+                             instance=instance)
             # an empty cell prints an em-dash only where B-1's sentence for the
             # row says so (dashes.py); every other empty cell stays blank
             empty = [not subject_text] + [not c.text for c in cells]
@@ -1507,7 +1567,7 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
         head.append(f"<th colspan='2'{attrs}><span>{_esc(name)}</span></th>")
     head.append("</tr>")
 
-    def gattr(col: int, fid: str = "", adjust: str = "", scope: str = "") -> str:
+    def gattr(col: int, fid: str = "", adjust: str = "", scope: str = "", instance: int = -1) -> str:
         if not edit or not (fid or adjust):
             return ""
         from . import form as _form
@@ -1520,6 +1580,7 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
         inline = f" data-gin='{_esc(point)}'" if point else ""
         return (f" data-gc='{col}' data-k='{k}'{inline}" + (f" data-gf='{_esc(fid)}'" if fid else "")
                 + (f" data-ga='{_esc(adjust)}'" if adjust else "")
+                + (f" data-gai='{instance}'" if adjust and instance >= 0 else "")
                 + (f" data-gs='{_esc(scope)}'" if scope else ""))
 
     body = []
@@ -1578,7 +1639,7 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
             adj = _esc(cell.adjustment)
             gaf = f" data-gaf='{_esc(row.adjust_fid)}'" if (edit and row.adjust_fid) else ""
             cells.append(f"<td class='v adj{'' if adj else ' grey'}'"
-                         f"{gattr(number, adjust=row.adjust_type)}{gaf}><span>{adj}</span></td>")
+                         f"{gattr(number, adjust=row.adjust_type, instance=row.instance)}{gaf}><span>{adj}</span></td>")
         if address and not repeat:
             repeat = "<tr class='tca'>" + "".join(plain) + "</tr>"
         body.append("<tr>" + "".join(cells) + "</tr>")

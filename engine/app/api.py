@@ -2290,6 +2290,129 @@ async def add_media(case_id: str, request: Request,
     return item.to_json()
 
 
+# ---------------------------------------------------------------- sketch
+# The built-in sketch (DR §9, uad/sketch.py, the panel in ui/sketch/): the
+# drawing is kept as sketch.json in the case folder (so it travels with the
+# case bundle); "Save to report" writes the units' areas, levels and rooms and
+# puts the drawing in as the Sketch exhibit, replacing the last one it put in.
+SKETCH_FILE = "sketch.json"
+
+
+def _sketch_path(case_id: str) -> Path:
+    return store().folder(case_id) / SKETCH_FILE
+
+
+def _blank_sketch() -> dict:
+    return {"version": 1, "units": "ft", "pages": [{"id": "p1", "name": "Sketch 1", "floorTitles": {},
+                                                    "areas": [], "labels": [], "symbols": [], "doors": []}],
+            "media": {}}
+
+
+@router.get("/cases/{case_id}/sketch")
+def get_sketch(case_id: str) -> dict:
+    _case_or_404(case_id)
+    from uad import sketch as sk
+    path = _sketch_path(case_id)
+    data = _blank_sketch()
+    if path.is_file():
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except ValueError:
+            pass
+    root = store().tree(case_id).getroot()
+    from uad import structure
+    units = [{"n": i + 1, "id": structure.unit_identifier(u) or f"Unit {i + 1}", "adu": structure.is_adu(u)}
+             for i, u in enumerate(sk.subject_units(root))]
+    return {"sketch": data, "table": sk.table(data), "units": units,
+            "floors": [{"value": v, "title": sk.FLOOR_TITLES[v], "below": v in sk.BELOW}
+                       for v in sk.ABOVE + sk.BELOW],
+            "signed": store().get(case_id).state in (SIGNED, EXPORTED)}
+
+
+@router.put("/cases/{case_id}/sketch")
+def put_sketch(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Keep the drawing (nothing in the report changes until Save to report)."""
+    _case_or_404(case_id)
+    from uad import sketch as sk
+    try:
+        data = sk.check(body.get("sketch"))
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(422, str(exc))
+    old = {}
+    if _sketch_path(case_id).is_file():
+        try:
+            old = json.loads(_sketch_path(case_id).read_text(encoding="utf-8"))
+        except ValueError:
+            old = {}
+    data["media"] = old.get("media") or {}
+    _sketch_path(case_id).write_text(json.dumps(data), encoding="utf-8")
+    store().touch(case_id)
+    return {"saved": True, "table": sk.table(data)}
+
+
+@router.post("/cases/{case_id}/sketch/report")
+async def sketch_to_report(case_id: str, request: Request) -> dict:
+    """Save to report: multipart ``sketch`` (JSON) plus one PNG per page
+    (``page_<id>``). Areas, levels and rooms go into the units; each page goes
+    in as a Sketch exhibit, replacing the one this sketch put in before."""
+    _case_or_404(case_id)
+    from uad import sketch as sk
+    st = store()
+    if st.get(case_id).state in (SIGNED, EXPORTED):
+        return JSONResponse({"error": "a signed report is shown, never written"}, status_code=409)
+    form_ = await request.form()
+    try:
+        data = sk.check(json.loads(str(form_.get("sketch") or "")))
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(422, f"the sketch could not be read: {exc}")
+    images = {}
+    for page in data["pages"]:
+        up = form_.get(f"page_{page.get('id')}")
+        if up is not None and hasattr(up, "read"):
+            blob = await up.read()
+            if not blob.startswith(b"\x89PNG"):
+                raise HTTPException(422, "each sketch page must come as a PNG")
+            images[str(page.get("id"))] = blob
+    old = {}
+    if _sketch_path(case_id).is_file():
+        try:
+            old = json.loads(_sketch_path(case_id).read_text(encoding="utf-8"))
+        except ValueError:
+            old = {}
+    tree = deepcopy(st.tree(case_id))
+    out = sk.apply(tree, data)
+    st.save_tree(case_id, tree)
+    # the drawing, as the Sketch exhibit: a re-save replaces, never adds
+    media = dict(old.get("media") or {})
+    known = {m.media_id for m in st.media(case_id)}
+    for pid, mid in list(media.items()):
+        if mid in known:
+            st.remove_media(case_id, mid)
+        media.pop(pid, None)
+    section = report_form.section_number("Sketch")
+    for n, page in enumerate(data["pages"], start=1):
+        blob = images.get(str(page.get("id")))
+        if not blob:
+            continue
+        name = f"sketch-{n}.png"
+        target = st.media_dir(case_id) / name
+        stem, k = target.stem, 1
+        while target.exists():
+            target = target.with_name(f"{stem}-{k}.png")
+            k += 1
+        target.write_bytes(blob)
+        caption = str(page.get("name") or "") if len(data["pages"]) > 1 else ""
+        item = st.add_media(case_id, category="sketch", filename=target.name, caption=caption,
+                            order=n, section=section, size=len(blob), content_type="image/png")
+        media[str(page.get("id"))] = item.media_id
+    data["media"] = media
+    _sketch_path(case_id).write_text(json.dumps(data), encoding="utf-8")
+    st.invalidate(case_id, _actor(request), "the sketch was saved to the report")
+    st.log(case_id, _actor(request), "sketch saved to report",
+           f"{len(out['changes'])} value(s), {len(media)} sketch page(s)")
+    return {**out, "media": media, "relayout": True}
+
+
 @router.post("/cases/{case_id}/legal-description/photo")
 async def legal_description_photo(case_id: str, request: Request,
                                   file: UploadFile = File(...)) -> dict:

@@ -345,6 +345,8 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .sadj-rb{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}.sadj-rb small{color:var(--faint)}
 .sadj-c{border:1px solid var(--line-2);margin-bottom:12px}
 .sadj.ws{width:min(1240px,100%)}
+.sketch-ov{position:fixed;inset:0;z-index:90;background:var(--bg)}
+.sketch-ov iframe{width:100%;height:100%;border:0;display:block;background:#fff}
 .ws-body{display:flex;min-height:0;flex:1;overflow:hidden}
 .ws-rows{width:280px;flex:none;border-right:1px solid var(--line-2);overflow:auto;padding:14px}
 .ws-prof{display:flex;flex-direction:column;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line-2);margin-bottom:10px;font-size:12.5px}
@@ -1507,6 +1509,7 @@ function drawReportForm(w){
         Show problems</label>
       <button class="addbtn" id="rf-lib" title="Saved comments: insert one where the caret is (Alt+1 … Alt+9)">Comment library</button>
       <button class="addbtn" id="rf-sadj" title="Adjustment worksheets: $ per unit, threshold and rounding for a grid row; OK fills every comparable">Worksheets</button>
+      <button class="addbtn" id="rf-sketch" title="Draw the floor plan: areas, walls, rooms; Save to report fills the unit areas, levels and rooms and adds the Sketch exhibit">Sketch</button>
       <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
         Mark what was imported</label>
       <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
@@ -1553,6 +1556,7 @@ function drawReportForm(w){
   };
   $('#rf-lib').onclick=e=>{ e.stopPropagation(); commentLibrary($('#rf-lib')); };
   $('#rf-sadj').onclick=()=>worksheets();
+  $('#rf-sketch').onclick=()=>openSketch();
   $('#rf-gaps').onchange=e=>{
     const f=$('#rf'); if(!f||!f.contentWindow)return;
     f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
@@ -2417,6 +2421,24 @@ function renderAdds(){
   box.querySelectorAll('.addit').forEach(b=>b.onclick=()=>{
     const f=$('#rf'); if(f&&f.contentWindow) f.contentWindow.postMessage({uad:'add-go',i:+b.dataset.i},'*');
   });
+}
+
+/* ------------------------------------------------ Sketch (DR §9)
+   The built-in sketch panel (ui/sketch, built from ui-shared/src/sketch) over
+   the whole window.  Save to report there writes the units' areas, levels and
+   rooms and the Sketch exhibit; the report then lays itself out again. */
+function openSketch(){
+  if($('#sketch-ov')) return;
+  const ov=document.createElement('div'); ov.id='sketch-ov'; ov.className='sketch-ov';
+  ov.innerHTML=`<iframe title="Sketch" src="/ui/sketch/index.html?case=${S.caseId}"></iframe>`;
+  document.body.appendChild(ov);
+  const f=ov.querySelector('iframe');
+  const on=e=>{
+    if(e.source!==f.contentWindow||!e.data) return;
+    if(e.data.uad==='sketch-saved'){ toast('Sketch saved to the report — the areas, levels, rooms and the Sketch exhibit',4000); S.dirty=true; checkFresh('form'); reviewSoon(); refreshMedia(); }
+    if(e.data.uad==='sketch-close'){ window.removeEventListener('message',on); ov.remove(); }
+  };
+  window.addEventListener('message',on);
 }
 
 /* ------------------------------------------------ Adjustment worksheets (DR §11)

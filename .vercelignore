@@ -17,3 +17,6 @@ MATERIALS/
 
 # owner's competitor screenshots: reference only, never deployed
 Competitors 3.6 software features pics/
+
+# shared UI sources (built output is committed under engine/app/ui/)
+ui-shared/

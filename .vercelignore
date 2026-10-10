@@ -20,3 +20,23 @@ Competitors 3.6 software features pics/
 
 # shared UI sources (built output is committed under engine/app/ui/)
 ui-shared/
+
+# Reference material the runtime never reads (the function stays well under
+# Vercel's 250 MB with these out; before, a build script pruned them).  The
+# runtime reads specs only through vercel.json "includeFiles": the D-1 sample
+# XML, the update / completion report XML and the GSE XSD.
+/3.6 DEVELOPMENT, BLUEPRINT, DOCUMENTATION/
+/_ref/
+/*.xlsx
+/*.xlsm
+/docs/
+/desktop/
+/brand/
+/templates/
+specs/official/_Loose_Files_From_Root/
+specs/official/urar_*/
+specs/official/Appendix D-1 URAR Sample Use Cases and XML Files_0/
+specs/official/Appendix B-1 URAR Implementation Guide (1)/
+specs/official/Appendix C-1_ URAR Layout (1)/
+specs/official/Appendix E Report Style Guide (2)/
+specs/official/Appendix F-1 URAR Reference Guide/

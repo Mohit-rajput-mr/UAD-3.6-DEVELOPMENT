@@ -41,7 +41,12 @@ exists (local, Docker, desktop); Vercel uses the browser-drawn PDF.
 * **The WinTOTAL MOD (`total-bridge/`) does not run on Vercel** — it drives the
   copy of a la mode TOTAL installed on the appraiser's PC over CDP. See
   `START_HERE.md`.
-* Function size: ~30 MB of code/specs + ~120 MB of dependencies (limit 250 MB).
+* Function size: the repository holds ~1.3 GB of reference material
+  (specification folders, owner notes, zips); `.vercelignore` keeps all of it
+  out, so the function carries ~84 MB of code/specs/installer plus ~120 MB of
+  dependencies (limit 250 MB). No build script is needed: a fresh project that
+  imports this repository builds as is (checked 2026-10-10 by copying exactly
+  what `.vercelignore` keeps and serving it with `VERCEL=1`).
 
 ## Local, with PDF
 

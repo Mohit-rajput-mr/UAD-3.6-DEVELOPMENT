@@ -54,7 +54,9 @@ OPEN_PATHS = ("/healthz", "/access", "/ui/fonts/Geist-Variable.woff2",
               # Download product: a licence holder needs the key, not this
               # office's passcode (app/download.py checks and throttles it)
               "/download", "/ui/download.js")
-OPEN_PREFIXES = ("/api/desktop/",)
+OPEN_PREFIXES = ("/api/desktop/",
+                 # the owner's brand marks, shown on the sign-in page
+                 "/ui/brand/")
 CONFIG = Path(__file__).resolve().parent / "access.json"
 ITERATIONS = 600_000            # OWASP 2023 guidance for PBKDF2-HMAC-SHA256
 SESSION_HOURS = 12
@@ -187,8 +189,8 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;
 .top{border-bottom:1px solid var(--line)}
 .foot{border-top:1px solid var(--line);color:var(--muted);font-size:12px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
-.logo{width:34px;height:34px;display:grid;place-items:center;background:var(--ink);color:var(--bg);
- font:800 17px/1 var(--sans);letter-spacing:-.04em}
+.logo{width:34px;height:34px;display:grid;place-items:center}
+.logo img{height:32px;width:auto;display:block}
 .bt b{display:block;font:500 18px/1 var(--sans);letter-spacing:-.02em}
 .bt span{display:block;margin-top:4px;font:500 9.5px/1 var(--sans);letter-spacing:.2em;color:var(--muted)}
 .top .r{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px}
@@ -229,7 +231,7 @@ button:active{transform:translateY(1px)}
  <path d="M140 40 C 300 160, 420 360, 360 700" fill="none" stroke="url(#chrome)" stroke-width="26" stroke-linecap="round" opacity=".85"/>
  <path d="M520 10 C 600 140, 700 220, 760 240" fill="none" stroke="url(#chrome)" stroke-width="14" stroke-linecap="round" opacity=".6"/>
 </svg>
-<div class="top"><div class="brand"><span class="logo">U</span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span></div>
+<div class="top"><div class="brand"><span class="logo"><img src="/ui/brand/mark-white.png" alt=""></span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span></div>
   <a class="dlink" href="/download">Download product &rarr;</a><span class="r">Passcode protected</span></div>
 <main>
   <div><span class="lbl">For U.S. appraisers &middot; URAR</span>

@@ -98,7 +98,7 @@ def download_page() -> HTMLResponse:
 
 PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Download UAD 3.6</title><link rel="icon" href="/ui/icon.svg" type="image/svg+xml">
+<title>Download UAD 3.6</title><link rel="icon" href="/ui/brand/app-icon-64.png" type="image/png">
 <style>
 @font-face{font-family:"Geist";src:url(/ui/fonts/Geist-Variable.woff2) format("woff2");font-weight:100 900}
 @font-face{font-family:"Geist Mono";src:url(/ui/fonts/GeistMono-Variable.woff2) format("woff2");font-weight:100 900}
@@ -111,7 +111,7 @@ PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font:400 14px/1.55 var(--sans);
  display:grid;grid-template-rows:auto 1fr}
 .top{display:flex;align-items:center;gap:12px;padding:20px 28px;border-bottom:1px solid var(--line)}
-.logo{width:32px;height:32px;display:grid;place-items:center;background:var(--ink);color:var(--bg);font:800 16px/1 var(--sans)}
+.logo{width:32px;height:32px;display:grid;place-items:center}.logo img{height:30px;width:auto;display:block}
 .top b{font:500 17px/1 var(--sans)}.top a{margin-left:auto;color:var(--muted);font-size:13px}
 main{display:grid;place-items:center;padding:40px 16px;text-align:center}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font:500 10.5px/1.2 var(--sans);letter-spacing:.17em;
@@ -122,7 +122,7 @@ p{color:var(--muted);max-width:52ch;margin:0 auto 24px}
 .go{appearance:none;border:0;background:var(--btn);color:var(--btn-ink);padding:15px 22px;font:600 14px/1 var(--sans);cursor:pointer}
 @keyframes pop2{from{opacity:0;transform:translateY(8px)}}
 </style></head><body>
-<div class="top"><span class="logo">U</span><b>UAD 3.6</b><a href="/">Sign in to the web app</a></div>
+<div class="top"><span class="logo"><img src="/ui/brand/mark-white.png" alt=""></span><b>UAD 3.6</b><a href="/">Sign in to the web app</a></div>
 <main><div><span class="eyebrow">Download product</span>
 <h1>UAD 3.6 for Windows<span>on your own PC.</span></h1>
 <p>The report editor, the compliance review, the PDF and the delivery ZIP run on your computer, and your reports stay there. You need your licence key.</p>

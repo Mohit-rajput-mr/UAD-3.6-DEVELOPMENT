@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UAD 3.6 Form Filler</title>
-<link rel="icon" href="/ui/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/ui/brand/app-icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/ui/brand/app-icon-192.png">
 <script>
 /* the theme is set before the first paint, so the page never flashes the other one */
 try{document.documentElement.dataset.theme=localStorage.getItem('uad-theme')||'dark';}
@@ -73,8 +74,11 @@ header{display:flex;align-items:center;gap:22px;padding:0 24px;min-width:0;z-ind
   border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 86%,transparent);
   -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 header .brand{display:flex;align-items:center;gap:12px;flex:none}
-header .logo{width:32px;height:32px;display:grid;place-items:center;background:var(--ink);color:var(--bg);
-  font:800 16px/1 var(--sans);letter-spacing:-.04em;flex:none}
+header .logo{width:32px;height:32px;display:grid;place-items:center;flex:none}
+/* the owner's mark (brand/): white on the dark theme, black on the light one */
+.logo img{height:30px;width:auto;display:block}
+.logo .mk-b,[data-theme=light] .logo .mk-w{display:none}
+[data-theme=light] .logo .mk-b{display:block}
 header .bt b{display:block;font:500 17px/1 var(--sans);letter-spacing:-.02em}
 header .bt span{display:block;margin-top:4px;font:500 9px/1 var(--sans);letter-spacing:.2em;color:var(--muted)}
 header .backhome{appearance:none;width:34px;height:34px;flex:none;cursor:pointer;display:grid;place-items:center;padding:0;
@@ -340,6 +344,33 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .sadj-rates input{background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:500 13px/1 var(--mono)}
 .sadj-rb{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}.sadj-rb small{color:var(--faint)}
 .sadj-c{border:1px solid var(--line-2);margin-bottom:12px}
+.sadj.ws{width:min(1240px,100%)}
+.ws-body{display:flex;min-height:0;flex:1;overflow:hidden}
+.ws-rows{width:280px;flex:none;border-right:1px solid var(--line-2);overflow:auto;padding:14px}
+.ws-prof{display:flex;flex-direction:column;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line-2);margin-bottom:10px;font-size:12.5px}
+.ws-prof select{width:100%;margin-top:6px;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:inherit}
+.ws-prof .sadj-rates{grid-template-columns:1fr}
+.ws-list{display:flex;flex-direction:column}
+.ws-row{appearance:none;display:flex;justify-content:space-between;gap:8px;text-align:left;padding:8px 10px;border:0;border-bottom:1px solid var(--line);
+  background:none;color:var(--ink-2);font:500 12.5px/1.3 var(--sans);cursor:pointer}
+.ws-row small{color:var(--faint);font:500 10px/1.3 var(--mono)}
+.ws-row:hover{background:var(--hover);color:var(--ink)}.ws-row.on{background:var(--ink);color:var(--bg)}.ws-row.on small{color:var(--bg)}
+.ws-params{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px;font-size:12px;color:var(--muted)}
+.ws-params label{display:flex;flex-direction:column;gap:4px}
+.ws-params input,.ws-params select{width:120px;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:6px 8px;font:500 13px/1 var(--mono)}
+.ws-subj{display:flex;flex-direction:column;gap:2px;margin-left:auto;text-align:right}.ws-subj b{color:var(--ink);font:500 13px/1.3 var(--mono)}
+.ws-body .sadj-b{flex:1;min-width:0}
+/* every comparable side by side, scrolling across like the grid */
+.ws-cards{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(400px,1fr);gap:10px;overflow-x:auto;padding-bottom:6px}
+.ws-cards .sadj-c{margin:0;overflow:hidden}
+.ws table{table-layout:fixed}.ws td,.ws th{padding:6px 8px}
+.ws th:nth-child(1),.ws td:nth-child(1){width:52px}.ws th:nth-child(3),.ws td:nth-child(3){width:58px}
+.ws th:nth-child(4),.ws td:nth-child(4){width:124px}.ws th:nth-child(5),.ws td:nth-child(5){width:78px}
+.ws .ws-basis td:nth-child(2){width:auto}
+.sadj td input.ws-amt{width:104px;height:auto;text-align:right;background:var(--bg-2);color:var(--ink);border:1px solid var(--line-2);padding:4px 6px;font:500 12.5px/1 var(--mono)}
+.ws-basis td{padding-top:0;font-size:11px;color:var(--faint)}
+.ws-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:8px 12px;font:500 11.5px/1.4 var(--mono);color:var(--ink-2)}
+.ws-foot .over{color:var(--warn)}
 .sadj-ch{display:flex;justify-content:space-between;gap:12px;padding:9px 12px;border-bottom:1px solid var(--line-2);background:var(--bg-2);font-size:13px}
 .sadj-ch span{font:500 12px/1.4 var(--mono);color:var(--ink-2)}.sadj-ch span.over{color:var(--warn)}
 .sadj table{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -349,7 +380,7 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
 .sadj td.num small{display:block;font:400 10.5px/1.3 var(--sans);color:var(--faint)}
 .sadj td.neg{color:var(--bad)}.sadj td.pos{color:var(--good)}
 .sadj tr.same td{opacity:.55}
-.sadj td input{width:16px;height:16px;accent-color:var(--ink)}
+.sadj td input[type=checkbox]{width:16px;height:16px;accent-color:var(--ink)}
 .sadj-f{display:flex;align-items:center;gap:10px;justify-content:flex-end;padding:12px 22px;border-top:1px solid var(--line-2)}
 .sadj-n{margin-right:auto;font-size:12.5px;color:var(--muted)}
 .sadj-wait{color:var(--muted);font-size:13px;padding:6px 12px}
@@ -645,7 +676,7 @@ header .stat span:before,.rf-agent-dot,.rf-busy:before,.verdict:before,.glass .g
 <header>
   <div class="brand">
     <button class="backhome" id="backhome" hidden title="All reports">&lsaquo;</button>
-    <span class="logo">U</span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span>
+    <span class="logo"><img class="mk-w" src="/ui/brand/mark-white.png" alt=""><img class="mk-b" src="/ui/brand/mark-black.png" alt=""></span><span class="bt"><b>UAD 3.6</b><span>FORM FILLER</span></span>
   </div>
   <div class="topline"><nav class="nav" id="nav"></nav><span class="crumb" id="crumb"></span>
     <span class="spacer"></span><span class="stat" id="stat"></span></div>
@@ -1475,7 +1506,7 @@ function drawReportForm(w){
       <label class="rf-toggle" title="Outline every field an H-1 rule faults: fatal in red, warning in amber"><input type="checkbox" id="rf-marks">
         Show problems</label>
       <button class="addbtn" id="rf-lib" title="Saved comments: insert one where the caret is (Alt+1 … Alt+9)">Comment library</button>
-      <button class="addbtn" id="rf-sadj" title="Sales grid adjustments suggested from your rate profile; you choose which to apply">SmartAdjust</button>
+      <button class="addbtn" id="rf-sadj" title="Adjustment worksheets: $ per unit, threshold and rounding for a grid row; OK fills every comparable">Worksheets</button>
       <label class="rf-toggle" id="rf-imp-wrap" hidden><input type="checkbox" id="rf-imported" checked>
         Mark what was imported</label>
       <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
@@ -1521,7 +1552,7 @@ function drawReportForm(w){
     postMarks();
   };
   $('#rf-lib').onclick=e=>{ e.stopPropagation(); commentLibrary($('#rf-lib')); };
-  $('#rf-sadj').onclick=()=>smartAdjust();
+  $('#rf-sadj').onclick=()=>worksheets();
   $('#rf-gaps').onchange=e=>{
     const f=$('#rf'); if(!f||!f.contentWindow)return;
     f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
@@ -2388,82 +2419,125 @@ function renderAdds(){
   });
 }
 
-/* ------------------------------------------------ SmartAdjust (T-1059)
-   Adjustments suggested from the owner's rate profile (uad/smartadjust.py),
-   each beside what the grid holds now.  Nothing is written until the
-   appraiser applies the ones ticked; blanks are ticked to start with, a figure
-   the appraiser already entered is not. */
+/* ------------------------------------------------ Adjustment worksheets (DR §11)
+   Replaces SmartAdjust (owner 2026-10-10).  One worksheet per adjustable row
+   of the sales grid (uad/worksheet.py): $ per unit, threshold and rounding;
+   every comparable's difference, amount (typed over if need be), line % and
+   adjusted price; OK writes all comparables at once.  Rate profiles: the two
+   built in (18 North, Multi-family) plus the appraiser's own, kept in this
+   browser / desktop profile; the last one used opens next time. */
 const money=n=>(n<0?'$('+Math.abs(n).toLocaleString()+')':'$'+n.toLocaleString());
-const RATE_LABEL={gla:'GLA $/sq ft',gla_threshold:'GLA threshold sq ft',site:'Site $/sq ft',site_threshold:'Site threshold sq ft',
-  age:'Age $/year',age_threshold:'Age threshold years',bedroom:'Bedroom $',half_bath:'Half bath $',basement:'Finished basement $',
-  garage:'Garage space $',outdoor:'Outdoor living $',exposure:'Exposure (share of list)',design:'Design step $',cooling:'Cooling $'};
-function smartAdjust(){
+const WS_RATE_LABEL={gla:'GLA $/sq ft',gla_threshold:'GLA threshold sq ft',site:'Site $/sq ft',site_threshold:'Site threshold sq ft',
+  age:'Age $/year',age_threshold:'Age threshold years',bedroom:'Bedroom $',full_bath:'Full bath $ (half = ½)',
+  garage:'Garage space $',basement:'Finished basement $ (present)',outdoor:'Outdoor living $',exposure:'Market exposure % of list',
+  design:'Design step $',cooling:'Cooling $',gla_nonstd:'Above grade nonstandard $/sq ft',gla_unfin:'Above grade unfinished $/sq ft',
+  below_fin:'Below grade finished $/sq ft',below_nonstd:'Below grade nonstandard $/sq ft',below_unfin:'Below grade unfinished $/sq ft',
+  rounding:'Rounding step $'};
+const WS_STORE={
+  get(k,d){ try{ const v=localStorage.getItem('uad-ws-'+k); return v?JSON.parse(v):d; }catch(e){ return d; } },
+  set(k,v){ try{ localStorage.setItem('uad-ws-'+k,JSON.stringify(v)); }catch(e){} }};
+async function worksheets(openKind){
   const old=$('#sadj-ov'); if(old) old.remove();
   const ov=document.createElement('div'); ov.id='sadj-ov'; ov.className='sadj-ov';
-  ov.innerHTML=`<div class="sadj" role="dialog" aria-modal="true" aria-label="Suggested adjustments">
-    <div class="sadj-h"><div><span class="k">SmartAdjust</span><h3>Suggested adjustments</h3>
-      <p>From your rate profile, against what each comparable's grid prints. Tick what to apply; nothing changes until you do.</p></div>
+  ov.innerHTML=`<div class="sadj ws" role="dialog" aria-modal="true" aria-label="Adjustment worksheets">
+    <div class="sadj-h"><div><span class="k">Adjustment worksheets</span><h3 id="ws-title">Choose a grid row</h3>
+      <p id="ws-sub">$ per unit, threshold and rounding; every comparable is worked out at once. Nothing is written until OK.</p></div>
       <button class="sadj-x" aria-label="Close">&times;</button></div>
-    <div class="sadj-b"><p class="sadj-wait">Calculating…</p></div>
-    <div class="sadj-f"><span class="sadj-n"></span><button class="btn" id="sadj-cancel">Close</button><button class="btn primary" id="sadj-go" disabled>Apply</button></div></div>`;
+    <div class="ws-body"><nav class="ws-rows" id="ws-rows"><p class="sadj-wait">Loading…</p></nav>
+      <div class="sadj-b" id="ws-sheet"><p class="sadj-wait">Pick a row on the left, or use Adjust all with a profile.</p></div></div>
+    <div class="sadj-f"><span class="sadj-n" id="ws-note"></span>
+      <button class="btn" id="ws-cancel">Close</button><button class="btn primary" id="ws-ok" disabled>OK — fill all comparables</button></div></div>`;
   document.body.appendChild(ov);
-  const body=ov.querySelector('.sadj-b'), go=ov.querySelector('#sadj-go');
   const close=()=>{ ov.remove(); document.removeEventListener('keydown',onKey); };
   const onKey=e=>{ if(e.key==='Escape') close(); };
   document.addEventListener('keydown',onKey);
-  ov.querySelector('.sadj-x').onclick=close; ov.querySelector('#sadj-cancel').onclick=close;
+  ov.querySelector('.sadj-x').onclick=close; ov.querySelector('#ws-cancel').onclick=close;
   ov.addEventListener('mousedown',e=>{ if(e.target===ov) close(); });
-  let prof='', rates={}, data=null;
-  const count=()=>{ const n=body.querySelectorAll('input.pick:checked').length;
-    ov.querySelector('.sadj-n').textContent=n?n+' to apply':'Nothing ticked'; go.disabled=!n;
-    go.textContent=n?'Apply '+n:'Apply'; };
+  const rowsEl=ov.querySelector('#ws-rows'), sheetEl=ov.querySelector('#ws-sheet'), ok=ov.querySelector('#ws-ok');
+  const r=await api(`/cases/${S.caseId}/worksheets`);
+  if(!r||!r.ok){ rowsEl.innerHTML=`<p class="sadj-wait">${esc((r&&r.data&&r.data.detail)||'The worksheets could not be read.')}</p>`; return; }
+  const info=r.data, signed=info.signed;
+  const own=WS_STORE.get('profiles',{});                       // the appraiser's own profiles
+  const all=()=>Object.assign({},Object.fromEntries(info.profiles.map(p=>[p.name,p])),own);
+  let profName=WS_STORE.get('last','')||info.default;
+  if(!all()[profName]) profName=info.default;
+  let prof=Object.assign({},all()[profName]);
+  let kind=null, params={}, overrides={}, data=null, timer=null;
+  const kindsBy=Object.fromEntries(info.kinds.map(k=>[k.key,k]));
+  function drawRows(){
+    rowsEl.innerHTML=`<div class="ws-prof"><label>Rate profile<select id="ws-prof">${Object.keys(all()).map(n=>`<option${n===profName?' selected':''}>${esc(n)}</option>`).join('')}</select></label>
+      <details><summary>Rates in this profile</summary><div class="sadj-rates">${info.rate_keys.map(k=>`<label><span>${esc(WS_RATE_LABEL[k]||k)}</span>
+        <input type="number" step="any" data-rate="${k}" value="${prof[k]}"></label>`).join('')}</div>
+        <div class="sadj-rb"><button class="btn" id="ws-saveprof">Save as profile…</button>${own[profName]?'<button class="btn" id="ws-delprof">Delete</button>':''}</div></details>
+      <button class="btn primary block" id="ws-all" ${signed?'disabled':''} title="Apply every rate this profile carries to every comparable">Adjust all with this profile</button></div>
+      <div class="ws-list">${info.kinds.map(k=>`<button class="ws-row${kind&&kind.key===k.key?' on':''}" data-k="${k.key}"><span>${esc(k.title)}</span>${k.per_unit?'<small>per unit</small>':''}</button>`).join('')}</div>`;
+    rowsEl.querySelector('#ws-prof').onchange=e=>{ profName=e.target.value; prof=Object.assign({},all()[profName]); WS_STORE.set('last',profName); params={}; drawRows(); if(kind) load(); };
+    rowsEl.querySelectorAll('input[data-rate]').forEach(i=>i.oninput=()=>{ prof[i.dataset.rate]=parseFloat(i.value)||0; params={}; if(kind) soon(); });
+    rowsEl.querySelector('#ws-saveprof').onclick=async()=>{
+      const name=await UADDialog.prompt('A name for these rates.',{title:'Save rate profile',placeholder:'e.g. Suburban SF 2026',ok:'Save'});
+      if(!name) return; own[name]=Object.assign({},prof,{name}); WS_STORE.set('profiles',own); profName=name; WS_STORE.set('last',name); drawRows(); toast('Profile saved'); };
+    const del=rowsEl.querySelector('#ws-delprof');
+    if(del) del.onclick=()=>{ delete own[profName]; WS_STORE.set('profiles',own); profName=info.default; prof=Object.assign({},all()[profName]); drawRows(); if(kind) load(); };
+    rowsEl.querySelector('#ws-all').onclick=async()=>{
+      if(!await UADDialog.confirm(`Every rate in “${profName}” is applied to every comparable. Rows the profile has no rate for are left alone.`,{title:'Adjust all',ok:'Adjust all'})) return;
+      const res=await api(`/cases/${S.caseId}/worksheets/all`,{method:'POST',body:JSON.stringify({profile:prof})});
+      if(!res||!res.ok){ toast('Not applied: '+((res&&res.data&&(res.data.error||res.data.detail))||'unknown error'),6000); return; }
+      WS_STORE.set('last',profName);
+      const n=res.data.applied.reduce((t,a)=>t+a.written,0);
+      toast(`${n} adjustment line(s) written from ${profName}`,4000); S.dirty=true; checkFresh('form'); reviewSoon(); if(kind) load(); };
+    rowsEl.querySelectorAll('.ws-row').forEach(b=>b.onclick=()=>{ kind=kindsBy[b.dataset.k]; params={}; overrides={}; drawRows(); load(); });
+  }
+  const soon=()=>{ clearTimeout(timer); timer=setTimeout(load,250); };
   async function load(){
-    body.innerHTML='<p class="sadj-wait">Calculating…</p>';
-    const q=new URLSearchParams({profile:prof,rates:JSON.stringify(rates)});
-    const r=await api('/cases/'+S.caseId+'/smartadjust?'+q);
-    if(!r||!r.ok){ body.innerHTML=`<p class="sadj-wait">${esc((r&&r.data&&r.data.detail)||'The suggestions could not be worked out.')}</p>`; return; }
-    data=r.data; prof=data.profile.name; draw();
+    ov.querySelector('#ws-title').textContent=kind.title;
+    ov.querySelector('#ws-sub').textContent=kind.note||'(Subject − comparable) × rate; $0 at or under the threshold; rounded to the step.';
+    const q=new URLSearchParams({profile:JSON.stringify(prof),overrides:JSON.stringify(overrides),
+      rate:params.rate??'',threshold:params.threshold??'',rounding:params.rounding??''});
+    const res=await api(`/cases/${S.caseId}/worksheets/${kind.key}?${q}`);
+    if(!res||!res.ok){ sheetEl.innerHTML=`<p class="sadj-wait">${esc((res&&res.data&&res.data.detail)||'This worksheet could not be worked out.')}</p>`; ok.disabled=true; return; }
+    data=res.data; draw();
   }
   function draw(){
-    const p=data.profile;
-    const head=`<div class="sadj-p"><label>Profile <select id="sadj-prof">${data.profiles.map(n=>`<option${n===p.name?' selected':''}>${esc(n)}</option>`).join('')}</select></label>
-      <details><summary>Rates</summary><div class="sadj-rates">${data.rate_keys.map(k=>`<label><span>${esc(RATE_LABEL[k]||k)}</span>
-        <input type="number" step="any" data-rate="${k}" value="${p[k]}"></label>`).join('')}</div>
-        <div class="sadj-rb"><small>${esc(p.source)}</small><button class="btn" id="sadj-re">Recalculate</button></div></details></div>`;
-    const cols=data.comparables.map(c=>{
-      const pct=v=>c.price?(100*v/c.price).toFixed(1)+'%':'—';
-      const rows=c.lines.map((l,i)=>{
-        const blank=!l.current||l.current==='$0';
-        const same=l.current.replace(/[$,()]/g,'')===String(Math.abs(l.amount))&&((l.current.indexOf('(')>=0)===(l.amount<0));
-        const tick=l.amount!==0&&blank;
-        return `<tr class="${same?'same':''}"><td>${esc(l.label)}</td><td>${esc(l.subject)}</td><td>${esc(l.comparable)}</td>
-          <td class="num ${l.amount<0?'neg':l.amount>0?'pos':''}" title="${esc(l.basis)}">${money(l.amount)}<small>${esc(l.basis)}</small></td>
-          <td class="num">${esc(l.current||'—')}</td>
-          <td><input type="checkbox" class="pick" data-c="${c.number}" data-t="${esc(l.adjust_type)}" data-a="${l.amount}" ${same?'disabled':tick?'checked':''}
-            aria-label="Apply ${esc(l.label)} to comparable ${c.number}"></td></tr>`;}).join('');
-      // the customary guidelines: net within 15 %, gross within 25 % of the price
-      const over=c.price&&(Math.abs(c.net)>.15*c.price||c.gross>.25*c.price);
+    const p=data.params, k=data.kind;
+    const pct=(v,c)=>c.price?(100*v/c.price).toFixed(1)+'%':'—';
+    const head=`<div class="ws-params">
+      <label>Adjust $ / ${esc(k.unit)}<input type="number" step="any" id="ws-rate" value="${p.rate}"></label>
+      ${k.percent?'':`<label>Threshold (${esc(k.unit)})<input type="number" step="any" id="ws-thr" value="${p.threshold}"></label>`}
+      ${k.percent?'':`<label>Rounding<select id="ws-round">${[1,10,50,100,250,500,1000].map(v=>`<option${v==p.rounding?' selected':''}>${v}</option>`).join('')}</select></label>`}
+      <div class="ws-subj"><span>Subject</span>${data.subject.map(s=>`<b>${data.units>1?'Unit '+s.unit+': ':''}${esc(s.value||'—')}</b>`).join('')}</div></div>`;
+    const cards=data.comparables.map(c=>{
+      const lines=c.lines.map(l=>`<tr><td>${data.units>1?'Unit '+l.unit:''}</td><td>${esc(l.comparable||'—')}</td>
+        <td class="num">${l.diff===null?'—':(l.diff>0?'+':'')+l.diff.toLocaleString()}</td>
+        <td class="num"><input class="ws-amt" data-key="${c.number}_${l.unit}" value="${l.amount===null?'':l.amount}" ${l.amount===null&&!(c.number+'_'+l.unit in overrides)?'placeholder="—"':''} ${signed?'readonly':''} title="${esc(l.basis)}"></td>
+        <td class="num ws-cur">${esc(l.current||'—')}</td></tr><tr class="ws-basis"><td></td><td colspan="4">${esc(l.basis)}</td></tr>`).join('');
+      const over=c.price&&c.net_after!=null&&(Math.abs(c.net_after)>.15*c.price||c.gross_after>.25*c.price);
       return `<section class="sadj-c"><div class="sadj-ch"><b>Comparable #${c.number}</b>
-        <span${over?' class="over" title="Past the 15 % net / 25 % gross guideline: support it in the narrative"':''}>Net ${money(c.net)} · ${pct(c.net)} &nbsp; Gross ${money(c.gross)} · ${pct(c.gross)}${over?' &nbsp;! over guideline':''}</span></div>
-        ${c.lines.length?`<table><thead><tr><th>Row</th><th>Subject</th><th>Comparable</th><th class="num">Suggested</th><th class="num">In the grid</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
-          :'<p class="sadj-wait">Nothing in this profile applies to this comparable.</p>'}</section>`;
-    }).join('');
-    body.innerHTML=head+(cols||'<p class="sadj-wait">This report has no sales comparables yet.</p>');
-    body.querySelector('#sadj-prof').onchange=e=>{ prof=e.target.value; rates={}; load(); };
-    body.querySelector('#sadj-re').onclick=()=>{ rates={}; body.querySelectorAll('input[data-rate]').forEach(i=>{ rates[i.dataset.rate]=i.value; }); load(); };
-    body.querySelectorAll('input.pick').forEach(i=>i.onchange=count);
-    count();
+        <span>${c.price?esc((c.at_list?'List ':'Price ')+money(Math.round(c.price))):''}</span></div>
+        <table><thead><tr><th></th><th>Comparable</th><th class="num">Diff.</th><th class="num">Adjustment</th><th class="num">In the grid</th></tr></thead><tbody>${lines}</tbody></table>
+        <div class="ws-foot"><span>Line ${c.line_pct===null?'—':c.line_pct+'%'}</span><span>Adjusted ${c.adjusted==null?'—':money(Math.round(c.adjusted))}</span>
+          <span${over?' class="over" title="Past the 15 % net / 25 % gross guideline: support it in the narrative"':''}>Net ${c.net_after==null?'—':money(Math.round(c.net_after))} · ${c.net_after==null?'':pct(c.net_after,c)} &nbsp; Gross ${c.gross_after==null?'—':pct(c.gross_after,c)}</span></div></section>`;}).join('');
+    sheetEl.innerHTML=head+`<div class="ws-cards">${cards}</div>`;
+    const keep=(id,key)=>{ const el=sheetEl.querySelector(id); if(el) el.oninput=el.onchange=()=>{ params[key]=el.value; soon(); }; };
+    keep('#ws-rate','rate'); keep('#ws-thr','threshold'); keep('#ws-round','rounding');
+    sheetEl.querySelectorAll('.ws-amt').forEach(i=>i.onchange=()=>{
+      const v=i.value.trim(); const n=v?Math.round(parseFloat(v.replace(/[$,]/g,'').replace(/^\((.*)\)$/,'-$1'))):NaN;
+      if(!v) delete overrides[i.dataset.key]; else if(!isNaN(n)) overrides[i.dataset.key]=n; soon(); });
+    ok.disabled=signed;
+    ov.querySelector('#ws-note').textContent=signed?'Signed report: shown only, nothing is written.':'';
   }
-  go.onclick=async()=>{
-    const picks=[...body.querySelectorAll('input.pick:checked')].map(i=>({comparable:+i.dataset.c,adjust_type:i.dataset.t,amount:+i.dataset.a}));
-    if(!picks.length) return;
-    go.disabled=true; go.textContent='Applying…';
-    const r=await api('/cases/'+S.caseId+'/smartadjust',{method:'POST',body:JSON.stringify({picks})});
-    if(!r||!r.ok){ toast('Not applied: '+((r&&r.data&&r.data.detail)||'unknown error'),6000); count(); return; }
-    toast(r.data.written+' adjustment'+(r.data.written===1?'':'s')+' applied',3000);
-    S.dirty=true; checkFresh('form'); reviewSoon(); load();
+  ok.onclick=async()=>{
+    if(!kind||signed) return;
+    ok.disabled=true; ok.textContent='Writing…';
+    const res=await api(`/cases/${S.caseId}/worksheets/${kind.key}`,{method:'POST',
+      body:JSON.stringify({rate:data.params.rate,threshold:data.params.threshold,rounding:data.params.rounding,profile:prof,overrides})});
+    ok.textContent='OK — fill all comparables';
+    if(!res||!res.ok){ toast('Not written: '+((res&&res.data&&(res.data.error||res.data.detail))||'unknown error'),6000); ok.disabled=false; return; }
+    WS_STORE.set('last',profName);
+    toast(`${kind.title}: ${res.data.written} line(s) written`,3000);
+    S.dirty=true; checkFresh('form'); reviewSoon(); overrides={}; load();
   };
-  load();
+  drawRows();
+  if(openKind&&kindsBy[openKind]){ kind=kindsBy[openKind]; drawRows(); load(); }
 }
 
 /* ------------------------------------------------ PDF without a server browser

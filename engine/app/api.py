@@ -1932,6 +1932,84 @@ def smartadjust_apply(case_id: str, request: Request, body: dict = Body(...)) ->
     return {"written": len(written)}
 
 
+# ----------------------------------------------------- adjustment worksheets
+# One worksheet per adjustable sales-grid row (uad/worksheet.py, DR §11):
+# $ per unit, threshold and rounding; every comparable's difference, amount,
+# line % and adjusted price; OK writes all comparables at once.
+def _worksheet_profile(tree, raw):
+    from uad import worksheet
+    if isinstance(raw, str):
+        try:
+            raw = json.loads(raw) if raw else {}
+        except ValueError:
+            raise HTTPException(422, "profile must be JSON")
+    return worksheet.profile_from(raw if isinstance(raw, dict) else {}, tree)
+
+
+@router.get("/cases/{case_id}/worksheets")
+def worksheets_list(case_id: str) -> dict:
+    """The worksheets this report's grid carries, and the built-in rate profiles."""
+    _case_or_404(case_id)
+    from uad import worksheet
+    tree = store().tree(case_id)
+    return {"kinds": worksheet.available(tree),
+            "profiles": [p.to_json() for p in worksheet.PROFILES.values()],
+            "default": worksheet.default_profile(tree).name,
+            "rate_keys": worksheet.RATE_KEYS,
+            "signed": store().get(case_id).state in (SIGNED, EXPORTED)}
+
+
+@router.get("/cases/{case_id}/worksheets/{kind}")
+def worksheet_sheet(case_id: str, kind: str, rate: str = Query(""), threshold: str = Query(""),
+                    rounding: str = Query(""), profile: str = Query(""),
+                    overrides: str = Query("")) -> dict:
+    """One worksheet, computed; nothing is written."""
+    _case_or_404(case_id)
+    from uad import worksheet
+    tree = store().tree(case_id)
+    try:
+        ov = json.loads(overrides) if overrides else {}
+    except ValueError:
+        raise HTTPException(422, "overrides must be JSON")
+    try:
+        return worksheet.sheet(tree, kind, {"rate": rate, "threshold": threshold, "rounding": rounding},
+                               _worksheet_profile(tree, profile), ov if isinstance(ov, dict) else {})
+    except KeyError:
+        raise HTTPException(422, f"no worksheet {kind!r}")
+    except LookupError as exc:
+        raise HTTPException(422, str(exc))
+
+
+@router.post("/cases/{case_id}/worksheets/{kind}")
+def worksheet_apply(case_id: str, kind: str, request: Request, body: dict = Body(...)) -> dict:
+    """OK: write every comparable's line(s) of this row.
+    ``{rate, threshold, rounding, profile?, overrides?: {"<comp>_<unit>": amount}}``,
+    or ``kind = "all"`` with ``{profile}`` to apply every rate the profile carries."""
+    _case_or_404(case_id)
+    from uad import worksheet
+    st = store()
+    if st.get(case_id).state in (SIGNED, EXPORTED):
+        return JSONResponse({"error": "a signed report is shown, never written"}, status_code=409)
+    tree = deepcopy(st.tree(case_id))
+    prof = _worksheet_profile(tree, body.get("profile") or {})
+    try:
+        if kind == "all":
+            res = worksheet.adjust_all(tree, prof)
+            what = f"Adjust all ({prof.name}): " + ", ".join(f"{a['key']} {a['written']}" for a in res["applied"])
+        else:
+            res = worksheet.apply(tree, kind, {k: body.get(k) for k in ("rate", "threshold", "rounding")},
+                                  prof, body.get("overrides") if isinstance(body.get("overrides"), dict) else {})
+            what = f"{res['kind']['title']} worksheet: {res['written']} line(s) at ${res['params']['rate']:,g}"
+    except KeyError:
+        raise HTTPException(422, f"no worksheet {kind!r}")
+    except LookupError as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "adjustments written from a worksheet")
+    st.log(case_id, _actor(request), "adjustment worksheet", what)
+    return {**res, "relayout": True}
+
+
 @router.post("/cases/{case_id}/comparables/order")
 def order_comparables(case_id: str, request: Request,
                       body: dict = Body(...)) -> dict:

@@ -5650,6 +5650,20 @@ def galley_html(blocks: list[Block], edit: bool = False) -> str:
 # border, a padding or a font change -- so the page an appraiser types on is
 # the page that prints, to the point.
 EDIT_CSS = """
+/* adjustment worksheets in the grid (DR §11): editor only, never printed */
+table.grid td.lbl{position:relative}
+.wsi{position:absolute;right:1pt;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;
+  min-width:9pt;height:9pt;padding:0 2pt;font:700 7pt/1 'Geist',system-ui,sans-serif;color:#fff;background:#2e9e3e;
+  border:0.5pt solid #fff;box-shadow:0 0 0 0.5pt #2e9e3e;cursor:pointer;user-select:none;z-index:3;white-space:nowrap}
+.wsi:hover,.wsi:focus-visible{background:#24822f;outline:none}
+.wsi.on{background:#fff;color:#1d6f2a;box-shadow:0 0 0 0.5pt #2e9e3e;font-weight:600}
+table.grid td.v.adj.wsmanual{box-shadow:inset 2pt 0 0 #b45309}
+table.grid td.v.adj.wsmanual::after{content:'manual';position:absolute;left:1pt;top:0;font:600 4.5pt/1 'Geist',sans-serif;color:#b45309}
+table.grid td.v.adj{position:relative}
+table.grid tr.wsrow td{background:rgba(46,158,62,.10)!important}
+@keyframes wsflash{0%{background:rgba(250,204,21,.85)}100%{background:transparent}}
+table.grid td.v.adj.wsflash{animation:wsflash 1.8s ease-out}
+
 .v[contenteditable]{outline:none;min-width:14pt;display:inline-block;
   border-radius:0;transition:background-color .1s}
 .v[contenteditable]:hover{background:rgba(29,79,145,.07)}

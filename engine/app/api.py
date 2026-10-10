@@ -864,7 +864,8 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                             binding.label) if written.new else ""
     if parts:
         shown = value.strip()                # the address as typed, now stored as its parts
-    return {"value": shown, "key": new_key, "state": st.get(case_id).state}
+    return {"value": shown, "key": new_key, "recalculated": st.recalculated(case_id),
+            "state": st.get(case_id).state}
 
 
 @router.patch("/cases/{case_id}/client-role")
@@ -1017,6 +1018,8 @@ def set_field(case_id: str, field_id: str, request: Request,
             # what the report prints: whole dollars without cents, as D-1 sets them
             "value": bind.trim_cents(bind.display_value(groups, pf.binding), pf.label),
             "relayout": relayout,
+            # adjustment worksheet lines the edit moved (uad/worksheet.recalc)
+            "recalculated": st.recalculated(case_id),
             "state": st.get(case_id).state}
 
 
@@ -1261,7 +1264,7 @@ def set_fields(case_id: str, request: Request, body: dict = Body(...)) -> dict:
         st.save_tree(case_id, tree)
         st.invalidate(case_id, _actor(request), f"{len(results)} field(s) changed")
         st.log(case_id, _actor(request), "edited", f"{len(results)} fields")
-    return {"written": results, "failed": failures}
+    return {"written": results, "failed": failures, "recalculated": st.recalculated(case_id)}
 
 
 # -------------------------------------------------------------- preferences
@@ -1638,7 +1641,12 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
             raise HTTPException(422, "that cell's block is not part of this column's property")
         scope = comparables._field_scope(field_id, comparables._scopes(inner))
     try:
-        if adjust_type:
+        instance = body.get("instance")
+        instance = int(instance) if str(instance).lstrip("-").isdigit() else -1
+        if adjust_type and instance >= 0:
+            # a row drawn per unit / ADU / outbuilding: its own adjustment of this type
+            written = comparables.write_nth_adjustment(scope, adjust_type, instance, value)
+        elif adjust_type:
             written = comparables.write_adjustment(scope, adjust_type, value)
         else:
             # A comparable on a 2-4 unit report has more than one living
@@ -1661,13 +1669,24 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
 
+    if adjust_type and kind == "sales" and number:
+        # an adjustment typed by hand on a worksheet's row is the appraiser's:
+        # marked manual, the worksheet never overwrites it (DR §11 addendum)
+        from uad import worksheet as _ws
+        _ws.mark_manual(st.folder(case_id), candidate.getroot(), adjust_type, number,
+                        max(instance, 0), bool(written.new))
     st.save_tree(case_id, candidate)
     st.invalidate(case_id, _actor(request), f"{field_id} changed")
     st.log(case_id, _actor(request), "edited",
            f"{field_id} on {'subject' if not number else f'comparable #{number}'}")
     root = candidate.getroot()
     again = scope if body.get("scope") and not adjust_type else _grid_scope(root, kind, number)
-    if adjust_type:
+    if adjust_type and instance >= 0:
+        raw = comparables.nth_adjustment_value(again, adjust_type, instance)
+        printed = next((r for r in comparables.rows(kind) if r.adjust_type == adjust_type and r.adjust_fid), None)
+        b = comparables.binding_of(printed.adjust_fid) if printed is not None else None
+        shown = (bind.display_value([[("ComparableAdjustmentAmount", raw)]], b) if (raw and b) else raw)
+    elif adjust_type:
         # shown as the report prints it ("-$2,500"), not as stored
         printed = next((r for r in comparables.rows(kind)
                         if r.adjust_type == adjust_type and r.adjust_fid), None)
@@ -1676,6 +1695,7 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     else:
         shown = comparables.value_for(root, field_id, again)
     return {"value": shown,
+            "recalculated": st.recalculated(case_id),
             "state": st.get(case_id).state}
 
 
@@ -1952,11 +1972,24 @@ def worksheets_list(case_id: str) -> dict:
     _case_or_404(case_id)
     from uad import worksheet
     tree = store().tree(case_id)
+    state = worksheet.load_state(store().folder(case_id))
     return {"kinds": worksheet.available(tree),
             "profiles": [p.to_json() for p in worksheet.PROFILES.values()],
             "default": worksheet.default_profile(tree).name,
+            "last_profile": state.get("profile"),
+            "applied": state.get("kinds") or {},
             "rate_keys": worksheet.RATE_KEYS,
             "signed": store().get(case_id).state in (SIGNED, EXPORTED)}
+
+
+@router.get("/cases/{case_id}/worksheets/marks")
+def worksheet_marks(case_id: str) -> dict:
+    """What the grid shows beside its rows (the in-grid worksheet icons):
+    which rows carry a worksheet, which are applied and at what rate, and
+    each applied cell's arithmetic and manual flag."""
+    _case_or_404(case_id)
+    from uad import worksheet
+    return worksheet.marks(store().tree(case_id), store().folder(case_id))
 
 
 @router.get("/cases/{case_id}/worksheets/{kind}")
@@ -1973,7 +2006,8 @@ def worksheet_sheet(case_id: str, kind: str, rate: str = Query(""), threshold: s
         raise HTTPException(422, "overrides must be JSON")
     try:
         return worksheet.sheet(tree, kind, {"rate": rate, "threshold": threshold, "rounding": rounding},
-                               _worksheet_profile(tree, profile), ov if isinstance(ov, dict) else {})
+                               _worksheet_profile(tree, profile), ov if isinstance(ov, dict) else {},
+                               worksheet.load_state(store().folder(case_id)))
     except KeyError:
         raise HTTPException(422, f"no worksheet {kind!r}")
     except LookupError as exc:
@@ -1994,11 +2028,19 @@ def worksheet_apply(case_id: str, kind: str, request: Request, body: dict = Body
     prof = _worksheet_profile(tree, body.get("profile") or {})
     try:
         if kind == "all":
-            res = worksheet.adjust_all(tree, prof)
+            res = worksheet.adjust_all(tree, prof, folder=st.folder(case_id))
             what = f"Adjust all ({prof.name}): " + ", ".join(f"{a['key']} {a['written']}" for a in res["applied"])
         else:
+            for rel in body.get("release") or []:
+                # "use the worksheet" for a line typed by hand
+                try:
+                    worksheet.release_manual(st.folder(case_id), tree.getroot(), kind,
+                                             int(rel["comp"]), int(rel.get("instance", 0)))
+                except (KeyError, TypeError, ValueError):
+                    pass
             res = worksheet.apply(tree, kind, {k: body.get(k) for k in ("rate", "threshold", "rounding")},
-                                  prof, body.get("overrides") if isinstance(body.get("overrides"), dict) else {})
+                                  prof, body.get("overrides") if isinstance(body.get("overrides"), dict) else {},
+                                  folder=st.folder(case_id))
             what = f"{res['kind']['title']} worksheet: {res['written']} line(s) at ${res['params']['rate']:,g}"
     except KeyError:
         raise HTTPException(422, f"no worksheet {kind!r}")

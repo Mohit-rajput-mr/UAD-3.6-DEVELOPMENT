@@ -3203,3 +3203,42 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   - Confirm on the live site.
   - From the open list: B15 gated-field hints (T-258), B16 photo category,
     page counts vs D-1 (harness gaps), T-120 / T-121 fidelity items.
+
+
+## 2026-10-10 (night) -- current position: worksheet inside the comparable grid (T-1085, partial)
+- **What it is:** the owner's addendum, which replaces DR §11. The full
+  text is in `_work/owner/2026-10-10-desktop-rebuild/ADDENDUM_11_WORKSHEET_IN_GRID.md`.
+- **Engine (`uad/worksheet.py`):**
+  - `sheet()` lines carry `s_val`/`c_val`/`manual`/`instance`, and the sheet
+    carries `whole` (the building gate on a 2-4 unit report);
+  - `apply()` remembers the worksheet in `worksheets.json`; `recalc()`
+    rewrites applied rows after any save, except manual lines;
+  - `marks()` feeds the grid icons and the hover math, and now also marks a
+    cell typed on a row no worksheet has filled. Basis strings use "×".
+- **Positional per-unit adjustments (`comparables.py`):** the k-th
+  COMPARABLE_ADJUSTMENT of a type is the k-th row drawn. This fixed SF3's
+  ADU row, which now prints $(1,840) $18,560 $(6,440) as the official PDF does.
+- **API:**
+  - set_field, set_fields, the table write and the grid PATCH return
+    `recalculated`;
+  - the grid PATCH takes `instance` and marks a typed adjustment manual;
+  - POST /worksheets/{kind} takes `release`.
+- **Editor:**
+  - flow.py adds the icons, Ctrl+J, hover math, manual styling, the
+    recalc flash, and Esc → `ws-esc`;
+  - index.html has the docked drawer (`worksheets()`, `wsCompute`, `WSD`)
+    and replaces the modal.
+- **Evidence:** tests/test_worksheet.py passes 22/22, including the
+  preview, PDF, XML and ZIP. The JS syntax is checked with node.
+- **Not verified yet:** the Chromium e2e and harness 12 (the owner stopped
+  the run to ask about Vercel).
+- **Vercel facts measured 2026-10-10:**
+  - account rajputmohit192003@gmail.com (Hobby), project `uad36-form-filler`;
+  - Blob store `uad36-cases` holds 26 MB in 74 files, and there are 8
+    deployments;
+  - so the "10 GB" the owner sees is not this app's storage. It is likely
+    data transfer, or the account's other 16 projects. Usage could not be
+    read: billing/charges answered 404 on Hobby.
+- **Leftovers on that project:** env vars `UAD_P1..P7` and `UAD_BUILD`, a
+  temporary patch that is no longer needed. The owner can delete them; no
+  agent has.

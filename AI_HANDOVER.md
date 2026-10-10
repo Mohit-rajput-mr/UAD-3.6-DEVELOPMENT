@@ -218,6 +218,36 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-10 (night) -- T-1085 worksheet inside the comparable grid: PARTIAL, take over here
+- **Owner's addendum** (replaces DR §11):
+  `_work/owner/2026-10-10-desktop-rebuild/ADDENDUM_11_WORKSHEET_IN_GRID.md`.
+- **Built:**
+  - green (+) on every adjustable sales-grid row and every per-unit/ADU line
+    (flow.py "adjustment worksheets"); a MutationObserver re-adds it after a
+    re-render;
+  - Ctrl+J in a row, or the toolbar Worksheets list, opens the drawer. The
+    drawer is docked where the inspector sits (index.html `worksheets()`,
+    `body.ws-open`) and shows a live preview worked out in the browser
+    (`wsCompute` ports `worksheet.line_amount`). OK writes, Cancel/Esc
+    write nothing, manual lines have "Use worksheet", profiles plus Adjust
+    all, and a signed report is read only;
+  - auto-recalc: `Store.save_tree` → `worksheet.recalc`. Write routes return
+    `recalculated`, and the frame relays out and flashes the moved cells.
+    Hand-typed cells are marked manual (`worksheets.json`) and never
+    overwritten.
+- **Verified:** `tests/test_worksheet.py` passes 22/22, including recalc,
+  manual, release, SF3 ADU positional amounts, and the preview, PDF,
+  mismo.xml and ZIP carrying the amounts.
+- **Not yet run (do next):**
+  - a Chromium e2e of the icons on sf1 / condo / 2-4, including after adding
+    a comp and a unit and after a relayout; Ctrl+J; drawer apply; ticked label.
+    A starter script is in the session scratchpad and is not in the repo:
+    write it as `tests/test_worksheet_grid.py`;
+  - `python engine/tests/harness.py 12` and the full suite.
+  Then `tasks.py done T-1085`.
+- **Spec finding:** the UAD 3.6 rental and GRM grids define no adjustment
+  rows, so the icons apply to the sales grid and its per-unit lines only.
+
 ### 2026-10-10 (evening) -- NEW OWNER BRIEF: desktop rebuild & operator experience (read this first)
 - **Brief:** `_work/owner/2026-10-10-desktop-rebuild/UAD36_DESKTOP_REBUILD_PROMPT.md`,
   with screenshots beside it and the brand assets in `brand/`.

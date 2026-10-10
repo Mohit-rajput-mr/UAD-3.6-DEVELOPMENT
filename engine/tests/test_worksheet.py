@@ -113,3 +113,132 @@ def test_the_api_writes_all_comparables_and_never_a_signed_report():
         for state in ("in_review", "signed"):
             api.store().transition(cid, state, "t", force=True)
         assert c.post(f"/api/cases/{cid}/worksheets/gla", json={"rate": 1}).status_code == 409
+
+
+# ------------------------------------------------- in the grid (T-1085)
+# Owner's addendum 2026-10-10 (_work/owner/2026-10-10-desktop-rebuild/
+# ADDENDUM_11_WORKSHEET_IN_GRID.md): applied once, a worksheet follows the
+# values it rests on; a value typed by hand is the appraiser's and is never
+# overwritten; the preview, PDF, XML and ZIP carry what it wrote.
+GLA = "LivingUnitStandardFinishedAreaAboveGrade"
+
+
+@pytest.fixture
+def client(tmp_path):
+    from fastapi.testclient import TestClient
+
+    from app import api
+    from app.access import sign_in
+    from app.cases import Store
+    from app.main import app
+    api.STORE = Store(tmp_path / "cases")
+    api.RENDERER = None
+    api.LAYOUTS = None
+    with TestClient(app) as c:
+        sign_in(c)
+        yield c, api
+
+
+def _new(c, template="sf1_appraisal_v1_4"):
+    return c.post("/api/cases", json={"template": template, "blank": False, "name": "ws"}).json()["case_id"]
+
+
+def _gla(api, cid):
+    props = comparables.properties(api.store().tree(cid).getroot(), "SalesComparable")
+    return [comparables.nth_adjustment_value(p, GLA, 0) for p in props]
+
+
+def test_an_applied_worksheet_follows_its_values_and_spares_a_typed_one(client):
+    c, api = client
+    cid = _new(c)
+    assert c.post(f"/api/cases/{cid}/worksheets/gla", json={"rate": 80, "threshold": 0, "rounding": 1}).status_code == 200
+    assert _gla(api, cid) == ["-20640", "15840", "14880"]
+    marks = c.get(f"/api/cases/{cid}/worksheets/marks").json()
+    assert marks["rows"][GLA] == {"kind": "gla", "title": "Finished Area Above Grade", "applied": True, "label": "$80/sf"}
+    assert "× $80" in marks["cells"][f"{GLA}|1|0"]["basis"]
+
+    # a comparable's area changes: its line is worked out again, and the
+    # answer says so (the editor lays the page out again and flashes the cell)
+    r = c.patch(f"/api/cases/{cid}/comparables/1/fields/22.07.30", json={"value": "3,100"})
+    assert r.status_code == 200, r.text
+    assert [(m["comp"], m["new"]) for m in r.json()["recalculated"]] == [(1, "-7840")]
+    assert _gla(api, cid)[0] == "-7840"
+    assert c.get(f"/api/cases/{cid}/worksheets/marks").json()["recalc"]["cells"] == [
+        {"adjust_type": GLA, "comp": 1, "instance": 0}]
+
+    # typed by hand: manual, kept through a re-apply and a value change
+    r = c.patch(f"/api/cases/{cid}/comparables/2/fields/22.07.31", json={"value": "5000", "instance": 0})
+    assert r.status_code == 200 and r.json()["recalculated"] == []
+    assert c.get(f"/api/cases/{cid}/worksheets/marks").json()["cells"][f"{GLA}|2|0"]["manual"] is True
+    c.post(f"/api/cases/{cid}/worksheets/gla", json={"rate": 90, "threshold": 0, "rounding": 1})
+    assert _gla(api, cid)[1] == "5000"
+    c.patch(f"/api/cases/{cid}/comparables/2/fields/22.07.30", json={"value": "2,000"})
+    assert _gla(api, cid)[1] == "5000"
+    sheet = c.get(f"/api/cases/{cid}/worksheets/gla?rate=90&threshold=0&rounding=1").json()
+    assert sheet["comparables"][1]["lines"][0]["manual"] is True
+
+    # "Use worksheet" hands it back
+    c.post(f"/api/cases/{cid}/worksheets/gla", json={"rate": 90, "threshold": 0, "rounding": 1,
+                                                    "release": [{"comp": 2, "instance": 0}]})
+    assert _gla(api, cid)[1] != "5000"
+    assert not c.get(f"/api/cases/{cid}/worksheets/marks").json()["cells"][f"{GLA}|2|0"]["manual"]
+
+
+def test_a_value_typed_on_a_row_no_worksheet_filled_is_marked_manual(client):
+    c, api = client
+    cid = _new(c)
+    c.patch(f"/api/cases/{cid}/comparables/3/fields/22.07.27", json={"value": "-2500", "instance": 0})
+    cell = c.get(f"/api/cases/{cid}/worksheets/marks").json()["cells"]["LivingUnitBedroomCount|3|0"]
+    assert cell["manual"] is True
+    c.post(f"/api/cases/{cid}/worksheets/beds", json={"rate": 7000})
+    props = comparables.properties(api.store().tree(cid).getroot(), "SalesComparable")
+    assert comparables.nth_adjustment_value(props[2], "LivingUnitBedroomCount", 0) == "-2500"
+
+
+def test_the_adu_row_reads_its_own_adjustment(client):
+    """SF3: the ADU's lines are the second instance of each unit row's type
+    (the k-th adjustment of a type is the k-th row drawn); the official PDF
+    prints $(1,840), $18,560 and $(6,440) on the ADU's area row."""
+    grids = comparables.build(etree.parse(str(templates.get("sf3_appraisal_v1_4").path)), "sales",
+                              per_block=99, every_row=True)
+    adu = [r for r in grids[0].rows if r.adjust_type == GLA and r.group.startswith("adu")]
+    assert adu and [c.adjustment.strip() for c in adu[0].cells] == ["$(1,840)", "$18,560", "$(6,440)"]
+
+
+def test_the_deliverables_carry_what_the_worksheet_wrote(client, monkeypatch):
+    import io
+    import zipfile
+
+    from uad.report import browser
+    c, api = client
+    cid = _new(c)
+    c.post(f"/api/cases/{cid}/worksheets/gla", json={"rate": 80, "threshold": 0, "rounding": 1})
+    xml = c.get(f"/api/cases/{cid}/mismo.xml").content
+    M = f"{{{comparables.bind.MISMO}}}"
+    amounts = [a.findtext(f"{M}ComparableAdjustmentAmount")
+               for a in etree.fromstring(xml).iter(f"{M}COMPARABLE_ADJUSTMENT")
+               if a.findtext(f"{M}ComparableAdjustmentType") == GLA]
+    assert amounts == ["-20640", "15840", "14880"]
+    if not browser.AVAILABLE:
+        pytest.skip(browser.MESSAGE)
+    preview = c.get(f"/api/cases/{cid}/preview").text
+    for shown in ("$(20,640)", "$15,840", "$14,880"):
+        assert shown in preview
+    fitz = pytest.importorskip("pymupdf")
+    pdf = c.get(f"/api/cases/{cid}/report.pdf")
+    assert pdf.status_code == 200
+    text = "".join(p.get_text() for p in fitz.open(stream=pdf.content))
+    for shown in ("$(20,640)", "$15,840", "$14,880"):
+        assert shown in text
+    real = api._export_verdict
+
+    def verdict(case_id):
+        built, _p, _b, _s = real(case_id)
+        return built, [], [], True
+    monkeypatch.setattr(api, "_export_verdict", verdict)
+    for state in ("in_review", "signed"):
+        api.store().transition(cid, state, "t", force=True)
+    z = zipfile.ZipFile(io.BytesIO(c.get(f"/api/cases/{cid}/package.zip").content))
+    assert b"<ComparableAdjustmentAmount>-20640</ComparableAdjustmentAmount>" in z.read("mismo.xml")
+    zipped = "".join(p.get_text() for p in fitz.open(stream=z.read("appraisal.pdf")))
+    assert "$(20,640)" in zipped

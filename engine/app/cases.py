@@ -346,7 +346,14 @@ class Store:
             # adjusted price, per unit / bedroom / area): kept current on every
             # edit, from every route, so they cannot go stale (B4).  An import
             # is taken as it is.
-            from uad import grid_math, rent_math
+            from uad import grid_math, rent_math, worksheet
+            try:
+                # an applied adjustment worksheet follows the values it rests
+                # on: a subject or comparable change recalculates its row
+                # (hand-typed adjustments excepted), before the totals
+                self.__dict__.setdefault("_recalc", {})[case_id] = worksheet.recalc(tree, self.folder(case_id))
+            except Exception:              # never blocks a save
+                pass
             try:
                 grid_math.recompute(tree)
             except Exception:              # arithmetic never blocks a save
@@ -365,6 +372,11 @@ class Store:
                 raise SchemaRegression(_plain_schema_message(next(iter(added))))
         tree.write(str(path), encoding="utf-8", xml_declaration=True, pretty_print=True)
         self.touch(case_id)
+
+    def recalculated(self, case_id: str) -> list:
+        """The adjustment cells the last save recalculated (applied
+        worksheets following a value they rest on), once."""
+        return self.__dict__.setdefault("_recalc", {}).pop(case_id, [])
 
     def import_xml(self, case_id: str, data: bytes, actor: str = "appraiser") -> None:
         tree = etree.fromstring(data).getroottree()

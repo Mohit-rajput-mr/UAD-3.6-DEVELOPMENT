@@ -229,7 +229,7 @@ def line_amount(kind: "Kind", diff: float, p: "Params", building: float | None =
     gate = abs(building) if building is not None else abs(diff)
     if p.threshold and gate <= p.threshold:
         return 0, f"within the {p.threshold:,.10g} {kind.unit} threshold"
-    basis = f"{diff:+,.10g} {kind.unit} x ${p.rate:,.10g}"
+    basis = f"{diff:+,.10g} {kind.unit} \u00d7 ${p.rate:,.10g}"
     if p.rounding and p.rounding != 1:
         basis += f", rounded to {p.rounding:g}"
     return _round(diff * p.rate, p.rounding), basis
@@ -339,9 +339,136 @@ class Params:
         return cls(f("rate", base.rate), f("threshold", base.threshold), f("rounding", base.rounding) or 1)
 
 
+#: what one rate pays for, short, for the ticked icon ("$75/sf")
+SHORT = {"sq ft": "sf", "year": "yr", "bedroom": "bed", "full bath": "bath", "space": "space",
+         "present": "", "basement": "", "step": "step", "% of list": "% of list"}
+
+
+def rate_label(kind: Kind, rate: float) -> str:
+    if kind.percent:
+        return f"{rate:g}% of list"
+    unit = SHORT.get(kind.unit, kind.unit)
+    return f"${rate:,.10g}" + (f"/{unit}" if unit else "")
+
+
+def _group_label(row, units: int) -> str:
+    kind, _, n = (row.group or "").partition(" ")
+    if not kind:
+        return ""
+    return {"unit": "Unit", "adu": "ADU", "ob": "Outbuilding", "dwelling": "Building"}.get(kind, kind.title()) + f" {n}"
+
+
+def comp_key(prop) -> str:
+    """A comparable told apart by its own label, not its column: a manual mark
+    stays with the comparable when the comparables are reordered."""
+    return prop.get("{http://www.w3.org/1999/xlink}label") or ""
+
+
+def manual_key(adjust_type: str, prop, instance: int) -> str:
+    return f"{adjust_type}|{comp_key(prop)}|{max(instance, 0)}"
+
+
+def sheet(tree, kind_key: str, params: dict | None = None, profile: Profile | None = None,
+          overrides: dict | None = None, state: dict | None = None, grid: "_Grid | None" = None) -> dict:
+    """The worksheet for one grid row: subject, every comparable, the arithmetic.
+
+    Each line carries the numbers it rests on (``s_val`` / ``c_val``) so the
+    editor can preview a new rate as it is typed, and ``manual`` when the
+    appraiser typed that adjustment by hand (it is never overwritten)."""
+    kind = KINDS.get(kind_key)
+    if kind is None:
+        raise KeyError(kind_key)
+    profile = profile or default_profile(tree)
+    p = Params.of(kind, profile, params)
+    grid = grid or _grid(tree)
+    if grid is None or kind.adjust_type not in grid.rows:
+        raise LookupError(f"this report's sales grid has no {kind.title} row")
+    rows = grid.rows[kind.adjust_type]
+    if not kind.per_unit:
+        rows = rows[:1]
+    units = len(rows)
+    overrides = overrides or {}
+    manual = (state or {}).get("manual") or {}
+    subject = [{"unit": u + 1, "label": _group_label(rows[u], units), "value": rows[u].subject,
+                "s_val": _parse(kind, rows[u].subject)} for u in range(units)]
+    comps = []
+    for i, name in enumerate(grid.names):
+        prop = grid.props[i] if i < len(grid.props) else None
+        sale, listed, at_list = _price(grid, i)
+        price = listed if at_list else (sale or listed)
+        comp = Comp(i + 1, name, price, at_list)
+        diffs = []
+        for u in range(units):
+            s_v = _parse(kind, rows[u].subject)
+            c_v = _parse(kind, _cell(rows[u], i))
+            diffs.append(None if s_v is None or c_v is None else s_v - c_v)
+        building = sum(d for d in diffs if d is not None)
+        # the building's difference gates a 2-4 unit report's unit lines; a
+        # dwelling and its ADU are gated line by line
+        whole = units > 1 and all((r.group or "").startswith("unit") for r in rows)
+        mine_old = 0.0
+        mine_gross_old = 0.0
+        for u in range(units):
+            d = diffs[u]
+            inst = max(rows[u].instance, 0) if kind.per_unit else 0
+            cur = comparables.nth_adjustment_value(prop, kind.adjust_type, inst) if prop is not None else ""
+            mine_old += _num(cur) or 0
+            mine_gross_old += abs(_num(cur) or 0)
+            is_manual = bool(prop is not None and manual.get(manual_key(kind.adjust_type, prop, inst)))
+            label = _group_label(rows[u], units)
+            s_v, c_v = _parse(kind, rows[u].subject), _parse(kind, _cell(rows[u], i))
+            if kind.percent:
+                amount = -_round((listed or 0) * p.rate / 100, 1) if at_list and listed else None
+                basis = (f"-{p.rate:g}% of the list price ${listed:,.0f}" if at_list and listed
+                         else "a settled sale: no market exposure adjustment")
+                line = Line(u + 1, "", f"${listed:,.0f}" if listed else "", None, amount, cur, basis)
+            elif d is None:
+                line = Line(u + 1, rows[u].subject, _cell(rows[u], i), None, None, cur, "no value to compare")
+            else:
+                # a 2-4 unit report gates on the building's difference (adjust.multi_lines)
+                amount, basis = line_amount(kind, d, p, building if whole else None)
+                if amount is None and (_num(cur) or 0):
+                    amount = 0                  # a stale amount is cleared; an empty row stays empty
+                line = Line(u + 1, rows[u].subject, _cell(rows[u], i), d, amount, cur, basis)
+            key = f"{i + 1}_{u + 1}"
+            if key in overrides:
+                try:
+                    line.amount = int(round(float(overrides[key])))
+                    line.basis = "typed by the appraiser"
+                    is_manual = True
+                except (TypeError, ValueError):
+                    pass
+            elif is_manual:
+                line.amount = int(round(_num(cur) or 0)) if cur else None
+                line.basis = "typed by the appraiser (manual: the worksheet leaves it as it is)"
+            line_d = asdict(line)
+            line_d.update(manual=is_manual, label=label, instance=inst, s_val=s_v, c_val=c_v,
+                          listed=listed if kind.percent else None, at_list=at_list)
+            comp.lines.append(line_d)
+        new = sum(ln["amount"] for ln in comp.lines if ln["amount"] is not None)
+        old_written = sum(_num(ln["current"]) or 0 for ln in comp.lines if ln["amount"] is not None)
+        if prop is not None:
+            others_net = _net(prop) - mine_old
+            others_gross = _gross(prop) - mine_gross_old
+            comp.others_net, comp.others_gross = others_net, others_gross
+            comp.net_after = _net(prop) - old_written + new
+            comp.gross_after = others_gross + sum(abs(ln["amount"]) if ln["amount"] is not None
+                                                  else abs(_num(ln["current"]) or 0) for ln in comp.lines)
+            if price:
+                comp.line_pct = round(new / price * 100, 1)
+                comp.adjusted = price + comp.net_after
+        comps.append(comp)
+    applied = ((state or {}).get("kinds") or {}).get(kind_key)
+    return {"kind": asdict(kind), "params": asdict(p), "profile": profile.name,
+            "rate_label": rate_label(kind, p.rate), "applied": applied,
+            "subject": subject, "units": units, "comparables": [asdict(c) for c in comps],
+            # the building's difference gates every line (a 2-4 unit report)
+            "whole": units > 1 and all((r.group or "").startswith("unit") for r in rows)}
+
+
 @dataclass
 class Line:
-    unit: int                       # 1-based; 1 on a single-unit report
+    unit: int                       # 1-based line within the row
     subject: str
     comparable: str
     diff: float | None
@@ -356,138 +483,125 @@ class Comp:
     name: str
     price: float | None
     at_list: bool
-    lines: list[Line] = field(default_factory=list)
+    lines: list = field(default_factory=list)
     line_pct: float | None = None
     adjusted: float | None = None
     net_after: float | None = None
     gross_after: float | None = None
+    others_net: float | None = None
+    others_gross: float | None = None
 
 
-def sheet(tree, kind_key: str, params: dict | None = None, profile: Profile | None = None,
-          overrides: dict | None = None) -> dict:
-    """The worksheet for one grid row: subject, every comparable, the arithmetic."""
-    kind = KINDS.get(kind_key)
-    if kind is None:
-        raise KeyError(kind_key)
-    profile = profile or default_profile(tree)
-    p = Params.of(kind, profile, params)
-    grid = _grid(tree)
-    if grid is None or kind.adjust_type not in grid.rows:
-        raise LookupError(f"this report's sales grid has no {kind.title} row")
-    rows = grid.rows[kind.adjust_type]
-    units = len(rows) if kind.per_unit else 1
-    rows = rows[:units]
-    overrides = overrides or {}
-    subject = [{"unit": u + 1, "value": rows[u].subject} for u in range(units)]
-    comps = []
-    for i, name in enumerate(grid.names):
-        prop = grid.props[i] if i < len(grid.props) else None
-        sale, listed, at_list = _price(grid, i)
-        price = listed if at_list else (sale or listed)
-        current = _amounts(prop, kind.adjust_type) if prop is not None else []
-        comp = Comp(i + 1, name, price, at_list)
-        diffs = []
-        for u in range(units):
-            s_v = _parse(kind, rows[u].subject)
-            c_v = _parse(kind, _cell(rows[u], i))
-            diffs.append(None if s_v is None or c_v is None else s_v - c_v)
-        building = sum(d for d in diffs if d is not None)
-        for u in range(units):
-            d = diffs[u]
-            cur = current[u] if u < len(current) else ""
-            if kind.percent:
-                # only a listing (or a pending sale priced at list) is adjusted;
-                # a settled sale's row is left as it is
-                amount = -_round((listed or 0) * p.rate / 100, 1) if at_list and listed else None
-                basis = (f"-{p.rate:g}% of the list price ${listed:,.0f}" if at_list and listed
-                         else "a settled sale: no market exposure adjustment")
-                comp.lines.append(Line(u + 1, "", f"${listed:,.0f}" if listed else "", None, amount, cur, basis))
-                continue
-            if d is None:
-                comp.lines.append(Line(u + 1, rows[u].subject, _cell(rows[u], i), None, None, cur,
-                                       "no value to compare"))
-                continue
-            # a 2-4 unit report gates on the building's difference (adjust.multi_lines)
-            amount, basis = line_amount(kind, d, p, building if units > 1 else None)
-            if amount is None and (_num(cur) or 0):
-                amount = 0                  # a stale amount is cleared; an empty row stays empty
-            key = f"{i + 1}_{u + 1}"
-            if key in overrides:
-                try:
-                    amount = int(round(float(overrides[key])))
-                    basis = "typed by the appraiser"
-                except (TypeError, ValueError):
-                    pass
-            comp.lines.append(Line(u + 1, rows[u].subject, _cell(rows[u], i), d, amount, cur, basis))
-        new = sum(ln.amount for ln in comp.lines if ln.amount is not None)
-        old = sum(_num(c) or 0 for c, ln in zip(current, comp.lines) if ln.amount is not None)
-        if prop is not None:
-            net_after = _net(prop) - old + new
-            gross = sum(abs(_num(n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentAmount") or "") or 0)
-                        for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT"))
-            gross_after = gross - sum(abs(_num(c) or 0) for c, ln in zip(current, comp.lines)
-                                      if ln.amount is not None) + sum(abs(ln.amount) for ln in comp.lines
-                                                                      if ln.amount is not None)
-            comp.net_after, comp.gross_after = net_after, gross_after
-            if price:
-                comp.line_pct = round(new / price * 100, 1)
-                comp.adjusted = price + net_after
-        comps.append(comp)
-    return {"kind": asdict(kind), "params": asdict(p), "profile": profile.name,
-            "subject": subject, "units": units,
-            "comparables": [{**asdict(c), "lines": [asdict(ln) for ln in c.lines]} for c in comps]}
+def _gross(prop) -> float:
+    return sum(abs(_num(n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentAmount") or "") or 0)
+               for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT"))
+
+
+# ----------------------------------------------------------------- state
+# What the appraiser applied, kept with the case (worksheets.json in the case
+# folder, so it travels with the bundle): per worksheet the rate, threshold and
+# rounding last applied; the adjustments typed by hand; the last profile used.
+STATE_FILE = "worksheets.json"
+
+
+def load_state(folder) -> dict:
+    import json
+    from pathlib import Path
+    path = Path(folder) / STATE_FILE
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def save_state(folder, state: dict) -> None:
+    import json
+    from pathlib import Path
+    (Path(folder) / STATE_FILE).write_text(json.dumps(state, indent=1, sort_keys=True), encoding="utf-8")
+
+
+def mark_manual(folder, root, adjust_type: str, number: int, instance: int, on: bool) -> bool:
+    """An adjustment typed by hand on a worksheet's row: kept as the
+    appraiser's (cleared, the worksheet may fill it again)."""
+    if adjust_type not in {k.adjust_type for k in KINDS.values()}:
+        return False
+    props = comparables.properties(root, "SalesComparable")
+    if not 1 <= number <= len(props):
+        return False
+    state = load_state(folder)
+    manual = state.setdefault("manual", {})
+    key = manual_key(adjust_type, props[number - 1], instance)
+    if on:
+        manual[key] = True
+    else:
+        manual.pop(key, None)
+    save_state(folder, state)
+    return True
+
+
+def release_manual(folder, root, kind_key: str, number: int, unit_instance: int) -> None:
+    kind = KINDS[kind_key]
+    mark_manual(folder, root, kind.adjust_type, number, unit_instance, False)
 
 
 # --------------------------------------------------------------- writing
-def _write_nth(prop, adjust_type: str, k: int, value: str) -> None:
-    """The k-th (0-based) adjustment of this type on a comparable: one per unit
-    on a 2-4 unit report, as the D-1 samples carry them."""
-    from . import edit
-    found = [n for n in prop.iter(f"{{{bind.MISMO}}}COMPARABLE_ADJUSTMENT")
-             if (n.findtext(f"{{{bind.MISMO}}}ComparableAdjustmentType") or "").strip() == adjust_type]
-    if k == 0 and not found:
-        comparables.write_adjustment(prop, adjust_type, value)
-        return
-    while len(found) <= k:
-        comparable, _ = edit.ensure_path(prop, ["COMPARABLE"])
-        holder, _ = edit.ensure_path(comparable, ["COMPARABLE_ADJUSTMENTS"])
-        node = edit.insert_ordered(holder, "COMPARABLE_ADJUSTMENT")
-        # a new block goes after the last one of its type, keeping unit order
-        if found:
-            found[-1].addnext(node)
-        kind = edit.insert_ordered(node, "ComparableAdjustmentType")
-        kind.text = adjust_type
-        found.append(node)
-    target = found[k]
-    amount = target.find(f"{{{bind.MISMO}}}ComparableAdjustmentAmount")
-    if amount is None:
-        amount = edit.insert_ordered(target, "ComparableAdjustmentAmount")
-    amount.text = value
-
-
-def apply(tree, kind_key: str, params: dict | None = None, profile: Profile | None = None,
-          overrides: dict | None = None) -> dict:
-    """What OK does: every comparable's line(s) of this row written at once.
-    A line with no comparable value is left as it is."""
-    out = sheet(tree, kind_key, params, profile, overrides)
-    kind = KINDS[kind_key]
+def _write_lines(tree, out: dict, adjust_type: str, state: dict, overrides: dict) -> int:
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     props = comparables.properties(root, "SalesComparable")
+    manual = state.setdefault("manual", {})
     written = 0
     for comp in out["comparables"]:
         prop = props[comp["number"] - 1] if comp["number"] - 1 < len(props) else None
         if prop is None:
             continue
         for ln in comp["lines"]:
+            key = f"{comp['number']}_{ln['unit']}"
+            mkey = manual_key(adjust_type, prop, ln["instance"])
+            if key in overrides:
+                manual[mkey] = True           # typed in the panel: the appraiser's
+            elif ln["manual"]:
+                continue                       # never overwritten
             if ln["amount"] is None:
                 continue
-            _write_nth(prop, kind.adjust_type, ln["unit"] - 1, str(int(ln["amount"])))
+            new = str(int(ln["amount"]))
+            if comparables.nth_adjustment_value(prop, adjust_type, ln["instance"]) != new:
+                comparables.write_nth_adjustment(prop, adjust_type, ln["instance"], new)
             written += 1
-    out["written"] = written
+    return written
+
+
+def apply(tree, kind_key: str, params: dict | None = None, profile: Profile | None = None,
+          overrides: dict | None = None, folder=None) -> dict:
+    """What OK does: every comparable's line(s) of this row written at once.
+    A line with no comparable value, or one typed by hand, is left as it is.
+    With ``folder`` the worksheet is remembered, so the row recalculates when
+    a subject or comparable value changes later (``recalc``)."""
+    import datetime
+    state = load_state(folder) if folder is not None else {}
+    overrides = overrides or {}
+    out = sheet(tree, kind_key, params, profile, overrides, state)
+    kind = KINDS[kind_key]
+    out["written"] = _write_lines(tree, out, kind.adjust_type, state, overrides)
+    if folder is not None:
+        kinds = state.setdefault("kinds", {})
+        # one grid row, one worksheet: the other worksheet writing the same row
+        # (finished area below grade per sq ft vs present / none) stops
+        for other in list(kinds):
+            if other != kind_key and KINDS.get(other) and KINDS[other].adjust_type == kind.adjust_type:
+                kinds.pop(other)
+        kinds[kind_key] = {"rate": out["params"]["rate"], "threshold": out["params"]["threshold"],
+                           "rounding": out["params"]["rounding"], "profile": out["profile"],
+                           "label": out["rate_label"],
+                           "at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")}
+        if profile is not None:
+            state["profile"] = profile.to_json()
+        save_state(folder, state)
+        out["applied"] = kinds[kind_key]
     return out
 
 
-def adjust_all(tree, profile: Profile) -> dict:
+def adjust_all(tree, profile: Profile, folder=None) -> dict:
     """Every worksheet whose rate the profile carries, applied in one go."""
     done, skipped = [], []
     for k in available(tree):
@@ -501,6 +615,89 @@ def adjust_all(tree, profile: Profile) -> dict:
         if not getattr(profile, kind.rate, 0):
             skipped.append({"key": kind.key, "why": "not in the profile"})
             continue
-        res = apply(tree, kind.key, None, profile)
+        res = apply(tree, kind.key, None, profile, folder=folder)
         done.append({"key": kind.key, "written": res["written"]})
     return {"profile": profile.name, "applied": done, "skipped": skipped}
+
+
+def recalc(tree, folder) -> list[dict]:
+    """Every applied worksheet worked out again on the document as it now
+    stands -- after a subject or comparable value changed -- and its lines
+    rewritten, except the ones typed by hand. Returns the cells that moved."""
+    import datetime
+    state = load_state(folder)
+    kinds = state.get("kinds") or {}
+    if not kinds:
+        return []
+    grid = _grid(tree)
+    if grid is None:
+        return []
+    root = tree.getroot() if hasattr(tree, "getroot") else tree
+    props = comparables.properties(root, "SalesComparable")
+    moved = []
+    for key, saved in kinds.items():
+        kind = KINDS.get(key)
+        if kind is None or kind.adjust_type not in grid.rows:
+            continue
+        prof = profile_from(state.get("profile") or {"name": saved.get("profile", "")}, tree)
+        out = sheet(tree, key, {"rate": saved.get("rate"), "threshold": saved.get("threshold"),
+                                "rounding": saved.get("rounding")}, prof, None, state, grid)
+        for comp in out["comparables"]:
+            prop = props[comp["number"] - 1] if comp["number"] - 1 < len(props) else None
+            if prop is None:
+                continue
+            for ln in comp["lines"]:
+                if ln["manual"] or ln["amount"] is None:
+                    continue
+                new = str(int(ln["amount"]))
+                old = comparables.nth_adjustment_value(prop, kind.adjust_type, ln["instance"])
+                if old != new:
+                    comparables.write_nth_adjustment(prop, kind.adjust_type, ln["instance"], new)
+                    moved.append({"kind": key, "adjust_type": kind.adjust_type, "comp": comp["number"],
+                                  "instance": ln["instance"], "old": old, "new": new})
+    if moved:
+        state["recalc"] = {"at": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+                           "cells": [{k: m[k] for k in ("adjust_type", "comp", "instance")} for m in moved]}
+        save_state(folder, state)
+    return moved
+
+
+def marks(tree, folder) -> dict:
+    """What the report's grid shows beside its rows: which rows have a
+    worksheet, which are applied and at what rate, and per adjustment cell its
+    arithmetic (the hover) and whether it was typed by hand."""
+    state = load_state(folder)
+    grid = _grid(tree)
+    rows, cells = {}, {}
+    if grid is None:
+        return {"rows": rows, "cells": cells, "recalc": state.get("recalc")}
+    for kind in KINDS.values():
+        if kind.adjust_type not in grid.rows:
+            continue
+        applied = (state.get("kinds") or {}).get(kind.key)
+        cur = rows.get(kind.adjust_type)
+        if cur is None or applied:
+            rows[kind.adjust_type] = {"kind": kind.key, "title": kind.title,
+                                      "applied": bool(applied),
+                                      "label": (applied or {}).get("label", "")}
+        if not applied:
+            continue
+        prof = profile_from(state.get("profile") or {"name": applied.get("profile", "")}, tree)
+        out = sheet(tree, kind.key, {"rate": applied.get("rate"), "threshold": applied.get("threshold"),
+                                     "rounding": applied.get("rounding")}, prof, None, state, grid)
+        for comp in out["comparables"]:
+            for ln in comp["lines"]:
+                cells[f"{kind.adjust_type}|{comp['number']}|{ln['instance']}"] = {
+                    "basis": ln["basis"], "manual": ln["manual"], "kind": kind.key}
+    # a value typed by hand on a row no worksheet has filled yet is still the
+    # appraiser's: marked, so the worksheet leaves it when it is applied
+    by_label = {comp_key(p): n for n, p in enumerate(grid.props, 1) if p is not None}
+    for key, on in (state.get("manual") or {}).items():
+        adjust_type, _, rest = key.partition("|")
+        label, _, inst = rest.rpartition("|")
+        number = by_label.get(label)
+        if on and number and adjust_type in rows:
+            cells.setdefault(f"{adjust_type}|{number}|{inst}", {
+                "basis": "typed by the appraiser", "manual": True, "kind": rows[adjust_type]["kind"]})
+    return {"rows": rows, "cells": cells, "recalc": state.get("recalc"),
+            "profile": (state.get("profile") or {}).get("name")}

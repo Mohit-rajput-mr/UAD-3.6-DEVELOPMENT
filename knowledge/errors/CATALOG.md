@@ -2504,3 +2504,52 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   (a refused request leaves the drawn PDF in place).
 - Rule: in an API answer to a vault-wrapped request (any `/api/cases/<id>`
   route), `stale` is reserved for the vault protocol.
+
+### E-165 -- A 2-4 unit / ADU report showed the first unit's adjustment on every unit's line (2026-10-10)
+- Symptom: on SF3, the ADU's Finished Area Above Grade line printed the
+  dwelling's adjustments. The official PDF prints $(1,840), $18,560 and
+  $(6,440) there.
+- Cause: `comparables.build` read a per-unit row's adjustment with
+  `_nth_adjustment(..., ob)`, the outbuilding index, which is 0 for every
+  unit and ADU line. A-1 keeps one COMPARABLE_ADJUSTMENT per type per line,
+  in the order the lines are drawn (units, then ADUs).
+- Mechanism: positional instances. Each expanded row of a type gets
+  `instance` = its running count in drawing order. Reading uses the k-th
+  adjustment of that type, and writing uses
+  `comparables.write_nth_adjustment(prop, type, k, value)`, which creates the
+  preceding blocks and keeps a type's blocks together. The editor sends
+  `instance` (`data-gai`) with every adjustment cell it saves.
+- Test: `tests/test_worksheet.py::test_the_adu_row_reads_its_own_adjustment`
+  and `::test_per_unit_lines_are_positional_as_the_samples_keep_them`.
+
+### E-166 -- Adjustments filled by a worksheet went stale, and a hand-typed one was overwritten (2026-10-10)
+- Symptom (owner's addendum to DR §11): after OK, changing a comparable's
+  area left its adjustment at the old figure. Re-applying a worksheet wrote
+  over amounts the appraiser had typed.
+- Cause: a worksheet was a one-shot write with no memory of its rate, and
+  nothing recorded which cells were the appraiser's own.
+- Mechanism:
+  - `uad/worksheet.py` remembers each applied worksheet (rate, threshold,
+    rounding, profile) in `worksheets.json` beside the case, so it travels
+    with the bundle.
+  - `Store.save_tree` runs `worksheet.recalc`, which recomputes every
+    applied row on the document as it now stands, and every write route
+    returns `recalculated`. The editor lays the page out again and flashes
+    the moved cells.
+  - An adjustment typed in the grid, or in the drawer, is marked manual
+    (`type|comp label|instance`, so it follows the comparable when the
+    comparables are reordered) and is never overwritten. "Use worksheet"
+    releases it.
+  - `marks()` gives the grid its (+) / "✓ $75/sf" icons and each cell's
+    arithmetic as its title.
+- Test:
+  - `tests/test_worksheet.py::test_an_applied_worksheet_follows_its_values_and_spares_a_typed_one`
+    and `::test_the_deliverables_carry_what_the_worksheet_wrote` (preview,
+    PDF, mismo.xml and ZIP);
+  - `tests/test_worksheet_grid.py` (Chromium): icons on SF / condo / 2-4,
+    including new comps and units and after a re-render; drawer preview
+    equals the server; OK, Esc, Ctrl+J; recalc in the grid; signed is read
+    only.
+- Spec note: the UAD 3.6 rental and GRM grids define no adjustment rows (0
+  of 26 / 0 of 14). The icons therefore apply to the sales grid and its
+  per-unit/ADU lines.

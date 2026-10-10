@@ -41,3 +41,4 @@ desktop/dist/
 
 # agent worktrees (local only)
 .claude/worktrees/
+.claude/wf-partial/

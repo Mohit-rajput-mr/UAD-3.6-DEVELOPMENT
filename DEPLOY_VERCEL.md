@@ -48,6 +48,17 @@ exists (local, Docker, desktop); Vercel uses the browser-drawn PDF.
   imports this repository builds as is (checked 2026-10-10 by copying exactly
   what `.vercelignore` keeps and serving it with `VERCEL=1`).
 
+## Live deployments (2026-10-10)
+
+| Account | Project | Address | Notes |
+|---|---|---|---|
+| mohitrajputjigsaw04 (team `mohit-teams`) | `uad` | https://uad36.vercel.app (also uad-kohl.vercel.app) | current; Blob store `uad-cases`; production = branch `claude/sleepy-hypatia-e2pzcn` deployed by API (`uad.vercel.app` belongs to another account) |
+| rajputmohit192003 (team "Mohit's projects") | `uad36-form-filler` | its production tracks `main` | earlier site; Blob store `uad36-cases` (26 MB); env vars `UAD_P1..P7` / `UAD_BUILD` are an obsolete patch and can be deleted |
+
+A push to the branch makes a preview deployment on the `uad` project; production
+moves when a deploy is promoted (or the production branch is changed in the
+project's Git settings).
+
 ## Local, with PDF
 
     pip install -r requirements.txt playwright uvicorn

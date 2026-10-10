@@ -3153,7 +3153,7 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - Next: from WinTOTAL's inventory, the remaining **todo** rows in
   knowledge/competitors/WINTOTAL_UAD36.md; a real-Windows check of 1.2.0.
 
-## 2026-10-10 (later) -- registry triage; utility rows, dwelling fronts, footer IDs (T-120, E-163, T-919, T-1017)
+## 2026-10-10 (later) -- registry triage; utility rows, dwelling fronts, footer IDs (T-120, E-167, T-919, T-1017)
 - Status: committed to `claude/keen-turing-3r26sh` only, **not merged to
   main**. Every new test passes, and the full suite (848 passed, 9 skipped)
   ran while T-919 was being added. The re-run of the affected tests after
@@ -3169,7 +3169,7 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   `spec/row_headers.json`. `form._always_rows` prints those rows even when
   empty. The 12 sample print galleys are byte-identical.
   `tests/test_row_headers.py`.
-- E-163 (CATALOG): DwellingFront has two A-1 rows (top photo 1400.0619 and
+- E-167 (CATALOG): DwellingFront has two A-1 rows (top photo 1400.0619 and
   "Dwelling Front" exhibit 1400.0638).
   - The n-th property-level DwellingFront is the n-th dwelling's top photo;
     D-1 2-4 Building 2 used to show Building 1's.
@@ -3185,7 +3185,7 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     editor home.
   - Chromium: a Client Reference ID typed on page 2 showed on all 28 pages
     and was saved to the XML. `tests/test_footer_references.py`.
-- Closed after verifying: T-1022, T-705, T-237, T-121. New: T-125, MH1/MH2
+- Closed after verifying: T-1022, T-705, T-237, T-121. New: T-127, MH1/MH2
   Site exhibit titles differ from D-1.
 - Next: the full-suite re-run, then main. Then the open tasks this sandbox
   can do (`python engine/tasks.py next`); the bridge/TOTAL and case tasks

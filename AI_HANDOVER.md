@@ -228,7 +228,7 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 - Desktop installer rebuilt as **1.2.0** (`downloads/desktop/`, test_desktop 15/15). Full suite 840 passed, 9 skipped.
 - Later the same day (on the working branch, **not yet on main**, see the last HANDOFF section):
   - T-120: the utility row headers B-1 always prints;
-  - E-163: each building gets its own front photo, plus SF1's "Dwelling Front" exhibit;
+  - E-167: each building gets its own front photo, plus SF1's "Dwelling Front" exhibit;
   - T-919: the footer reference IDs are editable;
   - T-1017: the bridge diagnostics read from the right WinTOTAL snapshot.
   Run the full suite, then push to main.

@@ -1,4 +1,4 @@
-"""Each dwelling's own front photo, and a further one as an exhibit (E-163).
+"""Each dwelling's own front photo, and a further one as an exhibit (E-167).
 
 A-1 lists DwellingFront twice: the large photo atop Dwelling Exterior
 (1400.0619, 8.000.1, no caption) and an exhibit captioned "Dwelling Front"

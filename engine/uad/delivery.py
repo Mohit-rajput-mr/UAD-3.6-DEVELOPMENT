@@ -443,7 +443,7 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
             # B-1 Scenario 3: one file behind DwellingFront (8.000.1) and
             # PropertyPhoto (Summary 1.000.1, grid thumbnail).  It is the first
             # dwelling's front: a second building's front and a "Dwelling
-            # Front" exhibit are other DwellingFront images and stay (E-163),
+            # Front" exhibit are other DwellingFront images and stay (E-167),
             # and the new one takes the old one's place, since the n-th
             # DwellingFront is the n-th dwelling's.
             _drop_category(subject, {"PropertyPhoto"})

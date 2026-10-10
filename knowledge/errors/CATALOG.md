@@ -2438,7 +2438,7 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   Leaving a section out now also moves its other answers out of the XML.
   The D-1 samples that don't print it hold only the question.
 
-### E-163 -- A second building showed the first building's front photo; an extra front photo never printed (2026-10-10)
+### E-167 -- A second building showed the first building's front photo; an extra front photo never printed (2026-10-10)
 - Symptom 1: D-1 2-4 printed 2-4_Dwelling1Front atop both buildings'
   Dwelling Exterior. Building 2's own 2-4_Dwelling2Front never showed.
 - Symptom 2: D-1 SF1 prints SF1_DwellingFront among its Dwelling Exterior

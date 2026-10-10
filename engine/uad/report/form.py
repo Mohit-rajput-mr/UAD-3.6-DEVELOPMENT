@@ -261,7 +261,7 @@ def image_categories() -> dict[str, tuple[str, str]]:
         # A category A-1 lists twice keeps the row that places it on the
         # report: DwellingFront is the large photo atop Dwelling Exterior
         # (1400.0619, "Does Not Display" a caption) and also an exhibit
-        # captioned "Dwelling Front" (1400.0638, 8.062.1) -- E-163
+        # captioned "Dwelling Front" (1400.0638, 8.062.1) -- E-167
         if value not in out or (section and not out[value][0]):
             out[value] = (section, caption)
     return out
@@ -4761,7 +4761,7 @@ def _front_photos(ctx: Ctx) -> tuple[list[dict], list]:
     2-4_Dwelling2Front, one atop each building -- and any beyond one per
     dwelling is an exhibit captioned "Dwelling Front" (8.062.1; D-1 SF1 holds
     SF1_SubjectProperty atop the section and SF1_DwellingFront among its
-    exhibits).  E-163."""
+    exhibits).  E-167."""
     subj = subject(ctx)
     if subj is None:
         return [], []
@@ -4784,7 +4784,7 @@ def _photo_for(ctx: Ctx, section: str) -> tuple[str, str]:
         fronts, dwellings = _front_photos(ctx)
         n = _dwelling_index(ctx, dwellings)
         if n:
-            # the second building's own front, never the first's (E-163)
+            # the second building's own front, never the first's (E-167)
             return (_data_uri(fronts[n]["path"]), fronts[n]["caption"]) if n < len(fronts) else ("", "")
     # The front of the dwelling is entered once and redisplays: B-1 gives the
     # Summary photo (1.000.1) the Dwelling Exterior photo (8.000.1) as its

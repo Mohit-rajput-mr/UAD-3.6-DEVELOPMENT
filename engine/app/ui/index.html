@@ -313,6 +313,15 @@ section.work{display:flex;flex-direction:column;min-width:0;min-height:0;overflo
   padding:9px 14px;font:500 12.5px/1.35 var(--sans);cursor:pointer}
 .adds .addit:first-child{border-top:0}
 .adds .addit:hover,.adds .addit:focus-visible{background:var(--hover);color:var(--ink)}
+/* an optional section's switch */
+.secsw{display:flex;flex-direction:column;gap:6px}
+.secsw-row{display:flex;align-items:center;gap:8px;font:600 12.5px/1.3 var(--sans);color:var(--ink);cursor:pointer}
+.secsw-row input{width:14px;height:14px;accent-color:var(--ink);margin:0}
+.secsw-rule{margin:0;font-size:12px;line-height:1.45;color:var(--ink-2)}
+.secsw-rule span{color:var(--faint)}
+.secsw-note{margin:0;font-size:12px;line-height:1.45;color:var(--muted)}
+.railitem.off .t{color:var(--faint)}
+.railitem.off .t:after{content:'left out';display:block;font:500 10px/1.2 var(--mono);letter-spacing:.04em;color:var(--faint)}
 /* SmartAdjust */
 .sadj-ov{position:fixed;inset:0;z-index:88;display:flex;align-items:center;justify-content:center;padding:24px 16px;
   background:rgba(5,5,6,.66);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
@@ -1111,7 +1120,7 @@ async function openCase(id){
   const fresh=(route()||{}).caseId!==id;
   if(fresh) S.section=null;          // a report opened from the list starts at its top
   S.caseId=id; S.view='report';
-  setRoute(fresh); S.saveErrors={}; S.saveError=''; S.printed=null; S.atSection=null;
+  setRoute(fresh); S.saveErrors={}; S.saveError=''; S.printed=null; S.atSection=null; S.optional=null;
   S.formReady=false; S.swaps={}; S.review=null; S.case=null; S.checking={};
   $('#shell').className='';          // back to the three-pane layout
   setCrumb('Opening the report…');
@@ -1195,6 +1204,10 @@ function drawRail(){
     // leave out for this property is not offered at all (it returns the
     // moment an answer makes it apply)
     if(present.length&&!present.includes(s.number)) continue;
+    // an optional section switched off by its own question is still offered
+    // (its question is on the page), marked as left out of the report
+    const opt=(S.optional||[]).find(o=>o.number===s.number);
+    if(opt&&!opt.printed){ b.classList.add('off'); b.title+=' · left out of the report'; }
     if(saved){
       b.classList.add(c.f?'st-bad':c.w?'st-warn':'st-good');
       b.title+=' · saved '+new Date(saved).toLocaleString()
@@ -1281,12 +1294,12 @@ window.addEventListener('message',e=>{
   const f=$('#rf');
   if(!f||e.source!==f.contentWindow) return;
   if(m.uad==='fresh'){ swapFrame('form'); return; }
-  if(m.uad==='relayout'){ checkFresh('form'); return; }
+  if(m.uad==='relayout'){ if(m.fid) S.pendingGoto={fid:m.fid,secn:S.atSection||S.section}; checkFresh('form'); return; }
   if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove(); postMarks();
     // what the report actually prints, as laid out -- not a guess from the data
     if(m.sections){ S.printed=m.sections; drawRail(); }
-    sendGoto(); }
-  if(m.uad==='at'){ S.atSection=m.secn; if(m.secn&&m.secn!==S.section){ S.section=m.secn; markRail(); } renderAdds(); }
+    loadOptional(); sendGoto(); }
+  if(m.uad==='at'){ S.atSection=m.secn; if(m.secn&&m.secn!==S.section){ S.section=m.secn; markRail(); } renderSec(); renderAdds(); }
   if(m.uad==='goto-result'&&!m.found){
     if(S.atSection){ S.section=S.atSection; markRail(); }
     const sec=S.sections.find(x=>x.number===m.secn);
@@ -1414,6 +1427,11 @@ function finishSwap(kind,nf){
         nf.contentWindow.postMessage(
           {uad:'autofill',steps:S.autoSteps.slice(S.autoAt),pace:S.autoPace||45},'*');
       }
+      // its 'ready' came while it was still the frame being swapped in, so
+      // what it prints, the optional sections and a pending goto apply now
+      try{ const have=new Set([...nf.contentDocument.querySelectorAll('[data-secn]')].map(x=>+x.dataset.secn));
+        if(have.size) S.printed=[...have]; }catch(_){}
+      loadOptional(); sendGoto();
     }
     S.again=S.again||{}; S.again[kind]=false;
     setTimeout(()=>checkFresh(kind),30);
@@ -2210,8 +2228,8 @@ const NARROW=()=>window.matchMedia('(max-width:1240px)').matches;
 function drawInsp(){
   const b=$('#insp');
   if(!b||NARROW()) return;
-  if(!$('#insp-sign')) b.innerHTML='<div id="insp-guide"></div><div id="insp-add"></div><div id="insp-sign"></div>';
-  renderGuide(); renderAdds();
+  if(!$('#insp-sign')) b.innerHTML='<div id="insp-guide"></div><div id="insp-sec"></div><div id="insp-add"></div><div id="insp-sign"></div>';
+  renderGuide(); renderSec(); renderAdds();
   fillSignoff($('#insp-sign'));
 }
 
@@ -2319,6 +2337,44 @@ function commentLibrary(anchor){
    What the section in view can take another of -- an exhibit, a comparable,
    a room, a table row, the next certification -- as the report itself offers
    it; a click goes there and opens it (WinTOTAL's per-section "+ Add"). */
+/* ------------------------------------------------ optional sections (T-1057)
+   Disaster Mitigation, Energy Efficient and Green Features and Sales Contract
+   print only when their own question says so (B-1).  The switch answers it:
+   off leaves the section out of the report and the XML and keeps what was
+   entered in it aside; on brings it all back (uad/optional_sections.py). */
+function loadOptional(){
+  if(!S.caseId) return;
+  const id=S.caseId;
+  apiRaw(`/cases/${id}/sections/optional`).then(r=>{
+    if(!r||!r.ok||id!==S.caseId) return;
+    S.optional=r.data.sections||[]; renderSec(); drawRail(); markRail();
+  }).catch(()=>{});
+}
+function renderSec(){
+  const box=$('#insp-sec'); if(!box) return;
+  const sec=S.atSection||S.section;
+  const o=(S.optional||[]).find(x=>x.number===sec);
+  if(!o){ box.innerHTML=''; return; }
+  const kept=o.kept?`<p class="secsw-note">${o.kept} answer${o.kept===1?'':'s'} kept aside; ${o.kept===1?'it comes':'they come'} back when the section is shown.</p>`:'';
+  const pics=(!o.printed&&o.exhibits)?`<p class="secsw-note">${o.exhibits} exhibit${o.exhibits===1?' is':'s are'} filed here and ${o.exhibits===1?'is':'are'} not delivered while it is left out.</p>`:'';
+  box.innerHTML=`<div class="panelhead k">${esc(o.section)} in this report</div>
+    <div class="panelblock secsw">
+      <label class="secsw-row"><input type="checkbox" role="switch" id="secsw-on" ${o.printed?'checked':''}>
+        <span>${o.printed?'Shown in the report':'Left out of the report'}</span></label>
+      <p class="secsw-rule">${esc(o.rule)} <span>(B-1)</span></p>${kept}${pics}
+    </div>`;
+  const sw=$('#secsw-on');
+  sw.onchange=()=>{
+    sw.disabled=true;
+    api(`/cases/${S.caseId}/sections/optional/${o.number}`,{method:'PUT',body:JSON.stringify({on:sw.checked})})
+      .then(r=>{
+        if(!r||!r.ok){ sw.checked=!sw.checked; sw.disabled=false;
+          UADDialog.alert((r&&r.data&&r.data.detail)||'The section could not be switched.',{title:o.section}); return; }
+        S.optional=r.data.sections||S.optional; renderSec(); drawRail(); markRail();
+        S.pendingGoto={fid:(o.fields||[])[0]||'',secn:o.number}; checkFresh('form');
+      });
+  };
+}
 function renderAdds(){
   const box=$('#insp-add'); if(!box) return;
   const sec=S.atSection||S.section;

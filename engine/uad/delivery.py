@@ -464,6 +464,14 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
         fixed = form.media_category({"category": item.category, "caption": caption})
         if not section and not fixed:
             continue                                    # not placed on the report
+        if section and not fixed and not form.section_prints(root, section):
+            # its section is not in the report (B-1: no sales contract, no
+            # mitigation feature, an approach not developed), so the PDF has
+            # no place for it and neither has the file (T-1057)
+            out.faults.append(Fault(WARNING, "IMAGE-SECTION-OFF",
+                                    f"An exhibit filed under {section} is not delivered: "
+                                    "the section is not in this report.", item.filename))
+            continue
         category = fixed or _category_for(section, caption)
         if not category:
             out.faults.append(Fault(FATAL, "IMAGE-CATEGORY",

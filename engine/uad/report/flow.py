@@ -793,10 +793,11 @@ EDIT_JS = """
   /* After an image changes what fits, the report is laid out again; the
      reader stays where they were. */
   var KEY='uad-scroll-'+id;
-  function reloadHere(){
+  function reloadHere(fid){
     // Inside the editor the new layout is made in the background and swapped
-    // in without a blank page; on its own, the page reloads once it is ready.
-    if(parentWin){ parentWin.postMessage({uad:'relayout'},'*'); return; }
+    // in without a blank page (and the editor returns to ``fid``, the field
+    // that changed the layout); on its own, the page reloads once it is ready.
+    if(parentWin){ parentWin.postMessage({uad:'relayout',fid:typeof fid==='string'?fid:''},'*'); return; }
     try{ sessionStorage.setItem(KEY,String(window.scrollY)); }catch(_){}
     var R=window.UAD_RENDER||{};
     function poll(){
@@ -920,7 +921,7 @@ EDIT_JS = """
         if(window.parent!==window) window.parent.postMessage({uad:'saved'},'*');
         // a line added to or taken from a numbered list (the additional
         // certifications): the numbering moves, so the page is laid out again
-        if(res.d && res.d.relayout){ reloadHere(); return true; }
+        if(res.d && res.d.relayout){ reloadHere(el.dataset.fid||''); return true; }
         // the answer changed what kind of property this is: the report has
         // been rebuilt on that shape (uad/shape.py) and the editor reloads it
         if(res.d && res.d.reshaped && window.parent!==window)

@@ -3108,3 +3108,43 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     e2e against the dev server: the list follows the rail
     (Site → Dwelling Exterior).
 - Next: T-1057 Show/Hide optional sections.
+- T-1057 built: Show / Hide for the optional sections (WinTOTAL row 7).
+  - Scope, from B-1: the three sections that print by a question of their
+    own. Disaster Mitigation (5.000 ≠ None), Energy Efficient and Green
+    Features (6.000/6.004/6.010, one true) and Sales Contract (20.000).
+    `form.switch_fields` / `switch_points` read them from B-1's sentences.
+  - Not included: Revision History (a revised report must carry its
+    revisions, H-1 UAD1750-1754) and sections B-1 says always display
+    (Vehicle Storage, Amenities: WinTOTAL hides those, B-1 doesn't allow it).
+  - `uad/optional_sections.py`. Hiding answers the question the way that
+    switches the section off and moves every other answer of the section
+    (lifted to whole containers, commentary by category, exhibit IMAGEs)
+    out of the document into `hidden.json` in the case folder. The file is
+    in the case bundle, never in the package.
+  - Showing restores the answers by stable path, in XSD order. Answering
+    the question in the form does the same: a hook in `set_field` returns
+    `relayout`.
+  - Hidden shape equals the D-1 samples that don't print the section: the
+    question and nothing else.
+  - Delivery: an exhibit filed under a section that doesn't print is not
+    shipped (WARNING IMAGE-SECTION-OFF), matching the PDF.
+  - Editor: a switched-off section collapses to its question plus B-1's
+    sentence (E-162). The inspector panel "<Section> in this report" has
+    the switch, the rule and "N answers kept aside". The rail marks it
+    "left out".
+  - Also fixed: a swapped-in frame's 'ready' arrived before `finishSwap`
+    and was dropped. `finishSwap` now applies S.printed, the optional state
+    and a pending goto. A relayout asked by a field edit returns to that
+    field (`reloadHere(fid)`).
+  - Tests: `tests/test_optional_sections.py` (17).
+    - On all 12 samples: hide is schema-valid, nothing is left, the shape
+      matches, no new findings, and show is c14n-identical.
+    - An "Other" description survives a round trip.
+    - API: both the switch and the question work; 422 for 13 and 27.
+    - Bundle carries hidden.json; delivery skips the exhibit.
+  - Chromium e2e on sf1 Sales Contract: switch off collapses the section,
+    XML DETAIL = AllPropertyRights + Exists=false, 12 kept. Switch on
+    restores, and so do answering No then Yes. The view stays on section
+    20.
+- Full suite after T-1057: 840 passed, 9 skipped.
+- Next: rebuild the desktop installer (1.2.0) with T-1056..T-1061 and E-161/E-162; verify the Vercel deploy.

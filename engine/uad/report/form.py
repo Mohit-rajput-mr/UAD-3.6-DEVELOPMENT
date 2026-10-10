@@ -348,6 +348,94 @@ def print_gate(ctx: "Ctx", section: str) -> bool | None:
     return None
 
 
+_FID = re.compile(r"\bFID:\s*(\d+\.\d{3})\b")
+_UID_FID = re.compile(r"\s*\(UID:[^)]*\)")
+
+
+def _display_sentences(section: str) -> list[str]:
+    path = SPEC / "section_display.json"
+    data = json.loads(path.read_text(encoding="utf-8")).get("sections", {}) if path.exists() else {}
+    said = [r["text"] for r in data.get(section, {}).get("displays", [])]
+    return [t for t in [section_rules().get(section, "")] + said if t]
+
+
+@lru_cache(maxsize=32)
+def switch_fields(section: str) -> tuple[str, ...]:
+    """The Report Field IDs of the question(s) that switch a section on, as
+    B-1 names them: the FID its display rule names (Disaster Mitigation's
+    5.000, Sales Contract's 20.000), or, where the rule counts "one or more of
+    the three ... features", the section's own ...ExistsIndicator points
+    (6.000, 6.004, 6.010).  Empty for a section no question of its own
+    switches (Revision History prints when there is a revision to show)."""
+    if section not in SELF_GATED:
+        return ()
+    texts = _display_sentences(section)
+    for text in texts:
+        fids = _FID.findall(text)
+        if fids:
+            return tuple(dict.fromkeys(fids))
+    number = next((n for n, name in bind.SECTIONS if name == section), None)
+    for text in texts:
+        m = _SOME_TRUE.search(text)
+        if m and number is not None:
+            fids = sorted(fid for fid, f in _fields().items()
+                          if fid.split(".")[0] == str(number) and fid.count(".") == 1
+                          and any(dp.get("mismo", "").endswith("ExistsIndicator")
+                                  for dp in f.get("data_points", [])))
+            if len(fids) == _COUNT_WORD.get(m.group(1).lower(), -1):
+                return tuple(fids)
+    return ()
+
+
+@lru_cache(maxsize=32)
+def switch_points(section: str) -> tuple[str, ...]:
+    """The data points that answer the switching question: those the rule
+    names (DisasterMitigationFeatureType, not the "Other" description that
+    shares its field), or the counted ...ExistsIndicator points."""
+    fids = switch_fields(section)
+    if not fids:
+        return ()
+    named = [n for t in _display_sentences(section) for n in _NAMED.findall(t)]
+    points = [dp["mismo"] for fid in fids for dp in (_fields().get(fid) or {}).get("data_points", [])
+              if dp.get("mismo") and (dp["mismo"] in named if named else dp["mismo"].endswith("ExistsIndicator"))]
+    return tuple(dict.fromkeys(points))
+
+
+def switch_sections() -> list[str]:
+    """The sections an appraiser can leave out of the report (T-1057)."""
+    return [name for _n, name in bind.SECTIONS if switch_fields(name)]
+
+
+def section_prints(root, section: str) -> bool:
+    """Does B-1 put this section in the printed report for this case?"""
+    ctx = Ctx(root)
+    return section_shown(ctx, section) is not False and print_gate(ctx, section) is not False
+
+
+_NAMED_FID = re.compile(r"\b[A-Z][A-Za-z]+\s*\(UID:[^)]*?FID:\s*(\d+\.\d{3})\)")
+
+
+def switch_rule(section: str) -> str:
+    """B-1's own sentence for when the section prints, in words: its plain
+    sentence where it has one ("... when an active sales contract exists"),
+    else the rule with each data point named by the field the report prints
+    for it."""
+    texts = _display_sentences(section)
+    plain = [t for t in texts if not _UID_FID.search(t)]
+    if plain:
+        return plain[-1].strip()
+    def label(m):
+        loc = (_fields().get(m.group(1), {}).get("locations") or [{}])[0]
+        return loc.get("label") or m.group(0)
+    return _UID_FID.sub("", _NAMED_FID.sub(label, texts[0])).strip() if texts else ""
+
+
+def _switched_off_html(section: str) -> str:
+    return ("<div class='secoff'><b>Not in this report.</b> " + esc(switch_rule(section))
+            + " (B-1) Anything else entered in this section is kept aside, out of the report"
+            " and the XML, and comes back when the section is shown.</div>")
+
+
 @lru_cache(maxsize=1)
 def section_display() -> dict[str, list[str]]:
     """B-1's own "the section displays when ..." sentences, per section
@@ -1416,10 +1504,16 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
     blocks: list[Block] = []
     for title, els in sections:
         base = title.split(" - [")[0]
-        if section_shown(ctx, base) is False:
+        off = section_shown(ctx, base) is False or print_gate(ctx, base) is False
+        if off and not (ctx.edit and switch_fields(base)):
             continue
-        if not ctx.edit and print_gate(ctx, base) is False:
-            continue
+        if off:
+            # Switched off by its own question (B-1: Disaster Mitigation
+            # "None", no sales contract, no energy feature): the report leaves
+            # it out, the editor keeps the question so it can be switched
+            # back on (E-162) and says what B-1 asks for.
+            asks = set(switch_fields(base))
+            els = [e for e in els if e["kind"] == "tab" or asks & set(e.get("ids", []))]
         for sctx, printed in section_instances(ctx, title):
             if base == "Unit Interior" and sctx.scope is not None and bind.stable_path(sctx.scope) in placed:
                 continue
@@ -1427,6 +1521,9 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
                 blocks += _cost_approach(title, printed, els, sctx, sample=sample)
                 continue
             blocks += _section(title, printed, els, sctx, sample=sample)
+            if off:
+                blocks.append(Block("text", section=printed, html=_switched_off_html(base),
+                                    visible=True))
             if interleave and base == "Dwelling Exterior" and sctx.scope is not None:
                 for uctx, uprinted in section_instances(ctx, unit_title):
                     imp = next(uctx.scope.iterancestors(f"{M}IMPROVEMENT"), None) \
@@ -5971,6 +6068,9 @@ td.mk-fatal,td.mk-warn{outline-offset:-1.5pt}
 .txcb .certx{margin-left:4pt;color:#8a1c1c;cursor:pointer;font-weight:700}
 .txcb .certx:hover{color:#d92d20}
 .addflash{outline:2pt solid #1d6ce0!important;outline-offset:1pt;transition:outline-color .6s}
+.secoff{margin:2pt 0 4pt;padding:4pt 6pt;border-left:2pt solid #8a94a3;background:#f3f5f8;
+  font-size:7.5pt;line-height:1.35;color:#4a5564}
+.secoff b{color:#231f20}
 td.v.neg > span{color:#b42318!important}
 td.v.pos > span{color:#067647!important}
 .lencount{position:absolute;z-index:98;padding:1pt 4pt;background:#231f20;color:#fff;

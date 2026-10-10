@@ -2411,3 +2411,29 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   rules parse differently; 4 of those are the same logic regrouped.
 - Effect: blank reports show more fatal findings, correctly: each unit's
   bedrooms, baths and ratings are now asked for.
+
+### E-162 -- A section switched off by its own question vanished from the editor, question and all (2026-10-10)
+- Symptom: answering "No" to "Is there a sales contract?" (20.000), or
+  "None" to the Mitigation Feature (5.000), removed the whole section from
+  the editor. The question went with it, so the section could not be
+  switched back on from the form. D-1 Condo1, MH1, MH2 and SF5 opened that
+  way.
+- Cause: `form.SELF_GATED` says the editor keeps these sections to be
+  answered and only the print rule hides them. But `section_shown` fell
+  back to `section_rules()` (B-1's overview sentence) for Sales Contract and
+  Disaster Mitigation, and `build` dropped any section it called False
+  before the edit check. Energy Efficient escaped only because its rule
+  names no data point, so in the editor it showed in full with every
+  sub-field marked unanswered.
+- Mechanism: a section B-1 switches on by its own question
+  (`form.switch_fields`, read from B-1's sentences: the FID the rule names,
+  or the counted ...ExistsIndicator points) stays in the editor. When it is
+  switched off it is collapsed to that question plus B-1's sentence
+  (`.secoff`). The printed report is unchanged: the print galleys of all 12
+  samples are byte-identical before and after.
+- Test: `tests/test_optional_sections.py::test_the_editor_keeps_the_question_of_a_section_left_out`
+  (Condo1: 20.000, 5.000 and the three 6.0xx questions present, the rest
+  not, three notes; none in print).
+- Shipped with T-1057 (Show / Hide), whose leftover answers this exposed.
+  Leaving a section out now also moves its other answers out of the XML.
+  The D-1 samples that don't print it hold only the question.

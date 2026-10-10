@@ -209,7 +209,7 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
-### 2026-10-10 -- rent schedule units, legal description image, Add list; eight unit rules checked (T-1058, T-1060, T-1056; E-161)
+### 2026-10-10 -- rent schedule units, legal description image, Add list, Show/Hide sections; eight unit rules checked (T-1058, T-1060, T-1056, T-1057; E-161, E-162)
 - **T-1058:** a switch over the Rent Schedule chooses which units it lists
   (A-1 UnitIncludedInRentScheduleIndicator; H-1 UAD1159). Setup includes every unit.
 - **T-1060:** the legal description can be an image (B-1 pp121-122). It prints full width under the bar
@@ -219,7 +219,13 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   Fixed and validated on all 12 samples (`tests/test_rule_parsing.py`).
 - **T-1056:** the inspector's **Add to <section>** list names every add control in the current
   section by its table ("Row: Site Influence") and opens it (`tests/test_add_list.py`).
-- Next: T-1057 Show/Hide optional sections (stash, schema-valid both ways); then rebuild the installer.
+- **T-1057:** Show / Hide for the three sections B-1 switches on by their own question (Disaster
+  Mitigation, Energy Efficient and Green Features, Sales Contract). Hiding moves their other answers
+  out of the XML into `hidden.json` (case folder); showing, or answering the question, puts them back
+  exactly. `uad/optional_sections.py`, `tests/test_optional_sections.py`.
+- **E-162:** before this, answering No / None to one of those questions removed the whole section,
+  question included, from the editor.
+- Next: rebuild the desktop installer with these changes; verify the Vercel deploy.
 
 ### 2026-10-09 (later) -- WinTOTAL-inspired editor features; a shipped CSS break fixed (T-1051..T-1054, T-270; E-155..E-157)
 - The owner uploaded 36 screenshots of their WinTOTAL UAD 3.6 (`Competitors 3.6 software features pics/`;
@@ -250,8 +256,7 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   and desktop alike.
 - Desktop installer rebuilt as **1.1.0** (`downloads/desktop/`). Full suite 807 passed, 9 skipped.
 - Next (in TASKS.md):
-  - T-1056, T-1058, T-1060: done 2026-10-10 (above);
-  - T-1057 Show/Hide optional sections (stash, schema-valid both ways).
+  - T-1056, T-1057, T-1058, T-1060: done 2026-10-10 (above).
   Rebuild the installer after shipped changes (`git add` first, then `python desktop/build.py`, then
   commit `downloads/desktop/`).
 

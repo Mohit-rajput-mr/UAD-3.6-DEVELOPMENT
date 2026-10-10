@@ -960,6 +960,17 @@ def set_field(case_id: str, field_id: str, request: Request,
                                            ordinal=ordinal)
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
+    # The question that switches an optional section (Disaster Mitigation,
+    # Energy Efficient and Green Features, Sales Contract): answered so B-1
+    # leaves the section out, its other answers are moved aside; answered so
+    # it prints, they come back (uad/optional_sections.py, T-1057).
+    from uad import optional_sections
+    switched, kept, relayout = optional_sections.section_of(field_id), None, False
+    if switched:
+        kept = optional_sections.load(st.folder(case_id))
+        was = report_form.section_prints(st.tree(case_id).getroot(), switched)
+        optional_sections.follow(tree, switched, kept)
+        relayout = was != report_form.section_prints(tree.getroot(), switched)
     if field_id == "3.000" and case.name == NEW_NAME and value.strip():
         # an unnamed report takes the subject's address as its name
         st.rename(case_id, value.strip())
@@ -985,6 +996,8 @@ def set_field(case_id: str, field_id: str, request: Request,
         st.set_shape(case_id, reshaped.template, reshaped.property_type)
     else:
         st.save_tree(case_id, tree)
+    if kept is not None:
+        optional_sections.save(st.folder(case_id), kept)
     st.invalidate(case_id, _actor(request), f"{field_id} changed")
     st.log(case_id, _actor(request), "edited",
            f"{field_id} {written.old!r} -> {written.new!r}")
@@ -1003,6 +1016,7 @@ def set_field(case_id: str, field_id: str, request: Request,
                 "not_placed": [f.get("label") or f.get("fid") for f in reshaped.failed][:20]},
             # what the report prints: whole dollars without cents, as D-1 sets them
             "value": bind.trim_cents(bind.display_value(groups, pf.binding), pf.label),
+            "relayout": relayout,
             "state": st.get(case_id).state}
 
 
@@ -1280,6 +1294,43 @@ def set_prefs(case_id: str, body: dict = Body(...)) -> dict:
     if {"exhibitSlots", "fills", "rentalLayout"} & set(body):
         renderer().changed(case_id)       # the form draws these
     return merged
+
+
+# ---------------------------------------------- optional sections (T-1057)
+# The three sections B-1 switches on by a question of their own.  Leaving one
+# out answers that question and moves the rest of what was entered in it out
+# of the document into the case folder; showing it brings it all back.
+def _optional_state(case_id: str) -> list[dict]:
+    from uad import optional_sections
+    st = store()
+    return optional_sections.state(st.tree(case_id).getroot(),
+                                   optional_sections.load(st.folder(case_id)), st.media(case_id))
+
+
+@router.get("/cases/{case_id}/sections/optional")
+def optional_sections_state(case_id: str) -> dict:
+    _case_or_404(case_id)
+    return {"sections": _optional_state(case_id)}
+
+
+@router.put("/cases/{case_id}/sections/optional/{number}")
+def set_optional_section(case_id: str, number: int, request: Request,
+                         body: dict = Body(...)) -> dict:
+    _case_or_404(case_id)
+    from uad import optional_sections
+    section = bind.SECTION_NAME.get(number, "")
+    if section not in optional_sections.sections():
+        raise HTTPException(422, f"Section {number} is not one the report can leave out.")
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    kept = optional_sections.load(st.folder(case_id))
+    on = bool(body.get("on"))
+    optional_sections.set_shown(tree, section, on, kept)
+    st.save_tree(case_id, tree)
+    optional_sections.save(st.folder(case_id), kept)
+    st.invalidate(case_id, _actor(request), f"{section} {'shown' if on else 'left out'}")
+    st.log(case_id, _actor(request), "edited", f"{section} {'shown' if on else 'left out of the report'}")
+    return {"sections": _optional_state(case_id), "relayout": True, "state": st.get(case_id).state}
 
 
 # ---------------------------------------------- additional certifications

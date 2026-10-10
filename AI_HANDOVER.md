@@ -218,6 +218,19 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-10 (evening) -- NEW OWNER BRIEF: desktop rebuild & operator experience (read this first)
+- **Brief:** `_work/owner/2026-10-10-desktop-rebuild/UAD36_DESKTOP_REBUILD_PROMPT.md`,
+  with screenshots beside it and the brand assets in `brand/`.
+- **Plan, decisions D1-D7 and live status:** `_work/DESKTOP_REBUILD_PLAN.md`.
+- **Tasks:** all 55 items are registered (titles start "DR§").
+  `python engine/tasks.py list | grep DR`.
+- **Order:** phase 1 = the bugs the owner hit (T-509, T-506, T-1070, T-1071,
+  T-1072, T-416, T-1074, T-125, T-1066). Then the shell (ribbon, panels,
+  problems side panel), speed, applicability, repeating groups, fast entry,
+  Adjustment Worksheet, Sketch, offline document reading, Tauri.
+- **More owner chunks will follow.** Append each to the plan as a new
+  section; never rewrite completed ones.
+
 ### 2026-10-10 (later) -- the live site makes the PDF and the ZIP (T-1033 / B5; E-163, E-164)
 - **Before:** `report.pdf` answered 503 on Vercel, and so did the ZIP. The
   live site could not deliver.

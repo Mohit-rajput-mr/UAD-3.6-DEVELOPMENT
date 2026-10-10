@@ -1,0 +1,16 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide v1.4.pdf, \"... always display as row headers\"",
+ "tables": [
+  {
+   "section": "Site",
+   "subsection": "Utilities and Impact to Value/Marketability",
+   "rows": [
+    "Electricity",
+    "Sanitary Sewer",
+    "Water"
+   ],
+   "page": 140,
+   "text": "Electricity, Sanitary Sewer, and Water always display as row headers and in alphabetical order on the report."
+  }
+ ]
+}

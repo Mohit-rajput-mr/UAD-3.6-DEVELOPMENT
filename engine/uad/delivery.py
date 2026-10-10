@@ -441,11 +441,20 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
             continue                                    # handled with the fills below
         if item.category == "subject" and subject is not None:
             # B-1 Scenario 3: one file behind DwellingFront (8.000.1) and
-            # PropertyPhoto (Summary 1.000.1, grid thumbnail)
-            _drop_category(subject, {"DwellingFront", "PropertyPhoto"})
+            # PropertyPhoto (Summary 1.000.1, grid thumbnail).  It is the first
+            # dwelling's front: a second building's front and a "Dwelling
+            # Front" exhibit are other DwellingFront images and stay (E-163),
+            # and the new one takes the old one's place, since the n-th
+            # DwellingFront is the n-th dwelling's.
+            _drop_category(subject, {"PropertyPhoto"})
+            first = next((i for i in subject.iterfind(f"{M}INSPECTIONS/{M}INSPECTION/{M}IMAGES/{M}IMAGE")
+                          if i.findtext(f"{M}ImageCategoryType", "").strip() == "DwellingFront"), None)
             loc = ship(item)
             _add_image(subject, "PropertyPhoto", loc, mime_for(item.filename), meta=meta)
-            _add_image(subject, "DwellingFront", loc, mime_for(item.filename), meta=meta)
+            front = _add_image(subject, "DwellingFront", loc, mime_for(item.filename), meta=meta)
+            if first is not None:
+                first.addprevious(front)
+                first.getparent().remove(first)
             continue
         if item.category == "comparable" and int(item.comparable or 0):
             _sheet, role, _t = comparables.SHEETS[kind]

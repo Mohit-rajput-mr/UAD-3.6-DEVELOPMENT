@@ -34,8 +34,8 @@ real height is read back from a browser. Page breaks follow Appendix E:
 - **Vercel** (no browser): the server sends the galley
   (`GET /layout/{kind}/galley`, `X-Render-Key` header). The user's browser
   measures it and posts the pages back (`POST /layout/{kind}/pages`). Pages are
-  cached in IndexedDB (`uad36-layout`) for instant reloads. `report.pdf`
-  answers 503 there by design.
+  cached in IndexedDB (`uad36-layout`) for instant reloads. The PDF is drawn
+  from that layout (next section, "PDF without a server browser").
 
 ## Fonts
 
@@ -46,7 +46,15 @@ real height is read back from a browser. Page breaks follow Appendix E:
 
 ## PDF
 
-- Endpoint: `GET /api/cases/{id}/report.pdf`. It needs Chromium: run locally or with the Docker image.
+- Endpoint: `GET /api/cases/{id}/report.pdf`. With Chromium (local, Docker, desktop) the server prints it.
+
+### PDF without a server browser (Vercel; E-163)
+
+- The editor lays the preview out in a hidden frame and runs `pdfdraw.DISPLAY_JS` there (served at `GET /api/report/display.js`). It reports every glyph's position, every box and rule, every picture and the SVG ticks.
+- `POST /api/cases/{id}/report.pdf` takes `{key, display, measured?, caps?}`, gzip allowed. The server checks the words against its own pages for that key (`pdfdraw.check_text`), reads pictures from the case's own files, and writes the PDF with fontTools, Pillow and zlib (`pdfdraw.write`). The PDF is kept per render key, locally and in the shared store.
+- `GET report.pdf` then serves it, or answers 409 `{draw: true}` when this version has not been drawn. `?part=n` serves it in 3.5 MB pieces.
+- The package is built with that PDF. `POST /cases/{id}/package` keeps the ZIP and `GET /cases/{id}/package/part/{n}?sha=` hands it over in parts. A serverless function answers at most 4.5 MB.
+- Fidelity: on all 12 D-1 samples the result matches Chromium's PDF of the same pages: same pages, same characters, glyphs within 0.01 pt across and 0.13 pt down (`tests/test_client_pdf.py`).
 - Fonts are embedded as TrueType, not Type3 (`build_webfonts.py`).
 - Verified 2026-10-04 in Docker: the sf1 sample printed 6 pages in 8.0 s, cold.
 - Open: page counts differ from the official samples on 9 of 12 (`AI_HANDOVER.md` §5).

@@ -200,19 +200,10 @@ def compile_all() -> None:
 
 
 def make_icon() -> Path:
-    from PIL import Image, ImageDraw
-    size = 256
-    img = Image.new("RGBA", (size, size), (10, 10, 11, 255))
-    d = ImageDraw.Draw(img)
-    pad = 22
-    d.rectangle([pad, pad, size - pad, size - pad], fill=(244, 244, 245, 255))
-    # a square "U": two posts and a base
-    ink = (10, 10, 11, 255)
-    d.rectangle([76, 60, 108, 160], fill=ink)
-    d.rectangle([148, 60, 180, 160], fill=ink)
-    d.rectangle([76, 160, 180, 196], fill=ink)
+    """The owner's app icon (brand/app-icon.ico, 16-256 px) for the window,
+    the shortcuts, the installer and Add/Remove Programs."""
     out = STAGE / "icon.ico"
-    img.save(out, sizes=[(16, 16), (24, 24), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
+    shutil.copyfile(ROOT / "brand" / "app-icon.ico", out)
     return out
 
 

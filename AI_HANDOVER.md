@@ -84,6 +84,15 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-10 — The live site makes the PDF and the ZIP (B5, T-1033;
+  E-163, E-164).** `uad/report/pdfdraw.py`: the browser reports where it
+  drew every glyph, rule and picture; the server writes the PDF with its own
+  fonts and pictures, after checking the words against its own pages. PDF
+  and ZIP download in 3.5 MB parts (Vercel answers at most 4.5 MB). On all
+  12 D-1 samples it matches Chromium's PDF: same pages and characters,
+  glyphs within 0.01 pt across and 0.13 pt down. `tests/test_client_pdf.py`
+  passes 12 tests, including an end-to-end editor run with server layout
+  off. Not yet clicked on the live site.
 - **2026-10-04 — Second redesign (the one that stands).** The owner rejected
   the violet design ("shittiest") and sent new references: a dark wireframe
   with chrome/silver accents and glass cards, a bold grotesk "WEBSITE DEV"
@@ -208,6 +217,74 @@ Full narrative and traps: last sections of `_work/HANDOFF.md`.
 Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
+
+### 2026-10-10 (night) -- T-1085 worksheet inside the comparable grid: DONE; live at https://uad36.vercel.app
+- **Owner's addendum** (replaces DR §11):
+  `_work/owner/2026-10-10-desktop-rebuild/ADDENDUM_11_WORKSHEET_IN_GRID.md`.
+- **Built:**
+  - green (+) on every adjustable sales-grid row and every per-unit/ADU line
+    (flow.py "adjustment worksheets"); a MutationObserver re-adds it after a
+    re-render;
+  - Ctrl+J in a row, or the toolbar Worksheets list, opens the drawer. The
+    drawer is docked where the inspector sits (index.html `worksheets()`,
+    `body.ws-open`) and shows a live preview worked out in the browser
+    (`wsCompute` ports `worksheet.line_amount`). OK writes, Cancel/Esc
+    write nothing, manual lines have "Use worksheet", profiles plus Adjust
+    all, and a signed report is read only;
+  - auto-recalc: `Store.save_tree` → `worksheet.recalc`. Write routes return
+    `recalculated`, and the frame relays out and flashes the moved cells.
+    Hand-typed cells are marked manual (`worksheets.json`) and never
+    overwritten.
+- **Verified:** `tests/test_worksheet.py` passes 22/22, including recalc,
+  manual, release, SF3 ADU positional amounts, and the preview, PDF,
+  mismo.xml and ZIP carrying the amounts.
+- **Also verified:**
+  - `tests/test_worksheet_grid.py` (Chromium) 3/3;
+  - harness 12: 88 pass / 0 fail / 20 gap;
+  - full suite: 891 passed, 0 failed.
+- **Left for later:** a "Worksheets" ribbon tab arrives with the ribbon
+  (phase 2). Until then the toolbar's Worksheets button lists every row.
+- **Live:** project `uad` on the owner's new Vercel account, at
+  https://uad36.vercel.app (DEPLOY_VERCEL.md "Live deployments").
+- **Next:** phase 1. The workflow `dr-phase1-bugfix` returns one patch per
+  task in `.claude/wf-partial/`. The lead applies them, reviews them
+  adversarially, runs the suite and records the results.
+- **Spec finding:** the UAD 3.6 rental and GRM grids define no adjustment
+  rows, so the icons apply to the sales grid and its per-unit lines only.
+
+### 2026-10-10 (evening) -- NEW OWNER BRIEF: desktop rebuild & operator experience (read this first)
+- **Brief:** `_work/owner/2026-10-10-desktop-rebuild/UAD36_DESKTOP_REBUILD_PROMPT.md`,
+  with screenshots beside it and the brand assets in `brand/`.
+- **Plan, decisions D1-D7 and live status:** `_work/DESKTOP_REBUILD_PLAN.md`.
+- **Tasks:** all 55 items are registered (titles start "DR§").
+  `python engine/tasks.py list | grep DR`.
+- **Order:** phase 1 = the bugs the owner hit (T-509, T-506, T-1070, T-1071,
+  T-1072, T-416, T-1074, T-125, T-1066). Then the shell (ribbon, panels,
+  problems side panel), speed, applicability, repeating groups, fast entry,
+  Adjustment Worksheet, Sketch, offline document reading, Tauri.
+- **More owner chunks will follow.** Append each to the plan as a new
+  section; never rewrite completed ones.
+
+### 2026-10-10 (later) -- the live site makes the PDF and the ZIP (T-1033 / B5; E-163, E-164)
+- **Before:** `report.pdf` answered 503 on Vercel, and so did the ZIP. The
+  live site could not deliver.
+- **Now:**
+  - Open PDF / Export ZIP lay the preview out in a hidden frame and run
+    `pdfdraw.DISPLAY_JS`, then post it to `POST /api/cases/{id}/report.pdf`.
+  - The server checks the words against its own pages and writes the PDF.
+    It is kept per render key, locally and in the Blob store.
+  - Downloads come in parts. Hosts with Chromium are unchanged.
+- **Trap (E-164):** never answer a case route with `"stale": true` unless
+  you mean the vault protocol. vault.js then restores the case, which wipes
+  its folder.
+- Work branch this session: `claude/sleepy-hypatia-e2pzcn`.
+- Full suite: 851 passed, 10 skipped, 0 failed (839 before + 12 new).
+- Desktop installer not rebuilt: the desktop edition prints with the system
+  Edge, so nothing here changes what it does. Rebuild it with the next
+  desktop-facing change.
+- **Next:**
+  - The owner tries Open PDF and Export ZIP on the live site.
+  - Then B15 (T-258), B16, page counts vs D-1, T-120 / T-121.
 
 ### 2026-10-10 -- rent schedule units, legal description image, Add list, Show/Hide sections; eight unit rules checked (T-1058, T-1060, T-1056, T-1057; E-161, E-162)
 - **T-1058:** a switch over the Rent Schedule chooses which units it lists

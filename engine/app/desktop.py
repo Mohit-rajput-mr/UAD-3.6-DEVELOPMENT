@@ -65,7 +65,7 @@ def activate(ticket: str) -> None:
 
 
 # what may open before activation: the activation page itself and its typeface
-_BEFORE = ("/desktop/", "/ui/fonts/", "/ui/icon.svg", "/healthz")
+_BEFORE = ("/desktop/", "/ui/fonts/", "/ui/brand/", "/ui/icon.svg", "/healthz")
 
 
 def install(app: FastAPI, access) -> None:
@@ -127,7 +127,7 @@ def _activation_form(error: str) -> str:
 def _page(title: str, body: str) -> str:
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title>
-<link rel="icon" href="/ui/icon.svg" type="image/svg+xml"><style>
+<link rel="icon" href="/ui/brand/app-icon-64.png" type="image/png"><style>
 @font-face{{font-family:"Geist";src:url(/ui/fonts/Geist-Variable.woff2) format("woff2");font-weight:100 900}}
 *{{box-sizing:border-box;border-radius:0}}
 body{{margin:0;min-height:100vh;display:grid;place-items:center;background:#0a0a0b;color:#f4f4f5;

@@ -1,0 +1,73 @@
+/* The sketch panel: the editor's square, ruled language (owner 2026-10-08), light
+   working surface like a drafting sheet. */
+@font-face { font-family: "Geist"; src: url(/ui/fonts/Geist-Variable.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; border-radius: 0; }
+html, body, #root { margin: 0; height: 100%; }
+body { font: 13px/1.4 "Geist", "Segoe UI", system-ui, sans-serif; color: #111; background: #f4f4f5; }
+button, select, input { font: inherit; color: inherit; }
+button { border: 1px solid #c8cbd0; background: #fff; padding: 5px 10px; cursor: pointer; }
+button:hover:not(:disabled) { background: #f0f1f3; }
+button:disabled { opacity: .45; cursor: default; }
+button.on { background: #111; color: #fff; border-color: #111; }
+button.primary { background: #111; color: #fff; border-color: #111; }
+button.primary:hover:not(:disabled) { background: #333; }
+select, input { border: 1px solid #c8cbd0; background: #fff; padding: 4px 6px; }
+.app { display: flex; flex-direction: column; height: 100%; }
+.top { display: flex; align-items: center; gap: 14px; padding: 8px 12px; background: #fff; border-bottom: 1px solid #d6d8dc; flex-wrap: wrap; }
+.brand { display: flex; flex-direction: column; min-width: 90px; }
+.brand b { font-size: 15px; letter-spacing: -.02em; }
+.brand span { font-size: 11px; color: #6b7280; }
+.tabs, .tools, .act { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.tabs button { border-bottom-width: 2px; }
+.tools .sep { width: 1px; height: 22px; background: #d6d8dc; margin: 0 4px; }
+.act { margin-left: auto; }
+.mid { flex: 1; display: flex; min-height: 0; }
+.canvasCol { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.vecbar { display: flex; gap: 10px; align-items: center; padding: 6px 10px; background: #fafafa; border-bottom: 1px solid #e3e5e8; flex-wrap: wrap; }
+.vecbar label { display: flex; gap: 6px; align-items: center; font-size: 12px; color: #4b5563; }
+.vecbar form { display: flex; gap: 6px; flex: 1; min-width: 260px; }
+.vecbar form input { flex: 1; font-family: "Geist Mono", ui-monospace, monospace; }
+.vecbar .err { color: #b91c1c; font-size: 12px; }
+.stagewrap { flex: 1; position: relative; background: #fff; overflow: hidden; min-height: 200px; }
+.stagewrap.tool-draw { cursor: crosshair; }
+.stagewrap.tool-pan, .stagewrap.panning { cursor: grab; }
+.dock { width: 290px; flex: none; display: flex; flex-direction: column; border-left: 1px solid #d6d8dc; background: #fff; min-height: 0; }
+.docktabs { display: flex; border-bottom: 1px solid #d6d8dc; }
+.docktabs button { flex: 1; border: 0; border-right: 1px solid #e3e5e8; }
+.list, .props { overflow: auto; padding: 10px; flex: 1; }
+.list .item { padding: 5px 8px; border-bottom: 1px solid #eef0f2; cursor: grab; user-select: none; }
+.list .item:hover, .list .item.on { background: #111; color: #fff; }
+.list .new { margin-top: 8px; width: 100%; }
+.list h4, .props h4 { margin: 12px 0 6px; font: 600 10.5px/1 "Geist", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #6b7280; }
+.syms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.sym { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px; border: 1px solid #eef0f2; cursor: grab; font-size: 10.5px; text-align: center; }
+.sym:hover { border-color: #111; }
+.hint { font-size: 12px; color: #6b7280; margin: 0 0 8px; }
+.props .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 6px 0; font-size: 12px; }
+.props .row input, .props .row select { width: 160px; }
+.props .chk { display: flex; gap: 6px; align-items: flex-start; margin: 6px 0; font-size: 12px; }
+.props .area { font: 600 16px/1.2 "Geist", sans-serif; margin: 10px 0; }
+.walls .wall { display: grid; grid-template-columns: 22px 70px 1fr auto; gap: 6px; align-items: center; padding: 3px 0; border-bottom: 1px solid #f0f1f3; font-size: 12px; }
+.walls .wall.on { background: #fff7e6; }
+.walls .wall input { width: 70px; }
+.walls .wall em { color: #4b5563; font-style: normal; }
+.table { max-height: 34%; overflow: auto; border-top: 1px solid #d6d8dc; background: #fff; }
+.table table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.table th { text-align: left; font: 600 10px/1 "Geist", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #6b7280; padding: 6px 8px; border-bottom: 1px solid #e3e5e8; position: sticky; top: 0; background: #fff; }
+.table td { padding: 4px 8px; border-bottom: 1px solid #f0f1f3; }
+.table td.num, .table th.num { text-align: right; }
+.table td.walls { color: #6b7280; font-size: 11px; }
+.table tr.ded td { color: #b91c1c; }
+.totals { display: flex; gap: 18px; flex-wrap: wrap; padding: 8px; font-size: 12px; border-top: 1px solid #e3e5e8; }
+.totals div { display: flex; flex-direction: column; gap: 2px; }
+.status { display: flex; gap: 14px; align-items: center; padding: 5px 10px; border-top: 1px solid #d6d8dc; background: #fafafa; font-size: 12px; flex-wrap: wrap; }
+.status label { display: flex; gap: 6px; align-items: center; color: #4b5563; }
+.status .pos, .status .zoom { font-family: ui-monospace, monospace; color: #6b7280; }
+.status .msg { margin-left: auto; color: #111; }
+.overlay { position: absolute; inset: 0; background: rgba(17, 17, 19, .35); display: flex; align-items: center; justify-content: center; z-index: 10; }
+.card { background: #fff; border: 1px solid #111; padding: 18px 20px; max-width: 640px; max-height: 90%; overflow: auto; }
+.card.wide { max-width: 820px; }
+.card h3 { margin: 0 0 10px; font-size: 18px; letter-spacing: -.02em; }
+.card table { border-collapse: collapse; font-size: 12.5px; margin-bottom: 12px; width: 100%; }
+.card td, .card th { padding: 4px 8px; border-bottom: 1px solid #eef0f2; text-align: left; vertical-align: top; }
+kbd { font-family: ui-monospace, monospace; border: 1px solid #c8cbd0; padding: 1px 5px; background: #f7f7f8; white-space: nowrap; }

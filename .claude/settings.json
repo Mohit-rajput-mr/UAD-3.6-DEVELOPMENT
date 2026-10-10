@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && python engine/agents.py sync --brief 2>&1 | head -60 || true",
+            "timeout": 90,
+            "statusMessage": "Checking what the other sessions are doing"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -21,7 +21,8 @@ the traps it prevents are in `knowledge/PLAYBOOK.md` §10.
 ## Start here, every session
 
 **Other sessions may be working right now, on other branches.** Run
-`git fetch --all` and read `_work/AGENTS_BOARD.md` first: who works where,
+`python engine/agents.py` first (a session-start hook does it for you), and
+read `_work/AGENTS_BOARD.md`: who works where,
 which session holds production, the T-/E- number block you may use, and
 messages addressed to you. Post there before anything another session
 could collide with; never push to another session's branch.

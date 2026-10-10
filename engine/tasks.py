@@ -17,6 +17,9 @@ format drift until nothing can parse it.
     python engine/tasks.py add   "Title" --area map --note "asked 2026-09-16"
     python engine/tasks.py ask   "Question for the user"
 
+With other sessions working in parallel, ``add`` numbers from this branch's
+own block (``python engine/agents.py init``) so ids never collide.
+
 A task is never marked done without a note: the note is the evidence, and a
 status with no evidence is how a registry stops being trustworthy.
 """
@@ -160,6 +163,17 @@ def _set(args, status: str) -> int:
     return 0
 
 
+def _branch_block() -> list[int] | None:
+    """This branch's task-number block, when it has a status file."""
+    try:
+        import agents
+        s = agents.local_status(agents.current_branch())
+    except Exception:
+        return None
+    block = ((s or {}).get("ids") or {}).get("T")
+    return list(block) if block and len(block) == 2 else None
+
+
 def cmd_add(args) -> int:
     lines, tasks = load()
     numbers = [int(t.task_id.split("-")[1]) for t in tasks]
@@ -175,6 +189,15 @@ def cmd_add(args) -> int:
     # and never reuse an id that exists.
     if number >= band + 100:
         number = max(numbers) + 1
+    # A session that shares the repository with others numbers from its own
+    # block (engine/agents.py), so two sessions never hand out the same id.
+    block = _branch_block()
+    if block:
+        free = [n for n in range(block[0], block[1] + 1) if n not in numbers]
+        if not free:
+            raise SystemExit(f"This branch's block T-{block[0]}..T-{block[1]} is full: "
+                             "take a new one with `python engine/agents.py init`.")
+        number = free[0]
     while number in numbers:
         number += 1
     task = Task(f"T-{number:03d}", "open", args.area, args.title,

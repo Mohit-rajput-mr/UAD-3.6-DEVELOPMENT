@@ -580,6 +580,8 @@ Pre-existing failing tests (also fail on the commit before slice 1): `test_cells
 
 ## 7. How to take over (new agent checklist)
 
+0. `git fetch --all --prune` and read `_work/AGENTS_BOARD.md`: parallel sessions,
+   who holds production, your T-/E- number block, messages to you.
 1. Read this file, then `CLAUDE.md`, `_work/GOAL.md`, the **last** section of
    `_work/HANDOFF.md`, and run `python engine/tasks.py next`.
 2. `git status` and `git log --oneline -15` — compare with §4/§5 here. If the

@@ -1747,6 +1747,25 @@ def put_rental_pair(case_id: str, request: Request, body: dict = Body(...)) -> d
     return rentals.matrix(tree.getroot())
 
 
+@router.put("/cases/{case_id}/rentals/included")
+def put_rent_included(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    """Put subject unit #unit in the rent schedule or take it out (A-1
+    UnitIncludedInRentScheduleIndicator; uad/rentals.py)."""
+    _case_or_404(case_id)
+    from uad import rentals
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    try:
+        rentals.set_included(tree.getroot(), int(body.get("unit") or 0), bool(body.get("on")))
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), "rent schedule units changed")
+    st.log(case_id, _actor(request), "rent schedule",
+           f"unit {body.get('unit')} {'in' if body.get('on') else 'out of'} the rent schedule")
+    return {"units": rentals.included(tree.getroot()), "relayout": True}
+
+
 @router.delete("/cases/{case_id}/comparables/{number}")
 def remove_comparable(case_id: str, number: int, request: Request,
                       kind: str = Query("sales")) -> dict:
@@ -2140,6 +2159,54 @@ async def add_media(case_id: str, request: Request,
     st.log(case_id, _actor(request), "added media", f"{category}: {target.name}")
     st.invalidate(case_id, _actor(request), "media added")
     return item.to_json()
+
+
+@router.post("/cases/{case_id}/legal-description/photo")
+async def legal_description_photo(case_id: str, request: Request,
+                                  file: UploadFile = File(...)) -> dict:
+    """The legal description as an image instead of text (B-1 p122; A-1
+    3.031.1 ImageCategoryType = "LegalDescription", 3.031.2 its caption).
+
+    The IMAGE is written into the document at once, so Review Master sees it
+    (ParcelsLegalDescription is required only without one), and the stored
+    picture is tied to it as the document's own image boxes are ("fills"):
+    printed under the Legal Description bar, delivered as that IMAGE."""
+    _case_or_404(case_id)
+    st = store()
+    data = await file.read()
+    kind = file.content_type or mimetypes.guess_type(file.filename or "")[0] or ""
+    if not kind.startswith("image/") or not data:
+        raise HTTPException(422, "The legal description must be a picture (JPEG, PNG ...).")
+    name = Path(file.filename or "legal-description.jpg").name
+    target = st.media_dir(case_id) / name
+    stem, suffix, n = target.stem, target.suffix, 1
+    while target.exists():
+        target = target.with_name(f"{stem}-{n}{suffix}")
+        n += 1
+    target.write_bytes(data)
+    item = st.add_media(case_id, category="other", filename=target.name, caption="Legal Description",
+                        size=len(data), content_type=kind)
+    from uad import delivery
+    M_ = f"{{{bind.MISMO}}}"
+    tree = deepcopy(st.tree(case_id))
+    subject = bind.subject(tree.getroot())
+    if subject is None:
+        raise HTTPException(422, "This report has no subject property.")
+    fills = dict(get_prefs(case_id).get("fills") or {})
+    for image in list(subject.iterfind(f"{M_}INSPECTIONS/{M_}INSPECTION/{M_}IMAGES/{M_}IMAGE")):
+        if image.findtext(f"{M_}ImageCategoryType", "").strip() == "LegalDescription":
+            fills.pop(image.findtext(f"{M_}ImageFileLocationIdentifier", "").strip(), None)
+            holder = image.getparent()
+            holder.remove(image)
+            if not len(holder):
+                holder.getparent().remove(holder)        # an empty IMAGES is not valid
+    delivery._add_image(subject, "LegalDescription", target.name, kind)
+    st.save_tree(case_id, tree)
+    fills[target.name] = item.media_id
+    set_prefs(case_id, {"fills": fills})
+    st.log(case_id, _actor(request), "added media", f"legal description: {target.name}")
+    st.invalidate(case_id, _actor(request), "legal description image")
+    return {"media_id": item.media_id, "location": target.name}
 
 
 @router.patch("/cases/{case_id}/media/{media_id}")

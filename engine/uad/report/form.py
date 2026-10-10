@@ -1940,6 +1940,20 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                     flush()
                     out.append(answer)
                 continue
+        if kind == "slot" and LEGAL_IMAGE_ID in ids:
+            # B-1 p122: a legal description given as an image displays within
+            # the subsection, below the gray bar (A-1 3.031.1 / 3.031.2)
+            flush()
+            item = _legal_image(ctx)
+            if item is not None:
+                out.append(Block("exhibits", section=printed, visible=True, fids=ids,
+                                 html=_exhibits_html([item], base, ctx.edit)))
+            elif ctx.edit:
+                out.append(Block("exhibits", section=printed, visible=True, fids=ids,
+                                 html=("<div class='exaddrow'><span class='ldadd' role='button'"
+                                       " tabindex='0' title='B-1: the legal description as text or as an"
+                                       " image'>+ Attach the legal description as an image</span></div>")))
+            continue
         if kind == "slot" and len(ids) == 3 and _formula_labels(els, el):
             # "Total Monthly Market Rent x Gross Rent Multiplier = Indicated
             # Value by Income Approach" (C-1 p35): the labels C-1 sets on the
@@ -3665,8 +3679,12 @@ RENT_INCOME_HEADS = ("Actual Income", "Opinion of Market Income")
 def _rent_units(ctx: Ctx) -> list["etree._Element"]:
     subj = subject(ctx)
     units = list(subj.iter(f"{M}PROPERTY_UNIT")) if subj is not None else []
-    marked = [u for u in units if (u.findtext(f".//{M}UnitIncludedInRentScheduleIndicator") or "").strip() == "true"]
-    return marked or [u for u in units if u.find(f"{M}UNIT_RENT_SCHEDULE") is not None]
+    said = [(u.findtext(f".//{M}UnitIncludedInRentScheduleIndicator") or "").strip() for u in units]
+    if any(said):
+        # once any unit is answered for, the answers decide -- every unit
+        # taken out leaves the schedule empty, not full again
+        return [u for u, v in zip(units, said) if v == "true"]
+    return [u for u in units if u.find(f"{M}UNIT_RENT_SCHEDULE") is not None]
 
 
 def _rent_summary(ctx: Ctx) -> "etree._Element | None":
@@ -3678,8 +3696,26 @@ def _money(fid: str, name: str, node) -> str:
     return re.sub(r"(\$[\d,]+)\.00\b", r"\1", _shown_point(fid, name, node))
 
 
+def _rent_included_html(ctx: Ctx) -> str:
+    """Editor only: which units the rent schedule lists (A-1
+    UnitIncludedInRentScheduleIndicator, not printed), one switch a unit.
+    A unit nobody has answered for is marked, as H-1 UAD1159 asks for it."""
+    from .. import rentals
+    rows = rentals.included(ctx.root)
+    if not rows:
+        return ""
+    chips = "".join(
+        f"<span class='rsu {'on' if r['included'] else 'off' if r['included'] is False else 'unset'}'"
+        f" role='checkbox' tabindex='0' aria-checked='{'true' if r['included'] else 'false'}'"
+        f" data-rsunit='{r['unit']}' title='{'In the rent schedule' if r['included'] else 'Not in the rent schedule' if r['included'] is False else 'Not answered yet'}'>"
+        f"<i>{'&#x2713;' if r['included'] else ''}</i>{esc(r['name'])}</span>" for r in rows)
+    return (f"<div class='rsinc'><span class='rsl'>Units in the rent schedule</span>{chips}"
+            "<span class='rsn'>Not printed; untick a unit to leave it out.</span></div>")
+
+
 def _rent_units_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     tree = ctx.root.getroottree()
+    switch = _rent_included_html(ctx) if ctx.edit else ""
     body = []
     for unit in _rent_units(ctx):
         key = tree.getpath(unit)
@@ -3692,9 +3728,9 @@ def _rent_units_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             cells.append(_cell(esc(text), fid, ctx, key=key, point=name) if ctx.edit else _td(esc(text)))
         body.append("<tr>" + "".join(cells) + "</tr>")
     if not body:
-        return "", False
+        return (switch, True) if switch else ("", False)
     colgroup, head = _colgroup(el)
-    return (f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
+    return (switch + f"<table class='tbl' style='width:{el['x1'] - el['x0']:.2f}pt'><colgroup>{colgroup}</colgroup>"
             f"{head}<tbody>{''.join(body)}</tbody></table>"), True
 
 
@@ -4712,6 +4748,31 @@ def _owner_title(img: "etree._Element") -> str:
     return ""
 
 
+LEGAL_IMAGE_ID = "3.031.1"
+
+
+def _legal_image(ctx: Ctx) -> dict | None:
+    """The subject's legal description image, as an exhibit item, if any."""
+    subj = subject(ctx)
+    if subj is None:
+        return None
+    filled = {m["fills"]: m for m in ctx.media if m.get("fills")}
+    for im in _images(ctx):
+        if im["category"] != "LegalDescription":
+            continue
+        if not any(a is subj for a in im["node"].iterancestors()):
+            continue
+        fill = filled.get(im["location"]) if im["location"] else None
+        src = _data_uri(Path(fill["path"])) if fill is not None else _data_uri(im["path"])
+        # Appendix E p38: "Image sizes to full page width (45 picas wide)" --
+        # its own height, not a full-page frame that would push it off its bar
+        return {"src": src, "title": im["caption"], "caption": "", "category": "LegalDescription",
+                "layout": "width", "location": im["location"], "cap_ph": "Caption (optional)",
+                "media_id": fill.get("media_id", "") if fill else "",
+                "image_key": bind.stable_path(im["node"]), "raw_caption": im["caption"]}
+    return None
+
+
 def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     cats = image_categories()
     out = []
@@ -5022,7 +5083,7 @@ def _exhibits_html(items: list[dict], section: str = "", edit: bool = False) -> 
             cap = ("<div class='cap'>"
                    + (f"<b class='capcat'>{esc(named_by_category)}</b>{sep}" if named_by_category else "")
                    + f"<b class='capedit' contenteditable='true' spellcheck='false'"
-                     f" data-ph='{'+ name' if named_by_category else 'Exhibit Name'}' data-image='{esc(image_key)}'>"
+                     f" data-ph='{it.get('cap_ph') or ('+ name' if named_by_category else 'Exhibit Name')}' data-image='{esc(image_key)}'>"
                      f"{esc(raw)}</b></div>")
             extra = (f"<span class='exdrop' data-section='{number}' data-name='{esc(section)}'"
                      f" data-caption='{esc(it['title'])}' data-fill='{esc(it.get('location', ''))}'></span>"
@@ -5567,10 +5628,10 @@ body.show-imported td.imported,body.show-imported .v.imported{
    where the ... photo would display" -- is the target; nothing is drawn over
    it but a pointer cursor. */
 .exaddrow{display:flex;justify-content:flex-end;margin:2pt 0 4pt}
-.exadd,.compadd,.nuadd{display:inline-block;border:0.75pt solid #231f20;color:#231f20;
+.exadd,.compadd,.nuadd,.ldadd{display:inline-block;border:0.75pt solid #231f20;color:#231f20;
   background:#fff;cursor:pointer;font-weight:700;font-size:7pt;line-height:1;
   border-radius:0;padding:3pt 7pt;white-space:nowrap}
-.exadd:hover,.exadd:focus,.compadd:hover,.compadd:focus,
+.exadd:hover,.exadd:focus,.compadd:hover,.compadd:focus,.ldadd:hover,.ldadd:focus,
 .nuadd:hover,.nuadd:focus{background:#231f20;color:#fff;outline:none}
 /* Additional Properties Analyzed Not Used: several reasons stack inside the
    one cell, and each line is written on its own. */
@@ -5700,6 +5761,16 @@ td.calc{background:rgba(35,31,32,.04);color:#231f20;font-weight:600}
 .unnamed{color:rgba(35,31,32,.6);font-style:italic}
 td.calc span:after{content:' \03a3';font-size:6pt;color:rgba(35,31,32,.66);font-weight:400}
 /* rental comparables against subject units (editor only) */
+.rsinc{display:flex;flex-wrap:wrap;align-items:center;gap:4pt 6pt;margin:2pt 0 5pt;padding:3pt 6pt;
+  border:0.8pt solid rgba(43,108,176,.45);background:rgba(66,133,244,.04);font-size:7.5pt}
+.rsinc .rsl{font-weight:700;margin-right:2pt}
+.rsinc .rsu{display:inline-flex;align-items:center;gap:3pt;padding:1.5pt 6pt 1.5pt 3pt;border:0.8pt solid rgba(29,79,145,.55);
+  cursor:pointer;user-select:none;background:#fff}
+.rsinc .rsu i{display:inline-flex;align-items:center;justify-content:center;width:8pt;height:8pt;font-style:normal;
+  border:0.8pt solid rgba(29,79,145,.7);font-size:6.5pt;color:#fff}
+.rsinc .rsu.on i{background:#1d4f91;border-color:#1d4f91}
+.rsinc .rsu.unset{border-style:dashed;border-color:#d98a00;background:rgba(214,158,46,.18)}
+.rsinc .rsn{color:rgba(35,31,32,.6);margin-left:auto}
 .rpairs{border:0.8pt solid rgba(43,108,176,.45);border-radius:0;padding:4pt 6pt 5pt;margin:2pt 0 6pt;background:rgba(66,133,244,.04)}
 .rpairs .rph{font-size:7.5pt;font-weight:700;margin-bottom:3pt}
 .rpairs table{border-collapse:collapse;font-size:7pt}
@@ -6105,6 +6176,8 @@ table.tbl tr.tot .amt{{display:inline-block;min-width:50pt}}
 .ex + .ex{{border-left:0}}
 .ex.full{{width:540pt;height:576pt;padding:6pt;box-sizing:border-box}}
 .ex.graph{{width:540pt;height:240pt;padding:6pt;box-sizing:border-box}}
+.ex.width{{width:540pt;height:auto;padding:6pt;box-sizing:border-box}}
+.ex.width img{{flex:none;height:auto;max-height:564pt}}
 .ex .cap{{font-size:9pt;line-height:10pt;margin-bottom:6pt;min-height:10pt}}
 .ex img{{flex:1;min-height:0;width:100%;object-fit:contain}}
 .ex .ph{{flex:1;background:{BAR};display:flex;flex-direction:column;gap:9pt;align-items:center;justify-content:center;

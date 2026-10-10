@@ -139,3 +139,48 @@ def pair_new_comparable(root: etree._Element) -> None:
     n = len(props)
     for u in range(1, len(subject_units(root)) + 1):
         set_pair(root, n, u, True)
+
+
+# ------------------------------------------------------- the rent schedule
+# Which units the Rent Schedule lists (B-1 23.01: "a line per unit in the rent
+# schedule") is A-1's UnitIncludedInRentScheduleIndicator on each subject unit
+# (PROPERTY_UNIT_DETAIL, not printed); H-1 UAD1159 (Fatal) wants it on every
+# unit once there is a rent schedule.  WinTOTAL keeps it as "Include Unit in
+# Rent Schedule" in its unit setup; here it is a switch over the rent schedule.
+INCLUDED = "UnitIncludedInRentScheduleIndicator"
+
+
+def included(root: etree._Element) -> list[dict]:
+    """Each subject unit and whether it is in the rent schedule (None: not said)."""
+    out = []
+    for n, unit in enumerate(subject_units(root), start=1):
+        value = (unit.findtext(f".//{M}{INCLUDED}") or "").strip()
+        out.append({"unit": n, "name": unit_name(unit, n),
+                    "included": True if value == "true" else False if value == "false" else None})
+    return out
+
+
+def set_included(root: etree._Element, unit_index: int, on: bool) -> None:
+    units = subject_units(root)
+    if not 1 <= unit_index <= len(units):
+        raise ValueError(f"there is no subject unit {unit_index}")
+    detail, _ = edit.ensure_path(units[unit_index - 1], ["PROPERTY_UNIT_DETAIL"])
+    node = detail.find(f"{M}{INCLUDED}")
+    if node is None:
+        node = edit.insert_ordered(detail, INCLUDED)
+    node.text = "true" if on else "false"
+
+
+def include_unanswered(root: etree._Element) -> int:
+    """With a rent schedule, a unit nobody has answered for is included
+    (WinTOTAL's default; the appraiser takes one out with the switch).
+    Returns how many were set."""
+    flag = next(root.iter(f"{M}RentScheduleIndicator"), None)
+    if flag is None or (flag.text or "").strip() != "true":
+        return 0
+    done = 0
+    for row in included(root):
+        if row["included"] is None:
+            set_included(root, row["unit"], True)
+            done += 1
+    return done

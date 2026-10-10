@@ -3061,3 +3061,29 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   carries the field guidance, SmartAdjust, comparable move/copy,
   certifications and the E-160 layout fix. The build pipeline is unchanged
   from the Wine-verified 1.0.0; test_desktop 15/15. Not re-run under Wine.
+
+## 2026-10-10 -- current position: rent schedule units (T-1058), compliance parse fix (E-161)
+- T-1058 built. Units in the rent schedule are A-1
+  UnitIncludedInRentScheduleIndicator (PROPERTY_UNIT_DETAIL, not printed;
+  H-1 UAD1159 Fatal).
+  - `uad/rentals.py`: included / set_included / include_unanswered.
+  - Setup includes every unit when the rent schedule is on (WinTOTAL's
+    default).
+  - Editor: a switch strip over the Rent Schedule; PUT /rentals/included
+    re-lays the page.
+  - form._rent_units and rent_math._units honour explicit answers, so all
+    units unticked means an empty schedule.
+  - Chromium e2e: unticking Unit 2 leaves 2 lines, and the XML holds
+    true/false/true.
+- E-161: 8 required unit fields were never checked (tokenizer swallowed a
+  ")"; `selects` forced ADU-only). Fixed and validated on the 12 samples.
+- T-1060 built: legal description as an image (B-1 pp121-122; Appendix E
+  p38, full page width).
+  - POST /cases/{id}/legal-description/photo writes the IMAGE
+    (LegalDescription) on the subject's INSPECTION and ties the stored picture
+    to it through prefs `fills`, as the document's own image boxes are. So
+    Review Master, print and delivery agree (UAD1043 is cleared by the image).
+  - form.py draws it under the bar (`_legal_image`, layout `width`); in edit
+    mode "+ Attach the legal description as an image" (`.ldadd`) appears when
+    there is none.
+  - Remove and rename use the existing DELETE/PATCH /images.

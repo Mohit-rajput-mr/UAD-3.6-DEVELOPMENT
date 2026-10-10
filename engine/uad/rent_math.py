@@ -47,8 +47,11 @@ def _fmt(d: Decimal) -> str:
 
 def _units(subject: etree._Element) -> list[etree._Element]:
     units = list(subject.iter(f"{M}PROPERTY_UNIT"))
-    marked = [u for u in units if (u.findtext(f".//{M}UnitIncludedInRentScheduleIndicator") or "").strip() == "true"]
-    return marked or [u for u in units if u.find(f"{M}UNIT_RENT_SCHEDULE") is not None]
+    said = [(u.findtext(f".//{M}UnitIncludedInRentScheduleIndicator") or "").strip() for u in units]
+    if any(said):
+        # the same rule as the printed schedule (report/form._rent_units)
+        return [u for u, v in zip(units, said) if v == "true"]
+    return [u for u in units if u.find(f"{M}UNIT_RENT_SCHEDULE") is not None]
 
 
 def figures(root: etree._Element) -> dict[str, str]:

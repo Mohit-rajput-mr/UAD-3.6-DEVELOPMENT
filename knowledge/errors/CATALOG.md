@@ -2389,3 +2389,25 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   pins the order.
 - This affected every client-laid-out report (web and desktop), not only
   certifications.
+
+### E-161 -- Eight required unit fields were never checked on a dwelling (2026-10-10)
+- Symptom: removing a dwelling unit's BedroomCount, Full/HalfBathroomCount,
+  Interior Quality/Condition, OverallBathroomsUpdateStatusType,
+  UnitInteriorDefectsExistIndicator or UnitIncludedInRentScheduleIndicator
+  raised no finding (UAD1159-1161, 1173-1176, 1688; all Fatal).
+- Cause 1: the tokenizer let an atom take a structural ")" as its own
+  ('Indicator = "true"))'), so a rule's groups came out unbalanced. UAD1146
+  parsed as "Dwelling or (... and RoomType)" instead of
+  "(Dwelling or (...)) and RoomType".
+- Cause 2: `selects` (written for UAD1145's real precedence slip) forced
+  every unit-level condition onto every branch. "(Dwelling) or (Outbuilding
+  and AccessoryDwellingUnitIndicator = true)" then governed ADUs only.
+- Mechanism: an atom consumes ")" only when it opened "(".
+  `compliance.mixed_precedence(logic)` limits the repair to conditions that
+  mix and/or at their top level (10 rules; only UAD1145 is affected).
+- Validated: the 12 D-1 samples raise exactly the findings they did before
+  (none). Each of the 8 rules fires on a sample copy with its value
+  removed, and did not before (`tests/test_rule_parsing.py`). 6 of 728
+  rules parse differently; 4 of those are the same logic regrouped.
+- Effect: blank reports show more fatal findings, correctly: each unit's
+  bedrooms, baths and ratings are now asked for.

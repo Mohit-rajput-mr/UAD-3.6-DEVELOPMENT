@@ -2412,6 +2412,50 @@ EDIT_JS = """
       send(v,{value:''});
     });
   });
+  /* ------------------------------------------- units in the rent schedule
+     One switch per subject unit (A-1 UnitIncludedInRentScheduleIndicator);
+     the rent schedule's lines follow, so the page is laid out again. */
+  function rentUnit(el){
+    var on=!el.classList.contains('on');
+    el.classList.remove('on','off','unset'); el.classList.add(on?'on':'off');
+    el.setAttribute('aria-checked',on?'true':'false');
+    el.querySelector('i').textContent=on?'\u2713':'';
+    putJSON(api+'/rentals/included',{unit:+el.dataset.rsunit,on:on},'PUT')
+      .then(function(){ tell({uad:'saved'}); reloadHere(); })
+      .catch(function(err){ say(err.message); });
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target.closest&&e.target.closest('.rsinc .rsu'); if(!el) return;
+    e.preventDefault(); rentUnit(el);
+  });
+  document.addEventListener('keydown',function(e){
+    var el=e.target.closest&&e.target.closest('.rsinc .rsu');
+    if(el&&(e.key===' '||e.key==='Enter')){ e.preventDefault(); rentUnit(el); }
+  });
+  /* ------------------------------------------- legal description image
+     B-1 p122: the legal description as text or as an image.  The picture is
+     sent to its own route, which writes the IMAGE (3.031.1) into the report. */
+  function legalImage(){
+    var input=document.createElement('input');
+    input.type='file'; input.accept='image/*'; input.style.display='none';
+    document.body.appendChild(input);
+    input.addEventListener('change',function(){
+      var f=input.files&&input.files[0]; input.remove(); if(!f) return;
+      var fd=new FormData(); fd.append('file',f,f.name||'legal-description.png');
+      json(api+'/legal-description/photo',{method:'POST',body:fd})
+        .then(function(){ tell({uad:'media'}); tell({uad:'saved'}); reloadHere(); })
+        .catch(function(err){ say('The legal description image could not be added: '+err.message); });
+    });
+    input.click();
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.ldadd'); if(!b) return;
+    e.preventDefault(); legalImage();
+  });
+  document.addEventListener('keydown',function(e){
+    var b=e.target.closest&&e.target.closest('.ldadd');
+    if(b&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); legalImage(); }
+  });
 })();
 </script>"""
 

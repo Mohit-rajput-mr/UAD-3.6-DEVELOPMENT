@@ -151,4 +151,7 @@ def apply(tree: etree._ElementTree, current_template: str, kind: str, units: int
         from . import structure
         notes += structure.set_units(tree.getroot(), units if kind == "two_to_four_unit" else 1, [])
     set_approaches(tree.getroot(), {k: bool(v) for k, v in wanted.items() if k in APPROACHES})
+    # a rent schedule lists every unit until the appraiser takes one out
+    from . import rentals
+    rentals.include_unanswered(tree.getroot())
     return tree, new_template, notes, failed

@@ -246,7 +246,10 @@ def _tokenise(text: str) -> list[tuple[str, Any]]:
         m = ATOM.match(text, i)
         if m:
             tokens.append(("atom", _atom(m)))
-            i = m.end()
+            # a ")" is the atom's own only when it opened one: in
+            # 'Indicator = "true"))' the parenthesis closes the group around
+            # the condition, and swallowing it unbalanced the rule (E-161)
+            i = m.start("close") if m.group("close") and not m.group("open") else m.end()
             continue
         m = _WORD_AND.match(text, i)
         if m:
@@ -599,6 +602,31 @@ def _value(scope: Scope, node: etree._Element, cond: Condition,
     return (found.text or "").strip() or None
 
 
+@lru_cache(maxsize=None)
+def mixed_precedence(logic: str) -> bool:
+    """Does the rule's condition join ``or`` and ``and`` at its top level?
+
+    That is the shape of UAD1145's parenthesisation slip ("(A) or (B and C)
+    and (RoomType = ...)"), the one case ``selects`` repairs.  A condition
+    whose alternatives are parenthesised -- "(Dwelling) or (Outbuilding and
+    AccessoryDwellingUnitIndicator = true)" -- means exactly what it says, and
+    forcing its unit-level test onto every branch limited eight PROPERTY_UNIT
+    rules (bedrooms, baths, ratings, rent schedule) to ADUs (E-161)."""
+    m = re.match(r"\s*If\s+(.*?),\s*and\s+\w+\s+(?:is|are)\s+not\s+provided", logic or "", re.S | re.I)
+    text = re.sub(r'"[^"]*"', '""', m.group(1) if m else "")
+    depth, ops = 0, set()
+    for i, ch in enumerate(text):
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth -= 1
+        elif depth == 0:
+            for op in ("and", "or"):
+                if re.match(rf"[\s,]{op}\s", text[i:i + len(op) + 2], re.I):
+                    ops.add(op)
+    return ops == {"and", "or"}
+
+
 def selects(expr: Expr, scope: Scope, inst: etree._Element,
             local: frozenset[str] = frozenset()) -> bool:
     """Do the conditions that pick *this* instance hold?
@@ -721,7 +749,7 @@ def _values_in(scope: Scope, rule: Rule) -> list[tuple[etree._Element, str]]:
             continue
         if not holds(rule.antecedent, scope, inst, local):
             continue
-        if not selects(rule.antecedent, scope, inst, local):
+        if mixed_precedence(rule.logic) and not selects(rule.antecedent, scope, inst, local):
             continue
         for node in inst.iter(f"{{{MISMO}}}{rule.data_point}"):
             text = (node.text or "").strip()
@@ -983,7 +1011,7 @@ def evaluate(tree, *, include_ok: bool = False, rule_set: list[Rule] | None = No
                     continue
             if not holds(rule.antecedent, scope, inst, local):
                 continue
-            if not selects(rule.antecedent, scope, inst, local):
+            if mixed_precedence(rule.logic) and not selects(rule.antecedent, scope, inst, local):
                 continue
             applicable = True
             wanted = rule.requires or (rule.data_point,)

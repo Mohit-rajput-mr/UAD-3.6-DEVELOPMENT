@@ -218,7 +218,7 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
-### 2026-10-10 (night) -- T-1085 worksheet inside the comparable grid: PARTIAL, take over here
+### 2026-10-10 (night) -- T-1085 worksheet inside the comparable grid: DONE; live at https://uad36.vercel.app
 - **Owner's addendum** (replaces DR §11):
   `_work/owner/2026-10-10-desktop-rebuild/ADDENDUM_11_WORKSHEET_IN_GRID.md`.
 - **Built:**
@@ -238,13 +238,17 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 - **Verified:** `tests/test_worksheet.py` passes 22/22, including recalc,
   manual, release, SF3 ADU positional amounts, and the preview, PDF,
   mismo.xml and ZIP carrying the amounts.
-- **Not yet run (do next):**
-  - a Chromium e2e of the icons on sf1 / condo / 2-4, including after adding
-    a comp and a unit and after a relayout; Ctrl+J; drawer apply; ticked label.
-    A starter script is in the session scratchpad and is not in the repo:
-    write it as `tests/test_worksheet_grid.py`;
-  - `python engine/tests/harness.py 12` and the full suite.
-  Then `tasks.py done T-1085`.
+- **Also verified:**
+  - `tests/test_worksheet_grid.py` (Chromium) 3/3;
+  - harness 12: 88 pass / 0 fail / 20 gap;
+  - full suite: 891 passed, 0 failed.
+- **Left for later:** a "Worksheets" ribbon tab arrives with the ribbon
+  (phase 2). Until then the toolbar's Worksheets button lists every row.
+- **Live:** project `uad` on the owner's new Vercel account, at
+  https://uad36.vercel.app (DEPLOY_VERCEL.md "Live deployments").
+- **Next:** phase 1. The workflow `dr-phase1-bugfix` returns one patch per
+  task in `.claude/wf-partial/`. The lead applies them, reviews them
+  adversarially, runs the suite and records the results.
 - **Spec finding:** the UAD 3.6 rental and GRM grids define no adjustment
   rows, so the icons apply to the sales grid and its per-unit lines only.
 

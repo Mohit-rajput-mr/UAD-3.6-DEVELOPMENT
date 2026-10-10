@@ -3274,3 +3274,5 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   Whoever merges renumbers the incoming one (next free T-/E- number) and
   fixes its references. The branches overlap in api.py, flow.py, form.py
   and delivery.py: expect conflicts there.
+- **T-1085 done:** full suite 891 passed / 0 failed / 10 skipped (11 min,
+  with test_worksheet_grid run on its own: 3/3), harness 88/0/20.

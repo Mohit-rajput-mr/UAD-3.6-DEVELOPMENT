@@ -3242,3 +3242,35 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - **Leftovers on that project:** env vars `UAD_P1..P7` and `UAD_BUILD`, a
   temporary patch that is no longer needed. The owner can delete them; no
   agent has.
+
+### 2026-10-10 (night, later) -- live on the new Vercel account; phase 1 relaunched; a parallel session
+- **Live:** project `uad` on the owner's new Vercel account
+  (mohitrajputjigsaw04, team `mohit-teams`) at https://uad36.vercel.app.
+  `uad.vercel.app` belongs to another account. Blob store `uad-cases`.
+  Production = this branch, deployed by API (dpl_GMrAr83…); pushes make
+  previews. See DEPLOY_VERCEL.md "Live deployments".
+- **Why "too big for Vercel":** the Python function bundles the whole
+  checkout (1.3 GB tracked). The old project only built because a
+  build-script env var pruned folders. `.vercelignore` now keeps ~84 MB, so
+  a fresh project builds as is. Verified by serving exactly the kept files
+  with VERCEL=1, and by the live deploy, READY in 70 s.
+- **T-1085:** `tests/test_worksheet_grid.py` (Chromium) passes 3/3. Harness
+  12 and the full suite are running. After them, `tasks.py done T-1085`.
+- **Phase 1** (T-509, T-506, T-1070, T-1071, T-1072, T-416, T-1074, T-125,
+  T-1066):
+  - the first workflow was cut off by the session restart; only T-509 and
+    T-506 had partial work. Their diffs are saved in
+    `.claude/wf-partial/partial-{1,2}.patch` (git-ignored);
+  - relaunched as workflow `dr-phase1-bugfix` (one agent per task, each in
+    its own worktree, patches to `.claude/wf-partial/<T-id>.patch`). The
+    lead applies, reviews and records.
+- **Parallel session:** branch `claude/keen-turing-3r26sh` (from main
+  c6b6c62) did T-120 utility row headers, T-121, T-919 footer IDs and the
+  dwelling front photos. Its ids collide with this branch:
+  - **T-125** = their "MH1/MH2 site exhibit titles" vs this branch's DR §8
+    checkbox centring;
+  - **E-163** = their "second building's front photo" vs this branch's
+    "live site could not make the PDF".
+  Whoever merges renumbers the incoming one (next free T-/E- number) and
+  fixes its references. The branches overlap in api.py, flow.py, form.py
+  and delivery.py: expect conflicts there.

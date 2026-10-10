@@ -2437,3 +2437,70 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Shipped with T-1057 (Show / Hide), whose leftover answers this exposed.
   Leaving a section out now also moves its other answers out of the XML.
   The D-1 samples that don't print it hold only the question.
+
+### E-163 -- The live site could not make the PDF, so it could not deliver at all (2026-10-10)
+- Symptom: on Vercel `report.pdf` answered 503 and `package.zip` failed with
+  it (owner's section test B5). Every layout already ran in the appraiser's
+  browser; only the print step needed Chromium on the server.
+- Cause: the PDF came only from `flow.to_pdf` (Playwright / CDP). A
+  serverless function cannot start a browser, and a browser page cannot print
+  to a file a script can read.
+- Mechanism: `uad/report/pdfdraw.py`.
+  - `DISPLAY_JS` runs in the laid-out pages and reports, in points, each
+    glyph's x (per character, so kerning and letter spacing are the
+    browser's own), each run's baseline (measured with a probe in the same
+    face), filled boxes and borders (collapsed table borders straddle the
+    line; `::before`/`::after` bars), pictures with object-fit and clip, and
+    the inline SVG ticks. Computed lengths are calibrated against the
+    screen, because browsers disagree on whether CSS zoom is included; a
+    page shown smaller is drawn at full size while it is read.
+  - `write` makes the PDF with fontTools, Pillow and zlib only. The report's
+    own TTFs are embedded and subset (Type 0 / CIDFontType2, Identity-H,
+    ToUnicode), glyphs are placed with TJ adjustments, JPEG goes in as is,
+    an 8-bit RGB PNG passes through with PNG predictors, and EXIF
+    orientation is honoured.
+  - `check_text`: the server's own pages for the key (the shared layout, or
+    rebuilt from the browser's numbers with `flow.trusted`) must contain
+    every character the browser drew, page by page and in order. Pictures
+    are read from the case's own asset files. A small inline data: picture
+    is accepted only when the server's page holds that exact URI. An SVG
+    picture (a market chart) is rasterised by the browser at 4 px/pt.
+  - API: `POST /cases/{id}/report.pdf` (gzip allowed) keeps the PDF under
+    `_render/pdf/<key>` and in the shared store
+    (`Durable.put_output`, `cases/<id>/out/pdf-<key>.zip`). On a host
+    without server layout, `GET report.pdf` and the package use it, or answer
+    409 `draw`. `POST /cases/{id}/package` plus
+    `GET .../package/part/{n}` and `report.pdf?part=n` hand files over in
+    3.5 MB parts: a serverless function answers at most 4.5 MB.
+  - Editor: Open PDF and Export ZIP lay the preview out in a hidden frame,
+    run the script, post it and fetch the parts (`drawPdf`, `openPdf`,
+    `exportZip` in `index.html`).
+- Validated: all 12 D-1 samples match Chromium's own PDF of the same pages:
+  same page count, the same characters on every page, glyphs within 0.01 pt
+  across and 0.13 pt down (Chromium snaps baselines to its 3x grid), and
+  every picture. Pixel difference is below 0.1 % per page; SF2's speckled
+  plat map resamples to 1.3 %. `tests/test_client_pdf.py` (12 tests) runs 3
+  samples against Chromium, plus forgery refusals, the writer's units, and
+  the editor end to end with the server forced to the no-Chromium path: draw,
+  parts, refusals, and the ZIP holding that same PDF.
+- Known limits:
+  - The browser decides geometry. The words are the server's, but their
+    placement is the appraiser's own browser's.
+  - A character outside the report faces and the Source Sans 3 fallback is
+    left out and named to the appraiser.
+  - SVG `<img>` pictures are raster in the PDF (vector in Chromium's).
+
+### E-164 -- A refusal marked "stale" made the case vault restore the case over itself (2026-10-10)
+- Symptom: found while building E-163. After a refused PDF request, the
+  drawn PDF had vanished from the case folder.
+- Cause: `app/ui/vault.js` reads any 409 whose body says `"stale": true` as
+  "this server copy holds an older revision". It then restores the case from
+  the browser's copy, `replace=True`, which deletes the case folder first.
+  The new route's "the report changed while it was laid out" answer used
+  that same word.
+- Mechanism: the route answers `"changed": true`. A comment at `_draw_pdf`
+  says why. The editor retries once on `changed`.
+- Test: `tests/test_client_pdf.py::test_the_editor_draws_the_pdf_and_exports_the_zip_in_parts`
+  (a refused request leaves the drawn PDF in place).
+- Rule: in an API answer to a vault-wrapped request (any `/api/cases/<id>`
+  route), `stale` is reserved for the vault protocol.

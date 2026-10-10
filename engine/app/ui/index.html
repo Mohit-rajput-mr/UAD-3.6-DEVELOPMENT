@@ -2466,6 +2466,128 @@ function smartAdjust(){
   load();
 }
 
+/* ------------------------------------------------ PDF without a server browser
+   A serverless host (the live site) has no Chromium to print with.  This
+   browser lays the report out in a hidden frame, the same way it lays out the
+   preview, reports where it drew every glyph, rule and picture
+   (pdfdraw.DISPLAY_JS, served at /api/report/display.js), and the server draws
+   the PDF from that after checking the words against its own pages.  Files
+   over 4.5 MB (the most a serverless function answers) come down in parts. */
+let HOST=null;
+async function hostInfo(){
+  if(!HOST){ const r=await apiRaw('/host'); HOST=(r&&r.ok)?r.data:{serverLayout:true}; }
+  return HOST;
+}
+async function gzipped(text){
+  if(!window.CompressionStream) return null;
+  try{ const st=new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'));
+    return await new Response(st).arrayBuffer(); }catch(e){ return null; }
+}
+async function fetchParts(url,parts,size,type){
+  if(parts<=1){ const r=await fetch(url); if(!r.ok) throw new Error('download failed ('+r.status+')'); return await r.blob(); }
+  const out=[];
+  for(let n=0;n<parts;n++){
+    const r=await fetch(url+(url.includes('?')?'&':'?')+'part='+n);
+    if(!r.ok) throw new Error('part '+(n+1)+' of '+parts+' failed ('+r.status+')');
+    out.push(await r.blob());
+  }
+  const b=new Blob(out,{type});
+  if(size&&b.size!==size) throw new Error('the download arrived incomplete');
+  return b;
+}
+function pdfFrame(caseId){
+  return new Promise((done,fail)=>{
+    const f=document.createElement('iframe');
+    f.setAttribute('aria-hidden','true'); f.tabIndex=-1;
+    f.style.cssText='position:fixed;left:-12000px;top:0;width:900px;height:1400px;border:0';
+    let data=null, timer=null;
+    const end=()=>{ window.removeEventListener('message',on); clearTimeout(timer); };
+    const on=e=>{
+      if(e.source!==f.contentWindow||!e.data) return;
+      if(e.data.uad==='layout-data') data=e.data;
+      if(e.data.uad==='frame-ready'&&!e.data.stale){ end(); done({f,key:e.data.key,data}); }
+    };
+    window.addEventListener('message',on);
+    timer=setTimeout(()=>{ end(); f.remove(); fail(new Error('the report took too long to lay out')); },180000);
+    f.src=`/api/cases/${caseId}/preview?t=${Date.now()}`;
+    document.body.appendChild(f); WARM_FRAMES.add(f.contentWindow);
+  });
+}
+async function drawPdf(again){
+  const id=S.caseId;
+  toast('Drawing the PDF from this browser’s layout…',4000);
+  barStart();
+  let fr=null;
+  try{
+    const [src,laid]=await Promise.all([fetch('/api/report/display.js').then(r=>r.text()),pdfFrame(id)]);
+    fr=laid;
+    const w=fr.f.contentWindow, d=w.document;
+    if(d.fonts) await d.fonts.ready;
+    await Promise.all(Array.from(d.images).map(i=>i.complete?0:new Promise(r=>{i.onload=i.onerror=r;})));
+    const display=w.eval('('+src+')()');
+    const body=JSON.stringify({key:fr.key,display,
+      measured:fr.data&&fr.data.key===fr.key?fr.data.measured:undefined,
+      caps:fr.data&&fr.data.key===fr.key?fr.data.caps:undefined});
+    const zipped=await gzipped(body);
+    const r=await fetch(`/api/cases/${id}/report.pdf`,{method:'POST',
+      headers:zipped?{'Content-Type':'application/json','Content-Encoding':'gzip'}:{'Content-Type':'application/json'},
+      body:zipped||body});
+    const res=await r.json().catch(()=>({error:'the server did not answer ('+r.status+')'}));
+    if(!r.ok&&!(r.status===409&&res.changed&&!again))
+      throw new Error(res.error||res.detail||('the PDF could not be drawn ('+r.status+')'));
+    if(r.ok){
+      const lost=Object.keys(res.missing_glyphs||{});
+      if(lost.length) UADDialog.alert(`These characters have no glyph in the report's typefaces and are left out of the PDF: ${lost.join(' ')}`,
+        {title:'Some characters could not be drawn',eyebrow:'PDF'});
+      return res;
+    }
+  }finally{ barStop(); if(fr) fr.f.remove(); }
+  return await drawPdf(true);           // the report changed while it was laid out: once more
+}
+async function openPdf(){
+  // opened now, inside the click, so a pop-up blocker lets it through
+  const win=window.open('','_blank');
+  try{
+    const res=await drawPdf();
+    const blob=await fetchParts(`/api/cases/${S.caseId}/report.pdf`,res.parts,res.size,'application/pdf');
+    const url=URL.createObjectURL(blob);
+    if(win) win.location=url; else { const a=document.createElement('a'); a.href=url; a.download='appraisal.pdf'; a.click(); }
+    toast(`PDF drawn — ${res.pages} pages`);
+    setTimeout(()=>URL.revokeObjectURL(url),120000);
+  }catch(e){
+    if(win) win.close();
+    UADDialog.alert(e.message,{title:'The PDF could not be made',eyebrow:'PDF'});
+  }
+}
+async function exportZip(){
+  try{
+    await drawPdf();
+    barStart();
+    let r;
+    try{ r=await apiRaw(`/cases/${S.caseId}/package`,{method:'POST',body:'{}'}); }finally{ barStop(); }
+    if(!r||!r.ok){
+      const d=(r&&r.data)||{};
+      await UADDialog.alert([d.error||'The package could not be built.'].concat(d.reasons||[]).join('\n'),
+        {title:'This case cannot be exported yet',eyebrow:'Delivery package'});
+      return;
+    }
+    const p=r.data;
+    const parts=[];
+    for(let n=0;n<p.parts;n++){
+      const q=await fetch(`/api/cases/${S.caseId}/package/part/${n}?sha=${p.sha256}`);
+      if(!q.ok) throw new Error('part '+(n+1)+' of '+p.parts+' failed ('+q.status+')');
+      parts.push(await q.blob());
+    }
+    const zip=new Blob(parts,{type:'application/zip'});
+    if(zip.size!==p.size) throw new Error('the package arrived incomplete');
+    const url=URL.createObjectURL(zip), a=document.createElement('a');
+    a.href=url; a.download=p.name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),120000);
+    toast('Package exported'); refresh();
+  }catch(e){
+    UADDialog.alert(e.message,{title:'The package could not be exported',eyebrow:'Delivery package'});
+  }
+}
 function fillSignoff(b){
   if(!b)return;
   const rep=S.review,c=S.case;
@@ -2488,7 +2610,7 @@ function fillSignoff(b){
       <button class="btn block" id="rev">Move to review</button>
       <button class="btn block primary" id="sign" ${ready&&c.can.includes('signed')?'':'disabled'}>Sign off</button>
       <a class="btn block" id="zip" href="/api/cases/${S.caseId}/package.zip">Export ZIP</a>
-      <a class="btn block" href="/api/cases/${S.caseId}/report.pdf" target="_blank">Open PDF</a>
+      <a class="btn block" id="openpdf" href="/api/cases/${S.caseId}/report.pdf" target="_blank">Open PDF</a>
       <a class="btn block" href="/api/cases/${S.caseId}/mismo.xml" target="_blank">Open MISMO XML</a>
       <a class="btn block" href="/api/cases/${S.caseId}/portable.xml" download
          title="The whole appraisal in one UAD 3.6 XML, pictures inside: import it anywhere this software runs">Download portable XML</a>
@@ -2536,6 +2658,11 @@ function fillSignoff(b){
   });
 
   $$('#back').onclick=showLaunch;
+  /* Where the server cannot print (the live site), the PDF is drawn from this
+     browser's layout and both downloads come in parts (owner's test B5). */
+  hostInfo();
+  $$('#openpdf').onclick=e=>{ if(!HOST||HOST.serverLayout) return; e.preventDefault(); openPdf(); };
+  $$('#zip').onclick=e=>{ if(!HOST||HOST.serverLayout) return; e.preventDefault(); exportZip(); };
   for(const [id,kind,what] of [['#mkru','update','Restricted Appraisal Update'],['#mkcr','completion','Completion Report']]){
     const bt=$$(id); if(!bt) continue;
     bt.onclick=async()=>{

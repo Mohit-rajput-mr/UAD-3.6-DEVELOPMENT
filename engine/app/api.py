@@ -35,7 +35,7 @@ from lxml import etree
 
 from uad import (bind, compliance, conditions, delivery, edit, extra, integrity, maps, market, parties, review, schema,
                  templates)
-from uad.report import comparables, flow, paginate, urar
+from uad.report import comparables, flow, paginate, pdfdraw, urar
 from uad.report import form as report_form
 
 from . import autofill, renders
@@ -2664,6 +2664,10 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
           return pass();
         }
         if(KEY!=='client') keep({key:KEY,html:res.html,at:Date.now()});
+        // the numbers of this pass, for a PDF drawn from it when the layout
+        // could not be shared (the server then rebuilds the pages from them)
+        try{ if(window.parent!==window) window.parent.postMessage({uad:'layout-data',kind:KIND,key:KEY,
+          caps:caps,measured:slim(measured)},'*'); }catch(e){}
         if(KEY!=='client'&&!any){
           // every page fits: the server keeps this layout for every report with
           // the same content, so the next one opens without a layout pass
@@ -2674,6 +2678,12 @@ try{ if(window.parent!==window&&window.parent.UADVault) window.parent.UADVault.i
         show(res.html, false);
       });
     });
+  }
+  function slim(m){
+    return m.map(function(b){ return {n:b.n,height:b.height,lead:b.lead,headHeight:b.headHeight,
+      contHeadHeight:b.contHeadHeight,
+      cols:(b.cols||[]).map(function(c){ return c.map(function(i){ return {top:i.top,height:i.height}; }); }),
+      rows:(b.rows||[]).map(function(r){ return {height:r.height}; })}; });
   }
   function show(html, stale){
     document.open(); document.write(html); document.close();
@@ -2705,16 +2715,14 @@ def font_asset(name: str) -> Response:
 _ASSET_LOCKS: dict[str, "threading.Lock"] = {}
 
 
-@router.get("/cases/{case_id}/asset/{name}")
-def render_asset(case_id: str, name: str) -> Response:
-    """A photograph or font a rendered page references, named by its digest --
-    so it never changes and the browser may keep it."""
+def _asset_path(case_id: str, name: str) -> Path | None:
+    """The file behind ``/api/cases/<id>/asset/<name>``, made again if this
+    server copy does not have it (``None`` when no layout of the case names it)."""
     import re as _re
     if not _re.fullmatch(r"[0-9a-f]{20}\.[a-z0-9]{2,5}", name):
-        raise HTTPException(404, "no such asset")
+        return None
     path = renderer().assets(case_id) / name
     if not path.is_file():
-        _case_or_404(case_id)
         # Content-addressed: a page laid out for another report with the same
         # content (every new report opens on the shared layout of the blank
         # one) names files that report's render wrote.  Same name, same bytes.
@@ -2736,7 +2744,21 @@ def render_asset(case_id: str, name: str) -> Response:
                     renderer().client_galley(case_id, kind)
                 except Exception:
                     pass
+    return path if path.is_file() else None
+
+
+@router.get("/cases/{case_id}/asset/{name}")
+def render_asset(case_id: str, name: str) -> Response:
+    """A photograph or font a rendered page references, named by its digest --
+    so it never changes and the browser may keep it."""
+    import re as _re
+    if not _re.fullmatch(r"[0-9a-f]{20}\.[a-z0-9]{2,5}", name):
+        raise HTTPException(404, "no such asset")
+    path = renderer().assets(case_id) / name
     if not path.is_file():
+        _case_or_404(case_id)
+        path = _asset_path(case_id, name)
+    if path is None:
         raise HTTPException(404, "no such asset")
     kind = {"ttf": "font/ttf", "otf": "font/otf", "svg": "image/svg+xml",
             "jpg": "image/jpeg", "tif": "image/tiff"}.get(path.suffix[1:]) or         mimetypes.guess_type(path.name)[0] or "application/octet-stream"
@@ -2961,12 +2983,196 @@ def _render_pdf(case_id: str):
 
 
 @router.get("/cases/{case_id}/report.pdf")
-def report_pdf(case_id: str) -> Response:
+def report_pdf(case_id: str, part: int = Query(-1)) -> Response:
+    """The report as a PDF.  Where this server lays reports out itself it
+    prints one; where the appraiser's browser does (a serverless host) it is
+    the PDF drawn from that layout for the current version of the report
+    (``POST`` below), or 409 asking for one.  ``part`` hands it over in
+    pieces a serverless function can answer (``PART`` bytes each)."""
     _case_or_404(case_id)
-    out = _render_pdf(case_id)
-    return Response(out.read_bytes(), media_type="application/pdf",
-                    headers={"Content-Disposition":
-                             'inline; filename="appraisal.pdf"'})
+    from uad.report import browser
+    if browser.server_layout():
+        data = _render_pdf(case_id).read_bytes()
+    else:
+        got = _client_pdf(case_id)
+        if got is None:
+            return JSONResponse({"error": "the PDF has not been drawn for this version of the report",
+                                 "draw": True}, status_code=409)
+        data = got[0]
+    if part >= 0:
+        piece = data[part * PART:(part + 1) * PART]
+        if not piece:
+            raise HTTPException(404, "no such part")
+        return Response(piece, media_type="application/octet-stream",
+                        headers={"Cache-Control": "no-store"})
+    return Response(data, media_type="application/pdf",
+                    headers={"Content-Disposition": 'inline; filename="appraisal.pdf"'})
+
+
+# ------------------------------------------- the PDF from the browser's layout
+# A serverless host has no browser to print with (owner's section test B5).
+# The appraiser's browser has laid the report out; it reports where it put
+# every glyph, rule and picture (``pdfdraw.DISPLAY_JS``) and the PDF is drawn
+# here from that (``pdfdraw.write``).  What the pages say is checked against
+# this server's own pages for the same version first, and pictures come from
+# this server's own files.
+PDF_KIND = "preview"
+#: bytes per piece of a large download: a serverless function answers at most 4.5 MB
+PART = 3_500_000
+_UNZIPPED_LIMIT = 96 * 1024 * 1024
+
+
+def _pdf_folder(case_id: str) -> Path:
+    folder = store().folder(case_id) / "_render" / "pdf"
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder
+
+
+def _client_pdf(case_id: str) -> tuple[bytes, str] | None:
+    """The PDF drawn for the current version of the case, with the page HTML
+    it was checked against -- from this copy's disk or the shared store."""
+    key = renderer().key(case_id, PDF_KIND)
+    folder = _pdf_folder(case_id)
+    pdf, html = folder / f"{key}.pdf", folder / f"{key}.html"
+    if pdf.is_file() and html.is_file():
+        return pdf.read_bytes(), html.read_text(encoding="utf-8")
+    if DURABLE is not None and DURABLE.on:
+        packed = DURABLE.get_output(case_id, f"pdf-{key}.zip")
+        if packed:
+            with zipfile.ZipFile(io.BytesIO(packed)) as z:
+                data, page = z.read("appraisal.pdf"), z.read("pages.html")
+            renders._write_once(html, page)
+            renders._write_once(pdf, data)
+            return data, page.decode("utf-8")
+    return None
+
+
+def _keep_client_pdf(case_id: str, key: str, data: bytes, html: str) -> None:
+    folder = _pdf_folder(case_id)
+    for old in folder.glob("*"):
+        if old.stem != key:
+            old.unlink(missing_ok=True)
+    (folder / f"{key}.html").write_text(html, encoding="utf-8")
+    (folder / f"{key}.pdf").write_bytes(data)
+    if DURABLE is not None and DURABLE.on:
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_STORED) as z:
+            z.writestr("appraisal.pdf", data)
+            z.writestr("pages.html", html)
+        DURABLE.put_output(case_id, f"pdf-{key}.zip", buf.getvalue(), "application/zip",
+                           replace="pdf-")
+
+
+@router.get("/report/display.js")
+def display_script() -> Response:
+    """The function the editor runs in the laid-out pages (``pdfdraw.DISPLAY_JS``)."""
+    return Response(pdfdraw.DISPLAY_JS, media_type="text/javascript",
+                    headers={"Cache-Control": "no-store"})
+
+
+@router.post("/cases/{case_id}/report.pdf")
+async def draw_report_pdf(case_id: str, request: Request) -> Response:
+    """Draw the PDF from the browser's layout: ``{key, display, measured?, caps?}``,
+    optionally sent gzip-compressed (``Content-Encoding: gzip``).
+
+    ``key`` is the render key the pages were laid out for; ``display`` what
+    ``pdfdraw.DISPLAY_JS`` returned in them.  The server's own pages for that
+    key are the shared layout, or -- when the browser's pass was not shared --
+    rebuilt here from its measurements (numbers only, ``flow.trusted``)."""
+    _case_or_404(case_id)
+    raw = await request.body()
+    if request.headers.get("content-encoding", "").lower() == "gzip" and raw[:2] == b"\x1f\x8b":
+        import gzip
+        try:
+            with gzip.GzipFile(fileobj=io.BytesIO(raw)) as gz:
+                raw = gz.read(_UNZIPPED_LIMIT + 1)
+        except (OSError, EOFError):
+            raise HTTPException(400, "the layout could not be read")
+        if len(raw) > _UNZIPPED_LIMIT:
+            raise HTTPException(413, "the layout is too large")
+    try:
+        body = json.loads(raw)
+    except ValueError:
+        raise HTTPException(400, "the layout is not JSON")
+    if not isinstance(body, dict):
+        raise HTTPException(400, "the layout is not an object")
+    from starlette.concurrency import run_in_threadpool
+    return await run_in_threadpool(_draw_pdf, case_id, body, _actor(request))
+
+
+def _draw_pdf(case_id: str, body: dict, actor: str) -> Response:
+    # A refusal never says "stale": to the browser's case vault (app/ui/vault.js)
+    # a 409 marked stale means "this server copy is behind", and it restores the
+    # case over it.  A report that changed under the layout says "changed".
+    from app.layouts import for_case
+    key = str(body.get("key") or "")
+    if key != renderer().key(case_id, PDF_KIND):
+        return JSONResponse({"error": "the report changed while it was laid out", "changed": True},
+                            status_code=409)
+    html = layouts().get(key, PDF_KIND)
+    if html is not None:
+        html = for_case(html, case_id)
+    else:
+        measured = body.get("measured")
+        if not isinstance(measured, list) or not measured:
+            return JSONResponse({"error": "lay the report out first", "layout": True},
+                                status_code=409)
+        try:
+            caps = {int(k): float(v) for k, v in (body.get("caps") or {}).items()}
+            trusted = flow.trusted(measured, renderer().client_galley(case_id, PDF_KIND))
+            html, _planned = renderer().client_pages(case_id, PDF_KIND, trusted, caps)
+        except (KeyError, TypeError, ValueError):
+            return JSONResponse({"error": "the layout is of a different version of the report",
+                                 "changed": True}, status_code=409)
+    display = body.get("display")
+    if not isinstance(display, dict):
+        raise HTTPException(400, "the drawing of the pages is missing")
+    try:
+        skipped = pdfdraw.check_text(display, html)
+    except pdfdraw.DisplayError as exc:
+        return JSONResponse({"error": f"the pages do not match the report: {exc}"}, status_code=422)
+
+    asset = re.compile(r"/api/cases/([^/?#]+)/asset/([0-9a-f]{20}\.[a-z0-9]{2,5})(?:[?#].*)?$")
+
+    def resolve(src: str) -> bytes | None:
+        if src.startswith("data:"):
+            # a small picture stays inline in the page: take it only if the
+            # server's own page holds exactly that picture
+            return pdfdraw._data_uri(src) if src in html else None
+        m = asset.search(src)
+        if not m or m.group(1) != case_id or m.group(2) not in html:
+            return None
+        path = _asset_path(case_id, m.group(2))
+        return path.read_bytes() if path else None
+
+    def raster_ok(src: str) -> bool:
+        # the browser's rendering of one of this report's own SVG pictures
+        if src.startswith("data:"):
+            return src in html
+        m = asset.search(src)
+        return bool(m and m.group(1) == case_id and m.group(2) in html
+                    and m.group(2).endswith(".svg"))
+
+    meta = flow.Meta.from_case(store().tree(case_id))
+    try:
+        result = pdfdraw.write(display, resolve=resolve, title=meta.title, raster_ok=raster_ok)
+    except pdfdraw.DisplayError as exc:
+        return JSONResponse({"error": f"the pages could not be drawn: {exc}"}, status_code=422)
+    except (KeyError, TypeError, ValueError, IndexError) as exc:
+        return JSONResponse({"error": f"the pages could not be drawn: {exc!r}"}, status_code=422)
+    if result.missing_images:
+        return JSONResponse({"error": "pictures on the pages could not be read",
+                             "images": result.missing_images[:10]}, status_code=422)
+    if key != renderer().key(case_id, PDF_KIND):
+        return JSONResponse({"error": "the report changed while it was drawn", "changed": True},
+                            status_code=409)
+    _keep_client_pdf(case_id, key, result.pdf, html)
+    store().log(case_id, actor, "drew the PDF",
+                f"appraisal.pdf, {result.pages} pages, from the browser's layout")
+    return JSONResponse({"key": key, "pages": result.pages, "size": len(result.pdf),
+                         "parts": -(-len(result.pdf) // PART), "part_size": PART,
+                         "skipped": skipped,
+                         "missing_glyphs": result.missing_glyphs})
 
 
 # ------------------------------------------------------------------- sign-off
@@ -3146,14 +3352,11 @@ def package_check(case_id: str) -> dict:
             "ready": not blockers}
 
 
-@router.get("/cases/{case_id}/package.zip")
-def package(case_id: str) -> Response:
-    """The deliverable: appraisal.pdf, mismo.xml and Images/, in one archive.
-
-    The gate is asked first and there is no way past it, so an archive can only
-    exist for a case an appraiser has signed.
-    """
-    _case_or_404(case_id)
+def _build_package(case_id: str):
+    """The deliverable, built and checked: ``(zip bytes, file name)``, or the
+    JSONResponse saying why it cannot be built.  Building it marks the case
+    exported."""
+    from uad.report import browser
     st = store()
     tree = st.tree(case_id)
     built, problems, blockers, _signed = _export_verdict(case_id)
@@ -3161,12 +3364,22 @@ def package(case_id: str) -> Response:
         return JSONResponse(
             {"error": "this case cannot be exported yet", "reasons": blockers},
             status_code=409)
-    pdf_path = _render_pdf(case_id)
+    if browser.server_layout():
+        pdf_bytes = _render_pdf(case_id).read_bytes()
+        html = None
+    else:
+        # drawn from the appraiser's browser for exactly this version
+        got = _client_pdf(case_id)
+        if got is None:
+            return JSONResponse({"error": "the PDF has not been drawn for this version of the report",
+                                 "draw": True, "reasons": ["Draw the PDF first (Open PDF)."]},
+                                status_code=409)
+        pdf_bytes, html = got
 
     # B-1 p69-73: one XML, one PDF, and the Images folder -- nothing else.
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as zf:
-        zf.write(pdf_path, delivery.PDF_NAME)
+        zf.writestr(delivery.PDF_NAME, pdf_bytes)
         zf.writestr(delivery.XML_NAME, etree.tostring(
             built.tree, xml_declaration=True, encoding="UTF-8", pretty_print=True))
         for name, path in sorted(built.images.items()):
@@ -3183,8 +3396,9 @@ def package(case_id: str) -> Response:
     buffer.seek(0)
     with zipfile.ZipFile(buffer) as zipped:
         names = zipped.namelist()
-    html = flow.build(tree, folder=st.folder(case_id),
-                      media=_media_for_render(case_id), screen=False)
+    if html is None:
+        html = flow.build(tree, folder=st.folder(case_id),
+                          media=_media_for_render(case_id), screen=False)
     shipped = [m for m in st.media(case_id) if m.filename in built.images]
     faults = [f for f in integrity.check(tree, shipped, html=html, names=names)
               if f.severity == integrity.FATAL]
@@ -3195,10 +3409,71 @@ def package(case_id: str) -> Response:
                          for f in faults]},
             status_code=409)
 
-    buffer.seek(0)
     st.transition(case_id, EXPORTED, "system", force=True)
     st.log(case_id, "system", "exported", "package.zip built")
     name = f"{st.get(case_id).name.replace(' ', '_')}.zip"
+    return buffer.getvalue(), name
+
+
+@router.get("/cases/{case_id}/package.zip")
+def package(case_id: str) -> Response:
+    """The deliverable: appraisal.pdf, mismo.xml and Images/, in one archive.
+
+    The gate is asked first and there is no way past it, so an archive can only
+    exist for a case an appraiser has signed.
+    """
+    _case_or_404(case_id)
+    out = _build_package(case_id)
+    if isinstance(out, Response):
+        return out
+    data, name = out
     return StreamingResponse(
-        buffer, media_type="application/zip",
+        io.BytesIO(data), media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{name}"'})
+
+
+@router.post("/cases/{case_id}/package")
+def package_build(case_id: str) -> Response:
+    """Build the deliverable and keep it to be fetched in parts
+    (``GET .../package/part/{n}``): a serverless function answers at most
+    4.5 MB, and a package with its photographs is often more."""
+    import hashlib
+    _case_or_404(case_id)
+    out = _build_package(case_id)
+    if isinstance(out, Response):
+        return out
+    data, name = out
+    digest = hashlib.sha256(data).hexdigest()
+    folder = store().folder(case_id) / "_render" / "package"
+    folder.mkdir(parents=True, exist_ok=True)
+    for old in folder.glob("*.zip"):
+        if old.stem != digest:
+            old.unlink(missing_ok=True)
+    (folder / f"{digest}.zip").write_bytes(data)
+    if DURABLE is not None and DURABLE.on:
+        DURABLE.put_output(case_id, f"package-{digest}.zip", data, "application/zip",
+                           replace="package-")
+    return JSONResponse({"name": name, "size": len(data), "sha256": digest,
+                         "parts": -(-len(data) // PART), "part_size": PART})
+
+
+@router.get("/cases/{case_id}/package/part/{n}")
+def package_part(case_id: str, n: int, sha: str = Query("")) -> Response:
+    _case_or_404(case_id)
+    if not re.fullmatch(r"[0-9a-f]{64}", sha) or n < 0:
+        raise HTTPException(404, "no such package")
+    path = store().folder(case_id) / "_render" / "package" / f"{sha}.zip"
+    if path.is_file():
+        data = path.read_bytes()
+    else:
+        data = (DURABLE.get_output(case_id, f"package-{sha}.zip")
+                if DURABLE is not None and DURABLE.on else None)
+        if not data:
+            raise HTTPException(404, "no such package")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        renders._write_once(path, data)
+    piece = data[n * PART:(n + 1) * PART]
+    if not piece:
+        raise HTTPException(404, "no such part")
+    return Response(piece, media_type="application/octet-stream",
+                    headers={"Cache-Control": "no-store"})

@@ -16,22 +16,24 @@ as one Python serverless function. Tested 2026-10-04 under Vercel conditions
 
 ## What works on Vercel
 
-| Works | Does not work on Vercel (needs a machine with Chromium) |
+| Works on Vercel | How, without a browser on the server |
 |---|---|
-| Passcode gate, case list, the 12 D-1 templates | Page layout / printed preview |
-| Create, open, edit cases through the API | The PDF (`report.pdf`) and the ZIP package |
-| Review Master: schema + 728 H-1 compliance rules | |
-| MISMO XML export / import | |
+| Passcode gate, case list, the 12 D-1 templates, editing | the API (`engine/app/api.py`) |
+| Page layout / printed preview | the appraiser's browser measures, the server paginates (`CLIENT_LAYOUT_HTML`) |
+| The PDF (`report.pdf`) and the ZIP package | drawn from the browser's layout (`engine/uad/report/pdfdraw.py`, E-163), downloaded in parts under the 4.5 MB response limit |
+| Review Master: schema + 728 H-1 compliance rules | server-side |
+| MISMO XML export / import | server-side |
 
-The browser-only actions answer **503 with an explanation**, never a crash
-(`engine/uad/report/browser.py`).
+Server-side printing with Chromium (`flow.to_pdf`) is used wherever Chromium
+exists (local, Docker, desktop); Vercel uses the browser-drawn PDF.
 
 ## Limits you must know
 
-* **Cases are temporary.** Vercel's only writable disk is `/tmp`, per instance;
-  a case disappears when the instance is recycled. Use the deployment to show or
-  check the platform, not to keep work. Real work: run it locally
-  (`python engine/app/main.py`, http://127.0.0.1:8765) or on a server with a disk.
+* **Cases live in the shared Blob store.** Each server copy's `/tmp` is
+  temporary; with `BLOB_READ_WRITE_TOKEN` set (a connected Vercel Blob store)
+  every case, its images and its drawn PDF are kept there
+  (`engine/app/durable.py`), and the browser keeps a copy as well
+  (`engine/app/ui/vault.js`).
 * **Fonts.** The report face (Adobe Myriad Pro) is licensed for embedding in
   documents, not for redistribution, so it is not in this repository. Locally,
   put the licensed `.otf`/`.ttf` files in `engine/assets/fonts/` (see

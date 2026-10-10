@@ -3152,3 +3152,54 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   test_desktop 15/15. Not re-run under Wine.
 - Next: from WinTOTAL's inventory, the remaining **todo** rows in
   knowledge/competitors/WINTOTAL_UAD36.md; a real-Windows check of 1.2.0.
+
+## 2026-10-10 (later) -- current position: the live site makes the PDF and the ZIP (B5, T-1033; E-163, E-164)
+- The live site (Vercel, no Chromium) answered 503 for `report.pdf`, so
+  `package.zip` failed with it: no deliverable could leave the live site.
+- Built `engine/uad/report/pdfdraw.py`:
+  - `DISPLAY_JS` runs in the laid-out pages: glyph x per character, baseline
+    per run (a probe in the same face), boxes and borders (pseudo-element
+    bars, collapsed table borders), pictures (object-fit, clip) and the SVG
+    ticks, in points.
+  - `write` draws the PDF with fontTools, Pillow and zlib (embedded subset
+    TrueType with ToUnicode, TJ placement).
+  - `check_text` checks the words against the server's own pages.
+- API: `POST /cases/{id}/report.pdf` (gzip allowed).
+  - The server's pages for the key come from the shared layout, or are
+    rebuilt from the browser's numbers (`flow.trusted`). The PDF is kept at
+    `_render/pdf/<key>.pdf|.html` and in the shared store
+    (`Durable.put_output`).
+  - With no server layout, `GET report.pdf` serves it (`?part=n` for
+    pieces) or answers 409 `{draw:true}`.
+  - The package uses it (`_build_package`). `POST /cases/{id}/package` plus
+    `GET /package/part/{n}?sha=` hand the ZIP over in 3.5 MB parts.
+- Editor: on a host without server layout (`GET /api/host` serverLayout
+  false), Open PDF and Export ZIP run `drawPdf`: hidden preview frame,
+  display script, POST, parts. Server-layout hosts (local, Docker, desktop)
+  keep the plain links and Chromium printing.
+- Evidence:
+  - All 12 D-1 samples vs Chromium's PDF of the same pages: same pages, same
+    characters per page, glyphs within 0.01 pt across and 0.13 pt down,
+    every picture.
+  - `tests/test_client_pdf.py`, 12 tests: 3 samples vs Chromium; scaled
+    preview invariance; forgery refused; writer units; e2e editor with
+    `browser.server_layout` forced False (draw 20 pages, parts, 422/409
+    refusals, ZIP in parts holding the same PDF, state exported).
+  - Manual e2e against `app/main.py` with `URAR_CLIENT_LAYOUT=1`: draw in
+    5.5 s, `report.pdf` 200.
+- E-164, a trap worth knowing: `app/ui/vault.js` treats any 409 with
+  `"stale": true` as "this server copy is behind". It restores the case,
+  and the restore deletes the case folder. The PDF route says `changed`.
+  Never use `stale` in a case route's answer for anything else.
+- Not verified: the live site itself (this container cannot open
+  vercel.app). The owner should click Open PDF and Export ZIP there once
+  `main` carries this.
+- Known limits (CATALOG E-163):
+  - Geometry is the browser's.
+  - SVG `<img>` charts are raster in this PDF.
+  - Characters outside the report faces and the fallback are named, not
+    drawn.
+- Next:
+  - Confirm on the live site.
+  - From the open list: B15 gated-field hints (T-258), B16 photo category,
+    page counts vs D-1 (harness gaps), T-120 / T-121 fidelity items.

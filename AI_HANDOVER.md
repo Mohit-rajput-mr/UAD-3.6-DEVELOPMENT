@@ -84,6 +84,15 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-10 — The live site makes the PDF and the ZIP (B5, T-1033;
+  E-163, E-164).** `uad/report/pdfdraw.py`: the browser reports where it
+  drew every glyph, rule and picture; the server writes the PDF with its own
+  fonts and pictures, after checking the words against its own pages. PDF
+  and ZIP download in 3.5 MB parts (Vercel answers at most 4.5 MB). On all
+  12 D-1 samples it matches Chromium's PDF: same pages and characters,
+  glyphs within 0.01 pt across and 0.13 pt down. `tests/test_client_pdf.py`
+  passes 12 tests, including an end-to-end editor run with server layout
+  off. Not yet clicked on the live site.
 - **2026-10-04 — Second redesign (the one that stands).** The owner rejected
   the violet design ("shittiest") and sent new references: a dark wireframe
   with chrome/silver accents and glass cards, a bold grotesk "WEBSITE DEV"
@@ -208,6 +217,27 @@ Full narrative and traps: last sections of `_work/HANDOFF.md`.
 Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
+
+### 2026-10-10 (later) -- the live site makes the PDF and the ZIP (T-1033 / B5; E-163, E-164)
+- **Before:** `report.pdf` answered 503 on Vercel, and so did the ZIP. The
+  live site could not deliver.
+- **Now:**
+  - Open PDF / Export ZIP lay the preview out in a hidden frame and run
+    `pdfdraw.DISPLAY_JS`, then post it to `POST /api/cases/{id}/report.pdf`.
+  - The server checks the words against its own pages and writes the PDF.
+    It is kept per render key, locally and in the Blob store.
+  - Downloads come in parts. Hosts with Chromium are unchanged.
+- **Trap (E-164):** never answer a case route with `"stale": true` unless
+  you mean the vault protocol. vault.js then restores the case, which wipes
+  its folder.
+- Work branch this session: `claude/sleepy-hypatia-e2pzcn`.
+- Full suite: 851 passed, 10 skipped, 0 failed (839 before + 12 new).
+- Desktop installer not rebuilt: the desktop edition prints with the system
+  Edge, so nothing here changes what it does. Rebuild it with the next
+  desktop-facing change.
+- **Next:**
+  - The owner tries Open PDF and Export ZIP on the live site.
+  - Then B15 (T-258), B16, page counts vs D-1, T-120 / T-121.
 
 ### 2026-10-10 -- rent schedule units, legal description image, Add list, Show/Hide sections; eight unit rules checked (T-1058, T-1060, T-1056, T-1057; E-161, E-162)
 - **T-1058:** a switch over the Rent Schedule chooses which units it lists

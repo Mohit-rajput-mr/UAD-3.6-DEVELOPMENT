@@ -3276,3 +3276,41 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   and delivery.py: expect conflicts there.
 - **T-1085 done:** full suite 891 passed / 0 failed / 10 skipped (11 min,
   with test_worksheet_grid run on its own: 3/3), harness 88/0/20.
+
+## 2026-10-10 (later) -- registry triage; utility rows, dwelling fronts, footer IDs (T-120, E-167, T-919, T-1017)
+- Status: committed to `claude/keen-turing-3r26sh` only, **not merged to
+  main**. Every new test passes, and the full suite (848 passed, 9 skipped)
+  ran while T-919 was being added. The re-run of the affected tests after
+  T-919 was stopped by the owner. Next agent: run `python -m pytest -q
+  engine/tests/` and, if green, `git push origin HEAD:main`.
+- T-1017: `total-bridge/bridge/detect._json` now reads a table a WinTOTAL
+  capture lacks (3886/3894 have no configuration/defaults/uid_map) from the
+  newest earlier capture that has it. total-bridge tests 66 passed; 4 bridge
+  test files need Python 3.12 f-strings and don't collect on 3.11
+  (pre-existing).
+- T-120: B-1 p140 "Electricity, Sanitary Sewer, and Water always display as
+  row headers" is extracted by `uad/spec/extract_row_headers.py` into
+  `spec/row_headers.json`. `form._always_rows` prints those rows even when
+  empty. The 12 sample print galleys are byte-identical.
+  `tests/test_row_headers.py`.
+- E-167 (CATALOG): DwellingFront has two A-1 rows (top photo 1400.0619 and
+  "Dwelling Front" exhibit 1400.0638).
+  - The n-th property-level DwellingFront is the n-th dwelling's top photo;
+    D-1 2-4 Building 2 used to show Building 1's.
+  - Extras are exhibits, which brings back SF1's "Dwelling Front".
+  - Delivery replaces only dwelling 1's front with the appraiser's photo.
+  - `tests/test_dwelling_fronts.py`.
+- T-919: footer reference IDs HF.005-HF.008 are editable in the editor's
+  footer.
+  - `uad/references.py` reads them from A-1 rows. The types agree with
+    `urar.REFERENCE_TYPES`, and reads agree on all 12 samples.
+  - Route: PATCH /cases/{id}/references/{field}. The footer values carry no
+    data-fid, because /guide 404s on unknown fids and a 404 sends the
+    editor home.
+  - Chromium: a Client Reference ID typed on page 2 showed on all 28 pages
+    and was saved to the XML. `tests/test_footer_references.py`.
+- Closed after verifying: T-1022, T-705, T-237, T-121. New: T-127, MH1/MH2
+  Site exhibit titles differ from D-1.
+- Next: the full-suite re-run, then main. Then the open tasks this sandbox
+  can do (`python engine/tasks.py next`); the bridge/TOTAL and case tasks
+  need the owner's Windows PC.

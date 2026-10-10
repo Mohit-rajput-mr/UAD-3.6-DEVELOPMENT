@@ -303,6 +303,12 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 - **E-162:** before this, answering No / None to one of those questions removed the whole section,
   question included, from the editor.
 - Desktop installer rebuilt as **1.2.0** (`downloads/desktop/`, test_desktop 15/15). Full suite 840 passed, 9 skipped.
+- Later the same day (on the working branch, **not yet on main**, see the last HANDOFF section):
+  - T-120: the utility row headers B-1 always prints;
+  - E-167: each building gets its own front photo, plus SF1's "Dwelling Front" exhibit;
+  - T-919: the footer reference IDs are editable;
+  - T-1017: the bridge diagnostics read from the right WinTOTAL snapshot.
+  Run the full suite, then push to main.
 
 ### 2026-10-09 (later) -- WinTOTAL-inspired editor features; a shipped CSS break fixed (T-1051..T-1054, T-270; E-155..E-157)
 - The owner uploaded 36 screenshots of their WinTOTAL UAD 3.6 (`Competitors 3.6 software features pics/`;
@@ -574,6 +580,8 @@ Pre-existing failing tests (also fail on the commit before slice 1): `test_cells
 
 ## 7. How to take over (new agent checklist)
 
+0. `git fetch --all --prune` and read `_work/AGENTS_BOARD.md`: parallel sessions,
+   who holds production, your T-/E- number block, messages to you.
 1. Read this file, then `CLAUDE.md`, `_work/GOAL.md`, the **last** section of
    `_work/HANDOFF.md`, and run `python engine/tasks.py next`.
 2. `git status` and `git log --oneline -15` — compare with §4/§5 here. If the

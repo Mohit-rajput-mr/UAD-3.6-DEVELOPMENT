@@ -258,7 +258,12 @@ def image_categories() -> dict[str, tuple[str, str]]:
         elif value.endswith("Exhibit"):
             key = re.sub(r"[^a-z]", "", value[:-len("Exhibit")].lower())
             section = names.get(key, "")
-        out.setdefault(value, (section, caption))
+        # A category A-1 lists twice keeps the row that places it on the
+        # report: DwellingFront is the large photo atop Dwelling Exterior
+        # (1400.0619, "Does Not Display" a caption) and also an exhibit
+        # captioned "Dwelling Front" (1400.0638, 8.062.1) -- E-167
+        if value not in out or (section and not out[value][0]):
+            out[value] = (section, caption)
     return out
 
 
@@ -2837,6 +2842,24 @@ def _label_blocks(ctx: Ctx, fid: str, label: str) -> list[etree._Element] | None
     return out
 
 
+@lru_cache(maxsize=1)
+def _row_header_rules() -> list[frozenset[str]]:
+    """B-1's "X, Y and Z always display as row headers" (spec/row_headers.json,
+    uad/spec/extract_row_headers.py): each rule's row labels, normalised."""
+    path = SPEC / "row_headers.json"
+    data = json.loads(path.read_text(encoding="utf-8")).get("tables", []) if path.exists() else []
+    return [frozenset(_norm(r) for r in t.get("rows", [])) for t in data]
+
+
+def _always_rows(el: dict) -> frozenset[str]:
+    """The fixed rows of this table B-1 prints even when they hold nothing:
+    a rule applies to the table whose fixed rows carry every label it names
+    (the Utilities table: Electricity, Sanitary Sewer, Water -- not Gas)."""
+    labels = {_norm(c["text"]) for row in el.get("rows", []) for c in (row.get("cells") or [])[:1]
+              if (c.get("text") or "").strip()}
+    return frozenset(x for rule in _row_header_rules() if rule <= labels for x in rule)
+
+
 def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     ids = {i for row in el["rows"] for c in row.get("cells", []) for i in c.get("ids", [])}
     if LEVEL_ID in ids:
@@ -2884,6 +2907,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
     claimed: set[str] = set()
 
     rows_in = el["rows"]
+    always = _always_rows(el)
     if ctx.scope is None and any("Recommended Action" in c.get("head", "") for c in cols):
         rows_in = _defect_groups(rows_in, ctx)
     for row in rows_in:
@@ -3047,8 +3071,11 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                                                     cat=row_cat)))
                 else:
                     texts.append(esc(v))
-            if has or ctx.edit:
-                any_data = any_data or has
+            # B-1 p140: "Electricity, Sanitary Sewer, and Water always display
+            # as row headers" -- answered or not (T-120)
+            kept = _norm(label) in always
+            if has or ctx.edit or kept:
+                any_data = any_data or has or kept
                 if pending_bar:
                     body.append(pending_bar)
                     pending_bar = None
@@ -4727,9 +4754,38 @@ def _data_uri(path: Path | None) -> str:
     return f"data:{mime};base64,{base64.b64encode(path.read_bytes()).decode('ascii')}"
 
 
+def _front_photos(ctx: Ctx) -> tuple[list[dict], list]:
+    """The subject's DwellingFront images kept at property level, and its
+    dwellings.  A-1 links neither to a dwelling, so the n-th is the n-th
+    dwelling's large photo (8.000.1) -- D-1 2-4 holds 2-4_Dwelling1Front and
+    2-4_Dwelling2Front, one atop each building -- and any beyond one per
+    dwelling is an exhibit captioned "Dwelling Front" (8.062.1; D-1 SF1 holds
+    SF1_SubjectProperty atop the section and SF1_DwellingFront among its
+    exhibits).  E-167."""
+    subj = subject(ctx)
+    if subj is None:
+        return [], []
+    fronts = [im for im in _images(ctx) if im["category"] == "DwellingFront"
+              and any(a is subj for a in im["node"].iterancestors())
+              and not any(_local(a) in ("IMPROVEMENT", "PROPERTY_UNIT") for a in im["node"].iterancestors())]
+    dwellings = [e for e in subj.iter(f"{M}IMPROVEMENT") if _find_text(e, "ImprovementType") == "Dwelling"]
+    return fronts, dwellings
+
+
+def _dwelling_index(ctx: Ctx, dwellings: list) -> int:
+    """Which dwelling this copy of the section is (0 when it is not a copy)."""
+    return next((n for n, d in enumerate(dwellings) if d is ctx.scope), 0)
+
+
 def _photo_for(ctx: Ctx, section: str) -> tuple[str, str]:
     want = {"Summary": "PropertyPhoto", "Dwelling Exterior": "DwellingFront",
             "Subject Property": "PropertyPhoto"}.get(section, "")
+    if section == "Dwelling Exterior":
+        fronts, dwellings = _front_photos(ctx)
+        n = _dwelling_index(ctx, dwellings)
+        if n:
+            # the second building's own front, never the first's (E-167)
+            return (_data_uri(fronts[n]["path"]), fronts[n]["caption"]) if n < len(fronts) else ("", "")
     # The front of the dwelling is entered once and redisplays: B-1 gives the
     # Summary photo (1.000.1) the Dwelling Exterior photo (8.000.1) as its
     # source, and the grid's subject thumbnail is the same property photo.
@@ -4874,7 +4930,11 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     cats = image_categories()
     out = []
     filled = {m["fills"]: m for m in ctx.media if m.get("fills")}
+    fronts, dwellings = _front_photos(ctx)
+    tops = fronts[:max(len(dwellings), 1)]          # each dwelling's large photo
     for im in _images(ctx):
+        if im["category"] == "DwellingFront" and any(im["node"] is t["node"] for t in tops):
+            continue                                # drawn atop its section, not an exhibit
         sec, caption = cats.get(im["category"], ("", ""))
         owner = im["owner"]
         defect_of = None
@@ -4892,8 +4952,6 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             continue
         if im["category"] == "SalesComparableMap":
             sec = "Sales Comparison Approach"
-        if im["category"] == "DwellingFront" and section == "Dwelling Exterior":
-            pass
         if sec != section:
             continue
         if ctx.scope is not None:
@@ -4905,7 +4963,9 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
                 if defect_of is not ctx.scope:
                     continue
             elif not tree.getpath(im["node"]).startswith(tree.getpath(ctx.scope) + "/") \
-                    and not _positional_image(ctx, im, cats):
+                    and not _positional_image(ctx, im, cats) \
+                    and not (im["category"] == "DwellingFront" and dwellings == [ctx.scope]):
+                # (a further front photo of the one dwelling is its exhibit)
                 continue
         title = im["caption"] or caption
         lead = _owner_title(im["node"])

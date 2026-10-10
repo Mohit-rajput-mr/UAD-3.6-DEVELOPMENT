@@ -2553,3 +2553,28 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Spec note: the UAD 3.6 rental and GRM grids define no adjustment rows (0
   of 26 / 0 of 14). The icons therefore apply to the sales grid and its
   per-unit/ADU lines.
+
+### E-167 -- A second building showed the first building's front photo; an extra front photo never printed (2026-10-10)
+- Symptom 1: D-1 2-4 printed 2-4_Dwelling1Front atop both buildings'
+  Dwelling Exterior. Building 2's own 2-4_Dwelling2Front never showed.
+- Symptom 2: D-1 SF1 prints SF1_DwellingFront among its Dwelling Exterior
+  Exhibits, captioned "Dwelling Front". We dropped it.
+- Cause: A-1 lists DwellingFront twice. 1400.0619 is the large photo atop
+  the section (8.000.1, "Does Not Display" a caption). 1400.0638 is an
+  exhibit captioned "Dwelling Front" (8.062.1). `image_categories` kept the
+  first row, so DwellingFront had no section and was never an exhibit.
+  `_photo_for` took the first DwellingFront for every dwelling.
+  (`_exhibits` even had a no-op `if ... DwellingFront ...: pass` where this
+  had been started.)
+- Mechanism: a category A-1 lists twice keeps the row that places it on the
+  report. `_front_photos` gives the n-th property-level DwellingFront to the
+  n-th dwelling as its top photo, and any beyond one per dwelling is an
+  exhibit (of the one dwelling, when there is one). Delivery replaces only
+  the first dwelling's front, in place, when the appraiser supplies a
+  subject photo. It used to remove every DwellingFront, a second building's
+  included.
+- Validated: on all 12 samples only SF1 gets a "Dwelling Front" exhibit, as
+  in D-1. `tests/test_dwelling_fronts.py` (5).
+- Not changed: D-1 SF1 lists Dwelling Front before Dwelling Rear; we keep
+  document order (Rear first). Neither B-1 nor Appendix E states an order,
+  and A-1's row order would reorder MH1/MH2's Site exhibits away from D-1.

@@ -3147,4 +3147,8 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     restores, and so do answering No then Yes. The view stays on section
     20.
 - Full suite after T-1057: 840 passed, 9 skipped.
-- Next: rebuild the desktop installer (1.2.0) with T-1056..T-1061 and E-161/E-162; verify the Vercel deploy.
+- Desktop installer rebuilt as **1.2.0** (24.2 MB, 7 parts, sha256 8be75422…). It carries
+  T-1056..T-1061 and E-161/E-162. Pipeline unchanged from the Wine-verified 1.0.0;
+  test_desktop 15/15. Not re-run under Wine.
+- Next: from WinTOTAL's inventory, the remaining **todo** rows in
+  knowledge/competitors/WINTOTAL_UAD36.md; a real-Windows check of 1.2.0.

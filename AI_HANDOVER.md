@@ -225,7 +225,7 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   exactly. `uad/optional_sections.py`, `tests/test_optional_sections.py`.
 - **E-162:** before this, answering No / None to one of those questions removed the whole section,
   question included, from the editor.
-- Next: rebuild the desktop installer with these changes; verify the Vercel deploy.
+- Desktop installer rebuilt as **1.2.0** (`downloads/desktop/`, test_desktop 15/15). Full suite 840 passed, 9 skipped.
 
 ### 2026-10-09 (later) -- WinTOTAL-inspired editor features; a shipped CSS break fixed (T-1051..T-1054, T-270; E-155..E-157)
 - The owner uploaded 36 screenshots of their WinTOTAL UAD 3.6 (`Competitors 3.6 software features pics/`;

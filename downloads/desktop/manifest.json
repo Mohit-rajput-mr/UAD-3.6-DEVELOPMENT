@@ -1,45 +1,45 @@
 {
-  "name": "UAD36-Desktop-Setup-1.1.0.exe",
-  "version": "1.1.0",
-  "size": 24167544,
-  "sha256": "30b8077d1156a23e6fc86ea33706cd4d34fbf92b2372fb8a185a681cf687266e",
+  "name": "UAD36-Desktop-Setup-1.2.0.exe",
+  "version": "1.2.0",
+  "size": 24190740,
+  "sha256": "8be75422c1686e08618d502d9268ce7aea114f736d001e970077a4f91651cb8a",
   "parts": [
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part00",
+      "file": "UAD36-Desktop-Setup-1.2.0.part00",
       "size": 3500000,
-      "sha256": "6e3bf036451072f36b152fc24748ce237415da5092df0de5cacc80de662c16fb"
+      "sha256": "1363d358475d21e531f2f6af579b7dba50d27779e1e8c239a679637e100f2e55"
     },
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part01",
+      "file": "UAD36-Desktop-Setup-1.2.0.part01",
       "size": 3500000,
-      "sha256": "0f46295bdaf3516cd1e90d8075c55aef3d8c13f306e7a257953f44370625a22b"
+      "sha256": "d03729e9d96b9f808b9343abeb1dc009b96f025731bbdde7063dbca5c9e48793"
     },
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part02",
+      "file": "UAD36-Desktop-Setup-1.2.0.part02",
       "size": 3500000,
-      "sha256": "c2ac9516bc56c24202617e51b3a43833362a53032fed93a523408ea5652a51fe"
+      "sha256": "2f66de8549e04a001c1314ec24e5620436a66a931cdc0b619fbc2f545b209737"
     },
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part03",
+      "file": "UAD36-Desktop-Setup-1.2.0.part03",
       "size": 3500000,
-      "sha256": "6f4e5b6f1fb8e86fc87be93208255d40c5d1bbcfbbf56271b93c8f1c94812b4a"
+      "sha256": "333bcb81ec3e6896186d83e6e7c39d15fd0c5fa15864e8634fe1bc350f610628"
     },
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part04",
+      "file": "UAD36-Desktop-Setup-1.2.0.part04",
       "size": 3500000,
-      "sha256": "3e543806e8944c22b481b8b2f776d31c4934dec289fee6e51382389740a2823f"
+      "sha256": "8d245ab0d9d7d66b41ccf7947c2088cdfd359959ec6d9afa1e7c66648d113e07"
     },
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part05",
+      "file": "UAD36-Desktop-Setup-1.2.0.part05",
       "size": 3500000,
-      "sha256": "5d15990857f186a6d1061049a1425be12a2c08e243253d9d40a8b45e5389be95"
+      "sha256": "6480db8d29291df6960f2dd5e88a6ca4ab748fa6ab63072ae9bd501d43ea8574"
     },
     {
-      "file": "UAD36-Desktop-Setup-1.1.0.part06",
-      "size": 3167544,
-      "sha256": "054da845726e869c44327bfc85f24dc17932ce8e3ef7851dfd9126116fa4a1ef"
+      "file": "UAD36-Desktop-Setup-1.2.0.part06",
+      "size": 3190740,
+      "sha256": "c1f8686af0edc2c1e0ac4965988ed4d5b3c04016deccd0e350b80fa7c8e5969d"
     }
   ],
-  "built": "2026-10-09",
+  "built": "2026-10-10",
   "python": "3.11.9"
 }

@@ -254,14 +254,12 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 - **Verified:** `tests/test_pagination.py` 20/20. On the final tree,
   full suite 930 passed / 0 failed / 10 skipped, and harness 12 86 / 0 / 22
   (see §4 for why gaps rose by 2).
-- **Batch 2, found but not yet built:**
-  - **(a)** B-1 p228 "When CarStorageType (FID 13.000) = "None", display
-    "None"". Slot 13.000 should print only "None", but we print the first
-    storage type above the table ("Carport", SF3 p12). The same sentence
-    shape covers 4.078 "(Shared)" and 13.004.
-  - **(b)** A unit in an outbuilding (SF3's standalone ADU) prints right
-    after its Outbuilding section, as dwelling units follow their Dwelling
-    Exterior (D-1 SF3). We print it after the primary unit.
+- **Batch 2, done (E-309, E-310):**
+  - Vehicle Storage no longer prints a storage type above its table (all
+    12 samples had). "None" prints alone (B-1 p228).
+  - An ADU in an outbuilding follows that Outbuilding (B-1 p377; D-1 SF3).
+  - E-308 is now print-only, so the editor keeps MH1's Unit Interior
+    controls.
 - **Trap:** in a cloud container, pin `playwright==1.56.0`, which matches
   the installed Chromium 1194.
 - **Next (this branch):**

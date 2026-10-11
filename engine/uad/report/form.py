@@ -1308,6 +1308,41 @@ def _picture_frame(el: dict) -> bool:
     return bool(points) and points <= IMAGE_POINTS
 
 
+def value_slot(ctx: "Ctx", fids: list[str]) -> str | None:
+    """B-1's "When X (FID: f) = "v", display "T"" for a value set under a bar:
+    T when the subject's X is v, nothing otherwise; None when B-1 states no
+    such rule.  B-1 p228: Vehicle Storage shows "None" only for CarStorageType
+    "None" -- any other storage is the table's (D-1: no sample prints a value
+    above it, and we printed the first storage type there on all 12)."""
+    for rule in _italic_rules():
+        if rule.get("shape") != "value" or rule.get("fid") not in fids:
+            continue
+        scope = ctx.scope if ctx.scope is not None else bind.subject(ctx.root)
+        values = rules.values_of(ctx.root, rule["name"], scope)
+        holds = bool(values) and all(v == rule["value"] for v in values)
+        if holds and rule.get("hides"):
+            # "...; the Vehicle Storage detail table and the Apparent Defects,
+            # Damages, Deficiencies subsection does not display" -- what the
+            # rest of this section leaves out (ctx.placeholders is per section)
+            ctx.placeholders["hides"] = rule["hides"]
+        return rule["text"] if holds else ""
+    return None
+
+
+def _hidden_by_rule(ctx: "Ctx", kind: str, title: str = "") -> bool:
+    """Does the section's value rule (``value_slot``) leave this out?  Its
+    "hides" names "the <x> detail table" and "the <y> subsection"."""
+    hides = ctx.placeholders.get("hides", "")
+    if ctx.edit or not hides:
+        return False
+    parts = [x.strip() for x in re.split(r",? and the ", hides)]
+    if kind == "table" and any(x.endswith("table") for x in parts) and not ctx.placeholders.get("hid_table"):
+        ctx.placeholders["hid_table"] = "1"
+        return True
+    return kind == "h1" and any(x.endswith(" subsection") and title.startswith(x[:-len(" subsection")])
+                                for x in parts)
+
+
 def note_displays(ctx: "Ctx", text: str, ids: list[str]) -> bool | None:
     """B-1's "If X (FID: f) = "v", "<note>" displays." for a note C-1 sets
     against field f (p162: "Sketch or Floor Plan Not Available" when
@@ -1582,6 +1617,24 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
                                 ("", []))
     interleave = len(improvements(ctx, "Dwelling")) > 1 and unit_els \
         and section_shown(ctx, "Unit Interior") is not False
+
+    # An ADU in an outbuilding follows that Outbuilding: B-1 p377 orders the
+    # report "Outbuilding ... - Unit Interior (repeat Unit Interior for each
+    # ADU ... in Outbuilding)", p30 sets an ADU "after the applicable
+    # Outbuilding section" (D-1 SF3: Outbuilding - Standalone ADU, then Unit
+    # Interior - Standalone ADU - Cottage).
+    def outbuilding_of(uctx: Ctx) -> etree._Element | None:
+        imp = next(uctx.scope.iterancestors(f"{M}IMPROVEMENT"), None) if uctx.scope is not None else None
+        return imp if imp is not None and _find_text(imp, "ImprovementType") == "Outbuilding" else None
+    outb_title = next((t for t, _e in sections if t.split(" - [")[0] == "Outbuilding"), "")
+    outb_on = bool(outb_title) and section_shown(ctx, "Outbuilding") is not False \
+        and print_gate(ctx, "Outbuilding") is not False
+    sheds = {bind.stable_path(c.scope) for c, _p in section_instances(ctx, outb_title)
+             if c.scope is not None} if outb_on else set()
+
+    def home_key(uctx: Ctx) -> str:
+        shed = outbuilding_of(uctx)
+        return bind.stable_path(shed) if shed is not None else ""
     placed: set[str] = set()
     blocks: list[Block] = []
     for title, els in sections:
@@ -1599,6 +1652,8 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
         for sctx, printed in section_instances(ctx, title):
             if base == "Unit Interior" and sctx.scope is not None and bind.stable_path(sctx.scope) in placed:
                 continue
+            if base == "Unit Interior" and home_key(sctx) in sheds:
+                continue                    # printed after its Outbuilding, below
             if base == "Cost Approach":
                 blocks += _cost_approach(title, printed, els, sctx, sample=sample)
                 continue
@@ -1612,6 +1667,11 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
             if off:
                 blocks.append(Block("text", section=printed, html=_switched_off_html(base),
                                     visible=True))
+            if base == "Outbuilding" and sctx.scope is not None and bind.stable_path(sctx.scope) in sheds:
+                for uctx, uprinted in section_instances(ctx, unit_title):
+                    if home_key(uctx) == bind.stable_path(sctx.scope):
+                        placed.add(bind.stable_path(uctx.scope))
+                        blocks += _section(unit_title, uprinted, unit_els, uctx, sample=sample)
             if interleave and base == "Dwelling Exterior" and sctx.scope is not None:
                 for uctx, uprinted in section_instances(ctx, unit_title):
                     imp = next(uctx.scope.iterancestors(f"{M}IMPROVEMENT"), None) \
@@ -1820,7 +1880,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind in ("h1", "tab"):
             rule = SUBSECTION_RULES.get(el.get("title", "")) if kind == "h1" else None
             d = rules.evaluate(rule, ctx.root) if (rule and not ctx.edit) else None
-            gated = bool(d is not None and d.known and not d.shown)
+            gated = bool(d is not None and d.known and not d.shown) \
+                or _hidden_by_rule(ctx, kind, el.get("title", ""))
         if gated:
             continue
         # C-1 draws the comparable grid as a run of loose pieces -- sub-tables,
@@ -1994,6 +2055,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                 # place prints the caption inside the frame (Appendix E p44
                 # "full page image follows with CAP at top"); printing the
                 # table too said "Sketch" twice (D-1 SF3 p6, Condo1 p5)
+                continue
+            if _hidden_by_rule(ctx, "table"):
                 continue
             html_, visible = _table_html(el, ctx)
             if column in ("left", "right"):
@@ -2215,6 +2278,9 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                                        f" data-ph='Type the {esc(named.lower())}\u2026'>"
                                        f"{_paras(value)}</div></div>")))
                 continue
+            said = value_slot(ctx, main)
+            if said is not None:
+                value = said
             out.append(Block("text", section=printed, visible=bool(value), fids=ids,
                              html=f"<div class='txc'>{_paras(value)}</div>"))
             continue

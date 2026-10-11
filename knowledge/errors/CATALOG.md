@@ -2743,3 +2743,44 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   the content", so this is the producer's judgment, not encoded. Nor is
   B-1 p187's exhibit order (Data Plate, Labels, others): D-1 MH1 puts
   "Foundation", one of the others, first.
+
+### E-309 -- Vehicle Storage printed the first storage type above its own table (2026-10-11)
+- Symptom: on all 12 samples our Vehicle Storage began with a loose line
+  ("Carport", "Parking Garage", "Driveway") above the Storage table. Every
+  D-1 sample sets the table straight under the tab.
+- Authority: B-1 p228. "When CarStorageType (FID: 13.000) = "None",
+  display "None"; the Vehicle Storage detail table and the Apparent Defects,
+  Damages, Deficiencies subsection does not display" (Figure 13-1). Any
+  other storage is the table's (13.001-13.003).
+- Cause: slot 13.000, a value set under the bar, printed its first value
+  like commentary.
+- Mechanism: `extract_italic_rules.py` reads B-1's "When X (FID: f) = "v",
+  display "T"[; the ... does not display]" sentences (`"shape": "value"`;
+  B-1 has three: 4.078, 13.000, 13.004). `form.value_slot` prints T only
+  when the subject's values are all v, and nothing otherwise.
+  `_hidden_by_rule` drops what the sentence says does not display: the next
+  table, and the subsection it names. This is print only; the editor keeps
+  the table to fill. 4.078 (a table cell) and 13.004 (an italic note) do
+  not pass through value slots and are unchanged.
+- Test: `tests/test_pagination.py::test_vehicle_storage_prints_no_storage_type_above_its_table`
+  (12 samples), `::test_no_vehicle_storage_prints_none_alone`.
+
+### E-310 -- An ADU in an outbuilding printed before its outbuilding (2026-10-11)
+- Symptom: D-1 SF3 prints "Outbuilding - Standalone ADU" and then "Unit
+  Interior - Standalone ADU - Cottage". We printed the ADU's Unit Interior
+  straight after the primary dwelling's, before Functional Obsolescence.
+- Authority:
+  - B-1 p377 orders the report "Dwelling Exterior - Unit Interior (... each
+    living unit ... in Dwelling) - Outbuilding - Unit Interior (repeat Unit
+    Interior for each ADU ... in Outbuilding) - Vehicle Storage".
+  - B-1 p30 sets an ADU "after the applicable Outbuilding section".
+- Cause: sections print in C-1's order, where Unit Interior precedes
+  Outbuilding. Only dwellings interleaved their units.
+- Mechanism: in `form.build`, a unit whose PROPERTY_UNIT stands in an
+  Outbuilding IMPROVEMENT is printed right after that outbuilding's section,
+  when the Outbuilding section prints. Outbuildings are keyed by
+  `bind.stable_path`: lxml proxies have no stable `id()`. An ADU in the
+  dwelling (SF4) stays with the dwelling. The other 10 samples are
+  unchanged. Applies to print and editor alike.
+- Test: `tests/test_pagination.py::test_an_adu_in_an_outbuilding_follows_its_outbuilding`,
+  `::test_an_adu_in_the_dwelling_stays_with_the_dwelling`.

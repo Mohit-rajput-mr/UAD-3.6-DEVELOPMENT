@@ -3415,15 +3415,30 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   skipped. Harness 12 86 / 0 / 22: SF1 and SF2 `package` now pass, while
   Condo1, Co-op1, SF3 and 2-4 became gaps. `test_client_pdf`'s editor run
   now expects SF1 at 21 pages, which is D-1's count.
-- **Batch 2, found, not built:**
-  - **(a)** Slot 13.000 shows only "None" (B-1 p228). We print the first
-    CarStorageType above the Vehicle Storage table ("Carport", SF3).
-  - **(b)** A unit in an outbuilding prints after that Outbuilding's
-    section (D-1 SF3: Outbuilding - Standalone ADU, then its Unit
-    Interior). Only SF3 has one; SF4's ADU is attached and stays with its
-    dwelling.
+- **Batch 2, done (E-309, E-310):**
+  - **(a)** Vehicle Storage prints no storage type above its table (12 of
+    12 samples had printed one). With CarStorageType "None" it prints only
+    "None", without the table or the defects subsection (B-1 p228, Figure
+    13-1). The rule is read from B-1 by `extract_italic_rules.py`
+    (`"shape": "value"`, with what it `hides`).
+  - **(b)** An ADU in an outbuilding prints after that Outbuilding (B-1
+    p377, p30; D-1 SF3).
+  - Also, E-308 skips the tab placeholders in print only. The first push
+    removed MH1's three editor controls ("Unit Interior: Outbuilding Type
+    ..."); 56223e5 restored them.
+  - `tests/test_pagination.py` 36 tests. Word diff 7124 -> 7122. Full suite
+    946 passed / 0 failed / 10 skipped; harness 86 / 0 / 22 (unchanged).
+- **Measured for T-1150 (next):**
+  - The first line after a section tab sits 27.0 pt below it here and
+    24.4 pt in D-1 (the commonest value on both sides). `.tabwrap`
+    margin-bottom is 10.8 pt; Appendix E p19 fixes the tab's height
+    (15 pt) and the space above it (19.5 pt), not below.
+  - A photo that opens its column (Dwelling Exterior) starts 10.6 pt
+    lower than D-1, from `.col.right .photo{margin-top:13.6pt}`. The
+    Summary photo, which follows rows, matches D-1 within 0.3 pt.
+  - Together these explain Dwelling Exterior missing the sketch page by
+    0.6 pt (SF1, SF3).
 - **Next:**
-  - Batch 2 above.
   - T-1150, vertical metrics. Per section, measure block heights against
     the D-1 PDFs and fix the stylesheet. SF3's front-photo box measures
     172.6 pt against D-1's ~160 pt. MH1 runs 3 short, so it also has

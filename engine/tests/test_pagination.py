@@ -115,6 +115,59 @@ def test_the_editor_keeps_a_tabs_placeholders_as_controls():
     assert all(_text(b).startswith("Unit Interior:") for b in named)
 
 
+def _vehicle_storage(key, tree=None, edit=False):
+    blocks = [b for b in form.build(tree if tree is not None else _tree(key),
+                                    folder=templates.get(key).path.parent, edit=edit)
+              if b.section == "Vehicle Storage"]
+    return " ".join(re.sub(r"<[^>]+>", " ", form.galley_html(blocks, edit)).split())
+
+
+@pytest.mark.parametrize("key", [t.key for t in templates.catalogue()])
+def test_vehicle_storage_prints_no_storage_type_above_its_table(key):
+    """B-1 p228: 13.000 displays "None" only when CarStorageType is "None";
+    every D-1 sample sets the table straight under the tab."""
+    assert _vehicle_storage(key).startswith("Vehicle Storage Storage Number of Parking Spaces")
+
+
+def test_no_vehicle_storage_prints_none_alone():
+    """B-1 p228 / Figure 13-1: "None", and neither the detail table nor the
+    Apparent Defects subsection."""
+    tree = _tree("sf1_appraisal_v1_4")
+    subj = form.subject(form.Ctx(tree.getroot()))
+    stores = list(subj.iter(f"{M}CAR_STORAGE"))
+    for e in stores[1:]:
+        e.getparent().remove(e)
+    for c in list(stores[0]):
+        stores[0].remove(c)
+    detail = etree.SubElement(stores[0], f"{M}CAR_STORAGE_DETAIL")
+    etree.SubElement(detail, f"{M}CarStorageType").text = "None"
+    assert _vehicle_storage("sf1_appraisal_v1_4", tree) == "Vehicle Storage None"
+    assert "Number of Parking Spaces" in _vehicle_storage("sf1_appraisal_v1_4", tree, edit=True)
+
+
+STRUCTURE = ("Dwelling Exterior", "Unit Interior", "Outbuilding", "Manufactured Home",
+             "Functional Obsolescence", "Vehicle Storage")
+
+
+def _structure_order(key):
+    return [b.section for b in _blocks(key) if b.kind == "tab" and b.visible
+            and b.section.split(" - ")[0] in STRUCTURE]
+
+
+def test_an_adu_in_an_outbuilding_follows_its_outbuilding():
+    """B-1 p377: "Outbuilding ... - Unit Interior (repeat Unit Interior for
+    each ADU ... in Outbuilding)"; p30; D-1 SF3."""
+    assert _structure_order("sf3_appraisal_v1_4") == [
+        "Dwelling Exterior", "Unit Interior - Primary Dwelling", "Functional Obsolescence",
+        "Outbuilding - Standalone ADU", "Unit Interior - Standalone ADU - Cottage", "Vehicle Storage"]
+
+
+def test_an_adu_in_the_dwelling_stays_with_the_dwelling():
+    assert _structure_order("sf4_appraisal_v1_4") == [
+        "Dwelling Exterior", "Unit Interior - Primary Dwelling", "Unit Interior - ADU",
+        "Functional Obsolescence", "Vehicle Storage"]
+
+
 def test_the_land_comparables_map_prints_in_the_cost_approach():
     blocks = [b for b in _blocks("mh1_appraisal_v1_4") if b.visible]
     homes = [b.section for b in blocks if "Map of Land Comparables" in _text(b)]

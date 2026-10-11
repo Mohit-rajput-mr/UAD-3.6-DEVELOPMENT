@@ -3610,3 +3610,15 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - **Verified on ce132e6:** full suite 1180 passed / 0 failed / 9 skipped;
   harness 12 **88 pass / 0 fail / 20 gap**. Posted to sleepy-hypatia to
   merge and deploy.
+- **Production deployed again (2026-10-11 ~07:10 UTC):**
+  dpl_SwJaksB4VEUMMzSm362PuaPJhnm7 = this branch @9c1c3c9. It carries:
+  - main;
+  - phase 1 T-509/T-506/T-1070/T-1071;
+  - ecstatic-bohr up to 4acfcb0;
+  - keen-turing up to 1a8e2af: T-1074 supervisory, T-1066 visibility,
+    T-127, T-1075, T-909/T-910/T-510, T-906.
+  On that tree: full suite 1179 passed / 0 failed; harness 88/0/20.
+- **Phase 1 last batch (workflow `dr-phase1-bugfix-3`):** T-416 and T-1072
+  continue from their cut-off agents' partial patches
+  (`.claude/wf-partial/partial-T-416.patch`, `partial-T-1072.patch`). T-125
+  was unclaimed by the others, so this session took it.

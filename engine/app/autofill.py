@@ -156,7 +156,8 @@ def _read(root: etree._Element, fid: str, data_point: str = "",
     binding = bind.binding_for(fid)
     if binding is None:
         return [], ""
-    groups = bind.read_groups(root, binding, scope, ordinal=1)
+    # a source tied by arcrole is the one tied there, not the list's first (T-1072)
+    groups = edit.read_groups(root, binding, scope=scope, ordinal=1)
     parts = [p for g in groups[:1] for p in g]        # the first instance
     if data_point:
         parts = [p for p in parts if p[0] == data_point]

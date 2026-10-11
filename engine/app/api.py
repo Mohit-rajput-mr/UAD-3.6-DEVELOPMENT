@@ -496,22 +496,33 @@ async def replace_xml(case_id: str, request: Request) -> dict:
 
 
 # --------------------------------------------------------------------- fields
-def _write_checked(tree, pf, value: str, *, data_point: str = "", ordinal: int = 1):
-    """Never persist an edit that the field cannot read back."""
+def _write_checked(tree, pf, value: str, *, data_point: str = "", ordinal: int = 1,
+                   scope: str = ""):
+    """Never persist an edit that the field cannot read back.  ``scope`` is
+    the dwelling or unit whose copy of a section the value was picked in."""
     candidate = deepcopy(tree)
+    where = edit.section_scope(candidate.getroot(), pf.binding, data_point, scope)
     written = edit.write(candidate, pf.field_id, value, data_point=data_point,
-                         ordinal=ordinal, binding=pf.binding)
+                         ordinal=ordinal, binding=pf.binding, scope=where)
     if pf.field_id in ("2.010", "2.011"):
         # The client's second role is found by an anchor ("the party already
         # tagged Client") that a normal read-back would mistake for the
         # value itself.
-        actual = edit.read_client_role(candidate.getroot())
+        held = [edit.read_client_role(candidate.getroot())]
     else:
-        node = bind.locate(candidate.getroot(), pf.binding, written.data_point,
-                           ordinal=ordinal)
-        actual = (node.text or "").strip() if node is not None else ""
+        # a source tied by arcrole is read through its link (19.001, T-1072)
+        held = edit.read_back(candidate.getroot(), pf.binding, written.data_point,
+                              ordinal=ordinal, scope=where)
     # compared with what was stored ("$515k" is stored 515000), not the typing
-    if actual != written.new:
+    if written.new not in held:
+        root = tree.getroot()
+        gate = edit.unmet_gate(root, pf.binding, written.data_point,
+                               edit.section_scope(root, pf.binding, data_point, scope))
+        if gate:
+            # say which answer it waits for, so the appraiser (and the
+            # editor's check, tests/test_every_choice_saves.py) can give it
+            raise ValueError(f"Answer {gate} first: Field {pf.field_id} applies only then. "
+                             "No changes were saved.")
         raise ValueError(
             f"Field {pf.field_id} could not be saved to its matching report field. "
             "Check the related type or applicability selection first. No changes were saved.")
@@ -581,7 +592,7 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool,
             continue
         rows = []
         for pf in fields:
-            groups = bind.read_groups(root, pf.binding, ordinal=pf.ordinal)
+            groups = edit.read_groups(root, pf.binding, ordinal=pf.ordinal)
             parts = [p for g in groups for p in g]
             text = bind.display_value(groups, pf.binding)
             if only_filled and not text:
@@ -593,7 +604,7 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool,
             # A printed value may contain currency symbols, units or several
             # data points. Editing must use the XML value of the write target.
             target = dp.get("mismo", "")
-            node = bind.locate(root, pf.binding, target, ordinal=pf.ordinal) if target else None
+            held = edit.read_back(root, pf.binding, target, ordinal=pf.ordinal)[0] if target else ""
             rows.append({
                 "field_id": pf.field_id,
                 "label": pf.label,
@@ -604,9 +615,9 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool,
                 "group": pf.group,
                 # what the report prints; an answer B-1 prints nothing for
                 # ("<<Does Not Display>>") still reads as answered here
-                "value": text or bind.answer_label((node.text or "").strip() if node is not None else ""),
+                "value": text or bind.answer_label(held),
                 "printed": text,
-                "edit_value": (node.text or "").strip() if node is not None else "",
+                "edit_value": held,
                 "edit_data_point": target,
                 "definition": dp.get("definition", ""),
                 "editors": [
@@ -753,6 +764,7 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                 raise ValueError("that row is no longer in the report; reload it")
             from uad.report import form as _form
             if (not value.strip() and _form.repeats_as_list(field_id)
+                    and not edit.source_target(field_id, dp)   # untied, below: it may source more
                     and dp.get("mismo") == (_form.printed_point(field_id) or dp.get("mismo"))
                     and etree.QName(scope).localname == bind.repeating_container(dp.get("xpath", ""))):
                 # clearing one value of a list removes its whole block (the
@@ -793,6 +805,14 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             # DEFECT lives under the PROPERTY and is tied to what it is in by
             # DEFECT_ContainsDefectOf_<it> (D-1 2-4), which is how it is read
             scope = _new_defect(root, dp, base)
+        elif body.get("new") and edit.source_target(field_id, dp) and base is not None \
+                and etree.QName(base).localname == "DATA_SOURCE":
+            # "+ another" under a list of sources (19.001 Data Source): one more
+            # source for what the listed ones are for, never a bare DATA_SOURCE
+            from uad import sources
+            scope = sources.target_of(root, base, edit.source_target(field_id, dp))
+            if scope is None:
+                raise ValueError("that list is no longer in the report; reload it")
         elif body.get("new"):
             scope = _new_instance(root, dp, base)
             if scope is None:
@@ -823,25 +843,36 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                 edit.insert_ordered(scope, "ValuationAnalysisCategoryType").text = cat
         if scope is None:
             scope = base
-        from uad.report import form as _form
-        target = (_form.data_source_target(field_id)
-                  if "DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", "") else "")
-        if scope is not None and target and target != "PROPERTY":
+        target = edit.source_target(field_id, dp, scope)
+        if scope is not None and target:
             # a source tied by arcrole to its row (a transfer's Data Source):
-            # the row is the scope, and the value reads back through the link
+            # the row is the scope, and the value reads back through the link.
+            # A row of the list of a field's sources is the DATA_SOURCE itself
+            # (19.001): read back from what it is the source for (T-1072)
             from uad import sources
+            row = etree.QName(scope).localname == "DATA_SOURCE"
+            listed = row or bool(body.get("new") and base is not None
+                                 and etree.QName(base).localname == "DATA_SOURCE")
+            here = sources.target_of(root, scope, target) if row else scope
             written = edit.write(candidate, field_id, value, binding=binding,
                                  data_point=dp.get("mismo", ""), scope=scope)
-            here = next(scope.iter(f"{{{bind.MISMO}}}{target}"), None)
-            have = [(ds.findtext(f"{{{bind.MISMO}}}{written.data_point}") or "").strip()
-                    for ds in (sources.linked(root, here, target) if here is not None else [])]
+            have = edit.read_back(root, binding, written.data_point, scope=here)
             if value.strip() and value.strip() not in have:
                 raise ValueError(f"Field {field_id} could not be saved to this row. No changes were saved.")
+            if listed:
+                # the row is now the source holding the value: its key is the
+                # one the page will draw, and the next pick replaces it
+                tied = next(here.iter(f"{{{bind.MISMO}}}{target}"), None) if here is not None else None
+                scope = next((ds for ds in reversed(sources.linked(root, tied, target) if tied is not None else [])
+                              if (ds.findtext(f"{{{bind.MISMO}}}{written.data_point}") or "").strip()
+                              == written.new), None) if written.new else None
             arc_written = written
         else:
             arc_written = None
-        if arc_written is None and scope is not None:
+        if arc_written is None and scope is not None and not (
+                etree.QName(scope).localname == "PROPERTY" and "DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", "")):
             # write inside the nearest element on this data point's own path
+            # (a property row's sources stay its own: edit.write ties them)
             segments = [t for t in dp.get("xpath", "").strip("/").split("/") if t]
             holder = scope
             while holder is not None and etree.QName(holder).localname not in segments:
@@ -974,13 +1005,15 @@ def set_field(case_id: str, field_id: str, request: Request,
         # parts A-1 defines (street, unit, city, state, ZIP), each read back.
         parts = (edit.split_address(value, pf.binding)
                  if not body.get("data_point") and edit.is_address(pf.binding) else None)
+        scope = str(body.get("scope") or "")
         if parts:
             for dp_name, part in parts.items():
-                tree, written = _write_checked(tree, pf, part, data_point=dp_name, ordinal=ordinal)
+                tree, written = _write_checked(tree, pf, part, data_point=dp_name, ordinal=ordinal,
+                                               scope=scope)
         else:
             tree, written = _write_checked(tree, pf, value,
                                            data_point=body.get("data_point", ""),
-                                           ordinal=ordinal)
+                                           ordinal=ordinal, scope=scope)
     except (KeyError, ValueError) as exc:
         raise HTTPException(422, str(exc))
     # The question that switches an optional section (Disaster Mitigation,
@@ -1035,7 +1068,8 @@ def set_field(case_id: str, field_id: str, request: Request,
                f"now {reshaped.property_type} on the {reshaped.template} structure; "
                f"{reshaped.carried} values carried, {len(reshaped.failed)} not placed")
     root = tree.getroot()
-    groups = bind.read_groups(root, pf.binding, ordinal=ordinal)
+    groups = edit.read_groups(root, pf.binding, ordinal=ordinal, scope=edit.section_scope(
+        root, pf.binding, written.data_point, scope))
     return {"written": written.to_json(),
             "structure": said,
             "reshaped": None if reshaped is None else {

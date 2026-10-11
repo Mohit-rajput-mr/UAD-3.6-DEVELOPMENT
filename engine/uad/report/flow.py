@@ -962,6 +962,8 @@ EDIT_JS = """
     var url='/api/cases/'+id+'/fields/'+el.dataset.fid;
     if(el.dataset.ordinal && body.ordinal===undefined) body.ordinal=Number(el.dataset.ordinal);
     if(el.dataset.tf===undefined && el.dataset.tdp && body.data_point===undefined) body.data_point=el.dataset.tdp;
+    // a copy of a section drawn for one dwelling or unit writes into that one
+    if(el.dataset.tf===undefined && el.dataset.iscope && body.scope===undefined) body.scope=el.dataset.iscope;
     if(el.dataset.route) url='/api/cases/'+id+'/'+el.dataset.route;
     if(el.dataset.tf!==undefined){
       url='/api/cases/'+id+'/cells/'+el.dataset.tf;
@@ -2375,10 +2377,10 @@ EDIT_JS = """
     if(rp){
       e.preventDefault();
       var on=!rp.classList.contains('on'), ab=rp.dataset.rpair.split(',');
-      rp.classList.toggle('on',on); rp.setAttribute('aria-checked',on?'true':'false'); rp.textContent=on?'\u2713':'';
+      rp.classList.toggle('on',on); rp.setAttribute('aria-checked',on?'true':'false'); rp.innerHTML=on?"__TICK__":'';
       putJSON(api+'/rentals/pairs',{comparable:+ab[0],unit:+ab[1],on:on},'PUT')
         .then(function(){ reloadHere(); })
-        .catch(function(err){ rp.classList.toggle('on',!on); rp.textContent=on?'':'\u2713'; say(err.message); });
+        .catch(function(err){ rp.classList.toggle('on',!on); rp.innerHTML=on?'':"__TICK__"; say(err.message); });
       return;
     }
     // a per-report layout choice: saved with the case, the report laid out again
@@ -2406,7 +2408,7 @@ EDIT_JS = """
       var row=tc.parentNode, on=!!tc.querySelector('svg.tick');
       send(tc,{value:on?'':tc.dataset.tval}).then(function(ok){
         if(!ok) return;
-        var svg="<span><svg class='tick' viewBox='0 0 10 10' width='9pt' height='9pt'><path d='M1 5 L4 8 L9 1' fill='none' stroke='#231f20' stroke-width='1.2'/></svg></span>";
+        var svg="<span>__TICK__</span>";
         [].forEach.call(row.querySelectorAll('td.tickcell'),function(c){ c.innerHTML= (c===tc && !on) ? svg : '<span></span>'; });
       });
       return;
@@ -2420,6 +2422,8 @@ EDIT_JS = """
       if(!ok) return;
       boxes.forEach(function(b){b.innerHTML='\\uF0A3';});
       if(!already) bx.innerHTML='\\uF052';
+      // answered, the pair no longer shows as waiting; cleared, it does again
+      var host=run.closest('.bxs'); if(host) host.classList.toggle('untouched',already);
     });
   });
 
@@ -2770,7 +2774,7 @@ EDIT_JS = """
     var on=!el.classList.contains('on');
     el.classList.remove('on','off','unset'); el.classList.add(on?'on':'off');
     el.setAttribute('aria-checked',on?'true':'false');
-    el.querySelector('i').textContent=on?'\u2713':'';
+    el.querySelector('i').innerHTML=on?"__TICK__":'';
     putJSON(api+'/rentals/included',{unit:+el.dataset.rsunit,on:on},'PUT')
       .then(function(){ tell({uad:'saved'}); reloadHere(); })
       .catch(function(err){ say(err.message); });
@@ -2842,7 +2846,7 @@ def render(pages: list[Page], meta: Meta, *, embed_fonts: bool = True,
             f".band > .blk.top .tabwrap,.band > .blk.top .h1,.band > .blk.top .h2{{margin-top:0}}"
             f"</style></head><body>{''.join(body)}"
             f"{_imported_js(imported) if edit else ''}"
-            f"{FIT_JS if screen else ''}{EDIT_JS.replace('__BODY_BOTTOM__', str(BODY_BOTTOM)) if edit else ''}</body></html>")
+            f"{FIT_JS if screen else ''}{EDIT_JS.replace('__BODY_BOTTOM__', str(BODY_BOTTOM)).replace('__TICK__', form.EDIT_TICK) if edit else ''}</body></html>")
 
 
 def _imported_js(imported: Iterable[str]) -> str:

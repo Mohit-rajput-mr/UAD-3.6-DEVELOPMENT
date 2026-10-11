@@ -446,6 +446,114 @@ def _write_client_role(tree, field_id: str, value: str, binding: bind.Binding,
                    old=old, new=text, created=[])
 
 
+def source_target(field_id: str, dp: dict, scope: etree._Element | None = None) -> str:
+    """What a data source data point is tied to by arcrole -- B-1's "An
+    arcrole is required for each data source from DATA SOURCE n to PROPERTY
+    UNIT AREA n" (form.data_source_target) -- or "" for a value read where it
+    sits.  A property's own sources are read through their link by bind, and
+    so are a comparable's: a table row that is a comparable property (Land
+    Comparables 25.045) sources that property, whatever A-1's subject-only
+    arcrole sheet names for the section (COST_APPROACH)."""
+    if "DATA_SOURCES/DATA_SOURCE" not in dp.get("xpath", ""):
+        return ""
+    if scope is not None and etree.QName(scope).localname == "PROPERTY" \
+            and scope is not bind.subject(scope.getroottree().getroot()):
+        return ""
+    from .report import form as _form
+    target = _form.data_source_target(field_id)
+    return "" if target == "PROPERTY" else target
+
+
+def section_scope(root: etree._Element, binding: bind.Binding, data_point: str,
+                  path: str) -> etree._Element | None:
+    """Where a value picked in one copy of a section drawn per dwelling or
+    unit (form.section_instances, ``path`` its address) belongs: the nearest
+    element on the data point's own path at or around that dwelling or unit
+    (a unit's building for a building-level answer), or, for a source tied by
+    arcrole, the unit whose block it is tied to.  None for a value outside
+    every improvement (a commentary, the site), written as before."""
+    node = bind.find_path(root, path) if path else None
+    if node is None:
+        return None
+    dp = choose_data_point(binding, data_point)
+    if source_target(binding.field_id, dp):
+        return node
+    segments = _segments(dp.get("xpath", ""))
+    while node is not None and etree.QName(node).localname not in segments:
+        node = node.getparent()
+    if node is None or not any(etree.QName(a).localname == "IMPROVEMENT"
+                               for a in (node, *node.iterancestors())):
+        return None
+    return node
+
+
+def unmet_gate(root: etree._Element, binding: bind.Binding, data_point: str = "",
+               scope: etree._Element | None = None) -> str:
+    """The answer a conditioned data point waits for, when the report does not
+    give it: "Structure Design (8.002) with Rowhouse / Townhouse" for Townhouse
+    End Unit (A-1: IF StructuralDesignType = "RowhouseTownhouse"), "ADU
+    (10.011) with Yes" for Legally Rentable.  The field is the one A-1 places
+    the condition at in the same chapter (else outside the Summary and the
+    grids); "" when every condition holds or names no field."""
+    from . import uadmap
+    from .report import form as _form
+    dp = choose_data_point(binding, data_point)
+    subject = bind.subject(root)
+    chapter = binding.field_id.split(".")[0]
+    for key, want in (dp.get("requires") or {}).items():
+        if key.startswith(("@", "__")) or not uadmap.known(key):
+            continue
+        # the answer in this dwelling or unit when it has one there (SF3: the
+        # ADU's own "ADU = Yes" is not the main unit's), else the subject's
+        here = [e for base in (scope, subject) if base is not None for e in base.iter(f"{QN}{key}")]
+        if scope is not None and next(scope.iter(f"{QN}{key}"), None) is not None:
+            here = list(scope.iter(f"{QN}{key}"))
+        if any((e.text or "").strip() == want for e in here):
+            continue
+        wheres = [w.strip() for loc in uadmap.point(key).get("locations") or [] for w in loc.split("\n")
+                  if ": " in w]
+        fids = [w.split(": ", 1)[0] for w in wheres]
+        fid = next((f for f in fids if f.split(".")[0] == chapter), None) or next(
+            (f for f in fids if not f.startswith(("1.", "22.", "23."))), None)
+        if fid is None:
+            continue
+        label = next(w for w in wheres if w.startswith(f"{fid}:")).split(": ", 1)[1].rsplit(" - ", 1)[-1]
+        shown = dict(_form.choices_for(fid)).get(want) or bind.answer_label(want)
+        return f"{label.strip()} ({fid}) with {shown}"
+    return ""
+
+
+def read_groups(root: etree._Element, binding: bind.Binding, *, ordinal: int = 1,
+                scope: etree._Element | None = None) -> list[list[tuple[str, str]]]:
+    """``bind.read_groups``, except that a source tied by arcrole is read
+    through its link, as ``write`` stores it and the report prints it.  Read
+    where it sits, the Subject Listing's Data Source (19.001 -> its
+    LISTING_INFORMATION_SUMMARY) was whichever DATA_SOURCE came first in the
+    valuation's list -- an empty one on a new report -- so every pick was
+    refused as unsaved (T-1072)."""
+    points = [d for d in binding.data_points if d.get("mismo") and not d.get("attribute")]
+    target = source_target(binding.field_id, points[0], scope) if points else ""
+    if target:
+        from . import sources
+        return sources.groups(root, target, list(dict.fromkeys(d["mismo"] for d in points)), scope)
+    return bind.read_groups(root, binding, scope, ordinal)
+
+
+def read_back(root: etree._Element, binding: bind.Binding, data_point: str, *,
+              ordinal: int = 1, scope: etree._Element | None = None) -> list[str]:
+    """What the field holds for one data point after a write, read the way the
+    write stored it: every source tied by arcrole (one pick adds one of
+    several, B-1 "display as stacked"), else the element ``bind.locate``
+    finds -- ``[""]`` when there is none."""
+    dp = choose_data_point(binding, data_point)
+    target = source_target(binding.field_id, dp, scope)
+    if target:
+        from . import sources
+        return sources.read(root, target, dp["mismo"], scope) or [""]
+    node = bind.locate(root, binding, dp["mismo"], scope, ordinal)
+    return [(node.text or "").strip() if node is not None else ""]
+
+
 def write(tree, field_id: str, value: str, *, data_point: str = "",
           ordinal: int = 1, binding: bind.Binding | None = None,
           scope: etree._Element | None = None) -> Written:
@@ -467,16 +575,14 @@ def write(tree, field_id: str, value: str, *, data_point: str = "",
             and any("LowRange" in d["mismo"] for d in days)):
         return _write_days(tree, field_id, value, binding, days, ordinal, scope)
     dp = choose_data_point(binding, data_point)
-    if "DATA_SOURCES/DATA_SOURCE" in dp.get("xpath", ""):
+    target = source_target(field_id, dp, scope)
+    if target:
         # a source tied by arcrole to what it sources (Area Data Source to the
         # unit's area, 10.009): written with its link (uad/sources.py)
-        from .report import form as _form
-        target = _form.data_source_target(field_id)
-        if target and target != "PROPERTY":
-            from . import sources
-            old, new = sources.write(root, target, dp["mismo"], value.strip(), scope)
-            return Written(field_id=field_id, data_point=dp["mismo"], path=dp.get("xpath", ""),
-                           old=old, new=new, created=[])
+        from . import sources
+        old, new = sources.write(root, target, dp["mismo"], value.strip(), scope)
+        return Written(field_id=field_id, data_point=dp["mismo"], path=dp.get("xpath", ""),
+                       old=old, new=new, created=[])
     if not data_point:
         # One data point, several parties it may belong to (the AMC fee: the
         # client's, or a non-client lender/AMC's): the party the document has.

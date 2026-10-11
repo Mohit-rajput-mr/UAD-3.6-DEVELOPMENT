@@ -504,9 +504,89 @@ def _remap_parties(path: str, parties_: dict[str, dict[int, int]]) -> str:
             + path[match.end():])
 
 
+def property_map(root: etree._Element, source: etree._Element
+                 ) -> dict[str, dict[int, int]]:
+    """Which PROPERTY of this report each property of the source report is.
+
+    A property is identified by what it is -- the subject, comparable sale #4,
+    the second property analyzed and not used -- never by where it sits
+    (T-925).  This software keeps the subject, the comparables and the
+    properties not used in that order and appends a comparable after them; a
+    file from other software lists its four comparables together.  Writing the
+    source's fifth PROPERTY into the fifth here put comparable #4 into a
+    property not used and left the column made for it empty.
+
+    Comparables are matched by kind and number (``comparables.properties``
+    orders them by their ordinal); every other property by its role and its
+    place among the properties of that role.  One the report lacks is made, in
+    the XSD's order, with the role it needs.  Keyed by the address of the
+    list, like ``party_map``.
+    """
+    tree = source.getroottree()
+    comp_roles = {role for kind, (_s, role, _t) in comparables.SHEETS.items()}
+    out: dict[str, dict[int, int]] = {}
+    lists: dict[str, list[etree._Element]] = {}
+    for prop in source.iter(f"{M}PROPERTY"):
+        holder = prop.getparent()
+        if holder is not None:
+            lists.setdefault(tree.getelementpath(holder), []).append(prop)
+    for where, theirs in lists.items():
+        here = bind.find_path(root, where)
+        if here is None:
+            continue
+        seats: dict[int, int] = {}
+        taken: set[int] = set()
+        seen: dict[str, int] = {}
+        for n, twin in enumerate(theirs, start=1):
+            role = twin.get("ValuationUseType") or ""
+            mine = here.findall(f"{M}PROPERTY")
+            ours = root.getroottree()
+            at = [ours.getelementpath(x) for x in mine]
+            if role in comp_roles:
+                twin_at = tree.getelementpath(twin)
+                theirs_of = [tree.getelementpath(x) for x in comparables.properties(source, role)]
+                ours_of = comparables.properties(root, role)
+                k = theirs_of.index(twin_at) if twin_at in theirs_of else None
+                match = ours_of[k] if k is not None and k < len(ours_of) else None
+            else:
+                k = seen.get(role, 0)
+                seen[role] = k + 1
+                same = [x for x in mine if (x.get("ValuationUseType") or "") == role]
+                match = same[k] if k < len(same) else None
+            match_at = ours.getelementpath(match) if match is not None else None
+            seat = at.index(match_at) if match_at in at else None
+            if seat is None or seat in taken:
+                fresh = edit.insert_ordered(here, "PROPERTY")
+                for key, value in twin.attrib.items():
+                    fresh.set(key, value)
+                fresh_at = ours.getelementpath(fresh)
+                seat = [ours.getelementpath(x) for x in here.findall(f"{M}PROPERTY")].index(fresh_at)
+            taken.add(seat)
+            seats[n] = seat + 1
+        out[where] = seats
+    return out
+
+
+PROPERTY_AT = re.compile(r"^(.*?/(?:\{[^}]*\})?PROPERTIES)/((?:\{[^}]*\})?PROPERTY)(?:\[(\d+)\])?")
+
+
+def _remap_properties(path: str, props_: dict[str, dict[int, int]]) -> str:
+    """Rewrite the property an address names (see ``property_map``)."""
+    match = PROPERTY_AT.match(path)
+    if not match:
+        return path
+    seats = props_.get(match.group(1))
+    if not seats:
+        return path
+    want = int(match.group(3) or 1)
+    return (f"{match.group(1)}/{match.group(2)}[{seats.get(want, want)}]"
+            + path[match.end():])
+
+
 def ensure_instance(root: etree._Element, path: str,
                     source: etree._Element | None = None,
-                    parties_: dict[int, int] | None = None) -> etree._Element | None:
+                    parties_: dict[int, int] | None = None,
+                    props_: dict[str, dict[int, int]] | None = None) -> etree._Element | None:
     """The element this address names, created if the document lacks it.
 
     A value written into ``SITE_UTILITY[2]`` of the case it came from belongs
@@ -519,6 +599,8 @@ def ensure_instance(root: etree._Element, path: str,
     """
     if not path:
         return None
+    if props_:
+        path = _remap_properties(path, props_)
     if parties_:
         path = _remap_parties(path, parties_)
     node = bind.find_path(root, path)
@@ -554,8 +636,14 @@ def apply(tree: etree._ElementTree, steps: Iterable[Step],
     """
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     written, failed = 0, []
+    steps = list(steps)
+    # the comparables first: the properties are matched once they all exist
+    steps.sort(key=lambda x: 0 if x.kind == COMP else 1)
     parties_ = party_map(root, source) if source is not None else {}
+    props_: dict[str, dict[int, int]] | None = None
     for step in steps:
+        if props_ is None and step.kind != COMP and source is not None:
+            props_ = property_map(root, source)
         try:
             if step.kind == COMP:
                 if add_comparable is not None:
@@ -569,7 +657,7 @@ def apply(tree: etree._ElementTree, steps: Iterable[Step],
                     add_media(step.media)
                     written += 1
                 continue
-            leaf = ensure_instance(root, step.path, source, parties_)
+            leaf = ensure_instance(root, step.path, source, parties_, props_)
             if leaf is None:
                 raise ValueError(f"cannot place {step.data_point} at {step.path}")
             if step.kind != LINK:

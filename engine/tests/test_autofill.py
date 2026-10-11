@@ -203,3 +203,41 @@ def test_an_unknown_source_is_refused(client):
     assert client.post(f"/api/cases/{case}/autofill",
                        json={"source": "nothing_like_this"}).status_code == 404
     assert client.post(f"/api/cases/{case}/autofill", json={}).status_code == 422
+
+
+def _leaf_texts(prop) -> list[str]:
+    return sorted((e.text or "").strip() for e in prop.iter()
+                  if isinstance(e.tag, str) and len(e) == 0 and (e.text or "").strip())
+
+
+def test_a_source_with_more_comparables_kept_together_fills_each_in_its_own_column(client):
+    """T-925: a file from other software keeps its four comparables together
+    (subject, #1-#4, then the properties not used); this report appends #4
+    after the properties not used.  Values were written by position, so #4
+    went into a property not used and its own column stayed empty."""
+    from uad.report import comparables
+    M = "{http://www.mismo.org/residential/2009/schemas}"
+    src = client.post("/api/cases", json={"template": TEMPLATE, "name": "src"}).json()["case_id"]
+    assert client.post(f"/api/cases/{src}/comparables", json={"kind": "sales"}).json()["added"] == 4
+    client.patch(f"/api/cases/{src}/comparables/4/fields/22.07.30", json={"value": "2,222"})
+    tree = api.STORE.tree(src)
+    props = list(tree.getroot().iter(M + "PROPERTY"))
+    props[3].addnext(props[-1])                 # #4 beside the other comparables
+    for prop in props:                          # and no properties analyzed and not used
+        if prop.get("ValuationUseType") == "PropertyAnalyzedNotUsed":
+            prop.getparent().remove(prop)
+    api.STORE.save_tree(src, tree, allow_invalid=True)
+    tree = api.STORE.tree(src)
+
+    case = _blank(client)
+    _body, status = _fill(client, case, src)
+    assert not status["failed"], status["failed"][:3]
+    grid = client.get(f"/api/cases/{case}/comparables?kind=sales").json()
+    assert len(grid["comparables"]) == 4, grid["comparables"]
+    filled = api.STORE.tree(case)
+    for role in ("SalesComparable",):
+        theirs = [_leaf_texts(p) for p in comparables.properties(tree.getroot(), role)]
+        ours = [_leaf_texts(p) for p in comparables.properties(filled.getroot(), role)]
+        assert len(ours) == len(theirs), role
+        for n, (a, b) in enumerate(zip(theirs, ours), start=1):
+            assert [v for v in a if v not in b] == [], (role, n)

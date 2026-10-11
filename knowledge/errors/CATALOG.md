@@ -3278,3 +3278,10 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Symptom:** on a 2-4 unit report, a row named under [Other Interior Feature] (B-1 22.09.08/22.09.15) or [Other Exterior Feature] (22.08.07/22.08.14) existed only in Unit 1 / Building 1. A value typed under Unit 2 went into Unit 1, and a condition (22.08.28/22.09.30) was stored as the quality.
 - **Mechanism:** `comparables.named_blocks` finds every block the row is drawn in, using the B-1 headings and `_REPEATS`, and naming the row creates it in each block. Each cell carries its block (data-gs). A cell whose property has no such block is read-only. `named_for_cell` picks the template from the field id. GET /comparables returns each block's own values.
 - **Test:** `tests/test_grid_rows.py::test_an_interior_feature_is_named_written_and_read_per_unit`, `::test_an_exterior_feature_is_kept_per_dwelling`.
+
+## E-192 Fill wrote comparables by position: an extra, empty comparable column (T-925)
+
+- **Symptom:** filling a blank report from a file with more comparables than the report gave one empty extra column (4 real ones filled + a 5th empty). Seen with files from other software, which keep their comparables together and may have no "properties analyzed and not used".
+- **Cause:** `autofill.ensure_instance` followed the source's address `PROPERTY[n]`. This report appends a new comparable after its properties not used, so the source's 5th PROPERTY (comparable #4) was written into the report's 5th (a property not used, which became a 5th sales column). The column made for #4 stayed empty.
+- **Mechanism:** `autofill.property_map` matches properties by what they are: comparables by kind and number (`comparables.properties`), the others by role and position within that role. A missing one is created with its role. Every address is rewritten through it before the walk (`_remap_properties`), the same way `party_map` handles parties. `apply` creates comparables before matching.
+- **Test:** `tests/test_autofill.py::test_a_source_with_more_comparables_kept_together_fills_each_in_its_own_column` (fails before: 5 columns).

@@ -378,6 +378,76 @@ def name_of(location: str) -> str:
     return re.split(r"[\\/]", (location or "").strip().rstrip("\\/"))[-1]
 
 
+def hidden_values(root: etree._Element) -> list[etree._Element]:
+    """The values a section B-1 leaves out of this report still holds.
+
+    A section ``form.section_shown`` turns off (Project Information outside a
+    project or PUD, the Income Approach not developed, ...) is not printed,
+    yet what was typed there before the report changed was still delivered:
+    HOA dues on a house that is not in a PUD shipped H-1 UAD1575 as a fatal
+    finding, while the Review Master only listed it (T-1205).
+
+    A data point is left in when any field of a section that *is* shown asks
+    for it (the grid's line items, a rent the sales grid uses), and so is the
+    question that switches an optional section.  Checked against the twelve
+    D-1 samples: none loses a value (``tests/test_hidden_sections.py``).
+    Each value is lifted to the largest container holding nothing else."""
+    from . import optional_sections, report_types
+    from .report import form
+    if report_types.kind_of(root) != report_types.URAR:
+        return []
+    ctx = form.Ctx(root)
+    off = [name for _n, name in bind.SECTIONS if form.section_shown(ctx, name) is False]
+    if not off:
+        return []
+    number = {str(n): name for n, name in bind.SECTIONS}
+    keep: set[str] = set()
+    for fid, entry in form._fields().items():
+        if number.get(fid.split(".")[0]) not in off:
+            keep |= {dp["mismo"] for dp in entry.get("data_points") or [] if dp.get("mismo")}
+    switches = set(form.switch_sections())
+    for name in off:
+        if name in switches:
+            keep |= set(form.switch_points(name))
+    M_ = f"{{{bind.MISMO}}}"
+    hits: list[etree._Element] = []
+    gone: set[str] = set()
+    for name in off:
+        for _fid, dp in optional_sections._points(name):
+            if dp["mismo"] in keep or bind.is_commentary(dp):
+                continue
+            anchor, tail = optional_sections._anchor(root, dp)
+            if anchor is None:
+                continue
+            steps = [t for t in tail.split("/") if t] + [dp["mismo"]]
+            for node in anchor.findall("./" + "/".join(f"{M_}{t}" for t in steps)):
+                if (node.text or "").strip():
+                    hits.append(node)
+                    gone.add(dp["mismo"])
+    anchors = optional_sections._anchors(root)
+    units: list[etree._Element] = []
+    for node in hits:
+        while True:
+            parent = node.getparent()
+            if parent is None or any(parent is a for a in anchors):
+                break
+            names = {etree.QName(e).localname for e in parent.iter()
+                     if isinstance(e.tag, str) and not len(e) and (e.text or "").strip()}
+            if not names <= gone:
+                break
+            node = parent
+        if not any(node is u for u in units):
+            units.append(node)
+    return [u for u in units if not any(v is not u and u in v.iterancestors() for v in units)]
+
+
+def drop_hidden_sections(root: etree._Element) -> int:
+    """Leave out of the delivered file what ``hidden_values`` finds -- unless
+    the schema likes the document less for it."""
+    from . import templates
+    return templates._drop_guarded(root, hidden_values(root))
+
+
 def as_delivered(tree, faults: list[Fault] | None = None) -> etree._ElementTree:
     """The case document as the package writes it, before its images.
 
@@ -408,6 +478,8 @@ def as_delivered(tree, faults: list[Fault] | None = None) -> etree._ElementTree:
     # report made before templates.clear removed them carries them)
     from . import templates
     templates.drop_unclaimed(root)
+    # --- what a section B-1 leaves out of this report still holds (T-1205)
+    drop_hidden_sections(root)
 
     # --- the software that produced the report (A-1: R)
     who = vendor()

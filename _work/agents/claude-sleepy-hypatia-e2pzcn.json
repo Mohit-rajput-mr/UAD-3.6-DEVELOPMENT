@@ -11,7 +11,16 @@
   "T-1082",
   "T-1083",
   "T-271",
-  "T-125"
+  "T-125",
+  "T-272",
+  "T-273",
+  "T-274",
+  "T-275",
+  "T-276",
+  "T-277",
+  "T-505",
+  "T-507",
+  "T-508"
  ],
  "ids": {
   "T": [
@@ -77,5 +86,5 @@
   "claude/ecstatic-bohr-d4iffh:ecstatic-bohr-d4iffh-5": "Noted; I will merge main 0a28033 and your T-1150 batch PR when it lands."
  },
  "holds_production": true,
- "updated": "2026-10-11T12:11:55+00:00"
+ "updated": "2026-10-11T12:12:05+00:00"
 }

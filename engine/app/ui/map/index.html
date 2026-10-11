@@ -812,11 +812,11 @@ function validLat(n){ return n!=null && n>=-90  && n<=90;  }
 function validLng(n){ return n!=null && n>=-180 && n<=180; }
 
 var toastEl = $('#toast'), toastT = null;
-function toast(msg){
+function toast(msg, ms){
   toastEl.textContent = msg;
   toastEl.classList.add('show');
   clearTimeout(toastT);
-  toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2300);
+  toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, ms || 2300);
 }
 
 /* =========================================================================
@@ -2612,12 +2612,20 @@ function drawDomText(ctx, el, rect, dpr, align){
   ctx.textAlign = 'left';
 }
 
+/* An export that cannot be made says why -- on screen, and to a save into
+   the report waiting on window.__uadSave, which was otherwise left to time
+   out with no reason and looked like a Save that did nothing (T-416). */
+function exportFail(msg){
+  toast(msg, 6000);
+  if (window.__uadSave) window.__uadSave(null, '', msg);
+}
+
 /* The Google JS map cannot be read back off the canvas, so the export is
    re-rendered through the Maps Static API at the same centre, zoom and type.
    Static Maps sends Access-Control-Allow-Origin:*, so the fetched image
    composites into our canvas without tainting it. */
 function exportGooglePNG(){
-  if (!gmap){ toast('Google map is still loading.'); return; }
+  if (!gmap){ exportFail('Google map is still loading.'); return; }
   var c = gmap.getCenter(), z = gmap.getZoom();
   var mapEl = $('#gmap');
   var W = mapEl.clientWidth, H = mapEl.clientHeight;
@@ -2666,7 +2674,8 @@ function exportGooglePNG(){
     var slug = (state.aerial.addr || 'subject').toLowerCase()
       .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60) || 'subject';
     out.toBlob(function(b){
-      if (!b){ toast('Could not build the image.'); return; }
+      if (!b){ exportFail('Could not build the image.'); return; }
+      if (window.__uadSave){ window.__uadSave(b, 'google-aerial-' + slug + '.png'); return; }
       var a = document.createElement('a');
       a.href = URL.createObjectURL(b);
       a.download = 'google-aerial-' + slug + '.png';
@@ -2675,8 +2684,8 @@ function exportGooglePNG(){
       toast('Saved google-aerial-' + slug + '.png');
     }, 'image/png');
   }).catch(function(e){
-    toast('Google Static Maps refused the request: ' + (e.message || 'unknown') +
-          ' — enable the Static Maps API for this key.');
+    exportFail('Google Static Maps refused the request: ' + (e.message || e) +
+               ' — enable the Static Maps API for this key.');
   });
 }
 
@@ -2685,16 +2694,19 @@ function exportPNG(){
      security boundary, not a limitation we can code around. Printing does
      composite it, so send the user there rather than saving a blank map. */
   if (!$('#gframeA').hidden || !$('#gframeB').hidden){
-    toast('Google’s free embed can’t be captured to PNG (cross-origin iframe). ' +
-          'Use Print — it includes the Google view — or switch layer to save a PNG.');
+    exportFail('Google’s free embed can’t be captured to PNG (cross-origin iframe). ' +
+               'Use Print — it includes the Google view — or switch layer to save a PNG.');
     return;
   }
   if (isGoogle(mapTypeEl.value) && !$('#gmap').hidden){ exportGooglePNG(); return; }
 
   var stage = $('#mapstage'), mapEl = $('#map');
   var W = mapEl.clientWidth, H = mapEl.clientHeight;
-  if (!W || !H){ toast('Open the Map view first.'); return; }
-  if (!allProps().filter(located).length){ toast('Nothing plotted yet.'); return; }
+  if (!W || !H){ exportFail('Open the Map view first.'); return; }
+  if (!allProps().filter(located).length){
+    exportFail('Nothing is placed on the map yet: the subject and the comparables need an address the map can find (or drag a pin to place one by hand).');
+    return;
+  }
 
   var dpr  = Math.min(window.devicePixelRatio || 1, 2);
   var rect = mapEl.getBoundingClientRect();
@@ -2858,7 +2870,7 @@ function exportPNG(){
 
   try{
     out.toBlob(function(blob){
-      if (!blob){ toast('Could not build the image.'); return; }
+      if (!blob){ exportFail('Could not build the image.'); return; }
       if (window.__uadSave){ window.__uadSave(blob, name); return; }
       var a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -2869,7 +2881,7 @@ function exportPNG(){
       toast('Saved ' + name);
     }, 'image/png');
   }catch(e){
-    toast('The map image is cross-origin protected and cannot be saved. Try another layer.');
+    exportFail('The map image is cross-origin protected and cannot be saved. Try another layer.');
   }
 }
 
@@ -3079,8 +3091,19 @@ window.UADMap = {
   // The tool proper keeps its internals to itself and publishes this.  Without
   // it there is nothing to drive, so say so rather than failing silently.
   var M = window.UADMap;
+  var render = qs.get('render') === '1';
+  /* post=1: drawn out of sight in the appraiser's browser (ui/map/draw.js),
+     for a server with no map tool of its own -- the PNG is saved here, and
+     the page that asked is told how it went. */
+  var post = render && qs.get('post') === '1';
+  function tellDrawn(out){
+    if (post && window.parent !== window) window.parent.postMessage(Object.assign({uad:'map-drawn'}, out), '*');
+  }
   if (!M){
     console.error('UAD: the map tool exposed no interface; cannot seed or save.');
+    var why = 'the map tool could not start: its map library (Leaflet / MapLibre, from cdnjs.cloudflare.com) did not load';
+    if (render) window.__uadRendered = {error: why};
+    tellDrawn({ok:false, error: why});
     return;
   }
   var state = M.state, toast = M.toast, refresh = M.refresh;
@@ -3093,7 +3116,6 @@ window.UADMap = {
     });
   };
 
-  var render = qs.get('render') === '1';
   /* embed=1: opened inside the report's Sales Comparison Map box, at the
      box's exact size, to pan, zoom and arrange the map where it prints. */
   var embed = !render && qs.get('embed') === '1';
@@ -3161,34 +3183,84 @@ window.UADMap = {
     setTimeout(function(){ whenSettled(then, tries + 1); }, 250);
   }
 
-  /* Export the map exactly as the tool draws it. */
+  /* Wait for the tool to finish reading the case (body[data-seeding], set from
+     the moment the page opens until every property is placed) and laying out
+     its labels.  A save made before then exported an empty map and said
+     "Nothing is placed on the map yet" about a case whose properties were on
+     their way (T-416). */
+  function whenRead(then, waited){
+    waited = waited || 0;
+    if (document.body.getAttribute('data-seeding') !== '1' || waited > 90000){
+      setTimeout(then, waited ? 650 : 0);   /* the seeding's own label arrangement runs at +500 ms */
+      return;
+    }
+    setTimeout(function(){ whenRead(then, waited + 250); }, 250);
+  }
+
+  /* Export the map exactly as the tool draws it: {blob} or {error}. */
   function exportBlob(){
     return new Promise(function(done){
-      window.__uadSave = function(blob){ window.__uadSave = null; done(blob); };
+      window.__uadSave = function(blob, name, why){
+        window.__uadSave = null;
+        done(blob ? {blob: blob} : {error: why || 'the map image could not be made'});
+      };
       M.exportPNG();
-      setTimeout(function(){ if (window.__uadSave){ window.__uadSave = null; done(null); } }, 20000);
+      setTimeout(function(){
+        if (window.__uadSave){ window.__uadSave = null; done({error: 'the map image was not made within 20 seconds'}); }
+      }, 20000);
     });
   }
 
-  function saveCurrent(caption, section){
-    return exportBlob().then(function(blob){
-      if (!blob) return false;
-      var fd = new FormData();
-      fd.append('file', blob, 'SalesCompMap.png');
-      return fetch('/api/cases/' + caseId + '/maps/image', {method:'POST', body:fd})
-        .then(function(r){ return r.ok; }).catch(function(){ return false; });
+  /* Where each property sits on the map, for the server to write back where
+     the document has no usable coordinates (app/mapper.py write_coordinates). */
+  function placed(){
+    var at = function(p){ return {lat: p.lat, lng: p.lng}; };
+    return {subject: at(state.subject), comps: state.comps.map(at)};
+  }
+
+  /* The server's own words when it refuses the map, else what it answered. */
+  function refusal(r){
+    return r.text().then(function(t){
+      var d = null;
+      try{ d = JSON.parse(t); }catch(e){}
+      var said = d && (d.detail || d.error || (d.problems || []).join('; '));
+      if (said && typeof said !== 'string') said = JSON.stringify(said);
+      return said || ('the server answered ' + r.status + (t ? ': ' + t.replace(/<[^>]*>/g, ' ').trim().slice(0, 160) : ''));
+    });
+  }
+
+  /* Into the report: {ok, media_id} or {ok:false, error}. */
+  function upload(blob, asAerial){
+    var fd = new FormData();
+    fd.append('file', blob, asAerial ? 'SiteAerialMap.png' : 'SalesCompMap.png');
+    if (!asAerial) fd.append('state', JSON.stringify(placed()));
+    return fetch('/api/cases/' + caseId + '/maps/image' + (asAerial ? '?aerial=true' : ''), {method:'POST', body:fd})
+      .then(function(r){
+        if (r.ok) return r.json().then(function(d){ return {ok:true, media_id:d.media_id}; });
+        return refusal(r).then(function(why){ return {ok:false, error:why}; });
+      }, function(e){
+        return {ok:false, error:'the server could not be reached (' + (e && e.message || e) + ')'};
+      });
+  }
+
+  function saveCurrent(){
+    return exportBlob().then(function(out){
+      return out.blob ? upload(out.blob) : {ok:false, error:out.error};
     });
   }
 
   save.addEventListener('click', function(){
     if (state.view !== 'location') switchView('location');
-    toast('Saving the Sales Comparison Map…');
-    M.kick();
-    M.autoArrange(false);
-    whenSettled(function(){
-      saveCurrent().then(function(ok){
-        toast(ok ? 'Sales Comparison Map saved into the report' : 'Could not save the map');
-        if (ok && window.parent !== window) window.parent.postMessage({uad:'media-added'}, '*');
+    toast('Saving the Sales Comparison Map…', 60000);
+    whenRead(function(){
+      M.kick();
+      M.autoArrange(false);
+      whenSettled(function(){
+        saveCurrent().then(function(res){
+          toast(res.ok ? 'Sales Comparison Map saved into the report' : 'The map was not saved: ' + res.error,
+                res.ok ? 2300 : 9000);
+          if (res.ok && window.parent !== window) window.parent.postMessage({uad:'media-added', media_id:res.media_id}, '*');
+        });
       });
     });
   });
@@ -3333,6 +3405,8 @@ window.UADMap = {
       .catch(function(){ return {}; })
       .then(function(prefs){
         var saved = prefs && prefs.mapState;
+        var reread = qs.get('seed') === '1' || !saved;
+        if (!reread) document.body.removeAttribute('data-seeding');   /* its own saved map, restored below */
         if (saved && saved.subject){
           saved.framed = true; saved.view = 'location';
           M.applyRestored(saved);
@@ -3340,7 +3414,7 @@ window.UADMap = {
           state.calloutFs = 15;                 /* labels a reader can read on the page */
           M.applyCalloutFs();
         }
-        if (qs.get('seed') === '1' || !saved) seedFromCase();
+        if (reread) seedFromCase();
         if (aerial) renderAerial();
         else if (render) renderForReport();
         else if (embed) startEmbed();
@@ -3402,19 +3476,46 @@ window.UADMap = {
       if (a === 'save'){
         bar.querySelectorAll('button,select').forEach(function(x){ x.disabled = true; });
         b.textContent = 'Saving\u2026';
-        bar.style.visibility = 'hidden'; hint.style.visibility = 'hidden';
-        M.kick();
-        whenSettled(function(){
-          saveCurrent().then(function(ok){
-            if (ok){ M.save(); tell({uad:'map-saved'}); return; }
-            bar.style.visibility = ''; hint.style.visibility = '';
-            bar.querySelectorAll('button,select').forEach(function(x){ x.disabled = false; });
-            b.textContent = 'Save to report';
-            toast('The map could not be saved -- try again');
+        /* the controls go, but the box says what is happening */
+        var said = hint.textContent;
+        bar.style.visibility = 'hidden'; hint.textContent = 'Saving the map into the report\u2026';
+        whenRead(function(){
+          M.kick();
+          whenSettled(function(){
+            saveCurrent().then(function(res){
+              if (res.ok){ M.save(); tell({uad:'map-saved', media_id:res.media_id}); return; }
+              bar.style.visibility = ''; hint.textContent = said;
+              bar.querySelectorAll('button,select').forEach(function(x){ x.disabled = false; });
+              b.textContent = 'Save to report';
+              toast('The map was not saved: ' + res.error, 9000);
+            });
           });
         });
       }
     });
+  }
+
+  /* The end of a headless drawing.  The server's own run reads
+     window.__uadRendered; drawn in the appraiser's browser instead (post=1),
+     the map is saved into the report from here and the page that asked is
+     told how it went, in words (T-416). */
+  function finish(out, asAerial){
+    if (out.error){ window.__uadRendered = {error: out.error}; tellDrawn({ok:false, error: out.error}); return; }
+    if (post){
+      upload(out.blob, asAerial).then(function(res){
+        if (res.ok && !asAerial) M.save();
+        window.__uadRendered = res.ok ? {saved: res.media_id} : {error: res.error};
+        tellDrawn(res);
+      });
+      return;
+    }
+    var fr = new FileReader();
+    fr.onload = function(){
+      if (!asAerial) M.save();
+      window.__uadRendered = {png: fr.result,
+        state: asAerial ? {subject: {lat: state.subject.lat, lng: state.subject.lng}} : state};
+    };
+    fr.readAsDataURL(out.blob);
   }
 
   /* Headless, for the Site exhibits: the subject alone, from above. */
@@ -3423,8 +3524,8 @@ window.UADMap = {
     (function ready(){
       var pending = document.body.getAttribute('data-seeding') === '1';
       if (!pending && !M.located(state.subject) && state.subject.unconfirmed){
-        window.__uadRendered = {error:'the subject address "' + state.subject.unconfirmed
-          + '" was not found on the map, so nothing was placed'};
+        finish({error:'the subject address "' + state.subject.unconfirmed
+          + '" was not found on the map, so nothing was placed'}, true);
         return;
       }
       if (!pending && M.located(state.subject)) {
@@ -3432,18 +3533,10 @@ window.UADMap = {
         switchView('aerial');
         document.querySelector('#pinbar').hidden = true;
         M.kick();
-        whenSettled(function(){
-          exportBlob().then(function(blob){
-            if (!blob){ window.__uadRendered = {error:'export failed'}; return; }
-            var fr = new FileReader();
-            fr.onload = function(){ window.__uadRendered = {png: fr.result,
-              state: {subject: {lat: state.subject.lat, lng: state.subject.lng}}}; };
-            fr.readAsDataURL(blob);
-          });
-        });
+        whenSettled(function(){ exportBlob().then(function(out){ finish(out, true); }); });
         return;
       }
-      if ((waited += 300) > 45000){ window.__uadRendered = {error:'the subject address could not be placed on the map'}; return; }
+      if ((waited += 300) > 45000){ finish({error:'the subject address could not be placed on the map'}, true); return; }
       setTimeout(ready, 300);
     })();
   }
@@ -3455,8 +3548,8 @@ window.UADMap = {
     (function ready(){
       var pending = document.body.getAttribute('data-seeding') === '1';
       if (!pending && !M.located(state.subject) && state.subject.unconfirmed){
-        window.__uadRendered = {error:'the subject address "' + state.subject.unconfirmed
-          + '" was not found on the map, so nothing was placed'};
+        finish({error:'the subject address "' + state.subject.unconfirmed
+          + '" was not found on the map, so nothing was placed'});
         return;
       }
       if (!pending && M.located(state.subject)) {
@@ -3465,20 +3558,17 @@ window.UADMap = {
         if (uv) M.getMap().setView([uv.lat, uv.lng], uv.zoom, {animate:false});
         else M.fitAll();
         setTimeout(function(){ M.autoArrange(false); }, 450);
-        whenSettled(function(){
-          exportBlob().then(function(blob){
-            if (!blob){ window.__uadRendered = {error:'export failed'}; return; }
-            var fr = new FileReader();
-            fr.onload = function(){ M.save(); window.__uadRendered = {png: fr.result, state: state}; };
-            fr.readAsDataURL(blob);
-          });
-        });
+        whenSettled(function(){ exportBlob().then(function(out){ finish(out); }); });
         return;
       }
-      if ((waited += 300) > 45000){ window.__uadRendered = {error:'the subject could not be placed'}; return; }
+      if ((waited += 300) > 45000){ finish({error:'the subject could not be placed on the map'}); return; }
       setTimeout(ready, 300);
     })();
   }
+  /* The case is being read from this moment -- start() asks for the saved
+     map first -- so nothing (a Save, a test, the headless drawing) mistakes the
+     tool for ready while its properties are still on their way. */
+  document.body.setAttribute('data-seeding', '1');
   setTimeout(start, 200);
 })();
 </script>

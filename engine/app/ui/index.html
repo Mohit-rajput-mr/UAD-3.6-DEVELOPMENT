@@ -645,6 +645,8 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:70;background:var(--btn);color:var(--btn-ink);
   padding:11px 17px;font-size:13px;font-weight:500;border-radius:12px;box-shadow:var(--shadow-lg);animation:pop .18s ease-out}
 @keyframes pop{from{opacity:0;transform:translate(-50%,6px)}}
+.toast-act{margin-left:14px;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:700;
+  text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:56px 16px;
   background:rgba(5,5,6,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .sheet.over .sheet-in,.sheet.over .sheetbox{box-shadow:0 0 0 1.5px var(--ink),var(--shadow-lg)}
@@ -691,6 +693,7 @@ header .stat span:before,.rf-agent-dot,.rf-busy:before,.verdict:before,.glass .g
 <script src="/ui/vault.js"></script>
 <script src="/ui/dialog.js"></script>
 <script src="/ui/download.js"></script>
+<script src="/ui/map/draw.js"></script>
 <script>
 const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -728,8 +731,24 @@ try{ S.showMarks=localStorage.getItem('uad-marks')==='1'; }catch(_){ }
   }catch(_){}
 })();
 document.addEventListener('click',e=>{ if(e.target.closest('#dl-product')) UADDownload.open(DESKTOP.info); });
-function toast(m,ms=2000){const t=document.createElement('div');t.className='toast';
-  t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),ms);}
+function toast(m,ms=2000,act){const t=document.createElement('div');t.className='toast';
+  t.textContent=m;
+  if(act){ const b=document.createElement('button'); b.type='button'; b.className='toast-act'; b.textContent=act.label;
+    b.onclick=()=>{ t.remove(); act.run(); }; t.appendChild(b); }     // e.g. "Go to it" (DR §13)
+  document.body.appendChild(t);setTimeout(()=>t.remove(),ms);}
+/* What went wrong, in the server's own words -- the problems it lists, its
+   detail or error, the text it answered with -- or at least its status, never
+   "unknown error" (T-416).  ``r`` is what api() returned (null when signed out). */
+function apiError(r){
+  if(!r) return 'the session has ended; sign in again';
+  const d=r.data;
+  if(d&&typeof d==='object'){
+    const said=((d.problems||[]).length&&d.problems.join('; '))||d.detail||d.error||((d.reasons||[]).length&&d.reasons.join('; '));
+    if(said) return typeof said==='string'?said:JSON.stringify(said);   // a 422's detail is a list
+  }
+  const text=typeof d==='string'?d.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,200):'';
+  return `the server answered ${r.status}${text?': '+text:''}`;
+}
 /* Anything slower than a blink shows the bar, so a wait is never silent. */
 const BAR={n:0,t:null,w:0};
 function barStart(){
@@ -1297,7 +1316,9 @@ function drawHead(){
    is held and sent the moment it says it is. */
 function goToReport(where){
   S.pendingGoto=where;
-  if(S.view!=='report'){ S.view='report'; drawHead(); drawWork(); return; }
+  if(S.view!=='report'){ S.view='report'; drawHead(); drawWork(); }
+  // a report already laid out (kept while another tab was open) is told now;
+  // a new one is told when it says it is ready
   if(S.formReady) sendGoto();
 }
 function sendGoto(){
@@ -1317,11 +1338,19 @@ window.addEventListener('message',e=>{
     const nf=S.swaps&&S.swaps[kind];
     if(nf&&e.source===nf.contentWindow){ if(m.uad==='frame-ready') finishSwap(kind,nf); return; }
   }
+  // A first layout is shown: it was made from the case as it stood when its
+  // galley was read, so anything changed since (a map saved meanwhile) is
+  // caught up with now -- as a swapped-in layout is (finishSwap).  A stale
+  // page watches for its fresh render itself.
   const pv=$('#pv');
-  if(pv&&e.source===pv.contentWindow){ if(m.uad==='fresh') swapFrame('preview'); return; }
+  if(pv&&e.source===pv.contentWindow){
+    if(m.uad==='fresh') swapFrame('preview');
+    if(m.uad==='frame-ready'&&!m.stale) checkFresh('preview');
+    return; }
   const f=$('#rf');
   if(!f||e.source!==f.contentWindow) return;
   if(m.uad==='fresh'){ swapFrame('form'); return; }
+  if(m.uad==='frame-ready'){ if(!m.stale) checkFresh('form'); return; }
   if(m.uad==='relayout'){ if(m.fid) S.pendingGoto={fid:m.fid,secn:S.atSection||S.section}; checkFresh('form'); return; }
   if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove(); postMarks();
     // what the report actually prints, as laid out -- not a guess from the data
@@ -1341,6 +1370,17 @@ window.addEventListener('message',e=>{
 async function refreshMedia(){
   const m=await api('/cases/'+S.caseId+'/media');
   if(m&&m.ok){ S.media=m.data; drawRail(); }
+}
+/* The Location Map tool saved the map into the report.  The tool stays as it
+   is -- it used to be reloaded under the appraiser, which looked like a Save
+   that did nothing -- and the report shows the map the moment it is opened
+   (it lays itself out again on the way: checkFresh). */
+async function mapSaved(){
+  await refreshMedia();
+  if(S.view==='report') checkFresh('form');
+  const sca=(S.sections||[]).find(s=>s.name==='Sales Comparison Approach');
+  toast('✓ Sales Comparison Map saved into the report',8000,
+        {label:'Go to it',run:()=>goToReport({map:'SalesComparableMap',secn:sca?sca.number:0})});
 }
 
 /* The report and the preview are kept alive once opened: switching back to
@@ -1365,7 +1405,7 @@ function drawWork(){
   if(S.view==='structure') return drawStructure(w);
   if(S.view==='map'){
     if(!window.__uadMapListener){window.__uadMapListener=true;
-      window.addEventListener('message',e=>{if(e.data&&e.data.uad==='media-added'){toast('Map saved — refreshing the report');refresh();}});}
+      window.addEventListener('message',e=>{if(e.data&&e.data.uad==='media-added') mapSaved();});}
     w.innerHTML=`<div class="panel"><p style="margin:0 0 9px;font-size:11.5px;color:var(--muted)">
       The subject and the comparables are read from this case. Drag a callout to place it,
       switch between <b>Location Map</b> and <b>Aerial Map</b>, then <b>Save to report</b> —
@@ -1394,8 +1434,11 @@ async function checkFresh(kind){
   if(!frame) return;
   let shown='';
   try{ shown=(frame.contentWindow.UAD_RENDER||{}).key||''; }catch(_){}
-  if(!shown) return;                               // still loading its first page
-  S.checking[kind]=true;
+  // still laying out its first page, from a galley that may predate this
+  // change: caught up once it is shown (frame-ready).  Returning without a
+  // note left a map saved meanwhile out of the report (T-416).
+  if(!shown){ S.again[kind]=true; return; }
+  S.checking[kind]=true; S.again[kind]=false;     // this check covers what came before it
   const host=frame.parentNode;
   let strip=null;
   try{
@@ -1538,12 +1581,24 @@ function drawReportForm(w){
   $('#rf-setup').onclick=()=>reportSetup();
   $('#rf-maps').onclick=async()=>{
     const b=$('#rf-maps'); b.disabled=true; b.textContent='Drawing the map…';
-    const r=await api(`/cases/${S.caseId}/maps`,{method:'POST'});
-    b.disabled=false; b.textContent='Generate map';
-    if(r&&r.ok&&r.data.state==='current'){
+    let ok=false, why='';
+    try{
+      const r=await api(`/cases/${S.caseId}/maps`,{method:'POST'});
+      ok=!!(r&&r.ok&&r.data.state==='current');
+      if(r&&r.ok&&r.data.state==='browser'){
+        // this server has no map tool of its own (the live site): this
+        // browser draws the map with the same tool and saves it
+        const d=await UADDrawMap(S.caseId);
+        ok=d.ok; why=d.error||'';
+        const server=(r.data.problems||[]).join('; ');
+        if(!ok&&server) why+=` (and ${server})`;
+      }else if(!ok) why=apiError(r);
+    }catch(e){ why='the server could not be reached ('+(e&&e.message||e)+')'; }
+    finally{ b.disabled=false; b.textContent='Generate map'; }
+    if(ok){
       toast('Sales Comparison Map drawn — adjust it in the Location Map tab',4500);
       await refreshMedia(); checkFresh('form');
-    }else toast('The map could not be drawn: '+(((r&&r.data&&r.data.problems)||[]).join('; ')||'unknown error'),8000);
+    }else toast('The map could not be drawn: '+why,9000);
   };
   $('#rf-marks').checked=S.showMarks;
   $('#rf-marks').onchange=e=>{

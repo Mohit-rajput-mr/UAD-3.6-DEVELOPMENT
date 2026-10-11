@@ -11,6 +11,13 @@ appraiser arranges in the tool is therefore exactly what prints.
 Appendix E and B-1 define one map for the Sales Comparison Approach -- the
 Sales Comparison Map (ImageCategoryType SalesComparableMap).  No aerial map is
 drawn; any left over from earlier builds is removed.
+
+A server with no browser of its own (the live site is a serverless function)
+cannot run the tool headless, and one whose browser fails cannot either.  Then
+the answer is ``state: "browser"``: the editor runs the same tool in the
+appraiser's browser, out of sight, and it posts its PNG to ``/maps/image``
+(``ui/map/draw.js``) -- the request its Save to report makes.  A failure is
+never an unexplained 500 (T-416: "Generate map" said "unknown error").
 """
 from __future__ import annotations
 
@@ -21,6 +28,7 @@ from typing import Callable
 
 from uad import bind, edit, maps
 
+IN_BROWSER = "browser"             # the state that hands the drawing to the appraiser's browser
 CAPTION = "Sales Comparison Map"
 RETIRED = ("Aerial Map",)          # a full-page aerial "map" filed with the comparables
 # The Site section's aerial view is an exhibit photograph like any other
@@ -88,13 +96,16 @@ class Mapper:
             self._status[case_id] = {"state": "current", "problems": []}
             return self._status[case_id]
         server = self._server()
-        if not server:
-            self._status[case_id] = {"state": "failed",
-                                     "problems": ["the map is drawn by the running server's map tool"]}
+        if not server or not _has_browser():
+            self._status[case_id] = {"state": IN_BROWSER, "problems": []}
             return self._status[case_id]
         self._status[case_id] = {"state": "drawing"}
-        with self._render_lock:
-            result = render(server, case_id)
+        try:
+            with self._render_lock:
+                result = render(server, case_id)
+        except Exception as exc:          # its browser failed: no Chromium, a timeout, a host it cannot reach
+            self._status[case_id] = {"state": IN_BROWSER, "problems": [_failed(exc)]}
+            return self._status[case_id]
         if result.get("error"):
             self._status[case_id] = {"state": "failed", "problems": [result["error"]]}
             return self._status[case_id]
@@ -121,23 +132,31 @@ class Mapper:
         if not ps or not (ps[0].address or "").strip():
             return {"state": "idle", "problems": ["enter the subject's address first"]}
         server = self._server()
-        if not server:
-            return {"state": "failed", "problems": ["the map is drawn by the running server's map tool"]}
-        with self._render_lock:
-            result = render(server, case_id, aerial=True)
+        if not server or not _has_browser():
+            return {"state": IN_BROWSER, "problems": []}
+        try:
+            with self._render_lock:
+                result = render(server, case_id, aerial=True)
+        except Exception as exc:
+            return {"state": IN_BROWSER, "problems": [_failed(exc)]}
         if result.get("error"):
             return {"state": "failed", "problems": [result["error"]]}
+        return {"state": "current", "problems": [], "media_id": self.store_aerial(case_id, result["png"])}
+
+    def store_aerial(self, case_id: str, png: bytes) -> str:
+        """Put the subject's aerial view into the Site exhibits (a re-save replaces it)."""
+        st = self._store()
         have = self._prefs(case_id).get("generatedMaps") or {}
         for m in st.media(case_id):
             if m.media_id == have.get(AERIAL_KEY):
                 st.remove_media(case_id, m.media_id)
         name = "SiteAerialMap.png"
-        (st.media_dir(case_id) / name).write_bytes(result["png"])
+        (st.media_dir(case_id) / name).write_bytes(png)
         item = st.add_media(case_id, category="other", filename=name, caption=AERIAL_CAPTION,
-                            section=SITE, size=len(result["png"]), content_type="image/png")
+                            section=SITE, size=len(png), content_type="image/png")
         self._set_prefs(case_id, {"generatedMaps": {**have, AERIAL_KEY: item.media_id}})
         st.touch(case_id)
-        return {"state": "current", "problems": [], "media_id": item.media_id}
+        return item.media_id
 
     def store_png(self, case_id: str, png: bytes, *, signature: str = "") -> str:
         """Put the map into the report as its Sales Comparison Map."""
@@ -192,6 +211,18 @@ class Mapper:
             wrote = True
         if wrote:
             st.save_tree(case_id, tree)
+
+
+def _has_browser() -> bool:
+    """Whether this server has a browser to run the map tool in (none on a serverless host)."""
+    from uad.report import browser
+    return browser.AVAILABLE
+
+
+def _failed(exc: Exception) -> str:
+    """Why the server's own map tool gave up, in a line a person can read."""
+    said = (str(exc).strip().splitlines() or [""])[0].strip()
+    return f"the server's map tool failed ({said or type(exc).__name__})"
 
 
 def render(server: dict, case_id: str, timeout: float = 90.0, *, aerial: bool = False) -> dict:

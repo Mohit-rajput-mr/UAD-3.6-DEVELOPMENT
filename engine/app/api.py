@@ -29,7 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from fastapi import APIRouter, Body, File, HTTPException, Query, Request, UploadFile
+from fastapi import APIRouter, Body, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse, Response, StreamingResponse
 from lxml import etree
 
@@ -3738,29 +3738,59 @@ def mapper():
 
 
 @router.post("/cases/{case_id}/maps")
-def generate_maps(case_id: str) -> dict:
+def generate_maps(case_id: str, request: Request) -> dict:
     """Draw the Sales Comparison Map now, with the Location Map tool (Appendix
-    E p66: the map sets full page)."""
+    E p66: the map sets full page).  ``state: "browser"``: this server cannot
+    draw it, so the appraiser's browser does and saves it to ``/maps/image``."""
     _case_or_404(case_id)
-    return mapper().generate(case_id, force=True)
+    out = mapper().generate(case_id, force=True)
+    if out.get("state") == "current":
+        store().invalidate(case_id, _actor(request), "Sales Comparison Map drawn")
+    return out
 
 
 @router.post("/cases/{case_id}/maps/aerial")
-def generate_aerial(case_id: str) -> dict:
+def generate_aerial(case_id: str, request: Request) -> dict:
     """The subject from above, as a Site exhibit at the exhibit picture's size."""
     _case_or_404(case_id)
-    return mapper().aerial(case_id)
+    out = mapper().aerial(case_id)
+    if out.get("state") == "current":
+        store().invalidate(case_id, _actor(request), "aerial map drawn")
+    return out
 
 
 @router.post("/cases/{case_id}/maps/image")
-async def save_map_image(case_id: str, file: UploadFile = File(...)) -> dict:
-    """The Location Map tool's own export, saved as the Sales Comparison Map."""
+async def save_map_image(case_id: str, request: Request, file: UploadFile = File(...),
+                         aerial: bool = Query(False), state: str = Form("")) -> dict:
+    """The Location Map tool's own export, saved into the report: the Sales
+    Comparison Map, or with ``aerial`` the Site exhibits' aerial view.
+
+    Every map drawn in the appraiser's browser arrives here -- Save to report,
+    and Generate map wherever the server has no map tool of its own (``state:
+    "browser"`` from ``POST /maps``).  ``state`` is where the tool placed each
+    property ({"subject": {lat, lng}, "comps": [...]}), written back where the
+    document has no usable coordinates, as the server's own drawing does."""
     _case_or_404(case_id)
     data = await file.read()
     if not data.startswith(bytes([0x89]) + b"PNG"):
         raise HTTPException(422, "the map must be a PNG exported by the map tool")
-    media_id = mapper().store_png(case_id, data)
-    return {"media_id": media_id}
+    m = mapper()
+    if aerial:
+        media_id = m.store_aerial(case_id, data)
+    else:
+        media_id = m.store_png(case_id, data)
+        try:
+            placed = json.loads(state) if state else {}
+        except ValueError:
+            placed = {}
+        if isinstance(placed, dict) and placed:
+            m.write_coordinates(case_id, placed)
+    from . import mapper as _mapper
+    st = store()
+    st.log(case_id, _actor(request), "added media", _mapper.AERIAL_CAPTION if aerial else _mapper.CAPTION)
+    # a signed report whose map changed is no longer the report that was signed
+    st.invalidate(case_id, _actor(request), "map saved to the report")
+    return {"media_id": media_id, "state": "current", "problems": []}
 
 
 @router.get("/cases/{case_id}/maps")

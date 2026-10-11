@@ -3217,3 +3217,34 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   document and no temporary file.
 - Test: `tests/test_atomic_save.py`; `test_grid_rows_browser.py` passes 6
   runs out of 6.
+
+### E-187 -- The location map never reached the report: "unknown error", and Save to report did nothing (T-416, 2026-10-11)
+- Symptom (owner, DR §8/§13): "Generate map" answered "unknown error", and
+  "Save to report" changed nothing.
+- Causes:
+  - POST /maps could draw only with the server's own Chromium. The live
+    site has none, and a failure escaped as a bare 500, which the editor
+    showed as "unknown error".
+  - Save reloaded the tool under the appraiser, and a failed export timed
+    out silently.
+  - `checkFresh()` dropped a change made while the report's first layout
+    was still running.
+  - The map tool exported before it had read the case ("Nothing is placed
+    on the map yet").
+- Mechanism:
+  - With no server map tool, or a failed one, the routes answer
+    `{state:"browser", problems:[why]}`. The editor then draws with the
+    same tool in the appraiser's browser (`ui/map/draw.js`) and saves
+    through /maps/image.
+  - Every failure is shown in the server's own words (`apiError`).
+  - The tool reports export failures at once and is never reloaded under
+    the appraiser.
+  - `checkFresh` remembers changes made during the first layout (`S.again`).
+  - The tool holds `body[data-seeding]` until it has read the case, and
+    both Save paths wait for that (`whenRead`).
+- Test: `tests/test_location_map.py` (20, incl. the 12 D-1 samples) and
+  `tests/test_location_map_browser.py` (6, client-layout mode). The browser
+  tests cover the map pixel-exact in the PDF and in the ZIP, with the
+  IMAGE category from engine/spec.
+- Trap: under Playwright's sync API, route handlers run only inside
+  Playwright calls. Poll with `page.wait_for_timeout`, never `time.sleep`.

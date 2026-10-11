@@ -605,6 +605,18 @@ EDIT_JS = """
     if(holder){ current=holder.dataset.secn; tell({uad:'at',secn:Number(current)}); }
     return true;
   }
+  // a map's own box ("Go to it" after the map is saved into the report)
+  function goMap(kind){
+    var t=document.querySelector('[data-map="'+kind+'"]');
+    t=t&&(t.closest('figure')||t);
+    if(!t) return false;
+    spyLock=Date.now()+400;
+    t.scrollIntoView({block:'start',behavior:'auto'});
+    flash(t);
+    var holder=t.closest('[data-secn]');
+    if(holder){ current=holder.dataset.secn; tell({uad:'at',secn:Number(current)}); }
+    return true;
+  }
   window.addEventListener('message',function(e){
     var m=e.data||{};
     if(m.uad==='gaps'){
@@ -620,7 +632,8 @@ EDIT_JS = """
     if(m.uad==='autofill-stop'){ filling=false; }
     if(m.uad==='goto'){
       var ok=false;
-      if(m.fid) ok=goField(m.fid);
+      if(m.map) ok=goMap(m.map);
+      if(!ok&&m.fid) ok=goField(m.fid);
       if(!ok&&m.secn) ok=goSection(m.secn);
       tell({uad:'goto-result',found:ok,secn:m.secn||0,fid:m.fid||''});
     }
@@ -1255,6 +1268,12 @@ EDIT_JS = """
     fig.classList.remove('mapfailed'); fig.classList.add('maploading');
     note.textContent=aerial?'Loading aerial map…':'Loading location map…';
     json(api+(aerial?'/maps/aerial':'/maps'),{method:'POST'}).then(function(st){
+      if(st.state!=='browser') return st;
+      // no map tool on this server (the live site): this browser draws it
+      return drawHere(aerial).then(function(d){
+        return d.ok?{state:'current',problems:[]}:{state:'failed',problems:[d.error].concat(st.problems||[])};
+      });
+    }).then(function(st){
       if(aerial && st.state==='current'){ tell({uad:'media'}); reloadHere(); return; }
       if(st.state==='current'){ note.textContent='Placing the map in the report…'; reloadHere(); return; }
       fig.classList.remove('maploading'); fig.classList.add('mapfailed');
@@ -1263,6 +1282,18 @@ EDIT_JS = """
     }).catch(function(err){
       fig.classList.remove('maploading'); fig.classList.add('mapfailed');
       note.textContent='The map could not be loaded: '+err.message;
+    });
+  }
+  /* The Location Map tool, run out of sight in this browser, draws the map and
+     saves it (app/ui/map/draw.js) -- the editor's copy when there is one. */
+  function drawHere(aerial){
+    var d=null; try{ d=window.top.UADDrawMap; }catch(_){}
+    if(d) return d(id,{aerial:aerial});
+    return new Promise(function(res){
+      var s=document.createElement('script'); s.src='/ui/map/draw.js';
+      s.onload=function(){ res(window.UADDrawMap(id,{aerial:aerial})); };
+      s.onerror=function(){ res({ok:false,error:'the map tool could not be loaded'}); };
+      document.head.appendChild(s);
     });
   }
   /* The map is edited inside its own box: the map tool opens there at the

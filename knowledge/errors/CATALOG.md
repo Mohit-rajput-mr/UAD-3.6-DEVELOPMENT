@@ -3152,3 +3152,99 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Test: `tests/test_photo_exif.py` (4). One of them is a delivered SF1
   package with an appraiser's photo: the altitude is 25 Feet, the time is
   UTC, and the schema is valid.
+
+### E-340 -- A fill wrote each block into the block at the same place, not the block that is it (2026-10-11, T-925)
+- Symptom: filling a report from another case (the intake "Fill" route,
+  `POST /cases/{id}/autofill`) put values into the wrong comparables and
+  the wrong SERVICE. Measured over every pair of the 12 D-1 samples (blank
+  target x source, 144 fills):
+  - blank SF1 filled from SF2 (5 sales comparables): **7** sales
+    comparables, two empty. SF2's PROPERTY[5] and PROPERTY[6] were written
+    into SF1's first two "not used" properties, and the link step turned
+    them into sales comparables; the two columns the fill had added stayed
+    empty (T-925, first seen with the 18 North file);
+  - any fill into a Condo1-shaped report, or from Condo1: **two VALUATIONs
+    and two subjects**. Condo1 keeps the data collector's INSPECTION_SERVICE
+    in SERVICE[1] and the VALUATION in SERVICE[2], so the inspection was
+    written into the valuation's SERVICE and a whole second valuation was
+    built in a new SERVICE[2].
+- Cause: `autofill.apply` addressed every block by its position
+  (`PROPERTY[5]`, `SERVICE[2]`). Positions mean nothing
+  across two reports of different shapes. Only PARTY had been matched by
+  what it is (`party_map`, by roles).
+- Mechanism: `autofill.Aligned` pairs the source's keyed blocks with this
+  report's **once, before anything is written**, top-down:
+  - SERVICE by the service it holds (VALUATION, INSPECTION_SERVICE);
+  - PROPERTY by its @ValuationUseType and its rank by PropertyOrdinalNumber
+    (the grid's own numbering, `comparables.properties`);
+  - PARTY by its roles (the old `party_map`, now resolved under the
+    aligned SERVICE).
+  A block the report lacks is created beside the blocks it stands next to
+  in the source, with the source's attributes. Every write goes through
+  `Aligned.path`; `ensure_instance` walks the source address beside the
+  aligned one, so a created block copies the attributes of its true twin.
+  `_drop_leftovers` asks `Aligned.back` whether a block has a counterpart.
+  A comparable with no counterpart, in a grid the source fills, holding
+  only what a blank keeps (`templates.structure_elements`), is dropped with
+  its links. A grid the source has no comparable in keeps its columns.
+- Result: all 144 fills give every grid the source fills exactly the
+  source's columns, one VALUATION, one subject, no failed step, and every
+  source value present. A fill from the same sample is identical, element
+  for element, to the old code's. Before: wrong on most cross-shape pairs.
+- Trap found on the way: an address's last step cannot be taken with
+  `rsplit("/")` -- the namespace is a URL (`.../2009/schemas}RELATIONSHIPS`).
+  That cut made every RELATIONSHIPS look absent from the source and dropped
+  all links (9 test failures). Match steps with `autofill.SEGMENT`.
+- Not changed: `shape.reshape` (property type changes) still matches all
+  but parties by place (`keyed=("PARTY",)`). Measured there: SF2 -> Condo1
+  gives 6 sales comparables (one empty) and loses a "not used" property;
+  SF1 -> 2-4 turns the structure's rental columns into "not used" ones.
+  Aligning it keeps those rental columns, but the template's rental-to-unit
+  pairings do not survive the reshape and the unit change, so a
+  single-family report made 2-unit would show 5 unpaired rental columns.
+  Both need doing together: T-1250.
+- Tried and left out: RELATIONSHIP keyed by (arcrole, from, to), so the
+  report's own links survive beside the source's. On cross-shape fills it
+  kept the blank's links to blocks the fill left empty (a Condo1 blank's
+  price-trend DATA_SOURCE: UAD1179/UAD1657) and to labels the fill renamed
+  (UAD1718/1719): 66 findings beyond the source's over the Condo1 row
+  against 61 with links by place. Links stay positional.
+- Known limit: other repeated blocks (units, rooms, utilities, data
+  sources, links) are still matched by position. Within one shape that is
+  correct; between shapes each instance is overwritten whole. What remains
+  beyond the source's findings on a cross-shape fill is the case's shape
+  disagreeing with the source (a condo-shaped case filled from a house
+  keeps asking for HOA charges: UAD1573-1575, UAD1613), not a value in the
+  wrong place.
+- Test: `tests/test_fill_alignment.py` (29; the 5 non-matrix tests fail on
+  the code before).
+
+### E-341 -- An added comparable went into the data collector's SERVICE (2026-10-11)
+- Symptom: on a report shaped like D-1 Condo1 (inspection SERVICE first),
+  "+ Add Comparable" put the new PROPERTY into
+  `INSPECTION_SERVICE_RESPONSE/PROPERTIES`, not beside the subject.
+- Cause: `comparables.add_property` took the parent of the first PROPERTY
+  in the document as the holder.
+- Mechanism: the holder is the parent of the last comparable of that role,
+  else of the subject, else of the first PROPERTY that has a role.
+- Test: `tests/test_fill_alignment.py::test_a_comparable_is_added_beside_the_subject`.
+
+### E-342 -- The client's role, written first on a new report, answered 200 and saved nothing (2026-10-11, T-014)
+- Symptom: `PATCH /cases/{id}/fields/2.011` ("Client/[Party Role Type]":
+  Attorney, Lender, AMC ...) on a report with no client party yet answered
+  200 with `written.new = ""`. H-1 UAD1543 (Fatal) stays until that role
+  exists. The editor's own control uses `/client-role`, which creates the
+  party, so the owner did not meet it; any other client of the API did.
+- Cause: `edit._client_second_role(create=True)` looked for the PARTY that
+  says Client and returned None when there was none; `_write_client_role`
+  then wrote nothing, and `_write_checked` compared "" with "".
+- Mechanism: with `create`, a missing client party is made by
+  `parties._new_party(root, "Client")`, the same way a typed client name
+  makes one; the role goes into its second ROLE.
+- Evidence beyond the fix: a sweep writes every field of a new report
+  through `PATCH /fields` with a type-appropriate value, a fresh report per
+  field: 996 saved, 151 refused with a reason (422: a gate first), **0
+  answered 200 without saving**. A sweep on one report is misleading:
+  writing 3.012 "Cooperative" reshapes it, and later writes look lost.
+- Test: `tests/test_party_writes.py` (4; 3 fail on the code before).
+

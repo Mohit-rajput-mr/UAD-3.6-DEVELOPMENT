@@ -124,7 +124,10 @@ def reshape(current: etree._ElementTree, template: str) -> Reshaped:
             carried_insp.append(svc)
             svc.getparent().remove(svc)
     steps = autofill.plan(target, source)
-    done = autofill.apply(target, steps, source)
+    # parties by their roles; the rest by place, as before -- carrying the
+    # comparables by what they are changes which rental columns the new
+    # structure keeps, and its unit pairings do not survive yet (T-1250)
+    done = autofill.apply(target, steps, source, keyed=("PARTY",))
     for holder, index, svc in reversed(aside):
         holder.insert(index, svc)
     for svc in carried_insp:

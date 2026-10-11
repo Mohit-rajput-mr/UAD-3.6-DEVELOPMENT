@@ -84,6 +84,19 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-11 — The intake fill puts each block into its counterpart
+  (epic-brahmagupta, T-925, E-340..E-342).** `autofill.Aligned` matches a
+  SERVICE by kind, a PROPERTY by role and number, and a PARTY by roles,
+  instead of by position.
+  - Before: blank SF1 filled from SF2 gave 7 sales columns, two of them
+    empty; any fill into or from a Condo1-shaped report built a second
+    VALUATION.
+  - Now all 144 sample-pair fills are exact. Same-sample fills are
+    unchanged.
+  - Also fixed: "+ Add Comparable" on Condo1-shaped cases; the client's
+    role through `PATCH /fields/2.011` on a new report.
+  - Tests: `test_fill_alignment.py`, `test_party_writes.py`. Reshape is
+    left as it was: T-1250.
 - **2026-10-11 -- keen-turing: the editor shows only what applies; the
   report warns where it contradicts itself (T-1074, T-1066, T-909, T-910,
   T-510 partial; E-170..E-172).**
@@ -261,6 +274,20 @@ Full narrative and traps: last sections of `_work/HANDOFF.md`.
 Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
+
+### 2026-10-11 -- a fourth session, epic-brahmagupta: helper + challenger
+- **Branch:** `claude/epic-brahmagupta-hvcarw`. Its last HANDOFF section
+  has the detail.
+- **Done:** T-925 and T-014 (above).
+- **Production verified independently:** 1178/1/10. The one failure is a
+  load-timing flake that passes alone.
+- **Challenges posted to the lead and keen-turing:**
+  - T-506: the Review Master and the shipped XML disagree on a finding in
+    a hidden section;
+  - T-505: map of findings that have no field control;
+  - T-510: the U10.2 one-click fix rewrites a fact.
+- **Taking over from the lead:** T-1201..T-1204. The T-1204 unit-defect
+  gate fix is prototyped.
 
 ### 2026-10-11 -- keen-turing (engine checks; T-1100..T-1149, E-170..E-179)
 - **Done:** T-1074 and T-1066 (editor visibility); T-909 and T-910

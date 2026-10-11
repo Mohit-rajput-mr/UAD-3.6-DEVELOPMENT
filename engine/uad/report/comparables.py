@@ -403,10 +403,17 @@ def add_property(tree, role: str) -> int:
 
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     existing = properties(root, role)
-    holder = None
-    for prop in root.iter(f"{{{bind.MISMO}}}PROPERTY"):
-        holder = prop.getparent()
-        break
+    # The comparables sit beside the subject in the valuation's PROPERTIES.
+    # The first PROPERTY of the document is not always there: a case with a
+    # data collector (D-1 Condo1) lists the inspection SERVICE first, and its
+    # PROPERTY took every comparable added to such a case (E-341).
+    anchor = existing[-1] if existing else bind.subject(root)
+    holder = anchor.getparent() if anchor is not None else None
+    if holder is None:
+        for prop in root.iter(f"{{{bind.MISMO}}}PROPERTY"):
+            if prop.get("ValuationUseType"):
+                holder = prop.getparent()
+                break
     if holder is None:
         raise ValueError("this case has no PROPERTIES container to add to")
 

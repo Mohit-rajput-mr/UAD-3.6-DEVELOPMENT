@@ -385,7 +385,12 @@ def _client_second_role(root: etree._Element, *, create: bool = False):
     ROLE_DETAIL that already says Client" makes the field try to overwrite the
     very anchor it was found by: a value written there is unreadable by the
     same rule that located it, so a re-read never finds what was just saved.
+
+    A report with no client yet gets one when a role is written (T-014): the
+    field is the client's, so choosing it names the party.  Before, the write
+    found no party, wrote nothing and answered as if it had saved.
     """
+    client = None
     for party in root.iter(f"{QN}PARTY"):
         details = list(party.iter(f"{QN}ROLE_DETAIL"))
         kinds = [(d, (d.findtext(f"{QN}PartyRoleType") or "").strip()) for d in details]
@@ -394,14 +399,20 @@ def _client_second_role(root: etree._Element, *, create: bool = False):
         other = next((d for d, k in kinds if k and k != "Client"), None)
         if other is not None or not create:
             return other
-        # lxml's __bool__ is "has children", not "is not None" -- an
-        # existing but empty ROLES element would read as falsy here.
-        roles = party.find(f"{QN}ROLES")
-        if roles is None:
-            roles = ensure_path(party, ["ROLES"])[0]
-        role = insert_ordered(roles, "ROLE")
-        return insert_ordered(role, "ROLE_DETAIL")
-    return None
+        client = party
+        break
+    if client is None:
+        if not create:
+            return None
+        from . import parties
+        client = parties._new_party(root, "Client")
+    # lxml's __bool__ is "has children", not "is not None" -- an
+    # existing but empty ROLES element would read as falsy here.
+    roles = client.find(f"{QN}ROLES")
+    if roles is None:
+        roles = ensure_path(client, ["ROLES"])[0]
+    role = insert_ordered(roles, "ROLE")
+    return insert_ordered(role, "ROLE_DETAIL")
 
 
 def read_client_role(root: etree._Element) -> str:

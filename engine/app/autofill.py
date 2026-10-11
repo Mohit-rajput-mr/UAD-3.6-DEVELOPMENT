@@ -427,85 +427,158 @@ def _roles_of(party: etree._Element) -> tuple[str, ...]:
                         for r in party.iter(f"{M}PartyRoleType") if (r.text or "").strip()))
 
 
-def party_map(root: etree._Element, source: etree._Element
-              ) -> dict[str, dict[int, int]]:
-    """Which PARTY of this report each party of the source report is.
+# The blocks a report has several of and tells apart by what each one *is*,
+# never by where it sits.  A SERVICE is the service it holds (a VALUATION, or
+# the data collector's INSPECTION_SERVICE that D-1 Condo1 lists first); a
+# PROPERTY is the part it plays (@ValuationUseType) and, as a comparable, its
+# number; a PARTY is the roles it holds.  Writing the source's PROPERTY[5] into
+# this report's PROPERTY[5] put a fourth sales comparable into a "not used"
+# property and left the column the fill had just added empty (T-925), and
+# writing the source's SERVICE[2] into a SERVICE[2] this report lacked built a
+# second VALUATION with a second subject beside the real one (E-340).
+KEYED = ("SERVICE", "PROPERTY", "PARTY")
 
-    A party is identified by the role it holds, never by where it sits: the
-    document lists whoever that report happens to have.  A blank report
-    carrying an appraiser and a management company but no lender puts the
-    management company first, so writing the source's second party into the
-    second position here gave the lender the management company's fee and left
-    a role block with no role in it.
 
-    The match is made **once, before anything is written**, and every write
-    then follows it.  Working it out per value cannot work: a role arrives as
-    a value like any other, so a party not yet given its role matches nothing
-    and each later write starts another party -- which is how the appraiser's
-    name ended up alone in a party of its own.
+def _kind(node: etree._Element) -> str:
+    """What a keyed block is, among its siblings of the same tag."""
+    name = etree.QName(node).localname
+    if name == "SERVICE":
+        first = next((c for c in node if isinstance(c.tag, str)), None)
+        return etree.QName(first).localname if first is not None else ""
+    if name == "PROPERTY":
+        return node.get("ValuationUseType") or ""
+    return ""
 
-    A report can have more than one list of parties: a case with a data
-    collector keeps that party in the inspection SERVICE, beside the one the
-    valuation uses.  Each list is therefore matched against its own
-    counterpart, and the answer is keyed by the address of the list.
+
+def _ranked(nodes: list[etree._Element]) -> list[etree._Element]:
+    """Siblings of one kind in the order the report numbers them.
+
+    Comparables are numbered by their PropertyOrdinalNumber, which need not be
+    their place in the document (an added comparable goes after the last
+    PROPERTY, whatever that is); anything without a number keeps its place.
     """
-    tree = source.getroottree()
-    out: dict[str, dict[int, int]] = {}
-    lists: dict[str, list[etree._Element]] = {}
-    for party in source.iter(f"{M}PARTY"):
-        holder = party.getparent()
+    def number(node: etree._Element) -> int:
+        if etree.QName(node).localname != "PROPERTY":
+            return 0
+        found = comparables.ordinal_node(node)
+        try:
+            return int((found.text or "0").strip()) if found is not None else 0
+        except ValueError:
+            return 0
+    return sorted(nodes, key=number)
+
+
+class Aligned:
+    """Which block of this report each keyed block of the source is.
+
+    Worked out **once, before anything is written**: a role or a
+    @ValuationUseType arrives as a value like any other, so a block not yet
+    given one matches nothing and each later write would start another.  A
+    block the source has and this report lacks is created here, beside the
+    blocks it stands next to in the source, with the source's attributes.
+
+    ``path`` turns a source address into the address of the same value here;
+    ``back`` answers the other way, and says when a block here has no
+    counterpart in the source at all.  Elements are held, not addresses: a
+    block created in front of another changes that one's address.
+    """
+
+    def __init__(self, root: etree._Element, source: etree._Element,
+                 keyed: tuple[str, ...] = KEYED):
+        self.root, self.source = root, source
+        self.keyed = keyed
+        self.stree = source.getroottree()
+        self.here: dict[str, etree._Element] = {}     # source address -> block here
+        self.there: dict[etree._Element, str] = {}    # block here -> source address
+        self.groups: set[tuple[etree._Element, str]] = set()
+        for parent in source.iter():
+            if not isinstance(parent.tag, str):
+                continue
+            for tag in keyed:
+                theirs = parent.findall(f"{M}{tag}")
+                if theirs:
+                    self._align(parent, tag, theirs)
+
+    def _align(self, parent: etree._Element, tag: str,
+               theirs: list[etree._Element]) -> None:
+        holder = bind.find_path(self.root, self.path(self.stree.getelementpath(parent)))
         if holder is None:
-            continue
-        lists.setdefault(tree.getelementpath(holder), []).append(party)
-    for where, theirs in lists.items():
-        here = bind.find_path(root, where)
-        if here is None:
-            continue                      # nothing of ours to line up with
-        mine = here.findall(f"{M}PARTY")
+            return              # created by the fill itself, in the source's own order
+        mine = holder.findall(f"{M}{tag}")
+        pairs: dict[int, etree._Element] = {}
         taken: set[int] = set()
-        seats: dict[int, int] = {}
-        for n, twin in enumerate(theirs, start=1):
-            roles = _roles_of(twin)
-            seat = next((i for i, party in enumerate(mine)
-                         if i not in taken and roles and _roles_of(party) == roles), None)
-            if seat is None:
+        if tag == "PARTY":
+            for n, twin in enumerate(theirs):
+                roles = _roles_of(twin)
                 seat = next((i for i, party in enumerate(mine)
-                             if i not in taken and not _roles_of(party)), None)
-            if seat is None:
-                fresh = edit.insert_ordered(here, "PARTY")
-                mine = here.findall(f"{M}PARTY")
-                seat = mine.index(fresh)
-            taken.add(seat)
-            seats[n] = seat + 1
-        out[where] = seats
-    return out
+                             if i not in taken and roles and _roles_of(party) == roles), None)
+                if seat is None:
+                    seat = next((i for i, party in enumerate(mine)
+                                 if i not in taken and not _roles_of(party)), None)
+                if seat is not None:
+                    taken.add(seat)
+                    pairs[n] = mine[seat]
+        else:
+            kinds: dict[str, list[int]] = {}
+            for n, twin in enumerate(theirs):
+                kinds.setdefault(_kind(twin), []).append(n)
+            for kind, ns in kinds.items():
+                ours = _ranked([m for m in mine if _kind(m) == kind])
+                for n, own in zip([theirs.index(t) for t in _ranked([theirs[i] for i in ns])],
+                                  ours):
+                    pairs[n] = own
+        for n, twin in enumerate(theirs):
+            if n in pairs:
+                continue
+            made = edit.insert_ordered(holder, tag)
+            for key, value in twin.attrib.items():
+                made.set(key, value)
+            after = next((pairs[k] for k in range(n - 1, -1, -1) if k in pairs), None)
+            before = next((pairs[k] for k in range(n + 1, len(theirs)) if k in pairs), None)
+            if after is not None:
+                after.addnext(made)
+            elif before is not None:
+                before.addprevious(made)
+            pairs[n] = made
+        for n, twin in enumerate(theirs):
+            where = self.stree.getelementpath(twin)
+            self.here[where] = pairs[n]
+            self.there[pairs[n]] = where
+        self.groups.add((holder, tag))
 
+    def path(self, address: str) -> str:
+        """The address here of what sits at ``address`` in the source."""
+        if not address or address == ".":
+            return address
+        steps = [m.group(0) for m in SEGMENT.finditer(address)]
+        tree = self.root.getroottree()
+        for k in range(len(steps), 0, -1):
+            node = self.here.get("/".join(steps[:k]))
+            if node is not None:
+                return "/".join([tree.getelementpath(node), *steps[k:]])
+        return address
 
-PARTY_AT = re.compile(r"^(.*?/(?:\{[^}]*\})?PARTIES)/((?:\{[^}]*\})?PARTY)(?:\[(\d+)\])?")
-
-
-def _remap_parties(path: str, parties_: dict[str, dict[int, int]]) -> str:
-    """Rewrite the party an address names, before anything looks at it.
-
-    The address is rewritten before the walk rather than during it, because a
-    path that happens to exist already is taken as found without ever being
-    walked -- and an address pointing at the source's first party then wrote
-    the lender's role straight over the appraiser's.
-    """
-    match = PARTY_AT.match(path)
-    if not match:
-        return path
-    seats = parties_.get(match.group(1))
-    if not seats:
-        return path
-    want = int(match.group(3) or 1)
-    return (f"{match.group(1)}/{match.group(2)}[{seats.get(want, want)}]"
-            + path[match.end():])
+    def back(self, node: etree._Element) -> str | None:
+        """The source address of this block, or None when the source has none."""
+        tree = self.root.getroottree()
+        rest: list[str] = []
+        cur = node
+        while cur is not None and cur is not self.root:
+            mapped = self.there.get(cur)
+            if mapped is not None:
+                return "/".join([mapped, *rest])
+            parent = cur.getparent()
+            if etree.QName(cur).localname in self.keyed and (parent, etree.QName(cur).localname) in self.groups:
+                return None     # one of a set the source was lined up with, and not in it
+            # the namespace is a URL with slashes of its own: match the step
+            rest.insert(0, list(SEGMENT.finditer(tree.getelementpath(cur)))[-1].group(0))
+            cur = parent
+        return tree.getelementpath(node)
 
 
 def ensure_instance(root: etree._Element, path: str,
                     source: etree._Element | None = None,
-                    parties_: dict[int, int] | None = None) -> etree._Element | None:
+                    aligned: Aligned | None = None) -> etree._Element | None:
     """The element this address names, created if the document lacks it.
 
     A value written into ``SITE_UTILITY[2]`` of the case it came from belongs
@@ -514,20 +587,23 @@ def ensure_instance(root: etree._Element, path: str,
     the same rule every other write in the editor follows.  A block that is
     created takes the attributes its counterpart carries (``ValuationUseType``
     on a comparable's PROPERTY, the ``xlink:label`` a relationship points at),
-    because without them the block is not the one the report looks for.
+    because without them the block is not the one the report looks for.  The
+    counterpart is found by the source's own address, walked step for step
+    beside this one: after alignment the two differ in their indexes.
     """
     if not path:
         return None
-    if parties_:
-        path = _remap_parties(path, parties_)
-    node = bind.find_path(root, path)
+    here = aligned.path(path) if aligned is not None else path
+    node = bind.find_path(root, here)
     if node is not None:
         return node
     cur = root
     walked: list[str] = []
-    for match in SEGMENT.finditer(path):
+    theirs = [m.group(0) for m in SEGMENT.finditer(path)]
+    for n, match in enumerate(SEGMENT.finditer(here)):
         tag, want = match.group(1), int(match.group(2) or 1)
-        walked.append(match.group(0))
+        if n < len(theirs):
+            walked.append(theirs[n])
         found = cur.findall(f"{M}{tag}")
         while len(found) < want:
             made = edit.insert_ordered(cur, tag)
@@ -544,31 +620,45 @@ def ensure_instance(root: etree._Element, path: str,
 def apply(tree: etree._ElementTree, steps: Iterable[Step],
           source: etree._Element | None = None,
           add_comparable: Callable[[str], int] | None = None,
-          add_media: Callable[[dict], None] | None = None) -> dict:
+          add_media: Callable[[dict], None] | None = None,
+          keyed: tuple[str, ...] = KEYED) -> dict:
     """Write every step into the document, and say what happened.
 
     A value is put back exactly where it stood in the case it came from: the
     address names the element, the address is created if it is missing, and
     the value and its attributes (a measure's unit of measure) go with it.
+    ``keyed`` names the blocks matched by what they are rather than where
+    they sit (``Aligned``); ``shape.reshape`` still matches all but parties
+    by place (T-1250).
     """
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     written, failed = 0, []
-    parties_ = party_map(root, source) if source is not None else {}
+    steps = list(steps)
+    # The comparables first, so the alignment finds every column it fills.
     for step in steps:
+        if step.kind != COMP:
+            continue
         try:
-            if step.kind == COMP:
-                if add_comparable is not None:
-                    add_comparable(step.comp_kind)
-                else:
-                    comparables.add_property(tree, comparables.SHEETS[step.comp_kind][1])
-                written += 1
-                continue
+            if add_comparable is not None:
+                add_comparable(step.comp_kind)
+            else:
+                comparables.add_property(tree, comparables.SHEETS[step.comp_kind][1])
+            written += 1
+        except Exception as exc:                       # noqa: BLE001
+            failed.append({"n": step.n, "fid": step.fid, "kind": step.kind,
+                           "label": step.label,
+                           "reason": f"{type(exc).__name__}: {exc}"[:160]})
+    aligned = Aligned(root, source, keyed) if source is not None else None
+    for step in steps:
+        if step.kind == COMP:
+            continue
+        try:
             if step.kind == PHOTO:
                 if add_media is not None:
                     add_media(step.media)
                     written += 1
                 continue
-            leaf = ensure_instance(root, step.path, source, parties_)
+            leaf = ensure_instance(root, step.path, source, aligned)
             if leaf is None:
                 raise ValueError(f"cannot place {step.data_point} at {step.path}")
             if step.kind != LINK:
@@ -580,7 +670,7 @@ def apply(tree: etree._ElementTree, steps: Iterable[Step],
             failed.append({"n": step.n, "fid": step.fid, "kind": step.kind,
                            "label": step.label,
                            "reason": f"{type(exc).__name__}: {exc}"[:160]})
-    dropped = (_drop_contradicted(root, source) + _drop_leftovers(root, source)
+    dropped = (_drop_contradicted(root, source) + _drop_leftovers(root, source, aligned)
                if source is not None else 0)
     return {"written": written, "failed": failed, "dropped": dropped}
 
@@ -614,7 +704,8 @@ def _drop_contradicted(root: etree._Element, source: etree._Element) -> int:
     return dropped
 
 
-def _drop_leftovers(root: etree._Element, source: etree._Element) -> int:
+def _drop_leftovers(root: etree._Element, source: etree._Element,
+                    aligned: Aligned | None = None) -> int:
     """Take out the blocks the case being filled had and the source does not.
 
     A blank report is started from a template, and a template keeps the shape
@@ -626,15 +717,26 @@ def _drop_leftovers(root: etree._Element, source: etree._Element) -> int:
 
     A block is removed only when it holds no value at all, the source has
     nothing at that address, and the schema does not insist on it being there.
-    The walk is top-down, so a whole empty branch goes at its root rather than
-    leaf by leaf, and any relationship that pointed into it goes with it.
-    Nothing anyone typed is ever thrown away.
+    A comparable the source has no counterpart for, in a grid the source does
+    fill, counts as holding nothing when all it holds is what a blank report
+    keeps (``templates.structure_elements``: its number, which block each
+    block is, the determinants) -- the fourth column of a blank Condo1 filled
+    from a three-comparable case (T-925).  None of that is anything the
+    appraiser said.  A grid the source has no comparable in at all keeps its
+    columns: they are the report's own (a 2-4 unit report's GRM grid filled
+    from a single-family case).  The walk is top-down, so a whole empty
+    branch goes at its root rather than leaf by leaf, and any relationship
+    that pointed into it goes with it.  Nothing anyone typed is ever thrown
+    away.
     """
-    from uad import xsd_order
+    from uad import templates, xsd_order
 
     tree = root.getroottree()
     labels = {rel.get(f"{{{XLINK}}}{end}") for rel in root.iter(f"{M}RELATIONSHIP")
               for end in ("from", "to")}
+    roles = {role for _sheet, role, _section in comparables.SHEETS.values()}
+    roles &= {p.get("ValuationUseType") for p in source.iter(f"{M}PROPERTY")}
+    identity = templates.structure_elements()
     dropped, gone = 0, set()
     for node in list(root.iter()):
         if not isinstance(node.tag, str) or node is root:
@@ -642,16 +744,21 @@ def _drop_leftovers(root: etree._Element, source: etree._Element) -> int:
         parent = node.getparent()
         if parent is None or not _attached(node, root):
             continue                     # already taken out with its branch
-        if "".join(node.itertext()).strip():
-            continue                     # it holds something: leave it alone
-        if not _only_a_spare_label(node, labels):
-            continue                     # an attribute is a value of its own
-        name = etree.QName(node).localname
-        if name in xsd_order.required(etree.QName(parent).localname) and \
-                len(parent.findall(f"{M}{name}")) == 1:
-            continue                     # the schema insists on one being there
-        if bind.find_path(source, tree.getelementpath(node)) is not None:
-            continue                     # the source has it too
+        twin = aligned.back(node) if aligned is not None else tree.getelementpath(node)
+        if twin is None and node.get("ValuationUseType") in roles \
+                and _only_identity(node, identity):
+            pass                         # a spare comparable: only its number
+        else:
+            if "".join(node.itertext()).strip():
+                continue                 # it holds something: leave it alone
+            if not _only_a_spare_label(node, labels):
+                continue                 # an attribute is a value of its own
+            name = etree.QName(node).localname
+            if name in xsd_order.required(etree.QName(parent).localname) and \
+                    len(parent.findall(f"{M}{name}")) == 1:
+                continue                 # the schema insists on one being there
+            if twin is not None and bind.find_path(source, twin) is not None:
+                continue                 # the source has it too
         gone.update(x.get(f"{{{XLINK}}}label") for x in node.iter()
                     if isinstance(x.tag, str) and x.get(f"{{{XLINK}}}label"))
         parent.remove(node)
@@ -661,6 +768,16 @@ def _drop_leftovers(root: etree._Element, source: etree._Element) -> int:
             edit.remove_block(rel)       # MISMO: RELATIONSHIPS holds at least one
             dropped += 1
     return dropped
+
+
+def _only_identity(node: etree._Element, identity: frozenset[str]) -> bool:
+    """Does this block hold nothing but what identifies it?"""
+    for leaf in node.iter():
+        if not isinstance(leaf.tag, str) or len(leaf) or not (leaf.text or "").strip():
+            continue
+        if etree.QName(leaf).localname not in identity:
+            return False
+    return True
 
 
 def _attached(node: etree._Element, root: etree._Element) -> bool:

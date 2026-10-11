@@ -11,7 +11,9 @@ already H-1's and are not repeated here:
   before the inspection;
 * the area total -- A-1 defines TotalFinishedAreaOfAllLivingUnitsIncludingADU
   AreaMeasure as the units' finished area *plus common area*, so it need not
-  equal the units' sum; a check that it does would be wrong.
+  equal the units' sum (D-1 2-4 Scenario 2: 5,282 against 4,760); a check
+  that it does would be wrong.  It can never be *smaller*, and that is
+  checked (O4).
 
 What is left is checked here.  None of it is a specification rule, and every
 finding says so; each is a Warning in the Review Master and holds on all
@@ -21,7 +23,9 @@ twelve D-1 samples (tests/test_owner_checks.py):
         MISMO party carries both roles when they are the same person; a
         second party of the same name counts as the same person);
 ``O2``  on a refinance, no borrower among the owners of public record;
-``O3``  a comparable sale dated after the effective date.
+``O3``  a comparable sale dated after the effective date;
+``O4``  a gross building finished area (22.05.04) smaller than the units'
+        above-grade finished area -- the least the total can hold.
 """
 from __future__ import annotations
 
@@ -113,9 +117,32 @@ def sale_dates(root) -> list[Finding]:
     return out
 
 
+ABOVE = ("UnitStandardAboveGradeFinishedAreaMeasure", "UnitNonStandardAboveGradeFinishedAreaMeasure")
+
+
+def area_total(root) -> list[Finding]:
+    subject = bind.subject(root)
+    if subject is None:
+        return []
+    node = next((e for e in subject.iter(M + "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure")
+                 if (e.text or "").strip()), None)
+    if node is None:
+        return []
+    try:
+        total = float(node.text)
+        units = sum(float(e.text) for n in ABOVE for e in subject.iter(M + n) if (e.text or "").strip())
+    except ValueError:
+        return []
+    if total + 0.5 >= units:
+        return []
+    return [Finding(code="O4", field_id="22.05.04", path=bind.stable_path(node),
+                    message=(f"Gross Building Finished Area is {total:,.0f}, less than the "
+                             f"{units:,.0f} the units have finished above grade"))]
+
+
 def check(tree) -> list[Finding]:
     from . import report_types
     root = tree.getroot() if hasattr(tree, "getroot") else tree
     if report_types.kind_of(root) != report_types.URAR:
         return []
-    return names(root) + sale_dates(root)
+    return names(root) + sale_dates(root) + area_total(root)

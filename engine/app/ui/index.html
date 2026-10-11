@@ -1877,7 +1877,7 @@ function marketSearch(){
     const {ok,d}=await send(true);
     if(!ok){ msg.textContent=(d.detail&&d.detail.message)||d.detail||'Nothing was written.'; $$('#ms-go').disabled=false; return; }
     toast(d.written.length+' market figure(s) written');
-    box.remove(); refresh();
+    box.remove(); swapFrame('form'); refresh();
   };
 }
 
@@ -2297,7 +2297,24 @@ function findingRow(i){
     fix.onclick=e=>{e.stopPropagation();jump(i);};
     d.appendChild(fix);
   }
+  if(i.fix){ const b=applyFixButton(i.fix); b.style.marginLeft='6px'; d.appendChild(b); }
   return d;
+}
+/* A warning that has one answer in the specification offers it (T-510): the
+   value is written as a typed one would be, then the report and the review
+   follow.  The appraiser decides; nothing is changed without the click. */
+function applyFixButton(fx){
+  const b=document.createElement('button');
+  b.className='addbtn primary'; b.style.marginTop='5px';
+  b.textContent=fx.label; b.title=`Write ${fx.value} to ${fx.field_id}`;
+  b.onclick=async e=>{
+    e.stopPropagation(); b.disabled=true;
+    const r=await api(`/cases/${S.caseId}/fields/${encodeURIComponent(fx.field_id)}`,
+      {method:'PATCH',body:JSON.stringify({value:fx.value})});
+    if(r&&r.ok){ toast('Written: '+fx.label.replace(/^Make it /,'')); swapFrame('form'); await refresh(); reviewSoon(); }
+    else{ b.disabled=false; toast((r&&r.data&&r.data.detail)||'That could not be written.',7000); }
+  };
+  return b;
 }
 /* A finding takes the appraiser to the field on the report, not to a form
    about it. */
@@ -2364,6 +2381,9 @@ function renderGuide(){
       ${g.points.length>4?`<p class="gd-none">and ${g.points.length-4} more parts</p>`:''}
       <div class="gd-k">H-1 checks</div>${rules}
     </div>`;
+  // a problem with one answer in the specification offers it here too (T-510)
+  const probs=box.querySelectorAll('.gd-prob > div');
+  g.problems.forEach((p,n)=>{ if(p.fix&&probs[n]) probs[n].appendChild(applyFixButton(p.fix)); });
 }
 /* after an edit, the review is asked again once typing pauses: the outlines,
    the counts and the open guidance follow the report as it is */

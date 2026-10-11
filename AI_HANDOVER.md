@@ -275,9 +275,11 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   - T-1075 (engine, API and editor control): the market search is
     counted from the MLS export.
   - T-906: photo altitude carries its unit; photo time is in UTC.
-- **Next:**
-  - T-1034: the 171 H-1 rules not yet executed;
-  - or the T-510 inline surface, in step with the lead's shell work.
+  - T-510: one-click fixes and the O4 area check.
+  - T-1034: all 171 rules decided; the four no sample exercises are
+    tested.
+- **Next:** T-1079 / T-1080 (offline intake, rule-based parsers first),
+  or what the lead hands over.
 
 ### 2026-10-11 -- three sessions in parallel; phase 1 half landed (read `python engine/agents.py` first)
 - **Who does what:**

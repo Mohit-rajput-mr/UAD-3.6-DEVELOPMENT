@@ -48,6 +48,9 @@ class Finding:
     field_id: str = ""
     path: str = ""
     detail: str = ""
+    # a one-click repair the appraiser may choose (T-510): write ``value`` to
+    # ``field_id``; offered only where the specification leaves one answer
+    fix: dict | None = None
 
 
 @lru_cache(maxsize=1)
@@ -139,6 +142,14 @@ def as_is(root) -> list[Finding]:
         return []
     fid = rule["condition_fids"][0]
     actions = sorted({n.text.strip() for n in acting})
+    # one kind of action, one condition it calls for: Repair -> "Subject to
+    # Repair", Completion -> "Subject to Completion Per Plans" (A-1's values)
+    fix = None
+    if len(actions) == 1:
+        named = [v for v in _texts(fid) if v.startswith("SubjectTo" + actions[0])]
+        if len(named) == 1:
+            fix = {"field_id": fid, "value": named[0],
+                   "label": f"Make it \u201c{_shown(fid, named[0])}\u201d"}
     where = sorted({_label_section(field_of(n)) for n in acting} - {""})
     return [Finding(
         code="U10.1", field_id=fid, path=bind.stable_path(concl[0]),
@@ -146,7 +157,7 @@ def as_is(root) -> list[Finding]:
                  f"{len(acting)} defect(s) call for {', '.join(actions)}"
                  + (f" ({', '.join(where)})" if where else "")
                  + ": the value is subject to that action, not as is"),
-        detail=f"B-1 Usability item 10, example 1: {rule['text']}")]
+        detail=f"B-1 Usability item 10, example 1: {rule['text']}", fix=fix)]
 
 
 def _label_section(fid: str) -> str:
@@ -193,7 +204,12 @@ def rating(root) -> list[Finding]:
                              + (f" ({_shown_room(room)})" if room else "")
                              + f" is “{_shown(fid, have)}”: {rule['rating']} needs "
                              f"“{_shown(fid, want)}”"),
-                    detail=f"B-1 Usability item 10, example 2: {rule['text']}"))
+                    detail=f"B-1 Usability item 10, example 2: {rule['text']}",
+                    # a field the report holds once takes the value C1 needs;
+                    # a room's is set in its own row (or the rating is wrong)
+                    fix=None if need["rooms"] or len(nodes) > 1 else
+                    {"field_id": fid, "value": want,
+                     "label": f"Make it \u201c{_shown(fid, want)}\u201d"}))
     return out
 
 

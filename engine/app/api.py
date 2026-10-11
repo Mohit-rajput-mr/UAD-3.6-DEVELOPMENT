@@ -1528,8 +1528,8 @@ def field_guide(case_id: str, field_id: str) -> dict:
             "subsection": getattr(b, "subsection", "") or "",
             "requirement": requirement, "conditions": when, "scope": scope,
             "max": max(maxes) if maxes else None, "points": points, "rules": rules,
-            "problems": [{"code": i["code"], "severity": i["severity"], "message": i["message"]}
-                         for i in failing.values()]}
+            "problems": [{"code": i["code"], "severity": i["severity"], "message": i["message"],
+                          "fix": i.get("fix")} for i in failing.values()]}
 
 
 # --------------------------------------------------------------- review master

@@ -103,3 +103,28 @@ def test_warnings_in_the_review_master_never_block():
     assert [(i.code, i.severity, i.field_id, i.section) for i in items] == [
         ("U10.2", "Warning", "3.017", "Subject Property")]
     assert not any(i in report.fatal for i in items)    # an alert, never a block on signing
+
+
+def test_a_warning_with_one_answer_offers_it():
+    """T-510: "Subject to Repair" for a repair defect under "As Is"; "Yes" for
+    New Construction under C1; nothing for a room (set in its own row) or for
+    defects calling for two different actions."""
+    tree = _tree("sf1_appraisal_v1_4")
+    for n in tree.getroot().iter(M + "PropertyValuationConditionalConclusionType"):
+        n.text = "AsIs"
+    (f,) = usability.check(tree)
+    assert f.fix == {"field_id": "26.009", "value": "SubjectToRepair",
+                     "label": "Make it “Subject to Repair”"}
+    acts = list(tree.getroot().iter(M + "DefectItemRecommendedActionType"))
+    acts[0].text, acts[-1].text = "Repair", "Inspection"
+    (f,) = usability.check(tree)
+    assert f.fix is None
+    tree = _tree("mh1_appraisal_v1_4")
+    subject = bind.subject(tree.getroot())
+    next(subject.iter(M + "NewConstructionIndicator")).text = "false"
+    next(d for d in subject.iter(M + "ROOM_DETAIL")
+         if d.findtext(M + "RoomType") == "Kitchen").find(M + "RoomUpdateStatusType").text = "NotUpdated"
+    found = {f.field_id: f.fix for f in usability.check(tree)}
+    assert found["3.017"] == {"field_id": "3.017", "value": "true", "label": "Make it “Yes”"}
+    assert found["10.038"] is None
+    assert any(i.fix for i in review.build(tree).items if i.source == review.USABILITY)

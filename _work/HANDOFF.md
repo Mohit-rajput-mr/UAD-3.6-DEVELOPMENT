@@ -3593,3 +3593,17 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
       with `context.add_cookies`.
     - The `_work/harness/*.pdf` files are rewritten by every harness run.
       Do not commit them from a branch: they conflict as binaries.
+- **Then (keen-turing): T-510 done, T-1034 closed.**
+  - T-510: the new warnings already show inline as you type, through the
+    "Show problems" outlines and the field guide. Both are refreshed by
+    `reviewSoon` after each edit.
+    - Added a one-click fix where the spec leaves one answer
+      (`Finding.fix` -> `Item.fix` -> the "Make it ..." button on the
+      Review row and in the guide).
+    - Added O4: the building total below the units' above-grade finished
+      area.
+    - Chromium e2e: As Is -> Subject to Repair, and the warning clears.
+  - T-1034: all 171 non-presence H-1 rules already had a decider. 167
+    decide on some sample. UAD1250 and UAD1777-1779 meet no sample's
+    condition; `tests/test_compliance_unexercised.py` holds them to firing
+    on a broken copy.

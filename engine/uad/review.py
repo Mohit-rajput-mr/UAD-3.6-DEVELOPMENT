@@ -79,6 +79,7 @@ class Item:
     label: str = ""
     path: str = ""
     detail: str = ""
+    fix: dict | None = None        # {field_id, value, label}: a one-click repair
 
     @property
     def section_number(self) -> int:
@@ -251,7 +252,7 @@ def _usability_items(tree) -> list[Item]:
             source=source, severity=compliance.WARNING, code=f.code, message=f.message,
             field_id=f.field_id, section=loc.get("section", ""),
             subsection=loc.get("subsection", ""), label=loc.get("label", ""),
-            path=f.path, detail=f.detail))
+            path=f.path, detail=f.detail, fix=getattr(f, "fix", None)))
     return out
 
 

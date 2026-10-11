@@ -72,3 +72,14 @@ def test_a_comparable_sold_after_the_effective_date():
     report = review.build(tree)
     items = [i for i in report.items if i.source == review.OWNER]
     assert [(i.code, i.severity) for i in items] == [("O3", "Warning")] and not set(map(id, items)) & set(map(id, report.fatal))
+
+
+def test_a_building_total_smaller_than_its_units():
+    tree = _tree("2_to_4_unit_scenario_2_appraisal_v1_2")    # 5,282 over 4,760 in the units
+    total = next(bind.subject(tree.getroot()).iter(M + "TotalFinishedAreaOfAllLivingUnitsIncludingADUAreaMeasure"))
+    total.text = "4760"
+    assert owner_checks.check(tree) == []                   # equal: no common area, still sound
+    total.text = "4000"
+    found = owner_checks.check(tree)
+    assert [(f.code, f.field_id) for f in found] == [("O4", "22.05.04")]
+    assert "4,000" in found[0].message and "4,760" in found[0].message

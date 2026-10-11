@@ -3038,8 +3038,22 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 
   Two of the owner's list are H-1's already:
   - signature before inspection (UAD1536 + UAD1557);
-  - the area total. It is not checked, because A-1 defines it to include
-    common area.
+  - the area total cannot be checked for *equality*, because A-1 defines
+    it to include common area (D-1 2-4 Scenario 2: 5,282 against 4,760).
+    It can never be smaller than the units' above-grade finished area, so
+    O4 warns when it is (added later the same day).
+- One-click fixes (T-510), offered only where the specification leaves one
+  answer:
+  - U10.1 with a single kind of action: "Make it 'Subject to Repair'" (the
+    A-1 value named SubjectTo<action>);
+  - U10.2 on a field the report holds once: "Make it 'Yes'" for New
+    Construction.
+  - Rooms and mixed actions get no button.
+  - The fix shows on the Review panel row and in the field guide. Clicking
+    writes the value through the normal field PATCH, after which the
+    report and the review refresh.
+  - Chromium e2e passed: As Is -> Subject to Repair, and the warning
+    clears.
 - Not done: item 9 (prohibited / veiled language). It cites the GSE
   Selling Guides, which are not in the repo. No invented word list.
 - Validated first: all 12 D-1 samples raise nothing from either module.

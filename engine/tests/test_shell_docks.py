@@ -229,3 +229,24 @@ def test_the_classic_editor_has_no_window_chrome(site):
         page.evaluate("document.getElementById('sketch-ov').remove()")
     finally:
         page.goto(site.base + "/?shell=1")
+
+
+def test_the_status_bar_says_type_section_save_problems_and_size(site):
+    """T-276: one thin line under the work area -- what it reads is what the
+    editor knows, and its problem count opens the Problems panel."""
+    page = site.page
+    _fresh(site)
+    open_case(site, "sf1_appraisal_v1_4")
+    page.wait_for_selector("#statusbar .sb-prob", timeout=60_000)
+    text = page.inner_text("#statusbar")
+    assert "single family" in text.lower() and "fatal" in text and "%" in text, text
+    fatal = page.evaluate("""()=>(S.review.items||[]).filter(i=>i.severity==='Fatal'&&!/^not counted/.test(i.detail||'')).length""")
+    assert f"{fatal} fatal" in text, text
+    # it is below the report and does not cover it
+    sb = _box(page, "#statusbar")
+    rf = _box(page, "#rf")
+    assert sb["h"] <= 26 and sb["y"] >= rf["y"] + rf["h"] - 1
+    _click(page, "right", "min")
+    page.click("#statusbar .sb-prob")
+    page.wait_for_function("!document.body.classList.contains('win-right-min')")
+    assert not site.errors, site.errors

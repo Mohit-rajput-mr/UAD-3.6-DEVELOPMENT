@@ -1,2 +1,15 @@
-/* The title bar, the status bar and focus mode (DR phase 2, step S3).
-   Scoped to body.shell.  A stub until S3 lands. */
+/* The status bar (DR phase 2, step S3 / T-276).  Scoped to body.shell. */
+body.shell > #statusbar{display:flex;align-items:center;gap:14px;height:var(--shell-status-h);padding:0 12px;
+  border-top:1px solid var(--line);background:var(--bg-2);color:var(--muted);font:500 11.5px/1 var(--sans);
+  white-space:nowrap;overflow:hidden}
+body.shell #statusbar .sb-sp{flex:1}
+body.shell #statusbar .sb-type{text-transform:capitalize;color:var(--ink-2)}
+body.shell #statusbar .sb-prob{appearance:none;border:0;background:none;color:inherit;font:inherit;cursor:pointer;
+  display:inline-flex;align-items:center;gap:5px;padding:0}
+body.shell #statusbar .sb-prob:hover{color:var(--ink)}
+body.shell #statusbar .sb-prob i{width:7px;height:7px;border-radius:50%;display:inline-block}
+body.shell #statusbar .sb-prob i.f{background:#d64545}
+body.shell #statusbar .sb-prob i.w{background:#c98a12;margin-left:6px}
+body.shell #statusbar .sb-zoom{font-variant-numeric:tabular-nums}
+/* the window tray sits above the status bar */
+body.shell.shell-case .wintray{bottom:calc(var(--shell-status-h) + 6px)}

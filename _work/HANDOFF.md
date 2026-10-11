@@ -3622,3 +3622,28 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   continue from their cut-off agents' partial patches
   (`.claude/wf-partial/partial-T-416.patch`, `partial-T-1072.patch`). T-125
   was unclaimed by the others, so this session took it.
+
+## 2026-10-11 (afternoon) -- current position: phase 1 complete; this session runs everything
+- **Phase 1 (owner's 9 bugs) is complete:** T-509, T-506, T-1070, T-1071,
+  T-1072, T-416, T-1074, T-125, T-1066.
+  - Full suite on e0447f0's base: 1202 passed / 0 failed. Harness 12 on
+    e0447f0: 88/0/20.
+  - CATALOG E-180..E-187. E-186 is the atomic case save, found as a flaky
+    browser test.
+- **Production:** e0447f0 (T-416), then the hotfix d37aa34. The Sketch
+  overlay's CSS had been lost in 0d343e6 and the sketch showed as a small
+  box (owner's screenshot); a test now covers it.
+- **Takeover (owner):** keen-turing, ecstatic-bohr and epic-brahmagupta
+  stopped on session limits. This session claimed their open tasks with
+  `agents.py claim --force`. Their branches carry no unmerged code.
+- **Running:**
+  - phase 2 wave 0 (S0a shell core, S0b frame protocol, E1 review items;
+    `_work/dr/PHASE2_SHELL_PLAN.md`);
+  - takeover engine batch (T-1204, T-1202, T-1203, T-014, T-925).
+- **Owner 2026-10-11 (T-1210):** every region (top bar, Sections rail, right
+  sidebar, report, Sketch) gets minimize / maximize / close-restore / resize
+  like browser windows, and the layout must be less cramped. Recorded at the
+  top of the phase 2 plan for S2/S3/S8.
+- **Note:** the owner saw 143 fatal on a new report. Locally a new report
+  shows 130 fatal / 17 warning (T-506 works); the header count can go stale
+  (fixed by phase 2 S0a's setReview).

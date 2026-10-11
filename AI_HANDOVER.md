@@ -262,6 +262,32 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-11 (late) -- sleepy-hypatia (sole active session; holds production)
+- **Editor (DR phase 2), live at uad36.vercel.app:**
+  - every region is a window (T-1210): minimize, maximize, close, resize;
+  - report zoom: Fit, -/+, Ctrl+=/-/0;
+  - laptop spacing: the page starts 229 px down (was 382) at 69 % (was 56 %);
+  - Problems panel with F8 (T-505);
+  - Ctrl+K palette and Ctrl+G go to field (T-277);
+  - status bar (T-276);
+  - marker tooltips with H-1 ids (T-507).
+  - Tests: `tests/test_shell_docks.py`, `test_shell_problems.py`, `test_shell_palette.py`.
+- **Engine takeover:**
+  - T-1202: named rows per dwelling/unit (E-191);
+  - T-925: fill matches properties by role (E-192);
+  - T-1204: defect rows tied to their owner (E-193);
+  - T-1203: type-first new grid line (E-194);
+  - T-1205: hidden sections' values not delivered (E-195);
+  - T-1201: Repair the structure (E-196);
+  - T-014: measured at 950/1037 round-trip.
+- **Next:**
+  - ribbon (T-272);
+  - E1 per-instance review items (T-1208) and S0b frame protocol (T-1207);
+  - "Fix this" (T-508/T-1209);
+  - split view (T-275);
+  - then phase 3: speed, repeating groups, comps view, intake, Tauri.
+- **Rule learned:** run the full suite in a snapshot worktree. Running it in the live tree while editing gave false failures twice.
+
 ### 2026-10-11 -- keen-turing (engine checks; T-1100..T-1149, E-170..E-179)
 - **Done:** T-1074 and T-1066 (editor visibility); T-909 and T-910
   (B-1 Usability items 6 and 10).

@@ -1079,6 +1079,13 @@ def shown_pairs(ctx: Ctx, fid: str) -> list[tuple[str, str]]:
             text = f"{main} ({bind.display_value(rest, b)})" if main else bind.display_value(rest, b)
         else:
             text = bind.display_value(group, b)
+        if not text and ctx.edit:
+            # an answer B-1 prints nothing for (Current or Relevant Listings
+            # "true": the listings print instead) is still an answer: the
+            # editor shows it as its list reads, or a Yes picked there was
+            # blank again after every reload (T-1072)
+            labels = dict(choices_for(fid))
+            text = " | ".join(dict.fromkeys(labels[v] for _n, v in group if v in labels))
         if text and not per:
             text = re.sub(r"(\$[\d,]+)\.00\b", r"\1", text)
         if text and not ctx.edit:
@@ -1363,6 +1370,9 @@ class Block:
     new_page: bool = False
     decoration: bool = False
     fids: list[str] = field(default_factory=list)
+    # the dwelling or unit a copy of a section is drawn for (editor only):
+    # its controls write there, not into the first one (T-1072)
+    scope: str = ""
 
 
 LEVEL = {"TXR-B": 0, "TX-B": 0, "TXR": 0, "TXR-I": 1, "TXR-II": 2, "CK1": 0, "CK-1I": 1}
@@ -1683,7 +1693,7 @@ def hidden_by(root, point: str) -> frozenset[str]:
     return frozenset(f for f in _gated_fields().get(point, ()) if edit_hides(ctx, f))
 
 
-def edit_hides(ctx: "Ctx", fid: str, has_value: bool = False) -> bool:
+def edit_hides(ctx: "Ctx", fid: str, has_value: bool = False, depth: int = 0) -> bool:
     """What the editor leaves out (T-1066, DESKTOP_REBUILD_PLAN D5), the gate
     question staying so that changing the answer brings it back:
 
@@ -1702,7 +1712,47 @@ def edit_hides(ctx: "Ctx", fid: str, has_value: bool = False) -> bool:
     read, own = _gate_names(fid)
     if read and not read & own and _answered(ctx, read) and field_rule_hides(ctx, fid):
         return True
+    if not has_value:
+        # the data source of an answer goes with that answer: A-1 ties the
+        # legally-rentable source (10.013) to the indicator (10.012) itself,
+        # and a source with nothing to be the source of could not be saved
+        answer = source_of_answer(fid)
+        if answer and answer != fid and edit_hides(ctx, answer, depth=depth + 1):
+            return True
+        # a field waiting for an answer whose question is itself left out
+        # (ADU access 10.015 waits for "ADU (10.011) = Yes", and 10.011 waits
+        # for an ADU count) goes with it: it could not be saved
+        gate = _waiting_for(ctx, fid)
+        if gate and gate != fid and depth < 4 and edit_hides(ctx, gate, depth=depth + 1):
+            return True
     return not has_value and _a1_gate_off(ctx, fid)
+
+
+def _waiting_for(ctx: "Ctx", fid: str) -> str:
+    """The field whose answer A-1 makes this one wait for, when the report
+    does not give it (edit.unmet_gate: "ADU (10.011) with Yes"), else ""."""
+    from .. import edit as _edit
+    try:
+        binding = _edit._binding_for(fid)
+    except (KeyError, ValueError):
+        return ""
+    if binding is None or not any((dp.get("requires") or {}) for dp in binding.data_points):
+        return ""
+    m = re.search(r"\((\d+\.\d+(?:\.\d+)?)\)", _edit.unmet_gate(ctx.root, binding, "", ctx.scope) or "")
+    return m.group(1) if m else ""
+
+
+@lru_cache(maxsize=1024)
+def source_of_answer(fid: str) -> str:
+    """The field a data-source field is the source of, where A-1 ties its
+    sources to an answer rather than a block (sources._first_answer):
+    10.013 -> 10.012.  Empty otherwise."""
+    target = data_source_target(fid)
+    if not target or target.isupper():
+        return ""
+    from .. import sources
+    m = re.search(r"\((\d+\.\d+(?:\.\d+)?)\)$", sources._first_answer(target))
+    return m.group(1) if m else ""
 
 
 def _answered(ctx: "Ctx", names) -> bool:
@@ -1895,7 +1945,7 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
             if base == "Cost Approach":
                 blocks += _cost_approach(title, printed, els, sctx, sample=sample)
                 continue
-            out = _section(title, printed, els, sctx, sample=sample)
+            out = _scoped(_section(title, printed, els, sctx, sample=sample), sctx)
             if out and base in NEW_PAGE_SECTIONS and out[0].kind != "tab":
                 # Appendix E p79/p85: the Scope of Work "starts new page", and
                 # its section opens with text ("TAB sets elsewhere"), so the
@@ -1916,9 +1966,32 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
                         if uctx.scope is not None else None
                     if imp is sctx.scope:
                         placed.add(bind.stable_path(uctx.scope))
-                        blocks += _section(unit_title, uprinted, unit_els, uctx, sample=sample)
+                        blocks += _scoped(_section(unit_title, uprinted, unit_els, uctx, sample=sample), uctx)
     _resolve_visibility(blocks)
     return blocks
+
+
+def _scoped(blocks: list[Block], ctx: Ctx) -> list[Block]:
+    """A section drawn once per dwelling or unit (section_instances) names, in
+    the editor, the one each copy is for.  Its rows, lists and Yes/No boxes
+    are addressed by field ID alone, so Building 2's and Unit 2's answers were
+    written into Building 1 and Unit 1 (D-1 2-4, T-1072)."""
+    if ctx.edit and ctx.scope is not None:
+        for blk in blocks:
+            blk.scope = bind.stable_path(ctx.scope)
+    return blocks
+
+
+# a control written by field ID (not a table cell, not a route of its own)
+_FID_CONTROL = re.compile(r"<(span|div)\b([^>]*\bdata-fid='[^']*'[^>]*)>")
+
+
+def _with_scope(html: str, scope: str) -> str:
+    def put(m: re.Match) -> str:
+        if re.search(r"\bdata-(tf|route|iscope)=", m.group(2)):
+            return m.group(0)
+        return f"<{m.group(1)}{m.group(2)} data-iscope='{esc(scope)}'>"
+    return _FID_CONTROL.sub(put, html)
 
 
 def _cost_approach(title: str, printed: str, els: list[dict], ctx: Ctx, *, sample: bool) -> list[Block]:
@@ -2053,7 +2126,7 @@ def _rental_pairs_html(ctx: "Ctx") -> str:
         cells = "".join(
             f"<td><span class='rpx{' on' if on else ''}' role='checkbox' tabindex='0'"
             f" aria-checked='{'true' if on else 'false'}' data-rpair='{c['number']},{j + 1}'>"
-            f"{'&#x2713;' if on else ''}</span></td>" for j, on in enumerate(c["paired"]))
+            f"{EDIT_TICK if on else ''}</span></td>" for j, on in enumerate(c["paired"]))
         rows.append(f"<tr><td class='rpn'>Comparable #{c['number']}"
                     f"<span>{esc(c['address'])}</span></td>{cells}</tr>")
     body = "".join(rows) or (f"<tr><td colspan='{len(units) + 1}' class='rpempty'>No rental comparables yet"
@@ -4316,7 +4389,7 @@ def _rent_included_html(ctx: Ctx) -> str:
         f"<span class='rsu {'on' if r['included'] else 'off' if r['included'] is False else 'unset'}'"
         f" role='checkbox' tabindex='0' aria-checked='{'true' if r['included'] else 'false'}'"
         f" data-rsunit='{r['unit']}' title='{'In the rent schedule' if r['included'] else 'Not in the rent schedule' if r['included'] is False else 'Not answered yet'}'>"
-        f"<i>{'&#x2713;' if r['included'] else ''}</i>{esc(r['name'])}</span>" for r in rows)
+        f"<i>{EDIT_TICK if r['included'] else ''}</i>{esc(r['name'])}</span>" for r in rows)
     return (f"<div class='rsinc'><span class='rsl'>Units in the rent schedule</span>{chips}"
             "<span class='rsn'>Not printed; untick a unit to leave it out.</span></div>")
 
@@ -5220,6 +5293,14 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
         # dwelling or outbuilding, as it is read (_walk, _arc_linked)
         target = (_arc_linked(ctx.scope, dp.get("xpath", "")) if _local(ctx.scope) == "IMPROVEMENT" else None)
         attrs += f" data-tscope='{esc(bind.stable_path(target if target is not None else ctx.scope))}'"
+    if not text and key and point_choices(dp):
+        # an answer B-1 prints nothing for (a utility's Shared "false") still
+        # shows in the editor as its list reads, or the pick looked unsaved
+        # after every reload (T-1072)
+        inst = _instance_el(ctx, key)
+        held = next(((e.text or "").strip() for e in (inst.iter(f"{M}{dp.get('mismo')}") if inst is not None else [])
+                     if (e.text or "").strip()), "")
+        text = esc(dict(point_choices(dp)).get(held, ""))
     if point_choices(dp):
         inner = f"<span class='v pick'{attrs} tabindex='0' role='button'>{text}</span>"
     else:
@@ -5273,12 +5354,20 @@ def _waits_for_type(fid: str, row: list[str]) -> bool:
     return False
 
 
+# The tick of every checkbox the editor draws as a box of its own (a tick
+# cell, a rental pairing, a unit in the rent schedule), centred on that box:
+# the path spans 1..9 across and 1.5..8.5 down the 10-unit view, so the box's
+# centre is the tick's (T-125) -- a text tick sat wherever its fallback face
+# put it.  Drawn in the box's own colour; the editor's script draws the same
+# one when a click ticks a box.
+EDIT_TICK = ("<svg class='tick' viewBox='0 0 10 10' width='9pt' height='9pt' aria-label='Selected'>"
+             "<path d='M1 5.5 L4 8.5 L9 1.5' fill='none' stroke='currentColor' stroke-width='1.2'/></svg>")
+
+
 def _tick_cell(ticked: bool, fid: str, want: str, ctx: "Ctx", *, key: str = "",
                sel: str = "", label: str = "") -> str:
     """Public / Private in the utilities table: a click sets the ownership."""
-    mark = ("<svg class='tick' viewBox='0 0 10 10' width='9pt' height='9pt' aria-label='Selected'>"
-            "<path d='M1 5 L4 8 L9 1' fill='none' stroke='#231f20' stroke-width='1.2'/></svg>"
-            if ticked else "")
+    mark = EDIT_TICK if ticked else ""
     attrs = f" data-tf='{esc(fid)}' data-tk='{esc(_stable(ctx, key))}' data-tval='{esc(want)}'"
     if sel:
         attrs += f" data-tsel='{esc(sel)}' data-tlab='{esc(label)}'"
@@ -6329,10 +6418,13 @@ def galley_html(blocks: list[Block], edit: bool = False) -> str:
             derived = edit and section_number(blk.section) == 1
             left = "".join(_item_html(i, edit and not derived, derived) for i in blk.left if i.visible)
             right = "".join(_item_html(i, edit and not derived, derived) for i in blk.right if i.visible)
+            if edit and blk.scope:
+                left, right = _with_scope(left, blk.scope), _with_scope(right, blk.scope)
             parts.append(f"<div class='blk cols{' gap' if gap else ''}'{attrs}><div class='col left'>{left}</div>"
                          f"<div class='col right'>{right}</div></div>")
         else:
-            parts.append(f"<div class='blk solid {blk.kind}'{attrs}>{blk.html}</div>")
+            body = _with_scope(blk.html, blk.scope) if edit and blk.scope else blk.html
+            parts.append(f"<div class='blk solid {blk.kind}'{attrs}>{body}</div>")
     return "".join(parts)
 
 
@@ -6584,6 +6676,7 @@ td.calc span:after{content:' \03a3';font-size:6pt;color:rgba(35,31,32,.66);font-
 .rsinc .rsu i{display:inline-flex;align-items:center;justify-content:center;width:8pt;height:8pt;font-style:normal;
   border:0.8pt solid rgba(29,79,145,.7);font-size:6.5pt;color:#fff}
 .rsinc .rsu.on i{background:#1d4f91;border-color:#1d4f91}
+.rsinc .rsu i > svg.tick{width:5.5pt;height:5.5pt}
 .rsinc .rsu.unset{border-style:dashed;border-color:#d98a00;background:rgba(214,158,46,.18)}
 .rsinc .rsn{color:rgba(35,31,32,.6);margin-left:auto}
 .rpairs{border:0.8pt solid rgba(43,108,176,.45);border-radius:0;padding:4pt 6pt 5pt;margin:2pt 0 6pt;background:rgba(66,133,244,.04)}
@@ -6596,6 +6689,7 @@ td.calc span:after{content:' \03a3';font-size:6pt;color:rgba(35,31,32,.66);font-
 .rpairs .rpx{display:inline-flex;align-items:center;justify-content:center;width:10pt;height:10pt;
   border:0.8pt solid rgba(29,79,145,.6);border-radius:0;cursor:pointer;color:#fff;font-size:7pt;line-height:1}
 .rpairs .rpx.on{background:#1d4f91;border-color:#1d4f91}
+.rpairs .rpx > svg.tick{width:7pt;height:7pt}
 .rpairs .rpx:hover{box-shadow:0 0 0 2pt rgba(66,133,244,.25)}
 .rpairs .rpnote{font-size:6.5pt;color:rgba(35,31,32,.65);margin-top:3pt;line-height:1.35}
 .rpairs .rpempty{text-align:left;color:rgba(35,31,32,.65)}
@@ -6803,7 +6897,62 @@ td.v.pos > span{color:#067647!important}
 def stylesheet(*, embed_fonts: bool = True, screen: bool = False,
                edit: bool = False) -> str:
     css = _sized_families(_stylesheet(embed_fonts=embed_fonts, screen=screen))
-    return css + (EDIT_CSS if edit else "")
+    return css + (EDIT_CSS + _box_marks_css() if edit else "")
+
+
+@lru_cache(maxsize=1)
+def box_glyph() -> dict[str, float] | None:
+    """Where the checkbox glyph draws its box inside its cell, in em, read from
+    the Wingdings 2 file the report embeds (the licensed one when installed,
+    otherwise the substitute): left and bottom of the box from the pen and the
+    baseline, its width and height, and the advance."""
+    path = fonts.source("Wingdings2")
+    if path is None:
+        return None
+    from fontTools.pens.boundsPen import BoundsPen
+    from fontTools.ttLib import TTFont
+    font = TTFont(str(path), lazy=True)
+    name = font.getBestCmap().get(int(BOX_EMPTY[3:-1], 16))
+    if name is None:
+        return None
+    glyphs = font.getGlyphSet()
+    pen = BoundsPen(glyphs)
+    glyphs[name].draw(pen)
+    if pen.bounds is None:
+        return None
+    upm = float(font["head"].unitsPerEm)
+    x0, y0, x1, y1 = (v / upm for v in pen.bounds)
+    return {"left": x0, "bottom": y0, "width": x1 - x0, "height": y1 - y0,
+            "advance": font["hmtx"][name][0] / upm}
+
+
+@lru_cache(maxsize=1)
+def _box_marks_css() -> str:
+    """A checkbox is a glyph (Appendix E CK), so the line box around it is not
+    the box it draws -- an outline on the span sat off the box (T-125).  Every
+    mark on a checkbox -- the unanswered tint, a problem's outline, an
+    import's green, the agent's highlight -- is drawn instead on a zero-advance
+    overlay sized and placed from the glyph's own outline (``box_glyph``), so
+    box, tick and mark share one centre at any size the glyph is set in.  The
+    span stays a plain inline one, so each box keeps the advance and letter
+    spacing it prints with and lands where the printed box does."""
+    g = box_glyph()
+    if g is None:
+        return ""
+    em = lambda v: f"{v:.4f}em"   # noqa: E731
+    return (
+        ".bx[data-pick]{outline:none!important;box-shadow:none!important;"
+        "background:none!important;animation:none!important}\n"
+        ".bx[data-pick]:before{content:'';display:inline-block;pointer-events:none;"
+        f"width:{em(g['width'])};height:{em(g['height'])};vertical-align:{em(g['bottom'])};"
+        f"margin:0 {em(-g['left'] - g['width'])} 0 {em(g['left'])}}}\n"
+        ".bx.mk-fatal:before{outline:1.5pt solid #d92d20}\n"
+        ".bx.mk-warn:before{outline:1.5pt solid #d98a00}\n"
+        "body.show-gaps .bxs.untouched .bx[data-pick]:before{background:rgba(214,158,46,.30)}\n"
+        "body.show-imported .bx.imported:before{background:rgba(47,158,79,.14);"
+        "box-shadow:inset 0 0 0 0.8pt rgba(31,122,60,.9)}\n"
+        ".bx.agent-on:before{outline:1.5pt solid #231f20;outline-offset:1pt;background:#fff3b0}\n"
+        ".bx.found:before{animation:found 1.6s ease-out}\n")
 
 
 def _sized_families(css: str) -> str:
@@ -6931,7 +7080,6 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .bxs{{margin-left:auto;display:block;flex:none;height:11pt;position:relative;top:var(--ck-top)}}
 .wd{{display:block;font-family:'UAD Wingdings2';font-size:12pt;line-height:11pt;font-weight:400;white-space:nowrap}}
 .wd{{letter-spacing:5.3pt;margin-right:-5.3pt}}
-.bx{{display:inline-block;width:12pt;text-align:center;line-height:10pt}}
 .ckf .ckrow{{display:flex;justify-content:space-between;font-weight:700;padding:1.2pt 3pt 0 4pt}}
 .txcb1{{line-height:11pt;padding:5.5pt 0 1pt 4pt;position:relative;top:var(--txc-top)}}
 .txcb1 b,.txcb b{{font-weight:700}}

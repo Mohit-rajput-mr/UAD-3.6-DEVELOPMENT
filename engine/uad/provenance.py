@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from lxml import etree
 
-from . import bind
+from . import bind, edit
 from .report import comparables
 
 
@@ -26,7 +26,8 @@ def answered(root: etree._Element) -> set[str]:
     for fields in bind.page_model().values():
         for pf in fields:
             try:
-                groups = bind.read_groups(root, pf.binding, ordinal=pf.ordinal)
+                # a source tied by arcrole answers where it is tied (T-1072)
+                groups = edit.read_groups(root, pf.binding, ordinal=pf.ordinal)
             except Exception:
                 continue
             if any(value and str(value).strip()

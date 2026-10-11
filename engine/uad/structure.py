@@ -26,7 +26,7 @@ from __future__ import annotations
 from lxml import etree
 
 from . import bind, xsd_order
-from .edit import QN, insert_ordered
+from .edit import QN, Unremovable, add_instance, adopt, insert_ordered, place, remove_block
 
 DWELLING = "Dwelling"
 
@@ -91,7 +91,7 @@ def set_count(prop: etree._Element, count: int) -> list[str]:
         imps = prop.find(f"{QN}IMPROVEMENTS")
         if imps is None:
             imps = insert_ordered(prop, "IMPROVEMENTS")
-        new = insert_ordered(imps, "IMPROVEMENT")
+        new = add_instance(imps, "IMPROVEMENT")
         detail = new.find(f"{QN}IMPROVEMENT_DETAIL")
         if detail is None:
             detail = insert_ordered(new, "IMPROVEMENT_DETAIL")
@@ -106,21 +106,30 @@ def set_count(prop: etree._Element, count: int) -> list[str]:
     for imp in extra:
         into = keep[-1]
         holder = into.find(f"{QN}PROPERTY_UNITS")
+        made = holder is None
         for unit in units(imp):
             if _empty(unit):
                 continue
             if holder is None:
                 holder = insert_ordered(into, "PROPERTY_UNITS")
-            unit.getparent().remove(unit)
-            holder.append(unit)
+            was = unit.getparent()
+            # in schema order -- in place of the empty unit a holder made
+            # here comes with (edit.adopt) -- and the holder it leaves goes
+            # if that leaves it empty
+            (adopt if made else place)(holder, unit)
+            if was.find(f"{QN}PROPERTY_UNIT") is None:
+                try:
+                    remove_block(was)
+                except Unremovable:
+                    pass
             said.append("moved a living unit into the dwelling that stays")
         if _empty(imp):
-            parent = imp.getparent()
-            parent.remove(imp)
             # MISMO forbids an empty IMPROVEMENTS, and a document that does not
             # validate is a worse document than one with a spare block in it.
-            if parent is not None and len(parent) == 0 and parent.getparent() is not None:
-                parent.getparent().remove(parent)
+            try:
+                remove_block(imp)
+            except Unremovable:
+                imp.getparent().remove(imp)
             said.append("removed a dwelling that held nothing")
         else:
             said.append("kept a dwelling that still holds values of its own")
@@ -397,14 +406,17 @@ def prune_dangling(root: etree._Element) -> int:
     (values carried onto a new structure) or removed leaves its links behind,
     and a comparable unit linked to a unit that is not there is linked to
     none -- so it is then matched again, to a unit that exists."""
+    gone = dangling(root)
+    for r in gone:
+        remove_block(r)                  # MISMO: RELATIONSHIPS holds at least one
+    return len(gone)
+
+
+def dangling(root: etree._Element) -> list[etree._Element]:
+    """The relationships whose ``from`` or ``to`` names no element."""
     labels = {e.get(f"{XL}label") for e in root.iter() if isinstance(e.tag, str) and e.get(f"{XL}label")}
-    gone = 0
-    for rels in root.iter(f"{QN}RELATIONSHIPS"):
-        for r in list(rels.findall(f"{QN}RELATIONSHIP")):
-            if r.get(f"{XL}from") not in labels or r.get(f"{XL}to") not in labels:
-                rels.remove(r)
-                gone += 1
-    return gone
+    return [r for rels in root.iter(f"{QN}RELATIONSHIPS") for r in rels.findall(f"{QN}RELATIONSHIP")
+            if r.get(f"{XL}from") not in labels or r.get(f"{XL}to") not in labels]
 
 
 def tidy(root: etree._Element) -> list[str]:
@@ -514,18 +526,18 @@ def _remove(root: etree._Element, node: etree._Element) -> None:
         parent = el.getparent()
         if parent is None:
             continue
-        parent.remove(el)
-        # an emptied plural wrapper goes too (MISMO forbids an empty one)
-        while parent is not None and len(parent) == 0 and parent.getparent() is not None \
-                and xsd_order.required(etree.QName(parent).localname):
-            up = parent.getparent()
-            up.remove(parent)
-            parent = up
+        # an emptied plural wrapper goes too (MISMO forbids an empty one),
+        # and so does any holder then left without a child its schema
+        # requires (edit.remove_block, T-509)
+        try:
+            remove_block(el)
+        except Unremovable:
+            parent.remove(el)            # the save's schema guard says why
     rels = next(root.iter(f"{QN}RELATIONSHIPS"), None)
     if rels is not None:
         for r in list(rels.findall(f"{QN}RELATIONSHIP")):
             if r.get(f"{XL}from") in labels or r.get(f"{XL}to") in labels:
-                rels.remove(r)
+                remove_block(r)          # MISMO: RELATIONSHIPS holds at least one
 
 
 def find(root: etree._Element, key: str) -> etree._Element | None:

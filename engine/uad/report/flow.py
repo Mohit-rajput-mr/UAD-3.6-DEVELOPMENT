@@ -950,25 +950,70 @@ EDIT_JS = """
     // commentary keeps its line breaks; a one-line value does not have any
     var now=(el.classList.contains('multiline')?el.innerText:el.textContent).trim();
     if(now===(el.dataset.was||'').trim()) return;
-    if(el.dataset.li!==undefined){ nameRow(el,now); return; }
     el.dataset.was=now;
     send(el,{value:now});
   }
-  /* A row the appraiser adds to a grid is named once and the name is kept
-     against the subject and every comparable, so the grid reads as one row
-     rather than four differently-named ones. */
-  function nameRow(el,now){
-    var was=el.dataset.liwas||'';
+  /* A row the appraiser adds to a grid (DR §7).  Only the + under a group
+     adds one: it puts one row on the page with its name box ready, and +
+     again goes back to that row rather than adding a second.  The row is
+     kept once it has a name -- against the subject and every comparable, so
+     the grid reads as one row rather than four differently-named ones -- and
+     one left without a name is taken away again.  A name is removed with
+     its x, never by emptying the box. */
+  function nameRow(el){
+    if(el.classList.contains('saving')) return;
+    var now=el.value.trim(), was=el.dataset.liwas||'', tr=el.closest('tr');
+    if(now===was || !now){
+      el.value=was;
+      if(!was && tr && tr.classList.contains('linew')) tr.remove();
+      return;
+    }
     el.classList.remove('failed'); el.classList.add('saving');
     json(api+'/comparables/lineitems',
          {method:'PUT',headers:{'Content-Type':'application/json'},
           body:JSON.stringify({kind:el.dataset.li,container:el.dataset.lic,
                                adjust_type:el.dataset.lit,was:was,name:now})})
-      .then(function(){ el.classList.remove('saving'); el.dataset.liwas=now;
-                        el.dataset.was=now; reloadHere(); })
+      .then(function(){ el.classList.remove('saving'); el.dataset.liwas=now; reloadHere(); })
       .catch(function(err){ el.classList.remove('saving'); el.classList.add('failed');
-                            el.title=err.message; });
+                            el.title=err.message; say(err.message); });
   }
+  function addRow(btn){
+    var at=btn.closest('tr'), prev=at.previousElementSibling;
+    if(prev && prev.classList.contains('linew')){ prev.querySelector('input.liin').focus(); return; }
+    var tr=document.createElement('tr'); tr.className='linew';
+    var td=document.createElement('td'); td.className='lbl liname';
+    var input=document.createElement('input'); input.type='text'; input.className='liin';
+    input.placeholder='Name this row'; input.spellcheck=false; input.setAttribute('aria-label','Row name');
+    ['li','lic','lit'].forEach(function(k){ input.dataset[k]=btn.dataset[k]||''; });
+    input.dataset.liwas='';
+    td.appendChild(input); tr.appendChild(td);
+    var rest=document.createElement('td'); rest.colSpan=Math.max(1,(at.cells[0].colSpan||2)-1);
+    tr.appendChild(rest);
+    at.parentNode.insertBefore(tr,at);
+    input.focus();
+  }
+  /* a cell of a named row is written into that row: the group's rows share
+     one field and one adjustment type, so the name says which */
+  function lineOf(td,body){
+    var tr=td.closest('tr'), li=tr&&tr.querySelector('input.liin');
+    if(li&&li.dataset.liwas){ body.item_name=li.dataset.liwas; body.container=li.dataset.lic; body.line_type=li.dataset.lit; }
+    return body;
+  }
+  document.addEventListener('focusout',function(e){
+    var el=e.target;
+    if(el.matches && el.matches('input.liin')) nameRow(el);
+  });
+  // pressing + leaves the focus in a row being named: taken away on the
+  // blur, the row moved the + from under the pointer and nothing was added
+  document.addEventListener('mousedown',function(e){
+    if(e.target.closest && e.target.closest('.liaddbtn')) e.preventDefault();
+  });
+  document.addEventListener('keydown',function(e){
+    var el=e.target;
+    if(!el.matches || !el.matches('input.liin')) return;
+    if(e.key==='Enter'){ e.preventDefault(); nameRow(el); el.blur(); }
+    if(e.key==='Escape'){ e.preventDefault(); el.value=el.dataset.liwas||''; el.blur(); }
+  });
   document.addEventListener('focusin',function(e){
     var el=e.target;
     if(el.matches && el.matches('.v[contenteditable]')) el.dataset.was=el.textContent;
@@ -1615,7 +1660,7 @@ EDIT_JS = """
   });
 
   document.addEventListener('keydown',function(e){
-    var z=e.target.closest && e.target.closest('.exadd,.compadd,.nuadd,.nudrop,.lidrop');
+    var z=e.target.closest && e.target.closest('.exadd,.compadd,.nuadd,.nudrop,.lidrop,.liaddbtn');
     if(z && (e.key==='Enter'||e.key===' ')){ e.preventDefault(); z.click(); return; }
     var cap=e.target.closest && e.target.closest('.capedit');
     if(cap && e.key==='Enter'){ e.preventDefault(); cap.blur(); }
@@ -1842,10 +1887,11 @@ EDIT_JS = """
     var tbl=td.closest('table[data-gk]'), gkind=(tbl&&tbl.dataset.gk)||'sales', gscope=td.dataset.gs||'';
     grid(gkind).then(function(g){
       if(seq!==cellSeq) return;
-      var row=null;
+      var row=null, item=lineOf(td,{}).item_name||'';
       for(var i=0;i<g.rows.length&&!row;i++){
         var r=g.rows[i];
-        if(adj ? r.adjust_type===adj : (col===0 ? r.subject_fid===fid : r.comp_fid===fid)) row=r;
+        if((adj ? r.adjust_type===adj : (col===0 ? r.subject_fid===fid : r.comp_fid===fid))
+           && (r.item_name||'')===item) row=r;
       }
       if(!row) return;
       var box=document.createElement('div'); box.className='gedit';
@@ -1859,14 +1905,26 @@ EDIT_JS = """
       }else{
         var pts=(col===0?row.subject_points:row.comp_points)||[];
         var parts=(col===0?row.subject_parts:(row.cells[col-1]||{}).parts)||{};
+        var lines=col===0?row.subject_lines:(row.cells[col-1]||{}).lines;
         if(!pts.length) pts=[{data_point:'',options:row.options||[]}];
-        pts.forEach(function(pt){
-          var opts=pt.options||[];
-          if((pt.format||'').toLowerCase()==='boolean') opts=[{value:'true',label:'Yes'},{value:'false',label:'No'}];
-          inputs.push({dp:pt.data_point,el:field(pts.length>1?pt.data_point:'',opts,parts[pt.data_point]||'')});
+        // a stacked cell (a line for each vehicle storage, view, street):
+        // each line has its inputs, written into that line's own block, and
+        // one more line can be added -- not every line written into the first
+        var groups=lines?lines.concat([{line:'',parts:{},add:true}]):[{parts:parts}];
+        groups.forEach(function(g,n){
+          var head=null;
+          if(lines){ head=document.createElement('div'); head.className='gl';
+            head.textContent=g.add?'Add a line':'Line '+(n+1); }
+          pts.filter(function(pt){ return !g.points||g.points.indexOf(pt.data_point)>=0; }).forEach(function(pt,i){
+            var opts=pt.options||[];
+            if((pt.format||'').toLowerCase()==='boolean') opts=[{value:'true',label:'Yes'},{value:'false',label:'No'}];
+            var was=g.parts[pt.data_point]||'';
+            inputs.push({dp:pt.data_point,el:field(pts.length>1?pt.data_point:'',opts,was),
+                         group:lines?g:null,was:was,head:i===0?head:null});
+          });
         });
       }
-      inputs.forEach(function(x){ box.appendChild(x.el); });
+      inputs.forEach(function(x){ if(x.head) box.appendChild(x.head); box.appendChild(x.el); });
       var street=inputs.filter(function(x){return x.dp==='AddressLineText';})[0];
       if(street) addressLookup(street.el.querySelector('input'),inputs,box);
       var err=document.createElement('div'); err.className='err'; box.appendChild(err);
@@ -1875,29 +1933,45 @@ EDIT_JS = """
       box.appendChild(bar);
       bar.querySelector('.no').onclick=shutEditor;
       bar.querySelector('.go').onclick=function(){
-        var chain=Promise.resolve(null);
+        var chain=Promise.resolve(null), last=null;
         inputs.forEach(function(x){
           chain=chain.then(function(){
             var input=x.el.querySelector('input[type=hidden]')||x.el.querySelector('input,select');
             var typedOther=(input.dataset&&input.dataset.typed)||'';
             if(typedOther){
               // words that match no choice: the field's Other, described
-              var desc=inputs.filter(function(y){ return /OtherDescription$/.test(y.dp); })[0];
+              var desc=inputs.filter(function(y){ return /OtherDescription$/.test(y.dp)&&y.group===x.group; })[0];
               var di=desc&&desc.el.querySelector('input');
               if(di&&!di.value) di.value=typedOther;
             }
-            var body=adj?{kind:gkind,adjust_type:adj,value:input.value}
-                        :{kind:gkind,data_point:x.dp,value:input.value};
+            var body=lineOf(td,adj?{kind:gkind,adjust_type:adj,value:input.value}
+                                  :{kind:gkind,data_point:x.dp,value:input.value});
             if(adj&&td.dataset&&td.dataset.gai) body.instance=Number(td.dataset.gai);
             if(gscope) body.scope=gscope;
-            return putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH');
+            if(x.group){
+              // a line's value is sent when it changed; a new line is made by
+              // its first value and the rest are written into it
+              if(input.value===x.was) return null;
+              if(x.group.line) body.line=x.group.line; else body.new=true;
+            }
+            return putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH')
+              .then(function(r){ if(x.group&&r&&r.line) x.group.line=r.line; if(r) last=r; return r; });
           });
         });
-        chain.then(function(res){
+        chain.then(function(){
+          var res=last;
+          if(!res){ shutEditor(); return; }        // nothing changed
           gridData=null; gridByKind={};
           var span=td.tagName==='SPAN'?td:td.querySelector('span');
           var shown=(res&&res.value)||'';
-          if(span && !td.querySelector('.ca')) span.textContent=shown||(adj?'':'\u2014');
+          if(span && !td.querySelector('.ca')){
+            // a stacked cell keeps a line for each, as the report prints it
+            span.textContent='';
+            (shown||(adj?'':'\u2014')).split(String.fromCharCode(10)).forEach(function(t,i){
+              if(i) span.appendChild(document.createElement('br'));
+              span.appendChild(document.createTextNode(t));
+            });
+          }
           else if(td.querySelector('.ca')) td.querySelector('.ca').textContent=shown||'\u2014';
           td.classList.toggle('grey',adj&&!shown);
           shutEditor();
@@ -1972,7 +2046,7 @@ EDIT_JS = """
   function saveCell(td,sp,typed,before){
     var col=Number(td.dataset.gc), fid=td.dataset.gf||'', adj=td.dataset.ga||'';
     var tbl=td.closest('table[data-gk]'), gkind=(tbl&&tbl.dataset.gk)||'sales';
-    var body=adj?{kind:gkind,adjust_type:adj,value:typed}:{kind:gkind,data_point:td.dataset.gin,value:typed};
+    var body=lineOf(td,adj?{kind:gkind,adjust_type:adj,value:typed}:{kind:gkind,data_point:td.dataset.gin,value:typed});
     if(adj&&td.dataset.gai) body.instance=Number(td.dataset.gai);   // its own unit's adjustment
     if(td.dataset.gs) body.scope=td.dataset.gs;
     sp.textContent=typed; td.classList.add('gsaving'); td.classList.remove('gfail','grey');
@@ -2184,10 +2258,12 @@ EDIT_JS = """
         .catch(function(err){ if(ghost) ghost.remove(); say(err.message); });
       return;
     }
+    var liadd=t.closest('.liaddbtn');
+    if(liadd){ e.preventDefault(); addRow(liadd); return; }
     var lidrop=t.closest('.lidrop');
     if(lidrop){
       e.preventDefault();
-      var cell=lidrop.closest('td').querySelector('.v');
+      var cell=lidrop.closest('td').querySelector('[data-li]');
       if(!cell) return;
       ask('The row is removed for the subject and every comparable.',{title:'Remove the row \u201c'+(cell.dataset.liwas||'')+'\u201d?',ok:'Remove row',danger:true}).then(function(ok){
         if(!ok) return;

@@ -121,12 +121,10 @@ def set_pair(root: etree._Element, comp_index: int, unit_index: int, on: bool) -
         return
     for rel in existing:
         ri = own.get(rel.get(f"{X}from"))
-        rel.getparent().remove(rel)
+        # each with every holder the schema needs it in (edit.remove_block)
+        edit.remove_block(rel)
         if ri is not None:
-            holder = ri.getparent()
-            holder.remove(ri)
-            if not len(holder):
-                holder.getparent().remove(holder)
+            edit.remove_block(ri)
 
 
 def pair_new_comparable(root: etree._Element) -> None:

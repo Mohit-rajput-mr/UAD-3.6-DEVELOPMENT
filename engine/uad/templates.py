@@ -406,9 +406,16 @@ def clear(root: etree._Element, *, prune_empty: bool = False) -> int:
         bare = 0
     removed += bare
     removed += _drop_bare_repeats(root)
+    removed += _drop_unshown_repeats(root)
     if prune_empty:
         removed += prune(root)
     _restore_required_containers(root)
+    # A link whose end blanking took away (the sample's appraiser ROLE, a
+    # prior-sale indicator's label, a defect dropped above) links to nothing:
+    # H-1 UAD1718/UAD1719 fault it, and nothing the appraiser types repairs
+    # it.  The editor makes the link again when the thing comes back
+    # (edit._related_instance, edit._data_source_for).
+    removed += _drop_dangling(root)
     return removed
 
 
@@ -504,9 +511,19 @@ def _drop_bare_instances(root: etree._Element) -> int:
 #: IMPROVEMENT deliberately do not: the report is *about* those, the grid is
 #: built from them, and a report that starts with no comparable properties has
 #: no columns to fill.
-BARE_BLOCKS = ("COMPARABLE_ADJUSTMENT", "PROPERTY_DEFECT",
+#:
+#: Each is named by the block that repeats.  This list once named
+#: PROPERTY_DEFECT, which sits directly in PROPERTY and never in a plural
+#: wrapper, so it never matched: every new report carried the sample's empty
+#: DEFECT rows (nine on a 2-4 unit report), which the editor rightly never
+#: shows -- no section's "defects exist?" is answered -- and H-1 asked for a
+#: description, location, action and soundness answer for them all
+#: (UAD1710-1714, T-506).  A REAL_PROPERTY_INTEREST says a right is left out of
+#: the appraisal; H-1 asks for one only once "all rights included?" is No
+#: (UAD1030), an answer no new report carries, yet the empty one drew UAD1029.
+BARE_BLOCKS = ("COMPARABLE_ADJUSTMENT", "DEFECT",
                "VALUATION_REPORT_ADDITIONAL_CERTIFICATION",
-               "AMENITY", "SALES_HISTORY")
+               "AMENITY", "SALES_HISTORY", "REAL_PROPERTY_INTEREST")
 
 
 def _drop_bare_repeats(root: etree._Element) -> int:
@@ -518,45 +535,176 @@ def _drop_bare_repeats(root: etree._Element) -> int:
     taught: dropping a bare dwelling cleared some findings and emptied
     IMPROVEMENTS, which MISMO requires to hold one, and five schema errors is
     a worse document than a spare block.  The emptied container goes with the
-    last block inside it.
+    last block inside it.  Each kind of block is weighed on its own, so one
+    whose removal the schema dislikes does not keep the others.
     """
-    from . import bind, schema          # circular at module level
+    bare = _bare_repeats(root)
+    return sum(_drop_guarded(root, [n for n in bare if etree.QName(n).localname == name])
+               for name in BARE_BLOCKS)
 
-    before = len(schema.validate(root.getroottree()))
+
+def _bare_repeats(root: etree._Element) -> list[etree._Element]:
+    """Blocks that repeat (their parent names them in the plural) and hold
+    nothing but structure -- the type that says which block they are.  A
+    block blanking emptied of every child counts too (a sample's SALES_HISTORY
+    holds its values directly); an empty element that says what it says in
+    its attributes (a RELATIONSHIP) does not."""
+    from . import bind                  # circular at module level
+
     keep = structure_elements()
-    removed, undo = 0, []
-
-    def bare(node: etree._Element) -> bool:
-        return not any((leaf.text or "").strip()
-                       for leaf in node.iter()
-                       if isinstance(leaf.tag, str) and not len(leaf)
-                       and etree.QName(leaf).localname not in keep)
-
-    for node in list(root.iter()):
-        if not isinstance(node.tag, str) or not len(node):
+    out = []
+    for node in root.iter():
+        if not isinstance(node.tag, str):
             continue
-        name = etree.QName(node).localname
-        if name not in BARE_BLOCKS:
+        if not len(node) and ((node.text or "").strip()
+                              or any(a != f"{{{XLINK}}}label" for a in node.attrib)):
             continue
         parent = node.getparent()
-        if parent is None or not bind.is_plural_of(etree.QName(parent).localname, name):
+        if parent is None or not bind.is_plural_of(etree.QName(parent).localname,
+                                                   etree.QName(node).localname):
             continue
-        if not bare(node):
-            continue
-        undo.append((parent, list(parent).index(node), node))
-        parent.remove(node)
-        removed += 1
-        if len(parent) == 0 and parent.getparent() is not None:
-            grand = parent.getparent()
-            undo.append((grand, list(grand).index(parent), parent))
-            grand.remove(parent)
-            removed += 1
+        if not any((leaf.text or "").strip() for leaf in node.iter()
+                   if isinstance(leaf.tag, str) and not len(leaf)
+                   and etree.QName(leaf).localname not in keep):
+            out.append(node)
+    return out
 
-    if len(schema.validate(root.getroottree())) > before:
-        for parent, where, node in reversed(undo):
-            parent.insert(where, node)
+
+def _drop_guarded(root: etree._Element, nodes: list[etree._Element]) -> int:
+    """Remove these blocks (and a wrapper each leaves empty), unless the
+    schema likes the document less for it -- then put every one back.
+
+    Where the schema objects because the emptied wrapper was required, the
+    container around it goes too when that states nothing either: DEFECTS
+    must hold a DEFECT and PROPERTY_DEFECT must hold DEFECTS, so a new
+    report's empty defect rows go with the empty PROPERTY_DEFECT around them
+    -- which the editor makes again with the first defect written."""
+    from . import schema                # circular at module level
+
+    nodes = [n for n in nodes if not any(m is not n and m in n.iterancestors() for m in nodes)]
+    if not nodes:
         return 0
-    return removed
+    before = len(schema.validate(root.getroottree()))
+
+    def attempt(climb: bool) -> int:
+        removed, undo = 0, []
+
+        def take(node: etree._Element) -> etree._Element:
+            parent = node.getparent()
+            undo.append((parent, list(parent).index(node), node))
+            parent.remove(node)
+            return parent
+
+        for node in nodes:
+            if node.getparent() is None:
+                continue
+            parent = take(node)
+            removed += 1
+            if len(parent) == 0 and parent.getparent() is not None:
+                grand = take(parent)
+                removed += 1
+                if climb and grand.getparent() is not None and not any(
+                        (e.text or "").strip() for e in grand.iter() if isinstance(e.tag, str)):
+                    take(grand)
+                    removed += 1
+        if len(schema.validate(root.getroottree())) > before:
+            for parent, where, node in reversed(undo):
+                parent.insert(where, node)
+            return 0
+        return removed
+
+    return attempt(False) or attempt(True)
+
+
+@lru_cache(maxsize=1)
+def _rule_sections() -> dict[tuple[str, str], list[tuple[tuple[str, ...], frozenset[str]]]]:
+    """For each repeating block (plural wrapper, block), the H-1 rules that
+    police something inside it: the property roles each applies to and the
+    report sections it reports in (H-1's Section column; "Does Not Display"
+    names no section)."""
+    from . import bind, compliance      # circular at module level
+
+    out: dict[tuple[str, str], list] = {}
+    for rule in compliance.rules():
+        segs = [s for s in rule.container_path.strip("/").split("/") if s and s != ".."]
+        sections = frozenset(s.strip() for s in (rule.section or "").split(";")
+                             if s.strip() and s.strip() != "Does Not Display")
+        if not sections:
+            continue
+        for wrapper, block in zip(segs, segs[1:]):
+            if bind.is_plural_of(wrapper, block):
+                out.setdefault((wrapper, block), []).append((rule.roles, sections))
+    return out
+
+
+def _drop_unshown_repeats(root: etree._Element) -> int:
+    """Remove a bare block whose every H-1 rule reports in a section B-1 does
+    not show for this report.
+
+    SF1 is a PUD: its homeowners association, with a dues charge and a special
+    assessment, survives blanking as two charges holding only their type.  A
+    new single-family report is in no project or PUD until the appraiser says
+    so, so B-1 shows no Project Information (``form.section_shown``) and H-1
+    -- which asks for the amount of every dues charge that exists (UAD1573),
+    and for a dues charge only "IF PropertyInProjectIndicator = true or
+    PUDIndicator = true" (UAD1572) -- asked for an amount the report has no
+    place for.  A condominium's or co-op's blank shows the section, so its
+    charges stay and are asked for.  The editor makes a charge again when the
+    appraiser writes one (``edit.instance_for``).  The sections are the
+    URAR's: an update or completion report (D-2 / D-3) keeps its blocks.
+    """
+    from . import report_types          # circular at module level
+    from .report import form
+
+    if report_types.kind_of(root) != report_types.URAR:
+        return 0
+    by_block = _rule_sections()
+    ctx = form.Ctx(root)
+    shown: dict[str, bool] = {}
+
+    def off(section: str) -> bool:
+        if section not in shown:
+            shown[section] = form.section_shown(ctx, section) is False
+        return shown[section]
+
+    unshown = []
+    for node in _bare_repeats(root):
+        key = (etree.QName(node.getparent()).localname, etree.QName(node).localname)
+        role = next((p.get("ValuationUseType") for p in node.iterancestors(f"{{{NS['m']}}}PROPERTY")), None)
+        sections = {s for roles, secs in by_block.get(key, ()) if not roles or role in roles for s in secs}
+        if sections and all(off(s) for s in sections):
+            unshown.append(node)
+    return _drop_guarded(root, unshown)
+
+
+def drop_unclaimed(root: etree._Element) -> int:
+    """Leave out of the delivered file what the report never shows.
+
+    Three things, none holding a value: a block in ``BARE_BLOCKS`` with
+    nothing at all in it -- not even its type -- which states only that a
+    defect, a right left out exists (the editor never makes one: a row is
+    created with its first value); a bare block in a section B-1 does not show
+    for this report (``_drop_unshown_repeats``); and a link to something that
+    is not there.  Reports made before ``clear`` removed them carry the
+    sample's, and H-1 asked about every one (UAD1710-1714, UAD1029, UAD1573,
+    UAD1719) though no appraiser could see, let alone answer, them.
+    ``delivery.as_delivered`` calls this, so the package and the Review Master,
+    which judges that copy, agree (T-506).  Nothing with a value in it is
+    removed, and nothing whose removal the schema would object to.
+    """
+    empty = [n for n in _bare_repeats(root)
+             if not any((e.text or "").strip() for e in n.iter() if isinstance(e.tag, str))]
+    removed = sum(_drop_guarded(root, [n for n in empty if etree.QName(n).localname == name])
+                  for name in BARE_BLOCKS)
+    removed += _drop_unshown_repeats(root)
+    return removed + _drop_dangling(root)
+
+
+def _drop_dangling(root: etree._Element) -> int:
+    """The links to nothing (``structure.dangling``), with the RELATIONSHIPS
+    they leave empty -- unless the schema likes the document less for it."""
+    from .structure import dangling     # circular at module level
+    return _drop_guarded(root, dangling(root))
 
 
 def _drop_bare(root: etree._Element, tag: str, discriminator: str) -> int:

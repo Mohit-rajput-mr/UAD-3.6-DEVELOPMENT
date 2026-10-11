@@ -355,16 +355,17 @@ def name_of(location: str) -> str:
     return re.split(r"[\\/]", (location or "").strip().rstrip("\\/"))[-1]
 
 
-def build(tree, media: Iterable[Any], media_dir: Path, *,
-          fills: dict[str, str] | None = None,
-          template_names: Iterable[str] = (), kind: str = "sales") -> Package:
-    """The XML that ships and the images that go with it, with every fault.
+def as_delivered(tree, faults: list[Fault] | None = None) -> etree._ElementTree:
+    """The case document as the package writes it, before its images.
 
-    ``media`` are the case's stored images (objects with media_id, category,
-    filename, caption, section, comparable, provenance); ``fills`` maps an
-    image location already in the document to the media_id that replaces it;
-    ``template_names`` are file names that came with a D-1 template and must
-    not ship.
+    Everything here is the package's to write, never the appraiser's: the
+    software that produced the file, the statements A-1 defines from the
+    report itself (``_delivery_only``), the PDF's file name.  The Review
+    Master judges this copy (``review.build``), so a rule only the package can
+    satisfy -- UAD1270's PDF name, UAD1211's government-agency indicator --
+    is not a fatal finding the appraiser can never clear, and a rule the
+    package cannot satisfy is counted exactly as a checker will see it
+    (T-506).  ``faults`` collects what cannot be written (no vendor set).
     """
     root = deepcopy(tree.getroot() if hasattr(tree, "getroot") else tree)
     # xsi:schemaLocation (carried in from a D-1 sample) is not permitted by the
@@ -377,11 +378,13 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
             for name in [a for a in el.attrib if a in DROPPED_ATTRIBUTES]:
                 del el.attrib[name]
     etree.cleanup_namespaces(root)
-    out = Package(etree.ElementTree(root))
-    media = list(media)
-    by_id = {m.media_id: m for m in media}
-    fills = dict(fills or {})
-    template_names = set(template_names)
+    faults = faults if faults is not None else []
+
+    # --- what the report never shows and states nothing: a sample's empty
+    # defect row, a charge in a section B-1 leaves out, a link to nothing (a
+    # report made before templates.clear removed them carries them)
+    from . import templates
+    templates.drop_unclaimed(root)
 
     # --- the software that produced the report (A-1: R)
     who = vendor()
@@ -390,10 +393,10 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
         if who.get(key):
             _set_leaf(root, name, "VALUATION_SOFTWARE_SYSTEM", who[key])
         else:
-            out.faults.append(Fault(FATAL, "VENDOR-UNSET",
-                                    f"{name} is required (A-1) and names the software "
-                                    "that produced the report.",
-                                    "Set it in engine/config/vendor.json."))
+            faults.append(Fault(FATAL, "VENDOR-UNSET",
+                                f"{name} is required (A-1) and names the software "
+                                "that produced the report.",
+                                "Set it in engine/config/vendor.json."))
     # An identifier for the product may reasonably be the product's own name;
     # a version may not -- writing the product name where the file says which build
     # produced it is worse than leaving it out, so it is reported instead.
@@ -405,17 +408,38 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
         _set_leaf(root, "ValuationSoftwareProductVersionIdentifier",
                   "VALUATION_SOFTWARE_SYSTEM", who["product_version"])
     else:
-        out.faults.append(Fault(WARNING, "VENDOR-VERSION",
-                                "ValuationSoftwareProductVersionIdentifier is required "
-                                "(A-1) and names the build that produced the file.",
-                                "Set product_version in engine/config/vendor.json."))
+        faults.append(Fault(WARNING, "VENDOR-VERSION",
+                            "ValuationSoftwareProductVersionIdentifier is required "
+                            "(A-1) and names the build that produced the file.",
+                            "Set product_version in engine/config/vendor.json."))
 
     # --- what A-1 requires in the file but never prints
-    _delivery_only(root, out)
+    _delivery_only(root, None)
 
     # --- the PDF, by reference (B-1 p72)
     _set_leaf(root, "ObjectURL", "FOREIGN_OBJECT", f"\\\\{PDF_NAME}")
     _set_leaf(root, "MIMETypeIdentifier", "VIEW_FILES/VIEW_FILE/FOREIGN_OBJECT", "application/pdf")
+    return etree.ElementTree(root)
+
+
+def build(tree, media: Iterable[Any], media_dir: Path, *,
+          fills: dict[str, str] | None = None,
+          template_names: Iterable[str] = (), kind: str = "sales") -> Package:
+    """The XML that ships and the images that go with it, with every fault.
+
+    ``media`` are the case's stored images (objects with media_id, category,
+    filename, caption, section, comparable, provenance); ``fills`` maps an
+    image location already in the document to the media_id that replaces it;
+    ``template_names`` are file names that came with a D-1 template and must
+    not ship.
+    """
+    faults: list[Fault] = []
+    out = Package(as_delivered(tree, faults), faults=faults)
+    root = out.tree.getroot()
+    media = list(media)
+    by_id = {m.media_id: m for m in media}
+    fills = dict(fills or {})
+    template_names = set(template_names)
 
     subject = bind.subject(root)
     files: dict[str, Path] = {}

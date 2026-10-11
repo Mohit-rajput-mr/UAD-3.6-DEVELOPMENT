@@ -58,26 +58,159 @@ def insert_ordered(parent: etree._Element, tag: str) -> etree._Element:
 
 
 def _insert_ordered(parent: etree._Element, tag: str) -> etree._Element:
-    node = etree.SubElement(parent, f"{QN}{tag}")
+    return place(parent, etree.SubElement(parent, f"{QN}{tag}"))
+
+
+def place(parent: etree._Element, node: etree._Element) -> etree._Element:
+    """Put an element (new, moved or copied) into ``parent`` where the XSD's
+    sequence puts it: after its own kind, before what the sequence lists
+    later.  ``append`` puts it last -- after an EXTENSION, say, which the
+    sequence always puts last -- and the schema refuses the document."""
+    if node.getparent() is not None:
+        node.getparent().remove(node)
     order = _order_of(etree.QName(parent).localname)
-    if not order:
-        return node
-    rank = order.get(tag)
-    if rank is None:
-        return node
-    parent.remove(node)
-    placed = False
-    for i, sibling in enumerate(parent):
-        if not isinstance(sibling.tag, str):
-            continue
-        other = order.get(etree.QName(sibling).localname)
-        if other is not None and other > rank:
-            parent.insert(i, node)
-            placed = True
-            break
-    if not placed:
-        parent.append(node)
+    rank = order.get(etree.QName(node).localname) if order else None
+    if rank is not None:
+        for i, sibling in enumerate(parent):
+            if not isinstance(sibling.tag, str):
+                continue
+            other = order.get(etree.QName(sibling).localname)
+            if other is not None and other > rank:
+                parent.insert(i, node)
+                return node
+    parent.append(node)
     return node
+
+
+def add_instance(parent: etree._Element, tag: str) -> etree._Element:
+    """Another instance of a repeating block, where the XSD puts it.
+
+    A holder made by ``insert_ordered`` comes with the instance its schema
+    requires (ROOMS with a ROOM), so appending a second one beside it -- or
+    appending at all, after an EXTENSION the sequence puts last -- left an
+    empty phantom row next to every first room, flooring or amenity added.
+    An empty, unlabelled instance already standing is that instance."""
+    fresh = next((x for x in parent.findall(f"{QN}{tag}")
+                  if not x.attrib and not "".join(x.itertext()).strip()), None)
+    return fresh if fresh is not None else insert_ordered(parent, tag)
+
+
+def adopt(parent: etree._Element, node: etree._Element) -> etree._Element:
+    """Move or copy an existing block into ``parent``, in schema order --
+    in place of the empty, unlabelled instance of its kind the holder was
+    created with, when there is one (``add_instance``'s rule)."""
+    tag = etree.QName(node).localname
+    fresh = next((x for x in parent.findall(f"{QN}{tag}")
+                  if x is not node and not x.attrib and not "".join(x.itertext()).strip()), None)
+    if fresh is None:
+        return place(parent, node)
+    if node.getparent() is not None:
+        node.getparent().remove(node)
+    parent.replace(fresh, node)
+    return node
+
+
+class Unremovable(ValueError):
+    """A block the schema needs where it is, inside a holder that still holds
+    an answer: taking it out would leave the document invalid."""
+
+
+def remove_block(node: etree._Element) -> list[etree._Element]:
+    """Take a block out of the document, with every holder the schema no
+    longer lets stand without it.  Returns what was removed, innermost first.
+
+    MISMO nests a repeat inside wrappers that must each hold one of the next
+    (GSE subschema): PROPERTY_AMENITY > AMENITY_CATEGORIES > AMENITY_CATEGORY
+    > AMENITIES > AMENITY, every one minOccurs 1.  The removers here took the
+    block out and its holder with it when the holder was left empty -- so the
+    last amenity of a category went with its AMENITIES and left the
+    AMENITY_CATEGORY holding only its AMENITY_CATEGORY_DETAIL, which the
+    schema refuses ("AMENITY_CATEGORY_DETAIL is not expected. Expected is
+    AMENITIES", T-509, owner screenshot 04).
+
+    So the walk goes on up: a holder left empty, or with fewer of a child
+    than its XSD sequence requires (``xsd_order.min_occurs``: one, or the
+    three MARKET_INVENTORY of a MARKET_INVENTORIES), goes too -- the category
+    with its last amenity, the category list with its last category -- until
+    one can stand.  A holder
+    that still holds an answer (anything but the type values that only say
+    which block it is, ``templates.structure_elements``), that a relationship
+    points at, or that the document is made of (the property, the service,
+    the deal: ``bind.DOCUMENT_SINGLETONS``) is never discarded to make room:
+    the removal is refused with ``Unremovable`` and nothing is changed.
+    """
+    doomed = removal_plan(node)
+    top = doomed[-1]
+    top.getparent().remove(top)
+    return doomed
+
+
+def removal_plan(node: etree._Element) -> list[etree._Element]:
+    """What ``remove_block`` would take out, innermost first, without taking
+    anything: the last element is the one actually detached.  Raises
+    ``Unremovable`` where the removal would leave the document invalid."""
+    parent = node.getparent()
+    if parent is None:
+        raise Unremovable("that block is the document itself")
+    doomed = [node]
+    child = node
+    while True:
+        name, tag = etree.QName(child).localname, etree.QName(parent).localname
+        left = [c for c in parent if isinstance(c.tag, str) and c is not child]
+        need = xsd_order.min_occurs(tag, name)
+        lacks = sum(1 for c in left if etree.QName(c).localname == name) < need
+        empty = not left and not (parent.text or "").strip()
+        if not (lacks or empty):
+            break
+        if (parent.getparent() is None or tag in bind.DOCUMENT_SINGLETONS
+                or _holds_answer(parent, child) or _linked(parent)):
+            if lacks:
+                raise Unremovable(
+                    f"The {tag.replace('_', ' ').lower()} must keep "
+                    f"{'at least one' if need == 1 else need} "
+                    f"{name.replace('_', ' ').lower()}, so this one cannot be removed.")
+            break
+        doomed.append(parent)
+        child, parent = parent, parent.getparent()
+    return doomed
+
+
+def empty_block(node: etree._Element) -> etree._Element:
+    """Reduce a block the schema will not let go (the only PARTY of a
+    SERVICE) to the bare instance its XSD sequence requires -- a PARTY with a
+    ROLE that names no one, the shape a blank report starts with."""
+    for child in list(node):
+        node.remove(child)
+    node.text = None
+    for child in xsd_order.required(etree.QName(node).localname):
+        if child.isupper():
+            insert_ordered(node, child)
+    return node
+
+
+def _holds_answer(holder: etree._Element, besides: etree._Element) -> bool:
+    """Does anything in ``holder``, outside ``besides``, carry a value other
+    than a type that only says which block it is?"""
+    from . import templates                       # circular at module level
+    keep = templates.structure_elements()
+    for child in holder:
+        if not isinstance(child.tag, str) or child is besides:
+            continue
+        if len(child):
+            if _holds_answer(child, besides):
+                return True
+        elif (child.text or "").strip() and etree.QName(child).localname not in keep:
+            return True
+    return False
+
+
+def _linked(node: etree._Element) -> bool:
+    """Does a relationship point at this element?"""
+    label = node.get(f"{XL}label")
+    if not label:
+        return False
+    return any(label in (rel.get(f"{XL}from"), rel.get(f"{XL}to"))
+               for rel in node.getroottree().getroot().iter(f"{QN}RELATIONSHIP"))
 
 
 def _continues_through(node: etree._Element, tag: str, rest: list[str]) -> etree._Element | None:
@@ -374,6 +507,11 @@ def write(tree, field_id: str, value: str, *, data_point: str = "",
     marks = _marks(dp, field_id)
     if leaf is not None and not bind.instance_has(leaf, own or marks):
         leaf = None                      # an untyped instance is not this one
+    if leaf is None and not str(value).strip():
+        # nothing there and nothing typed: a blank never creates a block, nor
+        # types one -- the grid's Save sends its empty "Other" descriptions,
+        # and each made a CAR_STORAGE of type Other (CarStorageType = "Other")
+        return Written(field_id, leaf_tag, xpath, "", "", [])
     if leaf is None and ordinal == 1 and marks:
         # 'IF PartyRoleType = "AppraiserSupervisor"': the value belongs in the
         # instance of a block that carries that type -- found, or created with

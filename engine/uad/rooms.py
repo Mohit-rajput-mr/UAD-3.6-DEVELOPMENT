@@ -86,8 +86,10 @@ def add_room(level: etree._Element, room_type: str, other: str = "") -> etree._E
     holder = unit.find(f"{M}ROOMS")
     if holder is None:
         holder = edit.insert_ordered(unit, "ROOMS")
-    room = etree.SubElement(holder, f"{M}ROOM")
-    detail = edit.insert_ordered(room, "ROOM_DETAIL")
+    room = edit.add_instance(holder, "ROOM")
+    detail = room.find(f"{M}ROOM_DETAIL")
+    if detail is None:
+        detail = edit.insert_ordered(room, "ROOM_DETAIL")
     edit.insert_ordered(detail, "LevelType").text = kind
     edit.insert_ordered(detail, "RoomType").text = room_type
     if room_type == "Other":
@@ -104,11 +106,9 @@ def remove_room(level: etree._Element, room_type: str, other: str = "") -> bool:
     if not matching:
         return False
     victim = min(matching, key=lambda r: (sum(1 for _ in r.iter()), -matching.index(r)))
-    holder = victim.getparent()
-    holder.remove(victim)
-    if not len(holder):
-        holder.getparent().remove(holder)
-    recount(unit_of(level))
+    unit = unit_of(level)
+    edit.remove_block(victim)
+    recount(unit)
     return True
 
 
@@ -117,14 +117,8 @@ def remove_level(level: etree._Element) -> int:
     unit = unit_of(level)
     rooms = rooms_on(level)
     for r in rooms:
-        holder = r.getparent()
-        holder.remove(r)
-        if not len(holder):
-            holder.getparent().remove(holder)
-    holder = level.getparent()
-    holder.remove(level)
-    if not len(holder):
-        holder.getparent().remove(holder)
+        edit.remove_block(r)
+    edit.remove_block(level)
     recount(unit)
     return len(rooms)
 
@@ -178,8 +172,10 @@ def flooring_component(unit: etree._Element, *, create: bool = False) -> etree._
     holder = unit.find(f"{M}INTERIOR_COMPONENTS")
     if holder is None:
         holder = edit.insert_ordered(unit, "INTERIOR_COMPONENTS")
-    comp = etree.SubElement(holder, f"{M}INTERIOR_COMPONENT")
-    detail = edit.insert_ordered(comp, "INTERIOR_COMPONENT_DETAIL")
+    comp = edit.add_instance(holder, "INTERIOR_COMPONENT")
+    detail = comp.find(f"{M}INTERIOR_COMPONENT_DETAIL")
+    if detail is None:
+        detail = edit.insert_ordered(comp, "INTERIOR_COMPONENT_DETAIL")
     edit.insert_ordered(detail, "ImprovementComponentType").text = "Flooring"
     return comp
 
@@ -199,7 +195,7 @@ def add_flooring(unit: etree._Element, flooring_type: str, other: str = "") -> e
             or (fc.findtext(f"{M}FlooringTypeOtherDescription") or "").strip().casefold() == other.strip().casefold())
         if same:
             raise ValueError("that flooring is already listed for this unit")
-    fc = etree.SubElement(holder, f"{M}FLOOR_COVERING")
+    fc = edit.add_instance(holder, "FLOOR_COVERING")
     edit.insert_ordered(fc, "FlooringType").text = flooring_type
     if flooring_type == "Other":
         edit.insert_ordered(fc, "FlooringTypeOtherDescription").text = other.strip()
@@ -207,8 +203,9 @@ def add_flooring(unit: etree._Element, flooring_type: str, other: str = "") -> e
 
 
 def remove_block(root: etree._Element, key: str, tag: str) -> None:
-    """Remove one repeated block (a FLOOR_COVERING row) and any holder it
-    leaves empty."""
+    """Remove one repeated block (a FLOOR_COVERING or AMENITY row) and every
+    holder the schema no longer lets stand without it -- the last amenity of
+    a category takes the category with it (``edit.remove_block``, T-509)."""
     node = bind.find_path(root, key)
     if node is None:
         try:
@@ -220,10 +217,7 @@ def remove_block(root: etree._Element, key: str, tag: str) -> None:
         node = node.getparent()
     if node is None:
         raise KeyError("that row is no longer in the report; reload it")
-    holder = node.getparent()
-    holder.remove(node)
-    if not len(holder):
-        holder.getparent().remove(holder)
+    edit.remove_block(node)
 
 
 def unit_at(root: etree._Element, key: str) -> etree._Element:

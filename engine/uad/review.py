@@ -8,14 +8,17 @@ ships, from three independent authorities, and reports them together:
                  element order, a value that is not of its declared type, a
                  required container missing.
 ``compliance``   the 728 published H-1 rules, by Message ID and severity --
-                 the same identifiers a checker quotes back.
+                 the same identifiers a checker quotes back -- run against
+                 the document as the package will deliver it.
 ``completeness`` fields Appendix B-1 says should appear on the page for this
                  property but which carry no value.
 
 The verdict is deliberately blunt: a package is either **ready** or it is not,
 and the sign-off gate reads that verdict rather than forming its own opinion.
 Anything the compliance engine could not execute is carried through as
-``review`` so it is visible rather than silently counted as a pass.
+``review`` so it is visible rather than silently counted as a pass; so is a
+finding on a section B-1 leaves out of this report, so it is visible rather
+than counted against a report that does not ask for it (``shown_in``).
 """
 from __future__ import annotations
 
@@ -135,10 +138,78 @@ def _schema_items(tree) -> list[Item]:
     return out
 
 
-def _compliance_items(tree) -> list[Item]:
-    out = []
+#: H-1's Section column for a data point the report never prints
+NOT_DISPLAYED = "Does Not Display"
+#: how a finding on a section the report leaves out is carried (``findings``)
+NOT_COUNTED = "not counted"
+
+
+def shown_in(tree):
+    """Does the report show where a finding lives?  A predicate per case.
+
+    Read from the report's own visibility, the same calls ``form.build``
+    makes: a section B-1 leaves out of this report (``form.section_shown``:
+    Project Information outside a project or PUD, the Income Approach not
+    developed), or one its own question switched off (``form.print_gate``),
+    where only that question stays on the page.  A finding counts when any
+    section H-1 places it in is shown; a data point the report never prints
+    ("Does Not Display") is governed by H-1's own condition alone.  Only the
+    URAR has B-1 sections; the other report types are judged as written.
+    """
     from . import report_types
-    for f in report_types.evaluate(tree):        # H-1, or H-2 / H-3 by kind
+    from .report import form
+    root = tree.getroot() if hasattr(tree, "getroot") else tree
+    if report_types.kind_of(root) != report_types.URAR:
+        return lambda f: True
+    ctx = form.Ctx(root)
+    off: dict[str, bool] = {}
+
+    def section_off(name: str) -> bool:
+        if name not in off:
+            off[name] = (form.section_shown(ctx, name) is False
+                         or form.print_gate(ctx, name) is False)
+        return off[name]
+
+    def shown(f) -> bool:
+        names = [s.strip() for s in (f.section or "").split(";")
+                 if s.strip() and s.strip() != NOT_DISPLAYED]
+        return not names or any(not section_off(s) or f.field_id in form.switch_fields(s)
+                                for s in names)
+    return shown
+
+
+def findings(tree) -> list[compliance.Finding]:
+    """H-1 (or H-2 / H-3) against the file that ships, with every finding on
+    something this report does not show turned into one for a person to
+    judge -- never a fatal finding or a warning.
+
+    The package writes some of what A-1 requires itself -- the PDF's file
+    name, the indicators A-1 defines from the report -- and leaves out what
+    the report never shows and states nothing (``delivery.as_delivered``).
+    Judged on the editor's copy, those were fatal findings no appraiser could
+    ever clear: a field the report never shows, which nobody can type into,
+    and a report made from blank could not be signed (T-506).  What is left on
+    a section B-1 leaves out (``shown_in``) holds a value the appraiser gave
+    before the report changed; it is shown, not counted.
+    """
+    from dataclasses import replace
+
+    from . import delivery, report_types
+    shown = shown_in(tree)
+    out = []
+    for f in report_types.evaluate(delivery.as_delivered(tree)):   # H-1, or H-2 / H-3 by kind
+        if f.status == compliance.FINDING and not shown(f):
+            f = replace(f, status=compliance.REVIEW,
+                        reason=f"{NOT_COUNTED}: {f.section} is not in this report (B-1); "
+                               "what H-1 found there is still in the file")
+        out.append(f)
+    return out
+
+
+def _compliance_items(tree) -> list[Item]:
+    """The findings above, as Review Master items."""
+    out = []
+    for f in findings(tree):
         if f.status == compliance.FINDING:
             out.append(Item(
                 source=COMPLIANCE, severity=f.severity, code=f.message_id,
@@ -152,7 +223,8 @@ def _compliance_items(tree) -> list[Item]:
                 message=f.text or f.logic,
                 field_id=f.field_id, section=f.section, subsection=f.subsection,
                 label=f.label, path=f.path,
-                detail=f"not executed automatically: {f.reason}",
+                detail=(f.reason if f.reason.startswith(NOT_COUNTED)
+                        else f"not executed automatically: {f.reason}"),
             ))
     return out
 

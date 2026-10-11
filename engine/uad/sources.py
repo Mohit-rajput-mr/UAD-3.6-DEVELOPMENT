@@ -82,11 +82,11 @@ def write(root: etree._Element, target: str, data_point: str, value: str,
         labels = {ds.get(f"{X}label") for ds in have}
         for rel in list(root.iter(f"{M}RELATIONSHIP")):
             if rel.get(f"{X}from") in labels and rel.get(f"{X}to") == target_el.get(f"{X}label"):
-                rel.getparent().remove(rel)
+                edit.remove_block(rel)   # MISMO: RELATIONSHIPS holds at least one
         for ds in have:
             still = any(r.get(f"{X}from") == ds.get(f"{X}label") for r in root.iter(f"{M}RELATIONSHIP"))
             if not still:
-                ds.getparent().remove(ds)
+                edit.remove_block(ds)    # and DATA_SOURCES at least one DATA_SOURCE
         return old, ""
     if data_point != "DataSourceType" and have:
         # a description, name or identifier belongs to the source already there

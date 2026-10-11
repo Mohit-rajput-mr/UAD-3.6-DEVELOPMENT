@@ -2059,10 +2059,13 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind == "slot" and len(ids) == 3 and _formula_labels(els, el):
             # "Total Monthly Market Rent x Gross Rent Multiplier = Indicated
             # Value by Income Approach" (C-1 p35): the labels C-1 sets on the
-            # line above, each value under its label (D-1 2-4 p22)
+            # line above, each value under its label (D-1 2-4 p22).  The
+            # editor draws it empty too: the multiplier and the value are
+            # what H-1 asks for (UAD1242 / UAD1243) and had nowhere to be
+            # typed until they held something (T-506)
             flush()
-            out.append(Block("table", section=printed, visible=bool(text_of(ctx, ids)), fids=ids,
-                             html=_formula_html(ctx, ids, _formula_labels(els, el))))
+            out.append(Block("table", section=printed, visible=bool(text_of(ctx, ids)) or ctx.edit,
+                             fids=ids, html=_formula_html(ctx, ids, _formula_labels(els, el))))
             continue
         if kind == "slot":
             # a value set directly under a bar: commentary, an exhibit set, a map
@@ -3168,7 +3171,7 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 shown_cells.append(v.casefold())
                 if set(c["ids"]) & COST_LINE_AMOUNT:
                     amount = -float(re.sub(r"[^\d.]", "", v) or 0)
-                line.append(_cell(esc(v), c["ids"][0], ctx, key=key) if (ctx.edit and c["ids"])
+                line.append(_row_cell(esc(v), c["ids"][0], ctx, key) if (ctx.edit and c["ids"])
                             else _td(esc(v)))
             if has:
                 rows_html.append("<tr>" + "".join(line) + "</tr>")
@@ -3191,10 +3194,13 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
         if rows_html:
             any_data = True
         if ctx.edit and any(c["ids"] and _repeats(c["ids"][0]) for c in cells):
-            # one empty line to start another instance of the table's rows
+            # one empty line to start another instance of the table's rows; a
+            # cell whose inputs the row's type chooses (a garage's spaces and
+            # area, a driveway's surface) waits for it, and is drawn with it
+            fids = [c["ids"][0] if c["ids"] else "" for c in cells]
             rows_html.append("<tr class='newrow'>" + "".join(
-                _cell("", c["ids"][0], ctx, new=True) if c["ids"] else _td("")
-                for c in cells) + "</tr>")
+                _cell("", f, ctx, new=True) if f and not _waits_for_type(f, fids) else _td("")
+                for f in fids) + "</tr>")
         if rows_html:
             if pending_bar:
                 body.append(pending_bar)
@@ -4548,9 +4554,98 @@ def cell_point(fid: str, container: str, instance: "etree._Element | None" = Non
     return (enumerated or points or [{}])[0]
 
 
+def cell_points(fid: str, container: str, instance: "etree._Element | None" = None) -> list[dict]:
+    """Every data point a table row's cell prints for its instance, in the
+    order B-1 composes them -- each typed where it prints.
+
+    ``cell_point`` gives a cell one input, so the rest of what it prints could
+    never be entered: B-1 13.003 stacks a garage's attachment and its area
+    (CarStorageAreaMeasure, "460 Sq. Ft."), 13.002 a project's spaces and their
+    assignment.  A measure carried with its unit is one of them (its unit is
+    filled in on the write); an "Other" description goes with its list, which
+    asks for it; an availability indicator follows from the amount.
+    """
+    b = binding(fid)
+    if b is None:
+        return []
+    from .. import entry
+    names = {dp.get("mismo") for dp in b.data_points}
+    points: list[dict] = []
+    for dp in b.data_points:
+        name = dp.get("mismo") or ""
+        if (not name or any(p["mismo"] == name for p in points)
+                or (dp.get("attribute") and not entry.unit_attribute(dp))
+                or name.endswith("AvailableIndicator")
+                or (name.endswith("OtherDescription") and name[:-len("OtherDescription")] in names)):
+            continue
+        points.append(dp)
+    if container:
+        inside = [dp for dp in points
+                  if container in [s for s in dp.get("xpath", "").strip("/").split("/") if s]]
+        if inside:
+            points = inside
+    if instance is not None:
+        tag = etree.QName(instance).localname
+        points = [dp for dp in points if tag in dp.get("xpath", "")] or points
+        points = [dp for dp in points if _instance_ok(dp, instance)]
+    composite = bind.composite_for([dp["mismo"] for dp in points])
+    if composite:
+        order = list(composite.order) + list(composite.tail)
+        points.sort(key=lambda dp: order.index(dp["mismo"]) if dp["mismo"] in order else len(order))
+    return points
+
+
+def _condition_keys(dp: dict) -> set[str]:
+    """The data points A-1's condition on this one names (its IF)."""
+    keys = {k for k in (dp.get("requires") or {}) if not k.startswith(("@", "__"))}
+    return keys | {k for k, _v in _condition_values(dp.get("conditionality_details") or "")}
+
+
+@lru_cache(maxsize=1)
+def _template_rows() -> tuple[tuple[str, ...], ...]:
+    """The table rows C-1 draws once for each instance (no label of their own),
+    as the Report Field ID heading each cell."""
+    return tuple(tuple(c["ids"][0] for c in row["cells"] if c.get("ids"))
+                 for p in form()["pages"] for e in p["elements"] for row in e.get("rows") or []
+                 if not row.get("bar") and row.get("cells")
+                 and not (row["cells"][0].get("text") or "").strip())
+
+
+@lru_cache(maxsize=2048)
+def decides_row(fid: str, point: str) -> bool:
+    """Is this the type every instance of a repeating block states (A-1 "R",
+    a list) that chooses between the inputs another cell of its row takes --
+    CarStorageType: a garage's spaces, attachment and area, a driveway's
+    surface and "10 or More" (B-1 13.002 / 13.003)?  The row is then drawn
+    again with the inputs its type takes."""
+    b = binding(fid)
+    dp = next((d for d in (b.data_points if b else []) if d.get("mismo") == point), None)
+    container = bind.repeating_container(dp.get("xpath", "")) if dp else ""
+    if (not container or (dp.get("conditionality") or "").strip() != "R"
+            or (dp.get("format_type") or "") != "Enumerated"):
+        return False
+    section = fid.split(".")[0]
+    for row in _template_rows():
+        if not row or row[0].split(".")[0] != section or not any(
+                cell_point(f, container).get("mismo") == point for f in row):
+            continue                       # not a row of this section stating that type
+        if any(_decided_by(other, point, container) for other in row):
+            return True
+    return False
+
+
+def _decided_by(fid: str, point: str, container: str) -> bool:
+    """Does the type ``point`` choose every input this cell takes (more than one)?"""
+    others = [d for d in cell_points(fid, container)
+              if container in d.get("xpath", "").split("/") and d.get("mismo") != point]
+    return len(others) > 1 and all(point in _condition_keys(d) for d in others)
+
+
 def point_choices(dp: dict) -> tuple[tuple[str, str], ...]:
+    # an answer B-1 prints nothing for reads as its own words ("10 or More" /
+    # "No"), never as the raw value "false"
     return tuple(((o.get("value") or "").strip(),
-                  bind.answer_label((o.get("value") or "").strip(), o.get("display") or o.get("value") or ""))
+                  bind.answer_label((o.get("value") or "").strip(), o.get("display") or ""))
                  for o in dp.get("enumerations") or [] if (o.get("value") or "").strip()
                  and not dp.get("attribute"))
 
@@ -4664,6 +4759,40 @@ def _cell(text: str, fid: str, ctx: "Ctx", *, key: str = "", sel: str = "",
         ["num"] if re.match(r"^-?\$[\d,]", text or "") else [])
     cls = f" class='{' '.join(classes)}'" if classes else ""
     return f"<td{cls}>{inner}</td>"
+
+
+def _row_cell(text: str, fid: str, ctx: "Ctx", key: str) -> str:
+    """A cell of a row drawn for one instance, in the editor: an input for each
+    data point it prints there (``cell_points``), stacked as B-1 stacks them --
+    a garage's attachment over its area (13.003).  One keeps the one input."""
+    instance = _instance_el(ctx, key)
+    points = (cell_points(fid, _container_of(ctx, key, "", fid), instance)
+              if instance is not None and not _is_address_field(fid) else [])
+    if len(points) < 2:
+        return _cell(text, fid, ctx, key=key)
+    b = binding(fid)
+    lines = []
+    for dp in points:
+        name = dp["mismo"]
+        pairs = [(n, bind.with_unit((node.text or "").strip(), node))
+                 for n in (name, f"{name}OtherDescription")
+                 for node in [instance.find(f".//{M}{n}")]
+                 if node is not None and (node.text or "").strip()]
+        shown_ = bind.display_value(pairs, b) if (pairs and b) else ""
+        lines.append(re.sub(r"^<td[^>]*>|</td>$", "", _cell(esc(shown_), fid, ctx, key=key, point=name)))
+    return "<td class='lines'>" + "<br>".join(lines) + "</td>"
+
+
+def _waits_for_type(fid: str, row: list[str]) -> bool:
+    """On a table's empty line: is every input of this cell chosen by the type
+    another cell of the row states (``decides_row``)?  It is drawn once the
+    row has that type, with the inputs the type takes."""
+    container = _container_of(None, "", "", fid)
+    for other in row:
+        point = cell_point(other, container).get("mismo", "") if other and other != fid else ""
+        if point and decides_row(other, point) and _decided_by(fid, point, container):
+            return True
+    return False
 
 
 def _tick_cell(ticked: bool, fid: str, want: str, ctx: "Ctx", *, key: str = "",
@@ -5815,11 +5944,23 @@ body.show-imported td.imported,body.show-imported .v.imported{
 /* a question the appraiser answers inside a section of fixed wording */
 .certans{margin:1.5pt 0}
 .certans .cl{font-weight:700;margin-right:4pt}
-/* a grid row the appraiser adds and names */
+/* a grid row the appraiser adds and names (DR §7): the name is a text box,
+   the x that removes the row shows on hover, and only the + under a group
+   adds one */
 td.lbl.liname{position:relative}
-td.lbl.liname .v{outline:none;display:inline-block;min-width:40pt}
-td.lbl.liname .v:empty:before{content:attr(data-ph);color:#939598;font-style:italic}
-td.lbl.liname .lidrop{position:absolute;right:1pt;top:0}
+td.lbl.liname input.liin{display:block;width:100%;box-sizing:border-box;margin:0;
+  font:inherit;color:inherit;line-height:1.3;background:#fff;border:0.6pt solid #939598;
+  border-radius:0;padding:0.5pt 9pt 0.5pt 2pt;outline:none}
+td.lbl.liname input.liin:focus{border-color:#231f20;box-shadow:0 0 0 .6pt #231f20}
+td.lbl.liname input.liin::placeholder{color:#939598;font-style:italic;font-weight:400}
+td.lbl.liname input.liin.saving{opacity:.6}
+td.lbl.liname input.liin.failed{border-color:#b42318}
+td.lbl.liname .lidrop{position:absolute;right:1.5pt;top:50%;transform:translateY(-50%);visibility:hidden}
+tr:hover > td.lbl.liname .lidrop,td.lbl.liname:focus-within .lidrop{visibility:visible}
+table.grid tr.liadd td{border-bottom:0;padding-top:1pt;padding-bottom:1pt}
+.liaddbtn{display:inline-block;cursor:pointer;color:#6a6a66;font-size:6.5pt;font-weight:600;
+  line-height:1;padding:1pt 4pt;border:0.6pt dashed #939598;background:#fff}
+.liaddbtn:hover,.liaddbtn:focus{color:#231f20;border-color:#231f20;border-style:solid;outline:none}
 figure.ex{position:relative}
 figure.ex .exdrop,.photodrop{position:absolute;inset:0;cursor:pointer;z-index:2}
 .exdrop.over,.photodrop.over{box-shadow:inset 0 0 0 1.5pt #231f20}
@@ -5866,6 +6007,7 @@ table.grid th[data-compmenu]{cursor:pointer}
 .gedit{position:absolute;z-index:99;background:#fff;border:0.75pt solid #7f8a96;
   box-shadow:0 2pt 7pt rgba(0,0,0,.24);padding:5pt 6pt;min-width:130pt;font-size:8pt;color:#231f20}
 .gedit .gh{font-weight:700;margin-bottom:3pt}
+.gedit .gl{font-weight:700;font-size:7pt;margin-top:5pt;padding-top:3pt;border-top:0.5pt solid #d0d0cc}
 .gedit label{display:block;color:#6d6e71;font-size:6.5pt;margin-top:3pt}
 .gedit input,.gedit select{width:100%;font:inherit;font-size:8pt;padding:1pt 2pt;
   border:0.6pt solid #9a9a95;box-sizing:border-box}

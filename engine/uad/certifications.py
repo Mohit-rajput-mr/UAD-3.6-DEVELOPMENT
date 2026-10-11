@@ -67,11 +67,8 @@ def set_text(root: etree._Element, by: str, ordinal: int, text: str) -> int:
         raise ValueError(f"A certification can be at most {max_length():,} characters (A-1).")
     if not text:
         if ordinal <= len(items):
-            node = items[ordinal - 1]
-            holder = node.getparent()
-            holder.remove(node)
-            if not len(holder):
-                holder.getparent().remove(holder)
+            # with every holder the schema needs it in (edit.remove_block)
+            edit.remove_block(items[ordinal - 1])
     elif ordinal <= len(items):
         node = items[ordinal - 1]
         leaf = node.find(f"{M}ValuationAdditionalCertificationText")

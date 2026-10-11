@@ -213,7 +213,13 @@ def _drop_role(party: etree._Element, role: str) -> None:
             if node is not None:
                 node.getparent().remove(node)
     if not _roles(party) and party.getparent() is not None:
-        party.getparent().remove(party)
+        try:
+            edit.remove_block(party)
+        except edit.Unremovable:
+            # the service's only party: the schema keeps one (SERVICE >
+            # PARTIES > PARTY), so it stays as the bare instance, naming no
+            # one -- the one _new_party fills next
+            edit.empty_block(party)
 
 
 def write(tree, field_id: str, value: str, kind: str = "") -> dict:

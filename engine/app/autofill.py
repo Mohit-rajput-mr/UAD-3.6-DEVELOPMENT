@@ -658,7 +658,7 @@ def _drop_leftovers(root: etree._Element, source: etree._Element) -> int:
         dropped += 1
     for rel in list(root.iter(f"{M}RELATIONSHIP")):
         if {rel.get(f"{{{XLINK}}}from"), rel.get(f"{{{XLINK}}}to")} & gone:
-            rel.getparent().remove(rel)
+            edit.remove_block(rel)       # MISMO: RELATIONSHIPS holds at least one
             dropped += 1
     return dropped
 

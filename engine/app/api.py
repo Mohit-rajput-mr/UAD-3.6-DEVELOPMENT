@@ -418,10 +418,10 @@ def remove_image(case_id: str, request: Request, key: str = Query(...)) -> dict:
     if image is None or etree.QName(image).localname != "IMAGE":
         raise HTTPException(404, "That picture is no longer in the report.")
     loc = (image.findtext(f"{{{bind.MISMO}}}ImageFileLocationIdentifier") or "").strip()
-    parent = image.getparent()
-    parent.remove(image)
-    if not len(parent):
-        parent.getparent().remove(parent)          # an empty IMAGES is not valid
+    try:
+        edit.remove_block(image)                   # an empty IMAGES is not valid
+    except edit.Unremovable as exc:
+        raise HTTPException(422, str(exc))
     st.save_tree(case_id, tree)
     prefs = get_prefs(case_id)
     fills = dict(prefs.get("fills") or {})
@@ -550,7 +550,8 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool,
     from uad import report_types
     tree = store().tree(case_id)
     root = tree.getroot()
-    findings = report_types.evaluate(tree) if findings else []   # H-1, or H-2 / H-3 by kind
+    # H-1, or H-2 / H-3 by kind, counted as the Review Master counts them
+    findings = review.findings(tree) if findings else []
     by_field: dict[str, list[dict]] = {}
     for f in findings:
         if f.status == compliance.FINDING and f.field_id:
@@ -642,6 +643,11 @@ def _case_fields(case_id: str, section: int | None, only_filled: bool,
 
 
 # --------------------------------------------------------------- table cells
+def _holds_nothing(node) -> bool:
+    """No value and no attribute anywhere in it: an empty block, not a claim."""
+    return not any((e.text or "").strip() or e.attrib for e in node.iter() if isinstance(e.tag, str))
+
+
 def _new_instance(root, dp: dict, base):
     """Add another instance of the repeating container a data point lives in,
     next to the ones already there, and return it."""
@@ -655,9 +661,14 @@ def _new_instance(root, dp: dict, base):
     if base is None and "PROPERTY" in segments:
         base = bind.subject(root)
     start = base if base is not None else root
-    # a sibling that already exists names the parent
+    # a sibling that already exists names the parent -- and one holding
+    # nothing at all is the insertion point a blank case keeps for the row
+    # (templates.clear): the row is made there, not behind it, where every
+    # reader that counts instances (13.000, the grid's Vehicle Storage) missed it
     for existing in start.iter(f"{M_}{container}"):
-        return edit.insert_ordered(existing.getparent(), container)
+        parent = existing.getparent()
+        empty = next((s for s in parent.findall(f"{M_}{container}") if _holds_nothing(s)), None)
+        return empty if empty is not None else edit.insert_ordered(parent, container)
     upto = segments[:i]
     if base is not None:
         tag = etree.QName(base).localname
@@ -669,7 +680,12 @@ def _new_instance(root, dp: dict, base):
         if found is not None:
             holder, upto = found, upto[depth:]
             break
-    parent, _ = edit.ensure_path(holder, upto)
+    parent, made = edit.ensure_path(holder, upto)
+    if made:
+        # making the holder made the instance its schema requires (AMENITIES
+        # comes with an AMENITY): that one is the new row, not a reason to
+        # add a second, empty one beside it
+        return edit.add_instance(parent, container)
     return edit.insert_ordered(parent, container)
 
 def _new_defect(root, dp: dict, owner):
@@ -740,11 +756,9 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                     and dp.get("mismo") == (_form.printed_point(field_id) or dp.get("mismo"))
                     and etree.QName(scope).localname == bind.repeating_container(dp.get("xpath", ""))):
                 # clearing one value of a list removes its whole block (the
-                # amenity and its description), never leaving half of it
-                holder = scope.getparent()
-                holder.remove(scope)
-                if not len(holder) and holder.getparent() is not None:
-                    holder.getparent().remove(holder)
+                # amenity and its description), never leaving half of it --
+                # and every holder the schema needs it in (edit.remove_block)
+                edit.remove_block(scope)
                 st.save_tree(case_id, candidate)
                 st.invalidate(case_id, _actor(request), f"{field_id} value removed")
                 return {"value": "", "key": "", "removed": True, "state": st.get(case_id).state}
@@ -801,8 +815,11 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                     if found is not None:
                         holder, upto = found, upto[depth:]
                         break
-                parent, _ = edit.ensure_path(holder, upto)
-                scope = edit.insert_ordered(parent, "VALUATION_COMMENTARY")
+                parent, made = edit.ensure_path(holder, upto)
+                # a list made here comes with the commentary its schema
+                # requires: that one is this category's, not a second
+                scope = (edit.add_instance(parent, "VALUATION_COMMENTARY") if made
+                         else edit.insert_ordered(parent, "VALUATION_COMMENTARY"))
                 edit.insert_ordered(scope, "ValuationAnalysisCategoryType").text = cat
         if scope is None:
             scope = base
@@ -860,12 +877,17 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
     st.invalidate(case_id, _actor(request), f"{field_id} changed")
     st.log(case_id, _actor(request), "edited", f"{field_id} (table) {written.old!r} -> {written.new!r}")
     new_key = bind.stable_path(scope) if scope is not None else ""
-    shown = bind.trim_cents(bind.display_value([(written.data_point, written.new)], binding),
+    # shown with the unit its element carries ("480 Sq. Ft."), as it prints
+    node = bind.locate(root, binding, written.data_point, scope, 1) if written.new else None
+    raw = bind.with_unit(written.new, node) if node is not None else written.new
+    shown = bind.trim_cents(bind.display_value([(written.data_point, raw)], binding),
                             binding.label) if written.new else ""
     if parts:
         shown = value.strip()                # the address as typed, now stored as its parts
-    return {"value": shown, "key": new_key, "recalculated": st.recalculated(case_id),
-            "state": st.get(case_id).state}
+    # the row's type changed (a Garage): its other cells take that type's inputs
+    relayout = written.old != written.new and report_form.decides_row(field_id, written.data_point)
+    return {"value": shown, "key": new_key, "relayout": relayout,
+            "recalculated": st.recalculated(case_id), "state": st.get(case_id).state}
 
 
 @router.patch("/cases/{case_id}/client-role")
@@ -1017,7 +1039,9 @@ def set_field(case_id: str, field_id: str, request: Request,
                 "not_placed": [f.get("label") or f.get("fid") for f in reshaped.failed][:20]},
             # what the report prints: whole dollars without cents, as D-1 sets them
             "value": bind.trim_cents(bind.display_value(groups, pf.binding), pf.label),
-            "relayout": relayout,
+            # a type that decides a table row's inputs (13.000 Storage): drawn again
+            "relayout": relayout or (written.old != written.new
+                                     and report_form.decides_row(field_id, written.data_point)),
             # adjustment worksheet lines the edit moved (uad/worksheet.recalc)
             "recalculated": st.recalculated(case_id),
             "state": st.get(case_id).state}
@@ -1542,6 +1566,8 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
                           if spec.comp_fid else ""),
                 "parts": (comparables.parts_for(root, spec.comp_fid, prop)
                           if spec.comp_fid else {}),
+                "lines": (comparables.lines_for(root, spec.comp_fid, prop)
+                          if spec.comp_fid and not spec.container else None),
                 "adjustment": comparables.adjustment_for(root, spec, prop),
                 "adjust_raw": (comparables.adjustment_value(prop, spec.adjust_type)
                                if spec.adjust_type else ""),
@@ -1552,6 +1578,10 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
             "subject_points": comparables.points_for(spec.subject_fid),
             "subject_parts": (comparables.parts_for(root, spec.subject_fid, subject)
                               if spec.subject_fid else {}),
+            # a stacked cell's lines (each vehicle storage, each view): each is
+            # edited where it is kept, and another can be added
+            "subject_lines": (comparables.lines_for(root, spec.subject_fid, subject)
+                              if spec.subject_fid and not spec.container else None),
             "label": spec.label,
             "heading": spec.heading,
             "always": spec.always,
@@ -1624,6 +1654,11 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     kind = body.get("kind", "sales")
     if kind not in comparables.SHEETS:
         raise HTTPException(400, f"kind must be one of {list(comparables.SHEETS)}")
+    item = str(body.get("item_name") or "").strip()
+    if item:
+        # a row the appraiser named shares its field and its type with the
+        # rest of its group, so the name says which row is written
+        return _write_line_cell(case_id, request, kind, number, item, body)
     tree = st.tree(case_id)
     value = str(body.get("value", ""))
     point = body.get("data_point", "")
@@ -1654,16 +1689,26 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
         # a rental grid drawn per subject unit: the cell names the pairing it
         # was read in, and the value is written where the field's own path
         # runs through it (the pairing, its unit, or the property)
-        inner = bind.find_path(candidate.getroot(), str(body["scope"]))
-        if inner is None:
-            try:
-                hit = candidate.getroot().getroottree().xpath(str(body["scope"]))
-                inner = hit[0] if hit else None
-            except etree.XPathError:
-                inner = None
-        if inner is None or (inner is not scope and scope not in list(inner.iterancestors())):
-            raise HTTPException(422, "that cell's block is not part of this column's property")
+        inner = _cell_block(candidate.getroot(), scope, str(body["scope"]))
         scope = comparables._field_scope(field_id, comparables._scopes(inner))
+    # One line of a stacked cell (B-1: a line for each vehicle storage, view,
+    # street) is written inside its own block, named by ``line``; ``new`` adds
+    # a block for another line.  Without them every line was written into the
+    # first: a garage replaced the driveway.
+    line = None
+    if not adjust_type and (body.get("line") or body.get("new")) and comparables.stacks(field_id):
+        if body.get("line"):
+            line = bind.find_path(candidate.getroot(), str(body["line"]))
+            if line is None or (line is not scope and scope not in list(line.iterancestors())):
+                raise HTTPException(422, "that line is not part of this column's property")
+        elif str(body.get("value", "")).strip():
+            try:
+                line = _new_instance(candidate.getroot(), edit.choose_data_point(pf.binding, point), scope)
+            except KeyError as exc:
+                raise HTTPException(422, str(exc))
+            if line is None:
+                raise HTTPException(422, f"Field {field_id} has no line to add.")
+    into = line if line is not None else scope
     try:
         instance = body.get("instance")
         instance = int(instance) if str(instance).lstrip("-").isdigit() else -1
@@ -1682,9 +1727,9 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
                 raise ValueError("The field instance must be at least 1")
             written = edit.write(candidate, field_id, value, data_point=point,
                                  ordinal=ordinal, binding=pf.binding,
-                                 scope=scope)
+                                 scope=into)
             node = bind.locate(candidate.getroot(), pf.binding,
-                               written.data_point, scope, ordinal)
+                               written.data_point, into, ordinal)
             actual = (node.text or "").strip() if node is not None else ""
             if actual != written.new:
                 raise ValueError(
@@ -1720,6 +1765,8 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
         shown = comparables.value_for(root, field_id, again)
     return {"value": shown,
             "recalculated": st.recalculated(case_id),
+            # the line written: the rest of a new line is written there too
+            "line": bind.stable_path(line) if line is not None else "",
             "state": st.get(case_id).state}
 
 
@@ -1752,7 +1799,7 @@ def name_line_item(case_id: str, request: Request, body: dict = Body(...)) -> di
     props = comparables.properties(root, role)
     subject = bind.subject(root)
     everywhere = ([subject] if subject is not None else []) + props
-    named = comparables.named_row(kind, *_line_row(kind, container))
+    named = comparables.named_row(kind, *_line_row(kind, container, adjust_type))
     if named is None:
         raise HTTPException(422, f"no added-row template for {container}")
     if name and any(name == other
@@ -1760,19 +1807,31 @@ def name_line_item(case_id: str, request: Request, body: dict = Body(...)) -> di
                     if other != was):
         raise HTTPException(422, f"this grid already has a row called {name!r}")
     for prop in everywhere:
-        node = comparables.named_node(prop, named, was or name,
-                                      create=bool(name and not was))
-        if node is None:
+        # every element of that name: a rental row is kept once per subject
+        # unit it is compared with, and only the first was renamed or removed
+        nodes = comparables.named_nodes(prop, named, was) if was else []
+        if not nodes:
             if not name:
                 continue
-            node = comparables.named_node(prop, named, name, create=True)
-        if not name:
-            node.getparent().remove(node)
-            continue
-        label = node.find(f"{{{bind.MISMO}}}{named.name_dp}")
-        if label is None:
-            label = edit.insert_ordered(node, named.name_dp)
-        label.text = name
+            nodes = [comparables.named_node(prop, named, name, create=True)]
+        for node in nodes:
+            if node is None:
+                continue
+            if not name:
+                # every copy, with the list it leaves empty (T-1070, T-509)
+                try:
+                    comparables.drop_named(prop, node)
+                except edit.Unremovable as exc:
+                    raise HTTPException(422, str(exc))
+                continue
+            # the name sits where the row keeps its values (an interior
+            # component's in its INTERIOR_COMPONENT_DETAIL), never beside
+            # them; a rename changes that name, never adds a second
+            inner, _ = edit.ensure_path(node, list(named.inner))
+            label = inner.find(f"{{{bind.MISMO}}}{named.name_dp}")
+            if label is None:
+                label = edit.insert_ordered(inner, named.name_dp)
+            label.text = name
     st.save_tree(case_id, tree)
     st.invalidate(case_id, _actor(request), "grid row named")
     st.log(case_id, _actor(request), "edited",
@@ -1780,14 +1839,67 @@ def name_line_item(case_id: str, request: Request, body: dict = Body(...)) -> di
     return {"name": name, "removed": not name, "state": st.get(case_id).state}
 
 
-def _line_row(kind: str, container: str) -> tuple[str, str, str]:
-    """The workbook's own template for the rows kept in this container."""
+def _line_row(kind: str, container: str, kept_as: str = "") -> tuple[str, str, str]:
+    """The workbook's own template for the rows kept in this container, and
+    under this type where the container keeps more than one: a sales
+    COMPARABLE_ADJUSTMENT holds adjustable and non-adjustable items, and the
+    first template found made every added row an adjustable one."""
     for row in comparables.rows(kind):
         fid = row.subject_fid or row.comp_fid
         named = comparables.named_row(kind, fid, row.data_point, row.adjust_type)
-        if named is not None and named.container == container:
+        if (named is not None and named.container == container
+                and (not kept_as or named.kept_as == kept_as)):
             return fid, row.data_point, row.adjust_type
     raise HTTPException(422, f"no added-row template for {container}")
+
+
+def _cell_block(root, prop, path: str):
+    """The block a grid cell was read in (``data-gs``: a rental grid drawn per
+    subject unit names its pairing), refused unless it lies in the column's
+    property."""
+    inner = bind.find_path(root, path)
+    if inner is None:
+        try:
+            hit = root.getroottree().xpath(path)
+            inner = hit[0] if hit else None
+        except etree.XPathError:
+            inner = None
+    if inner is None or (inner is not prop and prop not in list(inner.iterancestors())):
+        raise HTTPException(422, "that cell's block is not part of this column's property")
+    return inner
+
+
+def _write_line_cell(case_id: str, request: Request, kind: str, number: int,
+                     item: str, body: dict) -> dict:
+    """One cell of a row the appraiser named: what that property has on it,
+    or (``adjust_type`` given) its adjustment, kept in the row's own element
+    (comparables.write_named) -- the field and the type are the whole group's."""
+    st = store()
+    candidate = deepcopy(st.tree(case_id))
+    scope = _grid_scope(candidate.getroot(), kind, number)
+    if scope is None:
+        raise HTTPException(404, "this case has no property for that column")
+    if body.get("scope"):
+        # drawn per subject unit: the row of that unit's pairing, not the first
+        scope = _cell_block(candidate.getroot(), scope, str(body["scope"]))
+    named = comparables.named_row(kind, *_line_row(kind, str(body.get("container") or ""),
+                                                   str(body.get("line_type") or "")))
+    if named is None:
+        raise HTTPException(422, "no added-row template for that row")
+    adjustment = bool(body.get("adjust_type"))
+    try:
+        comparables.write_named(scope, named, item, str(body.get("value", "")),
+                                adjustment=adjustment)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc))
+    st.save_tree(case_id, candidate)
+    st.invalidate(case_id, _actor(request), f"row {item!r} changed")
+    st.log(case_id, _actor(request), "edited",
+           f"row {item!r} on {'subject' if not number else f'comparable #{number}'}")
+    text, amount = comparables.named_value(scope, named, item)
+    return {"value": amount if adjustment else text,
+            "recalculated": st.recalculated(case_id),
+            "state": st.get(case_id).state}
 
 
 @router.post("/cases/{case_id}/comparables")
@@ -2514,10 +2626,7 @@ async def legal_description_photo(case_id: str, request: Request,
     for image in list(subject.iterfind(f"{M_}INSPECTIONS/{M_}INSPECTION/{M_}IMAGES/{M_}IMAGE")):
         if image.findtext(f"{M_}ImageCategoryType", "").strip() == "LegalDescription":
             fills.pop(image.findtext(f"{M_}ImageFileLocationIdentifier", "").strip(), None)
-            holder = image.getparent()
-            holder.remove(image)
-            if not len(holder):
-                holder.getparent().remove(holder)        # an empty IMAGES is not valid
+            edit.remove_block(image)                       # an empty IMAGES is not valid
     delivery._add_image(subject, "LegalDescription", target.name, kind)
     st.save_tree(case_id, tree)
     fills[target.name] = item.media_id

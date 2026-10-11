@@ -464,7 +464,7 @@ def _carry_repairs(src: etree._Element, tree, kind: str) -> list[str]:
         if flag is None:
             flag = edit.insert_ordered(detail, "CompletionReportNewDefectIndicator")
         flag.text = "false"
-        defects.append(new)
+        edit.place(defects, new)                       # before an EXTENSION, as the XSD orders
     return [fid(kind, raw) for raw in spec(kind)["fields"] if raw.startswith("03.")]
 
 
@@ -483,22 +483,24 @@ def _carry_parties(src: etree._Element, tree, kind: str) -> list[str]:
     parties = root.find(f".//{M}SERVICE/{M}PARTIES")
     if parties is None:
         return []
-    for party in list(parties.findall(f"{M}PARTY")):
-        if _roles(party) and _roles(party) <= set(CARRIED_ROLES):
-            parties.remove(party)
+    from . import edit
+    blank_own = [party for party in parties.findall(f"{M}PARTY")
+                 if _roles(party) and _roles(party) <= set(CARRIED_ROLES)]
     carried = [p for p in src.iter(f"{M}PARTY") if _roles(p) & set(CARRIED_ROLES)
                and _roles(p) <= set(CARRIED_ROLES)]
     for party in carried:
-        parties.append(copy.deepcopy(party))
+        edit.place(parties, copy.deepcopy(party))      # before an EXTENSION, as the XSD orders
+    for party in blank_own:
+        try:
+            edit.remove_block(party)                   # MISMO: PARTIES holds at least one
+        except edit.Unremovable:
+            pass
     # the blank's links to the parties it no longer has
     labels = {e.get(f"{{{XLINK}}}label") for e in root.iter() if isinstance(e.tag, str)
               and e.get(f"{{{XLINK}}}label")}
     for rel in list(root.iter(f"{M}RELATIONSHIP")):
         if rel.get(f"{{{XLINK}}}from") not in labels or rel.get(f"{{{XLINK}}}to") not in labels:
-            holder = rel.getparent()
-            holder.remove(rel)
-            if not len(holder):                 # MISMO: RELATIONSHIPS holds at least one
-                holder.getparent().remove(holder)
+            edit.remove_block(rel)              # MISMO: RELATIONSHIPS holds at least one
     return [fid(kind, raw) for raw, f in spec(kind)["fields"].items()
             if any("PARTIES/PARTY/" in dp.get("xpath", "") and (_marks(kind, dp).get("PartyRoleType")
                    in CARRIED_ROLES) for dp in f["data_points"])] if carried else []

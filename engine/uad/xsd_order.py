@@ -320,6 +320,65 @@ def max_occurs(parent: str, child: str) -> int:
     return _max.get(parent, {}).get(child, 0)
 
 
+MIN_CACHE = CACHE_FILE.with_name("xsd_min.json")
+
+
+def min_table() -> dict[str, dict[str, int]]:
+    """element name -> {child: minOccurs}, for the children it must hold
+    (``required``'s rule: not one branch of a choice, not inside an optional
+    sequence).  Mostly one; MARKET_INVENTORIES must hold three
+    MARKET_INVENTORY, so taking one of them out is as invalid as taking the
+    last amenity's AMENITIES."""
+    if MIN_CACHE.exists():
+        return json.loads(MIN_CACHE.read_text(encoding="utf-8"))
+    root = etree.parse(str(_schema_file())).getroot()
+    types = {t.get("name"): t for t in root.iterfind(f"{XS}complexType") if t.get("name")}
+
+    def walk(node, out, seen, factor):
+        for child in node:
+            tag = child.tag
+            if tag == f"{XS}element":
+                name = child.get("name") or child.get("ref", "").split(":")[-1]
+                m = int(child.get("minOccurs", "1")) * factor
+                if name and m:
+                    out[name] = max(m, out.get(name, 0))
+            elif tag == f"{XS}choice":
+                walk(child, out, seen, 0)
+            elif tag == f"{XS}extension":
+                base = child.get("base", "").split(":")[-1]
+                if base in types and base not in seen:
+                    walk(types[base], out, seen | {base}, factor)
+                walk(child, out, seen, factor)
+            elif tag in (f"{XS}sequence", f"{XS}all"):
+                walk(child, out, seen, factor * int(child.get("minOccurs", "1")))
+            elif tag in (f"{XS}complexContent", f"{XS}simpleContent"):
+                walk(child, out, seen, factor)
+
+    table = {}
+    for name, node in types.items():
+        out: dict[str, int] = {}
+        walk(node, out, {name}, 1)
+        if out:
+            table[name] = out
+    _with_aliases(root, table)
+    try:
+        MIN_CACHE.write_text(json.dumps(table, sort_keys=True), encoding="utf-8")
+    except OSError:
+        pass                                  # a read-only deployment: computed each start
+    return table
+
+
+_min: dict | None = None
+
+
+def min_occurs(parent: str, child: str) -> int:
+    """How many ``child`` elements ``parent`` must hold (0: none)."""
+    global _min
+    if _min is None:
+        _min = min_table()
+    return _min.get(parent, {}).get(child, 0)
+
+
 # ------------------------------------------------------------ xlink arcroles
 ARCROLE_CACHE = CACHE_FILE.with_name("xsd_arcroles.json")
 ARCROLE_STEM = "urn:fdc:mismo.org:2009:residential/"

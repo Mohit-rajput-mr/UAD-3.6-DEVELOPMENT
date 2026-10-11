@@ -410,7 +410,8 @@ def add_property(tree, role: str) -> int:
     if holder is None:
         raise ValueError("this case has no PROPERTIES container to add to")
 
-    node = etree.SubElement(holder, f"{{{bind.MISMO}}}PROPERTY")
+    # after the last PROPERTY, before anything the XSD lists later
+    node = edit.insert_ordered(holder, "PROPERTY")
     node.set("ValuationUseType", role)
     number = len(existing) + 1
     ordinal_node(node, create=True).text = str(number)
@@ -487,9 +488,14 @@ def _read(root: etree._Element, binding, scope: etree._Element | None,
     if not (composite and composite.stack):
         yield from bind._walk(root, binding, scope, 1, marks)
         return
+    # an instance holding nothing (the insertion point a blank case keeps) is
+    # passed over, not taken for the end: the garage behind an empty
+    # CAR_STORAGE printed nowhere in the grid
+    xpath = next((dp.get("xpath", "") for dp in binding.data_points
+                  if bind.repeating_container(dp.get("xpath", ""))), "")
     for ordinal in range(1, 25):
         nodes = list(bind._walk(root, binding, scope, ordinal, marks))
-        if not nodes:
+        if not nodes and (not xpath or bind.scope_for(root, xpath, scope, ordinal) is None):
             return
         yield from nodes
 
@@ -738,9 +744,10 @@ class BuiltRow:
     # An additional comparison line item is a row the appraiser names: B-1
     # gives each group one "[Additional Row]" template and A-1 an Identifier
     # (what the row is called) beside a Description (what each property has).
-    line_item: str = ""            # the ComparableAdjustmentType it is kept as
+    line_item: str = ""            # the container it is kept in
     item_name: str = ""            # the identifier, which is the row's label
-    new_item: bool = False         # the empty template that starts another
+    new_item: bool = False         # where the group's "+" adds another
+    line_type: str = ""            # the ComparableAdjustmentType it is kept under
     subject_scope: str = ""        # the subject block read (a rental unit), when not the property
     # A row drawn once per unit, ADU, dwelling or outbuilding: which one
     # ("unit 1", "adu 1", ...), and which of the comparable's adjustments of
@@ -798,6 +805,14 @@ class Named:
     subject_fid: str = ""   # the identifier the subject's cell writes
     comp_fid: str = ""      # the identifier a comparable's cell writes
     inner: tuple = ()       # the path from the repeat down to those values
+    # kept inside an IMPROVEMENT (a dwelling, a living unit, an outbuilding),
+    # so drawn with each one; otherwise it is the property's, and drawn once
+    per_block: bool = False
+
+    @property
+    def kept_as(self) -> str:
+        """The ComparableAdjustmentType the rows are kept under ("" if none)."""
+        return dict(self.marks).get("ComparableAdjustmentType", "")
 
 
 def _next_field_in(container: str, fid: str) -> tuple[str, str]:
@@ -889,7 +904,7 @@ def named_row(kind: str, fid: str, data_point: str, adjust_type: str) -> "Named 
                  value_fid,
                  _value_field_for("Subject Property", value_fid, value_dp, container),
                  _value_field_for(comp_role, value_fid, value_dp, container),
-                 inner)
+                 inner, "IMPROVEMENT" in segs[:segs.index(container)] if container in segs else False)
 
 
 def line_item_place(kind: str, row: "GridRow") -> tuple[str, str]:
@@ -898,7 +913,7 @@ def line_item_place(kind: str, row: "GridRow") -> tuple[str, str]:
                       row.adjust_type)
     if named is None:
         return "", ""
-    return named.container, dict(named.marks).get("ComparableAdjustmentType", "")
+    return named.container, named.kept_as
 
 
 def _inside(node, name: str) -> str:
@@ -946,7 +961,9 @@ def named_node(prop: etree._Element, named: "Named", name: str, *, create: bool 
     holder = _container_parent(prop, named)
     if holder is None:
         return None
-    node = edit.insert_ordered(holder, named.container)
+    # a list made just now came with the row its schema requires: that one
+    # is this row, not a nameless second one beside it (T-509)
+    node = edit.add_instance(holder, named.container)
     inner, _made = edit.ensure_path(node, list(named.inner))
     for key, want in named.marks:
         edit.insert_ordered(inner, key).text = want
@@ -954,14 +971,30 @@ def named_node(prop: etree._Element, named: "Named", name: str, *, create: bool 
     return node
 
 
+def named_nodes(prop: etree._Element, named: "Named", name: str) -> list:
+    """Every element this property keeps that named row in: a rental row is
+    kept once per subject unit the comparable is compared with."""
+    return [node for node in prop.iter(f"{{{bind.MISMO}}}{named.container}")
+            if _is_item(node, named, name)]
+
+
+def drop_named(prop: etree._Element, node: etree._Element) -> None:
+    """Take a named row out of one property, with the containers made to hold
+    it (COMPARABLE, COMPARABLE_ADJUSTMENTS) once they hold nothing else."""
+    edit.remove_block(node)              # schema-aware: edit.removal_plan (T-509)
+
+
 def _container_parent(prop: etree._Element, named: "Named"):
-    """The element a named row hangs from, made if the case has none yet."""
+    """The element a named row hangs from, made if the case has none yet.
+    ``prop`` is the property, or a block inside it on the way down (the
+    RENTAL_INFORMATION of a rental grid drawn per subject unit)."""
     binding = binding_of(named.value_fid)
+    here = etree.QName(prop).localname
     for dp in (binding.data_points if binding else []):
         segs = bind._tail(dp.get("xpath", ""))
-        if named.container not in segs or "PROPERTY" not in segs:
+        if named.container not in segs or here not in segs[:segs.index(named.container)]:
             continue
-        upto = segs[segs.index("PROPERTY") + 1:segs.index(named.container)]
+        upto = segs[segs.index(here) + 1:segs.index(named.container)]
         holder, _ = edit.ensure_path(prop, upto)
         return holder
     return None
@@ -982,6 +1015,37 @@ def named_value(prop: etree._Element, named: "Named", name: str) -> tuple[str, s
     return text, amount
 
 
+def write_named(prop: etree._Element, named: "Named", name: str, value: str, *,
+                adjustment: bool = False) -> "edit.Written":
+    """Write what this property has on a row the appraiser named, or its
+    adjustment, into that row's own element.
+
+    Every row of a group shares one Report Field ID (22.07.44 is each added
+    row's description) and one ComparableAdjustmentType, so neither says which
+    row is meant -- the name does.  Written by field or by type, the second
+    row's adjustment landed on the first.  The element is made for a property
+    that has none yet.
+    """
+    point = "ComparableAdjustmentAmount" if adjustment else named.value_dp
+    text = value.strip()
+    node = named_node(prop, named, name, create=bool(text))
+    if node is None:
+        if text:
+            raise ValueError(f"this property cannot keep the row {name!r}")
+        return edit.Written("", point, "", "", "", [])
+    holder = node if adjustment else edit.ensure_path(node, list(named.inner))[0]
+    target = holder.find(f"{{{bind.MISMO}}}{point}")
+    old = (target.text or "").strip() if target is not None else ""
+    if not text:
+        if target is not None:
+            holder.remove(target)
+    else:
+        if target is None:
+            target = edit.insert_ordered(holder, point)
+        target.text = text
+    return edit.Written("", point, "", old, text, [])
+
+
 def specs(root: etree._Element, kind: str = "sales", *,
           every_row: bool = False) -> list[GridRow]:
     """The rows of a grid, with every added row expanded into its own.
@@ -990,16 +1054,29 @@ def specs(root: etree._Element, kind: str = "sales", *,
     have named several, and they are all kept under one adjustment type, so
     the template is expanded here -- once, at the last place the workbook
     offers it -- and every part of the program reads the same list.
+
+    ``every_row`` (the editor) adds, after each group's rows, the place its
+    "+" is drawn (``new_item``).  It is never a row of its own: an empty
+    named row there read as one more row the appraiser had not asked for,
+    and a new one appeared under every row they named (DR §7).
     """
     _sheet, role, _title = SHEETS[kind]
     props = properties(root, role)
     subject = bind.subject(root)
     spec = rows(kind)
-    last: dict[tuple[str, str], int] = {}
-    for row in spec:
-        if row.label == ADDITIONAL_ROW:
-            last[line_item_place(kind, row)] = row.order
     everywhere = ([subject] if subject is not None else []) + props
+    # the Outbuilding group is drawn once per outbuilding, so with none it is
+    # not drawn at all; the type's template before it (Vehicle Storage) is
+    # then the last place it is offered, or its rows could neither be added
+    # nor printed
+    no_outbuildings = not any(_outbuildings(p) for p in everywhere)
+    last: dict[tuple[str, str], int] = {}
+    group = ""
+    for row in spec:
+        if row.heading:
+            group = row.label.strip()
+        elif row.label == ADDITIONAL_ROW and not (no_outbuildings and group.startswith("Outbuilding (")):
+            last[line_item_place(kind, row)] = row.order
     out: list[GridRow] = []
     for row in spec:
         named = named_row(kind, row.subject_fid or row.comp_fid, row.data_point,
@@ -1007,8 +1084,7 @@ def specs(root: etree._Element, kind: str = "sales", *,
         if named is None:
             out.append(row)
             continue
-        if row.label == ADDITIONAL_ROW and row.order != last.get(
-                (named.container, dict(named.marks).get("ComparableAdjustmentType", ""))):
+        if row.label == ADDITIONAL_ROW and row.order != last.get((named.container, named.kept_as)):
             # every additional row of a grid is kept under one type, so the
             # workbook's several templates for it expand in one place
             continue
@@ -1248,17 +1324,26 @@ def _expand_outbuildings(spec: list, props: list) -> list:
         if label.startswith("Outbuilding ("):
             kind = "ob"
         out.append((row, None))
+        # A row the appraiser named and keeps against the whole property (an
+        # additional comparison item, A-1 COMPARABLE_ADJUSTMENT) is no unit's
+        # or outbuilding's: drawn with each copy, one name showed under every
+        # unit of a 2-4 report.  It is drawn once, after the group's copies.
+        once = [r for r in group if r.named is not None and not r.named.per_block]
+        if kind is not None:
+            group = [r for r in group if not any(r is o for o in once)]
         if kind is None:
             out += [(r, None) for r in group]
         elif kind == "ob":
             n = max((len(_outbuildings(p)) for p in props), default=0)
             for k in range(n):
                 out += [(r, ("ob", k)) for r in group]
+            out += [(r, None) for r in once]
         elif kind == "unit":
             n = max((len(_units(p, False)) for p in props), default=0)
             body = [r for r in group if r.label.strip() != "Location of ADU"]
             for k in range(max(n, 1)):
                 out += [(r, ("unit", k)) for r in body]
+            out += [(r, None) for r in once]
             if label == "Unit(s)":
                 # each ADU's own lines, under its location (D-1 SF3)
                 m = max((len(_units(p, True)) for p in props), default=0)
@@ -1269,10 +1354,12 @@ def _expand_outbuildings(spec: list, props: list) -> list:
             m = max((len(_units(p, True)) for p in props), default=0)
             for k in range(m):
                 out += [(r, ("adu", k)) for r in group]
+            out += [(r, None) for r in once]
         else:
             n = max((len(_dwellings(p)) for p in props), default=0)
             for k in range(max(n, 1)):
                 out += [(r, (kind, k)) for r in group]
+            out += [(r, None) for r in once]
         i = end
     return out
 
@@ -1391,6 +1478,7 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                              adjust_type=row.adjust_type, adjust_fid=row.adjust_fid,
                              line_item=row.container, item_name=row.item_name,
                              new_item=row.new_item,
+                             line_type=row.named.kept_as if row.named is not None else "",
                              subject_scope=tree_.getpath(subject_scopes[0]) if (pairs and subject_scopes) else "",
                              group=f"{ob[0]} {ob[1] + 1}" if isinstance(ob, tuple) else "",
                              instance=instance)
@@ -1426,7 +1514,11 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                 adjustment_for(root, row, prop) for prop in comps)
             # (in the editor every row stays, so it can be answered)
             if row.new_item:
-                grid.rows.append(built)      # the empty line that names another
+                # where the group's "+" is drawn: it holds nothing (a row with
+                # no name reads as the group's first, and showed its values)
+                built.subject, built.subject_dash = "", False
+                built.cells = [Cell() for _ in cells]
+                grid.rows.append(built)
                 continue
             if row.container:
                 # A row the appraiser named is judged by what it actually
@@ -1598,19 +1690,13 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
             continue
         address = row.label.strip() == "Property Address"
         if edit and row.line_item:
-            # a row the appraiser adds and names: the name is the row's label,
-            # and naming the empty one at the foot of the group creates it
-            attrs = (f" data-li='{_esc(kind_of(grid))}'"
-                     f" data-lic='{_esc(row.line_item)}'"
-                     f" data-lit='{_esc(row.adjust_type)}'"
-                     f" data-liwas='{_esc(row.item_name)}'")
-            name = "" if row.new_item else row.item_name
-            drop = ("" if row.new_item else
-                    f"<span class='lidrop' role='button' tabindex='0'"
-                    f" title='Remove this row'>&#215;</span>")
-            cells = [f"<td class='lbl liname'><span class='v'{attrs}"
-                     f" contenteditable='true' spellcheck='false'"
-                     f" data-ph='Name this row'>{_esc(name)}</span>{drop}</td>"]
+            # a row the appraiser adds and names: the name is the row's label.
+            # The "+" at the foot of the group adds one; nothing is added by
+            # itself (DR §7)
+            if row.new_item:
+                body.append(_line_add(kind_of(grid), row, 2 + 2 * n))
+                continue
+            cells = [_line_name(kind_of(grid), row)]
         else:
             cells = [f"<td class='lbl'><span>{_esc(row.label)}</span></td>"]
         subject_grey = row.label.strip() in SUBJECT_GREY
@@ -1686,7 +1772,15 @@ def html_pair(grids: list["Grid"], *, edit: bool = False) -> str:
         if heading:
             body.append(f"<tr class='sca-sub'><td colspan='{n_cols}'><span>{_esc(label)}</span></td></tr>")
             continue
-        cells = [f"<td class='lbl'><span>{_esc(label)}</span></td>"]
+        lead = next((rows[(label, False)] for rows in by if (label, False) in rows), None)
+        if edit and lead is not None and lead.line_item:
+            # a row the appraiser adds and names, as in a grid of its own
+            if lead.new_item:
+                body.append(_line_add(kind_of(grids[0]), lead, n_cols))
+                continue
+            cells = [_line_name(kind_of(grids[0]), lead)]
+        else:
+            cells = [f"<td class='lbl'><span>{_esc(label)}</span></td>"]
         for g, rows in zip(grids, by):
             r = rows.get((label, False))
             if r is None:
@@ -1735,6 +1829,35 @@ def _esc(text: str) -> str:
     one line and the town on the next, a line for each vehicle storage."""
     return (str(text).replace("&", "&amp;").replace("<", "&lt;")
             .replace(">", "&gt;").replace("\n", "<br>"))
+
+
+def _attr(text: str) -> str:
+    """Text inside a single-quoted attribute: a name may be "Owner's Suite"."""
+    return _esc(text).replace("'", "&#39;")
+
+
+def _line_attrs(kind: str, row: "BuiltRow") -> str:
+    """Where a group's added rows are kept: the grid, the container, the type."""
+    return (f" data-li='{_esc(kind)}' data-lic='{_esc(row.line_item)}'"
+            f" data-lit='{_esc(row.line_type)}'")
+
+
+def _line_name(kind: str, row: "BuiltRow") -> str:
+    """The label cell of a row the appraiser added, in the editor: its name in
+    a text box, and the x that removes it (shown on hover)."""
+    return (f"<td class='lbl liname'><input class='liin' type='text'{_line_attrs(kind, row)}"
+            f" data-liwas='{_attr(row.item_name)}' value='{_attr(row.item_name)}'"
+            f" placeholder='Name this row' aria-label='Row name' spellcheck='false'>"
+            f"<span class='lidrop' role='button' tabindex='0' title='Remove this row'>&#215;</span></td>")
+
+
+def _line_add(kind: str, row: "BuiltRow", span: int) -> str:
+    """The "+" that adds one more row to a group, under its rows.  B-1's own
+    label for the template ("[Other Exterior Feature]") says what it adds."""
+    return (f"<tr class='liadd'><td colspan='{span}'><span class='liaddbtn' role='button'"
+            f" tabindex='0'{_line_attrs(kind, row)}"
+            f" title='Add a row you name; it is kept for the subject and every comparable'>"
+            f"+ {_esc(row.label.strip().strip('[]'))}</span></td></tr>")
 
 
 def main() -> None:
@@ -1864,9 +1987,8 @@ def copy_property(tree, role: str, number: int) -> int:
 def _drop_relationships(root: etree._Element, label: str) -> None:
     for rel in list(root.iter(f"{{{bind.MISMO}}}RELATIONSHIP")):
         if label in (rel.get(f"{{{XLINK}}}from"), rel.get(f"{{{XLINK}}}to")):
-            parent = rel.getparent()
-            if parent is not None:
-                parent.remove(rel)
+            if rel.getparent() is not None:
+                edit.remove_block(rel)   # MISMO: RELATIONSHIPS holds at least one
 
 
 def points_for(field_id: str) -> list[dict]:
@@ -1908,6 +2030,53 @@ def parts_for(root: etree._Element, field_id: str,
         if text and name not in out:
             out[name] = text
     return out
+
+
+@lru_cache(maxsize=None)
+def stacks(field_id: str) -> bool:
+    """Does this cell print one line for each instance of its block (a
+    ``Composite`` with ``stack``)?"""
+    binding = binding_of(field_id)
+    composite = bind.composite_for([dp.get("mismo", "") for dp in binding.data_points]) if binding else None
+    return bool(composite and composite.stack)
+
+
+def lines_for(root: etree._Element, field_id: str,
+              scope: etree._Element | None) -> list[dict] | None:
+    """A stacked cell's lines -- B-1 "a separate line for each" vehicle storage,
+    view, street, heating system -- each with its own values and the path
+    (``line``) a write into that line names.  None where the cell is one
+    value.  Edited through ``parts_for`` alone, every line but the first was
+    out of reach and a garage typed there replaced the driveway."""
+    binding = binding_of(field_id)
+    if binding is None or scope is None or not stacks(field_id):
+        return None
+    tree = root.getroottree()
+    lines: dict[str, tuple] = {}
+    for name, node in _read(root, binding, scope):
+        text = (node.text or "").strip()
+        if not text:
+            continue
+        key = bind.instance_of(node)
+        if key not in lines:
+            hit = tree.xpath(key)
+            if not hit:
+                continue
+            lines[key] = (hit[0], {"line": bind.stable_path(hit[0]), "parts": {}})
+        lines[key][1]["parts"].setdefault(name, text)
+    # each line asks for what A-1 asks of its own block (a garage's area, not
+    # a driveway's surface) -- the same conditions the section's row follows
+    # and an "Other" description goes with its list
+    from . import form as _form
+    names = {dp.get("mismo") for dp in binding.data_points}
+    for el, ln in lines.values():
+        ok = [dp["mismo"] for dp in binding.data_points if dp.get("mismo")
+              and not dp["mismo"].endswith("OtherDescription") and _form._instance_ok(dp, el)]
+        ln["points"] = list(dict.fromkeys(ok + [f"{n}OtherDescription" for n in ok
+                                                if f"{n}OtherDescription" in names]))
+    # in the order they print (an "Other" description is read ahead of its line)
+    rank = {el: n for n, el in enumerate(scope.iter())}
+    return [ln for el, ln in sorted(lines.values(), key=lambda p: rank.get(p[0], 0))]
 
 
 @lru_cache(maxsize=None)

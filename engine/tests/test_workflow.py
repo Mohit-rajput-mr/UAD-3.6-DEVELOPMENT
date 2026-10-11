@@ -291,7 +291,9 @@ def test_a_bracketed_placeholder_row_is_reachable_in_edit_mode_but_not_printed(c
     to back the row: these rows are line items, so which instance's ID the
     grid resolves for them legitimately changes as the row mapping improves.
     Naming one here made the test fail for a change that had in fact made the
-    row *more* editable, not less.
+    row *more* editable, not less.  Since DR §7 the template is reached by the
+    "+" under its group (a blank row of its own read as one more row nobody
+    asked for), so the capability is that "+".
     """
     from uad.report import comparables
 
@@ -303,8 +305,8 @@ def test_a_bracketed_placeholder_row_is_reachable_in_edit_mode_but_not_printed(c
     assert fids, "the template row carries no writable Report Field ID"
 
     edit_html = client.get(f"/api/cases/{case}/form").text
-    assert any(fid in edit_html for fid in fids), (
-        f"[Other Exterior Feature] is not reachable in edit mode (looked for {sorted(fids)})")
+    assert re.search(r"class=[\"']liaddbtn[\"'][^>]*data-lic=[\"']STRUCTURE_COMPONENT", edit_html), (
+        "[Other Exterior Feature] has no + to add one in edit mode")
 
     printed = client.get(f"/api/cases/{case}/preview").text
     assert "[Other Exterior Feature]" not in printed, (

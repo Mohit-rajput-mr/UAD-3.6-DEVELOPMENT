@@ -19,6 +19,7 @@ and survives a restart.
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 import sqlite3
@@ -77,6 +78,21 @@ class GateError(RuntimeError):
     def __init__(self, message: str, reasons: list[str] | None = None):
         super().__init__(message)
         self.reasons = reasons or []
+
+
+def _write_atomic(tree, path) -> None:
+    """Write the case document so that no reader ever sees it half written:
+    a request, the background renderer or the vault reading while a save is
+    under way read the old file or the new one, never an empty one (a save
+    used to truncate the file first -- tests/test_grid_rows_browser read it
+    empty).  Written beside it, then renamed over it."""
+    path = Path(path)
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+    try:
+        tree.write(str(tmp), encoding="utf-8", xml_declaration=True, pretty_print=True)
+        os.replace(tmp, path)
+    finally:
+        tmp.unlink(missing_ok=True)
 
 
 def _now() -> str:
@@ -233,8 +249,7 @@ class Store:
         from uad import delivery
         delivery.stamp_software(tree.getroot())
         self.folder(case_id)
-        tree.write(str(self.xml_path(case_id)), encoding="utf-8",
-                   xml_declaration=True, pretty_print=True)
+        _write_atomic(tree, self.xml_path(case_id))
         case = Case(case_id=case_id, name=name or tpl.name,
                     template=template, property_type=tpl.property_type)
         with self._lock:
@@ -257,8 +272,7 @@ class Store:
         ``template`` names its kind ("report:update"), not a D-1 sample."""
         case_id = uuid.uuid4().hex[:12]
         self.folder(case_id)
-        tree.write(str(self.xml_path(case_id)), encoding="utf-8",
-                   xml_declaration=True, pretty_print=True)
+        _write_atomic(tree, self.xml_path(case_id))
         case = Case(case_id=case_id, name=name, template=template, property_type=property_type)
         with self._lock:
             self.conn.execute(
@@ -370,7 +384,7 @@ class Store:
             added = after - before
             if added:
                 raise SchemaRegression(_plain_schema_message(next(iter(added))))
-        tree.write(str(path), encoding="utf-8", xml_declaration=True, pretty_print=True)
+        _write_atomic(tree, path)
         self.touch(case_id)
 
     def recalculated(self, case_id: str) -> list:

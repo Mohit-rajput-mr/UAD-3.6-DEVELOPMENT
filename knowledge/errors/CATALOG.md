@@ -3204,3 +3204,16 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Test: `tests/test_checkbox_centre.py` (Chromium, device scale 4) checks
   110 boxes on sf1 and 2-4, in the editor and the preview: outline and tint
   centred within 0.5 px.
+
+### E-186 -- A reader could see the case document empty while it was being saved (2026-10-11)
+- Symptom: `tests/test_grid_rows_browser.py` failed about one run in three
+  with "Document is empty" reading mismo.xml.
+- Cause: `Store.save_tree` (and case creation) truncated mismo.xml and then
+  wrote it. Anything reading in that window saw an empty file: another
+  request, the background renderer, the vault, a test.
+- Mechanism: `cases._write_atomic` writes the document beside it and
+  renames it over the old one (`os.replace`). A reader sees the old file or
+  the new one, never a half-written one. A failed write leaves the old
+  document and no temporary file.
+- Test: `tests/test_atomic_save.py`; `test_grid_rows_browser.py` passes 6
+  runs out of 6.

@@ -16,6 +16,8 @@ Two rules hold throughout:
 """
 from __future__ import annotations
 
+from functools import lru_cache
+
 import io
 import os
 import json
@@ -2884,6 +2886,18 @@ def preview(case_id: str, request: Request, screen: bool = Query(True)) -> HTMLR
 def address_suggestions(q: str = Query("")) -> dict:
     """Candidate real addresses for what has been typed (see ``maps.suggest``)."""
     return {"suggestions": maps.suggest(q)}
+
+
+@router.get("/field-labels")
+def field_labels() -> dict:
+    """Every Report Field ID with where B-1 places it ("Site - Utilities -
+    Electricity"): what Ctrl+G's go-to-field list searches (T-277)."""
+    return {"labels": _field_labels()}
+
+
+@lru_cache(maxsize=1)
+def _field_labels() -> dict:
+    return {fid: f.get("report_location") or fid for fid, f in review._index().items()}
 
 
 @router.get("/fields/{field_id}/options")

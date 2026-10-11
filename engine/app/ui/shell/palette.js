@@ -18,10 +18,31 @@
     if(!C.has(a[0])) C.register({id:a[0],label:a[1],group:'Report',adopt:a[2]});
   });
   C.register({id:'palette.open',label:'Command palette',group:'View',keys:['Ctrl+K'],run:function(){ open(); }});
+  C.register({id:'field.goto',label:'Go to a field\u2026',group:'View',keys:['Ctrl+G'],run:function(){ open('fields'); }});
 
-  var box=null, list=[], at=0;
+  var box=null, list=[], at=0, mode='', LABELS=null;
+  /* Ctrl+G: every field on the report, by where B-1 places it */
+  function labels(){
+    if(LABELS) return Promise.resolve(LABELS);
+    return fetch('/api/field-labels',{credentials:'same-origin'}).then(function(r){ return r.json(); })
+      .then(function(d){ LABELS=d.labels||{}; return LABELS; }).catch(function(){ return {}; });
+  }
+  function fields(){
+    var f=document.getElementById('rf'), d=null;
+    try{ d=f&&f.contentDocument; }catch(_){ d=null; }
+    var seen={}, out=[];
+    if(!d||!LABELS) return out;
+    [].forEach.call(d.querySelectorAll('[data-fid]'),function(el){
+      var fid=el.getAttribute('data-fid'); if(!fid||seen[fid]) return; seen[fid]=1;
+      var where=LABELS[fid]; if(!where) return;
+      out.push({id:'fid.'+fid,label:where,group:fid,keys:'',rank:Object.keys(seen).length,
+                run:function(){ if(typeof goToReport==='function') goToReport({fid:fid}); }});
+    });
+    return out;
+  }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function entries(){
+    if(mode==='fields') return fields();
     var mru=(UADShell.state.get('palette.mru')||[]);
     var out=C.list().filter(function(c){ return c.id!=='palette.open'&&C.available(c.id); }).map(function(c){
       return {id:c.id,label:c.label||c.id,group:c.group||'',keys:(c.keys||[])[0]||'',run:function(){ C.run(c.id); },
@@ -50,15 +71,18 @@
       return '<div class="pal-row'+(n===at?' on':'')+'" data-n="'+n+'" role="option" aria-selected="'+(n===at)+'">'
         +'<span class="pal-l">'+esc(e.label)+'</span><span class="pal-g">'+esc(e.group)+'</span>'
         +(e.keys?'<kbd>'+esc(e.keys)+'</kbd>':'')+'</div>';
-    }).join(''):'<div class="pal-none">No command matches.</div>';
+    }).join(''):'<div class="pal-none">'+(mode==='fields'?'No field matches.':'No command matches.')+'</div>';
     var on=box.querySelector('.pal-row.on'); if(on) on.scrollIntoView({block:'nearest'});
   }
   function close(){ if(box){ box.remove(); box=null; } }
   function go(n){ var e=list[n]; close(); if(e) e.run(); }
-  function open(){
-    if(box){ box.querySelector('input').focus(); return; }
+  function open(m){
+    m=m==='fields'?'fields':'';
+    if(box&&mode===m){ box.querySelector('input').focus(); return; }
+    close(); mode=m;
+    if(m==='fields'&&!LABELS){ labels().then(function(){ open('fields'); }); return; }
     box=document.createElement('div'); box.className='pal-back'; box.id='palette';
-    box.innerHTML='<div class="pal" role="dialog" aria-label="Command palette"><input type="text" placeholder="Type a command or a section…" aria-label="Command">'
+    box.innerHTML='<div class="pal" role="dialog" aria-label="Command palette"><input type="text" placeholder="'+(m==='fields'?'Type a field: gross living area, 10.012\u2026':'Type a command or a section\u2026')+'" aria-label="'+(m==='fields'?'Field':'Command')+'">'
       +'<div class="pal-list" role="listbox"></div></div>';
     document.body.appendChild(box);
     var inp=box.querySelector('input');

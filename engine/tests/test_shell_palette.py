@@ -39,3 +39,19 @@ def test_ctrl_k_finds_and_runs_a_command_and_goes_to_a_section(site):
     page.evaluate("document.getElementById('sketch-ov').remove()")
     page.evaluate("localStorage.removeItem('uad-shell-v1')")
     assert not site.errors, site.errors
+
+
+def test_ctrl_g_goes_to_a_field_by_its_name(site):
+    page = site.page
+    open_case(site, "sf1_appraisal_v1_4")
+    page.keyboard.press("Control+g")
+    page.wait_for_selector("#palette .pal-row", timeout=30_000)
+    page.fill("#palette input", "contract price")
+    fid = page.inner_text("#palette .pal-row.on .pal-g")
+    assert "Contract Price" in page.inner_text("#palette .pal-row.on .pal-l")
+    page.keyboard.press("Enter")
+    page.wait_for_selector("#palette", state="detached")
+    page.wait_for_function(
+        "(f)=>{const d=document.getElementById('rf').contentDocument; return !!d.querySelector('[data-fid=\"'+f+'\"].found');}",
+        arg=fid, timeout=30_000)
+    assert not site.errors, site.errors

@@ -3358,3 +3358,31 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   Item 9 (prohibited / veiled language) cites the GSE Selling Guides, which
   are not in the repo: ask the owner for them rather than invent a word
   list.
+
+## 2026-10-11 -- current position: phase 1 half landed; three sessions in parallel
+- **PR #3 is merged into main.** This branch restarted from main aed9c63,
+  which includes keen-turing's merged PR #2 and the parallel-sessions tool
+  `engine/agents.py`.
+- **Coordination:** this session joined `engine/agents.py`. It holds
+  production (uad36.vercel.app), blocks T-1200..T-1249 and E-180..E-189, and
+  claims the DR shell/editor/worksheet/sketch/desktop work. keen-turing does
+  engine-side checks; ecstatic-bohr does pagination and print. Fixed
+  `unread()` so `ack <bare id>` counts (tests/test_agents.py 7).
+- **Phase 1 landed (39dbda1):** T-509 (E-180), T-506 (E-181), T-1070
+  (E-182), T-1071 (E-183). Integrated from isolated agents' patches. In
+  conflicts, both sides were kept. One test was aligned: an empty skeleton
+  COMPARABLE reused for a row now leaves with it.
+  - Full suite: 1044 passed / 0 failed. Harness 12: 88/0/20.
+- **Phase 1 in flight:**
+  - T-416 (map) and T-1072 (every dropdown / Yes-No round trip): workflow
+    `dr-phase1-bugfix-2`.
+  - T-1074 and T-1066 are offered to keen-turing, and T-125 to
+    ecstatic-bohr. If they are unclaimed when T-416/T-1072 land, this
+    session runs them.
+- **Follow-ups registered:** T-1201 (heal saved XSD errors), T-1202
+  (per-unit IMPROVEMENT rows), T-1203 (type-first "Add a line").
+- **Next:**
+  - merge ecstatic-bohr's branch (trial merge clean);
+  - run suite + harness;
+  - deploy production (Vercel project `uad`, deploy by API from this
+    branch).

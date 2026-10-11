@@ -2578,3 +2578,113 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Not changed: D-1 SF1 lists Dwelling Front before Dwelling Rear; we keep
   document order (Rear first). Neither B-1 nor Appendix E states an order,
   and A-1's row order would reorder MH1/MH2's Site exhibits away from D-1.
+
+### E-180 -- Removing the last of a repeating block left its schema-required wrapper behind (T-509, 2026-10-11)
+- Symptom (owner, DR §4):
+  - The XSD fatal "AMENITY_CATEGORY_DETAIL: not expected, expected
+    AMENITIES" on comparables #1 and #3 of a 2-4 unit report.
+  - The editor's x on a category's last amenity was refused with the same
+    message.
+  - The same class elsewhere:
+    - removing a named grid row or the last party name was refused;
+    - every "[Other Exterior/Interior Feature]" row was refused;
+    - the first block added under a new holder left a nameless phantom
+      beside it.
+- Cause: every remover used `holder.remove(node)` and then dropped the holder
+  once it was empty. MISMO nests repeats in wrappers that must each hold the
+  next (PROPERTY_AMENITY > AMENITY_CATEGORIES > AMENITY_CATEGORY > AMENITIES
+  > AMENITY), so the last amenity took AMENITIES with it. Adders appended
+  after EXTENSION, or added a second instance beside the skeleton that
+  `insert_ordered` had just made.
+- Mechanism (`uad/edit.py`):
+  - `remove_block` / `removal_plan` walk up only through holders left empty
+    or below the XSD's minOccurs (`xsd_order.min_occurs`, generated as
+    `spec/xsd_min.json`; MARKET_INVENTORIES needs 3).
+  - A holder that holds an answer, is linked, or is a document singleton is
+    never discarded. The removal raises `Unremovable` and the route answers
+    422.
+  - `place` inserts in sequence order; `add_instance` / `adopt` reuse a new
+    holder's skeleton; `empty_block` keeps the only PARTY of a SERVICE.
+  - Every remover and adder in the engine uses them.
+- Test: `tests/test_repeating_groups.py` (51). It covers:
+  - the owner's case reproduced with the old pattern;
+  - every editor route that adds or removes a group, on the 2-4 sample and
+    a blank 2-4 report;
+  - the first and last instance of every XSD-repeating group removed and
+    re-added on all 12 D-1 samples.
+
+### E-181 -- A blank report counted fatal findings on things it never shows (T-506, 2026-10-11)
+- Symptom (owner, DR §4): an almost empty 2-4 unit report showed 160 fatal
+  and 28 warning findings, most on fields that should not exist.
+- Causes:
+  - `templates.clear` kept the D-1 sample's empty claim blocks (defect rows,
+    REAL_PROPERTY_INTEREST, comparable SALES_HISTORY, single-family HOA
+    dues).
+  - Relationships pointed at removed labels.
+  - The Review Master judged the editor's copy rather than the file that
+    ships.
+  - No finding was tied to section visibility.
+- Mechanism:
+  - `templates._drop_guarded` / `_drop_unshown_repeats` / `_drop_dangling`
+    tidy a blank under the schema guard; `drop_unclaimed` does the same for
+    reports made before the fix.
+  - `review.findings` runs H-1 on `delivery.as_delivered`.
+  - `review.shown_in` uses the same B-1 calls as `form.build`
+    (`section_shown`, `print_gate`, `switch_fields`). A finding on a section
+    B-1 leaves out is Review ("not counted"), never Fatal or Warning.
+  - Field-level "Display when" is deliberately not used: H-1 requires
+    UAD1296 and UAD1138 unconditionally.
+- Evidence: a new report gives 2-4 149/22 (was 160/28) and SF 129/17 (was
+  143/23). The 12 D-1 samples stay 0/0/0. Harness unchanged.
+- Test: `tests/test_applicable_findings.py` (55).
+- Open: a value left in a section B-1 hides is still written to the
+  delivered XML (DR §5 "excluded from output"). That needs a move-aside like
+  `optional_sections` (T-1066).
+
+### E-182 -- Comparable-grid "Name this row" rows spawned by themselves and wrote into the wrong row (T-1070, 2026-10-11)
+- Symptom (owner, DR §7):
+  - A blank "Name this row" sat under every named-row group: 5 on SF, 14 on
+    2-4. Another appeared after each row named.
+  - Custom-row descriptions were refused ("is an adjustment"), and their
+    adjustments overwrote the group's first row.
+  - Rename added a second name element; deleting a property's only row was
+    refused.
+- Cause:
+  - `specs(every_row)` drew the unnamed template as a live row.
+  - Named rows were copied into every repeated block.
+  - Writes found a row by the field id its whole group shares.
+- Mechanism:
+  - The template prints only as "+ <B-1 label>"; a named row is a real text
+    box with a hover ×.
+  - Cells send item_name / container / line_type to
+    `comparables.write_named`.
+  - `Named.per_block` comes from the A-1 xpath.
+  - `named_nodes` + `drop_named` (via `edit.remove_block`) handle rename and
+    delete.
+- Test: `tests/test_grid_rows.py` (10) and `test_grid_rows_browser.py`
+  (Chromium). The printed grids are byte-identical on the 12 D-1 samples.
+
+### E-183 -- Vehicle storage / garage did not save, and the garage had no size (T-1071, 2026-10-11)
+- Symptom (owner, DR §8): a Garage had no input for its area, and its spaces
+  were asked as Assigned/Owned/Unassigned. It never reached the grid, so
+  13.000 stayed empty. In the grid, a garage replaced the driveway.
+- Causes:
+  - A table cell had one input, and a measure with a unit attribute was
+    dropped.
+  - New rows were appended after the empty insertion blocks that readers by
+    position stop at.
+  - The grid editor wrote every stacked line into instance 1.
+  - A blank "Other" description created a typed block.
+- Mechanism:
+  - `form.cell_points` gives one input per data point a template-row cell
+    prints, filtered by A-1 conditions, with unit measures included.
+  - `form.decides_row`: the A-1 type that chooses a row's inputs
+    (CarStorageType, SiteInfluenceType) relays out the form.
+  - `_new_instance` fills the first wholly empty instance;
+    `comparables._read` skips empty instances.
+  - Stacked grid cells edit each line in its own block (Vehicle Storage,
+    View | Range, Street | Surface, Heating, certifications).
+  - A blank write with nothing to clear is a no-op.
+- Test: `tests/test_vehicle_storage.py` (17). It covers the round trip
+  through mismo.xml, the preview and the grid, a Chromium test of the grid
+  editor, and every vehicle-storage value on the 12 samples.

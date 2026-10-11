@@ -218,6 +218,19 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
 
+### 2026-10-11 -- three sessions in parallel; phase 1 half landed (read `python engine/agents.py` first)
+- **Who does what:**
+  - sleepy-hypatia (this branch): the DR shell, editor, worksheet, sketch
+    and desktop work, and production;
+  - keen-turing: engine checks;
+  - ecstatic-bohr: pagination and print.
+  Each status is in `_work/agents/<branch>.json`.
+- **Phase 1:**
+  - done: T-509, T-506, T-1070, T-1071 (E-180..E-183; suite 1044/0;
+    harness 88/0/20);
+  - running: T-416 and T-1072;
+  - offered to the other sessions: T-1074, T-1066 and T-125.
+
 ### 2026-10-10 (night) -- T-1085 worksheet inside the comparable grid: DONE; live at https://uad36.vercel.app
 - **Owner's addendum** (replaces DR §11):
   `_work/owner/2026-10-10-desktop-rebuild/ADDENDUM_11_WORKSHEET_IN_GRID.md`.

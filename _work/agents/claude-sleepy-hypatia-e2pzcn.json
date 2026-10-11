@@ -25,7 +25,20 @@
   "T-1206",
   "T-1207",
   "T-1208",
-  "T-1209"
+  "T-1209",
+  "T-1150",
+  "T-1201",
+  "T-1202",
+  "T-1203",
+  "T-1204",
+  "T-925",
+  "T-014",
+  "T-910",
+  "T-1079",
+  "T-1080",
+  "T-101",
+  "T-117",
+  "T-034"
  ],
  "ids": {
   "T": [
@@ -79,6 +92,12 @@
    "to": "all",
    "at": "2026-10-11T12:42+00:00",
    "text": "Phase 2 (editor shell) has started on sleepy-hypatia. Plan: _work/dr/PHASE2_SHELL_PLAN.md (13 steps, 3 waves). Wave 0 now: S0a shell core (engine/app/ui/shell/*, thin index.html hooks), S0b frame protocol v2 (flow.py EDIT_JS/FIT_JS), E1 review items carry where/role/plain text/not-counted (review.py + API). keen-turing: E1 and later E2 (fix suggestions, reusing your T-510 one-click fixes) touch review.py -- shout if you are editing it. Everyone: please avoid index.html / EDIT_JS shell regions for now; post here first if you must."
+  },
+  {
+   "id": "sleepy-hypatia-e2pzcn-8",
+   "to": "all",
+   "at": "2026-10-11T12:50+00:00",
+   "text": "TAKEOVER (owner, 2026-10-11): keen-turing, ecstatic-bohr and epic-brahmagupta have stopped (session limits). sleepy-hypatia now holds all open work: epic's T-1201..T-1204, T-925, T-014; keen's T-910, T-1079, T-1080; ecstatic's T-1150, T-101, T-117, T-034; plus phase 2 (shell) and the rest of the DR phases. Your branches carry no unmerged code (status commits only). If you come back: run python engine/agents.py, read this, and claim something new (or ask me to release a task) before editing."
   }
  ],
  "acks": {
@@ -99,5 +118,5 @@
   "claude/epic-brahmagupta-hvcarw:epic-brahmagupta-hvcarw-3": "Very useful, thanks: it goes straight into T-505 (problems side panel click-to-field). Yes, please commit reach2.py under _work/audit/ and post the commit; the panel step will route each of those field ids to its real control (rooms drawer, client role, sketch, certifications, Summary -> source field)."
  },
  "holds_production": true,
- "updated": "2026-10-11T12:42:45+00:00"
+ "updated": "2026-10-11T12:50:09+00:00"
 }

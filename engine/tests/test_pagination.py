@@ -28,6 +28,7 @@ from lxml import etree
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from uad import templates  # noqa: E402
 from uad.report import browser, flow, form  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 needs_browser = pytest.mark.skipif(not browser.AVAILABLE, reason=browser.MESSAGE)
 M = "{http://www.mismo.org/residential/2009/schemas}"
@@ -315,3 +316,47 @@ def test_page_counts_match_the_official_samples(key, pages, tmp_path):
     for opener in ("Sketch", "Certifications"):
         assert opener in heads, f"{opener} does not head a page"
     assert any(h.startswith("This appraisal report is subject to") for h in heads)
+
+
+def _heading_gaps(doc, start, heads=None):
+    """{(heading, next line): distance between their tops} -- section tabs
+    (white text) when ``heads`` is None, else the named headings."""
+    out = {}
+    for i in range(start, doc.page_count):
+        ls = []
+        for b in doc[i].get_text("dict")["blocks"]:
+            for ln in b.get("lines", []):
+                t = " ".join(s["text"] for s in ln["spans"]).strip()
+                w = all(s["color"] == 0xffffff for s in ln["spans"] if s["text"].strip())
+                if t:
+                    ls.append((ln["bbox"][1], ln["bbox"][0], t, w))
+        ls.sort()
+        for n, (y, x, t, w) in enumerate(ls):
+            hit = (t in heads) if heads else (w and "(continued)" not in t)
+            nxt = next((r for r in ls[n + 1:] if r[0] > y + 3), None)
+            # (a sales grid's white group rows sit 13-14 pt over their row:
+            # those are not section tabs)
+            if hit and x < 60 and nxt and (heads or nxt[0] - y > 18) and nxt[0] - y < 45:
+                out.setdefault((t, nxt[2]), nxt[0] - y)
+    return out
+
+
+@needs_browser
+def test_tabs_and_headings_sit_where_d1_sets_them(tmp_path):
+    """T-1150, against SF1's official PDF, heading by heading (same heading,
+    same line under it): a section tab's first row 24.4 pt under it (it was
+    27.0), an H1 straight under a tab 28.1 pt (38.5), a contact H2's first
+    row 15.3 pt (18.0)."""
+    import statistics
+    from harness import report_start
+    pymupdf = pytest.importorskip("pymupdf")
+    ours = _rendered("sf1_appraisal_v1_4", tmp_path)
+    tpl = templates.get("sf1_appraisal_v1_4")
+    gse, start = pymupdf.open(tpl.pdf), report_start(tpl.pdf)
+    for heads, least in ((None, 10), (("Client/Lender", "Appraisal Management Company",
+                                      "Significant Real Property Appraisal Assistance"), 1)):
+        a, b = _heading_gaps(ours, 0, heads), _heading_gaps(gse, start, heads)
+        both = [abs(a[k] - b[k]) for k in a.keys() & b.keys()]
+        assert len(both) >= least and statistics.median(both) < 0.6, sorted(
+            (k, round(a[k], 1), round(b[k], 1)) for k in a.keys() & b.keys())
+    assert abs(a.get(("Client/Lender", "Company Name"), 0) - 15.3) < 0.6

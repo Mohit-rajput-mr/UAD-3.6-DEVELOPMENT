@@ -2784,3 +2784,41 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   unchanged. Applies to print and editor alike.
 - Test: `tests/test_pagination.py::test_an_adu_in_an_outbuilding_follows_its_outbuilding`,
   `::test_an_adu_in_the_dwelling_stays_with_the_dwelling`.
+
+### E-311 -- Every section started 2.6 pt low; H2s and H1s under tabs ran long (2026-10-11, T-1150)
+- Symptom: our pages drifted down against D-1, section by section.
+  Dwelling Exterior missed the sketch page by 0.6 pt (SF1, SF3), and
+  "Legal Description" spilled to page 3 on SF1.
+- Method: compare the gap from each heading's text to the next line, against
+  the same heading followed by the same line in the official PDF. A
+  scratchpad aligner scores every page that starts on the same line as
+  D-1's: the mean |dy| of matched lines.
+- Found, and set from D-1 (constants beside `form.BAR`; the planner's
+  `TAB_H` follows `TAB_BELOW`):
+  - **Under a section tab.** The first line sat 27.0 pt below the tab's
+    text; D-1 sets 24.4 (the commonest gap, 43 tabs). Appendix E p19 fixes
+    the tab's 15 pt height and the 19.5 pt above it, not the space below.
+    `TAB_BELOW` 10.8 -> 8.2 pt.
+  - **An H1 straight under a tab** (Prior Sale and Transfer History,
+    Reconciliation, Certifications) was 38.5 pt below the tab; D-1 sets
+    28.1. `H1_AFTER_TAB` = 3.9 pt.
+  - **Under an H2 rule.** A contact block's first row was 18.0 pt below the
+    H2; D-1 sets 15.3 (20 of 20). A table head was 20.0 below; D-1 sets
+    15.0. `H2_BELOW` 2.8 -> 0 pt.
+  - **A photo that opens its column** (the Dwelling Exterior front photo)
+    started 10.6 pt lower than D-1's, which sets it 3.0 pt under the first
+    row. `PHOTO_FIRST` = 5.9 pt. A photo after rows keeps 13.6 pt: the
+    Summary's matches D-1 within 0.3 pt.
+- Result:
+  - SF1 tab-to-first-line, paired with D-1: median difference 4.0 -> 0.11 pt.
+  - On the ten v1.4 samples' aligned pages, median line offset
+    10.1 -> 2.4 pt.
+  - Lines within 2 pt: 18% -> 46%.
+  - SF3 25 -> 24 pages (D-1 23). Word diff 7122 -> 7094.
+- Still open (T-1150):
+  - H2 -> table head is +2.2 pt.
+  - Kitchen and Bathroom Details' head sits lower in D-1 (a two-line head).
+  - H1 -> first paragraph is -2.8 pt (Certifications).
+  - The Contact Information H1 -> Client/Lender H2 is +4.0 pt.
+- Test: `tests/test_pagination.py::test_tabs_and_headings_sit_where_d1_sets_them`
+  (Chromium, against SF1's official PDF).

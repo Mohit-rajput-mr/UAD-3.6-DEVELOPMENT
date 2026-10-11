@@ -105,6 +105,25 @@ def _black_em(code: str) -> str:
     return f"{sub.letter_spacing_pt / sub.size_pt:.4f}"
 RULE = page.RULE["colour"]
 BAR = page.BAR["fill"]
+#: Space under a section tab's rule.  Appendix E p19 sets the tab (15 pt high)
+#: and the 19.5 pt above it, not the space below; D-1 sets a tab's first line
+#: 24.4 pt under the tab's own text (the commonest gap, 43 tabs over the ten
+#: v1.4 samples), which 8.2 pt gives.  10.8 pt set every section 2.6 pt low
+#: (T-1150).
+TAB_BELOW = 8.2
+#: A photo that opens its column (the Dwelling Exterior's front photo) stands
+#: 3.0 pt below the first row's text in D-1 (SF1 p5, 763.4 against 760.4);
+#: after rows it keeps the 13.6 pt the Summary's photo is set with.
+PHOTO_FIRST = 5.9
+#: Space under an H2's rule.  D-1 sets the first row 15.3 pt under a contact
+#: H2's text (Client/Lender, AMC, Appraiser: 20 of 20) and a table's head
+#: 15.0 pt under Exterior / Interior Features and Level and Room Detail;
+#: 2.8 pt here set them 2.8 pt and 5.0 pt low (T-1150).
+H2_BELOW = 0.0
+#: An H1 straight under a section tab: D-1 sets its text 28.1 pt under the
+#: tab's (Prior Sale and Transfer History, Reconciliation, Certifications in
+#: SF1); the H1's own 14.3 pt above put it 10.4 pt lower (T-1150).
+H1_AFTER_TAB = 3.9
 
 GRID_KINDS = {"Sales Comparison Approach": "sales", "Rental Information": "rental",
               "Income Approach": "grm"}
@@ -6422,7 +6441,7 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .sum-hd{{position:absolute;left:4pt;top:var(--sum-top);font-size:14pt;line-height:14pt;
          font-weight:900;letter-spacing:{_black_em('SUM-HD')}em}}
 
-.tabwrap{{border-bottom:0.5pt solid {INK};height:15pt;margin-top:19.5pt;margin-bottom:10.8pt;line-height:0}}
+.tabwrap{{border-bottom:0.5pt solid {INK};height:15pt;margin-top:19.5pt;margin-bottom:{TAB_BELOW}pt;line-height:0}}
 .blk:first-child .tabwrap{{margin-top:0}}
 .tab{{display:inline-block;background:{INK};color:#fff;height:14.83pt;line-height:14.83pt;
       min-width:144pt;padding:0 14pt 0 6pt;font-weight:700;font-size:9pt;
@@ -6432,12 +6451,13 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .h1{{height:15pt;line-height:15pt;padding:0 4pt;font-size:10pt;font-weight:700;position:relative;
      margin-top:14.3pt;margin-bottom:0.7pt;display:flex;justify-content:space-between;white-space:nowrap}}
 .blk:first-child .h1{{margin-top:0}}
+.tabblk + .blk > .h1:first-child{{margin-top:{H1_AFTER_TAB}pt}}
 .h1::before{{content:'';position:absolute;left:0;right:0;top:0.75pt;height:15pt;background:{BAR};z-index:-1}}
 .h1 > span{{position:relative;top:var(--h1-text);z-index:1}}
 .h1 .note{{font-size:9pt;font-style:italic;font-weight:400}}
 .h1 .amt{{font-size:9pt;font-weight:700}}
 .h2{{font-size:9pt;font-weight:700;line-height:11.3pt;padding-left:4pt;border-bottom:1pt solid {INK};
-     margin-top:10pt;margin-bottom:2.8pt}}
+     margin-top:10pt;margin-bottom:{H2_BELOW}pt}}
 
 .cols{{display:flex;gap:12pt;align-items:flex-start}}
 .cols.gap{{margin-top:6.6pt}}
@@ -6509,6 +6529,7 @@ tr.hint td .hintx{{font-style:italic;color:#6d6e71;font-size:8pt}}
 .photo.empty span{{font-style:italic;color:#939598}}
 .col.right .photo{{margin-top:13.6pt}}
 .col.right .r + .photo{{margin-top:13.6pt}}
+.col.right > .photo:first-child{{margin-top:{PHOTO_FIRST}pt}}
 
 table.tbl{{border-collapse:collapse;table-layout:fixed;margin:4pt 0 2pt}}
 table.tbl td > span{{position:relative;top:var(--cell-text);display:inline-block}}

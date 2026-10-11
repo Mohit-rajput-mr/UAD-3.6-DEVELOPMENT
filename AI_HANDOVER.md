@@ -260,6 +260,10 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   - An ADU in an outbuilding follows that Outbuilding (B-1 p377; D-1 SF3).
   - E-308 is now print-only, so the editor keeps MH1's Unit Interior
     controls.
+- **Calibration (E-311):** the space under a tab, under an H1 that sits
+  under a tab, and under an H2, plus a column-opening photo, are now set
+  from D-1. SF1 tab gaps: median difference 4.0 -> 0.11 pt. Aligned pages:
+  median offset 10.1 -> 2.4 pt.
 - **Trap:** in a cloud container, pin `playwright==1.56.0`, which matches
   the installed Chromium 1194.
 - **Next (this branch):**

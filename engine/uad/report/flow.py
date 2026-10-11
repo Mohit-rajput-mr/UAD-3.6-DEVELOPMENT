@@ -183,7 +183,7 @@ def _tab(section: str, continued: bool) -> str:
             f"{form.esc(section)}{cont}</span></div></div>")
 
 
-TAB_H = 15.0 + 10.8
+TAB_H = 15.0 + form.TAB_BELOW         # a carried section's "(continued)" tab
 
 
 def plan(blocks: list[dict], caps: dict[int, float] | None = None, *,

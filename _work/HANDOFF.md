@@ -3438,8 +3438,27 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     Summary photo, which follows rows, matches D-1 within 0.3 pt.
   - Together these explain Dwelling Exterior missing the sketch page by
     0.6 pt (SF1, SF3).
+- **Calibration batch (E-311, T-1150 partial):** four spacings set from
+  D-1, as constants beside `form.BAR`:
+  - `TAB_BELOW` 8.2 pt;
+  - `H1_AFTER_TAB` 3.9 pt;
+  - `H2_BELOW` 0 pt;
+  - `PHOTO_FIRST` 5.9 pt.
+  SF1 tab gaps: median difference from D-1 4.0 -> 0.11 pt. Aligned pages:
+  median offset 10.1 -> 2.4 pt; lines within 2 pt 18% -> 46%. Word diff
+  -> 7094. SF3 -> 24 pages (D-1 23). Full suite 947 passed / 0 failed /
+  10 skipped; harness 86 / 0 / 22 with no overflow.
+  - Method, kept in the scratchpad and easy to rebuild: pair each heading
+    with the same heading over the same next line in D-1 and compare the
+    gaps. Score pages that start on the same line by the mean |dy| of
+    matched lines.
+  - Do not chase the absolute alignment score alone: fixing one gap
+    uncovers errors that were cancelling it (H1 under a tab).
 - **Next:**
-  - T-1150, vertical metrics. Per section, measure block heights against
+  - T-1150, the rest: H2 -> table head +2.2 pt; the K&B head (two lines
+    in D-1); H1 -> first paragraph -2.8 pt; Contact Information H1 ->
+    H2 +4 pt.
+  - Then page counts again. Per section, measure block heights against
     the D-1 PDFs and fix the stylesheet. SF3's front-photo box measures
     172.6 pt against D-1's ~160 pt. MH1 runs 3 short, so it also has
     content we fail to print (pages 7-17 of its map).

@@ -253,3 +253,135 @@ def test_a_rental_row_kept_per_subject_unit(client):
     _, row_b = unit_row("Unit B")
     assert (row_a.cells[0].text, row_b.cells[0].text) == ("Patio", "Pool")
     assert not schema.validate(api.STORE.tree(cid))
+
+
+# -- a row kept inside an IMPROVEMENT is each dwelling's / unit's own (T-1202)
+
+def _components(block, container, name):
+    return [n for n in block.iter(f"{M}{container}")
+            if comparables._inside(n, "ImprovementComponentTypeOtherDescription") == name]
+
+
+def _copy(root, name, fid, group):
+    """The built row ``name`` in one copy of its group ("unit 2")."""
+    grid = comparables.build(root, "sales", every_row=True)[0]
+    return next(r for r in grid.rows
+                if r.item_name == name and r.subject_fid == fid and r.group == group)
+
+
+def test_an_interior_feature_is_named_written_and_read_per_unit(client):
+    """B-1 22.09.08 "[Other Interior Feature]" is drawn under every unit of a
+    2-4 report (D-1 2-4: Unit 1, Unit 2).  It was made in the first unit
+    only, so the row drawn under Unit 2 wrote into Unit 1's block and read
+    Unit 1's value back."""
+    cid = new_case(client, "2_to_4_unit_appraisal_v1_4", blank=False)
+    r = name_row(client, cid, "Wet Bar", container="INTERIOR_COMPONENT", line_type="")
+    assert r.status_code == 200, r.text
+    root = root_of(cid)
+    for prop in everywhere(root):
+        units = comparables._units(prop, False)
+        assert len(units) == 2
+        assert [len(_components(u, "INTERIOR_COMPONENT", "Wet Bar")) for u in units] == [1, 1], \
+            "the row is kept once in every unit it is drawn under"
+
+    one = _copy(root, "Wet Bar", "22.09.09", "unit 1")
+    two = _copy(root, "Wet Bar", "22.09.09", "unit 2")
+    assert two.subject_scope and two.cells[0].scope
+    assert (one.subject_scope, one.cells[0].scope) != (two.subject_scope, two.cells[0].scope)
+    # the editor names that block on the cell, so its write goes there
+    html = client.get(f"/api/cases/{cid}/form").text
+    drawn = set(page(html).xpath("//td[@data-gf='22.09.24' and @data-gc='1']/@data-gs"))
+    assert {one.cells[0].scope, two.cells[0].scope} <= drawn
+
+    line = {"kind": "sales", "item_name": "Wet Bar", "container": "INTERIOR_COMPONENT",
+            "line_type": "", "data_point": "ImprovementComponentQualitySummaryDescription"}
+    r = client.patch(f"/api/cases/{cid}/comparables/1/fields/22.09.24",
+                     json={**line, "value": "Granite top", "scope": two.cells[0].scope})
+    assert r.status_code == 200, r.text
+    assert r.json()["value"] == "Granite top"
+    r = client.patch(f"/api/cases/{cid}/comparables/0/fields/22.09.09",
+                     json={**line, "value": "Marble top", "scope": two.subject_scope})
+    assert r.status_code == 200, r.text
+    # the condition row (B-1 22.09.15) keeps its own value in the same block
+    worn = _copy(root, "Wet Bar", "22.09.16", "unit 2")
+    assert worn.cells[0].scope == two.cells[0].scope
+    r = client.patch(f"/api/cases/{cid}/comparables/1/fields/22.09.30",
+                     json={**line, "data_point": "ImprovementComponentConditionSummaryDescription",
+                           "value": "Worn", "scope": worn.cells[0].scope})
+    assert r.status_code == 200, r.text
+    assert r.json()["value"] == "Worn"
+
+    root = root_of(cid)
+    comp = comparables.properties(root, "SalesComparable")[0]
+    first, second = (_components(u, "INTERIOR_COMPONENT", "Wet Bar")[0]
+                     for u in comparables._units(comp, False))
+    assert not comparables._inside(first, "ImprovementComponentQualitySummaryDescription"), \
+        "Unit 2's value was written into Unit 1's block"
+    assert comparables._inside(second, "ImprovementComponentQualitySummaryDescription") == "Granite top"
+    assert comparables._inside(second, "ImprovementComponentConditionSummaryDescription") == "Worn", \
+        "the condition was written as the quality"
+    assert _copy(root, "Wet Bar", "22.09.16", "unit 2").cells[0].text == "Worn"
+    one = _copy(root, "Wet Bar", "22.09.09", "unit 1")
+    two = _copy(root, "Wet Bar", "22.09.09", "unit 2")
+    assert (one.subject, one.cells[0].text) == ("", "")
+    assert (two.subject, two.cells[0].text) == ("Marble top", "Granite top")
+
+    # the cell editor opens on that unit's own value
+    rows = client.get(f"/api/cases/{cid}/comparables", params={"kind": "sales"}).json()["rows"]
+    row = next(x for x in rows if x["item_name"] == "Wet Bar" and x["subject_fid"] == "22.09.09")
+    point = "ImprovementComponentQualitySummaryDescription"
+    assert row["cells"][0]["blocks"][two.cells[0].scope] == {point: "Granite top"}
+    assert row["cells"][0]["blocks"][one.cells[0].scope] == {}
+    assert row["subject_blocks"][two.subject_scope] == {point: "Marble top"}
+
+    # a rename and the x reach every unit's copy
+    assert name_row(client, cid, "Bar", was="Wet Bar", container="INTERIOR_COMPONENT",
+                    line_type="").status_code == 200
+    root = root_of(cid)
+    assert not any(_components(p, "INTERIOR_COMPONENT", "Wet Bar") for p in everywhere(root))
+    assert all(len(_components(p, "INTERIOR_COMPONENT", "Bar")) == 2 for p in everywhere(root))
+    assert not schema.validate(api.STORE.tree(cid))
+    assert name_row(client, cid, "", was="Bar", container="INTERIOR_COMPONENT",
+                    line_type="").status_code == 200
+    assert not any(_components(p, "INTERIOR_COMPONENT", "Bar") for p in everywhere(root_of(cid)))
+    assert not schema.validate(api.STORE.tree(cid))
+
+
+def test_an_exterior_feature_is_kept_per_dwelling(client):
+    """B-1 22.08.07 "[Other Exterior Feature]" is drawn per dwelling (D-1
+    2-4: Building 1, Building 2).  A choice (22.08.28, a condition status)
+    made under Building 2 is Building 2's, and its editor opens on it; a
+    comparable with one building has no Building 2 to keep it in, so that
+    cell takes no value (written, it landed in Building 1)."""
+    cid = new_case(client, "2_to_4_unit_appraisal_v1_4", blank=True)
+    r = name_row(client, cid, "Solar Panels", container="STRUCTURE_COMPONENT", line_type="")
+    assert r.status_code == 200, r.text
+    root = root_of(cid)
+    for prop in everywhere(root):
+        dwellings = comparables._dwellings(prop)
+        assert [len(_components(d, "STRUCTURE_COMPONENT", "Solar Panels")) for d in dwellings] \
+            == [1] * len(dwellings)
+
+    two = _copy(root, "Solar Panels", "22.08.15", "dwelling 2")
+    assert two.cells[0].scope and not two.cells[2].scope, "comparable #3 has one building"
+    html = client.get(f"/api/cases/{cid}/form").text
+    assert page(html).xpath(f"//td[@data-gf='22.08.28' and @data-gs='{two.cells[0].scope}']")
+    assert not page(html).xpath("//td[@data-gf='22.08.28' and @data-gc='3' and not(@data-gs)]"), \
+        "a cell with no building to keep its value is still written"
+
+    r = client.patch(f"/api/cases/{cid}/comparables/1/fields/22.08.28",
+                     json={"kind": "sales", "item_name": "Solar Panels",
+                           "container": "STRUCTURE_COMPONENT", "line_type": "",
+                           "data_point": "ImprovementComponentConditionStatusType",
+                           "value": "NewOrLikeNew", "scope": two.cells[0].scope})
+    assert r.status_code == 200, r.text
+    root = root_of(cid)
+    one = _copy(root, "Solar Panels", "22.08.15", "dwelling 1")
+    two = _copy(root, "Solar Panels", "22.08.15", "dwelling 2")
+    assert not one.cells[0].text and two.cells[0].text == "New or Like New"
+    rows = client.get(f"/api/cases/{cid}/comparables", params={"kind": "sales"}).json()["rows"]
+    row = next(x for x in rows if x["item_name"] == "Solar Panels" and x["subject_fid"] == "22.08.15")
+    point = "ImprovementComponentConditionStatusType"
+    assert row["cells"][0]["blocks"][two.cells[0].scope] == {point: "NewOrLikeNew"}
+    assert row["cells"][0]["blocks"][one.cells[0].scope] == {}
+    assert row["cells"][0]["parts"] == {}, "the editor offered another building's value"

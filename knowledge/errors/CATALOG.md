@@ -3272,3 +3272,9 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Mechanism: `UADShell.frames.keep` / `replay`; marks are replayed at
   `ready` and in `finishSwap`.
 - Test: `tests/test_shell_core.py::test_e189_outlines_survive_a_layout_swap`.
+
+## E-191 Named grid row kept inside an IMPROVEMENT was only the first dwelling's or unit's (T-1202)
+
+- **Symptom:** on a 2-4 unit report, a row named under [Other Interior Feature] (B-1 22.09.08/22.09.15) or [Other Exterior Feature] (22.08.07/22.08.14) existed only in Unit 1 / Building 1. A value typed under Unit 2 went into Unit 1, and a condition (22.08.28/22.09.30) was stored as the quality.
+- **Mechanism:** `comparables.named_blocks` finds every block the row is drawn in, using the B-1 headings and `_REPEATS`, and naming the row creates it in each block. Each cell carries its block (data-gs). A cell whose property has no such block is read-only. `named_for_cell` picks the template from the field id. GET /comparables returns each block's own values.
+- **Test:** `tests/test_grid_rows.py::test_an_interior_feature_is_named_written_and_read_per_unit`, `::test_an_exterior_feature_is_kept_per_dwelling`.

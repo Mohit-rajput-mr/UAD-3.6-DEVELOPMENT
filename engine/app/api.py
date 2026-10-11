@@ -1638,6 +1638,20 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
     props = comparables.properties(root, role)
     subject = bind.subject(root)
 
+    def parts(spec, fid: str, prop) -> dict:
+        # a named row's values are its own element's, not the field's first
+        if spec.named is not None:
+            return comparables.named_parts(prop, spec.named, spec.item_name) if prop is not None else {}
+        return comparables.parts_for(root, fid, prop) if fid else {}
+
+    def blocks(spec, prop) -> dict:
+        # a row kept per dwelling or unit: each block's own values, by the
+        # path its cell names (data-gs), so Unit 2's editor opens on Unit 2's
+        if spec.named is None or not spec.named.per_block or prop is None:
+            return {}
+        return {tree.getpath(b): comparables.named_parts(b, spec.named, spec.item_name)
+                for b in comparables.named_blocks(prop, spec.named, kind)}
+
     rows = []
     for spec in comparables.specs(root, kind, every_row=True):
         cells = []
@@ -1645,8 +1659,8 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
             cells.append({
                 "value": (comparables.value_for(root, spec.comp_fid, prop, spec)
                           if spec.comp_fid else ""),
-                "parts": (comparables.parts_for(root, spec.comp_fid, prop)
-                          if spec.comp_fid else {}),
+                "parts": parts(spec, spec.comp_fid, prop) if spec.comp_fid else {},
+                "blocks": blocks(spec, prop),
                 "lines": (comparables.lines_for(root, spec.comp_fid, prop)
                           if spec.comp_fid and not spec.container else None),
                 "adjustment": comparables.adjustment_for(root, spec, prop),
@@ -1657,8 +1671,8 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
             "options": comparables.options_for(spec.comp_fid or spec.subject_fid),
             "comp_points": comparables.points_for(spec.comp_fid),
             "subject_points": comparables.points_for(spec.subject_fid),
-            "subject_parts": (comparables.parts_for(root, spec.subject_fid, subject)
-                              if spec.subject_fid else {}),
+            "subject_parts": parts(spec, spec.subject_fid, subject) if spec.subject_fid else {},
+            "subject_blocks": blocks(spec, subject),
             # a stacked cell's lines (each vehicle storage, each view): each is
             # edited where it is kept, and another can be added
             "subject_lines": (comparables.lines_for(root, spec.subject_fid, subject)
@@ -1739,7 +1753,7 @@ def set_comparable_field(case_id: str, number: int, field_id: str,
     if item:
         # a row the appraiser named shares its field and its type with the
         # rest of its group, so the name says which row is written
-        return _write_line_cell(case_id, request, kind, number, item, body)
+        return _write_line_cell(case_id, request, kind, number, item, body, field_id)
     tree = st.tree(case_id)
     value = str(body.get("value", ""))
     point = body.get("data_point", "")
@@ -1894,7 +1908,11 @@ def name_line_item(case_id: str, request: Request, body: dict = Body(...)) -> di
         if not nodes:
             if not name:
                 continue
-            nodes = [comparables.named_node(prop, named, name, create=True)]
+            # one for each dwelling or unit the row is drawn under, when it
+            # is kept inside an IMPROVEMENT: made in the first only, Unit 2's
+            # copy wrote into Unit 1's (T-1202)
+            nodes = [comparables.named_node(block, named, name, create=True)
+                     for block in comparables.named_blocks(prop, named, kind)]
         for node in nodes:
             if node is None:
                 continue
@@ -1951,7 +1969,7 @@ def _cell_block(root, prop, path: str):
 
 
 def _write_line_cell(case_id: str, request: Request, kind: str, number: int,
-                     item: str, body: dict) -> dict:
+                     item: str, body: dict, field_id: str = "") -> dict:
     """One cell of a row the appraiser named: what that property has on it,
     or (``adjust_type`` given) its adjustment, kept in the row's own element
     (comparables.write_named) -- the field and the type are the whole group's."""
@@ -1963,8 +1981,11 @@ def _write_line_cell(case_id: str, request: Request, kind: str, number: int,
     if body.get("scope"):
         # drawn per subject unit: the row of that unit's pairing, not the first
         scope = _cell_block(candidate.getroot(), scope, str(body["scope"]))
-    named = comparables.named_row(kind, *_line_row(kind, str(body.get("container") or ""),
-                                                   str(body.get("line_type") or "")))
+    container, line_type = str(body.get("container") or ""), str(body.get("line_type") or "")
+    # the template whose cell this is: a group's quality and condition rows
+    # keep different values in one named component (T-1202)
+    named = (comparables.named_for_cell(kind, container, line_type, field_id)
+             or comparables.named_row(kind, *_line_row(kind, container, line_type)))
     if named is None:
         raise HTTPException(422, "no added-row template for that row")
     adjustment = bool(body.get("adjust_type"))

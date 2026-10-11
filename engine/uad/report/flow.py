@@ -2026,6 +2026,8 @@ EDIT_JS = """
       }else{
         var pts=(col===0?row.subject_points:row.comp_points)||[];
         var parts=(col===0?row.subject_parts:(row.cells[col-1]||{}).parts)||{};
+        var bp=(col===0?row.subject_blocks:(row.cells[col-1]||{}).blocks)||{};   // its own unit's (T-1202)
+        if(gscope && Object.prototype.hasOwnProperty.call(bp,gscope)) parts=bp[gscope];
         var lines=col===0?row.subject_lines:(row.cells[col-1]||{}).lines;
         if(!pts.length) pts=[{data_point:'',options:row.options||[]}];
         // a stacked cell (a line for each vehicle storage, view, street):

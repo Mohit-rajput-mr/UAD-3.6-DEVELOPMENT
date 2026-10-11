@@ -755,6 +755,10 @@ class BuiltRow:
     # the rows (D-1 2-4: unit 1 then unit 2; SF3: the dwelling then its ADU).
     group: str = ""
     instance: int = -1
+    # a named row kept in that dwelling's or unit's own block (T-1202): a
+    # property with no such block has nowhere to keep it, so its cell is not
+    # written -- written without a block, it landed in the first one
+    kept_in_block: bool = False
 
     @property
     def empty(self) -> bool:
@@ -907,6 +911,22 @@ def named_row(kind: str, fid: str, data_point: str, adjust_type: str) -> "Named 
                  inner, "IMPROVEMENT" in segs[:segs.index(container)] if container in segs else False)
 
 
+def named_for_cell(kind: str, container: str, kept_as: str, field_id: str) -> "Named | None":
+    """The template of this group whose cell writes ``field_id``.
+
+    One group can have two: "[Other Exterior Feature]" is a quality row
+    (22.08.07, value 22.08.08) and a condition row (22.08.14, value 22.08.15),
+    both kept in the one named STRUCTURE_COMPONENT.  Resolved by container
+    alone, the condition typed under it was written as the quality."""
+    for row in rows(kind):
+        named = named_row(kind, row.subject_fid or row.comp_fid, row.data_point, row.adjust_type)
+        if (named is not None and named.container == container
+                and (not kept_as or named.kept_as == kept_as)
+                and field_id in (named.subject_fid, named.comp_fid, named.value_fid)):
+            return named
+    return None
+
+
 def line_item_place(kind: str, row: "GridRow") -> tuple[str, str]:
     """(the container this grid keeps added rows in, the type that marks one)."""
     named = named_row(kind, row.subject_fid or row.comp_fid, row.data_point,
@@ -976,6 +996,57 @@ def named_nodes(prop: etree._Element, named: "Named", name: str) -> list:
     kept once per subject unit the comparable is compared with."""
     return [node for node in prop.iter(f"{{{bind.MISMO}}}{named.container}")
             if _is_item(node, named, name)]
+
+
+@lru_cache(maxsize=64)
+def _named_repeats(kind: str, named: "Named") -> tuple[str, ...]:
+    """The repeating groups (``_REPEATS``) the workbook draws this row's
+    templates in: "[Other Exterior Feature]" sits in Exterior Quality and
+    Condition (a copy per dwelling), "[Other Interior Feature]" in Interior
+    and ADU Interior Quality and Condition (a copy per living unit, per ADU).
+    Read from the B-1 grid, never listed here."""
+    out: list[str] = []
+    group = None
+    for row in rows(kind):
+        if row.heading:
+            group = _repeat_of(row.label)
+            continue
+        other = named_row(kind, row.subject_fid or row.comp_fid, row.data_point, row.adjust_type)
+        if (group and other is not None and group not in out
+                and (other.container, other.marks) == (named.container, named.marks)):
+            out.append(group)
+    return tuple(out)
+
+
+def named_blocks(prop: etree._Element, named: "Named", kind: str = "sales") -> list:
+    """The blocks of one property a named row is kept in, one element each.
+
+    A row kept against the property (an additional comparison item) is the
+    property's.  A row kept inside an IMPROVEMENT is drawn once per dwelling
+    or unit (B-1 22.08.07 per dwelling, 22.09.08 per unit), and each copy is
+    that block's own: made only in the first chain, the row drawn under
+    Unit 2 wrote into, and read back, Unit 1's (T-1202).  A property with no
+    such block yet keeps it where ``_container_parent`` makes one."""
+    if not named.per_block:
+        return [prop]
+    out: list = []
+    for group in _named_repeats(kind, named):
+        for block in _copies(prop, group):
+            if all(block is not b for b in out):
+                out.append(block)
+    return out or [prop]
+
+
+def named_parts(scope: etree._Element, named: "Named", name: str) -> dict[str, str]:
+    """What one property (or one of its dwellings or units) keeps on a named
+    row, by data point: the cell editor's starting values.  Read from the
+    row's own element -- the field's path alone finds the first component of
+    any name (the Roof's condition offered for "Solar Panels")."""
+    node = named_node(scope, named, name) if name else None
+    if node is None:
+        return {}
+    text = _inside(node, named.value_dp)
+    return {named.value_dp: text} if text else {}
 
 
 def drop_named(prop: etree._Element, node: etree._Element) -> None:
@@ -1302,6 +1373,44 @@ _REPEATS = (("Unit(s)", "unit"), ("Exterior Quality and Condition", "dwelling"),
             ("Interior Quality and Condition", "unit"), ("ADU Interior Quality and Condition", "adu"))
 
 
+def _repeat_of(heading: str) -> "str | None":
+    """What a grid group under this heading is drawn once for, or None."""
+    label = heading.strip()
+    if label.startswith("Outbuilding ("):
+        return "ob"
+    return next((k for name, k in _REPEATS if label == name), None)
+
+
+def _copies(prop, kind: str) -> list:
+    """The blocks of one property a repeating group is drawn once for."""
+    if kind == "ob":
+        return _outbuildings(prop)
+    if kind in ("unit", "adu"):
+        return _units(prop, kind == "adu")
+    if kind == "dwelling":
+        return _dwellings(prop)
+    return []
+
+
+def _block_path(tree_, row, fid: str, scopes: list, prop, ob) -> str:
+    """Where a named row drawn in one dwelling's or unit's copy of its group
+    is kept -- the block its value is read in (``_field_scope``) -- so the
+    cell names it (``data-gs``) and its write lands in that block, not the
+    first one the property holds (T-1202).  A property with no block of the
+    kind at all (a comparable just added) keeps it, in the first copy, where
+    ``_container_parent`` makes one; one whose blocks stop short of this copy
+    has nowhere to keep it ('', and the cell is not written).  '' for any
+    other row."""
+    if row.named is None or not row.named.per_block or not fid or prop is None:
+        return ""
+    if not scopes:
+        if isinstance(ob, tuple) and ob[1] == 0 and not _copies(prop, ob[0]):
+            return tree_.getpath(prop)
+        return ""
+    block = _field_scope(fid, scopes)
+    return tree_.getpath(block) if block is not None else ""
+
+
 def _expand_outbuildings(spec: list, props: list) -> list:
     """The spec with each repeating group drawn once per position, as D-1
     prints them: 2-4 "Building 1 | Unit 1" then "Building 2 | Unit 2" in
@@ -1320,9 +1429,7 @@ def _expand_outbuildings(spec: list, props: list) -> list:
         end = next((j for j in range(i + 1, len(spec)) if spec[j].heading), len(spec))
         group = spec[i + 1:end]
         label = row.label.strip()
-        kind = next((k for name, k in _REPEATS if label == name), None)
-        if label.startswith("Outbuilding ("):
-            kind = "ob"
+        kind = _repeat_of(label)
         out.append((row, None))
         # A row the appraiser named and keeps against the whole property (an
         # additional comparison item, A-1 COMPARABLE_ADJUSTMENT) is no unit's
@@ -1471,7 +1578,8 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                 adj = adjustment_for(root, row, prop) if ob is None else _nth_adjustment(
                     root, row, prop, instance if instance >= 0 else ob)
                 cells.append(Cell(text=text, adjustment=adj,
-                                  scope=tree_.getpath(scopes[0]) if (pairs and scopes) else ""))
+                                  scope=(tree_.getpath(scopes[0]) if (pairs and scopes) else
+                                         _block_path(tree_, row, row.comp_fid, scopes, prop, ob) if ob is not None else "")))
             built = BuiltRow(row.label, False, subject_text, cells,
                              adjustable=bool(row.adjustable),
                              subject_fid=row.subject_fid, comp_fid=row.comp_fid,
@@ -1479,9 +1587,13 @@ def build(tree, kind: str = "sales", *, per_block: int = 3, every_row: bool = Fa
                              line_item=row.container, item_name=row.item_name,
                              new_item=row.new_item,
                              line_type=row.named.kept_as if row.named is not None else "",
-                             subject_scope=tree_.getpath(subject_scopes[0]) if (pairs and subject_scopes) else "",
+                             subject_scope=(tree_.getpath(subject_scopes[0]) if (pairs and subject_scopes) else
+                                            _block_path(tree_, row, row.subject_fid, row_subject_scopes, subject, ob)
+                                            if ob is not None else ""),
                              group=f"{ob[0]} {ob[1] + 1}" if isinstance(ob, tuple) else "",
-                             instance=instance)
+                             instance=instance,
+                             kept_in_block=bool(ob is not None and row.named is not None
+                                                and row.named.per_block))
             # an empty cell prints an em-dash only where B-1's sentence for the
             # row says so (dashes.py); every other empty cell stays blank
             empty = [not subject_text] + [not c.text for c in cells]
@@ -1705,7 +1817,7 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
         sub = (_photo_cell(photos.get(0), row.subject, 0, edit) if (address and first)
                else _esc(sub_text))
         cells.append(f"<td class='v sub{align}{' grey' if subject_grey else ''}'"
-                     f"{gattr(0, row.subject_fid, scope=row.subject_scope)}><span>{sub}</span></td>")
+                     f"{gattr(0, _writes(row, row.subject_fid, row.subject_scope), scope=row.subject_scope)}><span>{sub}</span></td>")
         plain = [cells[0], f"<td class='v sub left'><span>{_esc(sub_text)}</span></td>"]
         for i, cell in enumerate(row.cells, start=1):
             number = number_of(i)
@@ -1717,10 +1829,10 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
                 # nothing can be adjusted on this row, so the value has the
                 # width of the whole comparable column (Appendix E, Type 2)
                 cells.append(f"<td class='v comp{align}{grey}' colspan='2'"
-                             f"{gattr(number, row.comp_fid, scope=cell.scope)}><span>{text}</span></td>")
+                             f"{gattr(number, _writes(row, row.comp_fid, cell.scope), scope=cell.scope)}><span>{text}</span></td>")
                 plain.append(f"<td class='v comp left' colspan='2'><span>{_esc(shown)}</span></td>")
                 continue
-            cells.append(f"<td class='v comp{align}{grey}'{gattr(number, row.comp_fid, scope=cell.scope)}>"
+            cells.append(f"<td class='v comp{align}{grey}'{gattr(number, _writes(row, row.comp_fid, cell.scope), scope=cell.scope)}>"
                          f"<span>{text}</span></td>")
             adj = _esc(cell.adjustment)
             gaf = f" data-gaf='{_esc(row.adjust_fid)}'" if (edit and row.adjust_fid) else ""
@@ -1734,6 +1846,12 @@ def html(grid: Grid, photos: dict[int, str] | None = None,
     return (f"<table class='grid'{kind_attr} style='width:{width:.2f}pt'><colgroup>" + "".join(cols) + "</colgroup>"
             "<thead>" + "".join(head) + repeat + "</thead>"
             "<tbody>" + "".join(body) + "</tbody></table>")
+
+
+def _writes(row: "BuiltRow", fid: str, scope: str) -> str:
+    """The field a grid cell writes, or '' (not written) where the row is
+    kept per dwelling or unit and this property has no such block."""
+    return "" if (row.kept_in_block and not scope) else fid
 
 
 def html_pair(grids: list["Grid"], *, edit: bool = False) -> str:

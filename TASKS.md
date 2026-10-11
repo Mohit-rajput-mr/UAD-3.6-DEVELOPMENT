@@ -250,7 +250,7 @@ python engine/tasks.py add "Title" --area render --note "asked 2026-09-16"
 | T-011 | done | data | XSD validation | 12/12 samples clean against v1.3 |
 | T-012 | blocked | data | Validate against the **v1.4** subschema | v1.4 not on disk; v1.3 used. Need the file |
 | T-013 | done | data | Field write/read symmetry | 90% (1100/1221), `test_edit.py` |
-| T-014 | partial | data | Close the remaining 10% write/read gap | comparable scoping fixed (the grid was writing every cell onto the subject); edit.write now takes a scope element. test_edit 220/250 on sf1 -- the rest are PARTY-scoped (2.013/2.032/2.033) and defect blocks, same root cause, same mechanism available (2026-09-16) |
+| T-014 | partial | data | Close the remaining 10% write/read gap | measured 2026-10-11 with tests/test_edit.py (updated: retries value shapes, skips fields behind a closed gate): sf1 all 1221 fields -> 950/1037 read back, 184 gated, 1 schema error (SALES_CONTRACT order). Remaining 87: defect rows (T-1204), commentary Impact/Comment 4.048/18.075-093, rooms/amenities ordinal>1, party Company Name/Appraiser Fee. List in _work/t014/edit_roundtrip_sf1.txt (2026-10-11) |
 | T-015 | done | compliance | Execute H-1 rules | 557/728 executable |
 | T-016 | done | compliance | Zero false positives on the official samples | 12/12 clean, `validate_compliance_engine.py` |
 | T-017 | done | compliance | Prove detection by mutation testing | 3,158/3,158 caught |

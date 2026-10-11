@@ -36,7 +36,7 @@ def main(key: str = "sf1_appraisal_v1_4", limit: int | str = 250) -> int:
     model = bind.page_model()
 
     fields = [pf for section in model.values() for pf in section][:limit]
-    written = skipped = reread = 0
+    written = skipped = reread = gated = 0
     problems: list[str] = []
 
     for pf in fields:
@@ -44,6 +44,11 @@ def main(key: str = "sf1_appraisal_v1_4", limit: int | str = 250) -> int:
             dp = edit.choose_data_point(pf.binding)
         except KeyError:
             skipped += 1
+            continue
+        if edit.unmet_gate(tree.getroot(), pf.binding):
+            # the report hides it until its gate is answered (Cost Approach
+            # fields while CostApproachIndicator is false): not a write/read gap
+            gated += 1
             continue
         kind = (dp.get("format_type") or "String").strip()
         if kind.casefold() == "enumerated":
@@ -58,10 +63,20 @@ def main(key: str = "sf1_appraisal_v1_4", limit: int | str = 250) -> int:
         else:
             value = SAMPLES.get(kind, "Test Value")
 
-        try:
-            result = edit.write(tree, pf.field_id, value,
-                                ordinal=pf.ordinal, binding=pf.binding)
-        except KeyError:
+        result = None
+        # entry.normalize refuses a value of the wrong shape ("Test Value" in a
+        # number written as String): try the other shapes before giving up
+        for attempt in [value] + [v for v in ("3", "2026-03-04") if v != value]:
+            try:
+                result = edit.write(tree, pf.field_id, attempt,
+                                    ordinal=pf.ordinal, binding=pf.binding)
+                value = attempt
+                break
+            except KeyError:
+                break
+            except ValueError:
+                continue
+        if result is None:
             skipped += 1
             continue
         written += 1
@@ -70,7 +85,7 @@ def main(key: str = "sf1_appraisal_v1_4", limit: int | str = 250) -> int:
         values = [v for n, v in back if n == result.data_point]
         if value in values:
             reread += 1
-        elif len(problems) < 8:
+        elif len(problems) < 400:
             problems.append(
                 f"{pf.field_id} {pf.label[:32]!r}: wrote {value!r} into "
                 f"{result.data_point}, read back {values[:3]}")
@@ -80,6 +95,7 @@ def main(key: str = "sf1_appraisal_v1_4", limit: int | str = 250) -> int:
     print(f"  fields attempted ..... {len(fields)}")
     print(f"  written .............. {written}")
     print(f"  skipped (no target) .. {skipped}")
+    print(f"  behind a closed gate . {gated}")
     print(f"  read back correctly .. {reread}/{written}")
     print(f"  schema after edits ... {'valid' if not errors else f'{len(errors)} error(s)'}")
     for p in problems:

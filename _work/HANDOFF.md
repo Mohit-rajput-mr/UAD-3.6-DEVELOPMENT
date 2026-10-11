@@ -3562,3 +3562,34 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   - a draft patch and a D-1 title validator (18 of 319 titles differ
     today) are described in the T-127 note;
   - then T-1075.
+- **Later the same day (keen-turing): T-127 done, T-1075 engine and
+  editor done, T-906 done (E-173..E-175).**
+  - T-127: a photo filed under several categories prints once
+    (`form._shared_exhibits`, print only). The rules are B-1 p59
+    Scenarios 1 and 2.
+    - Every exhibit title in the 12 samples now stands as a line in its
+      D-1 PDF. Before, 18 of 319 differed. `tests/test_shared_exhibits.py`
+      checks this.
+    - Harness 12 went 86/0/22 -> **88/0/20**: two page counts now match
+      D-1.
+    - Exhibit *order* is still document order; D-1's order is
+      unexplained. This was handed to ecstatic-bohr.
+  - T-1075: "Count the market search" in the editor's report bar.
+    - The MLS export (CSV) gives 17.005-17.015, counted per A-1's
+      definitions (`uad/market_search.py`).
+    - The figures are shown beside the report's own, then written all or
+      none (`POST /cases/{id}/market/search`).
+    - Chromium e2e passed.
+    - Still open: absorption and list-to-sale belong to the charts import.
+  - T-906: photo altitude ships with `@LinearUnitOfMeasureType="Feet"`.
+    The EXIF time moves to UTC by the camera's offset.
+  - Test change: `test_import`'s "editor shows everything the preview
+    prints" now ignores the " - " joining a shared photo's titles. The
+    editor keeps one box per IMAGE, so each word is still there.
+  - Traps:
+    - Never type the passcode into a script. For a Chromium e2e, run
+      uvicorn in-process (`uvicorn.Server(...).run` in a thread) and set
+      the session cookie (`app.access.COOKIE`) to `app.main.ACCESS.token`
+      with `context.add_cookies`.
+    - The `_work/harness/*.pdf` files are rewritten by every harness run.
+      Do not commit them from a branch: they conflict as binaries.

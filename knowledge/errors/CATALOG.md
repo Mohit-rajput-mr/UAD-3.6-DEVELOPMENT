@@ -3119,3 +3119,22 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   (distressed competition) and 17.004 (the search criteria text) stay the
   appraiser's.
 - Test: `tests/test_market_search.py` (5).
+
+### E-175 -- A photo's altitude shipped without its unit; a camera's local time shipped as UTC (2026-10-11)
+- Symptom (T-906): `delivery.exif` read ImageDatetime and
+  AltitudeElevationLinearMeasure from the photograph, but two things were
+  wrong:
+  - the altitude was written bare. A-1's Implementation Note says "Deliver
+    @LinearUnitOfMeasureType when AltitudeElevationLinearMeasure is
+    provided", and D-1 Condo1 carries `LinearUnitOfMeasureType="Feet"`;
+  - the EXIF local time was stamped "Z" as if it were UTC.
+- Mechanism:
+  - `delivery._set_meta` sets the unit attribute wherever an IMAGE takes
+    the EXIF facts (`UNIT_OF`: the altitude, in feet, as `exif` converts
+    it).
+  - `exif` moves the time to UTC by the camera's own OffsetTimeOriginal
+    (EXIF 2.31) when present. Without one, the time is delivered as taken.
+    Nothing is invented for a photo that records nothing.
+- Test: `tests/test_photo_exif.py` (4). One of them is a delivered SF1
+  package with an appraiser's photo: the altitude is 25 Feet, the time is
+  UTC, and the schema is valid.

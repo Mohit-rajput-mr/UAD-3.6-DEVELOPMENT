@@ -330,7 +330,10 @@ def test_the_editor_shows_everything_the_preview_prints(key):
     missing = {w: n - edited[w] for w, n in printed.items() if n > edited[w]
                and not set(w) <= {"", ""} and not w.startswith("Client/")
                # a Yes/No the report prints as a word is a pair of tick boxes to answer
-               and w not in ("Yes", "No")}
+               and w not in ("Yes", "No")
+               # the " - " joining a shared photo's titles (B-1 p59 Scenario 1,
+               # T-127): the editor keeps a box per IMAGE, each with its words
+               and w != "-"}
     assert not missing, sorted(missing.items())[:20]
 
 

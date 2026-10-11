@@ -269,10 +269,15 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   warnings. The inline surface and the one-click fixes are still open.
 - **Waiting on the owner:** the GSE Selling Guides, for B-1 Usability
   item 9 (prohibited / veiled language). Do not invent a word list.
+- **Done later:**
+  - T-127: a shared photo prints once. Harness went 86/0/22 ->
+    88/0/20.
+  - T-1075 (engine, API and editor control): the market search is
+    counted from the MLS export.
+  - T-906: photo altitude carries its unit; photo time is in UTC.
 - **Next:**
-  - T-127: Site exhibit titles. A picture filed under several categories
-    prints once (B-1 p59 Scenario 1).
-  - Then T-1075: market auto-fill.
+  - T-1034: the 171 H-1 rules not yet executed;
+  - or the T-510 inline surface, in step with the lead's shell work.
 
 ### 2026-10-11 -- three sessions in parallel; phase 1 half landed (read `python engine/agents.py` first)
 - **Who does what:**

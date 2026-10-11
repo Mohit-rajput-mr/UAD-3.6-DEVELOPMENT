@@ -259,3 +259,20 @@ def test_every_unit_line_and_new_comps_and_units_carry_the_icon(site):
     assert len({r["inst"] for r in gla}) == len(insts) + 1
     assert len({c for r in gla for c in r["comps"]}) == len(comps) + 1
     assert not errors, errors
+
+
+def test_the_sketch_panel_fills_the_window(site):
+    """The Sketch button opens the sketch tool over the whole window (its
+    overlay rules were lost once with a stylesheet edit: the tool showed as a
+    small box in a corner -- owner's screenshot 2026-10-11)."""
+    base, page, api, errors = site
+    _open(site, "sf1_appraisal_v1_4")
+    page.click("#rf-sketch")
+    page.wait_for_selector("#sketch-ov iframe", timeout=30_000)
+    box = page.query_selector("#sketch-ov").bounding_box()
+    view = page.viewport_size
+    assert box["x"] == 0 and box["y"] == 0
+    assert box["width"] >= view["width"] - 1 and box["height"] >= view["height"] - 1
+    frame = page.query_selector("#sketch-ov iframe").bounding_box()
+    assert frame["width"] >= view["width"] - 1 and frame["height"] >= view["height"] - 1
+    page.evaluate("document.getElementById('sketch-ov').remove()")

@@ -1,5 +1,20 @@
 # DR phase 2 — editor shell: implementation plan
 
+> **Owner addendum 2026-10-11 (T-1210, overrides where it differs).** Every
+> region is a window: the top bar, the Sections rail, the right sidebar
+> (Field guidance / Sign-off / Problems / worksheet drawer), the report pane
+> and the Sketch each get their own **minimize, maximize, close/restore** and
+> **drag-resize**, remembered per user -- "similar to how each browser window
+> can be controlled". Nothing is fixed in place or size. Minimized regions
+> collapse to an icon/chip from which they are restored; maximize gives one
+> region the whole work area; close hides it until restored from the ribbon /
+> View menu / palette. The report takes the room the others give up (and has
+> its own zoom). The Sketch opens as a window (docked or floating, resizable,
+> maximizable) rather than a fixed full-screen overlay. Spacing is less
+> cramped (owner: "all components look too tight", "report looks too small").
+> Applies to steps S2 (panels), S3 (title/status bar, focus, zoom) and S8
+> (split view); S2 must deliver the window chrome for all regions.
+
 _Synthesised 2026-10-11 from two independent read-only designs (minimal-risk, operator-first). Brief §3-§4; plan D1 (built into engine/app/ui). Tasks T-272..T-277, T-505, T-507, T-508._
 
 ## Control inventory (nothing dropped)

@@ -400,6 +400,7 @@ python engine/tasks.py add "Title" --area render --note "asked 2026-09-16"
 | T-291 | open | ui | DR§14 Version history per report with diff and restore (History tab useful) | owner 2026-10-10, _work/owner/2026-10-10-desktop-rebuild/UAD36_DESKTOP_REBUILD_PROMPT.md |
 | T-292 | open | ui | DR§14 Locale safety: US currency and dates in output whatever the PC settings | owner 2026-10-10, _work/owner/2026-10-10-desktop-rebuild/UAD36_DESKTOP_REBUILD_PROMPT.md |
 | T-293 | open | ui | DR§14 Every ribbon command wired to real state: a test clicks each one | owner 2026-10-10, _work/owner/2026-10-10-desktop-rebuild/UAD36_DESKTOP_REBUILD_PROMPT.md |
+| T-1210 | open | ui | Every editor region is a window (owner 2026-10-11): top bar, Sections rail, right sidebar (guidance/sign-off/problems), the report and the Sketch each get their own minimize, maximize, close/restore and drag-resize, state remembered per user -- like browser windows; nothing fixed in place or size; report gets the room the others give up (zoom); less cramped spacing |  |
 | T-1207 | open | ui | Phase 2 S0b: frame protocol v2 in EDIT_JS/FIT_JS (flush/save, goto with instance, marks replay after swap, active pane) |  |
 | T-1206 | open | ui | Phase 2 S0a: shell core (engine/app/ui/shell), index.html hooks, setReview drives header counts, frames registry, ?shell=0 kill switch, test kit |  |
 | T-300 | open | feature | Transfer history — subject and per comparable, fully editable | add/remove rows; must appear in the report |

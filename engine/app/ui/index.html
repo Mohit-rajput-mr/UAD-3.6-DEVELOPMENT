@@ -2629,18 +2629,71 @@ function renderAdds(){
    the whole window.  Save to report there writes the units' areas, levels and
    rooms and the Sketch exhibit; the report then lays itself out again. */
 function openSketch(){
-  if($('#sketch-ov')) return;
+  if($('#sketch-ov')){ if(window.UADShell&&UADShell.windows) sketchWin('normal-if-min'); return; }
   const ov=document.createElement('div'); ov.id='sketch-ov'; ov.className='sketch-ov';
-  ov.innerHTML=`<iframe title="Sketch" src="/ui/sketch/index.html?case=${S.caseId}"></iframe>`;
+  const shell=!!(window.UADShell&&UADShell.enabled()&&UADShell.windows);
+  // under the shell the sketch is a window: maximize, restore (move, resize),
+  // minimize to the tray, close (owner 2026-10-11, T-1210)
+  ov.innerHTML=(shell?`<div class="winbar" data-region="sketch"><span class="wt">Sketch</span><span class="wbs"></span></div>`:'')
+    +`<iframe title="Sketch" src="/ui/sketch/index.html?case=${S.caseId}"></iframe>`;
   document.body.appendChild(ov);
   const f=ov.querySelector('iframe');
+  const close=()=>{ window.removeEventListener('message',on); ov.remove(); if(shell){ UADShell.emit('sketch-win',{act:'gone'}); } };
   const on=e=>{
     if(e.source!==f.contentWindow||!e.data) return;
     if(e.data.uad==='sketch-saved'){ toast('Sketch saved to the report — the areas, levels, rooms and the Sketch exhibit',4000); S.dirty=true; checkFresh('form'); reviewSoon(); refreshMedia(); }
-    if(e.data.uad==='sketch-close'){ window.removeEventListener('message',on); ov.remove(); }
+    if(e.data.uad==='sketch-close') close();
   };
   window.addEventListener('message',on);
+  if(shell){ ov.classList.add('win'); ov._close=close; sketchWin(UADShell.state.get('win.sketch')==='normal'?'normal':'max'); sketchDrag(ov); }
 }
+/* the Sketch window's state: 'max' (the whole window), 'normal' (floating:
+   moved by its bar, resized from its corner, remembered), 'min' (the tray) */
+function sketchWin(a){
+  const ov=$('#sketch-ov'); if(!ov||!ov.classList.contains('win')) return;
+  const st=UADShell.state;
+  if(a==='normal-if-min') a=st.get('win.sketch')==='min'?'normal':st.get('win.sketch');
+  if(a==='closed'){
+    UADDialog.confirm('The sketch closes. What was saved to the report stays; a drawing not saved yet is kept in the sketch’s own backup.',{title:'Close the sketch?',ok:'Close'})
+      .then(ok=>{ if(ok&&ov._close) ov._close(); });
+    return;
+  }
+  if(a==='max'||a==='normal'||a==='min') st.set('win.sketch',a);
+  const m=st.get('win.sketch');
+  ov.classList.remove('wmax','wnormal','wmin'); ov.classList.add('w'+m);
+  if(m==='normal'){
+    const W=window.innerWidth, H=window.innerHeight;
+    ov.style.left=Math.round(st.get('win.sx')*W)+'px'; ov.style.top=Math.round(st.get('win.sy')*H)+'px';
+    ov.style.width=Math.round(st.get('win.sw')*W)+'px'; ov.style.height=Math.round(st.get('win.sh')*H)+'px';
+  }else{ ov.style.left=ov.style.top=ov.style.width=ov.style.height=''; }
+  const b=ov.querySelector('.winbar .wbs'); if(b) b.innerHTML=UADShell.windows.buttons('sketch');
+  UADShell.emit('sketch-win',{act:m});
+}
+function sketchDrag(ov){
+  const bar=ov.querySelector('.winbar');
+  bar.addEventListener('pointerdown',e=>{
+    if(e.button!==0||e.target.closest('button')||!ov.classList.contains('wnormal')) return;
+    e.preventDefault();
+    const r=ov.getBoundingClientRect(), x0=e.clientX, y0=e.clientY;
+    try{ bar.setPointerCapture(e.pointerId); }catch(_){}
+    document.body.classList.add('shell-drag');
+    const move=ev=>{ ov.style.left=Math.max(0,Math.min(window.innerWidth-80,r.left+ev.clientX-x0))+'px';
+                     ov.style.top=Math.max(0,Math.min(window.innerHeight-40,r.top+ev.clientY-y0))+'px'; };
+    const up=()=>{ bar.removeEventListener('pointermove',move); bar.removeEventListener('pointerup',up);
+      document.body.classList.remove('shell-drag'); keepSketchBox(ov); };
+    bar.addEventListener('pointermove',move); bar.addEventListener('pointerup',up);
+  });
+  bar.addEventListener('dblclick',e=>{ if(!e.target.closest('button')) sketchWin(ov.classList.contains('wmax')?'normal':'max'); });
+  // a resize from the corner is remembered too
+  if(window.ResizeObserver) new ResizeObserver(()=>{ if(ov.classList.contains('wnormal')) keepSketchBox(ov); }).observe(ov);
+}
+function keepSketchBox(ov){
+  const r=ov.getBoundingClientRect(), W=window.innerWidth, H=window.innerHeight, st=UADShell.state;
+  if(!r.width||!r.height) return;
+  st.set('win.sw',r.width/W); st.set('win.sh',r.height/H); st.set('win.sx',r.left/W); st.set('win.sy',r.top/H);
+}
+// the Sketch window's buttons and tray chip (ui/shell/docks.js) ask for a state here
+document.addEventListener('uad:sketch-cmd',e=>{ if(e.detail&&e.detail.act) sketchWin(e.detail.act); });
 
 /* ------------------------------------------------ Adjustment worksheets (DR §11)
    Owner's addendum 2026-10-10: the worksheet lives in the comparable grid.

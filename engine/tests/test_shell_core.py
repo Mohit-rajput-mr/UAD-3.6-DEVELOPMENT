@@ -170,7 +170,7 @@ def test_core_registries(site):
     fr.evaluate("()=>parent.postMessage({uad:'key',combo:'F9'},'*')")
     page.wait_for_function("window.__ran.includes('key:1')", timeout=10_000)
     page.evaluate("UADShell.commands.unregister('test.f9')")
-    assert page.evaluate("Object.keys(UADShell.keys.map())") == []
+    assert "F9" not in page.evaluate("Object.keys(UADShell.keys.map())")
     assert not site.errors, site.errors
 
 

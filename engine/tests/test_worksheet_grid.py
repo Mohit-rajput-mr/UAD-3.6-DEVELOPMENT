@@ -185,9 +185,10 @@ def test_single_family_row_icons_drawer_apply_recalc_and_keys(site):
     page.click("#wsd-ok")
     page.wait_for_function("!document.body.classList.contains('ws-open')", timeout=30_000)
     cells = _until(page, f"""()=>{{const t=Array.from(document.querySelectorAll('td.v.adj[data-ga="{GLA}"]'));
-        return t.length&&t[0].innerText.includes('20,640')?t.map(td=>[td.innerText.trim(),td.title]):null;}}""", timeout=120)
+        return t.length&&t[0].innerText.includes('20,640')&&t.every(td=>td.title)   // the basis comes with the ticks
+          ?t.map(td=>[td.innerText.trim(),td.title]):null;}}""", timeout=120)
     assert [c[0] for c in cells] == ["$(20,640)", "$15,840", "$14,880"]
-    assert all("× $80" in c[1] for c in cells)
+    assert all("× $80" in c[1] for c in cells), cells
     assert _until(page, f"()=>{{const i=document.querySelector('.wsi[data-type=\"{GLA}\"]');"
                         "return i&&i.classList.contains('on')?i.textContent:''}") == "✓ $80/sf"
 
@@ -274,5 +275,7 @@ def test_the_sketch_panel_fills_the_window(site):
     assert box["x"] == 0 and box["y"] == 0
     assert box["width"] >= view["width"] - 1 and box["height"] >= view["height"] - 1
     frame = page.query_selector("#sketch-ov iframe").bounding_box()
-    assert frame["width"] >= view["width"] - 1 and frame["height"] >= view["height"] - 1
+    bar = page.query_selector("#sketch-ov > .winbar")                 # the shell's window bar (T-1210)
+    bar_h = bar.bounding_box()["height"] if bar else 0
+    assert frame["width"] >= view["width"] - 1 and frame["height"] >= view["height"] - bar_h - 2
     page.evaluate("document.getElementById('sketch-ov').remove()")

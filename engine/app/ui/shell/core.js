@@ -68,7 +68,11 @@
       problems:{sev:['Fatal','Warning','schema'],src:[],group:'section',thisSection:false},
       split:{mode:'off',ratio:0.5},
       zoom:'fit',
-      palette:{mru:[]}};
+      palette:{mru:[]},
+      /* every region is a window (owner 2026-10-11, T-1210): 'normal',
+         'min' (to the tray), 'max' (takes the work area) or 'closed' */
+      win:{top:'normal',left:'normal',right:'normal',report:'normal',
+           sketch:'max',sx:0.1,sy:0.08,sw:0.8,sh:0.84}};
   }
   function clamp(n,lo,hi){ return Math.max(lo,Math.min(hi,n)); }
   function merge(def,got){
@@ -89,6 +93,11 @@
     if(['off','side','stacked'].indexOf(s.split.mode)<0) s.split.mode='off';
     if(['section','severity','rule'].indexOf(s.problems.group)<0) s.problems.group='section';
     s.palette.mru=s.palette.mru.slice(0,30);
+    ['top','left','right','report','sketch'].forEach(function(k){
+      if(['normal','min','max','closed'].indexOf(s.win[k])<0) s.win[k]=k==='sketch'?'max':'normal';
+    });
+    s.win.sw=clamp(s.win.sw,0.25,1); s.win.sh=clamp(s.win.sh,0.25,1);
+    s.win.sx=clamp(s.win.sx,0,1-s.win.sw); s.win.sy=clamp(s.win.sy,0,1-s.win.sh);
     return s;
   }
   function loadState(){

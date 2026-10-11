@@ -1,0 +1,17 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide v1.4.pdf: subsections that display only when a party exists",
+ "gates": [
+  {
+   "subsection": "Supervisory Appraiser",
+   "role": "AppraiserSupervisor",
+   "page": 106,
+   "text": "If there is no Supervisory Appraiser, the subsection does not display."
+  },
+  {
+   "subsection": "Significant Real Property Appraisal Assistance",
+   "role": "SignificantRealPropertyAppraisalAssistance",
+   "page": 108,
+   "text": "The Significant Real Property Appraisal Assistance subsection displays when there are one or more contacts with PartyRoleType."
+  }
+ ]
+}

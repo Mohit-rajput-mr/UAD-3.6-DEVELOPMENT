@@ -3498,3 +3498,65 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   - Harness 12: 86/0/22. ecstatic-bohr's page breaks follow D-1, and two
     page counts that had matched only by coincidence became gaps; no
     failures.
+
+## 2026-10-11 -- keen-turing: party gates, editor visibility, B-1 usability checks (T-1074, T-1066, T-909, T-910, T-510)
+- **T-1074 (E-170): the editor no longer shows a party's subsection
+  before that party exists.** B-1 p106 / p108 sentences ("If there is no
+  Supervisory Appraiser, the subsection does not display"; "... displays
+  when there are one or more contacts with PartyRoleType ...") are read by
+  `uad/spec/extract_party_gates.py` into `spec/party_gates.json`.
+  - In the editor, such a subsection is "+ Add Supervisory Appraiser" /
+    "+ Add Significant Real Property Appraisal Assistance" until added.
+  - It has "× Remove" once added. The remove asks first.
+  - Routes: `POST /cases/{id}/parties` and
+    `DELETE /cases/{id}/parties/{role}`. They answer 422 for a role no
+    gate names.
+  - The supervisor's certifications (29.062) follow the party.
+  - Print unchanged.
+- **T-1066 (E-171): the editor leaves out what the report's own answers
+  rule out** (`form.edit_hides`). A field is left out when:
+  - its B-1 display rule is decided against it by an *answered* gate; or
+  - it is empty and A-1's "IF ..." is false by a gate answered once.
+
+  A gate decides nothing when:
+  - it is in a repeating block (`_point_repeats`: SITE_INFLUENCES, units);
+  - it is unanswered (a blank report shows everything until the question
+    is answered);
+  - no field asks it.
+
+  A chain applies: an unanswered gate whose own question is gated off
+  hides too (no renewable component, so no financing). Writing a gate
+  returns `relayout`.
+  - Traps found by the full suite, all fixed:
+    - the Site "+ Add" list lost Water Frontage;
+    - the 2-4 unit defects table vanished on a blank report;
+    - quoted enumeration values were taken for data point names.
+- **T-909 / T-910 (E-172): B-1 Usability supplement items 6 and 10.**
+  `uad/spec/extract_usability.py` -> `spec/usability.json`;
+  `uad/usability.py`. Review Master warnings, source `usability`:
+  - U6: "See attached addendum" and variations;
+  - U10.1: "As Is" with a Completion / Inspection / Repair defect;
+  - U10.2: C1 without new construction, or kitchens and baths that are
+    not New or Like New and Fully Updated.
+
+  Item 9 (prohibited language) needs the GSE Selling Guides. **Ask the
+  owner for them.** Do not write a word list.
+- **T-510 (partial): the owner's DR 6.5 checks with no spec rule** --
+  `uad/owner_checks.py`, source `owner`, each saying it is not a GSE rule:
+  - O1: seller not on title on a purchase;
+  - O2: no borrower on title on a refinance;
+  - O3: a comparable sold after the effective date.
+
+  Already covered elsewhere:
+  - signature before inspection is H-1 (UAD1536 + UAD1557);
+  - the area-total check is deliberately absent, because A-1's total
+    includes common area.
+
+  Left for T-510: the inline-as-you-type surface (warnings show in the
+  Review Master today) and one-click fixes.
+- **Next here:** T-127 (Site exhibit titles):
+  - B-1 p59 Scenario 1: a picture filed under several categories prints
+    once, with the headers joined in FID order;
+  - a draft patch and a D-1 title validator (18 of 319 titles differ
+    today) are described in the T-127 note;
+  - then T-1075.

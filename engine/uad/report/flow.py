@@ -2580,7 +2580,7 @@ EDIT_JS = """
   }
   function collectAdds(){
     ADDS=[]; var out=[];
-    [].forEach.call(document.querySelectorAll(".exadd,.compadd,.nuadd,.rmadd,.ldadd,tr.newrow,[data-route^='certifications/']"),function(el){
+    [].forEach.call(document.querySelectorAll(".exadd,.compadd,.nuadd,.rmadd,.ldadd,.ptyadd,tr.newrow,[data-route^='certifications/']"),function(el){
       if(el.matches("[data-route^='certifications/']")&&(el.textContent||'').trim()) return;   // only the open line
       var host=el.closest('[data-secn]'), secn=host?Number(host.dataset.secn):0;
       var h=headingFor(el), label;
@@ -2611,6 +2611,37 @@ EDIT_JS = """
     },120);
   }
   setTimeout(collectAdds,200);
+  /* ------------------------------------------------- a party a subsection waits on
+     B-1 shows the Supervisory Appraiser (and Significant Real Property
+     Appraisal Assistance) subsection only when there is one, so it is added
+     here, and its fields follow; Remove takes the party away (T-1074). */
+  function partyAdd(b){
+    if(b.classList.contains('saving')) return;
+    b.classList.add('saving');
+    json(api+'/parties',{method:'POST',headers:{'Content-Type':'application/json'},
+                         body:JSON.stringify({role:b.dataset.role})})
+      .then(function(){ reloadHere(); })
+      .catch(function(e){ b.classList.remove('saving'); b.title=e.message; });
+  }
+  function partyRemove(x){
+    var h=x.closest('.h2,.h1'), name=h?h.textContent.replace(x.textContent,'').trim():'party';
+    ask('Remove the '+name.toLowerCase()+' and everything entered for them?',
+        {title:'Remove '+name,ok:'Remove',danger:true}).then(function(ok){
+      if(!ok) return;
+      json(api+'/parties/'+encodeURIComponent(x.dataset.role),{method:'DELETE'})
+        .then(function(){ reloadHere(); })
+        .catch(function(e){ x.title=e.message; });
+    });
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.ptyadd'); if(b){ partyAdd(b); return; }
+    var x=e.target.closest&&e.target.closest('.ptyx'); if(x) partyRemove(x);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ') return;
+    var b=e.target.closest&&e.target.closest('.ptyadd,.ptyx'); if(!b) return;
+    e.preventDefault(); if(b.matches('.ptyadd')) partyAdd(b); else partyRemove(b);
+  });
   /* ------------------------------------------------- adjustment colours
      A negative adjustment or net total reads red, a positive one green, in
      the editor only (WinTOTAL colours its net adjustment; the printed form

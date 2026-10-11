@@ -2932,3 +2932,118 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   - The Contact Information H1 -> Client/Lender H2 is +4.0 pt.
 - Test: `tests/test_pagination.py::test_tabs_and_headings_sit_where_d1_sets_them`
   (Chromium, against SF1's official PDF).
+
+### E-170 -- The editor showed a supervisory appraiser's fields though none was chosen (2026-10-11)
+- Symptom (the owner's brief, DR §8): every new report's Assignment
+  Information showed the Supervisory Appraiser and Significant Real
+  Property Appraisal Assistance subsections with empty fields (2.032-2.046
+  and the rest), and Certifications showed "Supervisory Appraiser
+  Certifications". Nobody had added such a party.
+- Cause: B-1 shows these subsections only when the party exists. p106 says
+  "If there is no Supervisory Appraiser, the subsection does not display";
+  p108 has the same for Significant Real Property Appraisal Assistance; p396
+  gates the supervisor's certifications. The print followed these rules, but
+  the editor showed every subsection so it could be filled in, and so it
+  offered a party nobody chose.
+- Mechanism:
+  - `uad/spec/extract_party_gates.py` reads those B-1 sentences and the
+    PartyRoleType each names into `spec/party_gates.json`.
+  - In the editor, a gated subsection without its party shows its heading
+    and "+ Add <party>", and the subsections it drives stay out.
+  - POST /cases/{id}/parties adds the party (fields follow);
+    DELETE /cases/{id}/parties/{role} removes it ("× Remove", confirmed).
+  - The control is also in the side panel's Add list.
+- Test: `tests/test_party_gates.py` (3): the gates come from B-1; a blank
+  report has no supervisor fields; added, its fields and certifications
+  follow, and removed they go. Neither changes the schema-error count.
+  Chromium: add, then remove after the confirmation dialog.
+- The print is unchanged: the gate is editor-only.
+
+### E-171 -- The editor showed fields the report's own answers rule out (2026-10-11)
+- Symptom (the owner's brief, DR §5):
+  - Zoning "Legal" still offered Reasons Illegal;
+  - no renewable energy component still offered its type, ownership and
+    financing;
+  - a listing "None" still offered the listing's details;
+  - a single-family report still offered Project Information.
+- Cause: the print applies each field's B-1 display rule
+  (`field_rule_hides`) and drops empty fields. The editor bypassed both so
+  that everything stays answerable, gates included.
+- Mechanism: `form.edit_hides`. In the editor a field is left out when
+  either:
+  1. its B-1 display rule is decided against it by another answer, exactly
+     as the print leaves it out; or
+  2. it is empty, and A-1's "IF ..." for its principal data point is known
+     false by a gate the report answers once (zoning compliance, the three
+     "exists" indicators, "listed within the previous year"). A condition
+     on a repeating block (each amenity, each influence) is the block's and
+     is not applied.
+
+  The gate question stays. A field that is its own gate (10.050
+  Accessibility) stays. A write that changes which fields show returns
+  `relayout`, so the reasons come back the moment zoning becomes
+  "Illegal".
+- Validated first: a blanket A-1 gate was tried and faulted the samples.
+  Values present in a gated-off field appeared in condo1's influences and
+  amenities, because those conditions are per instance. Hence the two
+  limits: single-valued gates and empty fields only. On all 12 samples the
+  editor never hides a field holding a value unless the print hides it too.
+- Second trap, found by the full suite (`test_add_list`): "answered once"
+  was read as "fewer than two values", so SF1's single, non-water site
+  influence removed Frontage and with it the Water Frontage table's
+  "+ Add". Its gate (`SiteInfluenceType`) lives in a repeating block
+  (SITE_INFLUENCES/SITE_INFLUENCE), and the next influence added could be
+  a body of water. Fix, all read from A-1:
+  - a gate whose xpath has a MISMO repeat (`bind.repeating_container`)
+    decides nothing (`form._point_repeats`);
+  - a gate with no value decides nothing, unless every field that asks it
+    is itself left out by its own gate. No renewable energy component
+    means no ownership question, so no financing (6.003). No field asks
+    PrivateAccessIndicator, so the Water Frontage fields stay;
+  - quoted values are not data point names ("LegalNonconforming").
+- Not changed: the comparable grid's Renewable Energy / Certification /
+  Rating rows. B-1 says "When false display None, when true display ...",
+  so they always print, and they are where each comparable's answer is
+  entered.
+- Test: `tests/test_edit_visibility.py` (17) and `tests/test_add_list.py`.
+
+### E-172 -- A report could contradict itself, or lean on an addendum, without a word (2026-10-11)
+- Symptom: three cases passed review in silence:
+  - a commentary reading "See attached addendum";
+  - a Market Value Condition of "As Is" over a defect whose Recommended
+    Action is Repair;
+  - an Overall Condition of C1 on a house that is not new construction.
+  B-1's Usability supplement (items 6 and 10) asks the software to alert
+  the appraiser in each case. H-1 checks only the other direction
+  (UAD1624, UAD1732: Subject to Repair needs a Repair defect).
+- Mechanism: `uad/spec/extract_usability.py` reads the supplement's three
+  exact statements into `spec/usability.json`. Every value is resolved
+  against A-1:
+  - "Recommended Action" and "Market Value Condition" are resolved by label
+    to their data point;
+  - "Subject to Completion" becomes the enumeration "Completion";
+  - "Kitchen and Bathroom" becomes RoomType Kitchen / FullBathroom /
+    HalfBathroom;
+  - the redisplay FIDs 22.11.02 and 1.031 are confirmed to be 15.005's own
+    data point, so it is entered once.
+
+  `uad/usability.py` runs them (U6, U10.1, U10.2). `review.build` lists
+  them as Warnings, source `usability`, on the field that fixes them.
+- The owner's DR 6.5 checks with no spec rule behind them sit in
+  `uad/owner_checks.py`, source `owner`, and each says it is not a GSE
+  rule:
+  - O1: on a purchase, a seller who is not an owner of public record;
+  - O2: on a refinance, no borrower on title;
+  - O3: a comparable sold after the effective date.
+
+  Two of the owner's list are H-1's already:
+  - signature before inspection (UAD1536 + UAD1557);
+  - the area total. It is not checked, because A-1 defines it to include
+    common area.
+- Not done: item 9 (prohibited / veiled language). It cites the GSE
+  Selling Guides, which are not in the repo. No invented word list.
+- Validated first: all 12 D-1 samples raise nothing from either module.
+  The 12 also show the pattern O1 / O2 rest on:
+  - every purchase seller is the same MISMO party as an owner;
+  - every refinance borrower is on title.
+- Test: `tests/test_usability.py` (22), `tests/test_owner_checks.py` (15).

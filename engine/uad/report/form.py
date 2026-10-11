@@ -1556,14 +1556,16 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
             first_tab.setdefault(el["page"], el)
     for el in elements:
         tab = first_tab.get(el["page"])
-        if (el["kind"] == "slot" and tab is not None and el.get("y", 0) < tab.get("y", 0)
+        if (not edit and el["kind"] == "slot" and tab is not None and el.get("y", 0) < tab.get("y", 0)
                 and binding((el.get("ids") or [""])[0]) is not None
                 and binding(el["ids"][0]).section == tab["title"].split(" - [")[0]):
             # C-1 p14 sets the tab's own placeholders ([Outbuilding Type] -
             # [Structure Identifier] - [Unit Identifier], 10.000-10.002) on
             # the tab, ahead of it in reading order; section_instances already
             # composes them into the title, and read as the section before
-            # they printed "Rec Room/Garage" under Manufactured Home (MH1)
+            # they printed "Rec Room/Garage" under Manufactured Home (MH1).
+            # The editor keeps them: _section names them as controls
+            # ("Unit Interior: Outbuilding Type")
             continue
         if el["kind"] == "tab":
             sections.append((el["title"], [el]))

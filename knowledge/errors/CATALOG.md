@@ -2731,7 +2731,12 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   `section_instances` already composes them into the printed title ("Unit
   Interior - Building 2 - Unit 2"). The only other pre-tab slot in C-1,
   29.016 on p41, is Scope of Work text and stays.
-- Test: `tests/test_pagination.py::test_a_tabs_own_placeholders_do_not_print_in_the_section_before`.
+- Print only. In the editor `_section` names these slots as the unit's
+  controls ("Unit Interior: Outbuilding Type"). The first version of this
+  fix skipped them in the editor too, which removed MH1's three controls;
+  restored in the next commit.
+- Test: `tests/test_pagination.py::test_a_tabs_own_placeholders_do_not_print_in_the_section_before`,
+  `::test_the_editor_keeps_a_tabs_placeholders_as_controls`.
 - Checked, not a rule: D-1 MH1 sets the Retailer's and Manufacturer's
   Invoices full page (one page each) but the HUD Data Plate, a more portrait
   image, as a photo. Appendix E p31 leaves image size to "properly display

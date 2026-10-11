@@ -105,6 +105,16 @@ def test_a_tabs_own_placeholders_do_not_print_in_the_section_before():
     assert "Unit Interior - Building 2 - Unit 2" in tabs
 
 
+def test_the_editor_keeps_a_tabs_placeholders_as_controls():
+    """In the editor the same slots are the unit's own fields, named where they
+    stand ("Unit Interior: Outbuilding Type"), so they can still be typed."""
+    tpl = templates.get("mh1_appraisal_v1_4")
+    blocks = form.build(_tree("mh1_appraisal_v1_4"), folder=tpl.path.parent, edit=True)
+    named = [b for b in blocks if {"10.000", "10.001", "10.002"} & set(b.fids)]
+    assert len(named) == 3 and all("data-fid" in b.html for b in named)
+    assert all(_text(b).startswith("Unit Interior:") for b in named)
+
+
 def test_the_land_comparables_map_prints_in_the_cost_approach():
     blocks = [b for b in _blocks("mh1_appraisal_v1_4") if b.visible]
     homes = [b.section for b in blocks if "Map of Land Comparables" in _text(b)]

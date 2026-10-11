@@ -2198,6 +2198,54 @@ def lines_for(root: etree._Element, field_id: str,
 
 
 @lru_cache(maxsize=None)
+def line_types(field_id: str) -> dict | None:
+    """What a new line of a stacked cell asks, by its type (T-1203).
+
+    A line's own inputs follow A-1's conditions on its block (``lines_for``):
+    a garage asks its area and attachment, a driveway its surface.  A new line
+    has no type yet, so it asked everything.  The type is the data point the
+    others' conditions name most; each of its values gets the points whose
+    condition on it admits that value (and the "Other" description of each).
+    None when the cell's points are not chosen by a type."""
+    from . import form as _form
+    binding = binding_of(field_id)
+    if binding is None or not stacks(field_id):
+        return None
+    points = [dp for dp in binding.data_points if dp.get("mismo")]   # (a measure's unit rides with it)
+    names = {dp["mismo"] for dp in points}
+    conds = {dp["mismo"]: dict(_form._condition_values(dp.get("conditionality_details") or ""))
+             for dp in points}
+    counts: dict[str, int] = {}
+    for c in conds.values():
+        for key in c:
+            if key in names and not conds.get(key):
+                counts[key] = counts.get(key, 0) + 1
+    if not counts:
+        return None
+    kind = max(counts, key=lambda k: counts[k])
+    if counts[kind] < 2:
+        return None
+    options = [o["value"] for o in options_for_point(binding, kind) if o.get("value")]
+    if not options:
+        return None
+    by_type: dict[str, list[str]] = {}
+    for value in options:
+        ok = [n for n in names if not n.endswith("OtherDescription")
+              and (n == kind or kind not in conds[n] or value in conds[n][kind])]
+        ok = [dp["mismo"] for dp in points if dp["mismo"] in ok]          # A-1's order
+        # the type's own "Other" description only for Other; another list's goes with it
+        by_type[value] = list(dict.fromkeys(ok + [f"{n}OtherDescription" for n in ok
+                                                  if f"{n}OtherDescription" in names
+                                                  and (n != kind or value == "Other")]))
+    return {"type": kind, "by_type": by_type}
+
+
+def options_for_point(binding, name: str) -> list[dict]:
+    dp = next((d for d in binding.data_points if d.get("mismo") == name), None)
+    return list((dp or {}).get("enumerations") or [])
+
+
+@lru_cache(maxsize=None)
 def typed_in_place(field_id: str) -> str:
     """The data point a grid cell is typed into where it prints, or ''.
 

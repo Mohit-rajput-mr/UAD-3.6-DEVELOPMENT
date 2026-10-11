@@ -2039,13 +2039,32 @@ EDIT_JS = """
           var head=null;
           if(lines){ head=document.createElement('div'); head.className='gl';
             head.textContent=g.add?'Add a line':'Line '+(n+1); }
-          pts.filter(function(pt){ return !g.points||g.points.indexOf(pt.data_point)>=0; }).forEach(function(pt,i){
+          // a new line asks its type first and then only what that type has
+          // (a garage its area, a driveway its surface: T-1203)
+          var lt=g.add&&row.line_types, mine=pts;
+          if(lt) mine=pts.filter(function(pt){ return pt.data_point===lt.type; })
+                        .concat(pts.filter(function(pt){ return pt.data_point!==lt.type; }));
+          var typed=[];
+          mine.filter(function(pt){ return !g.points||g.points.indexOf(pt.data_point)>=0; }).forEach(function(pt,i){
             var opts=pt.options||[];
             if((pt.format||'').toLowerCase()==='boolean') opts=[{value:'true',label:'Yes'},{value:'false',label:'No'}];
             var was=g.parts[pt.data_point]||'';
-            inputs.push({dp:pt.data_point,el:field(pts.length>1?pt.data_point:'',opts,was),
-                         group:lines?g:null,was:was,head:i===0?head:null});
+            var x={dp:pt.data_point,el:field(pts.length>1?pt.data_point:'',opts,was),
+                   group:lines?g:null,was:was,head:i===0?head:null};
+            if(lt&&pt.data_point!==lt.type){ x.el.hidden=true; x.el.classList.add('gby'); typed.push(x); }
+            inputs.push(x);
           });
+          if(lt){
+            var tx=inputs.filter(function(x){ return x.group===g&&x.dp===lt.type; })[0];
+            var tin=tx&&tx.el.querySelector('input[type=hidden]');
+            if(tin){
+              var show=function(){
+                var want=lt.by_type[tin.value]||[];
+                typed.forEach(function(x){ x.el.hidden=want.indexOf(x.dp)<0; });
+              };
+              tx.el.addEventListener('gpick',show); show();
+            }
+          }
         });
       }
       inputs.forEach(function(x){ if(x.head) box.appendChild(x.head); box.appendChild(x.el); });
@@ -2075,7 +2094,7 @@ EDIT_JS = """
             if(x.group){
               // a line's value is sent when it changed; a new line is made by
               // its first value and the rest are written into it
-              if(input.value===x.was) return null;
+              if(input.value===x.was||x.el.hidden) return null;
               if(x.group.line) body.line=x.group.line; else body.new=true;
             }
             return putJSON(api+'/comparables/'+col+'/fields/'+(adj?'adjustment':fid),body,'PATCH')
@@ -2256,6 +2275,7 @@ EDIT_JS = """
       var rows=[{value:'',label:'\\u2014 not answered \\u2014',clear:true}].concat(options);
       var mark=function(){
         [].forEach.call(list.children,function(r){ r.classList.toggle('on',r.dataset.value===el.value); });
+        wrap.dispatchEvent(new Event('gpick'));
       };
       rows.forEach(function(o){
         var r=document.createElement('div'); r.setAttribute('role','option');

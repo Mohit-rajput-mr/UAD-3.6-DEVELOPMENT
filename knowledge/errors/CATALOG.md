@@ -3294,3 +3294,9 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Test:** `tests/test_every_choice_saves.py`: 13.008/13.009/14.009/14.010/10.056/10.057/10.059/10.060 are off KNOWN, and the test fails if they stop saving. Still on KNOWN: 10.058, 4.096, 26.058/26.064.
 
 **E-192 follow-up:** `property_map` gives an unmatched source property a slot of a role the source does not carry. Reshaping a single-family report to 2-4 turns the template's empty rental slots into its properties not used, as the positional fill did. Without this, `tests/test_setup.py::test_rental_comparables_are_paired...` got 5 extra rental columns.
+
+## E-194 A new line of a stacked grid cell asked for every input of every type (T-1203)
+
+- **Symptom:** in the comparable grid's Vehicle Storage cell (22.13.01), the "Add a line" group showed every input (area, attachment, surface, assignment, 10+ spaces ...) before the type was known. Existing lines asked only for their own type's inputs (`lines_for`).
+- **Mechanism:** `comparables.line_types(fid)` works out from A-1's conditions which data point is the type (the one the others' conditions name most) and which points each of its values admits, plus "Other" descriptions. GET /comparables carries it as `line_types`. In EDIT_JS `openCell`, the new line shows the type first and then only what the chosen type admits (the picker emits `gpick`). Hidden inputs are never sent.
+- **Test:** `tests/test_vehicle_storage.py::test_the_grid_editor_saves_each_line_into_its_own_storage` (Chromium): only the type before the pick; Carport → area, attachment, spaces.

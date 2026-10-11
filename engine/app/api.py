@@ -1745,6 +1745,9 @@ def case_comparables(case_id: str, kind: str = Query("sales")) -> dict:
             # edited where it is kept, and another can be added
             "subject_lines": (comparables.lines_for(root, spec.subject_fid, subject)
                               if spec.subject_fid and not spec.container else None),
+            # a new line of a stacked cell asks its type first, then that type's inputs (T-1203)
+            "line_types": (comparables.line_types(spec.subject_fid) if spec.subject_fid else None)
+                          or (comparables.line_types(spec.comp_fid) if spec.comp_fid else None),
             "label": spec.label,
             "heading": spec.heading,
             "always": spec.always,

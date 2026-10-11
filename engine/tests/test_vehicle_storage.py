@@ -176,6 +176,17 @@ FILL = """(() => {
 })()"""
 
 
+ADDING = """(() => {
+  const out = []; let on = false;
+  for (const el of document.querySelector('.gedit').children) {
+    if (el.classList.contains('gl')) { on = el.textContent === 'Add a line'; continue; }
+    const l = el.querySelector && el.querySelector('label');
+    if (on && l && !el.hidden) out.push(l.title);
+  }
+  return out;
+})()"""
+
+
 def test_the_grid_editor_saves_each_line_into_its_own_storage(client):
     """The grid's own editor, in the page: a group of inputs for each line and
     one to add a line; Save writes each into its own CAR_STORAGE."""
@@ -207,7 +218,11 @@ def test_the_grid_editor_saves_each_line_into_its_own_storage(client):
             page.locator("td[data-gc='0'][data-gf='22.13.01']").first.click()
             page.locator(".gedit .gl").first.wait_for(timeout=20000)
             assert page.locator(".gedit .gl").all_inner_texts() == ["Line 1", "Line 2", "Add a line"]
+            # a new line asks its type first, then only that type's inputs (T-1203)
+            assert page.evaluate(ADDING) == ["CarStorageType"]
             assert page.evaluate(FILL) == ["480", "Carport", "1"]
+            assert page.evaluate(ADDING) == ["CarStorageType", "CarStorageAreaMeasure",
+                                             "CarStorageAttachmentType", "ParkingSpacesCount"]
             page.locator(".gedit .go").click()
             page.wait_for_function("!document.querySelector('.gedit')"
                                    " || document.querySelector('.gedit .err').textContent", timeout=20000)

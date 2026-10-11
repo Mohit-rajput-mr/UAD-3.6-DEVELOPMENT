@@ -1104,8 +1104,15 @@ def instance_for(root: etree._Element, dp: dict,
         cut = len(segs) - len(rel)                 # where rel starts within segs
         if repeat < 0:
             # a gate: a single block, reached by the type element's own A-1 path
+            # -- walked from the block the row stands for, not from the top,
+            # or every copy of a section opens the first copy's gate (T-1204)
             upto = list(kpath[1:] if kpath and kpath[0] == etree.QName(root).localname else kpath)
-            holder, _ = ensure_path(root, upto) if upto else (root, [])
+            start = _gate_anchor(root, base, upto)
+            if start is not None:
+                name = etree.QName(start).localname
+                upto = upto[len(upto) - upto[::-1].index(name):]
+            holder, _ = ensure_path(start if start is not None else root, upto) \
+                if upto else (start if start is not None else root, [])
             node = holder.find(f"{QN}{key}")
             if node is None:
                 node = insert_ordered(holder, key)
@@ -1158,6 +1165,29 @@ def instance_for(root: etree._Element, dp: dict,
                 chosen = sibling if sibling is not None else insert_ordered(holder, container)
         base = chosen
     return base
+
+
+def _gate_anchor(root: etree._Element, scope: etree._Element | None,
+                 upto: list[str]) -> etree._Element | None:
+    """The block a gate answered for this value lives in, on the gate's path.
+
+    A defect is kept at property level (PROPERTY_DEFECT) and tied to the unit,
+    building or garage it is in by DEFECT_ContainsDefectOf_<it> (D-1 2-4), so
+    its gate ("Unit Interior Defects Exist?") is that one's: the link names
+    it.  None otherwise, and the path is walked from the top as before.  (A
+    wider rule -- the deepest ancestor whose *name* is on the gate's path --
+    put a VALUATION gate inside the data collector's SERVICE: names alone do
+    not say which SERVICE.)
+    """
+    if scope is None or etree.QName(scope).localname != "DEFECT" or not scope.get(f"{XL}label"):
+        return None
+    label = scope.get(f"{XL}label")
+    arc = "DEFECT_ContainsDefectOf_"
+    to = next((r.get(f"{XL}to") for r in root.iter(f"{QN}RELATIONSHIP")
+               if r.get(f"{XL}from") == label and arc in (r.get(f"{XL}arcrole") or "")), None)
+    owner = next((e for e in root.iter() if isinstance(e.tag, str)
+                  and e.get(f"{XL}label") == to), None) if to else None
+    return owner if owner is not None and etree.QName(owner).localname in upto else None
 
 
 def _append_instance(scope: etree._Element, segments: list[str],

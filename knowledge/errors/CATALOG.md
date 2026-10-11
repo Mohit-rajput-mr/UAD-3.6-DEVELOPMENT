@@ -3312,3 +3312,59 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   document and no temporary file.
 - Test: `tests/test_atomic_save.py`; `test_grid_rows_browser.py` passes 6
   runs out of 6.
+
+### E-343 -- A defect entered in Unit 2's table opened Unit 1's gate and vanished (2026-10-11, T-1204)
+- Symptom: on a 2-4 unit report, a defect picked in Unit 2's Unit
+  Interior defect table (10.056-10.060) answered 200 and was saved, tied
+  to Unit 2 by `DEFECT_ContainsDefectOf_PROPERTY_UNIT`. On the next draw
+  Unit 2's whole defect table was gone, and the row with it. Unit 1 was
+  fine. (`tests/test_every_choice_saves.py` listed 10.056-10.060 as
+  KNOWN; it named the missing unit tie, but the tie was there.)
+- Cause: the defect's data points wait on "Unit Interior Defects Exist?"
+  (A-1: IF UnitInteriorDefectsExistIndicator = "true"), and writing them
+  answers it. `edit.instance_for` walked that single gate's A-1 path
+  **from the document root**, which lands on the first dwelling's first
+  unit. Unit 2's question stayed unanswered while the subject held an
+  answer, so `form.edit_hides` (T-1066) decided Unit 2's table was ruled
+  out.
+- Mechanism: `edit._gate_anchor` walks the gate from the block a DEFECT's
+  `DEFECT_ContainsDefectOf_*` link names (the defect is kept at property
+  level). Anything else walks from the top as before.
+- Trap: a wider first version anchored at "the deepest ancestor whose
+  name is on the gate's path". It put a VALUATION gate inside the data
+  collector's SERVICE: 2.058 "No Inspection" was refused with "VALUATION
+  is not expected" (`test_every_choice_saves` on SF1). A tag name does
+  not say which SERVICE.
+- Test: `tests/test_unit_defect_gate.py` (2; Unit 2 fails before).
+  `test_every_choice_saves` KNOWN loses 10.056-10.060.
+- Still open in T-1204: the Vehicle Storage (13.006-13.009) and Amenities
+  (14.007-14.010) defect tables. A first answer in a non-Feature column
+  makes a bare DEFECT linked to nothing (200, never drawn). The Feature
+  column itself (13.005 CarStorageType, 14.006 AmenityType) makes no
+  defect row at all. It needs a decision: the empty line's Feature
+  picks or makes the garage or amenity and creates the linked defect,
+  and every other column answers "Answer Feature (13.005) first" until
+  then. Plus 4.096 (a utility row made from its Detail alone).
+
+### E-344 -- A case saved before T-509 kept an XSD fatal no field could clear (2026-10-11, T-1201)
+- Symptom: a case saved by the old removers keeps "AMENITY_CATEGORY_DETAIL
+  is not expected. Expected is ( AMENITIES )" (E-180). The Review Master
+  shows it with no field to go to, so nothing in the editor clears it.
+- Mechanism: `uad/heal.py` works on a copy and, for each "Expected is ( X
+  )" fault, tries in turn:
+  - remove the holder (`edit.remove_block`), when it states nothing but
+    which block it is (`templates.structure_elements`) and nothing links
+    to it;
+  - restore an empty container that is valid
+    (`templates._restore_required_containers`).
+  A repair is kept only when the schema errors drop and every answer is
+  still present. `POST /cases/{id}/heal` saves it through the normal
+  guard. Review Master XSD items it clears carry
+  `repair = {action: heal}`. This is a new key: the editor sends every
+  `fix` to a field, so a heal under `fix` would have drawn a button that
+  fails.
+- Not done: the button. The lead's T-508 ("Fix this is always real")
+  wires `repair` in the problems panel.
+- Test: `tests/test_heal.py` (14). It covers the owner's case (3 -> 1,
+  the blank's own stamp error left), the 12 samples untouched, and the
+  review -> route round trip, plus 422 when nothing is left to do.

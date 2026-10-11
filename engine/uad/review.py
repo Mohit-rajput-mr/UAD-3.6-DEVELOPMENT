@@ -80,6 +80,9 @@ class Item:
     path: str = ""
     detail: str = ""
     fix: dict | None = None        # {field_id, value, label}: a one-click repair
+    # a repair of the document itself (HEAL: POST /cases/{id}/heal), kept
+    # apart from ``fix``, which the editor sends to a field (T-1201)
+    repair: dict | None = None
 
     @property
     def section_number(self) -> int:
@@ -138,14 +141,29 @@ def _index() -> dict:
     return json.loads((SPEC / "field_index.json").read_text(encoding="utf-8"))["fields"]
 
 
+#: the one-click repair of a schema fault an older remover left (T-1201)
+HEAL = {"action": "heal", "label": "Repair the document"}
+
+
 def _schema_items(tree) -> list[Item]:
     out = []
-    for err in schema.validate(tree):
+    errors = schema.validate(tree)
+    healed: set[str] = set()
+    if any("Expected is" in (e.message or "") for e in errors):
+        # a fault ``heal`` takes away is offered as one click (it never
+        # invents a value or loses one); the rest stay findings to judge
+        from . import heal
+        repaired = heal.heal(tree)
+        if repaired.changed:
+            left = {e.message for e in schema.validate(repaired.tree)}
+            healed = {e.message for e in errors if e.message not in left}
+    for err in errors:
         out.append(Item(
             source=SCHEMA, severity=compliance.FATAL, code="XSD",
             message=err.message,
             detail=f"line {err.line}" + (f", {err.path}" if err.path else ""),
             path=err.path,
+            repair=dict(HEAL) if err.message in healed else None,
         ))
     return out
 

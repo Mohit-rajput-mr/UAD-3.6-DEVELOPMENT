@@ -139,6 +139,7 @@ def _index() -> dict:
 
 
 def _schema_items(tree) -> list[Item]:
+    from .templates import _EXPECTED
     out = []
     for err in schema.validate(tree):
         out.append(Item(
@@ -146,6 +147,10 @@ def _schema_items(tree) -> list[Item]:
             message=err.message,
             detail=f"line {err.line}" + (f", {err.path}" if err.path else ""),
             path=err.path,
+            # a container an earlier removal took away: the structure can be
+            # repaired without touching a value (templates.heal, T-1201)
+            fix=({"route": "heal", "label": "Repair the structure"}
+                 if _EXPECTED.search(err.message or "") else None),
         ))
     return out
 

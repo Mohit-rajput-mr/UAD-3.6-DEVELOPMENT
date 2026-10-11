@@ -459,6 +459,56 @@ def _restore_required_containers(root: etree._Element, rounds: int = 8) -> int:
     return restored
 
 
+def heal(root: etree._Element) -> dict:
+    """Repair what an earlier remover left out of a saved document (T-1201).
+
+    Before E-180, removing the last of a repeating block also took the
+    wrapper the schema requires ("AMENITY_CATEGORY_DETAIL is not expected;
+    expected AMENITIES").  Documents saved then still carry that error, and
+    nothing the appraiser types repairs it.  For each "Expected is ( X )":
+    put back the required container (``_restore_required_containers``, which
+    invents no value); where that does not help and the element the schema
+    stumbles on states nothing beyond its own type, remove that block
+    (``edit.remove_block``).  Every step is kept only if the schema likes
+    the document better, and no value anyone typed is removed."""
+    from . import edit, schema          # circular at module level
+    before = len(schema.validate(root.getroottree()))
+    restored = _restore_required_containers(root, rounds=24)
+    removed = 0
+    for _ in range(24):
+        errors = schema.validate(root.getroottree())
+        done = False
+        for err in errors:
+            m = _EXPECTED.search(getattr(err, "message", "") or "")
+            path = getattr(err, "path", "") or ""
+            found = root.getroottree().xpath(path) if (m and path) else []
+            if not found:
+                continue
+            node = found[0]
+            texts = [e for e in node.iter() if isinstance(e.tag, str) and not len(e) and (e.text or "").strip()]
+            if any(not etree.QName(e).localname.endswith(("Type", "Identifier")) for e in texts):
+                continue                 # it holds an answer: never removed here
+            try:
+                top = edit.removal_plan(node)[-1]
+            except edit.Unremovable:
+                continue
+            holder = top.getparent()
+            if holder is None:
+                continue
+            at = list(holder).index(top)
+            holder.remove(top)
+            if len(schema.validate(root.getroottree())) < len(errors):
+                removed += 1
+                done = True
+                break
+            holder.insert(at, top)       # no better: put it back as it was
+        if not done:
+            break
+    restored += _restore_required_containers(root, rounds=24)
+    after = len(schema.validate(root.getroottree()))
+    return {"before": before, "after": after, "restored": restored, "removed": removed}
+
+
 #: Containers whose only surviving content after blanking is the value that
 #: says *which* instance they are, and the element that says it.  A-1 conditions
 #: the data points inside each of these on that very value, so an instance left

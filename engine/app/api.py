@@ -2075,6 +2075,20 @@ def _write_line_cell(case_id: str, request: Request, kind: str, number: int,
             "state": st.get(case_id).state}
 
 
+@router.post("/cases/{case_id}/heal")
+def heal_structure(case_id: str, request: Request) -> dict:
+    """Put back the containers an earlier removal took away, so the document
+    validates again; no value is changed (templates.heal, T-1201)."""
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    result = templates.heal(tree.getroot())
+    if result["after"] < result["before"]:
+        st.save_tree(case_id, tree, allow_invalid=True)
+        st.invalidate(case_id, _actor(request), "structure repaired")
+    return result
+
+
 @router.post("/cases/{case_id}/comparables")
 def add_comparable(case_id: str, request: Request,
                    body: dict = Body(default={})) -> dict:

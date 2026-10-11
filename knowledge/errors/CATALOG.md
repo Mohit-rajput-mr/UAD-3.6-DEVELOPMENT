@@ -3307,3 +3307,13 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Mechanism:** `delivery.hidden_values` finds the values of every section `form.section_shown` turns off. It keeps any data point a field of a shown section asks for (grid line items, a rent the sales grid uses) and the switch question of an optional section. Each value is lifted to the largest container holding nothing else. `as_delivered` drops them under `templates._drop_guarded` (schema guard). The editor's copy keeps them, so the section comes back intact. The Review Master judges `as_delivered`, so it now counts what the checker will see.
 - **Validated:** removes no value from any of the 12 D-1 samples. The first draft, which kept only chapter-level fields, would have stripped sf1's grid line items and condo2's market rent; the samples caught it.
 - **Test:** `tests/test_hidden_sections.py` (12 samples untouched + a hidden-only value not delivered on 2-4 and SF1); harness 88/0/20.
+
+## E-196 Documents saved before E-180 kept a schema error nothing could clear (T-1201)
+
+- **Symptom:** a case saved while the old removers dropped required wrappers still showed an XSD fatal: "AMENITY_CATEGORY_DETAIL is not expected; expected AMENITIES". E-180 stopped new damage but did not repair old documents.
+- **Mechanism:**
+  - `templates.heal` restores each container the schema names as the one expected (`_restore_required_containers`, which never invents a value).
+  - Where that does not help, it removes the offending block, but only if the block states nothing beyond its own type and identifier (`edit.removal_plan`).
+  - Each step is kept only if the error count falls.
+  - Schema items whose message matches "Expected is ( X )" carry `fix: {route: "heal"}`. The Review Master shows "Repair the structure", which calls `POST /cases/{id}/heal`.
+- **Test:** `tests/test_heal.py`. It reproduces the owner's 2-4 case: 2 errors become 0 and the document's values are unchanged; a valid case is left alone.

@@ -2402,9 +2402,15 @@ function findingRow(i){
 function applyFixButton(fx){
   const b=document.createElement('button');
   b.className='addbtn primary'; b.style.marginTop='5px';
-  b.textContent=fx.label; b.title=`Write ${fx.value} to ${fx.field_id}`;
+  b.textContent=fx.label; b.title=fx.route?'Repair the document\u2019s structure; no value is changed':`Write ${fx.value} to ${fx.field_id}`;
   b.onclick=async e=>{
     e.stopPropagation(); b.disabled=true;
+    if(fx.route){
+      const r=await api(`/cases/${S.caseId}/${fx.route}`,{method:'POST'});
+      if(r&&r.ok&&r.data.after<r.data.before){ toast(`Repaired: ${r.data.before-r.data.after} schema error(s)`); swapFrame('form'); await refresh(); reviewSoon(); }
+      else{ b.disabled=false; toast((r&&r.data&&r.data.detail)||'Nothing could be repaired automatically.',7000); }
+      return;
+    }
     const r=await api(`/cases/${S.caseId}/fields/${encodeURIComponent(fx.field_id)}`,
       {method:'PATCH',body:JSON.stringify({value:fx.value})});
     if(r&&r.ok){ toast('Written: '+fx.label.replace(/^Make it /,'')); swapFrame('form'); await refresh(); reviewSoon(); }

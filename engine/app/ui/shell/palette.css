@@ -1,2 +1,13 @@
-/* The command palette and the key cheat sheet (DR phase 2, step S5).
-   Scoped to body.shell.  A stub until S5 lands. */
+/* The command palette (DR phase 2, step S5 / T-277). */
+.pal-back{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.35);display:flex;justify-content:center;align-items:flex-start;padding-top:12vh}
+.pal{width:min(620px,calc(100vw - 32px));border-radius:12px;border:1px solid var(--line-3);background:var(--surface);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);overflow:hidden;font:13.5px/1.3 var(--sans);color:var(--ink)}
+.pal input{width:100%;box-sizing:border-box;height:46px;padding:0 16px;border:0;border-bottom:1px solid var(--line);
+  background:transparent;color:var(--ink);font:15px/1 var(--sans);outline:none}
+.pal-list{max-height:52vh;overflow:auto;padding:4px}
+.pal-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;cursor:pointer}
+.pal-row.on,.pal-row:hover{background:var(--hover)}
+.pal-l{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pal-g{color:var(--muted);font-size:12px;white-space:nowrap}
+.pal kbd{font:500 11px/1 var(--mono,var(--sans));padding:3px 6px;border-radius:5px;border:1px solid var(--line-2);color:var(--ink-2)}
+.pal-none{padding:14px;color:var(--muted)}

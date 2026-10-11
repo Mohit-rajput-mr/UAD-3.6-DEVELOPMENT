@@ -3607,3 +3607,6 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     decide on some sample. UAD1250 and UAD1777-1779 meet no sample's
     condition; `tests/test_compliance_unexercised.py` holds them to firing
     on a broken copy.
+- **Verified on ce132e6:** full suite 1180 passed / 0 failed / 9 skipped;
+  harness 12 **88 pass / 0 fail / 20 gap**. Posted to sleepy-hypatia to
+  merge and deploy.

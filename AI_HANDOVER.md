@@ -278,6 +278,8 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   - T-510: one-click fixes and the O4 area check.
   - T-1034: all 171 rules decided; the four no sample exercises are
     tested.
+- **Verified on ce132e6:** full suite 1180 / 0 / 9; harness 12
+  88 / 0 / 20.
 - **Next:** T-1079 / T-1080 (offline intake, rule-based parsers first),
   or what the lead hands over.
 

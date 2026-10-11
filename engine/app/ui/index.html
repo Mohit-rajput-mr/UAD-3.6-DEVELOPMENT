@@ -2525,7 +2525,7 @@ function setReview(rv,opts){
 function marksMsg(){
   if(!S.review) return null;
   const items=(S.review.items||[]).filter(i=>i.field_id&&(i.severity==='Fatal'||i.severity==='Warning'))
-    .map(i=>[i.field_id,i.severity,i.message]);
+    .map(i=>[i.field_id,i.severity,i.message,i.code]);
   return {uad:'marks',items,on:!!S.showMarks};
 }
 function postMarks(){ const m=marksMsg(); if(m) frameSend(m,'all'); }

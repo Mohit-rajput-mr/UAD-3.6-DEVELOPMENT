@@ -2608,13 +2608,17 @@ EDIT_JS = """
     [].forEach.call(document.querySelectorAll('.mk-fatal,.mk-warn'),function(x){
       x.classList.remove('mk-fatal','mk-warn'); if(x.dataset.mkt){ x.removeAttribute('title'); delete x.dataset.mkt; } });
     if(!on) return;
+    // every problem on a field, with its H-1 id, in the field's own tooltip (T-507)
+    var says={};
+    (items||[]).forEach(function(it){
+      (says[it[0]]=says[it[0]]||[]).push((it[1]==='Fatal'?'Fatal':'Warning')+(it[3]?' '+it[3]:'')+': '+(it[2]||''));
+    });
     (items||[]).forEach(function(it){
       var fid=it[0], cls=it[1]==='Fatal'?'mk-fatal':'mk-warn';
       var sel='.v[data-fid="'+fid+'"],.bxs .bx[data-fid="'+fid+'"],td[data-gf="'+fid+'"]';
       [].forEach.call(document.querySelectorAll(sel),function(x){
-        if(x.classList.contains('mk-fatal')) return;
-        x.classList.remove('mk-warn'); x.classList.add(cls);
-        if(!x.title){ x.title=it[2]||''; x.dataset.mkt='1'; }
+        if(!x.classList.contains('mk-fatal')){ x.classList.remove('mk-warn'); x.classList.add(cls); }
+        if(!x.title||x.dataset.mkt){ x.title=says[fid].join(String.fromCharCode(10)); x.dataset.mkt='1'; }
       });
     });
   }

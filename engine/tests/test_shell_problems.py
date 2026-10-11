@@ -57,5 +57,11 @@ def test_the_panel_counts_filters_and_takes_you_to_the_field(site):
     # F8 steps to the next problem
     page.keyboard.press("F8")
     page.wait_for_selector("#shell-panel-problems .prb-row.at")
+    # "Show problems" outlines each field and says, with the H-1 id, what is wrong (T-507)
+    page.check("#rf-marks")
+    tip = until(page, "()=>{const x=document.querySelector('.mk-fatal[title],.mk-warn[title]'); return x&&x.title;}", timeout=30)
+    assert tip.startswith(("Fatal ", "Warning ")) and ": " in tip, tip
+    page.uncheck("#rf-marks")
     page.evaluate("localStorage.removeItem('uad-shell-v1')")
+    page.evaluate("localStorage.removeItem('uad-marks')")
     assert not site.errors, site.errors

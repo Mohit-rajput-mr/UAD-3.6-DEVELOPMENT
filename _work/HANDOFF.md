@@ -3491,3 +3491,10 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     172.6 pt against D-1's ~160 pt. MH1 runs 3 short, so it also has
     content we fail to print (pages 7-17 of its map).
   - Then the whole-report word diff (`_work/audit/linediff.py`).
+- **Production deployed (2026-10-11):** dpl_FZ2DejrwLLQAKQ2stM8x9C6vgnN5 =
+  this branch @c4d37db (main + phase 1 + ecstatic-bohr up to 20d3aed),
+  READY, aliased to uad36.vercel.app.
+  - Full suite: 1082 passed / 0 failed.
+  - Harness 12: 86/0/22. ecstatic-bohr's page breaks follow D-1, and two
+    page counts that had matched only by coincidence became gaps; no
+    failures.

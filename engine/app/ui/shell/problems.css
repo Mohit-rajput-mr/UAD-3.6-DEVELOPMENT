@@ -1,2 +1,30 @@
-/* The Problems side panel (DR phase 2, step S4).  Scoped to body.shell.
-   A stub until S4 lands. */
+/* The Problems side panel (DR phase 2, step S4 / T-505).  Scoped to body.shell. */
+body.shell .prb{padding:8px 12px 12px;display:flex;flex-direction:column;gap:8px}
+body.shell .prb-bar{display:flex;gap:6px;flex-wrap:wrap}
+body.shell .prb-chip{appearance:none;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;
+  border:1px solid var(--line-2);background:none;color:var(--muted);font:500 12px/1 var(--sans);cursor:pointer}
+body.shell .prb-chip b{font:600 11.5px/1 var(--mono,var(--sans));color:var(--ink)}
+body.shell .prb-chip.on{color:var(--ink);border-color:var(--ink)}
+body.shell .prb-chip.Fatal.on{border-color:#d64545;background:color-mix(in srgb,#d64545 14%,transparent)}
+body.shell .prb-chip.Warning.on{border-color:#c98a12;background:color-mix(in srgb,#c98a12 14%,transparent)}
+body.shell .prb-q{width:100%;box-sizing:border-box;height:30px;padding:0 10px;border-radius:8px;border:1px solid var(--line-2);
+  background:var(--bg);color:var(--ink);font:13px/1 var(--sans)}
+body.shell .prb-list{max-height:42vh;overflow:auto;border:1px solid var(--line);border-radius:8px}
+body.shell .prb-none{padding:12px;color:var(--muted);font-size:12.5px}
+body.shell .prb-gh{appearance:none;width:100%;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 10px;
+  border:0;border-bottom:1px solid var(--line);background:var(--bg-2);color:var(--ink-2);font:600 11px/1.2 var(--sans);
+  letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-align:left;position:sticky;top:0;z-index:1}
+body.shell .prb-gh:before{content:'\25BE';margin-right:6px;color:var(--muted)}
+body.shell .prb-g.shut .prb-gh:before{content:'\25B8'}
+body.shell .prb-g.shut .prb-rows{display:none}
+body.shell .prb-row{display:grid;grid-template-columns:10px 1fr;column-gap:8px;padding:7px 10px;border-bottom:1px solid var(--line);
+  font-size:12.5px;line-height:1.35;color:var(--ink);cursor:default}
+body.shell .prb-row.go{cursor:pointer}
+body.shell .prb-row:hover,body.shell .prb-row:focus-visible{background:var(--hover);outline:none}
+body.shell .prb-row.at{background:color-mix(in srgb,var(--ink) 9%,transparent)}
+body.shell .prb-row i{width:8px;height:8px;border-radius:50%;margin-top:5px;background:var(--muted)}
+body.shell .prb-row.Fatal i{background:#d64545}
+body.shell .prb-row.Warning i{background:#c98a12}
+body.shell .prb-m{grid-column:2;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+body.shell .prb-c{grid-column:2;margin-top:2px;color:var(--muted);font:11px/1.2 var(--mono,var(--sans))}
+body.shell .prb-row .prb-fix{grid-column:2;justify-self:start;margin-top:6px}

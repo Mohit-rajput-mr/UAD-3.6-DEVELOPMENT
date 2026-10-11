@@ -2932,3 +2932,223 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   - The Contact Information H1 -> Client/Lender H2 is +4.0 pt.
 - Test: `tests/test_pagination.py::test_tabs_and_headings_sit_where_d1_sets_them`
   (Chromium, against SF1's official PDF).
+
+### E-170 -- The editor showed a supervisory appraiser's fields though none was chosen (2026-10-11)
+- Symptom (the owner's brief, DR §8): every new report's Assignment
+  Information showed the Supervisory Appraiser and Significant Real
+  Property Appraisal Assistance subsections with empty fields (2.032-2.046
+  and the rest), and Certifications showed "Supervisory Appraiser
+  Certifications". Nobody had added such a party.
+- Cause: B-1 shows these subsections only when the party exists. p106 says
+  "If there is no Supervisory Appraiser, the subsection does not display";
+  p108 has the same for Significant Real Property Appraisal Assistance; p396
+  gates the supervisor's certifications. The print followed these rules, but
+  the editor showed every subsection so it could be filled in, and so it
+  offered a party nobody chose.
+- Mechanism:
+  - `uad/spec/extract_party_gates.py` reads those B-1 sentences and the
+    PartyRoleType each names into `spec/party_gates.json`.
+  - In the editor, a gated subsection without its party shows its heading
+    and "+ Add <party>", and the subsections it drives stay out.
+  - POST /cases/{id}/parties adds the party (fields follow);
+    DELETE /cases/{id}/parties/{role} removes it ("× Remove", confirmed).
+  - The control is also in the side panel's Add list.
+- Test: `tests/test_party_gates.py` (3): the gates come from B-1; a blank
+  report has no supervisor fields; added, its fields and certifications
+  follow, and removed they go. Neither changes the schema-error count.
+  Chromium: add, then remove after the confirmation dialog.
+- The print is unchanged: the gate is editor-only.
+
+### E-171 -- The editor showed fields the report's own answers rule out (2026-10-11)
+- Symptom (the owner's brief, DR §5):
+  - Zoning "Legal" still offered Reasons Illegal;
+  - no renewable energy component still offered its type, ownership and
+    financing;
+  - a listing "None" still offered the listing's details;
+  - a single-family report still offered Project Information.
+- Cause: the print applies each field's B-1 display rule
+  (`field_rule_hides`) and drops empty fields. The editor bypassed both so
+  that everything stays answerable, gates included.
+- Mechanism: `form.edit_hides`. In the editor a field is left out when
+  either:
+  1. its B-1 display rule is decided against it by another answer, exactly
+     as the print leaves it out; or
+  2. it is empty, and A-1's "IF ..." for its principal data point is known
+     false by a gate the report answers once (zoning compliance, the three
+     "exists" indicators, "listed within the previous year"). A condition
+     on a repeating block (each amenity, each influence) is the block's and
+     is not applied.
+
+  The gate question stays. A field that is its own gate (10.050
+  Accessibility) stays. A write that changes which fields show returns
+  `relayout`, so the reasons come back the moment zoning becomes
+  "Illegal".
+- Validated first: a blanket A-1 gate was tried and faulted the samples.
+  Values present in a gated-off field appeared in condo1's influences and
+  amenities, because those conditions are per instance. Hence the two
+  limits: single-valued gates and empty fields only. On all 12 samples the
+  editor never hides a field holding a value unless the print hides it too.
+- Second trap, found by the full suite (`test_add_list`): "answered once"
+  was read as "fewer than two values", so SF1's single, non-water site
+  influence removed Frontage and with it the Water Frontage table's
+  "+ Add". Its gate (`SiteInfluenceType`) lives in a repeating block
+  (SITE_INFLUENCES/SITE_INFLUENCE), and the next influence added could be
+  a body of water. Fix, all read from A-1:
+  - a gate whose xpath has a MISMO repeat (`bind.repeating_container`)
+    decides nothing (`form._point_repeats`);
+  - a gate with no value decides nothing, unless every field that asks it
+    is itself left out by its own gate. No renewable energy component
+    means no ownership question, so no financing (6.003). No field asks
+    PrivateAccessIndicator, so the Water Frontage fields stay;
+  - quoted values are not data point names ("LegalNonconforming").
+- Not changed: the comparable grid's Renewable Energy / Certification /
+  Rating rows. B-1 says "When false display None, when true display ...",
+  so they always print, and they are where each comparable's answer is
+  entered.
+- Test: `tests/test_edit_visibility.py` (17) and `tests/test_add_list.py`.
+
+### E-172 -- A report could contradict itself, or lean on an addendum, without a word (2026-10-11)
+- Symptom: three cases passed review in silence:
+  - a commentary reading "See attached addendum";
+  - a Market Value Condition of "As Is" over a defect whose Recommended
+    Action is Repair;
+  - an Overall Condition of C1 on a house that is not new construction.
+  B-1's Usability supplement (items 6 and 10) asks the software to alert
+  the appraiser in each case. H-1 checks only the other direction
+  (UAD1624, UAD1732: Subject to Repair needs a Repair defect).
+- Mechanism: `uad/spec/extract_usability.py` reads the supplement's three
+  exact statements into `spec/usability.json`. Every value is resolved
+  against A-1:
+  - "Recommended Action" and "Market Value Condition" are resolved by label
+    to their data point;
+  - "Subject to Completion" becomes the enumeration "Completion";
+  - "Kitchen and Bathroom" becomes RoomType Kitchen / FullBathroom /
+    HalfBathroom;
+  - the redisplay FIDs 22.11.02 and 1.031 are confirmed to be 15.005's own
+    data point, so it is entered once.
+
+  `uad/usability.py` runs them (U6, U10.1, U10.2). `review.build` lists
+  them as Warnings, source `usability`, on the field that fixes them.
+- The owner's DR 6.5 checks with no spec rule behind them sit in
+  `uad/owner_checks.py`, source `owner`, and each says it is not a GSE
+  rule:
+  - O1: on a purchase, a seller who is not an owner of public record;
+  - O2: on a refinance, no borrower on title;
+  - O3: a comparable sold after the effective date.
+
+  Two of the owner's list are H-1's already:
+  - signature before inspection (UAD1536 + UAD1557);
+  - the area total cannot be checked for *equality*, because A-1 defines
+    it to include common area (D-1 2-4 Scenario 2: 5,282 against 4,760).
+    It can never be smaller than the units' above-grade finished area, so
+    O4 warns when it is (added later the same day).
+- One-click fixes (T-510), offered only where the specification leaves one
+  answer:
+  - U10.1 with a single kind of action: "Make it 'Subject to Repair'" (the
+    A-1 value named SubjectTo<action>);
+  - U10.2 on a field the report holds once: "Make it 'Yes'" for New
+    Construction.
+  - Rooms and mixed actions get no button.
+  - The fix shows on the Review panel row and in the field guide. Clicking
+    writes the value through the normal field PATCH, after which the
+    report and the review refresh.
+  - Chromium e2e passed: As Is -> Subject to Repair, and the warning
+    clears.
+- Not done: item 9 (prohibited / veiled language). It cites the GSE
+  Selling Guides, which are not in the repo. No invented word list.
+- Validated first: all 12 D-1 samples raise nothing from either module.
+  The 12 also show the pattern O1 / O2 rest on:
+  - every purchase seller is the same MISMO party as an owner;
+  - every refinance borrower is on title.
+- Test: `tests/test_usability.py` (22), `tests/test_owner_checks.py` (15).
+
+### E-173 -- One photograph filed under several categories printed once per category (2026-10-11)
+- Symptom (T-127): MH1's waterfront photo printed three times. Each copy
+  sat in its own box under a bare category name ("Water Frontage", "Site
+  Influence", "View - Lake Virginia"). D-1 prints the photo once as "Site
+  Influence - Water Frontage - View - Lake Virginia". The same fault
+  appeared in five more samples: SF1, SF3 and SF4 vehicle storage and
+  decks, MH2's kitchen and living room, and the comparables map in
+  Condo2 and 2-4 Scenario 2.
+- Cause: the XML has one IMAGE per category, all pointing at the same
+  file, exactly as B-1 p59 (Image Data, Scenario 1) prescribes. The
+  renderer drew one exhibit per IMAGE.
+- Mechanism: `form._shared_exhibits` (print only), applied per section to
+  IMAGEs sharing an ImageFileLocationIdentifier.
+  - Category exhibits:
+    - headers are in the order of B-1's exhibit table, by Report Field ID
+      (`form.image_fids`, from A-1's Report Location);
+    - each caption follows its header;
+    - a caption the next header repeats prints once (Condo2 "Site
+      Influence - View - Golf Course").
+  - Exhibits titled by what they are of (rooms, vehicle storage,
+    amenities): in document order, each after the first without the part
+    it shares with the first. MH2 prints "Level 1 - Kitchen - Living
+    Room"; SF3 prints "Deck - Deck 1 and Deck 2" once.
+  - Rental and GRM comparable maps that are the sales map's file do not
+    print. B-1 p60 Scenario 2 applies, and D-1 Condo2 and 2-4 Scenario 2
+    print the one map as the "Sales Comparison Map".
+  - The editor keeps one box per IMAGE, each with its own caption and
+    remove.
+  - The same file in two sections prints in both (Scenario 4: SF1's
+    media room appears under Unit Interior and under Amenities).
+- Validated first: every exhibit title the report prints, in all 12
+  samples, was checked as a line in the D-1 PDF.
+  - Before: 18 of 319 titles were not in D-1.
+  - After: 0 of 299, once curly apostrophes are matched.
+  - A weaker line match had passed "Driveway" and "Garage" because they
+    are also grid cells. The test requires the title to stand alone.
+- Not done: exhibit *order*. D-1 orders neither by XML nor by Field ID
+  everywhere: SF2 prints Plat Map before Property Access, and MH1 prints
+  Dock before Pier. Ours stays in document order; handed to the
+  pagination session.
+- Test: `tests/test_shared_exhibits.py` (24).
+
+### E-174 -- The Market section's search figures were typed by hand (2026-10-11)
+- Symptom (T-1075; the owner's brief, DR 8): the appraiser counted the
+  MLS search and typed in eleven numbers. These are the 17.005-17.015
+  active, pending and sold counts, their median days on market, and their
+  lowest, median and highest prices. A slip there is a contradiction no
+  reviewer can trace.
+- Mechanism: `uad/market_search.py` counts them from the MLS export (CSV)
+  exactly as A-1 defines each figure.
+  - Status decides the inventory: active, pending or sold.
+  - Sales count only when closed within the lookback months (17.011)
+    before the effective date.
+  - A median of an even count is the mean of the middle two.
+  - Amounts are whole dollars, as the samples hold them.
+  - MLS header names are matched from a list of common ones. That list is
+    tooling, not a specification.
+  - A file whose columns cannot be told apart is refused with the reason.
+  - Each row that does not count is named (a sale outside the window, a
+    withdrawn listing).
+
+  `POST /cases/{id}/market/search` returns each figure beside the one the
+  report holds. `?apply=true` writes them all through `_write_checked`, or
+  writes none.
+- Validated first: a search shaped like the one D-1 SF1 describes (two
+  active, one pending, 35 sales in 24 months) reproduces all eleven of
+  SF1's published figures.
+- Not done: no editor control yet (the lead owns the shell); 17.016
+  (distressed competition) and 17.004 (the search criteria text) stay the
+  appraiser's.
+- Test: `tests/test_market_search.py` (5).
+
+### E-175 -- A photo's altitude shipped without its unit; a camera's local time shipped as UTC (2026-10-11)
+- Symptom (T-906): `delivery.exif` read ImageDatetime and
+  AltitudeElevationLinearMeasure from the photograph, but two things were
+  wrong:
+  - the altitude was written bare. A-1's Implementation Note says "Deliver
+    @LinearUnitOfMeasureType when AltitudeElevationLinearMeasure is
+    provided", and D-1 Condo1 carries `LinearUnitOfMeasureType="Feet"`;
+  - the EXIF local time was stamped "Z" as if it were UTC.
+- Mechanism:
+  - `delivery._set_meta` sets the unit attribute wherever an IMAGE takes
+    the EXIF facts (`UNIT_OF`: the altitude, in feet, as `exif` converts
+    it).
+  - `exif` moves the time to UTC by the camera's own OffsetTimeOriginal
+    (EXIF 2.31) when present. Without one, the time is delivered as taken.
+    Nothing is invented for a photo that records nothing.
+- Test: `tests/test_photo_exif.py` (4). One of them is a delivered SF1
+  package with an appraiser's photo: the altitude is 25 Feet, the time is
+  UTC, and the schema is valid.

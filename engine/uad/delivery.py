@@ -25,7 +25,7 @@ import mimetypes
 import re
 from copy import deepcopy
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable
@@ -195,9 +195,19 @@ def exif(path: Path) -> dict[str, str]:
         from PIL import Image
         with Image.open(path) as im:
             data = im.getexif()
-            taken = data.get_ifd(0x8769).get(36867) or data.get(306)   # DateTimeOriginal / DateTime
+            sub = data.get_ifd(0x8769)
+            taken = sub.get(36867) or data.get(306)   # DateTimeOriginal / DateTime
             if taken:
                 stamp = datetime.strptime(str(taken).strip()[:19], "%Y:%m:%d %H:%M:%S")
+                # A-1 delivers UTC ("YYYY-MM-DDThh:mm:ssZ").  A camera records
+                # local time, and its offset (OffsetTimeOriginal, EXIF 2.31)
+                # when it knows it: then the time is moved to UTC.  Without
+                # one the local time is delivered as taken.
+                offset = str(sub.get(36881) or sub.get(36880) or "").strip()
+                m = re.fullmatch(r"([+-])(\d{2}):(\d{2})", offset)
+                if m:
+                    sign = 1 if m.group(1) == "+" else -1
+                    stamp -= sign * timedelta(hours=int(m.group(2)), minutes=int(m.group(3)))
                 out["ImageDatetime"] = stamp.strftime("%Y-%m-%dT%H:%M:%SZ")
             gps = data.get_ifd(0x8825)
 
@@ -256,8 +266,19 @@ def _add_image(prop, category: str, location: str, mime: str,
               **(meta or {})}
     for name, value in values.items():
         if value:
-            edit.insert_ordered(image, name).text = value
+            _set_meta(edit.insert_ordered(image, name), name, value)
     return image
+
+
+#: A-1: "Deliver @LinearUnitOfMeasureType when AltitudeElevationLinearMeasure
+#: is provided" -- ``exif`` gives the altitude in feet (D-1 Condo1: Feet)
+UNIT_OF = {"AltitudeElevationLinearMeasure": ("LinearUnitOfMeasureType", "Feet")}
+
+
+def _set_meta(node, name: str, value: str) -> None:
+    node.text = value
+    if name in UNIT_OF:
+        node.set(*UNIT_OF[name])
 
 
 def _drop_category(prop, categories: set[str]) -> None:
@@ -538,7 +559,7 @@ def build(tree, media: Iterable[Any], media_dir: Path, *,
                 node = image.find(f"{M}{name}")
                 if node is None:
                     node = edit.insert_ordered(image, name)
-                node.text = value
+                _set_meta(node, name, value)
 
     # --- what the XML now references, and whether each can ship
     referenced: dict[str, str] = {}

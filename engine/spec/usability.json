@@ -1,0 +1,99 @@
+{
+ "source": "Appendix B-1 URAR Implementation Guide - Supplement - Usability and Implementation Guidance.pdf v1.0",
+ "addendum": {
+  "item": 6,
+  "text": "Check that the section commentary and discrete data fields are used as intended. Purpose: Direct appraisers to use section commentary only for text pertinent to the section and instruct users to use discrete data fields rather than stating, “See attached addendum”, “See Addenda” or variations of those terms.",
+  "phrases": [
+   "See attached addendum",
+   "See Addenda"
+  ],
+  "pattern": "\\bsee\\b(?:\\W+\\w+){0,3}?\\W+addend\\w*"
+ },
+ "as_is": {
+  "item": 10,
+  "example": 1,
+  "text": "When Recommended Action is “Subject to Completion”, “Inspection”, or “Repair”, for any defect, damage, or deficiency, the Market Value Condition cannot be “As Is”.",
+  "action_point": "DefectItemRecommendedActionType",
+  "action_fids": [
+   "10.060",
+   "12.024",
+   "13.009",
+   "14.010",
+   "26.025",
+   "26.032",
+   "26.040",
+   "26.048",
+   "26.056",
+   "26.062",
+   "26.068",
+   "4.104",
+   "8.060",
+   "1.037",
+   "1.044",
+   "1.052",
+   "1.059",
+   "1.067",
+   "1.073",
+   "1.079"
+  ],
+  "actions": [
+   "Completion",
+   "Inspection",
+   "Repair"
+  ],
+  "condition_point": "PropertyValuationConditionalConclusionType",
+  "condition_fids": [
+   "26.009",
+   "1.009"
+  ],
+  "not": "AsIs"
+ },
+ "ratings": [
+  {
+   "item": 10,
+   "example": 2,
+   "text": "When a dwelling is assigned a condition rating, the underlying data must conform to that rating. In this example, the Condition rating is “C1”, which is defined as “100% newly constructed, completed within the past 12 months, has never been occupied, and exhibits no signs of wear or use.” In the Overall Quality and Condition section when Overall Condition (FID: 15.005) is “C1”, “C1” must also display in the Sales Comparison Approach (FID: 22.11.02) and Summary sections (FID: 1.031), and the following data must support a C1 rating:  Subject Property – NewConstructionIndicator (FID: 3.017) must be “true”,  Unit Interior – o RoomConditionStatusType (FID: 10.041) for each Kitchen and Bathroom must be “NewOrLikeNew”, o RoomUpdateStatusType (FID: 10.038) for each Kitchen and Bathroom must be “FullyUpdated”, and o OverallBathroomsUpdateStatusType (FID: 10.043) must be “FullyUpdated”.",
+   "rating_fid": "15.005",
+   "rating_point": "OverallConditionRatingCode",
+   "rating": "C1",
+   "display_fids": [
+    "22.11.02",
+    "1.031"
+   ],
+   "requires": [
+    {
+     "fid": "3.017",
+     "point": "NewConstructionIndicator",
+     "value": "true",
+     "rooms": []
+    },
+    {
+     "fid": "10.041",
+     "point": "RoomConditionStatusType",
+     "value": "NewOrLikeNew",
+     "rooms": [
+      "Kitchen",
+      "FullBathroom",
+      "HalfBathroom"
+     ]
+    },
+    {
+     "fid": "10.038",
+     "point": "RoomUpdateStatusType",
+     "value": "FullyUpdated",
+     "rooms": [
+      "Kitchen",
+      "FullBathroom",
+      "HalfBathroom"
+     ]
+    },
+    {
+     "fid": "10.043",
+     "point": "OverallBathroomsUpdateStatusType",
+     "value": "FullyUpdated",
+     "rooms": []
+    }
+   ]
+  }
+ ]
+}

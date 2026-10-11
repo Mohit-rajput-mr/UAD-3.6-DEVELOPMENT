@@ -246,6 +246,82 @@ def binding(fid: str) -> bind.Binding | None:
 
 
 @lru_cache(maxsize=1)
+def image_fids() -> dict[str, tuple[int, ...]]:
+    """ImageCategoryType -> the Report Field ID of its exhibit (4.017.1 Non-
+    Residential Use, 4.020.1 Property Access ...), as a sort key: the order
+    B-1's exhibit tables list the categories in."""
+    rows = json.loads((SPEC / "enumerations.json").read_text(encoding="utf-8"))
+    out: dict[str, tuple[int, ...]] = {}
+    for r in rows:
+        if r.get("MISMO Data Point / Attribute Name") != "ImageCategoryType":
+            continue
+        m = re.match(r"\s*(\d+(?:\.\d+)+)\s*:", str(r.get("Report Location", "")))
+        if m:
+            out.setdefault(r.get("Supported Enumerations", ""), tuple(int(x) for x in m.group(1).split(".")))
+    return out
+
+
+def _shared_exhibits(items: list[dict]) -> list[dict]:
+    """B-1 p59, Image Data, Scenario 1: a picture filed under several
+    categories -- an IMAGE for each, every one pointing at the same file --
+    prints once, "each ImageCategoryType ... above the image in bold font
+    separated by ' - '" (T-127).
+
+    * Category exhibits: the headers follow B-1's exhibit table (by Report
+      Field ID); a caption follows its own header, and prints once where the
+      next header carries the same one.  D-1 MH1 "Site Influence - Water
+      Frontage - View - Lake Virginia", Condo2 "Site Influence - View - Golf
+      Course", 2-4 Scenario 2 "Property Access (Street Scene) - Site
+      Influence - Busy Roadway, Residential - View - Residential".
+    * Exhibits titled by what they are of (a room): in document order, each
+      after the first without the part it shares with the first -- D-1 MH2
+      "Level 1 - Kitchen - Living Room" over one photo of both rooms, SF1
+      "Driveway - Garage", SF3 "Deck - Deck 1 and Deck 2" (two decks, one
+      caption, one photo).
+
+    The merged exhibit stands where its first IMAGE did.  One in another
+    section is that section's own (Scenario 4); a group mixing the two kinds
+    is left as it is (no sample shows one)."""
+    groups: dict[str, list[dict]] = {}
+    for it in items:
+        if it.get("_kind") and it.get("location"):
+            groups.setdefault(it["location"], []).append(it)
+    out = []
+    for it in items:
+        group = groups.get(it.get("location") or "") if it.get("_kind") else None
+        if not group or len(group) < 2 or len({g["_kind"] for g in group}) > 1:
+            out.append(it)
+            continue
+        if it is not group[0]:
+            continue
+        parts: list[str] = []
+        if it["_kind"] == "category":
+            fids = image_fids()
+            ranked = sorted(group, key=lambda g: fids.get(g["category"], (999,)))
+            for n, g in enumerate(ranked):
+                parts.append(g["_header"])
+                cap = g.get("raw_caption") or ""
+                nxt = (ranked[n + 1].get("raw_caption") or "") if n + 1 < len(ranked) else None
+                if cap and cap != nxt:
+                    parts.append(cap)
+        else:
+            ranked = group
+            first = it["title"].split(" - ")
+            parts = list(first)
+            for g in ranked[1:]:
+                # SF3's two decks in one photo, each "Deck - Deck 1 and
+                # Deck 2", print it once
+                own = g["title"].split(" - ")
+                k = 0
+                while k < min(len(own), len(first)) and own[k] == first[k]:
+                    k += 1
+                parts += own[k:]
+        out.append(dict(it, title=" - ".join(p for p in parts if p), caption="",
+                        images=[g["image_key"] for g in ranked]))
+    return out
+
+
+@lru_cache(maxsize=1)
 def image_categories() -> dict[str, tuple[str, str]]:
     """ImageCategoryType -> (section name, caption) from the A-1 enumerations.
 
@@ -1499,6 +1575,146 @@ def field_rule_hides(ctx: "Ctx", fid: str) -> bool:
     return bool(said) and not any(said)
 
 
+_RULE_NAMES = re.compile(r"\b([A-Z][a-z]+(?:[A-Z][a-z0-9]*)+)\b")
+
+
+@lru_cache(maxsize=4096)
+def _gate_names(fid: str) -> tuple[frozenset[str], frozenset[str]]:
+    """The data points a field's display rules read, and the field's own."""
+    read = {n for st in field_entry(fid).get("display_rules", [])
+            for n in _RULE_NAMES.findall(st.get("rule", ""))}
+    own = {dp.get("mismo", "") for dp in field_entry(fid).get("data_points", [])}
+    return frozenset(read), frozenset(own)
+
+
+@lru_cache(maxsize=4096)
+def _a1_condition(fid: str) -> tuple[str, frozenset[str]] | None:
+    """A-1's "IF ..." for the field's principal data point -- when the data
+    point applies at all -- with the data points it reads.  None for a field
+    with no condition, a condition on an attribute or a count, or one that
+    reads the field's own data points."""
+    dps = field_entry(fid).get("data_points") or []
+    if not dps:
+        return None
+    text = (dps[0].get("conditionality_details") or "").strip()
+    if not text.upper().startswith("IF "):
+        return None
+    text = re.sub(r"\s+AND\s+Exists\b", "", text[3:], flags=re.I)
+    # "for the subject" -- the scope this is read in already
+    text = re.sub(r'@ValuationUseType\s*=\s*"SubjectProperty"\s+AND\s+', "", text)
+    if "@" in text or re.search(r"\bExists\b|\bcount\b", text, re.I):
+        return None
+    names = frozenset(_RULE_NAMES.findall(re.sub(r'"[^"]*"', '""', text)))   # not "LegalNonconforming"
+    own = {dp.get("mismo", "") for dp in dps}
+    if not names or names & own:
+        return None
+    return text, names
+
+
+@lru_cache(maxsize=1)
+def _owners() -> dict[str, tuple[str, ...]]:
+    """data point -> the fields that ask it."""
+    out: dict[str, list[str]] = {}
+    for fid, entry in _fields().items():
+        for dp in entry.get("data_points") or []:
+            out.setdefault(dp.get("mismo", ""), []).append(fid)
+    return {n: tuple(f) for n, f in out.items()}
+
+
+@lru_cache(maxsize=1024)
+def _point_repeats(point: str) -> bool:
+    """The data point sits in a block the property holds any number of --
+    SITE_INFLUENCES/SITE_INFLUENCE, IMPROVEMENTS/IMPROVEMENT -- by A-1's xpath."""
+    return any(bind.repeating_container(dp.get("xpath", ""))
+               for f in _owners().get(point, ())
+               for dp in field_entry(f).get("data_points") or [] if dp.get("mismo") == point)
+
+
+def _a1_gate_off(ctx: "Ctx", fid: str, seen: tuple[str, ...] = ()) -> bool:
+    cond = _a1_condition(fid)
+    if cond is None:
+        return False
+    text, names = cond
+    scope = ctx.scope if ctx.scope is not None else subject(ctx)
+    counts = {n: len(rules.values_of(ctx.root, n, scope)) for n in names}
+    # a gate answered once (zoning compliance, "renewable energy component
+    # exists", "listed within the previous year"); a condition on a repeating
+    # block (each amenity, each influence -- one influence today, a body of
+    # water added tomorrow) is the block's, not the field's
+    if any(c > 1 or (c and _point_repeats(n)) for n, c in counts.items()):
+        return False
+    d = rules.evaluate("Display when " + text, ctx.root, scope)
+    if not d.known or d.shown:
+        return False
+    whole = subject(ctx)
+    for n in (n for n, c in counts.items() if not c):
+        if whole is not None and whole is not scope and rules.values_of(ctx.root, n, whole):
+            return False        # answered outside this unit or building (ImprovementType)
+        # not answered: it decides nothing -- unless its own question is left
+        # out by its gate (no renewable energy component, so no ownership
+        # type, so no financing).  A gate no field asks (PrivateAccessIndicator,
+        # implied by a water frontage row) is never answered here.
+        asks = [f for f in _owners().get(n, ()) if f not in seen and f != fid]
+        if not asks or not all(_a1_gate_off(ctx, f, seen + (fid,)) for f in asks):
+            return False
+    return True
+
+
+@lru_cache(maxsize=1)
+def _gated_fields() -> dict[str, tuple[str, ...]]:
+    """data point -> the fields whose visibility in the editor it decides."""
+    out: dict[str, set[str]] = {}
+    for fid, entry in _fields().items():
+        read, own = _gate_names(fid) if entry.get("display_rules") else (frozenset(), frozenset())
+        names = set(read - own) if read and not read & own else set()
+        cond = _a1_condition(fid)
+        if cond:
+            names |= cond[1]
+        for n in names:
+            out.setdefault(n, set()).add(fid)
+    return {n: tuple(sorted(f)) for n, f in out.items()}
+
+
+def hidden_by(root, point: str) -> frozenset[str]:
+    """Of the fields the answer ``point`` gates, those the editor leaves out
+    now -- compared before and after a write, it says whether the page must
+    be laid out again (the reasons a zoning answer of "Illegal" brings in)."""
+    ctx = Ctx(root, edit=True)
+    return frozenset(f for f in _gated_fields().get(point, ()) if edit_hides(ctx, f))
+
+
+def edit_hides(ctx: "Ctx", fid: str, has_value: bool = False) -> bool:
+    """What the editor leaves out (T-1066, DESKTOP_REBUILD_PLAN D5), the gate
+    question staying so that changing the answer brings it back:
+
+    * a field whose B-1 display rule another answer decides against it --
+      exactly what the print leaves out;
+    * an empty field A-1 says does not apply, by a gate answered once --
+      Zoning "Legal" leaves out Reasons Illegal, no renewable energy component
+      its type, ownership and financing, not listed in the previous year the
+      listing's details.  A field holding a value stays: the print shows it.
+
+    A field that is its own gate (10.050 Accessibility "Display when
+    AccessibilityFeatureType <> None") stays, or its answer could not be
+    changed.  A gate in a repeating block (each site influence) or one no
+    field asks decides nothing; an unanswered gate decides only when its own
+    question is left out the same way."""
+    read, own = _gate_names(fid)
+    if read and not read & own and _answered(ctx, read) and field_rule_hides(ctx, fid):
+        return True
+    return not has_value and _a1_gate_off(ctx, fid)
+
+
+def _answered(ctx: "Ctx", names) -> bool:
+    """Does the report hold an answer for each gate?  "Unit Interior Defects
+    Exist?" left blank on a new report keeps the defects table, so a defect
+    can be entered before the question is."""
+    scope = ctx.scope if ctx.scope is not None else subject(ctx)
+    whole = subject(ctx)
+    return all(rules.values_of(ctx.root, n, scope)
+               or (whole is not None and rules.values_of(ctx.root, n, whole)) for n in names)
+
+
 # B-1 4.039: "When there is only 1 view, (Primary) does not display"
 _ALONE = re.compile(r"When there is only (?:1|one) \w+,?\s+(\([^)]+\)) does not display", re.I)
 
@@ -1553,6 +1769,7 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
             values, pairs = [], []        # B-1: "If zero, do not display the row" (10.004, 10.007)
         if values and not ctx.edit and len(ids) == 1 and field_rule_hides(ctx, ids[0]):
             values, pairs = [], []        # B-1's own "Display when ..." for the field is false
+        gated_off = ctx.edit and len(ids) == 1 and edit_hides(ctx, ids[0], bool(values))
         if label.startswith("Total Estimated Cost of Items") and cost_to_repair_type(ctx) != "TotalCost":
             values = []
         suffix = next((x for x in (_paren_suffix(ctx, f) for f in el.get("ids", [])) if x), "")
@@ -1560,7 +1777,8 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
             suffix = "years"      # printed after the number, never typed (B-1 p351)
         item = Item("row", style=style, label=label, values=values,
                     level=LEVEL.get(style, 0),
-                    visible=bool(values) or ctx.edit, fids=ids, suffix=suffix if values else "")
+                    visible=(bool(values) or ctx.edit) and not gated_off, fids=ids,
+                    suffix=suffix if values else "")
         item.keys = [k for _t, k in pairs]
         return item
     if kind == "head":
@@ -1571,7 +1789,8 @@ def _column_item(el: dict, ctx: Ctx) -> Item:
             value = None          # B-1's own rule for the field says it does not display
         return Item("check", style=style, label=label, checked=value,
                     yes_no=el.get("yes_no", False), level=LEVEL.get(style, 0),
-                    visible=value is not None or (ctx.edit and bool(ids)),
+                    visible=(value is not None or (ctx.edit and bool(ids)))
+                    and not (ctx.edit and ids and edit_hides(ctx, ids[0], value is not None)),
                     fids=ids)
     if kind == "prose":
         value = text_of(ctx, ids, " ")
@@ -1867,6 +2086,31 @@ SUBSECTION_RULES: dict[str, str] = {
 }
 
 
+@lru_cache(maxsize=1)
+def party_gates() -> list[dict]:
+    """B-1's subsections that display only when a party exists
+    (spec/party_gates.json, uad/spec/extract_party_gates.py)."""
+    path = SPEC / "party_gates.json"
+    return json.loads(path.read_text(encoding="utf-8")).get("gates", []) if path.exists() else []
+
+
+def _party_gate(title: str) -> dict | None:
+    """The gate a heading belongs to: the party's own subsection, or one it
+    drives ("Supervisory Appraiser Certifications")."""
+    return next((g for g in party_gates() if title and g["subsection"] in title), None)
+
+
+def _party_add_html(gate: dict) -> str:
+    return (f"<div class='exaddrow'><span class='ptyadd' role='button' tabindex='0'"
+            f" data-role='{esc(gate['role'])}'>+ Add {esc(gate['subsection'])}</span></div>")
+
+
+def _party_remove_html(gate: dict) -> str:
+    return (f"<span class='ptyx' role='button' tabindex='0' data-role='{esc(gate['role'])}'"
+            f" title='Remove the {esc(gate['subsection'].lower())} and what was entered for them'>"
+            f"&#215; Remove</span>")
+
+
 def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
              sample: bool, report: str = "urar") -> list[Block]:
     base = title.split(" - [")[0]
@@ -1892,10 +2136,42 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
     in_grid = False
     gated = False
     last_h1 = ""
+    party_off = None          # the heading level a missing party switched off
     for el in els:
         kind = el["kind"]
         column = el.get("column", "full")
         ids = el.get("ids", [])
+        if ctx.edit and kind in ("h1", "h2", "tab"):
+            # B-1 p106 / p108: a subsection shown only when its party exists
+            # (Supervisory Appraiser; Significant Real Property Appraisal
+            # Assistance).  In the editor it is "+ Add ..." until one is
+            # added, and the certifications it drives wait with it -- not a
+            # set of empty fields for a party nobody chose (T-1074).
+            level = {"tab": 0, "h1": 1, "h2": 2}[kind]
+            if party_off is not None and level <= party_off:
+                party_off = None
+            title_ = _label_fill(el.get("title", ""), ctx) if kind != "tab" else ""
+            gate = _party_gate(title_)
+            if gate:
+                present = gate["role"] in rules.values_of(ctx.root, "PartyRoleType")
+                own = title_ == gate["subsection"]
+                if own or not present:
+                    flush()
+                if own:
+                    width = 540 if column == "full" else 264
+                    control = (_party_remove_html(gate) if present else "")
+                    out.append(Block(kind, section=printed, title=title_, group=level and 3 - level,
+                                     html=(_h2_html(title_, width) if kind == "h2" else _h1_html(title_, "", ""))
+                                     .replace("</div>", control + "</div>", 1)))
+                    if not present:
+                        out.append(Block("text", section=printed, html=_party_add_html(gate), visible=True))
+                if not present:
+                    party_off = level
+                    continue
+                if own:
+                    continue
+        if party_off is not None:
+            continue
         if kind in ("h1", "tab"):
             rule = SUBSECTION_RULES.get(el.get("title", "")) if kind == "h1" else None
             d = rules.evaluate(rule, ctx.root) if (rule and not ctx.edit) else None
@@ -3287,7 +3563,9 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             continue
         # a template row: one line per instance in the case
         outer, ctx = ctx, row.get("_ctx") or ctx
-        if not ctx.edit and cells and cells[0]["ids"] and field_rule_hides(ctx, cells[0]["ids"][0]):
+        if cells and cells[0]["ids"] and (field_rule_hides(ctx, cells[0]["ids"][0]) if not ctx.edit
+                                          else edit_hides(ctx, cells[0]["ids"][0], any(
+                                              g for _k, g in instances(ctx, cells[0]["ids"][0], every=True)))):
             # B-1's rule for the row's leading field (10.050 Accessibility:
             # "Display when AccessibilityFeatureType <> None ...")
             ctx = outer
@@ -5261,7 +5539,17 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     filled = {m["fills"]: m for m in ctx.media if m.get("fills")}
     fronts, dwellings = _front_photos(ctx)
     tops = fronts[:max(len(dwellings), 1)]          # each dwelling's large photo
-    for im in _images(ctx):
+    images = _images(ctx)
+    # B-1 p60 Scenario 2: one map of the sales, rental and GRM comparables
+    # is filed under each map category; D-1 Condo2 and 2-4 Scenario 2 print
+    # it once, as the Sales Comparison Map, and no map in Rental Information
+    # or the Income Approach
+    sales_maps = {im["location"] for im in images
+                  if im["category"] == "SalesComparableMap" and im["location"]}
+    for im in images:
+        if (not ctx.edit and im["location"] in sales_maps
+                and im["category"] in ("RentalComparableMap", "GrossRentMultiplierComparableMap")):
+            continue
         if im["category"] == "DwellingFront" and any(im["node"] is t["node"] for t in tops):
             continue                                # drawn atop its section, not an exhibit
         sec, caption = cats.get(im["category"], ("", ""))
@@ -5312,6 +5600,11 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             # display" pictures, which are exactly what gets replaced.
             src = _data_uri(Path(fill["path"]))
         out.append({"src": src, "title": caption or title,
+                    # a plain category exhibit: its header, for a picture
+                    # filed under several (_shared_exhibits)
+                    "_kind": ("category" if (caption and not lead and im["category"]) else
+                              "owner" if lead else ""),
+                    "_header": caption,
                     # with a lead the caption is already part of the title (D-1
                     # SF1: "Apparent Defects, Damages, Deficiencies - Roof -
                     # Damaged Flashing", printed once)
@@ -5321,6 +5614,10 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
                     "media_id": fill.get("media_id", "") if fill else "",
                     # the document's own IMAGE: named, replaced and removed in place
                     "image_key": bind.stable_path(im["node"]), "raw_caption": im["caption"]})
+    if not ctx.edit:
+        # the editor keeps an IMAGE per box: each has its own category,
+        # caption and remove; the report prints the picture once
+        out = _shared_exhibits(out)
     for m in ctx.media:
         # The subject's front photo and a comparable's thumbnail have slots of
         # their own; filing them under a section does not make them exhibits.
@@ -6133,10 +6430,10 @@ body.show-imported td.imported,body.show-imported .v.imported{
    where the ... photo would display" -- is the target; nothing is drawn over
    it but a pointer cursor. */
 .exaddrow{display:flex;justify-content:flex-end;margin:2pt 0 4pt}
-.exadd,.compadd,.nuadd,.ldadd{display:inline-block;border:0.75pt solid #231f20;color:#231f20;
+.exadd,.compadd,.nuadd,.ldadd,.ptyadd{display:inline-block;border:0.75pt solid #231f20;color:#231f20;
   background:#fff;cursor:pointer;font-weight:700;font-size:7pt;line-height:1;
   border-radius:0;padding:3pt 7pt;white-space:nowrap}
-.exadd:hover,.exadd:focus,.compadd:hover,.compadd:focus,.ldadd:hover,.ldadd:focus,
+.exadd:hover,.exadd:focus,.compadd:hover,.compadd:focus,.ldadd:hover,.ldadd:focus,.ptyadd:hover,.ptyadd:focus,
 .nuadd:hover,.nuadd:focus{background:#231f20;color:#fff;outline:none}
 /* Additional Properties Analyzed Not Used: several reasons stack inside the
    one cell, and each line is written on its own. */
@@ -6488,6 +6785,8 @@ td.mk-fatal,td.mk-warn{outline-offset:-1.5pt}
 /* how much of a comment's length is used (A-1 / XSD maximum) */
 .txcb .certx{margin-left:4pt;color:#8a1c1c;cursor:pointer;font-weight:700}
 .txcb .certx:hover{color:#d92d20}
+.ptyx{float:right;margin-right:4pt;font-weight:400;color:#8a1c1c;cursor:pointer}
+.ptyx:hover{color:#d92d20}
 .addflash{outline:2pt solid #1d6ce0!important;outline-offset:1pt;transition:outline-color .6s}
 .secoff{margin:2pt 0 4pt;padding:4pt 6pt;border-left:2pt solid #8a94a3;background:#f3f5f8;
   font-size:7.5pt;line-height:1.35;color:#4a5564}

@@ -12,6 +12,15 @@ ships, from three independent authorities, and reports them together:
                  the document as the package will deliver it.
 ``completeness`` fields Appendix B-1 says should appear on the page for this
                  property but which carry no value.
+``usability``    B-1's Usability supplement: a field leaning on "See
+                 attached addendum", an "As Is" value with defects that call
+                 for repair, a C1 rating the data under it does not support
+                 (``usability.py``).  Warnings -- the supplement asks the
+                 software to alert, not to refuse.
+``owner``        the owner's own checks no GSE rule states -- a seller who is
+                 not the owner of public record, a comparable sold after the
+                 effective date (``owner_checks.py``).  Warnings, each saying
+                 it is not a specification rule.
 
 The verdict is deliberately blunt: a package is either **ready** or it is not,
 and the sign-off gate reads that verdict rather than forming its own opinion.
@@ -30,13 +39,15 @@ from typing import Any
 
 from lxml import etree
 
-from . import compliance, schema
+from . import compliance, owner_checks, schema, usability
 
 SPEC = Path(__file__).resolve().parents[1] / "spec"
 
 SCHEMA = "schema"
 COMPLIANCE = "compliance"
 COMPLETENESS = "completeness"
+USABILITY = "usability"
+OWNER = "owner"
 
 # The 29 sections, from Appendix F-1 "URAR Section Organization".
 SECTIONS = {
@@ -68,6 +79,7 @@ class Item:
     label: str = ""
     path: str = ""
     detail: str = ""
+    fix: dict | None = None        # {field_id, value, label}: a one-click repair
 
     @property
     def section_number(self) -> int:
@@ -229,9 +241,24 @@ def _compliance_items(tree) -> list[Item]:
     return out
 
 
+def _usability_items(tree) -> list[Item]:
+    """B-1 Usability supplement items 6 and 10, and the owner's checks, as
+    Review Master items."""
+    out = []
+    for source, f in ([(USABILITY, f) for f in usability.check(tree)]
+                      + [(OWNER, f) for f in owner_checks.check(tree)]):
+        loc = (_index().get(f.field_id, {}).get("locations") or [{}])[0]
+        out.append(Item(
+            source=source, severity=compliance.WARNING, code=f.code, message=f.message,
+            field_id=f.field_id, section=loc.get("section", ""),
+            subsection=loc.get("subsection", ""), label=loc.get("label", ""),
+            path=f.path, detail=f.detail, fix=getattr(f, "fix", None)))
+    return out
+
+
 def build(tree, *, include_review: bool = True) -> Report:
-    """Everything known about a case, from all three authorities."""
-    items = _schema_items(tree) + _compliance_items(tree)
+    """Everything known about a case, from all its authorities."""
+    items = _schema_items(tree) + _compliance_items(tree) + _usability_items(tree)
     if not include_review:
         items = [i for i in items if i.severity != "Review"]
     counts = {

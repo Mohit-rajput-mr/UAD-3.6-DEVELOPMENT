@@ -994,6 +994,12 @@ def set_field(case_id: str, field_id: str, request: Request,
         was = report_form.section_prints(st.tree(case_id).getroot(), switched)
         optional_sections.follow(tree, switched, kept)
         relayout = was != report_form.section_prints(tree.getroot(), switched)
+    # An answer that decides which fields the editor shows (zoning
+    # compliance, "renewable energy component exists", "listed in the
+    # previous year"): the page is laid out again when it changes them (T-1066)
+    if not relayout and written.data_point in report_form._gated_fields():
+        relayout = (report_form.hidden_by(st.tree(case_id).getroot(), written.data_point)
+                    != report_form.hidden_by(tree.getroot(), written.data_point))
     if field_id == "3.000" and case.name == NEW_NAME and value.strip():
         # an unnamed report takes the subject's address as its name
         st.rename(case_id, value.strip())
@@ -1360,6 +1366,47 @@ def set_optional_section(case_id: str, number: int, request: Request,
     return {"sections": _optional_state(case_id), "relayout": True, "state": st.get(case_id).state}
 
 
+# ---------------------------------------------- parties a subsection waits on (T-1074)
+# B-1 shows the Supervisory Appraiser and Significant Real Property Appraisal
+# Assistance subsections only when such a party exists (spec/party_gates.json),
+# so the editor offers "+ Add ..." and these routes add and remove the party.
+def _gated_role(role: str) -> dict:
+    gate = next((g for g in report_form.party_gates() if g["role"] == role), None)
+    if gate is None:
+        raise HTTPException(422, f"{role} is not a party the editor adds this way.")
+    return gate
+
+
+@router.post("/cases/{case_id}/parties")
+def add_party(case_id: str, request: Request, body: dict = Body(...)) -> dict:
+    _case_or_404(case_id)
+    gate = _gated_role(str(body.get("role", "")))
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    parties._new_party(tree.getroot(), gate["role"])
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), f"{gate['subsection']} added")
+    st.log(case_id, _actor(request), "edited", f"added a {gate['subsection'].lower()}")
+    return {"relayout": True, "state": st.get(case_id).state}
+
+
+@router.delete("/cases/{case_id}/parties/{role}")
+def remove_party(case_id: str, role: str, request: Request) -> dict:
+    """Take the last party in that role away (its other roles stay)."""
+    _case_or_404(case_id)
+    gate = _gated_role(role)
+    st = store()
+    tree = deepcopy(st.tree(case_id))
+    found = parties.parties_with(tree.getroot(), gate["role"])
+    if not found:
+        raise HTTPException(422, f"There is no {gate['subsection'].lower()} to remove.")
+    parties._drop_role(found[-1], gate["role"])
+    st.save_tree(case_id, tree)
+    st.invalidate(case_id, _actor(request), f"{gate['subsection']} removed")
+    st.log(case_id, _actor(request), "edited", f"removed a {gate['subsection'].lower()}")
+    return {"relayout": True, "state": st.get(case_id).state}
+
+
 # ---------------------------------------------- footer reference IDs (T-919)
 @router.patch("/cases/{case_id}/references/{field}")
 def set_reference(case_id: str, field: str, request: Request, body: dict = Body(...)) -> dict:
@@ -1481,8 +1528,8 @@ def field_guide(case_id: str, field_id: str) -> dict:
             "subsection": getattr(b, "subsection", "") or "",
             "requirement": requirement, "conditions": when, "scope": scope,
             "max": max(maxes) if maxes else None, "points": points, "rules": rules,
-            "problems": [{"code": i["code"], "severity": i["severity"], "message": i["message"]}
-                         for i in failing.values()]}
+            "problems": [{"code": i["code"], "severity": i["severity"], "message": i["message"],
+                          "fix": i.get("fix")} for i in failing.values()]}
 
 
 # --------------------------------------------------------------- review master
@@ -2796,6 +2843,64 @@ async def import_market_charts(case_id: str, request: Request) -> dict:
            ", ".join(m["title"] for m in made))
     st.invalidate(case_id, _actor(request), "the market charts changed")
     return {"drawn": made}
+
+
+@router.post("/cases/{case_id}/market/search")
+async def market_search_results(case_id: str, request: Request,
+                                lookback: int = Query(0, ge=0, le=60),
+                                apply: bool = Query(False)) -> dict:
+    """The Market section's Search Result Metrics (17.005-17.015), counted
+    from the appraiser's MLS export (CSV) as of the effective date (T-1075).
+
+    Without ``apply`` nothing changes: each figure comes back beside the one
+    the report holds.  ``apply`` writes them, every one read back as it is
+    written.  ``lookback`` is the months of sales (17.011): the report's own
+    answer when not given, else 12.
+    """
+    from uad import market_search
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    root = tree.getroot()
+    effective = market_search.effective_date(root)
+    if effective is None:
+        raise HTTPException(422, "Enter the effective date of the appraisal first: "
+                                 "the sales are counted back from it.")
+    if not lookback:
+        held = bind.read(root, bind.binding_for("17.011"))
+        lookback = int(held[0]) if held and held[0].isdigit() and int(held[0]) > 0 else 12
+    body = await request.body()
+    try:
+        metrics = market_search.count(body.decode("utf-8-sig"), effective, lookback)
+    except market_search.MarketSearchError as exc:
+        raise HTTPException(422, str(exc))
+    except UnicodeDecodeError:
+        raise HTTPException(422, "the file is not text")
+    figures = []
+    for fid, value in metrics.fields().items():
+        b = bind.binding_for(fid)
+        figures.append({"field_id": fid, "label": b.label if b else fid,
+                        "current": (bind.read(root, b) or [""])[0] if b else "", "counted": value})
+    out = {"effective_date": effective.isoformat(), "lookback_months": lookback,
+           "rows": metrics.rows, "active": metrics.active, "pending": metrics.pending,
+           "sold": len(metrics.sold_prices), "skipped": metrics.skipped[:50],
+           "figures": figures, "written": []}
+    if apply:
+        failures = []
+        for f in figures:
+            try:
+                tree, written = _write_checked(tree, edit.field(f["field_id"]), f["counted"])
+                out["written"].append(f["field_id"])
+            except (KeyError, ValueError) as exc:
+                failures.append({"field_id": f["field_id"], "error": str(exc)})
+        if failures:
+            raise HTTPException(422, {"message": "No figure was written.", "failed": failures})
+        st.save_tree(case_id, tree)
+        st.invalidate(case_id, _actor(request), "market search results counted")
+        st.log(case_id, _actor(request), "market search counted",
+               f"{metrics.rows} listings; {len(out['written'])} figures")
+        out["relayout"] = True
+    return out
 
 
 @router.get("/cases/{case_id}/form", response_class=HTMLResponse)

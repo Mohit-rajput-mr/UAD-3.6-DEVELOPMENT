@@ -659,7 +659,7 @@ table.comps .bad{outline:1.5px solid var(--bad);outline-offset:-2px}
 .sheet-in .bar{margin-bottom:8px}
 /* the map, the market charts and the URAR import belong to a URAR; an
    update or completion report (body.kind-other) has nothing for them to fill */
-body.kind-other #rf-maps,body.kind-other #rf-market,body.kind-other #rf-auto{display:none!important}
+body.kind-other #rf-maps,body.kind-other #rf-market,body.kind-other #rf-msearch,body.kind-other #rf-auto{display:none!important}
 /* The owner's standing preference (2026-10-08): square and ruled, no rounded
    cards, pills or buttons -- the setup dialog set the pattern.  Status dots
    and the spinner stay round: a dot is a dot.  The report frame is its own
@@ -1510,6 +1510,7 @@ function drawReportForm(w){
       <button class="addbtn" id="rf-setup" title="Property type, units and the approaches this report develops">Report setup</button>
       <button class="addbtn" id="rf-maps" title="The Sales Comparison Map, drawn by the Location Map tool from the subject and the comparables">Generate map</button>
       <button class="addbtn" id="rf-market">Import market charts</button>
+      <button class="addbtn" id="rf-msearch">Count the market search</button>
       <button class="addbtn primary" id="rf-auto" title="Enter the case: the server writes the whole document while the report is filled in on screen, section by section">Fill the report</button>
       <input type="file" id="rf-auto-file" accept=".xml,.zip" hidden>
       <button class="addbtn" id="rf-reload">Reload</button>
@@ -1533,6 +1534,7 @@ function drawReportForm(w){
     if(file) await fillFromFile(file);
   };
   $('#rf-market').onclick=()=>marketImport();
+  $('#rf-msearch').onclick=()=>marketSearch();
   $('#rf-setup').onclick=()=>reportSetup();
   $('#rf-maps').onclick=async()=>{
     const b=$('#rf-maps'); b.disabled=true; b.textContent='Drawing the map…';
@@ -1805,6 +1807,77 @@ async function marketImport(){
     if(!r.ok){msg.textContent=d.detail||'That file could not be read.';return;}
     toast(d.drawn.length+' chart(s) drawn into the Market section');
     box.remove(); refresh();
+  };
+}
+
+
+/* The Market section's Search Result Metrics (17.005-17.015), counted from
+   the MLS export of the search (T-1075, uad/market_search.py): shown beside
+   what the report holds first, written only when the appraiser says so. */
+function marketSearch(){
+  const box=document.createElement('div'); box.className='sheet';
+  box.innerHTML=`<div class="sheet-in">
+    <h2>Market search results</h2>
+    <p class="lede">Export the market search from the MLS as CSV — one row per listing, with its
+      status, list price, sold price, days on market and close date — and drop it here. Active
+      listings, pending sales and the sales within the months below are counted as of the
+      effective date.</p>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <input type="file" id="ms-file" accept=".csv,text/csv">
+      <label style="font-size:12.5px">Sales in the past
+        <input type="number" id="ms-months" min="1" max="60" style="width:56px"> months</label>
+    </div>
+    <p id="ms-msg" class="empty" style="padding:6px 0"></p>
+    <div id="ms-out"></div>
+    <div style="display:flex;gap:6px;margin-top:10px">
+      <button class="btn primary" id="ms-go" disabled>Write these figures</button>
+      <button class="btn" id="ms-close">Close</button>
+    </div></div>`;
+  document.body.appendChild(box);
+  const $$=q=>box.querySelector(q);
+  const msg=$$('#ms-msg');
+  let text='';
+  const send=async apply=>{
+    const months=parseInt($$('#ms-months').value,10)||0;
+    const r=await fetch(`/api/cases/${S.caseId}/market/search?lookback=${months}${apply?'&apply=true':''}`,
+      {method:'POST',headers:{'Content-Type':'text/csv'},body:text});
+    let d={}; try{ d=await r.json(); }catch(_){}
+    return {ok:r.ok,d};
+  };
+  const preview=async()=>{
+    msg.textContent='Counting…'; $$('#ms-go').disabled=true; $$('#ms-out').innerHTML='';
+    const {ok,d}=await send(false);
+    if(!ok){ msg.textContent=(typeof d.detail==='string'?d.detail:(d.detail&&d.detail.message))||'That file could not be counted.'; return; }
+    if(!$$('#ms-months').value) $$('#ms-months').value=d.lookback_months;
+    msg.textContent=`${d.rows} listing(s): ${d.active} active, ${d.pending} pending, ${d.sold} sold `
+      +`in the ${d.lookback_months} months to ${d.effective_date}.`;
+    $$('#ms-out').innerHTML=`<table class="tbl" style="width:100%;font-size:12.5px"><thead><tr>
+        <th style="text-align:left">Field</th><th style="text-align:right">The report holds</th>
+        <th style="text-align:right">Counted</th></tr></thead><tbody>${d.figures.map(f=>`<tr>
+        <td>${esc(f.field_id)} ${esc(f.label)}</td><td style="text-align:right">${esc(f.current||'—')}</td>
+        <td style="text-align:right"><b>${esc(f.counted)}</b></td></tr>`).join('')}</tbody></table>`
+      +(d.skipped.length?`<p style="font-size:12px;color:var(--muted);margin-top:8px">Not counted: ${d.skipped.map(esc).join('; ')}</p>`:'');
+    $$('#ms-go').disabled=false;
+  };
+  $$('#ms-file').onchange=async e=>{
+    const f=e.target.files&&e.target.files[0]; if(!f) return;
+    text=await f.text(); await preview();
+  };
+  $$('#ms-months').onchange=()=>{ if(text) preview(); };
+  box.addEventListener('dragover',e=>{e.preventDefault();box.classList.add('over');});
+  box.addEventListener('dragleave',()=>box.classList.remove('over'));
+  box.addEventListener('drop',async e=>{
+    e.preventDefault(); box.classList.remove('over');
+    const f=e.dataTransfer.files[0]; if(!f) return;
+    text=await f.text(); await preview();
+  });
+  $$('#ms-close').onclick=()=>box.remove();
+  $$('#ms-go').onclick=async()=>{
+    $$('#ms-go').disabled=true; msg.textContent='Writing…';
+    const {ok,d}=await send(true);
+    if(!ok){ msg.textContent=(d.detail&&d.detail.message)||d.detail||'Nothing was written.'; $$('#ms-go').disabled=false; return; }
+    toast(d.written.length+' market figure(s) written');
+    box.remove(); swapFrame('form'); refresh();
   };
 }
 
@@ -2224,7 +2297,24 @@ function findingRow(i){
     fix.onclick=e=>{e.stopPropagation();jump(i);};
     d.appendChild(fix);
   }
+  if(i.fix){ const b=applyFixButton(i.fix); b.style.marginLeft='6px'; d.appendChild(b); }
   return d;
+}
+/* A warning that has one answer in the specification offers it (T-510): the
+   value is written as a typed one would be, then the report and the review
+   follow.  The appraiser decides; nothing is changed without the click. */
+function applyFixButton(fx){
+  const b=document.createElement('button');
+  b.className='addbtn primary'; b.style.marginTop='5px';
+  b.textContent=fx.label; b.title=`Write ${fx.value} to ${fx.field_id}`;
+  b.onclick=async e=>{
+    e.stopPropagation(); b.disabled=true;
+    const r=await api(`/cases/${S.caseId}/fields/${encodeURIComponent(fx.field_id)}`,
+      {method:'PATCH',body:JSON.stringify({value:fx.value})});
+    if(r&&r.ok){ toast('Written: '+fx.label.replace(/^Make it /,'')); swapFrame('form'); await refresh(); reviewSoon(); }
+    else{ b.disabled=false; toast((r&&r.data&&r.data.detail)||'That could not be written.',7000); }
+  };
+  return b;
 }
 /* A finding takes the appraiser to the field on the report, not to a form
    about it. */
@@ -2291,6 +2381,9 @@ function renderGuide(){
       ${g.points.length>4?`<p class="gd-none">and ${g.points.length-4} more parts</p>`:''}
       <div class="gd-k">H-1 checks</div>${rules}
     </div>`;
+  // a problem with one answer in the specification offers it here too (T-510)
+  const probs=box.querySelectorAll('.gd-prob > div');
+  g.problems.forEach((p,n)=>{ if(p.fix&&probs[n]) probs[n].appendChild(applyFixButton(p.fix)); });
 }
 /* after an edit, the review is asked again once typing pauses: the outlines,
    the counts and the open guidance follow the report as it is */

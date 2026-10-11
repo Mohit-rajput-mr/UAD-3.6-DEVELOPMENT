@@ -84,6 +84,27 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-11 -- keen-turing: the editor shows only what applies; the
+  report warns where it contradicts itself (T-1074, T-1066, T-909, T-910,
+  T-510 partial; E-170..E-172).**
+  - A supervisory appraiser's or an assistant's subsection is "+ Add ..."
+    until the party is added. The spec for this is B-1 p106 / p108, read
+    into `spec/party_gates.json`.
+  - Fields the report's own answers rule out (zoning Legal -> no reasons
+    illegal) leave the editor and come back when the answer changes.
+  - The Review Master now warns on:
+    - "See attached addendum";
+    - "As Is" with a repair defect;
+    - an unsupported C1;
+    - a seller not on title;
+    - a comparable sold after the effective date.
+
+    Warnings never block a signature.
+  - Tests: `test_party_gates` 3, `test_edit_visibility` 17,
+    `test_usability` 22, `test_owner_checks` 15. All 12 D-1 samples raise
+    no new finding.
+  - **Full suite 1140 passed / 0 failed / 9 skipped (@7c535d6). Harness
+    12: 86 pass / 0 fail / 22 gap, unchanged.**
 - **2026-10-11 — Page breaks follow D-1 and Appendix E (ecstatic-bohr;
   E-300..E-308, T-110 done, T-101 partial).** In all 12 samples the Sketch,
   the Scope of Work and the Certifications now head the same pages as the
@@ -240,6 +261,27 @@ Full narrative and traps: last sections of `_work/HANDOFF.md`.
 Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
 
 ## 5. In progress right now / what to take over next
+
+### 2026-10-11 -- keen-turing (engine checks; T-1100..T-1149, E-170..E-179)
+- **Done:** T-1074 and T-1066 (editor visibility); T-909 and T-910
+  (B-1 Usability items 6 and 10).
+- **T-510 is partial:** the owner's DR 6.5 checks are Review Master
+  warnings. The inline surface and the one-click fixes are still open.
+- **Waiting on the owner:** the GSE Selling Guides, for B-1 Usability
+  item 9 (prohibited / veiled language). Do not invent a word list.
+- **Done later:**
+  - T-127: a shared photo prints once. Harness went 86/0/22 ->
+    88/0/20.
+  - T-1075 (engine, API and editor control): the market search is
+    counted from the MLS export.
+  - T-906: photo altitude carries its unit; photo time is in UTC.
+  - T-510: one-click fixes and the O4 area check.
+  - T-1034: all 171 rules decided; the four no sample exercises are
+    tested.
+- **Verified on ce132e6:** full suite 1180 / 0 / 9; harness 12
+  88 / 0 / 20.
+- **Next:** T-1079 / T-1080 (offline intake, rule-based parsers first),
+  or what the lead hands over.
 
 ### 2026-10-11 -- three sessions in parallel; phase 1 half landed (read `python engine/agents.py` first)
 - **Who does what:**

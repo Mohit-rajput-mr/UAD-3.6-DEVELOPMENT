@@ -3498,3 +3498,115 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   - Harness 12: 86/0/22. ecstatic-bohr's page breaks follow D-1, and two
     page counts that had matched only by coincidence became gaps; no
     failures.
+
+## 2026-10-11 -- keen-turing: party gates, editor visibility, B-1 usability checks (T-1074, T-1066, T-909, T-910, T-510)
+- **T-1074 (E-170): the editor no longer shows a party's subsection
+  before that party exists.** B-1 p106 / p108 sentences ("If there is no
+  Supervisory Appraiser, the subsection does not display"; "... displays
+  when there are one or more contacts with PartyRoleType ...") are read by
+  `uad/spec/extract_party_gates.py` into `spec/party_gates.json`.
+  - In the editor, such a subsection is "+ Add Supervisory Appraiser" /
+    "+ Add Significant Real Property Appraisal Assistance" until added.
+  - It has "× Remove" once added. The remove asks first.
+  - Routes: `POST /cases/{id}/parties` and
+    `DELETE /cases/{id}/parties/{role}`. They answer 422 for a role no
+    gate names.
+  - The supervisor's certifications (29.062) follow the party.
+  - Print unchanged.
+- **T-1066 (E-171): the editor leaves out what the report's own answers
+  rule out** (`form.edit_hides`). A field is left out when:
+  - its B-1 display rule is decided against it by an *answered* gate; or
+  - it is empty and A-1's "IF ..." is false by a gate answered once.
+
+  A gate decides nothing when:
+  - it is in a repeating block (`_point_repeats`: SITE_INFLUENCES, units);
+  - it is unanswered (a blank report shows everything until the question
+    is answered);
+  - no field asks it.
+
+  A chain applies: an unanswered gate whose own question is gated off
+  hides too (no renewable component, so no financing). Writing a gate
+  returns `relayout`.
+  - Traps found by the full suite, all fixed:
+    - the Site "+ Add" list lost Water Frontage;
+    - the 2-4 unit defects table vanished on a blank report;
+    - quoted enumeration values were taken for data point names.
+- **T-909 / T-910 (E-172): B-1 Usability supplement items 6 and 10.**
+  `uad/spec/extract_usability.py` -> `spec/usability.json`;
+  `uad/usability.py`. Review Master warnings, source `usability`:
+  - U6: "See attached addendum" and variations;
+  - U10.1: "As Is" with a Completion / Inspection / Repair defect;
+  - U10.2: C1 without new construction, or kitchens and baths that are
+    not New or Like New and Fully Updated.
+
+  Item 9 (prohibited language) needs the GSE Selling Guides. **Ask the
+  owner for them.** Do not write a word list.
+- **T-510 (partial): the owner's DR 6.5 checks with no spec rule** --
+  `uad/owner_checks.py`, source `owner`, each saying it is not a GSE rule:
+  - O1: seller not on title on a purchase;
+  - O2: no borrower on title on a refinance;
+  - O3: a comparable sold after the effective date.
+
+  Already covered elsewhere:
+  - signature before inspection is H-1 (UAD1536 + UAD1557);
+  - the area-total check is deliberately absent, because A-1's total
+    includes common area.
+
+  Left for T-510: the inline-as-you-type surface (warnings show in the
+  Review Master today) and one-click fixes.
+- **Verified:** full suite 1140 passed / 0 failed / 9 skipped on 7c535d6.
+  Harness 12: 86 / 0 / 22, unchanged.
+- **Next here:** T-127 (Site exhibit titles):
+  - B-1 p59 Scenario 1: a picture filed under several categories prints
+    once, with the headers joined in FID order;
+  - a draft patch and a D-1 title validator (18 of 319 titles differ
+    today) are described in the T-127 note;
+  - then T-1075.
+- **Later the same day (keen-turing): T-127 done, T-1075 engine and
+  editor done, T-906 done (E-173..E-175).**
+  - T-127: a photo filed under several categories prints once
+    (`form._shared_exhibits`, print only). The rules are B-1 p59
+    Scenarios 1 and 2.
+    - Every exhibit title in the 12 samples now stands as a line in its
+      D-1 PDF. Before, 18 of 319 differed. `tests/test_shared_exhibits.py`
+      checks this.
+    - Harness 12 went 86/0/22 -> **88/0/20**: two page counts now match
+      D-1.
+    - Exhibit *order* is still document order; D-1's order is
+      unexplained. This was handed to ecstatic-bohr.
+  - T-1075: "Count the market search" in the editor's report bar.
+    - The MLS export (CSV) gives 17.005-17.015, counted per A-1's
+      definitions (`uad/market_search.py`).
+    - The figures are shown beside the report's own, then written all or
+      none (`POST /cases/{id}/market/search`).
+    - Chromium e2e passed.
+    - Still open: absorption and list-to-sale belong to the charts import.
+  - T-906: photo altitude ships with `@LinearUnitOfMeasureType="Feet"`.
+    The EXIF time moves to UTC by the camera's offset.
+  - Test change: `test_import`'s "editor shows everything the preview
+    prints" now ignores the " - " joining a shared photo's titles. The
+    editor keeps one box per IMAGE, so each word is still there.
+  - Traps:
+    - Never type the passcode into a script. For a Chromium e2e, run
+      uvicorn in-process (`uvicorn.Server(...).run` in a thread) and set
+      the session cookie (`app.access.COOKIE`) to `app.main.ACCESS.token`
+      with `context.add_cookies`.
+    - The `_work/harness/*.pdf` files are rewritten by every harness run.
+      Do not commit them from a branch: they conflict as binaries.
+- **Then (keen-turing): T-510 done, T-1034 closed.**
+  - T-510: the new warnings already show inline as you type, through the
+    "Show problems" outlines and the field guide. Both are refreshed by
+    `reviewSoon` after each edit.
+    - Added a one-click fix where the spec leaves one answer
+      (`Finding.fix` -> `Item.fix` -> the "Make it ..." button on the
+      Review row and in the guide).
+    - Added O4: the building total below the units' above-grade finished
+      area.
+    - Chromium e2e: As Is -> Subject to Repair, and the warning clears.
+  - T-1034: all 171 non-presence H-1 rules already had a decider. 167
+    decide on some sample. UAD1250 and UAD1777-1779 meet no sample's
+    condition; `tests/test_compliance_unexercised.py` holds them to firing
+    on a broken copy.
+- **Verified on ce132e6:** full suite 1180 passed / 0 failed / 9 skipped;
+  harness 12 **88 pass / 0 fail / 20 gap**. Posted to sleepy-hypatia to
+  merge and deploy.

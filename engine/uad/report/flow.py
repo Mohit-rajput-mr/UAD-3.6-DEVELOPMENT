@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import re
 import sys
 from dataclasses import dataclass, field
 from typing import Any, Iterable
@@ -206,9 +207,11 @@ def plan(blocks: list[dict], caps: dict[int, float] | None = None, *,
 
     def at_top() -> bool:
         """Is this the start of the page's content?  Used to decide breaks --
-        starting yet another page would put nothing on this one."""
-        return not pages[-1].pieces or (len(pages[-1].pieces) == 1 and
-                                        "(continued)" in pages[-1].pieces[0].html)
+        starting yet another page would put nothing on this one.  A section's
+        own tab counts as nothing too: a grid moved off a page that holds only
+        the "Sales Comparison Approach" tab left the tab alone on it (D-1
+        Co-op1 p12 sets the grid straight under the tab and splits it)."""
+        return all("tabblk" in p.html for p in pages[-1].pieces)
 
     def empty() -> bool:
         """Is there really nothing above this block?
@@ -230,16 +233,36 @@ def plan(blocks: list[dict], caps: dict[int, float] | None = None, *,
         y += lead + height
         pages[-1].planned = y
 
+    opens = full_page_leads(blocks)
     i = 0
     while i < len(blocks):
         b = blocks[i]
         section = b["section"]
         wrap_open = (f"<div class='blk {'cols' if b['kind'] == 'cols' else 'solid ' + b['kind']}'>")
 
+        if i in opens and not at_top():
+            # a full-page image opens a page, and what leads to it goes with it
+            if b["kind"] == "tab":
+                new_page(None, continued=False)
+            else:
+                new_page(current_section)
+
+        if (b.get("newpage") and b["kind"] not in ("tab", "grid") and b["group"] not in (1, 2)):
+            # A section that opens a page with its own text rather than a tab
+            # (Appendix E p79/p85: the Scope of Work "starts new page"; "TAB
+            # sets elsewhere").  Its tab is not on this page, so a page it
+            # runs on to has no section to call "(continued)".
+            if pages[-1].pieces and not at_top():
+                new_page(None, continued=False)
+            elif pages[-1].pieces:
+                pages[-1].pieces.clear()       # only a "(continued)" tab
+                y = BODY_TOP
+                pages[-1].planned = y
+            current_section = ""
+
         if b["kind"] == "tab":
             current_section = section
-            nxt = blocks[i + 1] if i + 1 < len(blocks) else None
-            need = b["lead"] + b["height"] + _first_line(nxt)
+            need = b["lead"] + b["height"] + _keep(blocks, i + 1)
             if b["newpage"] and pages[-1].pieces:
                 new_page(None, continued=False)
             elif need > room() and pages[-1].pieces:
@@ -249,8 +272,7 @@ def plan(blocks: list[dict], caps: dict[int, float] | None = None, *,
             continue
 
         if b["group"] in (1, 2):           # h1 / h2 keep with next
-            nxt = blocks[i + 1] if i + 1 < len(blocks) else None
-            need = b["lead"] + b["height"] + _first_line(nxt)
+            need = b["lead"] + b["height"] + _keep(blocks, i + 1)
             # a forced break first: it opens a fresh page, and the section it
             # opens is not a continuation of the one before
             if b.get("newpage") and not at_top():
@@ -341,6 +363,18 @@ def plan(blocks: list[dict], caps: dict[int, float] | None = None, *,
     return [p for p in pages if p.pieces]
 
 
+def _keep(blocks: list[dict], j: int) -> float:
+    """What a heading needs below it on its page: any headings straight after
+    it, then the first line of what they head.  Keeping a tab with only the H1
+    under it left "Certifications" alone at a page foot, the H1 and its text
+    carried over (D-1: the tab heads page 20 of SF1, 17 of Co-op1)."""
+    need = 0.0
+    while j < len(blocks) and blocks[j]["group"] in (1, 2) and blocks[j]["kind"] != "tab":
+        need += blocks[j]["lead"] + blocks[j]["height"]
+        j += 1
+    return need + _first_line(blocks[j] if j < len(blocks) else None)
+
+
 def _first_line(b: dict | None) -> float:
     if b is None:
         return 0.0
@@ -355,6 +389,50 @@ def _first_line(b: dict | None) -> float:
         # otherwise a full-page map leaves its H1 alone at a page foot
         return lead + b["height"]
     return lead + min(b["height"], 60.0)
+
+
+FULL_EXHIBIT = re.compile(r"""class=["']ex full\b""")
+
+
+def full_page_leads(blocks: list[dict]) -> set[int]:
+    """The blocks that open a page because a full-page image follows.
+
+    Appendix E p31: photos "can start on same page as section"; maps and
+    sketches are full page, in a 45 x 48 pica frame.  Every full-page image in
+    the twelve D-1 samples heads its page, even with room above it (MH1 p6
+    and p22 follow pages ending at 211 pt and 242 pt), and what leads to it
+    goes with it: its H1 ("Sales Comparison Map", "Site Exhibits"), and in
+    the Sketch section the tab and "Measurement Standard" (SF1 p5, SF4 p5).
+
+    So the page opens at the run of headings in front of the image; an image
+    with no heading of its own (the sketch) takes its section's tab with it
+    when nothing but the section's few opening rows stands between them
+    (``LEAD_IN`` at most: Measurement Standard, the 7.002 caption row)."""
+    opens: set[int] = set()
+    for i, b in enumerate(blocks):
+        if b["kind"] != "exhibits" or not FULL_EXHIBIT.search(b.get("html", "")):
+            continue
+        same = lambda k: blocks[k]["section"] == b["section"]  # noqa: E731
+        start, j = i, i - 1
+        while j >= 0 and same(j) and blocks[j]["group"] in (1, 2):
+            start, j = j, j - 1
+        if start != i:
+            opens.add(start)                 # its own heading leads to it
+            continue
+        k, rows = j, 0.0
+        while (k >= 0 and same(k) and blocks[k]["group"] not in (1, 2)
+               and blocks[k]["kind"] not in ("tab", "exhibits", "grid")):
+            rows += blocks[k].get("lead", 0.0) + blocks[k].get("height", 0.0)
+            k -= 1
+        if k >= 0 and same(k) and blocks[k]["kind"] == "tab" and rows <= LEAD_IN:
+            start = k
+        opens.add(start)
+    return opens
+
+
+#: How much of a section's opening may travel with a full-page image: the
+#: Sketch section's rows above its frame measure 20-45 pt in the samples.
+LEAD_IN = 120.0
 
 
 def _fill(items: list[dict], start: int, avail: float) -> tuple[int, float]:

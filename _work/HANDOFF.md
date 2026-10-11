@@ -3358,3 +3358,74 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   Item 9 (prohibited / veiled language) cites the GSE Selling Guides, which
   are not in the repo: ask the owner for them rather than invent a word
   list.
+
+
+## 2026-10-11 -- current position (ecstatic-bohr): page breaks against the D-1 PDFs (E-300..E-307)
+- **Who:** the third parallel session, branch `claude/ecstatic-bohr-d4iffh`
+  (status file `_work/agents/claude-ecstatic-bohr-d4iffh.json`). It claims
+  T-101, T-110, T-117 and T-034, and holds T-1150..T-1199 and E-300..E-339.
+  It merged main (keen-turing's PR #2 and the lead's PR #3).
+- **Merged tree verified** before any change: harness 12 gave 88 pass /
+  0 fail / 20 gap; the full suite gave 903 passed and 1 failed. The failure
+  was keen-turing's Summary test, fixed in 1aea977.
+- **Trap (cloud containers):** `pip install playwright` installs 1.63,
+  which wants Chromium build 1243, and the container has 1194. Pin
+  `pip install playwright==1.56.0`, or every browser test fails at launch.
+- **Method:** scratchpad tools render the 12 samples, then compare:
+  - every page's first and last body line, ours against the official
+    (`bounds`);
+  - where each section tab lands, and whether it heads its page (`anchors`);
+  - pages side by side as PNGs.
+  The same method can be rebuilt from `_work/audit/pagecmp.py`, plus
+  pymupdf `get_text("dict")` and `get_image_info()`.
+- **Found and fixed** (each entry in CATALOG has its authority and test;
+  `tests/test_pagination.py` runs 19 tests):
+  - E-300: the Sketch space is missing when SketchExistsIndicator is "true"
+    and there is no sketch IMAGE (B-1 p163). This affected SF1 and SF5.
+  - E-301: with the indicator "false", the whole Sketch section vanished.
+    B-1 says it always displays "Sketch or Floor Plan Not Available".
+  - E-302: LandComparableMap now prints in the Cost Approach when that
+    section prints. A-1 gives it two homes; D-1 MH1 p25 uses that one.
+  - E-303: full-page images open a page together with their lead-in
+    (Appendix E p31; 12 of 12 samples).
+  - E-304: the Scope of Work opens a page with no tab (E p79/p85). Its
+    new-page flag sat on a text block the planner ignored.
+  - E-305: headings keep with the heading run under them and its first
+    line. Certifications opens a page (D-1 12/12; E is silent, so this is
+    recorded as practice).
+  - E-306: a grid under a lone tab is split, not moved. Co-op1 had printed
+    a page holding only the tab.
+  - E-307: the market value footnote is set as FN 8/10 (E p80), and the
+    Sketch caption prints once.
+- **Result:** Sketch, Scope of Work and Certifications now head the same
+  pages as D-1 in all 12 samples; before, none did. SF1 (21) and SF2 (22)
+  match exactly.
+  - **Exact matches fell from 4 to 2, and the harness `package` gaps will
+    rise accordingly.** The four earlier matches (Condo1, Co-op1, SF3, 2-4)
+    were offsetting errors.
+  - Full table in CATALOG E-307. What is left is our content measuring
+    taller than D-1's: T-1150, under T-034.
+- **Not a rule** (checked): the Site, Unit Interior, Amenities, Market and
+  Listing tabs head D-1 pages only after nearly full pages (prev ≥ 729 pt),
+  and they sit mid-page as low as 814 pt. Those are space-driven breaks.
+- **v1.2 samples:** SF5 and 2-4 Scenario 2 were drawn in an earlier style.
+  Their grids space the groups apart and title "Quality and Condition"
+  differently. Their page counts are not v1.4 targets; do not tune to them.
+- **Verified (final tree):** full suite 930 passed / 0 failed / 10
+  skipped. Harness 12 86 / 0 / 22: SF1 and SF2 `package` now pass, while
+  Condo1, Co-op1, SF3 and 2-4 became gaps. `test_client_pdf`'s editor run
+  now expects SF1 at 21 pages, which is D-1's count.
+- **Batch 2, found, not built:**
+  - **(a)** Slot 13.000 shows only "None" (B-1 p228). We print the first
+    CarStorageType above the Vehicle Storage table ("Carport", SF3).
+  - **(b)** A unit in an outbuilding prints after that Outbuilding's
+    section (D-1 SF3: Outbuilding - Standalone ADU, then its Unit
+    Interior). Only SF3 has one; SF4's ADU is attached and stays with its
+    dwelling.
+- **Next:**
+  - Batch 2 above.
+  - T-1150, vertical metrics. Per section, measure block heights against
+    the D-1 PDFs and fix the stylesheet. SF3's front-photo box measures
+    172.6 pt against D-1's ~160 pt. MH1 runs 3 short, so it also has
+    content we fail to print (pages 7-17 of its map).
+  - Then the whole-report word diff (`_work/audit/linediff.py`).

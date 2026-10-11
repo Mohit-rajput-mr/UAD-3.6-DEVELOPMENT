@@ -2,11 +2,27 @@
  "source": "Appendix B-1 URAR Implementation Guide v1.4",
  "rules": [
   {
+   "text": "Sketch or Floor Plan Not Available",
+   "name": "SketchExistsIndicator",
+   "value": "false",
+   "fid": "7.000",
+   "page": 162,
+   "shape": "displays"
+  },
+  {
    "text": "The items listed below represent the As Is condition as of the effective date of this report",
    "name": "VehicleStorageDefectsExistIndicator",
    "value": "true",
    "fid": "13.004",
    "page": 229
+  },
+  {
+   "text": "None",
+   "name": "PropertyAmenityExistsIndicator",
+   "value": "false",
+   "fid": "14.000",
+   "page": 234,
+   "shape": "displays"
   },
   {
    "text": "The items listed below represent the As Is condition as of the effective date of this report",

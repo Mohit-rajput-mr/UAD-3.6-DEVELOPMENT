@@ -303,12 +303,14 @@ def test_the_editor_draws_the_pdf_and_exports_the_zip_in_parts(live, monkeypatch
             assert page.evaluate("hostInfo()")["serverLayout"] is False
 
             res = page.evaluate("drawPdf()")
-            assert res["pages"] == 20 and res["parts"] >= 3 and not res["missing_glyphs"]
+            # SF1 runs 21 pages, as D-1's SF1 does, since the sketch space and
+            # the Scope of Work / Certifications breaks (CATALOG E-300, E-304)
+            assert res["pages"] == 21 and res["parts"] >= 3 and not res["missing_glyphs"]
             got = page.evaluate(f"""fetchParts('/api/cases/{case_id}/report.pdf',{res['parts']},{res['size']},
                 'application/pdf').then(b=>b.arrayBuffer()).then(a=>Array.from(new Uint8Array(a)))""")
             pdf = bytes(got)
             doc = fitz.open(stream=pdf)
-            assert len(doc) == 20
+            assert len(doc) == 21
             kept_html = next((api.store().folder(case_id) / "_render" / "pdf").glob("*.html")).read_text()
             server_pages = pdfdraw.page_texts(kept_html)
             for n in range(len(doc)):

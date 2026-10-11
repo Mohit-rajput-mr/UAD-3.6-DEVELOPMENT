@@ -75,3 +75,17 @@ def test_a_message_left_in_a_markdown_board_reaches_its_branch():
     assert [m["from"] for m in got] == ["claude/ecstatic-bohr-d4iffh"]
     assert "pagination" in got[0]["text"]
     assert agents.board_messages({"x": board}, "claude/keen-turing-3r26sh", {got[0]["key"]: "done"}) == []
+
+
+def test_a_message_answered_by_its_bare_id_is_not_unread():
+    """`ack <message-id>` with the id alone (as the help suggests) answers the
+    message as well as the full ``branch:id`` key the sync prints."""
+    from agents import unread
+    statuses = {
+        "claude/a": {"branch": "claude/a", "messages": [{"id": "a-1", "to": "claude/b", "text": "x"},
+                                                        {"id": "a-2", "to": "all", "text": "y"}]},
+        "claude/b": {"branch": "claude/b", "acks": {"a-1": "done", "claude/a:a-2": "done"}},
+    }
+    assert unread(statuses, "claude/b") == []
+    statuses["claude/b"]["acks"] = {}
+    assert [m["key"] for m in unread(statuses, "claude/b")] == ["claude/a:a-1", "claude/a:a-2"]

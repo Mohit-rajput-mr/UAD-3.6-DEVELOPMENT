@@ -207,7 +207,8 @@ def unread(statuses: dict[str, dict], me: str) -> list[dict]:
             continue
         for m in s.get("messages", []):
             key = f"{branch}:{m.get('id')}"
-            if m.get("to") in (me, "all") and key not in answered:
+            # answered by its full key or by its bare id (what `ack <message-id>` suggests)
+            if m.get("to") in (me, "all") and key not in answered and m.get("id") not in answered:
                 out.append({**m, "from": branch, "key": key})
     return out
 

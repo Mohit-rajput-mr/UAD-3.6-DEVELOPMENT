@@ -444,6 +444,7 @@ python engine/tasks.py add "Title" --area render --note "asked 2026-09-16"
 | T-803 | open | meta | Coverage audit engine: every FID/data point/section/enum/exhibit/XML mapping classified IMPLEMENTED/PARTIAL/MISSING/INCORRECT/N-A, re-runnable in the app | asked 2026-09-17; formal checklist |
 | T-804 | open | meta | Codebase sweep: TODOs, placeholders, disabled/read-only controls, hard-coded sample values, mocks, dead implementations | asked 2026-09-17 |
 | T-805 | done | meta | Two servers from one checkout shared a case store and cleared each other's reports | URAR_WORK names a store per instance (engine/app/main.py); .claude/launch.json gives uad-import-test its own _work/cases-test. A 404 on the open case is now reported as 'this report is no longer on the server' and returns to the list instead of failing action by action. Verified: the store survives a restart with its own reports while the shared one is untouched (2026-09-18) |
+| T-1200 | open | meta | Parallel AI sessions (any account/product) work the same repo at once: shared claims, messages, number blocks; split the work so no one AI does it all |  |
 
 ---
 

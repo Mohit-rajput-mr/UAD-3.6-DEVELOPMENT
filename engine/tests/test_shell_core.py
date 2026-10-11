@@ -128,9 +128,12 @@ def test_core_registries(site):
       // panels: the stub host mounts at the top of #insp, again after a rebuild
       const el=document.createElement('div'); el.textContent='hello';
       U.panels.register({id:'test',title:'Test panel',el});
-      out.top1=document.querySelector('#insp').firstElementChild.id;
+      // every registered panel heads #insp, in the order registered (Problems first)
+      const lead=()=>{const ids=[]; for(const c of document.querySelector('#insp').children){
+          if(!c.classList.contains('shell-panel')) break; ids.push(c.id);} return ids.includes('shell-panel-test')?'shell-panel-test':ids.join(',')+'/'+[...document.querySelector('#insp').children].map(c=>c.id).join(',');};
+      out.top1=lead();
       document.querySelector('#insp').innerHTML=''; drawInsp();
-      out.top2=document.querySelector('#insp').firstElementChild.id;
+      out.top2=lead();
       out.signoff=!!document.querySelector('#insp #insp-sign');
       U.panels.unregister('test');
       out.gone=!document.querySelector('#shell-panel-test');

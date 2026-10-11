@@ -101,3 +101,20 @@ body.shell .sketch-ov.win.wmax{inset:0;border:0;box-shadow:none}
 body.shell .sketch-ov.win.wmax > .winbar{cursor:default}
 body.shell .sketch-ov.win.wnormal{inset:auto;resize:both;overflow:hidden;min-width:420px;min-height:320px;border-radius:10px}
 body.shell .sketch-ov.win.wmin{display:none}
+
+/* room for the report (owner 2026-10-11: "all components look too tight", "report looks too
+   small"): at 1280 x 720 the head and the report bar took 380 px above the page.  One row for
+   the case's name and its chips, the tabs under it, and the report bar's controls smaller. */
+body.shell.shell-case .work-head{display:flex;flex-wrap:wrap;align-items:center;column-gap:12px;padding:10px 200px 0 20px}
+body.shell.shell-case .work-head h1{font-size:19px;line-height:1.2;margin:0}
+body.shell.shell-case .work-head .meta{margin-top:0}
+body.shell.shell-case .work-head .meta span{padding:4px 8px}
+body.shell.shell-case .work-head .tabs{flex-basis:100%;margin-top:8px}
+body.shell.shell-case .rf-bar{gap:6px;padding:6px 16px}
+body.shell.shell-case .rf-bar .k,body.shell.shell-case .rf-bar .rf-note{display:none}
+body.shell.shell-case .rf-bar .addbtn,body.shell.shell-case .rf-bar .btn{padding:5px 10px;font-size:12.5px;border-radius:8px}
+body.shell.shell-case .rf-bar .rf-toggle{padding:4px 9px;font-size:12px}
+body.shell.shell-case .rf-bar .spacer{display:none}
+body.shell.shell-case .work-head .tab{padding:6px 0 9px}
+body.shell.shell-case .work-head .tabs{gap:20px}
+body.shell.shell-case .work-head .tabs{margin-right:-180px}

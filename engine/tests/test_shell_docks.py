@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from shell_kit import frame, needs_browser, open_case, site, until  # noqa: E402,F401
+from shell_kit import frame, measure_chrome, needs_browser, open_case, site, until  # noqa: E402,F401
 
 pytestmark = needs_browser
 
@@ -199,6 +199,19 @@ def test_the_report_grows_into_the_room_and_has_a_size_control(site):
     page.keyboard.press("Control+0")
     page.wait_for_function("document.querySelector('.winctl-report .wz-v').textContent.startsWith('Fit ')")
     page.evaluate("localStorage.removeItem('uad-shell-v1')")
+    assert not site.errors, site.errors
+
+
+def test_the_report_has_room_on_a_laptop(site):
+    """At 1280 x 720 (the owner's laptop at 150 %) the head and report bar
+    took 380 px above the page and the page was drawn at 56 %: "too tight",
+    "report looks too small".  The budget, with every window open."""
+    page = site.page
+    _fresh(site)
+    open_case(site, "sf1_appraisal_v1_4")
+    m = measure_chrome(site)
+    assert m["shell"] and m["chrome"] <= 240, m
+    assert m["zoom"] >= 0.65, m
     assert not site.errors, site.errors
 
 

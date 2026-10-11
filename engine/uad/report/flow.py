@@ -582,9 +582,10 @@ EDIT_JS = """
   function dlg(){ try{ return window.top!==window&&window.top.UADDialog; }catch(_){ return null; } }
   function say(msg,o){ var d=dlg(); if(d) return d.alert(msg,o||{title:'Something went wrong'}); window.alert(msg); return Promise.resolve(); }
   function ask(msg,o){ var d=dlg(); if(d) return d.confirm(msg,o||{}); return Promise.resolve(window.confirm((o&&o.title?o.title+'\\n\\n':'')+msg)); }
-  // the pages leave room at their right for Save / Save & Next
-  window.UAD_SIDE=240; document.body.style.boxSizing='border-box';
-  document.body.style.paddingRight='240px'; window.dispatchEvent(new Event('resize'));
+  // the pages leave room at their right for Save / Save & Next (110 px buttons
+  // 14 px from the page: 136, not the 240 that cost the report its size, T-1210)
+  window.UAD_SIDE=136; document.body.style.boxSizing='border-box';
+  document.body.style.paddingRight='136px'; window.dispatchEvent(new Event('resize'));
 
   function flash(target){
     target.classList.add('found');

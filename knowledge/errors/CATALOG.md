@@ -3152,3 +3152,55 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Test: `tests/test_photo_exif.py` (4). One of them is a delivered SF1
   package with an appraiser's photo: the altitude is 25 Feet, the time is
   UTC, and the schema is valid.
+
+### E-184 -- A data source picked in the editor was refused, and per-unit answers went to the first unit (T-1072, 2026-10-11)
+- Symptom (owner, DR §8):
+  - The Subject Listing "Data Source" (19.001) would not select. 17.018,
+    10.009 and 25.052 behaved the same way.
+  - After a first source, changing, adding or removing one was refused.
+  - The round-trip test found more:
+    - a Yes that B-1 prints nothing for came back blank after reload;
+    - Building 2's and Unit 2's controls wrote into Building 1 / Unit 1;
+    - a conditioned answer was refused without saying what it waits for.
+- Cause: A-1 ties these sources by arcrole
+  (DATA_SOURCE_IsDataSourceFor_<TARGET>; D-1 SF5, MH2 and Condo1).
+  `sources.write` stored the source with its link, but the read-back (api,
+  autofill, provenance) read the first DATA_SOURCE in the list. Controls in
+  sections drawn per dwelling or unit carried only the field id.
+- Mechanism:
+  - `edit.source_target` + `sources.read` / `groups` read through the
+    link, and `sources.write` keys a list row by its DATA_SOURCE.
+  - `form._scoped` + `data-iscope` → `edit.section_scope` send the
+    section's scope with each write.
+  - `edit.unmet_gate` names the answer to give first.
+  - `form.shown_pairs`: the editor shows a value B-1 prints nothing for.
+  - Reconciled with T-1066 in the merged tree:
+    - `form.source_of_answer`: a data source tied to an answer hides with
+      that answer;
+    - `form._waiting_for`: a field waiting for a hidden question hides with
+      it.
+- Test: `tests/test_every_choice_saves.py` (17). It round-trips 348 choices
+  on a blank SF report and 430 on a blank 2-4 report; the known gaps are
+  listed with reasons (T-1204). Also `tests/test_choice_saves_browser.py`
+  (2).
+
+### E-185 -- Checkbox problem outlines sat off the box (T-125, 2026-10-11)
+- Symptom (owner, DR §8, screenshot 05): the red/amber outline round a
+  Quality/Condition checkbox was offset from the box.
+- Cause: each box is a Wingdings 2 glyph in a 12pt-wide inline-block span.
+  The glyph plus its letter spacing (15.38pt) overflowed the span, and line
+  height 10pt put the ink off the box's middle. Every mark was drawn round
+  the span, not the glyph's box. The editor's pitch also differed from
+  print.
+- Mechanism:
+  - `form.box_glyph()` reads the box's position and size from the embedded
+    Wingdings 2 file with fontTools (nothing hand-typed).
+  - `form._box_marks_css()` (editor only) adds a `::before` overlay placed
+    from that geometry. Problem outlines, the unanswered tint, import
+    green, the highlight and the found-flash are drawn on the overlay.
+  - The fixed-width span is gone, so the editor's pitch now equals print.
+  - Ticks of boxes drawn on their own are centred (tick cells, rental
+    pairing, rent schedule units).
+- Test: `tests/test_checkbox_centre.py` (Chromium, device scale 4) checks
+  110 boxes on sf1 and 2-4, in the editor and the preview: outline and tint
+  centred within 0.5 px.

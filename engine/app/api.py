@@ -699,6 +699,60 @@ def _new_instance(root, dp: dict, base):
         return edit.add_instance(parent, container)
     return edit.insert_ordered(parent, container)
 
+def _answer_defects_exist(tree, dp: dict, owner, field_id: str) -> None:
+    """A defect typed into a table says the thing has defects: its
+    "<Section>DefectsExistIndicator" (A-1: the row's condition) is answered
+    Yes in that unit or building (the property's own is set by
+    edit._apply_discriminator with the new instance).  Unanswered, B-1 hides the row --
+    building 2's unit on a 2-4 report kept a defect it never showed (T-1204)."""
+    from uad import uadmap
+    chapter = field_id.split(".")[0]
+    for key, want in (dp.get("requires") or {}).items():
+        if not key.endswith("DefectsExistIndicator") or want != "true" or not uadmap.known(key):
+            continue
+        fids = [w.split(": ", 1)[0].strip() for loc in uadmap.point(key).get("locations") or []
+                for w in loc.split("\n") if ": " in w]
+        fid = next((f for f in fids if f.split(".")[0] == chapter), fids[0] if fids else "")
+        if not fid:
+            continue
+        # in the owner when the indicator lives in it (a unit's), else in its property
+        b = edit._binding_for(fid)
+        xpath = next((d.get("xpath", "") for d in b.data_points if d.get("mismo") == key), "")
+        scope = owner
+        while scope is not None and etree.QName(scope).localname not in xpath.split("/"):
+            scope = scope.getparent()
+        if scope is None or etree.QName(scope).localname == "PROPERTY":
+            continue                     # the property's own: edit's discriminator answers it
+        holder = scope
+        if holder is not None and any((e.text or "").strip() == "true"
+                                      for e in holder.iter(f"{{{bind.MISMO}}}{key}")):
+            continue                     # already answered there
+        edit.write(tree, fid, "true", data_point=key, binding=b, scope=scope)
+
+
+def _defect_owner(root, binding, base):
+    """What a new defect in this field's table is a defect of: the element
+    kind B-1's table is about (form.DEFECT_TARGETS: a CAR_STORAGE for
+    Vehicle Storage, an AMENITY, a PROPERTY_UNIT, a dwelling or outbuilding
+    IMPROVEMENT), the first of them in the property; None for the Site table,
+    whose defects are the property's own, or when the property has none."""
+    from uad.report import form as _form
+    want = _form.DEFECT_TARGETS.get(binding.section)
+    if not want:
+        return None
+    M_ = f"{{{bind.MISMO}}}"
+    prop = base if base is not None and etree.QName(base).localname == "PROPERTY" else bind.subject(root)
+    if prop is None:
+        return None
+    for el in prop.iter(f"{M_}{want}"):
+        if want == "IMPROVEMENT":
+            kind = (el.findtext(f".//{M_}ImprovementType") or "").strip()
+            if (binding.section == "Outbuilding") != (kind == "Outbuilding"):
+                continue
+        return el
+    return None
+
+
 def _new_defect(root, dp: dict, owner):
     """A new DEFECT under the owner's PROPERTY, linked to the owner (a
     PROPERTY_UNIT, IMPROVEMENT, CAR_STORAGE or AMENITY) by arcrole."""
@@ -805,6 +859,20 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
             # DEFECT lives under the PROPERTY and is tied to what it is in by
             # DEFECT_ContainsDefectOf_<it> (D-1 2-4), which is how it is read
             scope = _new_defect(root, dp, base)
+            _answer_defects_exist(candidate, dp, base, field_id)
+        elif body.get("new") and "/DEFECTS/DEFECT/" in dp.get("xpath", ""):
+            # the empty line of a subject's defect table (Vehicle Storage,
+            # Amenities, Unit Interior ...): the table draws only the defects
+            # tied to what it is about (form._defect_ok), so the row is made
+            # with that tie -- a bare DEFECT was saved and never shown (T-1204)
+            owner = _defect_owner(root, binding, base)
+            scope = (_new_defect(root, dp, owner) if owner is not None
+                     else _new_instance(root, dp, base))
+            if scope is None:
+                raise ValueError("the row could not be created")
+            _answer_defects_exist(candidate, dp, owner, field_id)
+            from uad import report_types
+            report_types.stamp_instance(scope, field_id)   # an update / completion table's own
         elif body.get("new") and edit.source_target(field_id, dp) and base is not None \
                 and etree.QName(base).localname == "DATA_SOURCE":
             # "+ another" under a list of sources (19.001 Data Source): one more

@@ -3285,3 +3285,12 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Cause:** `autofill.ensure_instance` followed the source's address `PROPERTY[n]`. This report appends a new comparable after its properties not used, so the source's 5th PROPERTY (comparable #4) was written into the report's 5th (a property not used, which became a 5th sales column). The column made for #4 stayed empty.
 - **Mechanism:** `autofill.property_map` matches properties by what they are: comparables by kind and number (`comparables.properties`), the others by role and position within that role. A missing one is created with its role. Every address is rewritten through it before the walk (`_remap_properties`), the same way `party_map` handles parties. `apply` creates comparables before matching.
 - **Test:** `tests/test_autofill.py::test_a_source_with_more_comparables_kept_together_fills_each_in_its_own_column` (fails before: 5 columns).
+
+## E-193 A defect typed into a table's empty line was saved but not drawn (T-1204)
+
+- **Symptom:** in a new report, a defect typed under Vehicle Storage (13), Subject Property Amenities (14), or a 2-4 unit's Unit Interior (10.056-10.060, building 2) saved but disappeared after reload.
+- **Cause:** (1) the empty line of a subject table sent no owner, so the DEFECT was made bare. The table draws only defects tied by `DEFECT_ContainsDefectOf_<X>` to what it is about (`form._defect_ok`, `DEFECT_TARGETS`). (2) For building 2's unit the tie was right, but its `UnitInteriorDefectsExistIndicator` was unanswered, and the row's condition hides it.
+- **Mechanism:** `api._defect_owner` takes the element kind from `form.DEFECT_TARGETS` by the field's section. `_new_defect` ties the row to it. `api._answer_defects_exist` answers the unit's or building's own DefectsExistIndicator; the property's own is already set by `edit._apply_discriminator`. Completion and update tables keep their stamp (`report_types.stamp_instance`).
+- **Test:** `tests/test_every_choice_saves.py`: 13.008/13.009/14.009/14.010/10.056/10.057/10.059/10.060 are off KNOWN, and the test fails if they stop saving. Still on KNOWN: 10.058, 4.096, 26.058/26.064.
+
+**E-192 follow-up:** `property_map` gives an unmatched source property a slot of a role the source does not carry. Reshaping a single-family report to 2-4 turns the template's empty rental slots into its properties not used, as the positional fill did. Without this, `tests/test_setup.py::test_rental_comparables_are_paired...` got 5 extra rental columns.

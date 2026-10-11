@@ -518,8 +518,9 @@ def property_map(root: etree._Element, source: etree._Element
 
     Comparables are matched by kind and number (``comparables.properties``
     orders them by their ordinal); every other property by its role and its
-    place among the properties of that role.  One the report lacks is made, in
-    the XSD's order, with the role it needs.  Keyed by the address of the
+    place among the properties of that role.  One the report lacks takes a
+    slot of a role the source does not carry (given the source's role), else
+    is made, in the XSD's order, with the role it needs.  Keyed by the address of the
     list, like ``party_map``.
     """
     tree = source.getroottree()
@@ -555,6 +556,17 @@ def property_map(root: etree._Element, source: etree._Element
                 match = same[k] if k < len(same) else None
             match_at = ours.getelementpath(match) if match is not None else None
             seat = at.index(match_at) if match_at in at else None
+            if seat is None or seat in taken:
+                # a slot of a role the source does not carry at all (the 2-4
+                # template's empty rental comparables, when a single-family
+                # report is made 2-unit) is this property's, with its role
+                carried = {(x.get("ValuationUseType") or "") for x in theirs}
+                spare = next((i for i, x in enumerate(mine) if i not in taken
+                              and (x.get("ValuationUseType") or "") not in carried), None)
+                if spare is not None:
+                    for key, value in twin.attrib.items():
+                        mine[spare].set(key, value)
+                    seat = spare
             if seat is None or seat in taken:
                 fresh = edit.insert_ordered(here, "PROPERTY")
                 for key, value in twin.attrib.items():

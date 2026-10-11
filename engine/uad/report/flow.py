@@ -522,10 +522,20 @@ def _furniture(meta: Meta, n: int, total: int, edit: bool = False) -> str:
     return head + foot
 
 
+# The page fits the frame's width, never above actual size -- unless the
+# editor says otherwise (T-1210, owner 2026-10-11 "report looks too small"):
+# {uad:'zoom', z:'width'} fits the width and grows into the room the other
+# windows give up (to 160 %), a number is a fixed size (0.5 - 2).  The frame
+# says what it drew at ({uad:'zoom-at'}) so the editor can show it.
 FIT_JS = """<script>
 (function(){function fit(){var w=document.documentElement.clientWidth-24;
-w-=(window.UAD_SIDE||0);var z=Math.min(1,w/816);document.querySelectorAll('.page').forEach(function(p){p.style.zoom=z;});}
-window.addEventListener('resize',fit);fit();})();
+w-=(window.UAD_SIDE||0);var f=w/816,q=window.UAD_ZOOM,z;
+if(typeof q==='number'&&isFinite(q)) z=Math.max(0.5,Math.min(2,q)); else if(q==='width') z=Math.min(1.6,f); else z=Math.min(1,f);
+document.querySelectorAll('.page').forEach(function(p){p.style.zoom=z;});
+if(window.parent!==window&&z!==window.UAD_ZOOM_AT){window.UAD_ZOOM_AT=z;try{window.parent.postMessage({uad:'zoom-at',z:z},'*');}catch(_){}}}
+window.addEventListener('resize',fit);
+window.addEventListener('message',function(e){if(e.data&&e.data.uad==='zoom'){window.UAD_ZOOM=e.data.z;fit();}});
+fit();})();
 </script>"""
 
 

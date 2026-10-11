@@ -36,6 +36,10 @@ body.shell .winctl{display:flex;gap:2px}
 body.shell .winctl-report{position:absolute;top:6px;right:8px;z-index:6;padding:2px;border-radius:8px;
   background:color-mix(in srgb,var(--bg) 82%,transparent);border:1px solid var(--line)}
 body.shell .winctl-top{margin-left:8px;align-items:center}
+/* the report's size: - [Fit 92%] + */
+body.shell .wz{display:inline-flex;gap:2px;margin-right:4px;padding-right:4px;border-right:1px solid var(--line)}
+body.shell .wb.wz-v{width:auto;min-width:64px;padding:0 6px;font:500 11.5px/1 var(--mono,var(--sans));font-variant-numeric:tabular-nums}
+body.shell .wb.wz-v.on{color:var(--ink)}
 body:not(.shell-case) .winctl-top{display:none}
 
 /* splitters: drag to any width, double-click resets */

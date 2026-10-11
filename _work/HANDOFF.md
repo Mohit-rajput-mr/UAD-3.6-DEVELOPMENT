@@ -3647,3 +3647,11 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - **Note:** the owner saw 143 fatal on a new report. Locally a new report
   shows 130 fatal / 17 warning (T-506 works); the header count can go stale
   (fixed by phase 2 S0a's setReview).
+
+## 2026-10-11 — windows + report size (T-1210, S2)
+
+- Every region (top bar, Sections, Side panels, report, Sketch) minimizes to the tray (bottom left), maximizes, closes/restores; side windows drag-resize; Sketch floats/drags/resizes; layout in localStorage `uad-shell-v1`. `engine/app/ui/shell/docks.js|css`.
+- Report size: FIT_JS honours `{uad:'zoom', z:'width'|number}` (kept frame message); editor default Fit width up to 160 %; control in the report's top-right corner.
+- Tests: `tests/test_shell_docks.py` (7). Suite before zoom: 1249 pass; the 5 failures were mid-edit / disk-full and pass now.
+- Disk filled with 18 stale workflow worktrees; their diffs are in `.claude/wf-partial/worktrees/`. T-1202 patch (`.claude/wf-partial/T-1202.patch`) ready to integrate; T-1204/T-1203/T-014/T-925 not done (session limit).
+- Next: spacing pass, integrate T-1202, S0b/E1, wave 1.

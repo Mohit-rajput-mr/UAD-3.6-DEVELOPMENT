@@ -160,6 +160,48 @@ def test_the_sketch_is_a_window(site):
     assert not site.errors, site.errors
 
 
+def _zoom(page):
+    return until(page, "()=>{const p=document.querySelector('.page'); return p&&p.style.zoom?parseFloat(p.style.zoom):0}", timeout=30)
+
+
+def test_the_report_grows_into_the_room_and_has_a_size_control(site):
+    """Owner 2026-10-11: "report looks too small".  Fit (the default) fills
+    the report window's width -- past actual size when the other windows give
+    up their room -- and - / + set a fixed size, kept across a reload."""
+    page = site.page
+    _fresh(site)
+    open_case(site, "sf1_appraisal_v1_4")
+    page.wait_for_selector(".winctl-report .wz-v", timeout=60_000)
+    z0 = _zoom(page)
+    page.wait_for_function("document.querySelector('.winctl-report .wz-v').textContent.startsWith('Fit ')")
+    _click(page, "left", "min")
+    _click(page, "right", "min")
+    page.wait_for_function("document.body.classList.contains('win-right-min')")
+    until(page, f"()=>parseFloat(document.querySelector('.page').style.zoom)>{max(z0, 1.0)}+0.2", timeout=30)
+    # - and + : a fixed size in 10 % steps, shown on the control and kept
+    page.click(".winctl-report [data-act='zfit']")
+    fit = _zoom(page)
+    page.click(".winctl-report [data-act='zout']")
+    want = round(round((fit - 0.1) * 20) / 20, 2)
+    until(page, f"()=>Math.abs(parseFloat(document.querySelector('.page').style.zoom)-{want})<0.001", timeout=30)
+    label = page.inner_text(".winctl-report .wz-v")
+    assert label == f"{round(want * 100)}%", label
+    page.reload()
+    page.wait_for_function("typeof S!=='undefined'&&S.caseId", timeout=60_000)
+    page.wait_for_function("S.formReady===true&&!!document.querySelector('#rf')", timeout=300_000)
+    until(page, f"()=>Math.abs(parseFloat(document.querySelector('.page').style.zoom)-{want})<0.001", timeout=60)
+    # Ctrl+0 fits the width again
+    page.click(".winctl-report .wz-v")
+    page.wait_for_function("document.querySelector('.winctl-report .wz-v').textContent.startsWith('Fit ')")
+    assert abs(_zoom(page) - fit) < 0.01
+    page.click(".winctl-report [data-act='zin']")
+    page.wait_for_function("!document.querySelector('.winctl-report .wz-v').textContent.startsWith('Fit ')")
+    page.keyboard.press("Control+0")
+    page.wait_for_function("document.querySelector('.winctl-report .wz-v').textContent.startsWith('Fit ')")
+    page.evaluate("localStorage.removeItem('uad-shell-v1')")
+    assert not site.errors, site.errors
+
+
 def test_the_classic_editor_has_no_window_chrome(site):
     page = site.page
     page.goto(site.base + "/?shell=0")

@@ -84,6 +84,7 @@
       head.appendChild(t);
     }
     apply();
+    zoomSend();
   }
 
   /* ------------------------------------------------------------- apply */
@@ -99,13 +100,46 @@
       var k=b.getAttribute('data-region'); var s=b.querySelector('.wbs'); if(s) s.innerHTML=buttons(k);
     });
     var rc=$('.winctl-report');
-    if(rc) rc.innerHTML=buttons('report',{min:false,close:false});
+    if(rc){ rc.innerHTML=zoomButtons()+buttons('report',{min:false,close:false}); zoomLabel(); }
     var tc=$('.winctl-top');
     if(tc) tc.innerHTML=buttons('top',{max:false});
     tray();
     // the report fits itself to its new width (it listens to resize)
     try{ var f=document.getElementById('rf'); if(f&&f.contentWindow) f.contentWindow.dispatchEvent(new Event('resize')); }catch(_){}
   }
+
+  /* -------------------------------------------------------------- zoom
+     The report's size (owner 2026-10-11: "report looks too small").  Fit
+     (the default) fills the report window's width and grows into the room
+     the other windows give up; - and + set a fixed 50-200 %.  A kept frame
+     message, so a reloaded or swapped-in page is drawn the same. */
+  var ZAT=null;                                  // what the page is drawn at
+  function zoomPref(){ var z=S.get('zoom'); return typeof z==='number'?z:'fit'; }
+  function zoomSend(){
+    var z=zoomPref();
+    if(UADShell.frames&&UADShell.frames.keep) UADShell.frames.keep('zoom',{uad:'zoom',z:z==='fit'?'width':z});
+  }
+  function zoomSet(z){
+    if(z!=='fit') z=Math.round(Math.max(0.5,Math.min(2,z))*20)/20;   // 5 % steps
+    S.set('zoom',z); zoomSend(); zoomLabel();
+  }
+  function zoomStep(d){ var z=zoomPref(); zoomSet((typeof z==='number'?z:(ZAT||1))+d); }
+  function zoomButtons(){
+    return '<span class="wz" role="group" aria-label="Report size">'
+      +'<button type="button" class="wb" data-act="zout" title="Smaller (Ctrl+-)" aria-label="Smaller">&#8722;</button>'
+      +'<button type="button" class="wb wz-v" data-act="zfit" title="Fit the window\'s width (Ctrl+0)" aria-label="Fit width"></button>'
+      +'<button type="button" class="wb" data-act="zin" title="Larger (Ctrl+=)" aria-label="Larger">+</button></span>';
+  }
+  function zoomLabel(){
+    var b=$('.winctl-report .wz-v'); if(!b) return;
+    var z=zoomPref(), n=Math.round((typeof z==='number'?z:(ZAT||1))*100);
+    b.textContent=(z==='fit'?'Fit ':'')+n+'%';
+    b.classList.toggle('on',z==='fit');
+  }
+  UADShell.on('frame:zoom-at',function(d){
+    if(UADShell.frames.activePane&&d.pane!==UADShell.frames.activePane()) return;
+    var z=d.msg&&d.msg.z; if(typeof z==='number'&&isFinite(z)){ ZAT=z; zoomLabel(); }
+  });
 
   /* -------------------------------------------------------------- tray */
   function tray(){
@@ -158,6 +192,9 @@
     if(!b.closest('.winbar,.winctl,#wintray,#winmenu,.sketch-ov')) return;
     var a=b.getAttribute('data-act'), k=b.getAttribute('data-win');
     if(a==='menu'){ menu(b); return; }
+    if(a==='zin'){ zoomStep(0.1); return; }
+    if(a==='zout'){ zoomStep(-0.1); return; }
+    if(a==='zfit'){ zoomSet('fit'); return; }
     var m=document.getElementById('winmenu'); if(m) m.remove();
     if(a==='reset'){
       ['top','left','right','report'].forEach(function(o){ S.set('win.'+o,'normal'); });
@@ -202,6 +239,9 @@
       run:function(){ act('right',mode('right')==='normal'?'min':'normal'); }});
     UADShell.commands.register({id:'win.top',label:'Top bar: show / hide',group:'View',
       run:function(){ act('top',mode('top')==='normal'?'min':'normal'); }});
+    UADShell.commands.register({id:'zoom.in',label:'Report: larger',group:'View',keys:['Ctrl+=','Ctrl+Shift++'],run:function(){ zoomStep(0.1); }});
+    UADShell.commands.register({id:'zoom.out',label:'Report: smaller',group:'View',keys:['Ctrl+-'],run:function(){ zoomStep(-0.1); }});
+    UADShell.commands.register({id:'zoom.fit',label:'Report: fit the window\'s width',group:'View',keys:['Ctrl+0'],run:function(){ zoomSet('fit'); }});
     UADShell.commands.register({id:'win.reset',label:'Reset the window layout',group:'View',
       run:function(){ ['top','left','right','report'].forEach(function(o){ S.set('win.'+o,'normal'); }); apply(); }});
   }

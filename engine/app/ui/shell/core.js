@@ -105,9 +105,9 @@
     try{ got=raw?JSON.parse(raw):null; }catch(_){ got=null; }
     if(!got||got.v!==VERSION) got=null;
     var s=sane(merge(defaults(),got||{}));
-    // zoom is 'fit' or a factor of the fitted size, 50-100 %
+    // zoom is 'fit' (the page fits the report window's width) or a size, 50-200 %
     var z=got&&got.zoom;
-    s.zoom=(typeof z==='number'&&isFinite(z))?clamp(z,0.5,1):'fit';
+    s.zoom=(typeof z==='number'&&isFinite(z))?clamp(z,0.5,2):'fit';
     return s;
   }
   var ST=loadState();

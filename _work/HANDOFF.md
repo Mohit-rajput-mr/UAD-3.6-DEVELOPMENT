@@ -3655,3 +3655,11 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - Tests: `tests/test_shell_docks.py` (7). Suite before zoom: 1249 pass; the 5 failures were mid-edit / disk-full and pass now.
 - Disk filled with 18 stale workflow worktrees; their diffs are in `.claude/wf-partial/worktrees/`. T-1202 patch (`.claude/wf-partial/T-1202.patch`) ready to integrate; T-1204/T-1203/T-014/T-925 not done (session limit).
 - Next: spacing pass, integrate T-1202, S0b/E1, wave 1.
+
+## 2026-10-11 (later): takeover engine fixes landed
+
+- T-1202 named grid rows per dwelling/unit (E-191); T-925 fill maps properties by role (E-192, + reshape follow-up); T-1204 defect rows tied to their owner (E-193; left 10.058, 4.096, 26.058/26.064); T-1203 type-first new grid line (E-194; left: project-parking Detail attachment); T-1205 hidden sections' values not delivered (E-195, 0 change on 12 samples); T-1201 "Repair the structure" (E-196).
+- T-014 measured honestly: sf1 950/1037 round-trip, 184 gated; list in `_work/t014/edit_roundtrip_sf1.txt`.
+- Spacing/zoom (T-1210 done): laptop page 229 px down at 69 %.
+- Run the full suite in a snapshot worktree (`git worktree add --detach <scratch>/wts HEAD`) so editing can continue; running it in the live tree while editing gave false failures twice.
+- Next: deploy after the suite on head; phase 2 S0b/E1, wave 1 (ribbon, problems panel, keys, markers).

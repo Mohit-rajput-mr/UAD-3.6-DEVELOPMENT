@@ -227,8 +227,10 @@ def _category_for(section: str, caption: str) -> str:
     section's Exhibit category.  Both come from the A-1 enumerations.
     """
     cats = form.image_categories()
+    homes = form.image_sections()           # a category A-1 places in two sections
     for value, (sec, shown) in cats.items():
-        if sec == section and shown and shown.lower() == caption.strip().lower():
+        if (sec == section or section in homes.get(value, ())) and shown \
+                and shown.lower() == caption.strip().lower():
             return value
     for value, (sec, shown) in cats.items():
         if sec == section and value.endswith("Exhibit") and not shown:

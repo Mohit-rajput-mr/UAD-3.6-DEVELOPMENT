@@ -105,6 +105,25 @@ def _black_em(code: str) -> str:
     return f"{sub.letter_spacing_pt / sub.size_pt:.4f}"
 RULE = page.RULE["colour"]
 BAR = page.BAR["fill"]
+#: Space under a section tab's rule.  Appendix E p19 sets the tab (15 pt high)
+#: and the 19.5 pt above it, not the space below; D-1 sets a tab's first line
+#: 24.4 pt under the tab's own text (the commonest gap, 43 tabs over the ten
+#: v1.4 samples), which 8.2 pt gives.  10.8 pt set every section 2.6 pt low
+#: (T-1150).
+TAB_BELOW = 8.2
+#: A photo that opens its column (the Dwelling Exterior's front photo) stands
+#: 3.0 pt below the first row's text in D-1 (SF1 p5, 763.4 against 760.4);
+#: after rows it keeps the 13.6 pt the Summary's photo is set with.
+PHOTO_FIRST = 5.9
+#: Space under an H2's rule.  D-1 sets the first row 15.3 pt under a contact
+#: H2's text (Client/Lender, AMC, Appraiser: 20 of 20) and a table's head
+#: 15.0 pt under Exterior / Interior Features and Level and Room Detail;
+#: 2.8 pt here set them 2.8 pt and 5.0 pt low (T-1150).
+H2_BELOW = 0.0
+#: An H1 straight under a section tab: D-1 sets its text 28.1 pt under the
+#: tab's (Prior Sale and Transfer History, Reconciliation, Certifications in
+#: SF1); the H1's own 14.3 pt above put it 10.4 pt lower (T-1150).
+H1_AFTER_TAB = 3.9
 
 GRID_KINDS = {"Sales Comparison Approach": "sales", "Rental Information": "rental",
               "Income Approach": "grm"}
@@ -265,6 +284,38 @@ def image_categories() -> dict[str, tuple[str, str]]:
         if value not in out or (section and not out[value][0]):
             out[value] = (section, caption)
     return out
+
+
+@lru_cache(maxsize=1)
+def image_sections() -> dict[str, list[str]]:
+    """ImageCategoryType -> every section A-1's Report Location names, in A-1's
+    order, for the categories it places in more than one section."""
+    rows = json.loads((SPEC / "enumerations.json").read_text(encoding="utf-8"))
+    out: dict[str, list[str]] = {}
+    for r in rows:
+        if r.get("MISMO Data Point / Attribute Name") != "ImageCategoryType":
+            continue
+        found = [m.group(1).strip() for m in
+                 re.finditer(r"^[\d.]+:\s*([^-\n]+?)\s+-", r.get("Report Location", ""), re.M)]
+        secs = list(dict.fromkeys(found))
+        if len(secs) > 1:
+            out[r.get("Supported Enumerations", "")] = secs
+    return out
+
+
+def image_section(ctx: "Ctx", category: str, default: str) -> str:
+    """The one section a category A-1 places in several prints in.
+
+    A-1 gives LandComparableMap two homes, Site Exhibits (4.118.1) and Cost
+    Approach Exhibits (25.059.1), and B-1 describes both (p150, p360).  The
+    one D-1 sample that carries the map, MH1, prints it in the Cost Approach,
+    beside the land comparables it maps (official PDF p25).  So the later
+    home is taken when its section is in this report, the earlier otherwise
+    -- one picture, printed once."""
+    homes = image_sections().get(category)
+    if not homes:
+        return default
+    return next((s for s in reversed(homes) if section_shown(ctx, s) is not False), homes[0])
 
 
 @lru_cache(maxsize=1)
@@ -1220,6 +1271,7 @@ class Item:
     fids: list[str] = field(default_factory=list)
     keys: list[str] = field(default_factory=list)    # each value's repeated block
     suffix: str = ""          # static text after the value, never typed into ("(Cooperative Interest)")
+    stated: bool | None = None  # a note whose own condition B-1 states (note_displays)
 
 
 @dataclass
@@ -1260,6 +1312,69 @@ def italic_rule_holds(ctx: "Ctx", text: str) -> bool | None:
             continue
         subj = bind.subject(ctx.root)
         return rule["value"] in rules.values_of(ctx.root, rule["name"], subj)
+    return None
+
+
+IMAGE_POINTS = {"ImageCategoryType", "ImageCaptionCommentDescription", "ImageFileLocationIdentifier"}
+
+
+def _picture_frame(el: dict) -> bool:
+    """A C-1 table whose every cell is a picture's category or caption: the
+    frame the picture itself is set in, not a table of text (only 7.002)."""
+    ids = [i for r in el.get("rows", []) for c in r.get("cells", []) for i in (c.get("ids") or [])]
+    points = {dp.get("mismo") for i in ids for dp in (binding(i).data_points if binding(i) else [])
+              if dp.get("mismo")}
+    return bool(points) and points <= IMAGE_POINTS
+
+
+def value_slot(ctx: "Ctx", fids: list[str]) -> str | None:
+    """B-1's "When X (FID: f) = "v", display "T"" for a value set under a bar:
+    T when the subject's X is v, nothing otherwise; None when B-1 states no
+    such rule.  B-1 p228: Vehicle Storage shows "None" only for CarStorageType
+    "None" -- any other storage is the table's (D-1: no sample prints a value
+    above it, and we printed the first storage type there on all 12)."""
+    for rule in _italic_rules():
+        if rule.get("shape") != "value" or rule.get("fid") not in fids:
+            continue
+        scope = ctx.scope if ctx.scope is not None else bind.subject(ctx.root)
+        values = rules.values_of(ctx.root, rule["name"], scope)
+        holds = bool(values) and all(v == rule["value"] for v in values)
+        if holds and rule.get("hides"):
+            # "...; the Vehicle Storage detail table and the Apparent Defects,
+            # Damages, Deficiencies subsection does not display" -- what the
+            # rest of this section leaves out (ctx.placeholders is per section)
+            ctx.placeholders["hides"] = rule["hides"]
+        return rule["text"] if holds else ""
+    return None
+
+
+def _hidden_by_rule(ctx: "Ctx", kind: str, title: str = "") -> bool:
+    """Does the section's value rule (``value_slot``) leave this out?  Its
+    "hides" names "the <x> detail table" and "the <y> subsection"."""
+    hides = ctx.placeholders.get("hides", "")
+    if ctx.edit or not hides:
+        return False
+    parts = [x.strip() for x in re.split(r",? and the ", hides)]
+    if kind == "table" and any(x.endswith("table") for x in parts) and not ctx.placeholders.get("hid_table"):
+        ctx.placeholders["hid_table"] = "1"
+        return True
+    return kind == "h1" and any(x.endswith(" subsection") and title.startswith(x[:-len(" subsection")])
+                                for x in parts)
+
+
+def note_displays(ctx: "Ctx", text: str, ids: list[str]) -> bool | None:
+    """B-1's "If X (FID: f) = "v", "<note>" displays." for a note C-1 sets
+    against field f (p162: "Sketch or Floor Plan Not Available" when
+    SketchExistsIndicator is "false"): None when B-1 states no such rule.
+
+    The note is then content, not decoration, so the section it opens prints
+    -- B-1: "The Sketch section always displays" (Figure 7-1)."""
+    norm = lambda t: re.sub(r"[^a-z0-9]", "", t.lower())  # noqa: E731
+    for rule in _italic_rules():
+        if rule.get("shape") != "displays" or rule.get("fid") not in ids \
+                or norm(rule["text"]) != norm(text):
+            continue
+        return rule["value"] in rules.values_of(ctx.root, rule["name"])
     return None
 
 
@@ -1489,7 +1604,23 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
 
     # split into sections at each tab; the Summary is everything before the first
     sections: list[tuple[str, list[dict]]] = [("Summary", [])]
+    first_tab = {}
     for el in elements:
+        if el["kind"] == "tab":
+            first_tab.setdefault(el["page"], el)
+    for el in elements:
+        tab = first_tab.get(el["page"])
+        if (not edit and el["kind"] == "slot" and tab is not None and el.get("y", 0) < tab.get("y", 0)
+                and binding((el.get("ids") or [""])[0]) is not None
+                and binding(el["ids"][0]).section == tab["title"].split(" - [")[0]):
+            # C-1 p14 sets the tab's own placeholders ([Outbuilding Type] -
+            # [Structure Identifier] - [Unit Identifier], 10.000-10.002) on
+            # the tab, ahead of it in reading order; section_instances already
+            # composes them into the title, and read as the section before
+            # they printed "Rec Room/Garage" under Manufactured Home (MH1).
+            # The editor keeps them: _section names them as controls
+            # ("Unit Interior: Outbuilding Type")
+            continue
         if el["kind"] == "tab":
             sections.append((el["title"], [el]))
             continue
@@ -1505,6 +1636,24 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
                                 ("", []))
     interleave = len(improvements(ctx, "Dwelling")) > 1 and unit_els \
         and section_shown(ctx, "Unit Interior") is not False
+
+    # An ADU in an outbuilding follows that Outbuilding: B-1 p377 orders the
+    # report "Outbuilding ... - Unit Interior (repeat Unit Interior for each
+    # ADU ... in Outbuilding)", p30 sets an ADU "after the applicable
+    # Outbuilding section" (D-1 SF3: Outbuilding - Standalone ADU, then Unit
+    # Interior - Standalone ADU - Cottage).
+    def outbuilding_of(uctx: Ctx) -> etree._Element | None:
+        imp = next(uctx.scope.iterancestors(f"{M}IMPROVEMENT"), None) if uctx.scope is not None else None
+        return imp if imp is not None and _find_text(imp, "ImprovementType") == "Outbuilding" else None
+    outb_title = next((t for t, _e in sections if t.split(" - [")[0] == "Outbuilding"), "")
+    outb_on = bool(outb_title) and section_shown(ctx, "Outbuilding") is not False \
+        and print_gate(ctx, "Outbuilding") is not False
+    sheds = {bind.stable_path(c.scope) for c, _p in section_instances(ctx, outb_title)
+             if c.scope is not None} if outb_on else set()
+
+    def home_key(uctx: Ctx) -> str:
+        shed = outbuilding_of(uctx)
+        return bind.stable_path(shed) if shed is not None else ""
     placed: set[str] = set()
     blocks: list[Block] = []
     for title, els in sections:
@@ -1522,13 +1671,26 @@ def build(tree, *, folder: Path | None = None, media: list[dict] | None = None,
         for sctx, printed in section_instances(ctx, title):
             if base == "Unit Interior" and sctx.scope is not None and bind.stable_path(sctx.scope) in placed:
                 continue
+            if base == "Unit Interior" and home_key(sctx) in sheds:
+                continue                    # printed after its Outbuilding, below
             if base == "Cost Approach":
                 blocks += _cost_approach(title, printed, els, sctx, sample=sample)
                 continue
-            blocks += _section(title, printed, els, sctx, sample=sample)
+            out = _section(title, printed, els, sctx, sample=sample)
+            if out and base in NEW_PAGE_SECTIONS and out[0].kind != "tab":
+                # Appendix E p79/p85: the Scope of Work "starts new page", and
+                # its section opens with text ("TAB sets elsewhere"), so the
+                # break is carried by that first block, not by a tab
+                out[0].new_page = True
+            blocks += out
             if off:
                 blocks.append(Block("text", section=printed, html=_switched_off_html(base),
                                     visible=True))
+            if base == "Outbuilding" and sctx.scope is not None and bind.stable_path(sctx.scope) in sheds:
+                for uctx, uprinted in section_instances(ctx, unit_title):
+                    if home_key(uctx) == bind.stable_path(sctx.scope):
+                        placed.add(bind.stable_path(uctx.scope))
+                        blocks += _section(unit_title, uprinted, unit_els, uctx, sample=sample)
             if interleave and base == "Dwelling Exterior" and sctx.scope is not None:
                 for uctx, uprinted in section_instances(ctx, unit_title):
                     imp = next(uctx.scope.iterancestors(f"{M}IMPROVEMENT"), None) \
@@ -1621,8 +1783,15 @@ def _build_kind(kind: str, ctx: Ctx, *, sample: bool) -> list[Block]:
     return blocks
 
 
+# Sections that open a page.  Assignment Information, the Sales Comparison
+# Approach and the Scope of Work: Appendix E p35, p61, p79/p85 "Starts new
+# page".  Certifications: E is silent and C-1 draws its tab mid-page (Layout
+# p41), but all twelve D-1 samples open a page with it although the Scope of
+# Work leaves 90-100 pt free above the footer, where the same samples set
+# other tabs with two lines under them (Functional Obsolescence, MH1 p12,
+# SF3 p9, SF4 p10).
 NEW_PAGE_SECTIONS = {"Assignment Information", "Sales Comparison Approach",
-                     "Certifications and Scope of Work"}
+                     "Certifications and Scope of Work", "Certifications"}
 # Sections whose body is the report's own fixed wording rather than case data.
 FIXED_TEXT = {"Certifications and Scope of Work", "Certifications"}
 
@@ -1730,7 +1899,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind in ("h1", "tab"):
             rule = SUBSECTION_RULES.get(el.get("title", "")) if kind == "h1" else None
             d = rules.evaluate(rule, ctx.root) if (rule and not ctx.edit) else None
-            gated = bool(d is not None and d.known and not d.shown)
+            gated = bool(d is not None and d.known and not d.shown) \
+                or _hidden_by_rule(ctx, kind, el.get("title", ""))
         if gated:
             continue
         # C-1 draws the comparable grid as a run of loose pieces -- sub-tables,
@@ -1899,6 +2069,14 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                                              visible=True))
                             out.append(Block("table", section=printed, html=nu, visible=True))
                 continue
+            if not ctx.edit and _picture_frame(el):
+                # the 7.002 table is the sketch's frame: the exhibit set in its
+                # place prints the caption inside the frame (Appendix E p44
+                # "full page image follows with CAP at top"); printing the
+                # table too said "Sketch" twice (D-1 SF3 p6, Condo1 p5)
+                continue
+            if _hidden_by_rule(ctx, "table"):
+                continue
             html_, visible = _table_html(el, ctx)
             if column in ("left", "right"):
                 item = Item("table", html=html_, visible=visible)
@@ -1922,8 +2100,11 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
         if kind == "italic":
             text = el.get("text", "")
             if column != "full" and el.get("x1", 0) < 306 + 12:
-                col(el).left.append(Item("italic", style="TXC-I1", label=text)) \
-                    if column == "left" else col(el).right.append(Item("italic", style="TXC-I1", label=text))
+                said = None if ctx.edit else note_displays(ctx, text, ids)
+                if said is False:
+                    continue
+                note = Item("italic", style="TXC-I1", label=text, stated=said)
+                col(el).left.append(note) if column == "left" else col(el).right.append(note)
                 continue
             flush()
             # one question answered here; a note gathering six (26.020, each
@@ -1948,6 +2129,8 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
             if not ctx.edit and italic_rule_holds(ctx, text) is False:
                 continue          # B-1's condition for this note does not hold
             own = next((v for v in (_italic_when(ctx, f) for f in ids) if v is not None), None)
+            if own is None:
+                own = note_displays(ctx, text, ids)
             if own is not None:
                 # B-1 states this note's own condition (26.075: "When
                 # ProjectLegalStructureType = Cooperative OR Condop: ...
@@ -2117,6 +2300,9 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
                                        f" data-ph='Type the {esc(named.lower())}\u2026'>"
                                        f"{_paras(value)}</div></div>")))
                 continue
+            said = value_slot(ctx, main)
+            if said is not None:
+                value = said
             out.append(Block("text", section=printed, visible=bool(value), fids=ids,
                              html=f"<div class='txc'>{_paras(value)}</div>"))
             continue
@@ -2257,6 +2443,16 @@ def _section(title: str, printed: str, els: list[dict], ctx: Ctx, *,
     if own and place_before_or_after(lambda t: t == SALES_MAP_CAPTION, own, after=True):
         exhibits = [it for it in exhibits if it not in own]
     sketches = [it for it in exhibits if it.get("category") in SKETCH]
+    if (base == "Sketch" and report == "urar" and not sketches
+            and _find_text(ctx.root, "SketchExistsIndicator") == "true"):
+        # B-1 p162-163: with SketchExistsIndicator "true" the sketch "displays
+        # as an image in the space provided", and a sketch drawn by integrated
+        # sketch software needs no separate IMAGE.  The space is still the
+        # report's (D-1 SF1 p5, SF5 p4: the 7.002 box, captioned "Sketch").
+        sketches = [{"src": "", "title": "Sketch", "caption": "", "noun": "image",
+                     "category": "SubjectPropertyImprovementSketch", "layout": "full",
+                     "media_kind": "sketch"}]
+        exhibits = exhibits + sketches
     if sketches and base == "Sketch":
         if not place_before_or_after(lambda t: t.startswith("Sketch Commentary"), sketches, after=False):
             for it in sketches:
@@ -2602,8 +2798,12 @@ def _fixed_text(out: list[Block], printed: str, el: dict, ctx: Ctx) -> None:
         if shown and not _agency_ok(ctx, text):
             shown = False
         lead = f"<b>{esc(number)}</b> " if number else ""
+        # C-1 sets the Definition of Market Value's footnote at 8 pt, the one
+        # plain paragraph of fixed wording below 9 pt: Appendix E p80 "Footnote
+        # text sets as FN, 8/10 Myriad Pro Regular" (FN, p25)
+        fn = " fn" if float(el.get("size") or 9) < 8.5 and not el.get("bold") else ""
         blk = Block("static", section=printed, visible=shown, fids=[fid],
-                    html=f"<div class='txc kp'>{lead}<span class='pt'>{esc(text)}</span></div>")
+                    html=f"<div class='txc kp{fn}'>{lead}<span class='pt'>{esc(text)}</span></div>")
         blk.para_text = text
         out.append(blk)
         return
@@ -5065,6 +5265,7 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
         if im["category"] == "DwellingFront" and any(im["node"] is t["node"] for t in tops):
             continue                                # drawn atop its section, not an exhibit
         sec, caption = cats.get(im["category"], ("", ""))
+        sec = image_section(ctx, im["category"], sec)
         owner = im["owner"]
         defect_of = None
         if not im["category"] and owner is not None:
@@ -5352,8 +5553,9 @@ def _exhibits_html(items: list[dict], section: str = "", edit: bool = False) -> 
     number = SECTION_NUMBER.get(section, 0)
     for it in items:
         what = it.get("placeholder") or re.sub(r' *[(].*', '', it['title'] or 'exhibit')
+        noun = it.get("noun", "photo")
         img = (f"<img src='{it['src']}' alt=''>" if it["src"] else
-               f"<div class='ph'>{CAMERA}<span>This is where the {esc(what)} photo would display.</span></div>")
+               f"<div class='ph'>{CAMERA}<span>This is where the {esc(what)} {noun} would display.</span></div>")
         slot, media = it.get("slot", ""), it.get("media_id", "")
         image_key = it.get("image_key", "")
         if edit and image_key and it.get("category") != "SalesComparableMap":
@@ -5395,6 +5597,9 @@ def _exhibits_html(items: list[dict], section: str = "", edit: bool = False) -> 
             # the empty box itself takes the picture: click, drop or paste
             target = (f" data-slot='{esc(slot)}'" if slot else
                       f" data-fill='{esc(it.get('location', ''))}'" if it.get("location") else "")
+            if it.get("media_kind"):
+                # the sketch space: what is dropped here is the sketch
+                target += f" data-category='{esc(it['media_kind'])}'"
             extra = (f"<span class='exdrop' data-section='{number}' data-name='{esc(section)}'"
                      f" data-caption='{esc(it['title'])}'{target}></span>")
         if edit and (slot or media):
@@ -5729,7 +5934,7 @@ def _resolve_visibility(blocks: list[Block]) -> None:
         if blk.kind == "cols":
             for items in (blk.left, blk.right):
                 _column_visibility(items)
-            blk.visible = any(i.visible and i.kind not in ("head", "italic")
+            blk.visible = any(i.visible and (i.kind not in ("head", "italic") or i.stated)
                               for i in blk.left + blk.right)
     # decoration (italic notes, static paragraphs) follows its neighbours
     for i, blk in enumerate(blocks):
@@ -5785,7 +5990,7 @@ def _column_visibility(items: list[Item]) -> None:
         if it.kind != "head":
             if it.kind == "italic":
                 prev = items[i - 1] if i else None
-                it.visible = bool(prev and prev.visible)
+                it.visible = it.stated if it.stated is not None else bool(prev and prev.visible)
             continue
         vis = False
         for other in items[i + 1:]:
@@ -6378,7 +6583,7 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .sum-hd{{position:absolute;left:4pt;top:var(--sum-top);font-size:14pt;line-height:14pt;
          font-weight:900;letter-spacing:{_black_em('SUM-HD')}em}}
 
-.tabwrap{{border-bottom:0.5pt solid {INK};height:15pt;margin-top:19.5pt;margin-bottom:10.8pt;line-height:0}}
+.tabwrap{{border-bottom:0.5pt solid {INK};height:15pt;margin-top:19.5pt;margin-bottom:{TAB_BELOW}pt;line-height:0}}
 .blk:first-child .tabwrap{{margin-top:0}}
 .tab{{display:inline-block;background:{INK};color:#fff;height:14.83pt;line-height:14.83pt;
       min-width:144pt;padding:0 14pt 0 6pt;font-weight:700;font-size:9pt;
@@ -6388,12 +6593,13 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .h1{{height:15pt;line-height:15pt;padding:0 4pt;font-size:10pt;font-weight:700;position:relative;
      margin-top:14.3pt;margin-bottom:0.7pt;display:flex;justify-content:space-between;white-space:nowrap}}
 .blk:first-child .h1{{margin-top:0}}
+.tabblk + .blk > .h1:first-child{{margin-top:{H1_AFTER_TAB}pt}}
 .h1::before{{content:'';position:absolute;left:0;right:0;top:0.75pt;height:15pt;background:{BAR};z-index:-1}}
 .h1 > span{{position:relative;top:var(--h1-text);z-index:1}}
 .h1 .note{{font-size:9pt;font-style:italic;font-weight:400}}
 .h1 .amt{{font-size:9pt;font-weight:700}}
 .h2{{font-size:9pt;font-weight:700;line-height:11.3pt;padding-left:4pt;border-bottom:1pt solid {INK};
-     margin-top:10pt;margin-bottom:2.8pt}}
+     margin-top:10pt;margin-bottom:{H2_BELOW}pt}}
 
 .cols{{display:flex;gap:12pt;align-items:flex-start}}
 .cols.gap{{margin-top:6.6pt}}
@@ -6434,6 +6640,7 @@ body{{font-family:'{fonts.FAMILY}',{fonts.FALLBACK};color:{INK};font-size:9pt;
 .txc{{line-height:11pt;padding:3pt 0 2pt 4pt;position:relative;top:var(--txc-top)}}
 .txc.np{{padding-left:13pt;text-indent:-9pt}}
 .txc.kp{{line-height:12pt;padding:3pt 0 3pt 4pt}}
+.txc.kp.fn{{font-size:8pt;line-height:10pt}}
 td.rooms .rm{{display:flex;align-items:center;gap:3pt;line-height:12pt}}
 td.rooms .rm > span:first-child{{flex:1}}
 .rmb,.lvdel{{display:inline-flex;align-items:center;justify-content:center;width:11pt;height:11pt;border:0.5pt solid #939598;
@@ -6464,6 +6671,7 @@ tr.hint td .hintx{{font-style:italic;color:#6d6e71;font-size:8pt}}
 .photo.empty span{{font-style:italic;color:#939598}}
 .col.right .photo{{margin-top:13.6pt}}
 .col.right .r + .photo{{margin-top:13.6pt}}
+.col.right > .photo:first-child{{margin-top:{PHOTO_FIRST}pt}}
 
 table.tbl{{border-collapse:collapse;table-layout:fixed;margin:4pt 0 2pt}}
 table.tbl td > span{{position:relative;top:var(--cell-text);display:inline-block}}

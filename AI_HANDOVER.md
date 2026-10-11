@@ -84,6 +84,29 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-11 — Page breaks follow D-1 and Appendix E (ecstatic-bohr;
+  E-300..E-308, T-110 done, T-101 partial).** In all 12 samples the Sketch,
+  the Scope of Work and the Certifications now head the same pages as the
+  official PDFs; before, none did. The rules:
+  - full-page images open a page together with their lead-in (E p31);
+  - the Scope of Work opens a page without a tab (E p79/p85);
+  - Certifications opens a page (D-1, 12 of 12);
+  - headings keep with their heading run and its first line;
+  - a lone tab never strands its grid.
+  Content fixes in the same batch:
+  - the integrated-sketch space (B-1 p163);
+  - "Sketch or Floor Plan Not Available" (B-1 p162: the section had been
+    vanishing);
+  - LandComparableMap prints in the Cost Approach (D-1 MH1);
+  - the FN footnote (E p80);
+  - the sketch caption prints once;
+  - no stray "Rec Room/Garage" line.
+  SF1 and SF2 page counts are now exact. **Exact matches went 4 → 2,
+  because the earlier four were offsetting errors.** Now our content runs
+  taller than D-1's (T-1150). Word diff vs D-1: 7167 → 7124.
+  `tests/test_pagination.py` 20 tests. **Full suite 930 passed / 0 failed /
+  10 skipped; harness 12: 86 pass / 0 fail / 22 gap.** It was 88/0/20; the
+  2 extra gaps are page counts whose earlier matches were coincidental.
 - **2026-10-10 — The live site makes the PDF and the ZIP (B5, T-1033;
   E-163, E-164).** `uad/report/pdfdraw.py`: the browser reports where it
   drew every glyph, rule and picture; the server writes the PDF with its own
@@ -230,6 +253,38 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
     harness 88/0/20);
   - running: T-416 and T-1072;
   - offered to the other sessions: T-1074, T-1066 and T-125.
+
+### 2026-10-11 -- page breaks vs D-1 (ecstatic-bohr, a parallel session; E-300..E-308)
+- **Three sessions run in parallel.** Run `python engine/agents.py` first;
+  `_work/AGENTS_BOARD.md` keeps the history.
+  - sleepy-hypatia (lead): holds production, works the desktop brief.
+  - keen-turing: engine checks, T-127.
+  - ecstatic-bohr (this one): pagination and report fidelity against D-1,
+    print side; T-1150..T-1199, E-300..E-339.
+- **Done:** see §4 and CATALOG E-300..E-308. Detail is in the last section
+  of `_work/HANDOFF.md`, with the method and the rules checked and found
+  not to be rules.
+- **Verified:** `tests/test_pagination.py` 20/20. On the final tree,
+  full suite 930 passed / 0 failed / 10 skipped, and harness 12 86 / 0 / 22
+  (see §4 for why gaps rose by 2).
+- **Batch 2, done (E-309, E-310):**
+  - Vehicle Storage no longer prints a storage type above its table (all
+    12 samples had). "None" prints alone (B-1 p228).
+  - An ADU in an outbuilding follows that Outbuilding (B-1 p377; D-1 SF3).
+  - E-308 is now print-only, so the editor keeps MH1's Unit Interior
+    controls.
+- **Calibration (E-311):** the space under a tab, under an H1 that sits
+  under a tab, and under an H2, plus a column-opening photo, are now set
+  from D-1. SF1 tab gaps: median difference 4.0 -> 0.11 pt. Aligned pages:
+  median offset 10.1 -> 2.4 pt.
+- **Trap:** in a cloud container, pin `playwright==1.56.0`, which matches
+  the installed Chromium 1194.
+- **Next (this branch):**
+  - T-1150, vertical metrics: per section, block heights against the D-1
+    PDFs. Example: SF3's front-photo box is 172.6 pt here, ~160 pt in D-1.
+  - Then MH1, which is 3 pages short. D-1 sets two invoices full page as a
+    judgment call, not a rule (E-308).
+  - Then the word diff.
 
 ### 2026-10-10 (night) -- T-1085 worksheet inside the comparable grid: DONE; live at https://uad36.vercel.app
 - **Owner's addendum** (replaces DR §11):

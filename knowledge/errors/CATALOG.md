@@ -2688,3 +2688,247 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - Test: `tests/test_vehicle_storage.py` (17). It covers the round trip
   through mismo.xml, the preview and the grid, a Chromium test of the grid
   editor, and every vehicle-storage value on the 12 samples.
+
+### E-300 -- An integrated sketch printed no sketch space (2026-10-11)
+- Symptom: D-1 SF1 p5 and SF5 p4 print the Sketch section's full-page box
+  ("Sketch", "This is where the Sketch image would display."). Ours printed
+  only "Measurement Standard ANSI" and ran on, a page short on SF1.
+- Cause: the sketch space was drawn only from an IMAGE with category
+  SubjectPropertyImprovementSketch / FloorPlan. Those two samples carry
+  SketchExistsIndicator "true" and no such IMAGE.
+- Authority: B-1 p162-163. With the indicator "true" the sketch "displays as
+  an image in the space provided", and a sketch embedded by integrated sketch
+  software needs no separate IMAGE or category.
+- Mechanism: `form._section` adds the 7.002 space, captioned "Sketch", when
+  the indicator is "true" and no sketch or floor-plan IMAGE exists. It uses
+  D-1's wording, "image" rather than "photo". In the editor the box takes a
+  dropped picture as the sketch (`data-category='sketch'`).
+- Test: `tests/test_pagination.py::test_a_sketch_that_exists_has_its_space`,
+  `::test_a_sketch_image_is_not_doubled`.
+
+### E-301 -- "Sketch or Floor Plan Not Available": the whole Sketch section vanished (2026-10-11)
+- Symptom: with SketchExistsIndicator "false" nothing of the Sketch section
+  printed. No D-1 sample answers "false", so nothing caught it.
+- Authority: B-1 p162, "The Sketch section always displays", and "If
+  SketchExistsIndicator ... = "false", "Sketch or Floor Plan Not
+  Available" displays" (Figure 7-1).
+- Cause: C-1 sets the note in the left column. A column's italic note took
+  its visibility from the item above it, and this one is first.
+- Mechanism: `uad/spec/extract_italic_rules.py` now also reads B-1's "If X
+  (FID: f) = "v", "<note>" displays." sentences (two in B-1: 7.000, and
+  14.000, which is a value slot and unaffected). `form.note_displays`
+  decides such a note from the document, and an `Item.stated` note counts as
+  content. Result: "Sketch / Sketch or Floor Plan Not Available", no
+  Measurement Standard ("displays when a sketch or floor plan is included").
+- Test: `tests/test_pagination.py::test_no_sketch_prints_no_sketch_space`,
+  `::test_a_sketch_that_exists_keeps_measurement_standard`.
+
+### E-302 -- The land comparables map printed in Site Exhibits (2026-10-11)
+- Symptom: D-1 MH1 prints "Map of Land Comparables" under Cost Approach
+  Exhibits (p25). We printed it full page among the Site exhibits.
+- Cause: A-1 gives LandComparableMap two report locations, 4.118.1 (Site
+  Exhibits) and 25.059.1 (Cost Approach Exhibits), and `image_categories`
+  kept the first. It is the only category A-1 places in two sections.
+- Mechanism: `form.image_sections` lists every A-1 home a category has, and
+  `form.image_section` takes the later home when its section prints, the
+  earlier otherwise. B-1 p360 describes the map beside the land comparables
+  it maps. `delivery._category_for` recognises both homes for an uploaded
+  map.
+- Test: `tests/test_pagination.py::test_the_land_comparables_map_prints_in_the_cost_approach`,
+  `::test_the_land_comparables_map_falls_back_to_site`.
+
+### E-303 -- Full-page images did not open a page (2026-10-11)
+- Symptom: our Sketch section began at the foot of a page and carried its
+  frame over under "(continued)". The Sales Comparison Map and other maps
+  shared a page with what came before them.
+- Authority: Appendix E p31. Photos "can start on same page as section";
+  maps and sketches are full page (45 x 48 pica frame). In the D-1 PDFs every
+  full-page image heads its page with only its lead-in above it, even with
+  room to spare: MH1 p6 follows a page ending at 211 pt, MH1 p22 one at
+  242 pt. That is 11 raster images plus the vector sketch boxes, 12 of 12
+  samples.
+- Mechanism: `flow.full_page_leads` finds each `ex full` exhibit and the
+  block that opens its page. That is its run of headings ("Sales Comparison
+  Map", "Site Exhibits"). An image with no heading of its own takes its
+  section's tab when only the section's opening rows (at most `LEAD_IN`,
+  120 pt) stand between them, as with the Sketch's tab and Measurement
+  Standard. `plan` breaks there, under "(continued)" when the break is
+  inside a section. What follows the image may share its page (SF1 p5).
+- Test: `tests/test_pagination.py::test_a_full_page_image_opens_a_page_with_its_lead_in`,
+  `::test_a_full_page_image_under_its_heading_carries_a_continued_tab`,
+  `::test_photos_still_share_the_page`.
+
+### E-304 -- The Scope of Work never opened its page (2026-10-11)
+- Symptom: in all 12 samples the official Scope of Work text heads a page
+  with no tab above it (Appendix E p79/p85 "Starts new page"; "TAB sets
+  elsewhere"). Ours ran on under "Reconciliation (continued)" or
+  "Revision History (continued)".
+- Cause, in two parts:
+  - "Certifications and Scope of Work" is in `NEW_PAGE_SECTIONS`, but the
+    flag was set only on a section's tab, and this section opens with text.
+  - `plan` honoured `newpage` only on tabs, headings and grids.
+- Mechanism:
+  - `form.build` puts the flag on the first block of a new-page section that
+    has no tab.
+  - `plan` honours it on any block, opening a page with no "(continued)" tab
+    and clearing the section to continue (its tab is set later).
+- Test: `tests/test_pagination.py::test_the_scope_of_work_and_the_certifications_open_pages`,
+  `::test_a_section_opening_with_text_opens_its_page_without_a_tab`.
+
+### E-305 -- Certifications: tab orphaned at a page foot, and its own page (2026-10-11)
+- Symptom: the Certifications tab sat alone at the bottom of the Scope page,
+  with its H1 and first paragraph carried to the next page.
+- Causes:
+  - A tab kept only with the next block, so "tab + H1" fitted while the H1's
+    own first line did not.
+  - The same holds for any heading followed by a heading.
+- Mechanism:
+  - `flow._keep`: a heading keeps with every heading straight after it and
+    the first line of what they head.
+  - Certifications is in `NEW_PAGE_SECTIONS`. Appendix E is silent and C-1
+    draws the tab mid-page (Layout p41). Yet all 12 D-1 samples open a page
+    with it, with 90-100 pt free above the footer, while the same samples
+    set other tabs with two lines under them (Functional Obsolescence: MH1
+    p12, SF3 p9, SF4 p10). Recorded as D-1 practice, not an E rule.
+- Test: `tests/test_pagination.py::test_a_tab_keeps_with_its_heading_and_first_line`.
+
+### E-306 -- A grid moved off a page that held only its section's tab (2026-10-11)
+- Symptom: Co-op1 printed a page holding nothing but the "Sales Comparison
+  Approach" tab. The grid was moved whole to the next page under
+  "(continued)".
+- Cause: `at_top()` counted only a "(continued)" tab as nothing. The page's
+  own new-section tab made it "not at the top", so a table that fits a page
+  was moved rather than split.
+- Mechanism: a page holding only tabs is at the top. D-1 Co-op1 p12 sets
+  the grid straight under the tab and splits it.
+- Test: `tests/test_pagination.py::test_a_grid_under_a_lone_tab_is_split_not_moved`.
+
+### E-307 -- Two print-only fixes on the Scope and Sketch pages (2026-10-11)
+- **Market value footnote.** Appendix E p80 sets the Definition of Market
+  Value's footnote ("*Adjustments to the comparables ...") as FN, 8/10
+  Myriad Pro (p25). C-1 records it at 8 pt, and it is the only plain
+  paragraph of fixed wording below 9 pt. We set it at body size, so the
+  Scope page ran 10-40 pt long. `_fixed_text` gives it `fn`, set as
+  `.txc.kp.fn` 8/10.
+- **Sketch caption.** "Sketch" (or "Floor Plan") printed twice: once from
+  the C-1 7.002 table as a text row, and again on the exhibit's frame (D-1
+  SF3 p6, Condo1 p5, MH1 p6 print it once). A C-1 table whose every cell is
+  a picture's category or caption is that picture's frame. Only 7.002
+  qualifies. In print it is left to the exhibit (`form._picture_frame`); the
+  editor is unchanged.
+- Test: `tests/test_pagination.py::test_the_market_value_footnote_is_set_as_fn`;
+  the Sketch galley text in `::test_a_sketch_that_exists_keeps_measurement_standard`.
+- Page counts after E-300..E-307 (official / before / after): Condo1
+  22/22/23, Condo2 24/26/26, Co-op1 18/18/19, MH1 30/25/27, MH2 20/21/22,
+  SF1 21/20/21, SF2 22/21/22, SF3 23/23/25, SF4 22/23/24, SF5 19/16/18,
+  2-4 29/29/30, 2-4 S2 26/28/29. Exact matches fall from 4 to 2: the earlier
+  four were coincidences, since none had Sketch, Scope of Work or
+  Certifications heading a page, and now all 12 do. What remains is our
+  content running taller than D-1's (vertical metrics, T-034). Example: SF3
+  p6, where Dwelling Exterior misses the sketch page by 0.6 pt because our
+  front-photo box measures 172.6 pt against D-1's ~160 pt.
+
+### E-308 -- A tab's own placeholders printed in the section before it (2026-10-11)
+- Symptom: D-1 MH1 has nothing between its Manufactured Home Exhibits and
+  the Unit Interior tab. Ours printed a stray "Rec Room/Garage" line there.
+- Cause: C-1 p14 sets the Unit Interior tab's placeholders ([Outbuilding
+  Type] - [Structure Identifier] - [Unit Identifier], slots 10.000-10.002,
+  y 52 pt) on the tab, which puts them ahead of it in reading order. The
+  section split gave them to the section before, where 10.000
+  (OutbuildingType) printed as text.
+- Mechanism: `form.build` skips a slot that C-1 sets above its page's first
+  tab when the slot's field belongs to that tab's section.
+  `section_instances` already composes them into the printed title ("Unit
+  Interior - Building 2 - Unit 2"). The only other pre-tab slot in C-1,
+  29.016 on p41, is Scope of Work text and stays.
+- Print only. In the editor `_section` names these slots as the unit's
+  controls ("Unit Interior: Outbuilding Type"). The first version of this
+  fix skipped them in the editor too, which removed MH1's three controls;
+  restored in the next commit.
+- Test: `tests/test_pagination.py::test_a_tabs_own_placeholders_do_not_print_in_the_section_before`,
+  `::test_the_editor_keeps_a_tabs_placeholders_as_controls`.
+- Checked, not a rule: D-1 MH1 sets the Retailer's and Manufacturer's
+  Invoices full page (one page each) but the HUD Data Plate, a more portrait
+  image, as a photo. Appendix E p31 leaves image size to "properly display
+  the content", so this is the producer's judgment, not encoded. Nor is
+  B-1 p187's exhibit order (Data Plate, Labels, others): D-1 MH1 puts
+  "Foundation", one of the others, first.
+
+### E-309 -- Vehicle Storage printed the first storage type above its own table (2026-10-11)
+- Symptom: on all 12 samples our Vehicle Storage began with a loose line
+  ("Carport", "Parking Garage", "Driveway") above the Storage table. Every
+  D-1 sample sets the table straight under the tab.
+- Authority: B-1 p228. "When CarStorageType (FID: 13.000) = "None",
+  display "None"; the Vehicle Storage detail table and the Apparent Defects,
+  Damages, Deficiencies subsection does not display" (Figure 13-1). Any
+  other storage is the table's (13.001-13.003).
+- Cause: slot 13.000, a value set under the bar, printed its first value
+  like commentary.
+- Mechanism: `extract_italic_rules.py` reads B-1's "When X (FID: f) = "v",
+  display "T"[; the ... does not display]" sentences (`"shape": "value"`;
+  B-1 has three: 4.078, 13.000, 13.004). `form.value_slot` prints T only
+  when the subject's values are all v, and nothing otherwise.
+  `_hidden_by_rule` drops what the sentence says does not display: the next
+  table, and the subsection it names. This is print only; the editor keeps
+  the table to fill. 4.078 (a table cell) and 13.004 (an italic note) do
+  not pass through value slots and are unchanged.
+- Test: `tests/test_pagination.py::test_vehicle_storage_prints_no_storage_type_above_its_table`
+  (12 samples), `::test_no_vehicle_storage_prints_none_alone`.
+
+### E-310 -- An ADU in an outbuilding printed before its outbuilding (2026-10-11)
+- Symptom: D-1 SF3 prints "Outbuilding - Standalone ADU" and then "Unit
+  Interior - Standalone ADU - Cottage". We printed the ADU's Unit Interior
+  straight after the primary dwelling's, before Functional Obsolescence.
+- Authority:
+  - B-1 p377 orders the report "Dwelling Exterior - Unit Interior (... each
+    living unit ... in Dwelling) - Outbuilding - Unit Interior (repeat Unit
+    Interior for each ADU ... in Outbuilding) - Vehicle Storage".
+  - B-1 p30 sets an ADU "after the applicable Outbuilding section".
+- Cause: sections print in C-1's order, where Unit Interior precedes
+  Outbuilding. Only dwellings interleaved their units.
+- Mechanism: in `form.build`, a unit whose PROPERTY_UNIT stands in an
+  Outbuilding IMPROVEMENT is printed right after that outbuilding's section,
+  when the Outbuilding section prints. Outbuildings are keyed by
+  `bind.stable_path`: lxml proxies have no stable `id()`. An ADU in the
+  dwelling (SF4) stays with the dwelling. The other 10 samples are
+  unchanged. Applies to print and editor alike.
+- Test: `tests/test_pagination.py::test_an_adu_in_an_outbuilding_follows_its_outbuilding`,
+  `::test_an_adu_in_the_dwelling_stays_with_the_dwelling`.
+
+### E-311 -- Every section started 2.6 pt low; H2s and H1s under tabs ran long (2026-10-11, T-1150)
+- Symptom: our pages drifted down against D-1, section by section.
+  Dwelling Exterior missed the sketch page by 0.6 pt (SF1, SF3), and
+  "Legal Description" spilled to page 3 on SF1.
+- Method: compare the gap from each heading's text to the next line, against
+  the same heading followed by the same line in the official PDF. A
+  scratchpad aligner scores every page that starts on the same line as
+  D-1's: the mean |dy| of matched lines.
+- Found, and set from D-1 (constants beside `form.BAR`; the planner's
+  `TAB_H` follows `TAB_BELOW`):
+  - **Under a section tab.** The first line sat 27.0 pt below the tab's
+    text; D-1 sets 24.4 (the commonest gap, 43 tabs). Appendix E p19 fixes
+    the tab's 15 pt height and the 19.5 pt above it, not the space below.
+    `TAB_BELOW` 10.8 -> 8.2 pt.
+  - **An H1 straight under a tab** (Prior Sale and Transfer History,
+    Reconciliation, Certifications) was 38.5 pt below the tab; D-1 sets
+    28.1. `H1_AFTER_TAB` = 3.9 pt.
+  - **Under an H2 rule.** A contact block's first row was 18.0 pt below the
+    H2; D-1 sets 15.3 (20 of 20). A table head was 20.0 below; D-1 sets
+    15.0. `H2_BELOW` 2.8 -> 0 pt.
+  - **A photo that opens its column** (the Dwelling Exterior front photo)
+    started 10.6 pt lower than D-1's, which sets it 3.0 pt under the first
+    row. `PHOTO_FIRST` = 5.9 pt. A photo after rows keeps 13.6 pt: the
+    Summary's matches D-1 within 0.3 pt.
+- Result:
+  - SF1 tab-to-first-line, paired with D-1: median difference 4.0 -> 0.11 pt.
+  - On the ten v1.4 samples' aligned pages, median line offset
+    10.1 -> 2.4 pt.
+  - Lines within 2 pt: 18% -> 46%.
+  - SF3 25 -> 24 pages (D-1 23). Word diff 7122 -> 7094.
+- Still open (T-1150):
+  - H2 -> table head is +2.2 pt.
+  - Kitchen and Bathroom Details' head sits lower in D-1 (a two-line head).
+  - H1 -> first paragraph is -2.8 pt (Certifications).
+  - The Contact Information H1 -> Client/Lender H2 is +4.0 pt.
+- Test: `tests/test_pagination.py::test_tabs_and_headings_sit_where_d1_sets_them`
+  (Chromium, against SF1's official PDF).

@@ -3386,3 +3386,108 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
   - run suite + harness;
   - deploy production (Vercel project `uad`, deploy by API from this
     branch).
+
+
+## 2026-10-11 -- current position (ecstatic-bohr): page breaks against the D-1 PDFs (E-300..E-307)
+- **Who:** the third parallel session, branch `claude/ecstatic-bohr-d4iffh`
+  (status file `_work/agents/claude-ecstatic-bohr-d4iffh.json`). It claims
+  T-101, T-110, T-117 and T-034, and holds T-1150..T-1199 and E-300..E-339.
+  It merged main (keen-turing's PR #2 and the lead's PR #3).
+- **Merged tree verified** before any change: harness 12 gave 88 pass /
+  0 fail / 20 gap; the full suite gave 903 passed and 1 failed. The failure
+  was keen-turing's Summary test, fixed in 1aea977.
+- **Trap (cloud containers):** `pip install playwright` installs 1.63,
+  which wants Chromium build 1243, and the container has 1194. Pin
+  `pip install playwright==1.56.0`, or every browser test fails at launch.
+- **Method:** scratchpad tools render the 12 samples, then compare:
+  - every page's first and last body line, ours against the official
+    (`bounds`);
+  - where each section tab lands, and whether it heads its page (`anchors`);
+  - pages side by side as PNGs.
+  The same method can be rebuilt from `_work/audit/pagecmp.py`, plus
+  pymupdf `get_text("dict")` and `get_image_info()`.
+- **Found and fixed** (each entry in CATALOG has its authority and test;
+  `tests/test_pagination.py` runs 19 tests):
+  - E-300: the Sketch space is missing when SketchExistsIndicator is "true"
+    and there is no sketch IMAGE (B-1 p163). This affected SF1 and SF5.
+  - E-301: with the indicator "false", the whole Sketch section vanished.
+    B-1 says it always displays "Sketch or Floor Plan Not Available".
+  - E-302: LandComparableMap now prints in the Cost Approach when that
+    section prints. A-1 gives it two homes; D-1 MH1 p25 uses that one.
+  - E-303: full-page images open a page together with their lead-in
+    (Appendix E p31; 12 of 12 samples).
+  - E-304: the Scope of Work opens a page with no tab (E p79/p85). Its
+    new-page flag sat on a text block the planner ignored.
+  - E-305: headings keep with the heading run under them and its first
+    line. Certifications opens a page (D-1 12/12; E is silent, so this is
+    recorded as practice).
+  - E-306: a grid under a lone tab is split, not moved. Co-op1 had printed
+    a page holding only the tab.
+  - E-307: the market value footnote is set as FN 8/10 (E p80), and the
+    Sketch caption prints once.
+- **Result:** Sketch, Scope of Work and Certifications now head the same
+  pages as D-1 in all 12 samples; before, none did. SF1 (21) and SF2 (22)
+  match exactly.
+  - **Exact matches fell from 4 to 2, and the harness `package` gaps will
+    rise accordingly.** The four earlier matches (Condo1, Co-op1, SF3, 2-4)
+    were offsetting errors.
+  - Full table in CATALOG E-307. What is left is our content measuring
+    taller than D-1's: T-1150, under T-034.
+- **Not a rule** (checked): the Site, Unit Interior, Amenities, Market and
+  Listing tabs head D-1 pages only after nearly full pages (prev ≥ 729 pt),
+  and they sit mid-page as low as 814 pt. Those are space-driven breaks.
+- **v1.2 samples:** SF5 and 2-4 Scenario 2 were drawn in an earlier style.
+  Their grids space the groups apart and title "Quality and Condition"
+  differently. Their page counts are not v1.4 targets; do not tune to them.
+- **Verified (final tree):** full suite 930 passed / 0 failed / 10
+  skipped. Harness 12 86 / 0 / 22: SF1 and SF2 `package` now pass, while
+  Condo1, Co-op1, SF3 and 2-4 became gaps. `test_client_pdf`'s editor run
+  now expects SF1 at 21 pages, which is D-1's count.
+- **Batch 2, done (E-309, E-310):**
+  - **(a)** Vehicle Storage prints no storage type above its table (12 of
+    12 samples had printed one). With CarStorageType "None" it prints only
+    "None", without the table or the defects subsection (B-1 p228, Figure
+    13-1). The rule is read from B-1 by `extract_italic_rules.py`
+    (`"shape": "value"`, with what it `hides`).
+  - **(b)** An ADU in an outbuilding prints after that Outbuilding (B-1
+    p377, p30; D-1 SF3).
+  - Also, E-308 skips the tab placeholders in print only. The first push
+    removed MH1's three editor controls ("Unit Interior: Outbuilding Type
+    ..."); 56223e5 restored them.
+  - `tests/test_pagination.py` 36 tests. Word diff 7124 -> 7122. Full suite
+    946 passed / 0 failed / 10 skipped; harness 86 / 0 / 22 (unchanged).
+- **Measured for T-1150 (next):**
+  - The first line after a section tab sits 27.0 pt below it here and
+    24.4 pt in D-1 (the commonest value on both sides). `.tabwrap`
+    margin-bottom is 10.8 pt; Appendix E p19 fixes the tab's height
+    (15 pt) and the space above it (19.5 pt), not below.
+  - A photo that opens its column (Dwelling Exterior) starts 10.6 pt
+    lower than D-1, from `.col.right .photo{margin-top:13.6pt}`. The
+    Summary photo, which follows rows, matches D-1 within 0.3 pt.
+  - Together these explain Dwelling Exterior missing the sketch page by
+    0.6 pt (SF1, SF3).
+- **Calibration batch (E-311, T-1150 partial):** four spacings set from
+  D-1, as constants beside `form.BAR`:
+  - `TAB_BELOW` 8.2 pt;
+  - `H1_AFTER_TAB` 3.9 pt;
+  - `H2_BELOW` 0 pt;
+  - `PHOTO_FIRST` 5.9 pt.
+  SF1 tab gaps: median difference from D-1 4.0 -> 0.11 pt. Aligned pages:
+  median offset 10.1 -> 2.4 pt; lines within 2 pt 18% -> 46%. Word diff
+  -> 7094. SF3 -> 24 pages (D-1 23). Full suite 947 passed / 0 failed /
+  10 skipped; harness 86 / 0 / 22 with no overflow.
+  - Method, kept in the scratchpad and easy to rebuild: pair each heading
+    with the same heading over the same next line in D-1 and compare the
+    gaps. Score pages that start on the same line by the mean |dy| of
+    matched lines.
+  - Do not chase the absolute alignment score alone: fixing one gap
+    uncovers errors that were cancelling it (H1 under a tab).
+- **Next:**
+  - T-1150, the rest: H2 -> table head +2.2 pt; the K&B head (two lines
+    in D-1); H1 -> first paragraph -2.8 pt; Contact Information H1 ->
+    H2 +4 pt.
+  - Then page counts again. Per section, measure block heights against
+    the D-1 PDFs and fix the stylesheet. SF3's front-photo box measures
+    172.6 pt against D-1's ~160 pt. MH1 runs 3 short, so it also has
+    content we fail to print (pages 7-17 of its map).
+  - Then the whole-report word diff (`_work/audit/linediff.py`).

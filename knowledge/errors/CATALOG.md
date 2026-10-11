@@ -3047,3 +3047,75 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   - every purchase seller is the same MISMO party as an owner;
   - every refinance borrower is on title.
 - Test: `tests/test_usability.py` (22), `tests/test_owner_checks.py` (15).
+
+### E-173 -- One photograph filed under several categories printed once per category (2026-10-11)
+- Symptom (T-127): MH1's waterfront photo printed three times. Each copy
+  sat in its own box under a bare category name ("Water Frontage", "Site
+  Influence", "View - Lake Virginia"). D-1 prints the photo once as "Site
+  Influence - Water Frontage - View - Lake Virginia". The same fault
+  appeared in five more samples: SF1, SF3 and SF4 vehicle storage and
+  decks, MH2's kitchen and living room, and the comparables map in
+  Condo2 and 2-4 Scenario 2.
+- Cause: the XML has one IMAGE per category, all pointing at the same
+  file, exactly as B-1 p59 (Image Data, Scenario 1) prescribes. The
+  renderer drew one exhibit per IMAGE.
+- Mechanism: `form._shared_exhibits` (print only), applied per section to
+  IMAGEs sharing an ImageFileLocationIdentifier.
+  - Category exhibits:
+    - headers are in the order of B-1's exhibit table, by Report Field ID
+      (`form.image_fids`, from A-1's Report Location);
+    - each caption follows its header;
+    - a caption the next header repeats prints once (Condo2 "Site
+      Influence - View - Golf Course").
+  - Exhibits titled by what they are of (rooms, vehicle storage,
+    amenities): in document order, each after the first without the part
+    it shares with the first. MH2 prints "Level 1 - Kitchen - Living
+    Room"; SF3 prints "Deck - Deck 1 and Deck 2" once.
+  - Rental and GRM comparable maps that are the sales map's file do not
+    print. B-1 p60 Scenario 2 applies, and D-1 Condo2 and 2-4 Scenario 2
+    print the one map as the "Sales Comparison Map".
+  - The editor keeps one box per IMAGE, each with its own caption and
+    remove.
+  - The same file in two sections prints in both (Scenario 4: SF1's
+    media room appears under Unit Interior and under Amenities).
+- Validated first: every exhibit title the report prints, in all 12
+  samples, was checked as a line in the D-1 PDF.
+  - Before: 18 of 319 titles were not in D-1.
+  - After: 0 of 299, once curly apostrophes are matched.
+  - A weaker line match had passed "Driveway" and "Garage" because they
+    are also grid cells. The test requires the title to stand alone.
+- Not done: exhibit *order*. D-1 orders neither by XML nor by Field ID
+  everywhere: SF2 prints Plat Map before Property Access, and MH1 prints
+  Dock before Pier. Ours stays in document order; handed to the
+  pagination session.
+- Test: `tests/test_shared_exhibits.py` (24).
+
+### E-174 -- The Market section's search figures were typed by hand (2026-10-11)
+- Symptom (T-1075; the owner's brief, DR 8): the appraiser counted the
+  MLS search and typed in eleven numbers. These are the 17.005-17.015
+  active, pending and sold counts, their median days on market, and their
+  lowest, median and highest prices. A slip there is a contradiction no
+  reviewer can trace.
+- Mechanism: `uad/market_search.py` counts them from the MLS export (CSV)
+  exactly as A-1 defines each figure.
+  - Status decides the inventory: active, pending or sold.
+  - Sales count only when closed within the lookback months (17.011)
+    before the effective date.
+  - A median of an even count is the mean of the middle two.
+  - Amounts are whole dollars, as the samples hold them.
+  - MLS header names are matched from a list of common ones. That list is
+    tooling, not a specification.
+  - A file whose columns cannot be told apart is refused with the reason.
+  - Each row that does not count is named (a sale outside the window, a
+    withdrawn listing).
+
+  `POST /cases/{id}/market/search` returns each figure beside the one the
+  report holds. `?apply=true` writes them all through `_write_checked`, or
+  writes none.
+- Validated first: a search shaped like the one D-1 SF1 describes (two
+  active, one pending, 35 sales in 24 months) reproduces all eleven of
+  SF1's published figures.
+- Not done: no editor control yet (the lead owns the shell); 17.016
+  (distressed competition) and 17.004 (the search criteria text) stay the
+  appraiser's.
+- Test: `tests/test_market_search.py` (5).

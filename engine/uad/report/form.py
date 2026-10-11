@@ -246,6 +246,82 @@ def binding(fid: str) -> bind.Binding | None:
 
 
 @lru_cache(maxsize=1)
+def image_fids() -> dict[str, tuple[int, ...]]:
+    """ImageCategoryType -> the Report Field ID of its exhibit (4.017.1 Non-
+    Residential Use, 4.020.1 Property Access ...), as a sort key: the order
+    B-1's exhibit tables list the categories in."""
+    rows = json.loads((SPEC / "enumerations.json").read_text(encoding="utf-8"))
+    out: dict[str, tuple[int, ...]] = {}
+    for r in rows:
+        if r.get("MISMO Data Point / Attribute Name") != "ImageCategoryType":
+            continue
+        m = re.match(r"\s*(\d+(?:\.\d+)+)\s*:", str(r.get("Report Location", "")))
+        if m:
+            out.setdefault(r.get("Supported Enumerations", ""), tuple(int(x) for x in m.group(1).split(".")))
+    return out
+
+
+def _shared_exhibits(items: list[dict]) -> list[dict]:
+    """B-1 p59, Image Data, Scenario 1: a picture filed under several
+    categories -- an IMAGE for each, every one pointing at the same file --
+    prints once, "each ImageCategoryType ... above the image in bold font
+    separated by ' - '" (T-127).
+
+    * Category exhibits: the headers follow B-1's exhibit table (by Report
+      Field ID); a caption follows its own header, and prints once where the
+      next header carries the same one.  D-1 MH1 "Site Influence - Water
+      Frontage - View - Lake Virginia", Condo2 "Site Influence - View - Golf
+      Course", 2-4 Scenario 2 "Property Access (Street Scene) - Site
+      Influence - Busy Roadway, Residential - View - Residential".
+    * Exhibits titled by what they are of (a room): in document order, each
+      after the first without the part it shares with the first -- D-1 MH2
+      "Level 1 - Kitchen - Living Room" over one photo of both rooms, SF1
+      "Driveway - Garage", SF3 "Deck - Deck 1 and Deck 2" (two decks, one
+      caption, one photo).
+
+    The merged exhibit stands where its first IMAGE did.  One in another
+    section is that section's own (Scenario 4); a group mixing the two kinds
+    is left as it is (no sample shows one)."""
+    groups: dict[str, list[dict]] = {}
+    for it in items:
+        if it.get("_kind") and it.get("location"):
+            groups.setdefault(it["location"], []).append(it)
+    out = []
+    for it in items:
+        group = groups.get(it.get("location") or "") if it.get("_kind") else None
+        if not group or len(group) < 2 or len({g["_kind"] for g in group}) > 1:
+            out.append(it)
+            continue
+        if it is not group[0]:
+            continue
+        parts: list[str] = []
+        if it["_kind"] == "category":
+            fids = image_fids()
+            ranked = sorted(group, key=lambda g: fids.get(g["category"], (999,)))
+            for n, g in enumerate(ranked):
+                parts.append(g["_header"])
+                cap = g.get("raw_caption") or ""
+                nxt = (ranked[n + 1].get("raw_caption") or "") if n + 1 < len(ranked) else None
+                if cap and cap != nxt:
+                    parts.append(cap)
+        else:
+            ranked = group
+            first = it["title"].split(" - ")
+            parts = list(first)
+            for g in ranked[1:]:
+                # SF3's two decks in one photo, each "Deck - Deck 1 and
+                # Deck 2", print it once
+                own = g["title"].split(" - ")
+                k = 0
+                while k < min(len(own), len(first)) and own[k] == first[k]:
+                    k += 1
+                parts += own[k:]
+        out.append(dict(it, title=" - ".join(p for p in parts if p), caption="",
+                        images=[g["image_key"] for g in ranked]))
+    return out
+
+
+@lru_cache(maxsize=1)
 def image_categories() -> dict[str, tuple[str, str]]:
     """ImageCategoryType -> (section name, caption) from the A-1 enumerations.
 
@@ -5463,7 +5539,17 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
     filled = {m["fills"]: m for m in ctx.media if m.get("fills")}
     fronts, dwellings = _front_photos(ctx)
     tops = fronts[:max(len(dwellings), 1)]          # each dwelling's large photo
-    for im in _images(ctx):
+    images = _images(ctx)
+    # B-1 p60 Scenario 2: one map of the sales, rental and GRM comparables
+    # is filed under each map category; D-1 Condo2 and 2-4 Scenario 2 print
+    # it once, as the Sales Comparison Map, and no map in Rental Information
+    # or the Income Approach
+    sales_maps = {im["location"] for im in images
+                  if im["category"] == "SalesComparableMap" and im["location"]}
+    for im in images:
+        if (not ctx.edit and im["location"] in sales_maps
+                and im["category"] in ("RentalComparableMap", "GrossRentMultiplierComparableMap")):
+            continue
         if im["category"] == "DwellingFront" and any(im["node"] is t["node"] for t in tops):
             continue                                # drawn atop its section, not an exhibit
         sec, caption = cats.get(im["category"], ("", ""))
@@ -5514,6 +5600,11 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
             # display" pictures, which are exactly what gets replaced.
             src = _data_uri(Path(fill["path"]))
         out.append({"src": src, "title": caption or title,
+                    # a plain category exhibit: its header, for a picture
+                    # filed under several (_shared_exhibits)
+                    "_kind": ("category" if (caption and not lead and im["category"]) else
+                              "owner" if lead else ""),
+                    "_header": caption,
                     # with a lead the caption is already part of the title (D-1
                     # SF1: "Apparent Defects, Damages, Deficiencies - Roof -
                     # Damaged Flashing", printed once)
@@ -5523,6 +5614,10 @@ def _exhibits(ctx: Ctx, section: str) -> list[dict]:
                     "media_id": fill.get("media_id", "") if fill else "",
                     # the document's own IMAGE: named, replaced and removed in place
                     "image_key": bind.stable_path(im["node"]), "raw_caption": im["caption"]})
+    if not ctx.edit:
+        # the editor keeps an IMAGE per box: each has its own category,
+        # caption and remove; the report prints the picture once
+        out = _shared_exhibits(out)
     for m in ctx.media:
         # The subject's front photo and a comparable's thumbnail have slots of
         # their own; filing them under a section does not make them exhibits.

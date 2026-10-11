@@ -2845,6 +2845,64 @@ async def import_market_charts(case_id: str, request: Request) -> dict:
     return {"drawn": made}
 
 
+@router.post("/cases/{case_id}/market/search")
+async def market_search_results(case_id: str, request: Request,
+                                lookback: int = Query(0, ge=0, le=60),
+                                apply: bool = Query(False)) -> dict:
+    """The Market section's Search Result Metrics (17.005-17.015), counted
+    from the appraiser's MLS export (CSV) as of the effective date (T-1075).
+
+    Without ``apply`` nothing changes: each figure comes back beside the one
+    the report holds.  ``apply`` writes them, every one read back as it is
+    written.  ``lookback`` is the months of sales (17.011): the report's own
+    answer when not given, else 12.
+    """
+    from uad import market_search
+    _case_or_404(case_id)
+    st = store()
+    tree = st.tree(case_id)
+    root = tree.getroot()
+    effective = market_search.effective_date(root)
+    if effective is None:
+        raise HTTPException(422, "Enter the effective date of the appraisal first: "
+                                 "the sales are counted back from it.")
+    if not lookback:
+        held = bind.read(root, bind.binding_for("17.011"))
+        lookback = int(held[0]) if held and held[0].isdigit() and int(held[0]) > 0 else 12
+    body = await request.body()
+    try:
+        metrics = market_search.count(body.decode("utf-8-sig"), effective, lookback)
+    except market_search.MarketSearchError as exc:
+        raise HTTPException(422, str(exc))
+    except UnicodeDecodeError:
+        raise HTTPException(422, "the file is not text")
+    figures = []
+    for fid, value in metrics.fields().items():
+        b = bind.binding_for(fid)
+        figures.append({"field_id": fid, "label": b.label if b else fid,
+                        "current": (bind.read(root, b) or [""])[0] if b else "", "counted": value})
+    out = {"effective_date": effective.isoformat(), "lookback_months": lookback,
+           "rows": metrics.rows, "active": metrics.active, "pending": metrics.pending,
+           "sold": len(metrics.sold_prices), "skipped": metrics.skipped[:50],
+           "figures": figures, "written": []}
+    if apply:
+        failures = []
+        for f in figures:
+            try:
+                tree, written = _write_checked(tree, edit.field(f["field_id"]), f["counted"])
+                out["written"].append(f["field_id"])
+            except (KeyError, ValueError) as exc:
+                failures.append({"field_id": f["field_id"], "error": str(exc)})
+        if failures:
+            raise HTTPException(422, {"message": "No figure was written.", "failed": failures})
+        st.save_tree(case_id, tree)
+        st.invalidate(case_id, _actor(request), "market search results counted")
+        st.log(case_id, _actor(request), "market search counted",
+               f"{metrics.rows} listings; {len(out['written'])} figures")
+        out["relayout"] = True
+    return out
+
+
 @router.get("/cases/{case_id}/form", response_class=HTMLResponse)
 def editable_form(case_id: str, request: Request) -> HTMLResponse:
     """The report itself, with every value typed into where it stands.

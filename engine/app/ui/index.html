@@ -673,6 +673,17 @@ body *,body *:before,body *:after{border-radius:0!important}
 header .stat span:before,.rf-agent-dot,.rf-busy:before,.verdict:before,.glass .gh .k:before,.state:before,
 .uadd li:before{border-radius:50%!important}
 </style>
+<!-- The editor shell (DR phase 2, ui/shell/): one stylesheet per module, every
+     rule scoped to body.shell.  ?v= is the content digest of ui/shell/*,
+     written in by main.home(), so a new page never runs an old shell file. -->
+<link rel="stylesheet" href="/ui/shell/shell.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/ribbon.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/docks.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/chrome.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/problems.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/markers.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/palette.css?v={{SHELLV}}">
+<link rel="stylesheet" href="/ui/shell/split.css?v={{SHELLV}}">
 </head>
 <body>
 <header>
@@ -703,7 +714,17 @@ const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&g
 const S={caseId:null,section:null,view:'form',data:{}};
 function tellTheme(){
   const t=document.documentElement.dataset.theme;
+  if(window.UADShell){ UADShell.frames.send({uad:'theme',theme:t},{to:'all'}); return; }
   ['#rf','#pv'].forEach(sel=>{ const f=$(sel); try{ f&&f.contentWindow.postMessage({uad:'theme',theme:t},'*'); }catch(_){} });
+}
+/* The editor shell (DR phase 2, ui/shell/core.js) follows the editor through
+   these DOM events ('uad:<name>'), never through a second code path. */
+function shellEmit(t,d){ document.dispatchEvent(new CustomEvent('uad:'+t,{detail:d})); }
+/* A message for the report: every pane, or the one last used ('active'),
+   through the shell's frames registry; without the shell, #rf as before. */
+function frameSend(msg,to){
+  if(window.UADShell) return UADShell.frames.send(msg,{to:to||'all'});
+  const f=$('#rf'); try{ if(f&&f.contentWindow) f.contentWindow.postMessage(msg,'*'); }catch(_){}
 }
 document.addEventListener('click',e=>{
   if(!e.target.closest('#theme')) return;
@@ -784,6 +805,7 @@ async function apiRaw(path,opts={}){
     setTimeout(()=>{S.goneHome=false; showLaunch();},60);
   }
   const txt=await r.text(); let d; try{d=JSON.parse(txt)}catch{d=txt}
+  if(String(opts.method||'GET').toUpperCase()!=='GET') shellEmit('write',{path,ok:r.ok,status:r.status});
   return {ok:r.ok,status:r.status,data:d};
 }
 
@@ -813,6 +835,7 @@ function setNav(items){
   const first=n.querySelector('a'); if(first) first.classList.add('on');
 }
 async function showLaunch(){
+  shellEmit('case-close',{id:S.caseId});
   wsClose(); S.caseId=null; setRoute(false);
   $('#shell').className='launcher';
   const back=$('#backhome'); if(back) back.hidden=true;
@@ -1166,6 +1189,7 @@ function followRoute(){
 }
 window.addEventListener('popstate',followRoute);
 async function openCase(id){
+  shellEmit('case-open',{id});
   stopWarm(); wsClose();
   const fresh=(route()||{}).caseId!==id;
   if(fresh) S.section=null;          // a report opened from the list starts at its top
@@ -1182,15 +1206,16 @@ async function openCase(id){
       '<div id="panel"></div><div id="keep-report" class="keep" hidden></div>'+
       '<div id="keep-preview" class="keep" hidden></div></div></section>'+
     '<aside class="inspector" id="insp"></aside>';
+  shellEmit('shell-built',{id});
   $('#rail').innerHTML='<div class="railhead k">Sections</div><div class="skel">'+'<i></i>'.repeat(18)+'</div>';
   $('#head').innerHTML='<div class="skel" style="padding:0 0 10px"><i style="width:40%;height:18px"></i><i style="width:25%"></i></div>';
   drawWork();
   EDITOR.get(id).then(rec=>{
     if(!rec||S.caseId!==id||S.case) return;          // the server answered first
-    S.case=rec.case; S.sections=rec.sections; S.review=rec.review; S.media=rec.media;
+    S.case=rec.case; S.sections=rec.sections; S.media=rec.media;
     S.prefs=rec.prefs||{}; S.compWidths=S.prefs.compWidths||{};
     if(S.section===null&&S.sections.length) S.section=S.sections[0].number;
-    drawRail(); drawHead(); drawInsp();
+    setReview(rec.review,{why:'editor-cache'}); drawHead(); drawInsp();
   });
   await refresh();
 }
@@ -1210,11 +1235,11 @@ async function refresh(){
       $('#retry-report').onclick=refresh;}
     return;
   }
-  S.case=c.data; S.sections=f.data.sections; S.review=rv.data; S.media=m.data;
-  postMarks();
-  EDITOR.keep(caseId,{case:c.data,sections:f.data.sections,review:rv.data,media:m.data,prefs:S.prefs});
+  S.case=c.data; S.sections=f.data.sections; S.media=m.data;
   if(S.section===null&&S.sections.length) S.section=S.sections[0].number;
-  drawRail(); drawHead(); drawWork(); drawInsp();
+  setReview(rv.data,{why:'refresh',signoff:false});     // drawInsp below fills Sign-off
+  EDITOR.keep(caseId,{case:c.data,sections:f.data.sections,review:rv.data,media:m.data,prefs:S.prefs});
+  drawHead(); drawWork(); drawInsp();
 }
 const sevCount=n=>{const i=((S.review&&S.review.items)||[]).filter(x=>x.section_number===n);
   return {f:i.filter(x=>x.severity==='Fatal').length,w:i.filter(x=>x.severity==='Warning').length};};
@@ -1308,8 +1333,16 @@ function drawHead(){
     t.onclick=()=>{S.view=k;drawHead();drawWork();};
     $('#tabs').appendChild(t);
   }
+  drawStat();
+  shellEmit('head',{id:c.case_id});
+}
+/* The masthead's tally, from the review in hand.  setReview() draws it on
+   every review, not only when the head is drawn: it had shown 144 fatal while
+   Sign-off said 143 (E-187). */
+function drawStat(){
+  const st=$('#stat'); if(!st||!S.caseId||!S.review||!S.review.counts) return;
   const rc=S.review.counts;
-  $('#stat').innerHTML=`<span class="${rc.fatal?'bad':'ok'}"><b>${rc.fatal}</b> fatal</span>`+
+  st.innerHTML=`<span class="${rc.fatal?'bad':'ok'}"><b>${rc.fatal}</b> fatal</span>`+
     `<span class="${rc.warning?'warn':''}"><b>${rc.warning}</b> warning</span>`+
     `<span><b>${rc.review}</b> to read</span>`+
     `<span>XSD v${esc(S.review.schema_version)}</span>`;
@@ -1355,7 +1388,9 @@ window.addEventListener('message',e=>{
   if(m.uad==='fresh'){ swapFrame('form'); return; }
   if(m.uad==='frame-ready'){ if(!m.stale) checkFresh('form'); return; }
   if(m.uad==='relayout'){ if(m.fid) S.pendingGoto={fid:m.fid,secn:S.atSection||S.section}; checkFresh('form'); return; }
-  if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove(); postMarks();
+  if(m.uad==='ready'){ S.formReady=true; const b=$('#rf-busy'); if(b) b.remove();
+    // theme, marking toggles, outlines, the shell's keys: what this frame must know
+    if(window.UADShell) UADShell.frames.replay(f.contentWindow); else postMarks();
     // what the report actually prints, as laid out -- not a guess from the data
     if(m.sections){ S.printed=m.sections; drawRail(); }
     loadOptional(); sendGoto(); }
@@ -1389,6 +1424,7 @@ async function mapSaved(){
 /* The report and the preview are kept alive once opened: switching back to
    one is instant and keeps its place.  Everything else is drawn in #panel. */
 function drawWork(){
+  shellEmit('view',{view:S.view});
   const work=$('#work'); if(!work)return;
   const panel=$('#panel'), kr=$('#keep-report'), kp=$('#keep-preview');
   const keep=S.view==='report'?kr:S.view==='preview'?kp:null;
@@ -1491,10 +1527,16 @@ function finishSwap(kind,nf){
   requestAnimationFrame(()=>{
     nf.id=old.id; nf.style.cssText=''; old.remove();
     if(kind==='form'){
-      const g=$('#rf-gaps');
-      if(g&&!g.checked) nf.contentWindow.postMessage({uad:'gaps',on:false},'*');
-      const im=$('#rf-imported');
-      if(im&&!im.checked) nf.contentWindow.postMessage({uad:'imported',on:false},'*');
+      // what the frame before it showed -- the theme, the marking toggles and
+      // the problem outlines, which were lost until the next review (E-189)
+      if(window.UADShell) UADShell.frames.replay(nf.contentWindow);
+      else {
+        const g=$('#rf-gaps');
+        if(g&&!g.checked) nf.contentWindow.postMessage({uad:'gaps',on:false},'*');
+        const im=$('#rf-imported');
+        if(im&&!im.checked) nf.contentWindow.postMessage({uad:'imported',on:false},'*');
+        postMarks();
+      }
       // a run in progress carries on in the report that has just been swapped
       // in, which now holds the rows, the grid cells and the photographs
       if(S.autoSteps&&S.autoAt<S.autoSteps.length){
@@ -1531,7 +1573,8 @@ function drawReportForm(w){
         S.prefs=S.prefs||{}; S.prefs.savedSections=S.prefs.savedSections||{};
         const now=new Date().toISOString();
         (e.data.sections||[]).forEach(n=>{S.prefs.savedSections[n]=now;});
-        api('/cases/'+S.caseId+'/review').then(rv=>{ if(rv&&rv.ok){S.review=rv.data;} drawRail(); markRail(); postMarks(); });
+        api('/cases/'+S.caseId+'/review').then(rv=>{
+          if(rv&&rv.ok) setReview(rv.data,{why:'saved-sections'}); else { drawRail(); markRail(); postMarks(); } });
       }
     });
   }
@@ -1612,17 +1655,12 @@ function drawReportForm(w){
   $('#rf-lib').onclick=e=>{ e.stopPropagation(); commentLibrary($('#rf-lib')); };
   $('#rf-sadj').onclick=()=>worksheets();
   $('#rf-sketch').onclick=()=>openSketch();
-  $('#rf-gaps').onchange=e=>{
-    const f=$('#rf'); if(!f||!f.contentWindow)return;
-    f.contentWindow.postMessage({uad:'gaps',on:e.target.checked},'*');
-  };
+  $('#rf-gaps').onchange=e=>frameSend({uad:'gaps',on:e.target.checked},'all');
   /* Green marks what a file brought in.  The toggle only appears once there
      is an import to show, so a report typed by hand is not asked about it. */
-  $('#rf-imported').onchange=e=>{
-    const f=$('#rf'); if(!f||!f.contentWindow)return;
-    f.contentWindow.postMessage({uad:'imported',on:e.target.checked},'*');
-  };
+  $('#rf-imported').onchange=e=>frameSend({uad:'imported',on:e.target.checked},'all');
   showImportedToggle();
+  shellEmit('form-drawn',{id:S.caseId});
 }
 
 /* The imported-marking toggle belongs to the case, not to the session: it
@@ -1810,7 +1848,7 @@ async function autoFillDone(){
   await refreshMedia();
   const rv=await api('/cases/'+S.caseId+'/review');
   // the tally in the masthead counts the report as it now stands
-  if(rv&&rv.ok){ S.review=rv.data; drawRail(); markRail(); drawHead(); }
+  if(rv&&rv.ok){ setReview(rv.data,{why:'autofill'}); drawHead(); }
   swapFrame('form');
 }
 
@@ -2401,7 +2439,9 @@ function drawHistory(w){
 /* Below the breakpoint the inspector column is dropped, so the same panel is
    reachable as a tab instead -- hiding the only route to Sign off and Export
    is not a responsive layout, it is a missing feature. */
-const NARROW=()=>window.matchMedia('(max-width:1240px)').matches;
+/* Under the editor shell the docks own narrow widths once docks.js claims
+   them (UADShell.ownsNarrow), so Sign-off stays a panel there. */
+const NARROW=()=>!(window.UADShell&&UADShell.ownsNarrow())&&window.matchMedia('(max-width:1240px)').matches;
 
 function drawInsp(){
   const b=$('#insp');
@@ -2409,6 +2449,7 @@ function drawInsp(){
   if(!$('#insp-sign')) b.innerHTML='<div id="insp-guide"></div><div id="insp-sec"></div><div id="insp-add"></div><div id="insp-sign"></div>';
   renderGuide(); renderSec(); renderAdds();
   fillSignoff($('#insp-sign'));
+  shellEmit('insp',{id:S.caseId});
 }
 
 /* ------------------------------------------------ field guidance
@@ -2451,21 +2492,37 @@ function reviewSoon(){
     const id=S.caseId;
     const rv=await apiRaw('/cases/'+id+'/review');
     if(!rv||!rv.ok||S.caseId!==id) return;
-    S.review=rv.data; drawRail(); markRail(); postMarks();
-    const sign=$('#insp-sign'); if(sign&&!NARROW()) fillSignoff(sign);
+    setReview(rv.data,{why:'reviewSoon'});
     if(S.guide){
       const g=await apiRaw('/cases/'+id+'/guide/'+encodeURIComponent(S.guide.field_id));
       if(g&&g.ok&&S.caseId===id&&S.guide&&S.guide.field_id===g.data.field_id){ S.guide=g.data; renderGuide(); }
     }
   },1500);
 }
+/* One sink for every review result (E-187).  The rail, the outlines, the
+   masthead's tally and an open Sign-off panel all follow the same answer, so
+   the header never shows a count Sign-off has moved past; 'uad:review' tells
+   the shell.  Callers keep their own drawHead / drawWork / drawInsp after it;
+   {signoff:false} when the caller's drawInsp fills Sign-off anyway. */
+function setReview(rv,opts){
+  opts=opts||{};
+  S.review=rv;
+  drawRail(); markRail(); postMarks(); drawStat();
+  if(opts.signoff!==false){
+    const sign=$('#insp-sign');
+    if(sign&&!NARROW()) fillSignoff(sign);
+    else if(S.view==='signoff'&&NARROW()) drawWork();
+  }
+  shellEmit('review',{review:rv,why:opts.why||''});
+}
 /* the H-1 problems, outlined on their own fields when "Show problems" is on */
-function postMarks(){
-  const f=$('#rf'); if(!f||!f.contentWindow||!S.review) return;
+function marksMsg(){
+  if(!S.review) return null;
   const items=(S.review.items||[]).filter(i=>i.field_id&&(i.severity==='Fatal'||i.severity==='Warning'))
     .map(i=>[i.field_id,i.severity,i.message]);
-  try{ f.contentWindow.postMessage({uad:'marks',items,on:!!S.showMarks},'*'); }catch(_){}
+  return {uad:'marks',items,on:!!S.showMarks};
 }
+function postMarks(){ const m=marksMsg(); if(m) frameSend(m,'all'); }
 
 /* ------------------------------------------------ comment library
    Saved comments, inserted where the caret is in the report (or Alt+1 … 9
@@ -2490,8 +2547,8 @@ function commentLibrary(anchor){
       <p class="le">Click into a comment in the report first; then click a saved comment to insert it there.</p>`;
     pop.querySelector('.lx').onclick=()=>pop.remove();
     pop.querySelectorAll('.lt').forEach(b=>b.onclick=()=>{
-      const t=LIB.get()[+b.dataset.i]; const f=$('#rf');
-      if(t&&f&&f.contentWindow) f.contentWindow.postMessage({uad:'insert',text:t.text},'*');
+      const t=LIB.get()[+b.dataset.i];
+      if(t) frameSend({uad:'insert',text:t.text},'active');
     });
     pop.querySelectorAll('.ld').forEach(b=>b.onclick=()=>{ const a=LIB.get(); a.splice(+b.dataset.d,1); LIB.set(a); draw(); });
     pop.querySelector('#lib-add').onclick=()=>{
@@ -2564,9 +2621,7 @@ function renderAdds(){
   const name=((S.sections||[]).find(x=>x.number===sec)||{}).name||'this section';
   box.innerHTML=`<div class="panelhead k">Add to ${esc(name)}</div>
     <div class="panelblock adds">${items.map(a=>`<button class="addit" data-i="${a.i}">+ ${esc(a.label)}</button>`).join('')}</div>`;
-  box.querySelectorAll('.addit').forEach(b=>b.onclick=()=>{
-    const f=$('#rf'); if(f&&f.contentWindow) f.contentWindow.postMessage({uad:'add-go',i:+b.dataset.i},'*');
-  });
+  box.querySelectorAll('.addit').forEach(b=>b.onclick=()=>frameSend({uad:'add-go',i:+b.dataset.i},'active'));
 }
 
 /* ------------------------------------------------ Sketch (DR §9)
@@ -2654,7 +2709,8 @@ function wsCompute(d,p,overrides,released){
       adjusted:c.price&&net!=null?c.price+net:null});
   });
 }
-function wsFrame(msg){ const f=$('#rf'); try{ f&&f.contentWindow&&f.contentWindow.postMessage(msg,'*'); }catch(_){} }
+// the row's highlight goes to the pane in use; fresh ticks to every pane
+function wsFrame(msg){ frameSend(msg,msg&&msg.uad==='ws-marks'?'all':'active'); }
 var WSD=null;                                     // the open drawer's state
 function wsClose(){
   if(!WSD) return;
@@ -3028,7 +3084,17 @@ function fillSignoff(b){
      browser's layout and both downloads come in parts (owner's test B5). */
   hostInfo();
   $$('#openpdf').onclick=e=>{ if(!HOST||HOST.serverLayout) return; e.preventDefault(); openPdf(); };
-  $$('#zip').onclick=e=>{ if(!HOST||HOST.serverLayout) return; e.preventDefault(); exportZip(); };
+  /* One handler for Export ZIP (E-188).  A second assignment further down
+     used to replace this one, so on the live site (no server layout) the
+     link was followed and exportZip() never ran.  Unsigned: the gate's
+     dialog.  Signed: this browser draws the PDF where the server cannot,
+     otherwise the server's link is followed. */
+  $$('#zip').onclick=e=>{
+    if(!(c.state==='signed'||c.state==='exported')){ e.preventDefault();
+      UADDialog.alert((rep.blockers||[]).join('\n'),{title:'Sign the report before exporting it',eyebrow:'Delivery package'}); return; }
+    if(!HOST||HOST.serverLayout) return;
+    e.preventDefault(); exportZip();
+  };
   for(const [id,kind,what] of [['#mkru','update','Restricted Appraisal Update'],['#mkcr','completion','Completion Report']]){
     const bt=$$(id); if(!bt) continue;
     bt.onclick=async()=>{
@@ -3051,9 +3117,6 @@ function fillSignoff(b){
     const d=await r.json();
     if(!r.ok) await UADDialog.alert((d.reasons||[d.error]).join('\n'),{title:'This report cannot be signed yet',eyebrow:'Sign-off'});
     else toast('Signed'); refresh();};
-  $$('#zip').onclick=e=>{
-    if(!(c.state==='signed'||c.state==='exported')){e.preventDefault();
-      UADDialog.alert((rep.blockers||[]).join('\n'),{title:'Sign the report before exporting it',eyebrow:'Delivery package'});}};
 }
 /* Crossing the breakpoint moves the sign-off panel between the inspector
    column and its own tab, so the chrome is redrawn when it changes. */
@@ -3080,5 +3143,16 @@ function start(){
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start);
 else start();
 </script>
+<!-- The editor shell's modules: after the script above, so they find S, $,
+     api and the draw functions, and before DOMContentLoaded starts the editor. -->
+<script src="/ui/shell/core.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/commands.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/ribbon.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/docks.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/chrome.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/problems.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/markers.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/palette.js?v={{SHELLV}}"></script>
+<script src="/ui/shell/split.js?v={{SHELLV}}"></script>
 </body>
 </html>

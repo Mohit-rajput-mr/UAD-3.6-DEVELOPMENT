@@ -1,0 +1,33 @@
+/* The editor shell's page grid and tokens (DR phase 2, S0a;
+   _work/dr/PHASE2_SHELL_PLAN.md).  Every rule is scoped to body.shell, which
+   core.js sets unless ?shell=0 asked for the classic editor, so the classic
+   editor is untouched.  Each module has its own stylesheet (ribbon.css,
+   docks.css, chrome.css, problems.css, markers.css, palette.css, split.css):
+   steps built in parallel never meet in one file.
+
+   Rows: title bar / #ribbon / main / #statusbar.  Every one of them has an
+   explicit grid-row, so a ribbon or status bar that is hidden (or not built
+   yet) never moves main into the wrong row.  #topbar, toasts, dialogs and
+   the sheets are position:fixed and out of the grid. */
+body.shell{
+  --shell-title-h:40px;          /* the masthead as a title bar, in a report */
+  --shell-ribbon-h:92px;         /* ribbon open */
+  --shell-ribbon-min:28px;       /* ribbon collapsed to its tab row */
+  --shell-status-h:22px;
+  --shell-rail-w:44px;           /* a collapsed dock: icon rail */
+  --shell-left-w:220px;
+  --shell-right-w:340px;
+  --shell-split-w:6px;           /* splitter / gutter */
+  grid-template-rows:var(--head-h) auto minmax(0,1fr) auto;
+}
+body.shell.shell-case{grid-template-rows:var(--shell-title-h) auto minmax(0,1fr) auto}
+body.shell > header{grid-row:1}
+body.shell > #ribbon{grid-row:2}
+body.shell > main{grid-row:3}
+body.shell > #statusbar{grid-row:4}
+/* the launcher has no ribbon and no status bar */
+body.shell:not(.shell-case) > #ribbon,
+body.shell:not(.shell-case) > #statusbar{display:none}
+/* a splitter drag must not lose the pointer to a report frame */
+body.shell.shell-drag iframe{pointer-events:none}
+body.shell.shell-drag{user-select:none}

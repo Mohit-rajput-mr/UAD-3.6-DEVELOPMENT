@@ -3248,3 +3248,27 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   IMAGE category from engine/spec.
 - Trap: under Playwright's sync API, route handlers run only inside
   Playwright calls. Poll with `page.wait_for_timeout`, never `time.sleep`.
+
+### E-188 -- The header's problem counts went stale (phase 2 S0a, T-1206, 2026-10-11)
+- Symptom: the owner saw 144 fatal in the header while Sign-off said 143,
+  and the header kept an old count after edits.
+- Cause: `S.review` was set in five places, and only some of them redrew
+  `#stat`.
+- Mechanism: `setReview()` is the one place a review lands. It redraws the
+  rail, markers, `drawStat()` and Sign-off, and emits a `review` event for
+  the shell.
+- Test: `tests/test_shell_core.py::test_e187_header_counts_follow_every_review`
+  and `::test_review_event_from_each_of_the_five_paths`.
+
+### E-189 -- Export ZIP on the live site never used the in-browser export (T-1206, 2026-10-11)
+- Cause: `#zip` had two click handlers, and the second replaced the first,
+  which drew the PDF in the browser for a serverless host.
+- Mechanism: one handler.
+- Test: `tests/test_shell_core.py::test_e188_export_zip_has_one_handler`.
+
+### E-190 -- Problem outlines disappeared after a layout swap (T-1206, 2026-10-11)
+- Cause: a swapped-in report frame did not get the marks message again
+  until the next review.
+- Mechanism: `UADShell.frames.keep` / `replay`; marks are replayed at
+  `ready` and in `finishSwap`.
+- Test: `tests/test_shell_core.py::test_e189_outlines_survive_a_layout_swap`.

@@ -48,6 +48,8 @@ def _sources():
     yield "vault.js", [(UI / "vault.js").read_text(encoding="utf-8")]
     yield "download.js", [(UI / "download.js").read_text(encoding="utf-8")]
     yield "index.html", _scripts((UI / "index.html").read_text(encoding="utf-8"))
+    for f in sorted((UI / "shell").glob("*.js")):           # the editor shell (DR phase 2)
+        yield f"shell {f.name}", [f.read_text(encoding="utf-8")]
 
 
 @pytest.mark.skipif(not NODE, reason="node is not installed")
@@ -64,7 +66,9 @@ def test_no_browser_dialogs_in_the_editor():
     from uad.report import flow
     found = []
     for name, text in (("index.html", (UI / "index.html").read_text(encoding="utf-8")),
-                       ("EDIT_JS", flow.EDIT_JS)):
+                       ("EDIT_JS", flow.EDIT_JS),
+                       *((f"shell {f.name}", f.read_text(encoding="utf-8"))
+                         for f in sorted((UI / "shell").glob("*.js")))):
         for m in re.finditer(r"(?<![\w.])(alert|confirm|prompt)\(", text):
             found.append(f"{name}: {m.group(0)}")
     assert not found, found
@@ -81,6 +85,8 @@ def _stylesheets():
     yield "EDIT_CSS", form.EDIT_CSS
     js = (UI / "download.js").read_text(encoding="utf-8")
     yield "download.js", re.search(r"var CSS=`(.*?)`;", js, re.S).group(1)
+    for f in sorted((UI / "shell").glob("*.css")):          # the editor shell (DR phase 2)
+        yield f"shell {f.name}", f.read_text(encoding="utf-8")
 
 
 @pytest.mark.parametrize("name,css", list(_stylesheets()), ids=lambda x: x if isinstance(x, str) and len(x) < 40 else "")

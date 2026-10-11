@@ -260,12 +260,33 @@ async def unlock(request: Request):
     return response
 
 
+def shell_digest(folder: Path | None = None) -> str:
+    """The editor shell's files (ui/shell/*) as one content digest.
+
+    index.html loads them as ``/ui/shell/x.js?v={{SHELLV}}``; /ui is plain
+    static files with no cache-busting, so without this a new page could run
+    an old shell file.  Content only, never file times: every server copy
+    (each Vercel instance) must agree on it.
+    """
+    import hashlib
+    folder = UI / "shell" if folder is None else folder
+    h = hashlib.sha1()
+    if folder.is_dir():
+        for f in sorted(p for p in folder.rglob("*") if p.is_file()):
+            h.update(f.relative_to(folder).as_posix().encode("utf-8") + b"\0")
+            h.update(f.read_bytes() + b"\0")
+    return h.hexdigest()[:12]
+
+
+SHELLV = shell_digest()          # once, at import
+
+
 @app.get("/", response_class=HTMLResponse)
 def home() -> HTMLResponse:
     index = UI / "index.html"
     if not index.exists():
         return HTMLResponse("<h1>UAD 3.6</h1><p>The interface is not built.</p>")
-    return HTMLResponse(index.read_text(encoding="utf-8"))
+    return HTMLResponse(index.read_text(encoding="utf-8").replace("{{SHELLV}}", SHELLV))
 
 
 def lan_address() -> str:

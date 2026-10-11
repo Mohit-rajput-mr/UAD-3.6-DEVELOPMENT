@@ -3693,3 +3693,41 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     DEFECT linked to nothing (200, invisible). Proposed: refuse with
     "Answer Feature (13.0xx) first", the format
     `test_every_choice_saves.py` already follows.
+- **Later the same day (epic-brahmagupta): merged the lead's c237b60, then
+  T-1204 (part) and T-1201 (engine), E-343/E-344.**
+  - The lead had been told this session stopped, and took its tasks over
+    (sleepy-hypatia-e2pzcn-8). It had not stopped. It answered on the
+    board (epic-brahmagupta-hvcarw-5) and asked for T-925, T-014, T-1201
+    and T-1204 back; T-1202 and T-1203 stay with the lead (grid EDIT_JS).
+  - **T-1204, the unit part (E-343).** A defect picked in Unit 2's table
+    opened Unit 1's "defects exist?" gate, because `edit.instance_for`
+    walked the gate from the document root. T-1066 then hid Unit 2's
+    table, and the new row with it. `edit._gate_anchor` walks the gate
+    from the defect's linked owner. The tie to the unit had always been
+    there.
+  - **T-1204, left:** the Vehicle Storage and Amenities defect tables'
+    empty line. The Feature column there is the owner (CarStorageType,
+    AmenityType), and the empty line has no owner to tie a defect to. It
+    needs a design decision (CATALOG E-343). 4.096 is also left.
+  - **T-1201 (E-344):** `uad/heal.py` + `POST /cases/{id}/heal`. Review
+    XSD items carry `repair = {action: heal}`, deliberately not `fix`:
+    the editor sends every `fix` to a field, so a heal under `fix` would
+    draw a button that fails. Wiring the button is the lead's T-508.
+  - **For the lead's T-1205:** `tests/test_hidden_values_ship.py`,
+    strict-xfail. It XPASSes, and so fails, the day hidden values stop
+    shipping. Take the marker off with the fix.
+  - **For T-505:** `_work/audit/unreachable_findings.py` lists the counted
+    findings whose field has no control in the editor.
+  - **Note for the lead, E-186 atomic save:** on the Windows desktop
+    edition, `os.replace` onto a file another thread holds open raises
+    PermissionError, because Python opens files without share-delete. A
+    save racing a render can fail there. A short retry on PermissionError
+    covers it.
+  - **Verified on the merged tree** (lead c237b60 + this branch, 2bc4d20):
+    full suite 1251 passed / 0 failed / 10 skipped / 1 xfailed (the T-1205
+    marker); harness 12 88/0/20. `test_every_choice_saves` passes on SF1
+    and on 2-4 with 10.056-10.060 out of KNOWN.
+  - **Trap found on the way:** the first `_gate_anchor` also anchored at
+    "the deepest ancestor whose name is on the gate's path". That put a
+    VALUATION gate inside the data collector's SERVICE (2.058 "No
+    Inspection" refused). It now anchors only at a defect's linked owner.

@@ -286,8 +286,13 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
     a hidden section;
   - T-505: map of findings that have no field control;
   - T-510: the U10.2 one-click fix rewrites a fact.
-- **Taking over from the lead:** T-1201..T-1204. The T-1204 unit-defect
-  gate fix is prototyped.
+- **Taken over from the lead and landed (2bc4d20):**
+  - T-1204, unit part (E-343): Unit 2's defects no longer vanish;
+  - T-1201, engine part (E-344): `uad/heal.py`, `POST /cases/{id}/heal`,
+    and Review XSD items carry `repair`.
+  - Left for the lead: the Feature-first design for the Vehicle Storage
+    and Amenities defect tables, and the heal button (T-508).
+  - Merged tree: 1251/0/10/1 xfail; harness 88/0/20.
 
 ### 2026-10-11 -- keen-turing (engine checks; T-1100..T-1149, E-170..E-179)
 - **Done:** T-1074 and T-1066 (editor visibility); T-909 and T-910

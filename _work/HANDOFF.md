@@ -3554,6 +3554,8 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 
   Left for T-510: the inline-as-you-type surface (warnings show in the
   Review Master today) and one-click fixes.
+- **Verified:** full suite 1140 passed / 0 failed / 9 skipped on 7c535d6.
+  Harness 12: 86 / 0 / 22, unchanged.
 - **Next here:** T-127 (Site exhibit titles):
   - B-1 p59 Scenario 1: a picture filed under several categories prints
     once, with the headers joined in FID order;

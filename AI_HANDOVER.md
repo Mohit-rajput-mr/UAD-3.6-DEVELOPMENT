@@ -103,7 +103,8 @@ Most recent first. Each line: what, and how it was verified.
   - Tests: `test_party_gates` 3, `test_edit_visibility` 17,
     `test_usability` 22, `test_owner_checks` 15. All 12 D-1 samples raise
     no new finding.
-  - **Full suite and harness: see the HANDOFF section of the same date.**
+  - **Full suite 1140 passed / 0 failed / 9 skipped (@7c535d6). Harness
+    12: 86 pass / 0 fail / 22 gap, unchanged.**
 - **2026-10-11 — Page breaks follow D-1 and Appendix E (ecstatic-bohr;
   E-300..E-308, T-110 done, T-101 partial).** In all 12 samples the Sketch,
   the Scope of Work and the Certifications now head the same pages as the

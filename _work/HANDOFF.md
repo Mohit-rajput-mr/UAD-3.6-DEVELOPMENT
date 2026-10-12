@@ -3663,3 +3663,111 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
 - Spacing/zoom (T-1210 done): laptop page 229 px down at 69 %.
 - Run the full suite in a snapshot worktree (`git worktree add --detach <scratch>/wts HEAD`) so editing can continue; running it in the live tree while editing gave false failures twice.
 - Next: deploy after the suite on head; phase 2 S0b/E1, wave 1 (ribbon, problems panel, keys, markers).
+## 2026-10-11 -- epic-brahmagupta (4th session): helper + challenger; T-925, T-014 (E-340..E-342)
+- **Who:** a fourth session the owner started to help the other three
+  finish and then challenge their work. Branch
+  `claude/epic-brahmagupta-hvcarw`, based on production 31b0644. Blocks
+  T-1250..T-1299, E-340..E-349. Never pushes to another branch or to
+  production.
+- **Production verified independently (31b0644):** full suite 1178
+  passed / 1 failed / 10 skipped. The failure is
+  `test_worksheet_grid.py::test_single_family_row_icons_drawer_apply_recalc_and_keys`,
+  which passes 3/3 alone: a browser timing test starved by other work on
+  the machine. **Trap:** run the full suite with nothing else heavy on the
+  box.
+- **T-925 done (E-340, E-341).** The fill (`POST /cases/{id}/autofill`)
+  wrote each block into the block at the same *place*. Over the 144
+  blank-x-source pairs of the 12 samples:
+  - blank SF1 from SF2 gave 7 sales comparables, two empty;
+  - any fill into or from a Condo1-shaped report built a second
+    VALUATION with a second subject.
+  `autofill.Aligned` now pairs SERVICE by kind, PROPERTY by role + rank,
+  and PARTY by roles (the old `party_map`), once, before writing. After the
+  fix all 144 pairs give the source's columns, one valuation, no failed
+  step and every value; same-sample fills are identical to before.
+  `comparables.add_property` no longer adds a comparable to the inspection
+  SERVICE's PROPERTIES (E-341). Tests: `tests/test_fill_alignment.py`.
+- **Not changed, registered as T-1250:** `shape.reshape` (property type
+  changes) still matches all but parties by place. It has the same flaw
+  (SF2 -> Condo1: 6 sales columns), but aligning it alone keeps the 2-4
+  structure's rental columns *unpaired*: the template's rental-to-unit
+  pairings do not survive reshape + unit count.
+  `test_setup.py::test_rental_comparables_are_paired...` codifies today's
+  behaviour (0 rentals after "SF made 2-unit") and must be revisited with
+  it.
+- **T-014 (E-342):** `PATCH /fields/2.011` (the client's role) on a report
+  with no client yet answered 200 and saved nothing; it now creates the
+  Client party. `_work/audit/sweep_field_writes.py` writes every field of
+  a new report through the route, a fresh report per field: 996 saved,
+  151 refused with a reason, **0 silent drops**. `tests/test_party_writes.py`.
+  - `tests/test_edit.py` is a stale script (no test functions, nothing
+    runs it). It crashes on `entry.normalize`'s type check and reads
+    party fields without their party, so its "220/250" is not a
+    measurement. Use the sweep.
+- **Challenges posted (agents board):**
+  - lead, T-506: the Review Master demotes a finding on a hidden section
+    ("not counted"), but the value still ships. HOA dues 125 on a
+    single-family report: Review says UAD1575 is Review, while H-1 on the
+    shipped mismo.xml says Fatal. `ready` can be True while a GSE checker
+    rejects the file.
+  - lead, T-505 input: about 20 counted findings per blank report carry a
+    field_id with no data-fid control: the rooms drawer, client-role,
+    sketch, computed rent totals, certifications, plus the Summary
+    redisplays.
+  - keen-turing, T-510: the U10.2 one-click fix rewrites a fact (New
+    Construction = true) to fit a C1 rating. It should offer the rating
+    side or only jump.
+- **Next (handed over by the lead): T-1201..T-1204.** T-1204 first
+  (prototyped, not yet on this branch):
+  - On a 2-4 report, a defect added in Unit 2's table was saved and tied
+    to Unit 2, but its gate (UnitInteriorDefectsExistIndicator) was set on
+    Unit 1.
+  - `edit.instance_for` walks a single gate's A-1 path from the document
+    root. T-1066's `edit_hides` then hid Unit 2's whole table, with the
+    new row in it.
+  - Fix: `edit._gate_anchor`. The gate is walked from the block the row
+    stands for: a DEFECT's `DEFECT_ContainsDefectOf_*` owner, else the
+    deepest ancestor on the gate's path.
+  - Still open in T-1204: in Vehicle Storage (13.008/13.009) and Amenities
+    (14.009/14.010), a non-Feature column in the empty line makes a bare
+    DEFECT linked to nothing (200, invisible). Proposed: refuse with
+    "Answer Feature (13.0xx) first", the format
+    `test_every_choice_saves.py` already follows.
+- **Later the same day (epic-brahmagupta): merged the lead's c237b60, then
+  T-1204 (part) and T-1201 (engine), E-343/E-344.**
+  - The lead had been told this session stopped, and took its tasks over
+    (sleepy-hypatia-e2pzcn-8). It had not stopped. It answered on the
+    board (epic-brahmagupta-hvcarw-5) and asked for T-925, T-014, T-1201
+    and T-1204 back; T-1202 and T-1203 stay with the lead (grid EDIT_JS).
+  - **T-1204, the unit part (E-343).** A defect picked in Unit 2's table
+    opened Unit 1's "defects exist?" gate, because `edit.instance_for`
+    walked the gate from the document root. T-1066 then hid Unit 2's
+    table, and the new row with it. `edit._gate_anchor` walks the gate
+    from the defect's linked owner. The tie to the unit had always been
+    there.
+  - **T-1204, left:** the Vehicle Storage and Amenities defect tables'
+    empty line. The Feature column there is the owner (CarStorageType,
+    AmenityType), and the empty line has no owner to tie a defect to. It
+    needs a design decision (CATALOG E-343). 4.096 is also left.
+  - **T-1201 (E-344):** `uad/heal.py` + `POST /cases/{id}/heal`. Review
+    XSD items carry `repair = {action: heal}`, deliberately not `fix`:
+    the editor sends every `fix` to a field, so a heal under `fix` would
+    draw a button that fails. Wiring the button is the lead's T-508.
+  - **For the lead's T-1205:** `tests/test_hidden_values_ship.py`,
+    strict-xfail. It XPASSes, and so fails, the day hidden values stop
+    shipping. Take the marker off with the fix.
+  - **For T-505:** `_work/audit/unreachable_findings.py` lists the counted
+    findings whose field has no control in the editor.
+  - **Note for the lead, E-186 atomic save:** on the Windows desktop
+    edition, `os.replace` onto a file another thread holds open raises
+    PermissionError, because Python opens files without share-delete. A
+    save racing a render can fail there. A short retry on PermissionError
+    covers it.
+  - **Verified on the merged tree** (lead c237b60 + this branch, 2bc4d20):
+    full suite 1251 passed / 0 failed / 10 skipped / 1 xfailed (the T-1205
+    marker); harness 12 88/0/20. `test_every_choice_saves` passes on SF1
+    and on 2-4 with 10.056-10.060 out of KNOWN.
+  - **Trap found on the way:** the first `_gate_anchor` also anchored at
+    "the deepest ancestor whose name is on the gate's path". That put a
+    VALUATION gate inside the data collector's SERVICE (2.058 "No
+    Inspection" refused). It now anchors only at a defect's linked owner.

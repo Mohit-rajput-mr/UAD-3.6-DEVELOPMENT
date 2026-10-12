@@ -186,9 +186,10 @@ def test_a_finding_on_a_section_the_report_leaves_out_is_not_counted(client):
     cid, _tree, _rv = _new(client, "single_family")
     assert client.patch(f"/api/cases/{cid}/fields/18.011", json={"value": "125"}).status_code == 200
     rv = client.get(f"/api/cases/{cid}/review").json()
+    # the dues are not in the file that ships (T-1205, delivery.hidden_values),
+    # so H-1 finds nothing there to count; at most the rule is listed for review
     aside = [i for i in rv["items"] if i["code"] == "UAD1575"]
-    assert aside and aside[0]["severity"] == "Review", aside
-    assert aside[0]["detail"].startswith(review.NOT_COUNTED)
+    assert all(i["severity"] == "Review" for i in aside), aside
     assert "UAD1575" not in _counted(rv["items"])
     # the fields API marks a field exactly as the Review Master counts it
     fields = client.get(f"/api/cases/{cid}/fields", params={"section": 18}).json()["sections"]

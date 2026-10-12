@@ -73,7 +73,8 @@
     // a repair the specification leaves one answer for (T-510, T-1201)
     if(typeof window.applyFixButton==='function'){
       el.querySelectorAll('.prb-row').forEach(function(r){
-        var i=shown[Number(r.dataset.n)]; if(i&&i.fix){ var b=applyFixButton(i.fix); b.classList.add('prb-fix'); r.appendChild(b); }
+        var i=shown[Number(r.dataset.n)]; var fx=i&&(i.fix||(i.repair&&{route:i.repair.action,label:i.repair.label}));
+        if(fx){ var b=applyFixButton(fx); b.classList.add('prb-fix'); r.appendChild(b); }
       });
     }
     var list2=el.querySelector('.prb-list'); if(list2) list2.scrollTop=top;

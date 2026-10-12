@@ -1654,6 +1654,28 @@ def case_review(case_id: str, include_review: bool = Query(True)) -> dict:
     return out
 
 
+@router.post("/cases/{case_id}/heal")
+def heal_case(case_id: str, request: Request) -> dict:
+    """Repair the schema faults an older remover left in a saved case (T-1201):
+    a holder that lost the child the schema requires is taken out when it
+    says nothing but which block it is, or the empty container is put back.
+    Saved only when the schema errors drop and every answer is still there
+    (``uad/heal.py``)."""
+    from uad import heal
+    _case_or_404(case_id)
+    st = store()
+    done = heal.heal(st.tree(case_id))
+    if not done.changed:
+        raise HTTPException(422, "Nothing here can be repaired without changing an answer.")
+    st.save_tree(case_id, done.tree)            # it never adds a schema error
+    st.invalidate(case_id, _actor(request), "schema repaired")
+    st.log(case_id, _actor(request), "repaired",
+           f"schema errors {done.before} -> {done.after}; removed {', '.join(done.removed) or 'none'}; "
+           f"restored {done.restored}")
+    return {"before": done.before, "after": done.after, "removed": done.removed,
+            "restored": done.restored, "state": st.get(case_id).state}
+
+
 @router.get("/cases/{case_id}/integrity")
 def case_integrity(case_id: str, deep: bool = Query(False)) -> dict:
     """Whether the report, the document and the package agree with each other.
@@ -2075,20 +2097,6 @@ def _write_line_cell(case_id: str, request: Request, kind: str, number: int,
     return {"value": amount if adjustment else text,
             "recalculated": st.recalculated(case_id),
             "state": st.get(case_id).state}
-
-
-@router.post("/cases/{case_id}/heal")
-def heal_structure(case_id: str, request: Request) -> dict:
-    """Put back the containers an earlier removal took away, so the document
-    validates again; no value is changed (templates.heal, T-1201)."""
-    _case_or_404(case_id)
-    st = store()
-    tree = st.tree(case_id)
-    result = templates.heal(tree.getroot())
-    if result["after"] < result["before"]:
-        st.save_tree(case_id, tree, allow_invalid=True)
-        st.invalidate(case_id, _actor(request), "structure repaired")
-    return result
 
 
 @router.post("/cases/{case_id}/comparables")

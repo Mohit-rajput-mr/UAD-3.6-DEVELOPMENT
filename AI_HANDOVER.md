@@ -84,6 +84,19 @@ How the live site works (so you don't re-derive it):
 
 Most recent first. Each line: what, and how it was verified.
 
+- **2026-10-11 — The intake fill puts each block into its counterpart
+  (epic-brahmagupta, T-925, E-340..E-342).** `autofill.Aligned` matches a
+  SERVICE by kind, a PROPERTY by role and number, and a PARTY by roles,
+  instead of by position.
+  - Before: blank SF1 filled from SF2 gave 7 sales columns, two of them
+    empty; any fill into or from a Condo1-shaped report built a second
+    VALUATION.
+  - Now all 144 sample-pair fills are exact. Same-sample fills are
+    unchanged.
+  - Also fixed: "+ Add Comparable" on Condo1-shaped cases; the client's
+    role through `PATCH /fields/2.011` on a new report.
+  - Tests: `test_fill_alignment.py`, `test_party_writes.py`. Reshape is
+    left as it was: T-1250.
 - **2026-10-11 -- keen-turing: the editor shows only what applies; the
   report warns where it contradicts itself (T-1074, T-1066, T-909, T-910,
   T-510 partial; E-170..E-172).**
@@ -287,6 +300,24 @@ Task registry with evidence: `TASKS.md` (`python engine/tasks.py next`).
   - split view (T-275);
   - then phase 3: speed, repeating groups, comps view, intake, Tauri.
 - **Rule learned:** run the full suite in a snapshot worktree. Running it in the live tree while editing gave false failures twice.
+### 2026-10-11 -- a fourth session, epic-brahmagupta: helper + challenger
+- **Branch:** `claude/epic-brahmagupta-hvcarw`. Its last HANDOFF section
+  has the detail.
+- **Done:** T-925 and T-014 (above).
+- **Production verified independently:** 1178/1/10. The one failure is a
+  load-timing flake that passes alone.
+- **Challenges posted to the lead and keen-turing:**
+  - T-506: the Review Master and the shipped XML disagree on a finding in
+    a hidden section;
+  - T-505: map of findings that have no field control;
+  - T-510: the U10.2 one-click fix rewrites a fact.
+- **Taken over from the lead and landed (2bc4d20):**
+  - T-1204, unit part (E-343): Unit 2's defects no longer vanish;
+  - T-1201, engine part (E-344): `uad/heal.py`, `POST /cases/{id}/heal`,
+    and Review XSD items carry `repair`.
+  - Left for the lead: the Feature-first design for the Vehicle Storage
+    and Amenities defect tables, and the heal button (T-508).
+  - Merged tree: 1251/0/10/1 xfail; harness 88/0/20.
 
 ### 2026-10-11 -- keen-turing (engine checks; T-1100..T-1149, E-170..E-179)
 - **Done:** T-1074 and T-1066 (editor visibility); T-909 and T-910

@@ -403,8 +403,15 @@ def hidden_values(root: etree._Element) -> list[etree._Element]:
     number = {str(n): name for n, name in bind.SECTIONS}
     keep: set[str] = set()
     for fid, entry in form._fields().items():
-        if number.get(fid.split(".")[0]) not in off:
-            keep |= {dp["mismo"] for dp in entry.get("data_points") or [] if dp.get("mismo")}
+        if number.get(fid.split(".")[0]) in off:
+            continue
+        # a shown chapter's rows that repeat a hidden section (the sales
+        # grid's "Project Information" rows) are hidden with it
+        subs = {(loc.get("subsection") or "").split(" - ")[0]
+                for loc in entry.get("locations") or []}
+        if subs and subs <= set(off):
+            continue
+        keep |= {dp["mismo"] for dp in entry.get("data_points") or [] if dp.get("mismo")}
     switches = set(form.switch_sections())
     for name in off:
         if name in switches:
@@ -431,9 +438,11 @@ def hidden_values(root: etree._Element) -> list[etree._Element]:
             parent = node.getparent()
             if parent is None or any(parent is a for a in anchors):
                 break
+            # the block's own type goes with its value (an AssociationChargeType
+            # of "AssociationDues" left alone still asks for what it includes)
             names = {etree.QName(e).localname for e in parent.iter()
                      if isinstance(e.tag, str) and not len(e) and (e.text or "").strip()}
-            if not names <= gone:
+            if not {n for n in names if not n.endswith("Type")} <= gone:
                 break
             node = parent
         if not any(node is u for u in units):

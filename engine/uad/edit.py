@@ -385,7 +385,12 @@ def _client_second_role(root: etree._Element, *, create: bool = False):
     ROLE_DETAIL that already says Client" makes the field try to overwrite the
     very anchor it was found by: a value written there is unreadable by the
     same rule that located it, so a re-read never finds what was just saved.
+
+    A report with no client yet gets one when a role is written (T-014): the
+    field is the client's, so choosing it names the party.  Before, the write
+    found no party, wrote nothing and answered as if it had saved.
     """
+    client = None
     for party in root.iter(f"{QN}PARTY"):
         details = list(party.iter(f"{QN}ROLE_DETAIL"))
         kinds = [(d, (d.findtext(f"{QN}PartyRoleType") or "").strip()) for d in details]
@@ -394,14 +399,20 @@ def _client_second_role(root: etree._Element, *, create: bool = False):
         other = next((d for d, k in kinds if k and k != "Client"), None)
         if other is not None or not create:
             return other
-        # lxml's __bool__ is "has children", not "is not None" -- an
-        # existing but empty ROLES element would read as falsy here.
-        roles = party.find(f"{QN}ROLES")
-        if roles is None:
-            roles = ensure_path(party, ["ROLES"])[0]
-        role = insert_ordered(roles, "ROLE")
-        return insert_ordered(role, "ROLE_DETAIL")
-    return None
+        client = party
+        break
+    if client is None:
+        if not create:
+            return None
+        from . import parties
+        client = parties._new_party(root, "Client")
+    # lxml's __bool__ is "has children", not "is not None" -- an
+    # existing but empty ROLES element would read as falsy here.
+    roles = client.find(f"{QN}ROLES")
+    if roles is None:
+        roles = ensure_path(client, ["ROLES"])[0]
+    role = insert_ordered(roles, "ROLE")
+    return insert_ordered(role, "ROLE_DETAIL")
 
 
 def read_client_role(root: etree._Element) -> str:
@@ -1093,8 +1104,15 @@ def instance_for(root: etree._Element, dp: dict,
         cut = len(segs) - len(rel)                 # where rel starts within segs
         if repeat < 0:
             # a gate: a single block, reached by the type element's own A-1 path
+            # -- walked from the block the row stands for, not from the top,
+            # or every copy of a section opens the first copy's gate (T-1204)
             upto = list(kpath[1:] if kpath and kpath[0] == etree.QName(root).localname else kpath)
-            holder, _ = ensure_path(root, upto) if upto else (root, [])
+            start = _gate_anchor(root, base, upto)
+            if start is not None:
+                name = etree.QName(start).localname
+                upto = upto[len(upto) - upto[::-1].index(name):]
+            holder, _ = ensure_path(start if start is not None else root, upto) \
+                if upto else (start if start is not None else root, [])
             node = holder.find(f"{QN}{key}")
             if node is None:
                 node = insert_ordered(holder, key)
@@ -1147,6 +1165,29 @@ def instance_for(root: etree._Element, dp: dict,
                 chosen = sibling if sibling is not None else insert_ordered(holder, container)
         base = chosen
     return base
+
+
+def _gate_anchor(root: etree._Element, scope: etree._Element | None,
+                 upto: list[str]) -> etree._Element | None:
+    """The block a gate answered for this value lives in, on the gate's path.
+
+    A defect is kept at property level (PROPERTY_DEFECT) and tied to the unit,
+    building or garage it is in by DEFECT_ContainsDefectOf_<it> (D-1 2-4), so
+    its gate ("Unit Interior Defects Exist?") is that one's: the link names
+    it.  None otherwise, and the path is walked from the top as before.  (A
+    wider rule -- the deepest ancestor whose *name* is on the gate's path --
+    put a VALUATION gate inside the data collector's SERVICE: names alone do
+    not say which SERVICE.)
+    """
+    if scope is None or etree.QName(scope).localname != "DEFECT" or not scope.get(f"{XL}label"):
+        return None
+    label = scope.get(f"{XL}label")
+    arc = "DEFECT_ContainsDefectOf_"
+    to = next((r.get(f"{XL}to") for r in root.iter(f"{QN}RELATIONSHIP")
+               if r.get(f"{XL}from") == label and arc in (r.get(f"{XL}arcrole") or "")), None)
+    owner = next((e for e in root.iter() if isinstance(e.tag, str)
+                  and e.get(f"{XL}label") == to), None) if to else None
+    return owner if owner is not None and etree.QName(owner).localname in upto else None
 
 
 def _append_instance(scope: etree._Element, segments: list[str],

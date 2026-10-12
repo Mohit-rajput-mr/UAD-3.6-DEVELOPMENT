@@ -85,10 +85,6 @@ KNOWN = {
     # tied to the garage / amenity it is in, api._defect_owner, T-1204)
     "26.058": "defect row made without its component", "26.064": "defect row made without its component",
     "4.096 pick false": "utility row made from its Detail alone",
-    # ... and on a 2-4 unit report a Unit Interior defect is made at the
-    # subject's PROPERTY_DEFECT with no tie to its unit, so the unit's table
-    # (drawn per unit) does not draw it (T-1204)
-    "10.058": "unit defect row made without its unit",
     # the empty line of a table whose rows are conditioned on another value
     # (SiteInfluenceType = BodyOfWater; IncomeApproachIndicator = false):
     # refused, without naming the answer it waits for
@@ -105,8 +101,7 @@ KNOWN = {
 
 # entries that hold on one report only (the single-family blank answers
 # IncomeApproachIndicator, so its exclusion reason row saves there)
-KNOWN_ON = {"26.003": ("2_to_4_unit_appraisal_v1_4",),
-            "10.058": ("2_to_4_unit_appraisal_v1_4",)}
+KNOWN_ON = {"26.003": ("2_to_4_unit_appraisal_v1_4",)}
 
 
 def _known(name: str, template: str) -> str:

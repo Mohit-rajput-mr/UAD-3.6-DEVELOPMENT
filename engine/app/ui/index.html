@@ -2394,6 +2394,8 @@ function findingRow(i){
     d.appendChild(fix);
   }
   if(i.fix){ const b=applyFixButton(i.fix); b.style.marginLeft='6px'; d.appendChild(b); }
+  // a schema fault an older remover left: repaired without changing an answer (T-1201)
+  if(i.repair){ const b=applyFixButton({route:i.repair.action,label:i.repair.label}); b.style.marginLeft='6px'; d.appendChild(b); }
   return d;
 }
 /* A warning that has one answer in the specification offers it (T-510): the

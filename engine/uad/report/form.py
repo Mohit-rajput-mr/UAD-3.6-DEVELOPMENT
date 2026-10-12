@@ -3746,7 +3746,8 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
             rows_html = [h for _o, h in sorted(zip(order_by, rows_html), key=lambda p: p[0])]
         if rows_html:
             any_data = True
-        if ctx.edit and any(c["ids"] and _repeats(c["ids"][0]) for c in cells):
+        if ctx.edit and any(c["ids"] and _repeats(c["ids"][0]) for c in cells) \
+                and not _at_schema_max(cells, len(keys)):
             # one empty line to start another instance of the table's rows; a
             # cell whose inputs the row's type chooses (a garage's spaces and
             # area, a driveway's surface) waits for it, and is drawn with it
@@ -5376,13 +5377,37 @@ def _repeating_tags() -> frozenset:
     return frozenset(tags)
 
 
-def _with_row_x(cell_html: str, cells: list[dict], key: str) -> str:
-    """The row's own x, in its last cell (T-1068): every repeating table row
-    can be taken out, not only cleared."""
+def _row_tag(cells: list[dict]) -> str:
     fid = next((c["ids"][0] for c in cells if c.get("ids")), "")
     b = binding(fid) if fid else None
     xpath = next((d.get("xpath", "") for d in (b.data_points if b else []) if d.get("mismo")), "")
-    tag = bind.repeating_container(xpath)
+    return bind.repeating_container(xpath)
+
+
+def _at_schema_max(cells: list[dict], have: int) -> bool:
+    """Does the table already hold as many rows as the GSE subschema allows
+    (maxOccurs: one SALES_CONTRACT, three MARKET_INVENTORY ...)?  Then it
+    offers no empty line, which could only make an invalid document (T-1068)."""
+    from .. import xsd_order
+    tag = _row_tag(cells)
+    if not tag:
+        return False
+    for parent in (tag + "S", tag + "ES", tag[:-1] + "IES" if tag.endswith("Y") else ""):
+        if not parent:
+            continue
+        try:
+            most = xsd_order.max_occurs(parent, tag)
+        except Exception:                       # noqa: BLE001
+            continue
+        if most and most > 0:
+            return have >= most
+    return False
+
+
+def _with_row_x(cell_html: str, cells: list[dict], key: str) -> str:
+    """The row's own x, in its last cell (T-1068): every repeating table row
+    can be taken out, not only cleared."""
+    tag = _row_tag(cells)
     if not row_removable(tag) or "</td>" not in cell_html:
         return cell_html
     return cell_html.replace(

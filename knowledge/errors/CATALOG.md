@@ -3489,3 +3489,12 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Symptom:** under the utilities table, picking Detail (4.096, "Shared?") on the empty line made a SITE_UTILITY with nothing but UtilitySharedIndicator. The table never drew it.
 - **Mechanism:** `form._waits_for_type` also holds back a cell whose every data point is asked only on another cell's answer in the same row (4.096: IF SiteUtilityOwnershipType = "NonPublic"). It is drawn once the row has that answer.
 - **Test:** `tests/test_every_choice_saves.py` (KNOWN "4.096 pick false" removed); table, room, repeating-group and golden tests (202) unchanged.
+
+## E-199 Table rows could be emptied but not removed; empty lines past the schema maximum (T-1068)
+
+- **Symptom:** a defect, utility, view or influence row could only be emptied, never taken out (DR §7). A table at its GSE maximum still offered an empty line that could only make an invalid document.
+- **Mechanism:**
+  - `form._with_row_x` gives every generic repeating row, and every own site influence, an x (`data-row-del` = the block).
+  - `form.row_removable` allows the 96 repeating containers A-1 names, minus the structural blocks (PROPERTY, IMPROVEMENT, PROPERTY_UNIT, PARTY, LEVEL ...). `DELETE /rows` takes those through `edit.remove_block`, which refuses what the schema needs.
+  - `form._at_schema_max` reads `xsd_order.max_occurs`. Only 10 blocks are bounded.
+- **Test:** `tests/test_row_remove.py`; table/choice/golden/repeating tests (118) unchanged.

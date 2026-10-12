@@ -45,3 +45,11 @@ def test_every_row_x_names_a_block_the_route_accepts(client):
         tags = {x.get("data-row-del") for x in doc.xpath("//*[@data-row-del]")}
         assert tags, template
         assert all(form.row_removable(t) or t in ("AMENITY", "FLOOR_COVERING") for t in tags), tags
+
+
+def test_a_table_offers_no_empty_line_past_the_schema_maximum():
+    """GSE subschema maxOccurs: three MARKET_INVENTORY, one PROPERTY_TAX; an
+    unbounded block (an environmental condition) always takes another."""
+    assert [form._at_schema_max([{"ids": ["17.005"]}], n) for n in (2, 3)] == [False, True]
+    assert [form._at_schema_max([{"ids": ["18.073"]}], n) for n in (0, 1)] == [False, True]
+    assert not form._at_schema_max([{"ids": ["4.026"]}], 50)

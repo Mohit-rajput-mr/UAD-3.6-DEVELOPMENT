@@ -1,0 +1,34 @@
+{
+ "sf1_appraisal_v1_4": {
+  "open_ms": [
+   4910,
+   147,
+   78
+  ],
+  "open_median_ms": 147,
+  "section_switch_ms": [
+   135,
+   91,
+   50,
+   82,
+   45
+  ],
+  "keystroke_to_paint_ms_median": 16.6
+ },
+ "2_to_4_unit_appraisal_v1_4": {
+  "open_ms": [
+   6255,
+   76,
+   17
+  ],
+  "open_median_ms": 76,
+  "section_switch_ms": [
+   63,
+   72,
+   42,
+   59,
+   57
+  ],
+  "keystroke_to_paint_ms_median": 16.6
+ }
+}

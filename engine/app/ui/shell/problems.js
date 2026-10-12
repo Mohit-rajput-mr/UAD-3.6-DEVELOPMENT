@@ -61,7 +61,7 @@
       rows.forEach(function(i){
         var n=shown.length; shown.push(i);
         html+='<div class="prb-row '+sevOf(i)+(i.field_id?' go':'')+'" data-n="'+n+'" tabindex="0" title="'+esc(i.message)+'">'
-          +'<i></i><span class="prb-m">'+esc(i.message)+'</span>'
+          +'<i></i><span class="prb-m">'+esc(i.plain||i.message)+'</span>'
           +'<span class="prb-c">'+esc(i.code)+(i.field_id?' · '+esc(i.field_id):'')+'</span></div>';
       });
       return html+'</div></div>';

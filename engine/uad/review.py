@@ -32,6 +32,7 @@ than counted against a report that does not ask for it (``shown_in``).
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
@@ -87,6 +88,7 @@ class Item:
     # building's copy of the section (compliance.Finding.comp / .scope)
     comp: int = 0
     scope: str = ""
+    plain: str = ""                # the message in plain words (schema text without namespaces)
 
     @property
     def section_number(self) -> int:
@@ -149,6 +151,26 @@ def _index() -> dict:
 HEAL = {"action": "heal", "label": "Repair the document"}
 
 
+_NS = re.compile(r"\{[^}]*\}")
+
+
+def plain_schema(message: str) -> str:
+    """An XSD message in the words the appraiser reads: no namespaces, and
+    the two common shapes said as what is wrong (T-1208).  The MISMO names
+    stay -- they are what A-1 and the Review Master call the blocks."""
+    text = _NS.sub("", message or "").strip()
+    m = re.match(r"Element '(\w+)': This element is not expected\. Expected is \( ([\w, ]+) \)\.?$", text)
+    if m:
+        return f"{m.group(1)} is not allowed where it is: the schema expects {m.group(2)} at that point (missing, or out of order)."
+    m = re.match(r"Element '(\w+)': \[facet '(\w+)'\] The value '([^']*)' (.*)$", text)
+    if m:
+        return f"{m.group(1)}: the value \u201c{m.group(3)}\u201d is not allowed ({m.group(2)})."
+    m = re.match(r"Element '(\w+)': Missing child element\(s\)\. Expected is \( ([\w, ]+) \)\.?$", text)
+    if m:
+        return f"{m.group(1)} is missing {m.group(2)}, which the schema requires."
+    return text
+
+
 def _schema_items(tree) -> list[Item]:
     out = []
     errors = schema.validate(tree)
@@ -165,6 +187,7 @@ def _schema_items(tree) -> list[Item]:
         out.append(Item(
             source=SCHEMA, severity=compliance.FATAL, code="XSD",
             message=err.message,
+            plain=plain_schema(err.message or ""),
             detail=f"line {err.line}" + (f", {err.path}" if err.path else ""),
             path=err.path,
             repair=dict(HEAL) if err.message in healed else None,

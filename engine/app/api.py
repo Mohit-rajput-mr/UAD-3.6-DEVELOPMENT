@@ -1255,7 +1255,7 @@ REMOVABLE_ROWS = {"FLOOR_COVERING", "AMENITY"}
 @router.delete("/cases/{case_id}/rows")
 def remove_row(case_id: str, request: Request, key: str = Query(...), tag: str = Query(...)) -> dict:
     _case_or_404(case_id)
-    if tag not in REMOVABLE_ROWS:
+    if tag not in REMOVABLE_ROWS and not report_form.row_removable(tag):
         raise HTTPException(400, f"{tag} rows are not removed this way")
 
     def fn(root, rooms):

@@ -3725,6 +3725,8 @@ def _table_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 line.append(_row_cell(esc(v), c["ids"][0], ctx, key) if (ctx.edit and c["ids"])
                             else _td(esc(v)))
             if has:
+                if ctx.edit and line:
+                    line[-1] = _with_row_x(line[-1], cells, key)
                 rows_html.append("<tr>" + "".join(line) + "</tr>")
                 order_by.append(tuple(shown_cells[:2]))
                 lead.append(any(m and m.casefold() in v for m, v in zip(modifiers, shown_cells)))
@@ -4018,6 +4020,13 @@ def _site_influence_html(el: dict, ctx: Ctx) -> tuple[str, bool]:
                 cells.append(_cell(esc(text), fid, ctx, key=key, point=want[0]))
             else:
                 cells.append(_td(esc(text)))
+        if ctx.edit and kind not in ("ApparentEnvironmentalCondition", "BodyOfWater"):
+            # an influence of its own comes out by its x (T-1068)
+            inst = next((a for a in [blk, *blk.iterancestors()] if row_removable(_local(a))), None)
+            if inst is not None and "</td>" in cells[-1]:
+                cells[-1] = cells[-1].replace(
+                    "</td>", f"<span class='lvdel rowx' role='button' tabindex='0' data-row-del='{_local(inst)}'"
+                             f" data-key='{esc(key)}' title='Remove this influence'>&times;</span></td>", 1)
         body.append("<tr>" + "".join(cells) + "</tr>")
     if ctx.edit:
         body.append("<tr class='newrow'>" + _cell("", INFLUENCE_ID, ctx, new=True)
@@ -5340,6 +5349,45 @@ def _row_cell(text: str, fid: str, ctx: "Ctx", key: str) -> str:
         shown_ = bind.display_value(pairs, b) if (pairs and b) else ""
         lines.append(re.sub(r"^<td[^>]*>|</td>$", "", _cell(esc(shown_), fid, ctx, key=key, point=name)))
     return "<td class='lines'>" + "<br>".join(lines) + "</td>"
+
+
+#: blocks with routes of their own (structure: a dwelling, a unit, a
+#: comparable) or that the document is made of: never a table row's x
+_NOT_A_ROW = {"PROPERTY", "IMPROVEMENT", "PROPERTY_UNIT", "PARTY", "SERVICE", "DEAL", "VALUATION", "LEVEL", "ADDRESS",
+              "RELATIONSHIP", "IMAGE", "VALUATION_COMMENTARY"}
+
+
+def row_removable(tag: str) -> bool:
+    """May a table row of this block be removed by its x (T-1068)?  A block
+    MISMO repeats (DEFECTS/DEFECT, SITE_UTILITIES/SITE_UTILITY ...) that is
+    not one of the report's structural blocks; ``edit.remove_block`` then
+    takes what the schema no longer lets stand, or refuses."""
+    return bool(tag) and tag not in _NOT_A_ROW and tag in _repeating_tags()
+
+
+@lru_cache(maxsize=1)
+def _repeating_tags() -> frozenset:
+    tags = set()
+    for entry in _fields().values():
+        for dp in entry.get("data_points") or []:
+            r = bind.repeating_container(dp.get("xpath", ""))
+            if r:
+                tags.add(r)
+    return frozenset(tags)
+
+
+def _with_row_x(cell_html: str, cells: list[dict], key: str) -> str:
+    """The row's own x, in its last cell (T-1068): every repeating table row
+    can be taken out, not only cleared."""
+    fid = next((c["ids"][0] for c in cells if c.get("ids")), "")
+    b = binding(fid) if fid else None
+    xpath = next((d.get("xpath", "") for d in (b.data_points if b else []) if d.get("mismo")), "")
+    tag = bind.repeating_container(xpath)
+    if not row_removable(tag) or "</td>" not in cell_html:
+        return cell_html
+    return cell_html.replace(
+        "</td>", f"<span class='lvdel rowx' role='button' tabindex='0' data-row-del='{esc(tag)}'"
+                 f" data-key='{esc(key)}' title='Remove this row'>&times;</span></td>", 1)
 
 
 def _waits_for_type(fid: str, row: list[str]) -> bool:

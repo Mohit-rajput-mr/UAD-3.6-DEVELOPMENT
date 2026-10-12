@@ -49,6 +49,16 @@ TOASTS = """()=>{window.__toasts=[];new MutationObserver(ms=>ms.forEach(m=>m.add
   if(n.classList&&n.classList.contains('toast')) window.__toasts.push(n.textContent);}))).observe(document.body,{childList:true});}"""
 
 
+def _generate_map(page) -> None:
+    """Generate map, as the appraiser reaches it: under the shell's "More"
+    menu (T-272), else the report bar's own button."""
+    if page.query_selector(".rf-more"):
+        page.click(".rf-more")
+        page.click('#rf-moremenu [data-for="rf-maps"]')
+    else:
+        page.click("#rf-maps")
+
+
 def _free_port() -> int:
     s = socket.socket()
     s.bind(("127.0.0.1", 0))
@@ -208,7 +218,7 @@ def test_generate_map_is_drawn_in_this_browser_and_lands_in_the_report(site):
     try:
         cid = _open(site)
         _until(page, lambda: held, 120, "the report's first layout under way")
-        page.click("#rf-maps")
+        _generate_map(page)
         said = _toast(page, "Sales Comparison Map drawn", "could not be drawn")
         assert "Sales Comparison Map drawn" in said, said
     finally:
@@ -251,7 +261,7 @@ def test_a_refusal_is_shown_in_the_server_s_own_words(site):
         page.route(re.compile(r"/api/cases/[^/]+/maps$"), refusing(status, kind, body))
         try:
             page.evaluate("window.__toasts=[]")
-            page.click("#rf-maps")
+            _generate_map(page)
             said = _toast(page, "could not be drawn", "drawn —", timeout=30)
             assert said == shown, said
             assert "unknown error" not in said

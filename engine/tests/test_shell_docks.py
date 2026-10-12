@@ -210,7 +210,7 @@ def test_the_report_has_room_on_a_laptop(site):
     _fresh(site)
     open_case(site, "sf1_appraisal_v1_4")
     m = measure_chrome(site)
-    assert m["shell"] and m["chrome"] <= 240, m
+    assert m["shell"] and m["chrome"] <= 200, m
     assert m["zoom"] >= 0.65, m
     assert not site.errors, site.errors
 
@@ -249,4 +249,25 @@ def test_the_status_bar_says_type_section_save_problems_and_size(site):
     _click(page, "right", "min")
     page.click("#statusbar .sb-prob")
     page.wait_for_function("!document.body.classList.contains('win-right-min')")
+    assert not site.errors, site.errors
+
+
+def test_the_report_bar_is_one_row_and_the_rest_is_under_more(site):
+    """T-272 (first part): the report bar keeps one row; Fill the report,
+    Report setup, Generate map, the market imports and Reload are under More,
+    each entry clicking the original button."""
+    page = site.page
+    _fresh(site)
+    open_case(site, "sf1_appraisal_v1_4")
+    page.wait_for_selector(".rf-bar .rf-more", timeout=60_000)
+    tops = page.evaluate("""()=>[...document.querySelectorAll('.rf-bar > *')]
+        .filter(e=>e.getBoundingClientRect().height>0).map(e=>Math.round(e.getBoundingClientRect().top))""")
+    assert max(tops) - min(tops) <= 12, tops                  # one row
+    page.click(".rf-more")
+    items = page.locator("#rf-moremenu [data-for]").all_inner_texts()
+    assert len(items) == 6 and any(t.startswith("Report setup") for t in items), items
+    ran = page.evaluate("""()=>{window.__ran=0; document.getElementById('rf-reload').addEventListener('click',()=>window.__ran++,{once:true}); return 1}""")
+    page.click('#rf-moremenu [data-for="rf-reload"]')
+    page.wait_for_function("window.__ran===1")
+    assert page.query_selector("#rf-moremenu") is None
     assert not site.errors, site.errors

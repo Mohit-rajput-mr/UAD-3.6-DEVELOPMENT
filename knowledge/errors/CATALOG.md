@@ -3483,3 +3483,9 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
 - **Cause:** field 4.028 has three data points named ValueMarketabilityImpactType: an environmental condition's, a body of water's and a site influence's. `set_cell` and `edit.write` look a point up by name, so the first one (the environmental condition) received the value, outside the row.
 - **Mechanism:** `api._point_in` picks, among same-named points, the one whose xPath holds the row's own block (the nearest of the scope and its ancestors). The binding is passed to every later write with that point first.
 - **Test:** `tests/test_site_influences.py` (type, then impact and comment saved and shown in that row after reload); choice/cell/repeating tests (160) unchanged.
+
+## E-198 An empty line offered a cell its row had not asked yet (T-1204, 4.096)
+
+- **Symptom:** under the utilities table, picking Detail (4.096, "Shared?") on the empty line made a SITE_UTILITY with nothing but UtilitySharedIndicator. The table never drew it.
+- **Mechanism:** `form._waits_for_type` also holds back a cell whose every data point is asked only on another cell's answer in the same row (4.096: IF SiteUtilityOwnershipType = "NonPublic"). It is drawn once the row has that answer.
+- **Test:** `tests/test_every_choice_saves.py` (KNOWN "4.096 pick false" removed); table, room, repeating-group and golden tests (202) unchanged.

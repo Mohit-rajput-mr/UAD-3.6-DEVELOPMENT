@@ -5347,11 +5347,22 @@ def _waits_for_type(fid: str, row: list[str]) -> bool:
     another cell of the row states (``decides_row``)?  It is drawn once the
     row has that type, with the inputs the type takes."""
     container = _container_of(None, "", "", fid)
+    points = set()
     for other in row:
         point = cell_point(other, container).get("mismo", "") if other and other != fid else ""
         if point and decides_row(other, point) and _decided_by(fid, point, container):
             return True
-    return False
+        if point:
+            points.add(point)
+    # every input of the cell is asked only on an answer another cell of the
+    # row gives (4.096 Detail: IF SiteUtilityOwnershipType = "NonPublic"):
+    # alone on the empty line it made a block the table never draws (T-1204)
+    b = binding(fid)
+    mine = [d for d in (b.data_points if b else []) if d.get("mismo")]
+    if container:
+        inside = [d for d in mine if container in [t for t in d.get("xpath", "").strip("/").split("/") if t]]
+        mine = inside or mine
+    return bool(mine) and all(any(k in points for k in (d.get("requires") or {})) for d in mine)
 
 
 # The tick of every checkbox the editor draws as a box of its own (a tick

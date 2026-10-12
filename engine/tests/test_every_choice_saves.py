@@ -84,7 +84,6 @@ KNOWN = {
     # a utility with no type (4.096 Detail "No").  (13 / 14: the row is made
     # tied to the garage / amenity it is in, api._defect_owner, T-1204)
     "26.058": "defect row made without its component", "26.064": "defect row made without its component",
-    "4.096 pick false": "utility row made from its Detail alone",
     # the empty line of a table whose rows are conditioned on another value
     # (SiteInfluenceType = BodyOfWater; IncomeApproachIndicator = false):
     # refused, without naming the answer it waits for

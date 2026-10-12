@@ -3476,3 +3476,10 @@ checking every italic note per section (italics.py: 48 mismatches -> 0).
   - a shown chapter's rows that repeat a hidden section (the sales grid's "Project Information" rows) no longer keep a hidden value;
   - a block's own `...Type` goes with its value, so AssociationChargeType "AssociationDues" left alone no longer raises UAD1575.
   - The 12 samples are still untouched.
+
+## E-197 A site influence's Impact was saved into the environmental condition (T-1069)
+
+- **Symptom:** in a site influence row, choosing an Impact (4.028) answered 200 but showed empty after reload.
+- **Cause:** field 4.028 has three data points named ValueMarketabilityImpactType: an environmental condition's, a body of water's and a site influence's. `set_cell` and `edit.write` look a point up by name, so the first one (the environmental condition) received the value, outside the row.
+- **Mechanism:** `api._point_in` picks, among same-named points, the one whose xPath holds the row's own block (the nearest of the scope and its ancestors). The binding is passed to every later write with that point first.
+- **Test:** `tests/test_site_influences.py` (type, then impact and comment saved and shown in that row after reload); choice/cell/repeating tests (160) unchanged.

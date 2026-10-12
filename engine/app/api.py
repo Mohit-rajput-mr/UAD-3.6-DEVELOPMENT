@@ -732,6 +732,24 @@ def _answer_defects_exist(tree, dp: dict, owner, field_id: str) -> None:
         edit.write(tree, fid, "true", data_point=key, binding=b, scope=scope)
 
 
+def _point_in(binding, dp: dict, scope) -> dict:
+    """Of a field's data points that share a name, the one kept inside the
+    row's own block.  4.028 Impact is ValueMarketabilityImpactType of an
+    environmental condition, a body of water and a site influence alike; a
+    site influence row's impact went into the environmental condition (the
+    first), saved with 200 and never shown (T-1069)."""
+    if scope is None or not dp.get("mismo"):
+        return dp
+    same = [d for d in binding.data_points if d.get("mismo") == dp["mismo"] and d is not dp]
+    if not same:
+        return dp
+    names = [etree.QName(e).localname for e in [scope, *scope.iterancestors()] if isinstance(e.tag, str)]
+    def depth(d):
+        segs = [t for t in d.get("xpath", "").strip("/").split("/") if t]
+        return next((n for n, name in enumerate(names) if name in segs), len(names))
+    return min([dp, *same], key=depth)
+
+
 def _defect_owner(root, binding, base):
     """What a new defect in this field's table is a defect of: the element
     kind B-1's table is about (form.DEFECT_TARGETS: a CAR_STORAGE for
@@ -913,6 +931,12 @@ def set_cell(case_id: str, field_id: str, request: Request, body: dict = Body(..
                 edit.insert_ordered(scope, "ValuationAnalysisCategoryType").text = cat
         if scope is None:
             scope = base
+        chosen = _point_in(binding, dp, scope)
+        if chosen is not dp:
+            # every write below looks the point up by name: the row's own first
+            from dataclasses import replace as _replace
+            binding = _replace(binding, data_points=[chosen] + [d for d in binding.data_points if d is not chosen])
+            dp = chosen
         target = edit.source_target(field_id, dp, scope)
         if scope is not None and target:
             # a source tied by arcrole to its row (a transfer's Data Source):

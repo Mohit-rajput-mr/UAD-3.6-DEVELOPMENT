@@ -3771,3 +3771,28 @@ Next: T-1055..T-1061 (listed in AI_HANDOVER §5), then rebuild the installer.
     "the deepest ancestor whose name is on the gate's path". That put a
     VALUATION gate inside the data collector's SERVICE (2.058 "No
     Inspection" refused). It now anchors only at a defect's linked owner.
+
+## 2026-10-12: merge with epic-brahmagupta; more editor and engine
+
+- **Merged epic-brahmagupta**:
+  - Their `autofill.Aligned` and `uad/heal.py` replace my duplicates (CATALOG "Reconciled 2026-10-12").
+  - Their `test_hidden_values_ship.py` (xfail removed) drove two refinements of my T-1205 `delivery.hidden_values`.
+  - Full suite 1333/0.
+- **Editor:**
+  - report bar in one row with More (T-272 part); laptop page top 163 px;
+  - a problem opens the comparable or unit it failed in (T-1208: Finding.comp / .scope);
+  - plain-English XSD text;
+  - comps view with the subject pinned and "Hide empty rows" (T-1084);
+  - Ctrl+G go to field;
+  - every repeating table row has an x, and there is no empty line past the GSE maxOccurs (T-1068, E-199).
+- **Engine:**
+  - site influence impact saved in its own row (E-197, `api._point_in`, a same-named data point chosen by the row's container);
+  - an empty line holds back cells asked only on another cell's answer (E-198).
+- **Measured (T-1064):** cold open 4.9-6.3 s (budget 1 s; browser layout) -> T-1211; switch and keystroke are within budget.
+- **Suite:** 1337/0 at 33e6df6; deployed 080da03.
+- **Next:**
+  - T-1211 cold open;
+  - T-282 exhibit category list and reorder;
+  - split view T-275;
+  - tabbed ribbon;
+  - intake T-1079/T-1080.

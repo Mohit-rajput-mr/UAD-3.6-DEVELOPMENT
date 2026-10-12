@@ -65,3 +65,32 @@ def test_the_panel_counts_filters_and_takes_you_to_the_field(site):
     page.evaluate("localStorage.removeItem('uad-shell-v1')")
     page.evaluate("localStorage.removeItem('uad-marks')")
     assert not site.errors, site.errors
+
+
+def test_a_problem_in_a_comparable_or_a_unit_opens_that_copy(site):
+    """T-1208: a finding names the copy it failed in (a comparable's column,
+    a unit's or building's section) and the click lands there, not on the
+    first field of that id."""
+    page = site.page
+    open_case(site, "2_to_4_unit_appraisal_v1_4", blank=True)
+    picks = page.evaluate("""()=>{
+        const d=document.getElementById('rf').contentDocument, out={};
+        for(const i of (S.review.items||[])){
+          if(!i.field_id) continue;
+          if(!out.comp&&i.comp>=1&&d.querySelector('td[data-gf="'+i.field_id+'"][data-gc="'+i.comp+'"]')) out.comp=i;
+          if(!out.scope&&i.scope&&
+             [...d.querySelectorAll('[data-fid="'+i.field_id+'"]')].filter(e=>e.dataset.iscope).length>1) out.scope=i;
+        }
+        return out;}""")
+    assert picks.get("comp"), "no finding in a comparable's column on this report"
+    if picks.get("comp"):
+        i = picks["comp"]
+        page.evaluate("(i)=>jump(i)", i)
+        got = until(page, "()=>{const f=document.querySelector('td.found,.found'); return f&&(f.dataset.gc||'-');}", timeout=30)
+        assert got == str(i["comp"]), (got, i["comp"], i["field_id"])
+    if picks.get("scope"):
+        i = picks["scope"]
+        page.evaluate("(i)=>{document.getElementById('rf').contentDocument.querySelectorAll('.found').forEach(e=>e.classList.remove('found')); jump(i);}", i)
+        got = until(page, "()=>{const f=document.querySelector('.found[data-iscope]'); return f&&f.dataset.iscope;}", timeout=30)
+        assert got == i["scope"], (got, i["scope"])
+    assert not site.errors, site.errors

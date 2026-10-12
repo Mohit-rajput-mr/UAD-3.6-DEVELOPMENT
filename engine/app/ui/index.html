@@ -2426,7 +2426,7 @@ function jump(item){
   if(item.section_number&&item.section_number!==S.section){
     S.section=item.section_number; drawRail();
   }
-  goToReport({fid:item.field_id,secn:item.section_number,
+  goToReport({fid:item.field_id,secn:item.section_number,comp:item.comp||0,scope:item.scope||'',
               section:(S.sections.find(s=>s.number===item.section_number)||{}).name});
 }
 function drawHistory(w){

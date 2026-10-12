@@ -83,6 +83,10 @@ class Item:
     # a repair of the document itself (HEAL: POST /cases/{id}/heal), kept
     # apart from ``fix``, which the editor sends to a field (T-1201)
     repair: dict | None = None
+    # the copy it failed in (T-1208): a comparable's column, a unit's or a
+    # building's copy of the section (compliance.Finding.comp / .scope)
+    comp: int = 0
+    scope: str = ""
 
     @property
     def section_number(self) -> int:
@@ -246,6 +250,7 @@ def _compliance_items(tree) -> list[Item]:
                 message=f.text or f"{f.data_point} is required",
                 field_id=f.field_id, section=f.section, subsection=f.subsection,
                 label=f.label, path=f.path, detail=f.logic,
+                comp=getattr(f, "comp", 0), scope=getattr(f, "scope", ""),
             ))
         elif f.status == compliance.REVIEW:
             out.append(Item(

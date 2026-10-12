@@ -715,6 +715,11 @@ class Finding:
     logic: str = ""
     reason: str = ""
     role: str = ""
+    # where it failed, so the editor opens that copy (T-1208): the comparable
+    # column (its PropertyOrdinalNumber) and the unit or building the report
+    # draws a copy of the section for (bind.stable_path, as data-iscope)
+    comp: int = 0
+    scope: str = ""
 
     def to_json(self) -> dict[str, Any]:
         return self.__dict__.copy()
@@ -986,6 +991,7 @@ def evaluate(tree, *, include_ok: bool = False, rule_set: list[Rule] | None = No
                       and (rule.requires or (rule.data_point,))[0] in local)
 
         fired, applicable, role_seen = False, False, ""
+        at = None
         if collective:
             in_role = [i for i in instances
                        if not rule.roles or scope.property_role(i) in rule.roles]
@@ -996,7 +1002,8 @@ def evaluate(tree, *, include_ok: bool = False, rule_set: list[Rule] | None = No
                 if not any(_present(scope, i, n) for i in eligible for n in wanted):
                     fired = True
                     role_seen = scope.property_role(eligible[0]) or ""
-            out.append(Finding(status=FINDING, reason="", role=role_seen, **base)
+                    at = eligible[0]
+            out.append(Finding(status=FINDING, reason="", role=role_seen, **base, **_where(at if fired else None))
                        if fired else
                        Finding(status=OK if applicable else NOT_APPLICABLE,
                                reason="", **base))
@@ -1018,12 +1025,38 @@ def evaluate(tree, *, include_ok: bool = False, rule_set: list[Rule] | None = No
             if not any(_present(scope, inst, name) for name in wanted):
                 fired = True
                 role_seen = scope.property_role(inst) or ""
+                at = inst
                 break
         if fired:
-            out.append(Finding(status=FINDING, reason="", role=role_seen, **base))
+            out.append(Finding(status=FINDING, reason="", role=role_seen, **base, **_where(at)))
         elif include_ok:
             out.append(Finding(status=OK if applicable else NOT_APPLICABLE,
                                reason="", **base))
+    return out
+
+
+def _where(inst) -> dict[str, Any]:
+    """The comparable column and the unit / building copy an instance is in."""
+    from . import bind
+    out: dict[str, Any] = {}
+    if inst is None or not hasattr(inst, "iterancestors"):
+        return out
+    for el in [inst, *inst.iterancestors()]:
+        if not isinstance(el.tag, str):
+            continue
+        name = etree.QName(el).localname
+        if name in ("PROPERTY_UNIT", "IMPROVEMENT") and "scope" not in out:
+            out["scope"] = bind.stable_path(el)
+        if name == "PROPERTY":
+            role = el.get("ValuationUseType") or ""
+            if role and role != "SubjectProperty":
+                n = el.find(f".//{{{bind.MISMO}}}PropertyOrdinalNumber")
+                try:
+                    out["comp"] = int((n.text or "0").strip()) if n is not None else 0
+                except ValueError:
+                    pass
+                out.pop("scope", None)          # a comparable's grid cell, not a unit copy
+            break
     return out
 
 

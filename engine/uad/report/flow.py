@@ -606,8 +606,19 @@ EDIT_JS = """
     tell({uad:'at',secn:Number(n)});
     return true;
   }
-  function goField(fid){
-    var t=document.querySelector('[data-fid="'+fid+'"]');
+  function goField(fid,comp,scope){
+    // the copy the problem is in (T-1208): a comparable's grid column, or
+    // the unit's / building's own copy of the section; else the first
+    var t=null;
+    if(comp) t=document.querySelector('td[data-gf="'+fid+'"][data-gc="'+comp+'"]');
+    if(!t&&scope){
+      var all=document.querySelectorAll('[data-fid="'+fid+'"],td[data-gf="'+fid+'"]');
+      for(var i=0;i<all.length&&!t;i++){
+        var s=all[i].getAttribute('data-iscope')||all[i].getAttribute('data-tscope')||all[i].getAttribute('data-gs')||'';
+        if(s&&(s===scope||s.indexOf(scope+'/')===0)) t=all[i];
+      }
+    }
+    if(!t) t=document.querySelector('[data-fid="'+fid+'"]')||document.querySelector('td[data-gf="'+fid+'"][data-gc="0"]');
     if(!t) return false;
     spyLock=Date.now()+400;
     t.scrollIntoView({block:'center',behavior:'auto'});
@@ -644,7 +655,7 @@ EDIT_JS = """
     if(m.uad==='goto'){
       var ok=false;
       if(m.map) ok=goMap(m.map);
-      if(!ok&&m.fid) ok=goField(m.fid);
+      if(!ok&&m.fid) ok=goField(m.fid,m.comp||0,m.scope||'');
       if(!ok&&m.secn) ok=goSection(m.secn);
       tell({uad:'goto-result',found:ok,secn:m.secn||0,fid:m.fid||''});
     }

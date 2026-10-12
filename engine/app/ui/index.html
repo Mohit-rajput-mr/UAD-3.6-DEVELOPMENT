@@ -497,6 +497,11 @@ table.comps thead th{position:sticky;top:0;z-index:1;background:var(--surface-2)
 table.comps tr.head td{background:var(--bg-2);font:500 10.5px/1.6 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 table.comps td.lbl{font-weight:500;white-space:nowrap;position:sticky;left:0;background:var(--surface);z-index:1;min-width:190px;color:var(--ink-2)}
 table.comps tr.head td.lbl{background:var(--bg-2)}
+table.comps td.subj,table.comps th[data-col="subject"]{position:sticky;z-index:1;background:var(--surface);box-shadow:2px 0 0 var(--line)}
+table.comps thead th[data-col="subject"],table.comps thead th[data-col="row"]{z-index:3}
+table.comps thead th[data-col="row"]{position:sticky;left:0}
+.panel.hide-empty table.comps tr.unanswered{display:none}
+.comp-hide{margin-right:8px}
 table.comps input{width:100%;border:0;background:transparent;padding:3px 4px;font-size:12.5px;border-radius:6px;color:var(--ink)}
 table.comps input:focus{outline:1.5px solid var(--ink);outline-offset:-2px;background:var(--surface-2)}
 table.comps td.adj{width:86px;background:var(--bg-2)}
@@ -2106,6 +2111,13 @@ function extraControl(row,value){
 }
 
 /* -------------------------------------------- comparables, in row format */
+/* the subject column stays beside the labels while the comparables scroll
+   (T-1084): pinned at the label column's own (resizable) width */
+function pinSubject(wrap){
+  const t=wrap.querySelector('table.comps'); if(!t) return;
+  const lw=(t.querySelector('th[data-col="row"]')||{}).offsetWidth||210;
+  t.querySelectorAll('td.subj,th[data-col="subject"]').forEach(c=>{ c.style.left=lw+'px'; });
+}
 async function drawComps(w){
   w.innerHTML='<div class="panel empty">Loading the grid…</div>';
   const kind=S.compKind||'sales';
@@ -2134,6 +2146,16 @@ async function drawComps(w){
     toast(res.ok?'Comparable added':'Could not add'); drawComps(w);};
   bar.appendChild(kinds);
   bar.appendChild(document.createElement('span')).style.flex='1';
+  const hide=document.createElement('label'); hide.className='rf-toggle comp-hide';
+  hide.title='Fold away the rows neither the subject nor any comparable has an answer in (editing only; the report prints every row it should)';
+  hide.innerHTML='<input type="checkbox"> Hide empty rows';
+  let hideOn=false; try{ hideOn=localStorage.getItem('uad-comp-hide')==='1'; }catch(_){}
+  hide.querySelector('input').checked=hideOn;
+  hide.querySelector('input').onchange=e=>{ const on=e.target.checked;
+    try{ localStorage.setItem('uad-comp-hide',on?'1':'0'); }catch(_){}
+    p.classList.toggle('hide-empty',on); };
+  p.classList.toggle('hide-empty',hideOn);
+  bar.appendChild(hide);
   bar.appendChild(add);
   p.appendChild(bar);
 
@@ -2171,8 +2193,12 @@ async function drawComps(w){
     if(row.heading){
       body+=`<tr class="head"><td class="lbl">${esc(row.label)}</td><td colspan="${1+2*n}"></td></tr>`;
       continue;}
-    body+=`<tr><td class="lbl">${esc(row.label)}</td>`;
-    body+=`<td>${cell(row.subject_fid,0,row.subject_points,row.subject_parts)}</td>`;
+    // a row nobody has answered -- not the subject, not one comparable -- can
+    // be folded away while editing (T-1084); the report itself is untouched
+    const filled=pp=>Object.values(pp||{}).some(v=>String(v==null?'':v).trim());
+    const empty=!filled(row.subject_parts)&&!(row.cells||[]).some(c=>filled(c&&c.parts)||String((c&&c.adjust_raw)||'').trim());
+    body+=`<tr${empty?' class="unanswered"':''}><td class="lbl">${esc(row.label)}</td>`;
+    body+=`<td class="subj">${cell(row.subject_fid,0,row.subject_points,row.subject_parts)}</td>`;
     for(let i=0;i<n;i++){
       const c=row.cells[i]||{};
       body+=`<td>${cell(row.comp_fid,i+1,row.comp_points,c.parts)}</td>`;
@@ -2185,6 +2211,7 @@ async function drawComps(w){
   p.appendChild(wrap);
   w.innerHTML=''; w.appendChild(p);
   wireGrid(wrap,g,kind,w);
+  pinSubject(wrap);
   if(kind==='sales') p.appendChild(transferLink());
 }
 
@@ -2246,6 +2273,7 @@ function wireGrid(wrap,g,kind,w){
         const next=Math.max(46,startW+(ev.clientX-start));
         col.style.width=next+'px';
         S.compWidths[key(th.dataset.col)]=next;
+        if(th.dataset.col==='row') pinSubject(wrap);
       };
       const up=()=>{document.removeEventListener('mousemove',move);
         document.removeEventListener('mouseup',up);
